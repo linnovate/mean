@@ -1,0 +1,41 @@
+{
+    "name": "MEAN"
+  , "description": "Mongo"
+  , "version": "1.0.0"
+  , "private": false
+  , "author": "MEAN - A Modern Stack: MongoDB, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support)."
+  , "engines": {
+        "node": "0.10.x"
+      , "npm":  "1.2.x"
+    }
+  , "scripts": {
+      "start": "NODE_ENV=development ./node_modules/.bin/nodemon server.js",
+      "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/test-*.js"
+    }
+  , "dependencies": {
+      "express": "latest"
+    , "jade": "latest"
+    , "mongoose": "latest"
+    , "connect-mongo": "latest"
+    , "connect-flash": "latest"
+    , "passport": "latest"
+    , "passport-local": "latest"
+    , "passport-facebook": "latest"
+    , "passport-twitter": "latest"
+    , "passport-github": "latest"
+    , "passport-google-oauth": "latest"
+    , "imager": "latest"
+    , "notifier": "latest"
+    , "underscore": "latest"
+    , "gzippo": "latest"
+    , "async": "latest"
+    , "view-helpers": "latest"
+    , "forever": "latest"
+  }
+  , "devDependencies": {
+        "supertest": "latest"
+      , "should": "latest"
+      , "mocha": "latest"
+      , "nodemon": "latest"
+    }
+}
