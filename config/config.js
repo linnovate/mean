@@ -14,17 +14,16 @@ var path = require('path')
 
 module.exports = {
   development: {
-    // db: 'mongodb://localhost/mean-dev',
-    db: 'mongodb://admin:password@ds027308.mongolab.com:27308/meanstack',
+    db: 'mongodb://localhost/mean-dev',
     root: rootPath,
     notifier: notifier,
     app: {
       name: 'MEAN - A Modern Stack - Development'
     },
     facebook: {
-      clientID: "455818271176818",
-      clientSecret: "db6c579d1fcdc9a3980bc4aade0e3aaf",
-      callbackURL: "http://local.meanstack.com:3000/auth/facebook/callback"
+      clientID: "APP_ID",
+      clientSecret: "APP_SECRET",
+      callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
     twitter: {
       clientID: "CONSUMER_KEY",
@@ -43,8 +42,7 @@ module.exports = {
     },
   },
   test: {
-    //db: 'mongodb://localhost/mean-test',
-    db: 'mongodb://admin:password@ds027308.mongolab.com:27308/meanstack',
+    db: 'mongodb://localhost/mean-test',
     root: rootPath,
     notifier: notifier,
     app: {
@@ -72,17 +70,16 @@ module.exports = {
     }
   },
   production: {
-    //db: 'mongodb://localhost/mean-test',
-    db: 'mongodb://admin:password@ds027308.mongolab.com:27308/meanstack',
+    db: 'mongodb://localhost/mean',
     root: rootPath,
     notifier: notifier,
     app: {
       name: 'MEAN - A Modern Stack - Production'
     },
     facebook: {
-      clientID: "455818271176818",
-      clientSecret: "db6c579d1fcdc9a3980bc4aade0e3aaf",
-      callbackURL: "http://meanstack.heroku.com/auth/facebook/callback"
+      clientID: "APP_ID",
+      clientSecret: "APP_SECRET",
+      callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
     twitter: {
       clientID: "CONSUMER_KEY",
