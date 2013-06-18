@@ -31,6 +31,9 @@
     , "async": "latest"
     , "view-helpers": "latest"
     , "forever": "latest"
+// MEAN Modules
+    , "mean-logger": "latest" 
+
   }
   , "devDependencies": {
         "supertest": "latest"
