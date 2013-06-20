@@ -189,7 +189,7 @@ header h1 {
 header h2 {
   background-color: #f16529;
   font: bold italic .85em/1.5 Georgia, Times, “Times New Roman”, serif;
-  color: #e69b95;
+  color: #ddd;
   padding-bottom: 14px;
   margin-top: -3px;
   text-align: center;
@@ -204,7 +204,7 @@ div#no-downloads {
   padding-bottom: 150px;
   margin: -80px auto -150px;
   z-index: 1;
-  background: transparent url(../images/bg-ramp.jpg) center 171px no-repeat;
+ // background: transparent url(../images/bg-ramp.jpg) center 171px no-repeat;
 }
 
 div#no-downloads span.inner {
@@ -273,25 +273,16 @@ section#main_content {
   min-height:185px;
 }
 
-.ninjaright {
+.ninja {
 width: 330px;
 height: 350px;
 background: url(../images/ninja2.png) no-repeat;
 display: block;
-position: absolute;
+position: fixed;
 right: 5px;
 top: 170px;
 }
 
-.ninjaleft {
-width: 330px;
-height: 350px;
-background: url(../images/ninja2.png) no-repeat;
-display: block;
-position: absolute;
-left: 5px;
-top: 170px;
-}
 
 /* footer */
 
@@ -547,8 +538,8 @@ dd p:first-child {
 
 .header-level-1 {
   font-size: 1.85em;
-  border-bottom: .2em double #d3ccc1;
-  color: #7c334f;
+  border-bottom: .2em double #3a3a3a;
+  color: #3a3a3a;
   text-align: center;
   font-style: italic;
   margin: 1.1em 0 .38em;
