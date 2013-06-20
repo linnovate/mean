@@ -279,7 +279,7 @@ height: 350px;
 background: url(../images/ninja2.png) no-repeat;
 display: block;
 position: fixed;
-right: 5px;
+left: 5px;
 top: 170px;
 }
 
