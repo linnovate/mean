@@ -147,8 +147,8 @@ header {
 header span.ribbon-inner {
   position: relative;
   display: block;
-  background-color: #cd596b;
-  border: 4px solid #7c334f;
+  background-color: #f16529;
+  border: 4px solid #f16529;
   padding: 2px;
   z-index: 1;
 }
@@ -158,7 +158,7 @@ header span.left-tail, header span.right-tail {
   display: block;
   width: 56px;
   height: 105px;
-  background: transparent url(../images/ribbon-tail-sprite.png) 0 0 no-repeat;
+//  background: transparent url(../images/ribbon-tail-sprite.png) 0 0 no-repeat;
   position: absolute;
   bottom: -37px;
   z-index: 0;
@@ -175,7 +175,8 @@ header span.right-tail {
 }
 
 header h1 {
-  background-color: #f16529;
+ // background-color: #f16529;
+  background-color: #3a3a3a;
   font-size: 2.5em;
   font-weight: 800;
   font-style: normal;
@@ -187,7 +188,8 @@ header h1 {
 }
 
 header h2 {
-  background-color: #f16529;
+  //background-color: #f16529;
+  background-color: #3a3a3a;
   font: bold italic .85em/1.5 Georgia, Times, “Times New Roman”, serif;
   color: #ddd;
   padding-bottom: 14px;
@@ -273,7 +275,8 @@ section#main_content {
   min-height:185px;
 }
 
-.ninja {
+a.ninja {
+text-indent:-99999px;
 width: 330px;
 height: 350px;
 background: url(../images/ninja2.png) no-repeat;
