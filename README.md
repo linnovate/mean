@@ -8,7 +8,7 @@ Node - Install node.js
 
 #### Install
 In the root directory run
-npm install
+```npm install
 to get all of the required node modules needed by MEAN.
 
 ### Modules
