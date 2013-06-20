@@ -38,7 +38,7 @@ See the [config](config/) folder and especially the [config.js](config/config.js
 
   * Visit our [Ninja's Zone](http://www.meanleanstartupmachine.com/) for extended support.
   * Visit us at [Linnovate.net](http://www.linnovate.net/).
-  * Contact amos on any issue via [EMail](mailto:mail@amoshaviv.com), [Facebook](http://www.facebook.com/amoshaviv), or [Twitter](http://www.twitter.com/amoshaviv).
+  * Contact amos on any issue via [E-Mail](mailto:mail@amoshaviv.com), [Facebook](http://www.facebook.com/amoshaviv), or [Twitter](http://www.twitter.com/amoshaviv).
 
 ## License
 
