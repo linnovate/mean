@@ -31,14 +31,14 @@ See the [config](config/) folder and espically the [config.js](config/config.js)
     $ node server
 
 ## The Future
-  We are currently working on a extendable module system to make this project more like a framework with support for common web development requirements.
+  We are currently working on a extendable module system to make this project more like a framework with support for common modren web development requirements.
   
 
 ## More Information
 
   * Visit our [Ninja's Zone](http://www.meanleanstartupmachine.com/) for extended support.
   * Visit us at [Linnovate.net](http://www.linnovate.net/).
-  * Contact me on any matter via [EMail](mailto:mail@amoshaviv.com), [Facebook](http://www.facebook.com/amoshaviv), or [Twitter](http://www.twitter.com/amoshaviv).
+  * Contact amos on any issue via [EMail](mailto:mail@amoshaviv.com), [Facebook](http://www.facebook.com/amoshaviv), or [Twitter](http://www.twitter.com/amoshaviv).
 
 ## License
 
