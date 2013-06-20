@@ -1,4 +1,3 @@
-
 /*!
  * nodejs-express-mongoose-demo
  * Copyright(c) 2013 Madhusudhan Srinivasa <madhums8@gmail.com>
@@ -39,7 +38,6 @@ require('./config/passport')(passport, config)
 
 var app = express()
 
-//require('mean-logger').init(app,db);
 // express settings
 require('./config/express')(app, config, passport)
 
