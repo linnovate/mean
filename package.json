@@ -31,7 +31,6 @@
     , "async": "latest"
     , "view-helpers": "latest"
     , "forever": "latest"
-
   }
   , "devDependencies": {
         "supertest": "latest"
