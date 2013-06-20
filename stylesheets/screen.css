@@ -273,6 +273,26 @@ section#main_content {
   min-height:185px;
 }
 
+.ninjaright {
+width: 330px;
+height: 350px;
+background: url(../images/ninja2.png) no-repeat;
+display: block;
+position: absolute;
+right: 5px;
+top: 170px;
+}
+
+.ninjaleft {
+width: 330px;
+height: 350px;
+background: url(../images/ninja2.png) no-repeat;
+display: block;
+position: absolute;
+left: 5px;
+top: 170px;
+}
+
 /* footer */
 
 footer {
@@ -364,7 +384,7 @@ footer span.octocat {
 /* content */
 
 body {
-  background: #ece4d8;
+	background: url(../images/white-bg.png) repeat-x top #f5f5f5;
   font: normal normal 15px/1.5 Georgia, Palatino,” Palatino Linotype”, Times, “Times New Roman”, serif;
   color: #544943;
   -webkit-font-smoothing: antialiased;

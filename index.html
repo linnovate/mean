@@ -22,6 +22,8 @@
 
   <body>
     <a id="forkme_banner" href="https://github.com/linnovate/mean">View on GitHub</a>
+   <div class="ninjaleft"></div>
+   <div class="ninjaright"></div>
     <div class="shell">
 
       <header>
@@ -44,39 +46,84 @@
 
       <span class="banner-fix"></span>
 
-
+  
       <section id="main_content">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+<a name="mean-stack" class="anchor" href="#mean-stack"><span class="octicon octicon-link"></span></a>MEAN Stack</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>MEAN is a boilerplate that provides a nice starting point for MongoDB, Node.js, Express, and AngularJS based applications.<br>
+It is designed to give you quick and organized way to start developing of MEAN based web apps with useful modules like mongoose and passport pre-bundled and configured.<br>
+We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.  </p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<h2>
+<a name="prerequisites" class="anchor" href="#prerequisites"><span class="octicon octicon-link"></span></a>Prerequisites</h2>
+
+<ul>
+<li>Node.js - Download and Install <a href="http://www.nodejs.org/">Node.js</a>.</li>
+<li>MongoDB - Download and Install <a href="http://www.mongodb.org/">MongoDB</a> - Make sure it's running on the default port(27017).</li>
+</ul><h2>
+<a name="additional-packages" class="anchor" href="#additional-packages"><span class="octicon octicon-link"></span></a>Additional Packages</h2>
+
+<ul>
+<li>Express - Defined as npm module in the <a href="/linnovate/mean/blob/master/package.json">Package.json</a> file.</li>
+<li>Mongoose - Defined as npm module in the <a href="/linnovate/mean/blob/master/package.json">Package.json</a> file.</li>
+<li>Passport - Defined as npm module in the <a href="/linnovate/mean/blob/master/package.json">Package.json</a> file.</li>
+<li>AngularJS - Pre-bundled in the <a href="/linnovate/mean/blob/master/public/">public</a> folder.</li>
+<li>Twitter Bootstrap - Pre-bundled in the <a href="/linnovate/mean/blob/master/public/">public</a> folder.</li>
+</ul><h2>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>See the <a href="/linnovate/mean/blob/master/config/">config</a> folder and especially the <a href="/linnovate/mean/blob/master/config/config.js">config.js</a> file.</p>
+
+<h2>
+<a name="quick-start" class="anchor" href="#quick-start"><span class="octicon octicon-link"></span></a>Quick Start</h2>
+
+<p>The quickest way to get started with MEAN is to clone the project and utilize it like this:</p>
+
+<p>Install dependencies:</p>
+
+<pre><code>$ npm install
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>Start the server:</p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<pre><code>$ node server
+</code></pre>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<h2>
+<a name="the-future" class="anchor" href="#the-future"><span class="octicon octicon-link"></span></a>The Future</h2>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<p>We are currently working on a extendable module system to make it more like a framework with support for modern web development requirements.</p>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<h2>
+<a name="more-information" class="anchor" href="#more-information"><span class="octicon octicon-link"></span></a>More Information</h2>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<ul>
+<li>Visit our <a href="http://www.meanleanstartupmachine.com/">Ninja's Zone</a> for extended support.</li>
+<li>Visit us at <a href="http://www.linnovate.net/">Linnovate.net</a>.</li>
+<li>Contact amos on any issue via <a href="mailto:mail@amoshaviv.com">E-Mail</a>, <a href="http://www.facebook.com/amoshaviv">Facebook</a>, or <a href="http://www.twitter.com/amoshaviv">Twitter</a>.</li>
+</ul><h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>(The MIT License)</p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
       </section>
 
       <footer>
