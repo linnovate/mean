@@ -8,6 +8,10 @@ We mainly try to take care of the connection points between existing popular fra
 * Node.js - Download and Install [Node.js](http://www.nodejs.org/).
 * MongoDB - Download and Install [MongoDB](http://www.mongodb.org/) - Make sure it's running on the default port(27017).
 
+## MEAN Modules
+* Mean presents a growing eco-system of MEAN based modules in the npm repository, To write (and contribute) your own MEAN based module checkout [mean-logger](https://npmjs.org/package/mean-logger)
+
+
 ## Additional Packages
 * Express - Defined as npm module in the [Package.json](package.json) file.
 * Mongoose - Defined as npm module in the [Package.json](package.json) file.
