@@ -9,7 +9,7 @@ We mainly try to take care of the connection points between existing popular fra
 * MongoDB - Download and Install [MongoDB](http://www.mongodb.org/) - Make sure it's running on the default port(27017).
 
 ## MEAN Modules
-* Mean presents a growing eco-system of MEAN based modules in the npm repository, To write (and contribute) your own MEAN based module checkout [mean-logger](https://npmjs.org/package/mean-logger)
+* Mean presents a growing eco-system of MEAN based modules in the npm repository, To write (and contribute) your own MEAN based module checkout [mean-logger](https://npmjs.org/package/mean-logger) for examples.
 
 
 ## Additional Packages
