@@ -33,7 +33,11 @@ See the [config](config/) folder and especially the [config.js](config/config.js
  Start the server:
 
     $ node server
-
+ 
+ Then open a browser and go to 
+    
+    $ http://localhost:3000
+    
 ## The Future
   We are currently working on a extendable module system to make it more like a framework with support for modern web development requirements.
   
