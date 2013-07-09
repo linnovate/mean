@@ -1,0 +1,10 @@
+<section data-ng-controller="ArticlesController" data-ng-init="find()">
+	<ul>
+		<li data-ng-repeat="article in articles">
+			<span>{{article.created | date:'medium'}}</span> /
+			<span>{{article.user.name}}</span>
+			<h2><a data-ng-href="#!/articles/{{article._id}}">{{article.title}}</a></h2>
+			<div>{{article.content}}</div>
+		</li>
+	</ul>
+</section>
