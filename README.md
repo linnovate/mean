@@ -50,6 +50,10 @@ See the [config](config/) folder and especially the [config.js](config/config.js
   * [The AngularJs Controller](public/js/controllers/articles.js) - Where we take care of  our frontend logic.
   * [The AngularJs Views Folder](public/views/articles) - Where we keep our CRUD views.
 
+  And the route configuration in: 
+  * [NodeJS Routes](config/routes.js) - Where we define our object schema.
+  * [AngularJs Routes](public/config.js) - Where we take care of our backend logic.
+
 
 ## The Future
   We are currently working on a extendable module system to make it more like a framework with support for modern web development requirements.
