@@ -1,1 +1,1 @@
-window.app = angular.module('MEAN', ['ngCookies', 'ngResource']);
+window.app = angular.module('MEAN', ['ngCookies', 'ngResource', 'ui.bootstrap']);
