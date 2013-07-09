@@ -8,10 +8,6 @@ We mainly try to take care of the connection points between existing popular fra
 * Node.js - Download and Install [Node.js](http://www.nodejs.org/).
 * MongoDB - Download and Install [MongoDB](http://www.mongodb.org/) - Make sure it's running on the default port(27017).
 
-## MEAN Modules
-* Mean presents a growing eco-system of MEAN based modules in the npm repository, To write (and contribute) your own MEAN based module checkout [mean-logger](https://npmjs.org/package/mean-logger) for examples.
-
-
 ## Additional Packages
 * Express - Defined as npm module in the [package.json](package.json) file.
 * Mongoose - Defined as npm module in the [package.json](package.json) file.
@@ -53,8 +49,9 @@ See the [config](config/) folder and especially the [config.js](config/config.js
   * [AngularJs Routes](public/js/config.js) - Where we define our CRUD routes.
 
 
-## The Future
-  We are currently working on a extendable module system to make it more like a framework with support for modern web development requirements.
+
+## MEAN Modules
+   Mean presents a growing eco-system of MEAN based modules in the npm repository, To write (and contribute) your own MEAN based module checkout [mean-logger](https://npmjs.org/package/mean-logger) for examples.
   
 
 ## More Information
