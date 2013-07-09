@@ -13,20 +13,24 @@ We mainly try to take care of the connection points between existing popular fra
 
 
 ## Additional Packages
-* Express - Defined as npm module in the [Package.json](package.json) file.
-* Mongoose - Defined as npm module in the [Package.json](package.json) file.
-* Passport - Defined as npm module in the [Package.json](package.json) file.
-* AngularJS - Pre-bundled in the [public](public/) folder.
-* Twitter Bootstrap - Pre-bundled in the [public](public/) folder.
+* Express - Defined as npm module in the [package.json](package.json) file.
+* Mongoose - Defined as npm module in the [package.json](package.json) file.
+* Passport - Defined as npm module in the [package.json](package.json) file.
+* AngularJS - Defined as bower module in the [bower.json](bower.json) file.
+* Twitter Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
 
 ## Configuration
 See the [config](config/) folder and especially the [config.js](config/config.js) file.
 
-## Quick Start
+## Quick Install
 
  The quickest way to get started with MEAN is to clone the project and utilize it like this:
 
- Install dependencies:
+ Install npm dependencies:
+
+    $ npm install
+
+ Install bower dependencies:
 
     $ npm install
 
@@ -38,6 +42,15 @@ See the [config](config/) folder and especially the [config.js](config/config.js
     
     http://localhost:3000
     
+## Getting Started
+  We pre-included an article example, check it out:
+    * [The Model](app/models/article.js) - Where we define our object schema.
+    * [The Controller](app/controllers/articles.js) - Where we take care of our backend logic.
+    * [The AngularJs Service](public/js/services/articles.js) - Where we connect to our REST service.
+    * [The AngularJs Controller](public/js/controllers/articles.js) - Where we take care of  our frontend logic.
+    * [The AngularJs Views Folder](public/views/articles) - Where we keep our CRUD views.
+
+
 ## The Future
   We are currently working on a extendable module system to make it more like a framework with support for modern web development requirements.
   
