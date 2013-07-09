@@ -32,6 +32,7 @@
     , "view-helpers": "latest"
     , "forever": "latest"
     , "mean-logger": "latest"
+    , "bower": "latest"
   }
   , "devDependencies": {
         "supertest": "latest"
