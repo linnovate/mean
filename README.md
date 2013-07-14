@@ -29,7 +29,7 @@ See the [config](config/) folder and especially the [config.js](config/config.js
 
  Install bower dependencies:
 
-    $ npm install
+    $ bower install
 
  Start the server:
 
