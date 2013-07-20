@@ -23,11 +23,11 @@ See the [config](config/) folder and especially the [config.js](config/config.js
 
  The quickest way to get started with MEAN is to clone the project and utilize it like this:
 
- Install npm dependencies:
+ Install npm (server side) dependencies:
 
     $ npm install
 
- Install bower dependencies:
+ Install bower (client side) dependencies:
 
     $ bower install
 
