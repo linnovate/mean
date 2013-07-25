@@ -1,4 +1,5 @@
-function ArticlesController($scope, $routeParams, $location, Articles) {
+function ArticlesController($scope, $routeParams, $location, Global, Articles) {
+	$scope.global = Global;
 	$scope.articles = [];
 	$scope.article = {};
 
