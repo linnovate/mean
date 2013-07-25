@@ -1,7 +1,7 @@
 <div class="navbar-inner" data-ng-controller="HeaderController" data-ng-init="init()">
 	<ul class="nav">
 		<li><a class="brand" href="/">MEAN - A Modern Stack</a></li>
-		<li data-ng-repeat="item in menu" data-ng-show="global.user" data-ng-class="{active: isSelected(item)}"><a href="#/{{item.link}}">{{item.title}}</a></li>
+		<li data-ng-repeat="item in menu" data-ng-show="global.user" data-ng-class="{active: isSelected(item)}"><a href="#!/{{item.link}}">{{item.title}}</a></li>
 	</ul>
 	<ul class="nav pull-right" data-ng-hide="global.authenticated">
 		<li><a href="signup">Signup</a></li>
