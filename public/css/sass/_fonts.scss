@@ -1,0 +1,22 @@
+@font-face {
+	font-family: 'gomango';
+	src:url('../../fonts/gomango.eot');
+	src:url('../../fonts/gomango.eot?#iefix') format('embedded-opentype'),
+		url('../../fonts/gomango.woff') format('woff'),
+		url('../../fonts/gomango.ttf') format('truetype'),
+		url('../../fonts/gomango.svg#gomango') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[data-icon]:before {
+	font-family: 'gomango';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+

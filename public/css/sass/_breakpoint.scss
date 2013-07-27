@@ -1,0 +1,11 @@
+@mixin breakpoint($point) {
+  @if $point == _2000 {
+    @media (max-width: 2000px) { @content; }
+  }
+  @else if $point == _ {
+    @media (max-width: 980px) { @content; }
+  }
+  @else if $point == smallest {
+    @media (max-width: 773px)  { @content; }
+  }
+}
