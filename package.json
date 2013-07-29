@@ -38,7 +38,6 @@
     "supertest": "latest",
     "should": "latest",
     "mocha": "latest",
-    "nodemon": "latest",
     "grunt": "~0.4.1",
     "grunt-contrib-compass": "~0.3.0",
     "grunt-contrib-watch": "~0.4.4",
