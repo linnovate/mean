@@ -25,7 +25,6 @@
     , "passport-github": "latest"
     , "passport-google-oauth": "latest"
     , "underscore": "latest"
-    , "gzippo": "latest"
     , "async": "latest"
     , "view-helpers": "latest"
     , "forever": "latest"
