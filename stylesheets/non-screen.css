@@ -2,6 +2,10 @@ a#forkme_banner {
   display: none;
 }
 
+a.ninja {
+  display: none;
+}
+
 div.shell {
   width: 640px;
 }
