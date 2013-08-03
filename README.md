@@ -61,6 +61,9 @@ See the [config](config/) folder and especially the [config.js](config/config.js
   * Visit us at [Linnovate.net](http://www.linnovate.net/).
   * Contact amos on any issue via [E-Mail](mailto:mail@amoshaviv.com), [Facebook](http://www.facebook.com/amoshaviv), or [Twitter](http://www.twitter.com/amoshaviv).
 
+## Credits
+Inspired by the great work of [Madhusudhan Srinivasa](https://github.com/madhums/)
+
 ## License
 
 (The MIT License)
