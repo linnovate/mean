@@ -19,7 +19,8 @@ module.exports = function (app, config, passport) {
   }))
   app.use(express.favicon())
   app.use(express.static(config.root + '/public'))
-
+  app.use('/lib', express.static(config.root + '/bower_components'))
+  
   // don't use logger for test env
   if (process.env.NODE_ENV !== 'test') {
     app.use(express.logger('dev'))
