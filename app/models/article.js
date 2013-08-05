@@ -4,7 +4,7 @@
 var mongoose = require('mongoose')
   , env = process.env.NODE_ENV || 'development'
   , config = require('../../config/config')[env]
-  , Schema = mongoose.Schema
+  , Schema = mongoose.Schema;
 
 /**
  * Article Schema
@@ -26,6 +26,6 @@ ArticleSchema.statics = {
   load: function (id, cb) {
     this.findOne({ _id : id }).populate('user').exec(cb);
   }
-}
+};
 
-mongoose.model('Article', ArticleSchema)
+mongoose.model('Article', ArticleSchema);
