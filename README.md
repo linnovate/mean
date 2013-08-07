@@ -21,9 +21,6 @@ We mainly try to take care of the connection points between existing popular fra
 * Twitter Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
 * UI Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
 
-## Configuration
-See the [config](config/) folder and especially the [config.js](config/config.js) file. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, GitHub or Google.
-
 ## Quick Install
 
  The quickest way to get started with MEAN is to clone the project and utilize it like this:
@@ -43,7 +40,21 @@ See the [config](config/) folder and especially the [config.js](config/config.js
   Then open a browser and go to:
     
     http://localhost:3000
-    
+
+## Configuration
+All configuration is specified in the [config](config/) folder, particularly the [config.js](config/config.js) file. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, GitHub or Google.
+
+### Environmental Settings
+
+There are three environments provided by default, __development__, __test__, and __production__. Each of these environments has the following configuration options:
+* db - This is the name of the MongoDB database to use, and is set by default to __mean-dev__ for the development environment.
+* root - This is determined automatically at the start of this file, but can be overridden here.
+* app.name - This is the name of your app or website, and can be different for each environment. You can tell which environment you are running by looking at the TITLE attribute that your app generates.
+* Social Registration - Facebook, GitHub, Google, Twitter. You can specify your own social accounts here for each social platform, with the following for each provider:
+** clientID
+** clientSecret
+** callbackURL
+
 ## Getting Started
   We pre-included an article example, check it out:
   * [The Model](app/models/article.js) - Where we define our object schema.
@@ -54,12 +65,9 @@ See the [config](config/) folder and especially the [config.js](config/config.js
   * [The AngularJs Controller](public/js/controllers/articles.js) - Where we take care of  our frontend logic.
   * [The AngularJs Views Folder](public/views/articles) - Where we keep our CRUD views.
 
-
-
 ## MEAN Modules
    Mean presents a growing eco-system of MEAN based modules in the npm repository, To write (and contribute) your own MEAN based module checkout [mean-logger](https://npmjs.org/package/mean-logger) for examples.
   
-
 ## More Information
 
   * Visit our [Ninja's Zone](http://www.meanleanstartupmachine.com/) for extended support.
