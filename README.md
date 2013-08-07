@@ -61,7 +61,7 @@ If you are using node instead of grunt, it is very similar:
 
 	$ NODE_ENV=test node server
 
-NOTE: Running Node.js applications in the __production__ environment enables caching, which is disabled by default in all other environments.
+> NOTE: Running Node.js applications in the __production__ environment enables caching, which is disabled by default in all other environments.
 
 ## Getting Started
   We pre-included an article example, check it out:
