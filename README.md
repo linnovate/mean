@@ -9,9 +9,9 @@ We mainly try to take care of the connection points between existing popular fra
 * MongoDB - Download and Install [MongoDB](http://www.mongodb.org/) - Make sure it's running on the default port(27017).
 
 ### Optional (Requirements for Grunt)
-* Ruby - Download and Install [Ruby](http://www.ruby-lang.org/)
-* Ruby Gems - Download and Install [Ruby Gems](http://rubygems.org)
-* Grunt - Download and Install [Grunt](http://gruntjs.com)
+* Ruby - Download and Install [Ruby](http://www.ruby-lang.org/).
+* Ruby Gems - Download and Install [Ruby Gems](http://rubygems.org).
+* Grunt - Download and Install [Grunt](http://gruntjs.com).
 
 ## Additional Packages
 * Express - Defined as npm module in the [package.json](package.json) file.
