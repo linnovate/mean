@@ -27,7 +27,7 @@ See the [config](config/) folder and especially the [config.js](config/config.js
 
     $ npm install
 
-  Start the server:
+  We recommend using [Grunt](https://github.com/gruntjs/grunt-cli) to start the server:
 
     $ grunt
 
