@@ -8,6 +8,11 @@ We mainly try to take care of the connection points between existing popular fra
 * Node.js - Download and Install [Node.js](http://www.nodejs.org/).
 * MongoDB - Download and Install [MongoDB](http://www.mongodb.org/) - Make sure it's running on the default port(27017).
 
+### Optional (Requirements for Grunt)
+* Ruby - Download and Install [Ruby](http://www.ruby-lang.org/)
+* Ruby Gems - Download and Install [Ruby Gems](http://rubygems.org)
+* Grunt - Download and Install [Grunt](http://gruntjs.com)
+
 ## Additional Packages
 * Express - Defined as npm module in the [package.json](package.json) file.
 * Mongoose - Defined as npm module in the [package.json](package.json) file.
@@ -17,7 +22,7 @@ We mainly try to take care of the connection points between existing popular fra
 * UI Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
 
 ## Configuration
-See the [config](config/) folder and especially the [config.js](config/config.js) file.
+See the [config](config/) folder and especially the [config.js](config/config.js) file. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, GitHub or Google.
 
 ## Quick Install
 
