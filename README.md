@@ -55,11 +55,11 @@ There are three environments provided by default, __development__, __test__, and
 
 To run with a different environment, just specify NODE_ENV as you call grunt:
 
-$ NODE_ENV=test grunt
+	$ NODE_ENV=test grunt
 
 If you are using node instead of grunt, it is very similar:
 
-$ NODE_ENV=test node server
+	$ NODE_ENV=test node server
 
 NOTE: Running Node.js applications in the __production__ environment enables caching, which is disabled by default in all other environments.
 
