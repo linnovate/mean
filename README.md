@@ -51,9 +51,9 @@ There are three environments provided by default, __development__, __test__, and
 * root - This is determined automatically at the start of this file, but can be overridden here.
 * app.name - This is the name of your app or website, and can be different for each environment. You can tell which environment you are running by looking at the TITLE attribute that your app generates.
 * Social Registration - Facebook, GitHub, Google, Twitter. You can specify your own social accounts here for each social platform, with the following for each provider:
-** clientID
-** clientSecret
-** callbackURL
+	* clientID
+	* clientSecret
+	* callbackURL
 
 ## Getting Started
   We pre-included an article example, check it out:
