@@ -33,9 +33,6 @@ module.exports = function (app, config, passport) {
   app.enable("jsonp callback")
 
   app.configure(function () {
-    // dynamic helpers
-    app.use(helpers(config.app.name))
-
     // cookieParser should be above session
     app.use(express.cookieParser())
 
@@ -54,6 +51,9 @@ module.exports = function (app, config, passport) {
 
     // connect flash for flash messages
     app.use(flash())
+
+    // dynamic helpers
+    app.use(helpers(config.app.name))
 
     // use passport session
     app.use(passport.initialize())
