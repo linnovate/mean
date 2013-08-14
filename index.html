@@ -1,114 +1,149 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640" />
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Mean : MEAN (Mongo, Express, Angular, Node) stack Boilerplate" />
 
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
-    </script>
-    <!-- Start Visual Website Optimizer Asynchronous Code -->
-    <script type='text/javascript'>
-    var _vwo_code=(function(){
-    var account_id=48277,
-    settings_tolerance=2000,
-    library_tolerance=2500,
-    use_existing_jquery=false,
-    // DO NOT EDIT BELOW THIS LINE
-    f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&r='+Math.random());var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
-    </script>
-    <!-- End Visual Website Optimizer Asynchronous Code -->
-    <title>Mean by linnovate</title>
+    <title>Mean</title>
   </head>
 
   <body>
-    <a id="forkme_banner" href="https://github.com/linnovate/mean">View on GitHub</a>
 
-    <div class="shell">
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/linnovate/mean">View on GitHub</a>
 
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Mean</h1>
-            <h2>MEAN (Mongo, Express, Angular, Node) stack Boilerplate</h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
+          <h1 id="project_title">Mean</h1>
+          <h2 id="project_tagline">MEAN (Mongo, Express, Angular, Node) stack Boilerplate</h2>
 
-      <section id="downloads">
-        <span class="inner">
-          <a href="https://github.com/linnovate/mean/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/linnovate/mean/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/linnovate/mean/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/linnovate/mean/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
 
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="mean-stack" class="anchor" href="#mean-stack"><span class="octicon octicon-link"></span></a>MEAN Stack</h1>
 
-      <span class="banner-fix"></span>
-
-  
-      <section id="main_content">
-<a name="mean-stack" class="anchor" href="#mean-stack"><span class="octicon octicon-link"></span></a>
-        <h1>MEAN is a Simple, Scalable and Easy approach to javascript based web development</h1>
-
-<p>MEAN is a boilerplate that provides a nice starting point for MongoDB, Node.js, Express, and AngularJS based applications.<br>
-It is designed to give you quick and organized way to start developing of MEAN based web apps with useful modules like mongoose and passport pre-bundled and configured.<br>
-We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.  </p>
+<p>MEAN is a boilerplate that provides a nice starting point for <a href="http://www.mongodb.org/">MongoDB</a>, <a href="http://www.nodejs.org/">Node.js</a>, Express, and AngularJS based applications. It is designed to give you quick and organized way to start developing of MEAN based web apps with useful modules like mongoose and passport pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.  </p>
 
 <h2>
 <a name="prerequisites" class="anchor" href="#prerequisites"><span class="octicon octicon-link"></span></a>Prerequisites</h2>
 
 <ul>
-<li>Node.js - Download and Install <a href="http://www.nodejs.org/">Node.js</a>.</li>
-<li>MongoDB - Download and Install <a href="http://www.mongodb.org/">MongoDB</a> - Make sure it's running on the default port(27017).</li>
+<li>Node.js - Download and Install <a href="http://www.nodejs.org/download/">Node.js</a>. You can also follow <a href="https://gist.github.com/isaacs/579814">this gist</a> for a quick and easy way to install Node.js and npm</li>
+<li>MongoDB - Download and Install <a href="http://www.mongodb.org/downloads">MongoDB</a> - Make sure it's running on the default port (27017).</li>
+</ul><h3>
+<a name="optional-requirements-for-grunt" class="anchor" href="#optional-requirements-for-grunt"><span class="octicon octicon-link"></span></a>Optional (Requirements for Grunt)</h3>
+
+<ul>
+<li>Ruby - Download and Install <a href="http://www.ruby-lang.org/">Ruby</a>.</li>
+<li>Ruby Gems - Download and Install <a href="http://rubygems.org">Ruby Gems</a>.</li>
+<li>Grunt - Download and Install <a href="http://gruntjs.com">Grunt</a>.</li>
 </ul><h2>
 <a name="additional-packages" class="anchor" href="#additional-packages"><span class="octicon octicon-link"></span></a>Additional Packages</h2>
 
 <ul>
-<li>Express - Defined as npm module in the <a href="/linnovate/mean/blob/master/package.json">Package.json</a> file.</li>
-<li>Mongoose - Defined as npm module in the <a href="/linnovate/mean/blob/master/package.json">Package.json</a> file.</li>
-<li>Passport - Defined as npm module in the <a href="/linnovate/mean/blob/master/package.json">Package.json</a> file.</li>
-<li>AngularJS - Pre-bundled in the <a href="/linnovate/mean/blob/master/public/">public</a> folder.</li>
-<li>Twitter Bootstrap - Pre-bundled in the <a href="/linnovate/mean/blob/master/public/">public</a> folder.</li>
+<li>Express - Defined as npm module in the <a href="package.json">package.json</a> file.</li>
+<li>Mongoose - Defined as npm module in the <a href="package.json">package.json</a> file.</li>
+<li>Passport - Defined as npm module in the <a href="package.json">package.json</a> file.</li>
+<li>AngularJS - Defined as bower module in the <a href="bower.json">bower.json</a> file.</li>
+<li>Twitter Bootstrap - Defined as bower module in the <a href="bower.json">bower.json</a> file.</li>
+<li>UI Bootstrap - Defined as bower module in the <a href="bower.json">bower.json</a> file.</li>
 </ul><h2>
-<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+<a name="quick-install" class="anchor" href="#quick-install"><span class="octicon octicon-link"></span></a>Quick Install</h2>
 
-<p>See the <a href="https://github.com/linnovate/mean/tree/master/config">config</a> folder and especially the <a href="https://github.com/linnovate/mean/tree/master/config/config.js">config.js</a> file.</p>
+<p>The quickest way to get started with MEAN is to clone the project and utilize it like this:</p>
 
-<h2>
-<a name="quick-start" class="anchor" href="#quick-start"><span class="octicon octicon-link"></span></a>Quick Start</h2>
-
-        <p>The quickest way to get started with MEAN is to <a href="http://github.com/linnovate/mean">clone the project</a> and utilize it like this:</p>
-
-<p>Install server dependencies:</p>
+<p>Install dependencies:</p>
 
 <pre><code>$ npm install
 </code></pre>
 
-<p>Install client dependencies:</p>
+<p>We recommend using <a href="https://github.com/gruntjs/grunt-cli">Grunt</a> to start the server:</p>
 
-<pre><code>$ bower install
+<pre><code>$ grunt
 </code></pre>
 
-<p>Start the server:</p>
+<p>When not using grunt you can use:</p>
 
 <pre><code>$ node server
 </code></pre>
 
-<h2>
-<a name="the-future" class="anchor" href="#the-future"><span class="octicon octicon-link"></span></a>The Future</h2>
+<p>Then open a browser and go to:</p>
 
-<p>We are currently working on a extendable module system to make it more like a framework with support for modern web development requirements.</p>
+<pre><code>http://localhost:3000
+</code></pre>
+
+<h2>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>All configuration is specified in the <a href="config/">config</a> folder, particularly the <a href="config/config.js">config.js</a> file. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, GitHub or Google.</p>
+
+<h3>
+<a name="environmental-settings" class="anchor" href="#environmental-settings"><span class="octicon octicon-link"></span></a>Environmental Settings</h3>
+
+<p>There are three environments provided by default, <strong>development</strong>, <strong>test</strong>, and <strong>production</strong>. Each of these environments has the following configuration options:</p>
+
+<ul>
+<li>db - This is the name of the MongoDB database to use, and is set by default to <strong>mean-dev</strong> for the development environment.</li>
+<li>root - This is determined automatically at the start of this file, but can be overridden here.</li>
+<li>app.name - This is the name of your app or website, and can be different for each environment. You can tell which environment you are running by looking at the TITLE attribute that your app generates.</li>
+<li>Social Registration - Facebook, GitHub, Google, Twitter. You can specify your own social accounts here for each social platform, with the following for each provider:
+
+<ul>
+<li>clientID</li>
+<li>clientSecret</li>
+<li>callbackURL</li>
+</ul>
+</li>
+</ul><p>To run with a different environment, just specify NODE_ENV as you call grunt:</p>
+
+<pre><code>$ NODE_ENV=test grunt
+</code></pre>
+
+<p>If you are using node instead of grunt, it is very similar:</p>
+
+<pre><code>$ NODE_ENV=test node server
+</code></pre>
+
+<blockquote>
+<p>NOTE: Running Node.js applications in the <strong>production</strong> environment enables caching, which is disabled by default in all other environments.</p>
+</blockquote>
+
+<h2>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p>We pre-included an article example, check it out:</p>
+
+<ul>
+<li>
+<a href="app/models/article.js">The Model</a> - Where we define our object schema.</li>
+<li>
+<a href="app/controllers/articles.js">The Controller</a> - Where we take care of our backend logic.</li>
+<li>
+<a href="config/routes.js">NodeJS Routes</a> - Where we define our REST service routes.</li>
+<li>
+<a href="public/js/config.js">AngularJs Routes</a> - Where we define our CRUD routes.</li>
+<li>
+<a href="public/js/services/articles.js">The AngularJs Service</a> - Where we connect to our REST service.</li>
+<li>
+<a href="public/js/controllers/articles.js">The AngularJs Controller</a> - Where we take care of  our frontend logic.</li>
+<li>
+<a href="public/views/articles">The AngularJs Views Folder</a> - Where we keep our CRUD views.</li>
+</ul><h2>
+<a name="mean-modules" class="anchor" href="#mean-modules"><span class="octicon octicon-link"></span></a>MEAN Modules</h2>
+
+<p>Mean presents a growing eco-system of MEAN based modules in the npm repository, To write (and contribute) your own MEAN based module checkout <a href="https://npmjs.org/package/mean-logger">mean-logger</a> for examples.</p>
 
 <h2>
 <a name="more-information" class="anchor" href="#more-information"><span class="octicon octicon-link"></span></a>More Information</h2>
@@ -117,18 +152,13 @@ We mainly try to take care of the connection points between existing popular fra
 <li>Visit our <a href="http://www.meanleanstartupmachine.com/">Ninja's Zone</a> for extended support.</li>
 <li>Visit us at <a href="http://www.linnovate.net/">Linnovate.net</a>.</li>
 <li>Contact amos on any issue via <a href="mailto:mail@amoshaviv.com">E-Mail</a>, <a href="http://www.facebook.com/amoshaviv">Facebook</a>, or <a href="http://www.twitter.com/amoshaviv">Twitter</a>.</li>
-</ul>
-
-<h2>
+</ul><h2>
 <a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>Credits</h2>
 
-<p>Inspired by the great work of <a href="https://github.com/madhums/">Madhusudhan Srinivasa</a>.</p>
-
+<p>Inspired by the great work of <a href="https://github.com/madhums/">Madhusudhan Srinivasa</a></p>
 
 <h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
-
-
 
 <p>(The MIT License)</p>
 
@@ -151,19 +181,14 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
       </section>
+    </div>
 
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/linnovate">linnovate</a> can be found on <a href="https://github.com/linnovate/mean">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Mean maintained by <a href="https://github.com/linnovate">linnovate</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
-
     </div>
 
               <script type="text/javascript">
@@ -176,6 +201,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
+
 
   </body>
 </html>
