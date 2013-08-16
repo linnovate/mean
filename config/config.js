@@ -1,6 +1,6 @@
 
-var path = require('path')
-  , rootPath = path.normalize(__dirname + '/..')
+var path = require('path'),
+    rootPath = path.normalize(__dirname + '/..');
 
 module.exports = {
   development: {
@@ -28,7 +28,7 @@ module.exports = {
       clientID: "APP_ID",
       clientSecret: "APP_SECRET",
       callbackURL: "http://localhost:3000/auth/google/callback"
-    },
+    }
   },
   test: {
     db: 'mongodb://localhost/mean-test',
@@ -84,4 +84,4 @@ module.exports = {
       callbackURL: "http://localhost:3000/auth/google/callback"
     }
   }
-}
+};
