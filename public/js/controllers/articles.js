@@ -16,7 +16,7 @@ function ArticlesController($scope, $routeParams, $location, Global, Articles) {
 
 		for (var i in $scope.articles) {
 			if ($scope.articles[i] == article) {
-				$scope.articles.splice(i, 1)
+				$scope.articles.splice(i, 1);
 			}
 		}
 	};
