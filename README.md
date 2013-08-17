@@ -65,13 +65,13 @@ If you are using node instead of grunt, it is very similar:
 
 ## Getting Started
   We pre-included an article example, check it out:
-  * [The Model](app/models/article.js) - Where we define our object schema.
-  * [The Controller](app/controllers/articles.js) - Where we take care of our backend logic.
-  * [NodeJS Routes](config/routes.js) - Where we define our REST service routes.
-  * [AngularJs Routes](public/js/config.js) - Where we define our CRUD routes.
-  * [The AngularJs Service](public/js/services/articles.js) - Where we connect to our REST service.
-  * [The AngularJs Controller](public/js/controllers/articles.js) - Where we take care of  our frontend logic.
-  * [The AngularJs Views Folder](public/views/articles) - Where we keep our CRUD views.
+  * [The Model](https://github.com/linnovate/mean/blob/master/app/models/article.js) - Where we define our object schema.
+  * [The Controller](https://github.com/linnovate/mean/blob/master/app/controllers/articles.js) - Where we take care of our backend logic.
+  * [NodeJS Routes](https://github.com/linnovate/mean/blob/master/config/routes.js) - Where we define our REST service routes.
+  * [AngularJs Routes](https://github.com/linnovate/mean/blob/master/public/js/config.js) - Where we define our CRUD routes.
+  * [The AngularJs Service](https://github.com/linnovate/mean/blob/master/public/js/services/articles.js) - Where we connect to our REST service.
+  * [The AngularJs Controller](https://github.com/linnovate/mean/blob/master/public/js/controllers/articles.js) - Where we take care of  our frontend logic.
+  * [The AngularJs Views Folder](https://github.com/linnovate/mean/blob/master/public/views/articles) - Where we keep our CRUD views.
 
 ## MEAN Modules
    Mean presents a growing eco-system of MEAN based modules in the npm repository, To write (and contribute) your own MEAN based module checkout [mean-logger](https://npmjs.org/package/mean-logger) for examples.
