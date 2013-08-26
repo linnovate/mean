@@ -20,21 +20,22 @@ module.exports = function(grunt) {
                 tasks: ['compass'],
                 options: {
                     livereload: true,
-                },
+                    force: true
+                }
             }
         },
         jshint: {
             all: ['gruntfile.js']
         },
-        compass: { // Task
-            dist: { // Target
-                options: { // Target options
+        compass: { //Task
+            dist: { //Target
+                options: { //Target options
                     sassDir: 'public/sass',
                     cssDir: 'public/css',
                     environment: 'production'
                 }
             },
-            dev: { // Another target
+            dev: { //Another target
                 options: {
                     sassDir: 'public/sass',
                     cssDir: 'public/css'
@@ -73,13 +74,16 @@ module.exports = function(grunt) {
         }
     });
 
-    // Load NPM tasks 
-    // grunt.loadNpmTasks('grunt-contrib-compass');
+    //Load NPM tasks 
+    grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-concurrent');
 
-    // Default task(s).
-    grunt.registerTask('default', ['jshint', 'concurrent:target']);
+    //Making grunt default to force inorder not to break the project.
+    grunt.option('force', true);
+
+    //Default task(s).
+    grunt.registerTask('default', ['jshint', 'compass', 'concurrent:target']);
 };

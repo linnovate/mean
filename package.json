@@ -28,13 +28,13 @@
         "underscore": "latest",
         "async": "latest",
         "view-helpers": "latest",
-        "mean-logger": "latest"
+        "mean-logger": "latest",
+        "bower": "latest"
     },
     "devDependencies": {
         "supertest": "latest",
         "should": "latest",
         "mocha": "latest",
-        "bower": "latest",
         "grunt": "~0.4.1",
         "grunt-contrib-compass": "~0.3.0",
         "grunt-contrib-watch": "~0.4.4",
