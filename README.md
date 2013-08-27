@@ -40,7 +40,7 @@ MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://w
     http://localhost:3000
 
 ## Quick Deployment
-4 commands to deploy your mean app to heroku (make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</q> installed and an accessible mongo db instance (you can try <a href="http://www.mongohq.com/">mongohq</a> which have an easy setup )
+4 commands to deploy your mean app to heroku (make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed and an accessible mongo db instance (you can try <a href="http://www.mongohq.com/">mongohq</a> which have an easy setup )
 
 ```bash
 git init
