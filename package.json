@@ -29,7 +29,8 @@
         "async": "latest",
         "view-helpers": "latest",
         "mean-logger": "latest",
-        "bower": "latest"
+        "bower": "latest",
+        "nodemon": "latest"
     },
     "devDependencies": {
         "supertest": "latest",
