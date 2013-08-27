@@ -42,12 +42,13 @@ MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://w
 ## Quick Deployment
 4 commands to deploy your mean app to heroku (make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</q> installed...
 
+```bash
 git init
 git add .
 git commit -m "initial version"
 heroku apps:create
 git push heroku master
-
+```
 
 ## Configuration
 All configuration is specified in the [config](config/) folder, particularly the [config.js](config/config.js) file. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, GitHub or Google.
