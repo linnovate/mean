@@ -56,7 +56,7 @@ module.exports = function(passport, config) {
         },
         function(token, tokenSecret, profile, done) {
             User.findOne({
-                'twitter.id': profile.id
+                'twitter.id_str': profile.id
             }, function(err, user) {
                 if (err) {
                     return done(err);
