@@ -34,10 +34,20 @@ MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://w
   When not using grunt you can use:
 
     $ node server
-
-  Then open a browser and go to:
     
+  Then open a browser and go to:
+
     http://localhost:3000
+
+## Quick Deployment
+4 commands to deploy your mean app to heroku (make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</q> installed...
+
+git init
+git add .
+git commit -m "initial version"
+heroku apps:create
+git push heroku master
+
 
 ## Configuration
 All configuration is specified in the [config](config/) folder, particularly the [config.js](config/config.js) file. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, GitHub or Google.
