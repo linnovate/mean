@@ -3,7 +3,7 @@ var path = require('path'),
 
 module.exports = {
     development: {
-        db: 'mongodb://localhost/mean-dev',
+        db: 'mongodb://amoshaviv:123456@ds027308.mongolab.com:27308/meanstack',
         root: rootPath,
         app: {
             name: 'MEAN - A Modern Stack - Development'
@@ -30,7 +30,7 @@ module.exports = {
         }
     },
     test: {
-        db: 'mongodb://localhost/mean-test',
+        db: 'mongodb://amoshaviv:123456@ds027308.mongolab.com:27308/meanstack',
         root: rootPath,
         app: {
             name: 'MEAN - A Modern Stack - Test'
@@ -57,7 +57,7 @@ module.exports = {
         }
     },
     production: {
-        db: 'mongodb://localhost/mean',
+        db: 'mongodb://amoshaviv:123456@ds027308.mongolab.com:27308/meanstack',
         root: rootPath,
         app: {
             name: 'MEAN - A Modern Stack - Production'
