@@ -9,6 +9,7 @@ MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://w
 ### Optional (Requirements for Grunt)
 * Ruby - Download and Install [Ruby](http://www.ruby-lang.org/).
 * Ruby Gems - Download and Install [Ruby Gems](http://rubygems.org).
+* Compass - an open-source CSS Authoring Framework, install via [Ruby Gems](http://rubygems.org).
 * Grunt - Download and Install [Grunt](http://gruntjs.com).
 
 ## Additional Packages
