@@ -28,8 +28,10 @@ MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://w
 
     $ npm install
 
-  We recommend using [Grunt](https://github.com/gruntjs/grunt-cli) to start the server:
+  Export the node Path to load your lib into project (default in HEROKU)
+    $ export NODE_PATH=lib
 
+  We recommend using [Grunt](https://github.com/gruntjs/grunt-cli) to start the server:
     $ grunt
 
   When not using grunt you can use:
