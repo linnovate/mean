@@ -9,7 +9,7 @@
     "npm": "1.2.x"
   },
   "scripts": {
-    "start": "NODE_PATH=lib NODE_ENV=development ./node_modules/.bin/forever -m 5 server.js",
+    "start": "make start",
     "test": "make test",
     "postinstall": "node_modules/bower/bin/bower install"
   },
