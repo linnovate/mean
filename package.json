@@ -1,46 +1,48 @@
 {
-    "name": "mean",
-    "description": "Mongo",
-    "version": "1.0.0",
-    "private": false,
-    "author": "MEAN - A Modern Stack: MongoDB, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
-    "engines": {
-        "node": "0.10.x",
-        "npm": "1.2.x"
-    },
-    "scripts": {
-        "start": "NODE_ENV=development ./node_modules/.bin/forever -m 5 server.js",
-        "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/test-*.js",
-        "postinstall": "node_modules/bower/bin/bower install"
-    },
-    "dependencies": {
-        "express": "latest",
-        "jade": "latest",
-        "mongoose": "latest",
-        "connect-mongo": "latest",
-        "connect-flash": "latest",
-        "passport": "latest",
-        "passport-local": "latest",
-        "passport-facebook": "latest",
-        "passport-twitter": "latest",
-        "passport-github": "latest",
-        "passport-google-oauth": "latest",
-        "underscore": "latest",
-        "async": "latest",
-        "view-helpers": "latest",
-        "mean-logger": "latest",
-        "bower": "latest",
-        "forever": "latest"
-    },
-    "devDependencies": {
-        "supertest": "latest",
-        "should": "latest",
-        "mocha": "latest",
-        "grunt": "~0.4.1",
-        "grunt-contrib-compass": "~0.3.0",
-        "grunt-contrib-watch": "~0.4.4",
-        "grunt-contrib-jshint": "~0.6.0",
-        "grunt-nodemon": "0.0.8",
-        "grunt-concurrent": "~0.3.0"
-    }
+  "name": "mean",
+  "description": "Mongo",
+  "version": "1.0.0",
+  "private": false,
+  "author": "MEAN - A Modern Stack: MongoDB, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  },
+  "scripts": {
+    "start": "make start",
+    "test": "make test",
+    "postinstall": "node_modules/bower/bin/bower install"
+  },
+  "dependencies": {
+    "express": "latest",
+    "jade": "latest",
+    "mongoose": "latest",
+    "connect-mongo": "latest",
+    "connect-flash": "latest",
+    "passport": "latest",
+    "passport-local": "latest",
+    "passport-facebook": "latest",
+    "passport-twitter": "latest",
+    "passport-github": "latest",
+    "passport-google-oauth": "latest",
+    "underscore": "latest",
+    "async": "latest",
+    "view-helpers": "latest",
+    "mean-logger": "latest",
+    "bower": "latest",
+    "forever": "latest",
+    "foreman": "0.0.25"
+  },
+  "devDependencies": {
+    "supertest": "latest",
+    "should": "latest",
+    "mocha": "latest",
+    "grunt": "~0.4.1",
+    "grunt-contrib-compass": "~0.3.0",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-nodemon": "0.0.8",
+    "grunt-concurrent": "~0.3.0",
+    "web-mocha": "0.0.10"
+  }
 }

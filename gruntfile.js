@@ -60,7 +60,7 @@ module.exports = function(grunt) {
             },
             exec: {
                 options: {
-                    exec: 'less'
+                    exec: 'less'                    
                 }
             }
         },
