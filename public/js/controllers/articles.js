@@ -1,4 +1,4 @@
-function ArticlesController($scope, $routeParams, $location, Global, Articles) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', 'Global', 'Articles', function ($scope, $routeParams, $location, Global, Articles) {
     $scope.global = Global;
 
     $scope.create = function() {
@@ -15,7 +15,7 @@ function ArticlesController($scope, $routeParams, $location, Global, Articles) {
     };
 
     $scope.remove = function(article) {
-        article.$remove();
+        article.$remove();  
 
         for (var i in $scope.articles) {
             if ($scope.articles[i] == article) {
@@ -49,4 +49,4 @@ function ArticlesController($scope, $routeParams, $location, Global, Articles) {
             $scope.article = article;
         });
     };
-}
+}]);
