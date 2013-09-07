@@ -51,6 +51,14 @@ module.exports = function(app, passport, auth) {
         scope: 'https://www.google.com/m8/feeds'
     }), users.authCallback);
 
+    app.get('/auth/linkedin', passport.authenticate('linkedin', {
+        failureRedirect: '/login',
+        scope: [ 'r_emailaddress' ]
+    }), users.signin);
+    app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
+        failureRedirect: '/login'
+    }), users.authCallback);
+
     //Finish with setting up the userId param
     app.param('userId', users.user);
 
