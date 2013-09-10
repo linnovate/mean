@@ -4,9 +4,10 @@
 var express = require('express'),
     mongoStore = require('connect-mongo')(express),
     flash = require('connect-flash'),
-    helpers = require('view-helpers');
+    helpers = require('view-helpers'),
+    config = require('./config');
 
-module.exports = function(app, config, passport) {
+module.exports = function(app, passport) {
     app.set('showStackError', true);
 
     //Should be placed before express.static
