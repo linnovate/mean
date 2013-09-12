@@ -7,9 +7,6 @@ MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://w
 * MongoDB - Download and Install [MongoDB](http://www.mongodb.org/downloads) - Make sure it's running on the default port (27017).
 
 ### Optional
-* Ruby - Download and Install [Ruby](http://www.ruby-lang.org/).
-* Ruby Gems - Download and Install [Ruby Gems](http://rubygems.org).
-* Compass - an open-source CSS Authoring Framework, install via [Ruby Gems](http://rubygems.org).
 * Grunt - Download and Install [Grunt](http://gruntjs.com).
 
 ## Additional Packages
@@ -93,9 +90,9 @@ If you are using node instead of grunt, it is very similar:
   
 ## More Information
 
-  * Visit our [Ninja's Zone](http://www.meanleanstartupmachine.com/) for extended support.
+  * Contact Amos Haviv on any issue via [E-Mail](mailto:mail@amoshaviv.com), [Facebook](http://www.facebook.com/amoshaviv), or [Twitter](http://www.twitter.com/amoshaviv).
   * Visit us at [Linnovate.net](http://www.linnovate.net/).
-  * Contact amos on any issue via [E-Mail](mailto:mail@amoshaviv.com), [Facebook](http://www.facebook.com/amoshaviv), or [Twitter](http://www.twitter.com/amoshaviv).
+  * Visit our [Ninja's Zone](http://www.meanleanstartupmachine.com/) for extended support.
 
 ## Credits
 Inspired by the great work of [Madhusudhan Srinivasa](https://github.com/madhums/)

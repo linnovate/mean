@@ -9,44 +9,28 @@ module.exports = function(grunt) {
                     livereload: true,
                 },
             },
+            js: {
+                files: ['public/js/**', 'app/**/*.js'],
+                tasks: ['jshint'],
+                options: {
+                    livereload: true,
+                },
+            },
             html: {
                 files: ['public/views/**'],
                 options: {
                     livereload: true,
                 },
             },
-            js: {
-                files: ['public/js/**'],
-                options: {
-                    livereload: true,
-                },
-            },
             css: {
-                files: ['public/sass/**'],
-                tasks: ['compass'],
+                files: ['public/css/**'],
                 options: {
-                    livereload: true,
-                    force: true
+                    livereload: true
                 }
             }
         },
         jshint: {
-             all: ['gruntfile.js', 'public/js/**/*.js', 'test/**/*.js', 'app/**/*.js']
-        },
-        compass: { //Task
-            dist: { //Target
-                options: { //Target options
-                    sassDir: 'public/sass',
-                    cssDir: 'public/css',
-                    environment: 'production'
-                }
-            },
-            dev: { //Another target
-                options: {
-                    sassDir: 'public/sass',
-                    cssDir: 'public/css'
-                }
-            }
+            all: ['gruntfile.js', 'public/js/**/*.js', 'test/**/*.js', 'app/**/*.js']
         },
         nodemon: {
             dev: {
@@ -63,33 +47,50 @@ module.exports = function(grunt) {
                     },
                     cwd: __dirname
                 }
-            },
-            exec: {
-                options: {
-                    exec: 'less'                    
-                }
             }
         },
         concurrent: {
-            target: {
-                tasks: ['nodemon', 'watch'],
+            tasks: ['nodemon', 'watch'], 
+            options: {
+                logConcurrentOutput: true
+            }
+        },
+        mochaTest: {
+            options: {
+                reporter: 'spec'
+            },
+            src: ['test/**/*.js']
+        },
+        bower: {
+            install: {
                 options: {
-                    logConcurrentOutput: true
+                    targetDir: './public/lib',
+                    layout: 'byComponent',
+                    install: true,
+                    verbose: true,
+                    cleanBowerDir: true
                 }
             }
         }
     });
 
     //Load NPM tasks 
-    grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-concurrent');
+    grunt.loadNpmTasks('grunt-bower-task');
 
     //Making grunt default to force in order not to break the project.
     grunt.option('force', true);
 
     //Default task(s).
-    grunt.registerTask('default', ['jshint', 'compass', 'concurrent:target']);
+    grunt.registerTask('default', ['jshint', 'concurrent']);
+
+    //Test task.
+    grunt.registerTask('test', ['mochaTest']);
+
+    //Bower task.
+    grunt.registerTask('install', ['bower']);
 };
