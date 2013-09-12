@@ -4,6 +4,10 @@
     "version": "1.0.0",
     "private": false,
     "author": "Amos Haviv",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/linnovate/mean.git"
+    },
     "engines": {
         "node": "0.10.x",
         "npm": "1.2.x"
