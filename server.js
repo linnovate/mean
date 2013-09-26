@@ -24,7 +24,10 @@ var db = mongoose.connect(config.db);
 //Bootstrap models
 var models_path = __dirname + '/app/models';
 fs.readdirSync(models_path).forEach(function(file) {
-    require(models_path + '/' + file);
+    var moduleName;
+    if ((moduleName = file.match(/(.*)\.(js|coffee)/))) {
+        require(models_path + "/" + moduleName[1]);
+    }
 });
 
 //bootstrap passport config
