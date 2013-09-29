@@ -22,7 +22,7 @@ exports.article = function(req, res, next, id) {
 /**
  * Create a article
  */
-exports.create = function(req, res) {            
+exports.create = function(req, res) {
     var article = new Article(req.body);
     article.user = req.user;
 
@@ -32,8 +32,7 @@ exports.create = function(req, res) {
                 errors: err.errors,
                 article: article
             });
-        } 
-        else {
+        } else {
             res.jsonp(article);
         }
     });
