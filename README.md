@@ -44,17 +44,17 @@ If you went through all this and still can't solve the issue, feel free to conta
 #### Update NPM, Bower or Grunt
 Sometimes you may find there is a weird error during install like npm's *Error: ENOENT*, usually updating those tools to the latest version solves the issue.
 
-Updating NPM
+Updating NPM:
 ```
 $ npm update -g npm
 ```
 
-Updating Grunt
+Updating Grunt:
 ```
 $ npm update -g grunt-cli
 ```
 
-Updating bower
+Updating Bower:
 ```
 $ npm update -g bower
 ```
@@ -63,12 +63,12 @@ $ npm update -g bower
 NPM and Bower has a caching system for holding packages that you already installed.
 We found that often cleaning the cache solves some troubles this system creates.
 
-NPM Clean Cache
+NPM Clean Cache:
 ```
 $ npm cache clean
 ```
 
-Bower Clean Cache
+Bower Clean Cache:
 ```
 $ bower cache clean
 ```
