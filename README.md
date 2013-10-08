@@ -42,7 +42,7 @@ During install some of you may encounter some issues, most of this issues can be
 If you went through all this and still can't solve the issue, feel free to contact me(Amos), via the repository issue tracker or the links provided below.
 
 #### Update NPM, Bower or Grunt
-Sometimes you may find there is a weird error during install like npm's *Error: ENOENT*, usually updating those tools to its latest version solves the issue.
+Sometimes you may find there is a weird error during install like npm's *Error: ENOENT*, usually updating those tools to the latest version solves the issue.
 
 Updating NPM
 ```
