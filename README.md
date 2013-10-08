@@ -18,19 +18,16 @@ MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://w
 * UI Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
 
 ## Quick Install
-
- The quickest way to get started with MEAN is to clone the project and utilize it like this:
+  The quickest way to get started with MEAN is to clone the project and utilize it like this:
 
   Install dependencies:
 
     $ npm install
 
-  Export the node Path to load your lib into project (default in HEROKU)
-    $ export NODE_PATH=lib
-
   We recommend using [Grunt](https://github.com/gruntjs/grunt-cli) to start the server:
-    $ grunt
 
+    $ grunt
+    
   When not using grunt you can use:
 
     $ node server
@@ -39,31 +36,56 @@ MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://w
 
     http://localhost:3000
 
-## Quick Deployment
-4 commands to deploy your mean app to heroku,
-Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed and an accessible mongo db instance - you can try <a href="http://www.mongohq.com/">mongohq</a> which have an easy setup )
 
-```bash
-git init
-git add .
-git commit -m "initial version"
-heroku apps:create
-git push heroku master
+## Troubleshooting
+During install some of you may encounter some issues, most of this issues can be solved by one of the following tips.
+If you went through all this and still can't solve the issue, feel free to contact me(Amos), via the repository issue tracker or the links provided below.
+
+#### Update NPM, Bower or Grunt
+Sometimes you may find there is a weird error during install like npm's *Error: ENOENT*, usually updating those tools to its latest version solves the issue.
+
+Updating NPM
+```
+$ npm update -g npm
 ```
 
+Updating Grunt
+```
+$ npm update -g grunt-cli
+```
+
+Updating bower
+```
+$ npm update -g bower
+```
+
+#### Cleaning NPM and Bower cache
+NPM and Bower has a caching system for holding packages that you already installed.
+We found that often cleaning the cache solves some troubles this system creates.
+
+NPM Clean Cache
+```
+$ npm cache clean
+```
+
+Bower Clean Cache
+```
+$ bower cache clean
+```
+
+ 
 ## Configuration
-All configuration is specified in the [config](config/) folder, particularly the [config.js](config/config.js) file. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, GitHub or Google.
+All configuration is specified in the [config](config/) folder, particularly the [config.js](config/config.js) file and the [env](config/env/) files. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, GitHub or Google.
 
 ### Environmental Settings
 
 There are three environments provided by default, __development__, __test__, and __production__. Each of these environments has the following configuration options:
-* db - This is the name of the MongoDB database to use, and is set by default to __mean-dev__ for the development environment.
-* root - This is determined automatically at the start of this file, but can be overridden here.
-* app.name - This is the name of your app or website, and can be different for each environment. You can tell which environment you are running by looking at the TITLE attribute that your app generates.
-* Social Registration - Facebook, GitHub, Google, Twitter. You can specify your own social accounts here for each social platform, with the following for each provider:
-	* clientID
-	* clientSecret
-	* callbackURL
+* __db__ - This is the name of the MongoDB database to use, and is set by default to __mean-dev__ for the development environment.
+* __app.name__ - This is the name of your app or website, and can be different for each environment. You can tell which environment you are running by looking at the TITLE attribute that your app generates.
+* __Social OAuth Keys__ - Facebook, GitHub, Google, Twitter. You can specify your own social application keys here for each platform:
+	* __clientID__
+	* __clientSecret__
+	* __callbackURL__
 
 To run with a different environment, just specify NODE_ENV as you call grunt:
 
@@ -85,11 +107,18 @@ If you are using node instead of grunt, it is very similar:
   * [The AngularJs Controller](https://github.com/linnovate/mean/blob/master/public/js/controllers/articles.js) - Where we take care of  our frontend logic.
   * [The AngularJs Views Folder](https://github.com/linnovate/mean/blob/master/public/views/articles) - Where we keep our CRUD views.
 
-## MEAN Modules
-   Mean presents a growing eco-system of MEAN based modules in the npm repository, To write (and contribute) your own MEAN based module checkout [mean-logger](https://npmjs.org/package/mean-logger) for examples.
-  
-## More Information
+## Heroku Quick Deployment
+Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed and an accessible mongo db instance - you can try <a href="http://www.mongohq.com/">mongohq</a> which have an easy setup )
 
+```bash
+git init
+git add .
+git commit -m "initial version"
+heroku apps:create
+git push heroku master
+```
+
+## More Information
   * Contact Amos Haviv on any issue via [E-Mail](mailto:mail@amoshaviv.com), [Facebook](http://www.facebook.com/amoshaviv), or [Twitter](http://www.twitter.com/amoshaviv).
   * Visit us at [Linnovate.net](http://www.linnovate.net/).
   * Visit our [Ninja's Zone](http://www.meanleanstartupmachine.com/) for extended support.
@@ -98,7 +127,6 @@ If you are using node instead of grunt, it is very similar:
 Inspired by the great work of [Madhusudhan Srinivasa](https://github.com/madhums/)
 
 ## License
-
 (The MIT License)
 
 Permission is hereby granted, free of charge, to any person obtaining
