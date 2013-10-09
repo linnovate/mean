@@ -9,7 +9,7 @@ var express = require('express'),
 
 module.exports = function(app, passport, db) {
     app.set('showStackError', true);
-
+    app.locals.pretty = true;
     //Should be placed before express.static
     app.use(express.compress({
         filter: function(req, res) {
