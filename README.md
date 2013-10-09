@@ -23,6 +23,7 @@ MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://w
   Install dependencies:
 
     $ npm install
+    $ bower install
 
   We recommend using [Grunt](https://github.com/gruntjs/grunt-cli) to start the server:
 
