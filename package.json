@@ -35,8 +35,7 @@
         "mean-logger": "latest",
         "forever": "latest",
         "grunt": "latest",
-        "grunt-cli": "latest",
-        "grunt-bower-task": "latest"
+        "grunt-cli": "latest"
     },
     "devDependencies": {
         "supertest": "latest",
