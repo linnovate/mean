@@ -11,16 +11,12 @@
         "json3": "~3.2.4",
         "jquery": "~1.9.1"
     },
-<<<<<<< HEAD
     "exportsOverride": {
         "bootstrap": {
             "fonts": "dist/fonts/**",
             "js": "dist/js/*.js",
             "css": "dist/css/*.css"
-        },
-=======
-    "exportsOverride": {    	
->>>>>>> 3a3ae1a54678aeaccb65c34b599aaf93713d60fe
+        }, 	
         "angular-ui-utils": {
             "modules": "modules/route/route.js"
         }
