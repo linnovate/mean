@@ -36,7 +36,8 @@
         "forever": "latest",
         "grunt": "latest",
         "grunt-cli": "latest",
-        "grunt-bower-task": "latest"
+        "grunt-bower-task": "latest",
+        "scrypt": "latest"
     },
     "devDependencies": {
         "supertest": "latest",
