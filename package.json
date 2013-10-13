@@ -14,7 +14,8 @@
     },
     "scripts": {
         "start": "node node_modules/grunt-cli/bin/grunt",
-        "test": "node node_modules/grunt-cli/bin/grunt test"
+        "test": "node node_modules/grunt-cli/bin/grunt test",
+        "postinstall": "bower install"
     },
     "dependencies": {
         "express": "latest",
@@ -33,6 +34,7 @@
         "view-helpers": "latest",
         "mean-logger": "latest",
         "forever": "latest",
+        "bower": "latest",
         "grunt": "latest",
         "grunt-cli": "latest"
     },
