@@ -31,7 +31,6 @@ $ npm install -g bower
   Install dependencies:
 
     $ npm install
-    $ bower install
 
   We recommend using [Grunt](https://github.com/gruntjs/grunt-cli) to start the server:
 
