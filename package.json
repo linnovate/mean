@@ -14,8 +14,7 @@
     },
     "scripts": {
         "start": "node node_modules/grunt-cli/bin/grunt",
-        "test": "node node_modules/grunt-cli/bin/grunt test",
-        "postinstall": "bower install"
+        "test": "node node_modules/grunt-cli/bin/grunt test"
     },
     "dependencies": {
         "express": "latest",
