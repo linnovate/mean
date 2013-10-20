@@ -2,12 +2,11 @@
     "name": "mean",
     "version": "1.0.0",
     "dependencies": {
-        "bootstrap-css": "https://raw.github.com/twbs/bootstrap/v2.3.2/docs/assets/css/bootstrap.css",
-        "bootstrap-responsive-css": "https://raw.github.com/twbs/bootstrap/v2.3.2/docs/assets/css/bootstrap-responsive.css",
+        "bootstrap-css-only": "latest",
         "angular": "~1.0.6",
         "angular-resource": "~1.0.6",
         "angular-cookies": "~1.0.6",
-        "angular-bootstrap": "~0.4.0",
+        "angular-bootstrap": "latest",
         "angular-ui-utils": "0.0.4",
         "json3": "~3.2.4"
     }
