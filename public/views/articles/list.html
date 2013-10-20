@@ -1,5 +1,5 @@
 <section data-ng-controller="ArticlesController" data-ng-init="find()">
-	<ul class="articles unstyled">
+	<ul class="articles list-unstyled">
 		<li data-ng-repeat="article in articles">
 			<span>{{article.created | date:'medium'}}</span> /
 			<span>{{article.user.name}}</span>
