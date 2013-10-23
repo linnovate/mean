@@ -27,7 +27,11 @@ module.exports = function(grunt) {
                 options: {
                     livereload: true
                 }
-            }
+            },
+            test: {
+                files: '*',
+                tasks: ['test']
+                }
         },
         jshint: {
             all: ['gruntfile.js', 'public/js/**/*.js', 'test/**/*.js', 'app/**/*.js']
@@ -60,6 +64,11 @@ module.exports = function(grunt) {
                 reporter: 'spec'
             },
             src: ['test/**/*.js']
+        },
+        env: {
+            test: {
+                NODE_ENV: 'test'
+            }
         }
     });
 
@@ -69,6 +78,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-concurrent');
+    grunt.loadNpmTasks('grunt-env');
 
     //Making grunt default to force in order not to break the project.
     grunt.option('force', true);
@@ -77,5 +87,5 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['jshint', 'concurrent']);
 
     //Test task.
-    grunt.registerTask('test', ['mochaTest']);
+    grunt.registerTask('test', ['env:test', 'mochaTest']);
 };
