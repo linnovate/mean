@@ -19,8 +19,8 @@
         "callbackURL": "http://localhost:3000/auth/github/callback"
     },
     "google": {
-        "clientID": "APP_ID",
-        "clientSecret": "APP_SECRET",
+        "clientID": "830820944501.apps.googleusercontent.com",
+        "clientSecret": "LU_4OLH2EFZF0OVr4MNh4wH1",
         "callbackURL": "http://localhost:3000/auth/google/callback"
     }
 }
