@@ -1,7 +1,7 @@
 {
     "name": "mean",
     "description": "MEAN - A Modern Stack: MongoDB, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "private": false,
     "author": "Amos Haviv",
     "repository": {
@@ -23,7 +23,7 @@
         "mongoose": "latest",
         "connect-mongo": "latest",
         "connect-flash": "latest",
-        "scrypt": "latest",
+        "crypto": "latest",
         "passport": "latest",
         "passport-local": "latest",
         "passport-facebook": "latest",

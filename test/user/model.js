@@ -30,10 +30,10 @@ describe('<Unit Test>', function() {
         });
 
         describe('Method Save', function() {
-            it('should begin with no users', function(done){
-                User.find({}, function(err,users){
-                  users.should.have.length(0);
-                  done();
+            it('should begin with no users', function(done) {
+                User.find({}, function(err, users) {
+                    users.should.have.length(0);
+                    done();
                 });
             });
 
@@ -43,9 +43,9 @@ describe('<Unit Test>', function() {
 
             it('should fail to save an existing user again', function(done) {
                 user.save();
-                return user2.save(function(err){
-                  should.exist(err);
-                  done();
+                return user2.save(function(err) {
+                    should.exist(err);
+                    done();
                 });
             });
 
