@@ -1,13 +1,12 @@
 {
     "name": "mean",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "dependencies": {
-        "bootstrap-css-only": "latest",
-        "angular": "~1.0.6",
-        "angular-resource": "~1.0.6",
-        "angular-cookies": "~1.0.6",
-        "angular-bootstrap": "latest",
-        "angular-ui-utils": "0.0.4",
-        "json3": "~3.2.4"
+        "bootstrap": "2.3.2",
+        "angular": "1.0.6",
+        "angular-resource": "1.0.6",
+        "angular-cookies": "1.0.6",
+        "angular-bootstrap": "0.6.0",
+        "angular-ui-utils": "0.0.4"
     }
 }
