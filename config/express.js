@@ -8,8 +8,11 @@ var express = require('express'),
     config = require('./config');
 
 module.exports = function(app, passport, db) {
-    app.set('showStackError', true);
+    app.set('showStackError', true);    
+    
+    //Prettify HTML
     app.locals.pretty = true;
+
     //Should be placed before express.static
     app.use(express.compress({
         filter: function(req, res) {

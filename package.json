@@ -23,6 +23,7 @@
         "mongoose": "latest",
         "connect-mongo": "latest",
         "connect-flash": "latest",
+        "scrypt": "latest",
         "passport": "latest",
         "passport-local": "latest",
         "passport-facebook": "latest",
@@ -36,14 +37,8 @@
         "forever": "latest",
         "bower": "latest",
         "grunt": "latest",
-<<<<<<< HEAD
-        "grunt-cli": "latest"
-=======
         "grunt-cli": "latest",
-        "grunt-env": "latest",
-        "grunt-bower-task": "latest",
-        "scrypt": "latest"
->>>>>>> 71365db8398cfc2c1d40aceef4cb25927109eb10
+        "grunt-env": "latest"
     },
     "devDependencies": {
         "supertest": "latest",

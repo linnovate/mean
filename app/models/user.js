@@ -3,19 +3,20 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    crypto = require('crypto'),
     scrypt = require('scrypt'),
     _ = require('underscore'),
     authTypes = ['github', 'twitter', 'facebook', 'google'];
-
-
+    
 /**
  * User Schema
  */
 var UserSchema = new Schema({
     name: String,
     email: String,
-    username: {type: String, unique: true},
+    username: {
+        type: String,
+        unique: true
+    },
     provider: String,
     hashed_password: String,
     facebook: {},
@@ -91,7 +92,7 @@ UserSchema.methods = {
      * @api public
      */
     authenticate: function(plainText) {
-      return scrypt.verifyHashSync(this.hashed_password, plainText);
+        return scrypt.verifyHashSync(this.hashed_password, plainText);
     },
 
 
@@ -104,9 +105,9 @@ UserSchema.methods = {
      */
     encryptPassword: function(password) {
         if (!password) return '';
-        var maxtime = 0.1;
-        return scrypt.passwordHashSync(password, maxtime);
-        //return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
+
+        var maximumTimeout = 0.1;
+        return scrypt.passwordHashSync(password, maximumTimeout);
     }
 };
 
