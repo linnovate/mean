@@ -85,6 +85,44 @@ $ bower cache clean
 ## Configuration
 All configuration is specified in the [config](config/) folder, particularly the [config.js](config/config.js) file and the [env](config/env/) files. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, GitHub or Google.
 
+## Testing
+
+Both the frontend and backend tests are driven by [mochajs](http://visionmedia.github.io/mocha/) which included when installing the dependencies.
+
+To quickly run all the tests:
+
+```
+grunt test
+```
+
+If you have any problems, see the following sections to ensure you have all the
+necessary dependencies.
+
+### Backend
+
+The Express tests run on node and can be started manually via
+
+```
+grunt mochaTest:src
+```
+
+### Frontend
+
+The AngularJS tests require a browser or a headless VM (e.g. PhantomJS) to run.
+
+To run with a browser (Chrome is required):
+
+```
+grunt karma:unit
+```
+
+To run without a browser:
+
+```
+brew install phantomjs
+grunt karma:continuous
+```
+
 ### Environmental Settings
 
 There are three environments provided by default, __development__, __test__, and __production__. Each of these environments has the following configuration options:

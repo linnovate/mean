@@ -1,5 +1,6 @@
 angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', 'Global', 'Articles', function ($scope, $routeParams, $location, Global, Articles) {
     $scope.global = Global;
+    $scope.articles = [];
 
     $scope.create = function() {
         var article = new Articles({
