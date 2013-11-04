@@ -30,7 +30,7 @@ module.exports = function(grunt) {
             }
         },
         jshint: {
-            all: ['gruntfile.js', 'public/js/**/*.js', 'test/**/*.js', 'app/**/*.js']
+            all: ['gruntfile.js', 'public/js/**/*.js', 'test/mocha/**/*.js', 'test/karma/**/*.js', 'app/**/*.js']
         },
         nodemon: {
             dev: {
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
             }
         },
         concurrent: {
-            tasks: ['nodemon', 'watch'], 
+            tasks: ['nodemon', 'watch', 'karma:unit'],
             options: {
                 logConcurrentOutput: true
             }
@@ -59,11 +59,16 @@ module.exports = function(grunt) {
             options: {
                 reporter: 'spec'
             },
-            src: ['test/**/*.js']
+            src: ['test/mocha/**/*.js']
         },
         env: {
             test: {
                 NODE_ENV: 'test'
+            }
+        },
+        karma: {
+            unit: {
+                configFile: 'test/karma/karma.conf.js'
             }
         }
     });
@@ -72,6 +77,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-env');
