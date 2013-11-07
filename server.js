@@ -28,7 +28,7 @@ var walk = function(path) {
         var newPath = path + '/' + file;
         var stat = fs.statSync(newPath);
         if (stat.isFile()) {
-            if (/(.*)\.(js|coffee)/.test(file)) {
+            if (/(.*)\.(js$|coffee$)/.test(file)) {
                 require(newPath);
             }
         } else if (stat.isDirectory()) {
