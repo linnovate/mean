@@ -2,11 +2,18 @@
     "name": "mean",
     "version": "0.1.0",
     "dependencies": {
-        "bootstrap": "2.3.2",
-        "angular": "1.0.6",
-        "angular-resource": "1.0.6",
-        "angular-cookies": "1.0.6",
-        "angular-bootstrap": "0.6.0",
-        "angular-ui-utils": "0.0.4"
+        "angular": "latest",
+        "angular-cookies": "latest",
+        "angular-resource": "latest",
+        "angular-route": "latest",
+        "angular-sanitize": "latest",
+
+        "bootstrap": "latest",
+        "angular-bootstrap": "latest",
+        "angular-ui-utils": "latest"
+    },
+    "devDependencies": {
+        "angular-mocks": "latest",
+        "angular-scenario": "latest"
     }
 }
