@@ -1,0 +1,127 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var program = require('commander')
+    , mkdirp = require('mkdirp')
+    , pkg = require('../package.json')
+    , version = pkg.version
+    , os = require('os')
+    , fs = require('fs');
+
+// CLI
+
+program
+    .version(version)
+    .usage('[dir]')
+    .parse(process.argv);
+
+// Path
+
+var path = program.args.shift() || '.';
+
+// end-of-line code
+
+var eol = os.EOL
+
+// Generate application
+
+(function createApplication(path) {
+    emptyDirectory(path, function(empty){
+        if (empty || program.force) {
+            createApplicationAt(path);
+        } else {
+            program.confirm('destination is not empty, continue? ', function(ok){
+                if (ok) {
+                    process.stdin.destroy();
+                    createApplicationAt(path);
+                } else {
+                    abort('aborting');
+                }
+            });
+        }
+    });
+})(path);
+
+
+
+/**
+ * Check if the given directory `path` is empty.
+ *
+ * @param {String} path
+ * @param {Function} fn
+ */
+
+function emptyDirectory(path, fn) {
+    fs.readdir(path, function(err, files){
+        if (err && 'ENOENT' != err.code) throw err;
+        fn(!files || !files.length);
+    });
+}
+
+/**
+ * Reads the directory and give to callback the dir names
+ *
+ * @param path
+ * @param str
+ */
+function copyFiles(path, dest, fn) {
+    fs.readdir(path, function(err, files) {
+        if (err && 'ENOENT' != err.code) throw err;
+        files.forEach(function(file) {
+            file.isDir() ? copyFiles(file, dest, fn) : false;
+            //ToDo finish this function
+        })
+    });
+}
+
+/**
+ * echo str > path.
+ *
+ * @param {String} path
+ * @param {String} str
+ */
+
+function write(path, str) {
+    fs.writeFile(path, str);
+    console.log('   \x1b[36mcreate\x1b[0m : ' + path);
+}
+
+/**
+ * Mkdir -p.
+ *
+ * @param {String} path
+ * @param {Function} fn
+ */
+
+function mkdir(path, fn) {
+    mkdirp(path, 0755, function(err){
+        if (err) throw err;
+        console.log('   \033[36mcreate\033[0m : ' + path);
+        fn && fn();
+    });
+}
+
+/**
+ * Exit with the given `str`.
+ *
+ * @param {String} str
+ */
+
+function abort(str) {
+    console.error(str);
+    process.exit(1);
+}
+
+/**
+ * Create application at the given directory `path`.
+ *
+ * @param {String} path
+ */
+
+function createApplicationAt(path) {
+    console.log();
+    //ToDo go home and finish this function later
+}
