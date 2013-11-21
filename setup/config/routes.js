@@ -1,6 +1,6 @@
 module.exports = function(app, passport, auth) {
     //User Routes
-    var users = require('../app/controllers/users');
+    var users = require('./controllers/users');
     app.get('/signin', users.signin);
     app.get('/signup', users.signup);
     app.get('/signout', users.signout);
@@ -61,7 +61,7 @@ module.exports = function(app, passport, auth) {
     app.param('userId', users.user);
 
     //Article Routes
-    var articles = require('../app/controllers/articles');
+    var articles = require('./controllers/articles');
     app.get('/articles', articles.all);
     app.post('/articles', auth.requiresLogin, articles.create);
     app.get('/articles/:articleId', articles.show);
@@ -72,7 +72,7 @@ module.exports = function(app, passport, auth) {
     app.param('articleId', articles.article);
 
     //Home route
-    var index = require('../app/controllers/index');
+    var index = require('./controllers/index');
     app.get('/', index.render);
 
 };
