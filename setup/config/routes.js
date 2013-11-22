@@ -1,6 +1,8 @@
+var path = require('path');
+
 module.exports = function(app, passport, auth) {
     //User Routes
-    var users = require('./controllers/users');
+    var users = require(path.join(__dirname, '..', 'app', 'controllers', 'users'));
     app.get('/signin', users.signin);
     app.get('/signup', users.signup);
     app.get('/signout', users.signout);
@@ -61,7 +63,7 @@ module.exports = function(app, passport, auth) {
     app.param('userId', users.user);
 
     //Article Routes
-    var articles = require('./controllers/articles');
+    var articles = require (path.join(__dirname, '..', 'app', 'controllers', 'articles'));
     app.get('/articles', articles.all);
     app.post('/articles', auth.requiresLogin, articles.create);
     app.get('/articles/:articleId', articles.show);
@@ -72,7 +74,7 @@ module.exports = function(app, passport, auth) {
     app.param('articleId', articles.article);
 
     //Home route
-    var index = require('./controllers/index');
+    var index = require(path.join(__dirname, '..', 'app', 'controllers', 'index'));
     app.get('/', index.render);
 
 };
