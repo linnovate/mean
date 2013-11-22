@@ -5,18 +5,18 @@
  */
 
 var program = require('commander')
-    , mkdirp = require('mkdirp')
-    , pkg = require('../package.json')
-    , version = pkg.version
-    , os = require('os')
-    , fs = require('fs');
+  , mkdirp = require('mkdirp')
+  , pkg = require('../package.json')
+  , version = pkg.version
+  , os = require('os')
+  , fs = require('fs');
 
 // CLI
 
 program
-    .version(version)
-    .usage('[dir]')
-    .parse(process.argv);
+  .version(version)
+  .usage('[dir]')
+  .parse(process.argv);
 
 // Path
 
@@ -29,22 +29,21 @@ var eol = os.EOL
 // Generate application
 
 (function createApplication(path) {
-    emptyDirectory(path, function(empty){
-        if (empty || program.force) {
-            createApplicationAt(path);
+  emptyDirectory(path, function (empty) {
+    if (empty || program.force) {
+      createApplicationAt(path);
+    } else {
+      program.confirm('destination is not empty, continue? ', function (ok) {
+        if (ok) {
+          process.stdin.destroy();
+          createApplicationAt(path);
         } else {
-            program.confirm('destination is not empty, continue? ', function(ok){
-                if (ok) {
-                    process.stdin.destroy();
-                    createApplicationAt(path);
-                } else {
-                    abort('aborting');
-                }
-            });
+          abort('aborting');
         }
-    });
+      });
+    }
+  });
 })(path);
-
 
 
 /**
@@ -55,10 +54,10 @@ var eol = os.EOL
  */
 
 function emptyDirectory(path, fn) {
-    fs.readdir(path, function(err, files){
-        if (err && 'ENOENT' != err.code) throw err;
-        fn(!files || !files.length);
-    });
+  fs.readdir(path, function (err, files) {
+    if (err && 'ENOENT' != err.code) throw err;
+    fn(!files || !files.length);
+  });
 }
 
 /**
@@ -68,13 +67,13 @@ function emptyDirectory(path, fn) {
  * @param str
  */
 function copyFiles(path, dest, fn) {
-    fs.readdir(path, function(err, files) {
-        if (err && 'ENOENT' != err.code) throw err;
-        files.forEach(function(file) {
-            file.isDir() ? copyFiles(file, dest, fn) : false;
-            //ToDo finish this function
-        })
-    });
+  fs.readdir(path, function (err, files) {
+    if (err && 'ENOENT' != err.code) throw err;
+    files.forEach(function (file) {
+      file.isDir() ? copyFiles(file, dest, fn) : false;
+      //ToDo finish this function
+    })
+  });
 }
 
 /**
@@ -85,8 +84,8 @@ function copyFiles(path, dest, fn) {
  */
 
 function write(path, str) {
-    fs.writeFile(path, str);
-    console.log('   \x1b[36mcreate\x1b[0m : ' + path);
+  fs.writeFile(path, str);
+  console.log('   \x1b[36mcreate\x1b[0m : ' + path);
 }
 
 /**
@@ -97,11 +96,11 @@ function write(path, str) {
  */
 
 function mkdir(path, fn) {
-    mkdirp(path, 0755, function(err){
-        if (err) throw err;
-        console.log('   \033[36mcreate\033[0m : ' + path);
-        fn && fn();
-    });
+  mkdirp(path, 0755, function (err) {
+    if (err) throw err;
+    console.log('   \033[36mcreate\033[0m : ' + path);
+    fn && fn();
+  });
 }
 
 /**
@@ -111,8 +110,8 @@ function mkdir(path, fn) {
  */
 
 function abort(str) {
-    console.error(str);
-    process.exit(1);
+  console.error(str);
+  process.exit(1);
 }
 
 /**
@@ -122,6 +121,6 @@ function abort(str) {
  */
 
 function createApplicationAt(path) {
-    console.log();
-    //ToDo go home and finish this function later
+  console.log();
+  //ToDo go home and finish this function later
 }
