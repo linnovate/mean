@@ -9,7 +9,8 @@ var program = require('commander')
   , pkg = require('../package.json')
   , version = pkg.version
   , os = require('os')
-  , fs = require('fs');
+  , fs = require('fs')
+  , path = require('path');
 
 // CLI
 
@@ -18,87 +19,102 @@ program
   .usage('[dir]')
   .parse(process.argv);
 
-// Path
+// dest
 
-var path = program.args.shift() || '.';
+var dest = program.args.shift() || '.';
 
 // end-of-line code
 
-var eol = os.EOL
+//var eol = os.EOL
 
 // Generate application
 
-(function createApplication(path) {
-  emptyDirectory(path, function (empty) {
+(function createApplication(dest) {
+  emptyDirectory(dest, function (empty) {
     if (empty || program.force) {
-      createApplicationAt(path);
+      createApplicationAt(dest);
     } else {
       program.confirm('destination is not empty, continue? ', function (ok) {
         if (ok) {
           process.stdin.destroy();
-          createApplicationAt(path);
+          createApplicationAt(dest);
         } else {
           abort('aborting');
         }
       });
     }
   });
-})(path);
+})(dest);
 
 
 /**
- * Check if the given directory `path` is empty.
+ * Check if the given directory `dest` is empty.
  *
- * @param {String} path
+ * @param {String} dest
  * @param {Function} fn
  */
 
-function emptyDirectory(path, fn) {
-  fs.readdir(path, function (err, files) {
+function emptyDirectory(dest, fn) {
+  fs.readdir(dest, function (err, files) {
     if (err && 'ENOENT' != err.code) throw err;
     fn(!files || !files.length);
   });
 }
 
 /**
- * Reads the directory and give to callback the dir names
+ * Re-creates recursively the setup folder at destination
  *
- * @param path
+ * @param to
  * @param str
  */
-function copyFiles(path, dest, fn) {
-  fs.readdir(path, function (err, files) {
+function copyFiles(from, to) {
+  if (from === null) from = path.join(__dirname, '..', 'setup');
+  fs.readdir(from, function (from, to, err, files) {
     if (err && 'ENOENT' != err.code) throw err;
-    files.forEach(function (file) {
-      file.isDir() ? copyFiles(file, dest, fn) : false;
-      //ToDo finish this function
-    })
-  });
+    files.forEach(function (from, to, file) {
+      fs.stat(path.join(from, file), function(from, to, err, meta) {
+        if (err) throw err;
+
+        var dest = path.join(to, file);
+
+        if (meta.isDirectory()) {
+          mkdir(dest, function() {});
+          copyFiles(path.join(from, file), dest);
+        } else {
+          //write(from, dest);
+        }
+      }.bind(null, from, to));
+    }.bind(null, from, to));
+  }.bind(null, from, to));
 }
 
 /**
- * echo str > path.
+ * echo str > dest.
  *
- * @param {String} path
+ * @param {String} dest
  * @param {String} str
  */
 
-function write(path, str) {
-  fs.writeFile(path, str);
-  console.log('   \x1b[36mcreate\x1b[0m : ' + path);
+function write(from, to) {
+  fs.readFile(from, function (err, data) {
+    if (err) throw err;
+    fs.writeFile(to, data, function() {
+      console.log('   \x1b[36mcreate file\x1b[0m : ' + to);
+    });
+  });
 }
 
 /**
  * Mkdir -p.
  *
- * @param {String} path
+ * @param {String} dest
  * @param {Function} fn
  */
 
-function mkdir(path, fn) {
-  mkdirp(path, 0755, function (err) {
+function mkdir(dest, fn) {
+  mkdirp(dest, 0755, function (err) {
     if (err) throw err;
-    console.log('   \033[36mcreate\033[0m : ' + path);
+    console.log('   \033[36mcreate directory\033[0m : ' + dest);
     fn && fn();
   });
 }
@@ -115,12 +131,13 @@ function abort(str) {
 }
 
 /**
- * Create application at the given directory `path`.
+ * Create application at the given directory `dest`.
  *
- * @param {String} path
+ * @param {String} dest
  */
 
-function createApplicationAt(path) {
+function createApplicationAt(dest) {
   console.log();
   //ToDo go home and finish this function later
+  copyFiles(null, dest);
 }
