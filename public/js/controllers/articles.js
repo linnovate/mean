@@ -15,12 +15,18 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
     };
 
     $scope.remove = function(article) {
-        article.$remove();  
+        if (article) {
+            article.$remove();  
 
-        for (var i in $scope.articles) {
-            if ($scope.articles[i] == article) {
-                $scope.articles.splice(i, 1);
+            for (var i in $scope.articles) {
+                if ($scope.articles[i] == article) {
+                    $scope.articles.splice(i, 1);
+                }
             }
+        }
+        else {
+            $scope.article.$remove();
+            $location.path('articles');
         }
     };
 
