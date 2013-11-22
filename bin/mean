@@ -39,7 +39,14 @@ var dest = program.args.shift() || '.';
           process.stdin.destroy();
           createApplicationAt(dest);
         } else {
-          abort('aborting');
+          program.confirm('destination is not empty, continue? ', function (ok) {
+            if (ok) {
+              process.stdin.destroy();
+              createApplicationAt(path);
+            } else {
+              abort('aborting');
+            }
+          });
         }
       });
     }
@@ -72,13 +79,14 @@ function copyFiles(from, to) {
   fs.readdir(from, function (from, to, err, files) {
     if (err && 'ENOENT' != err.code) throw err;
     files.forEach(function (from, to, file) {
-      fs.stat(path.join(from, file), function(from, to, err, meta) {
+      fs.stat(path.join(from, file), function (from, to, err, meta) {
         if (err) throw err;
 
         var dest = path.join(to, file);
 
         if (meta.isDirectory()) {
-          mkdir(dest, function() {});
+          mkdir(dest, function () {
+          });
           copyFiles(path.join(from, file), dest);
         } else {
           //write(from, dest);
@@ -98,7 +106,7 @@ function copyFiles(from, to) {
 function write(from, to) {
   fs.readFile(from, function (err, data) {
     if (err) throw err;
-    fs.writeFile(to, data, function() {
+    fs.writeFile(to, data, function () {
       console.log('   \x1b[36mcreate file\x1b[0m : ' + to);
     });
   });
