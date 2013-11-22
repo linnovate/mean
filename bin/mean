@@ -89,7 +89,7 @@ function copyFiles(from, to) {
           });
           copyFiles(path.join(from, file), dest);
         } else {
-          //write(from, dest);
+          write(path.join(from, file), dest);
         }
       }.bind(null, from, to));
     }.bind(null, from, to));
