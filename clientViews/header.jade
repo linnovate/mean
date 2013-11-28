@@ -1,0 +1,20 @@
+.navbar-inner(data-ng-controller='HeaderController')
+    ul.nav
+        li
+          a.brand(href='/') MEAN - A Modern Stack
+        li(data-ng-repeat='item in menu', data-ng-show='global.user', ui-route='/{{item.link}}', ng-class='{active: $uiRoute}')
+          a(href='#!/{{item.link}}') {{item.title}}
+      ul.nav.pull-right(data-ng-hide='global.authenticated')
+        li
+          a(href='signup') Signup
+        li.divider-vertical
+        li
+          a(href='signin') Signin
+      ul.nav.pull-right(data-ng-show='global.authenticated')
+        li.dropdown
+          a.dropdown-toggle(href='#', data-toggle='dropdown')
+            | {{global.user.name}}
+            b.caret
+          ul.dropdown-menu
+            li
+              a(href='/signout') Signout

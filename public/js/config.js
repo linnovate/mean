@@ -3,19 +3,19 @@ angular.module('mean').config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
         when('/articles', {
-            templateUrl: 'views/articles/list.html'
+            templateUrl: 'views/articles/list'
         }).
         when('/articles/create', {
-            templateUrl: 'views/articles/create.html'
+            templateUrl: 'views/articles/create'
         }).
         when('/articles/:articleId/edit', {
-            templateUrl: 'views/articles/edit.html'
+            templateUrl: 'views/articles/edit'
         }).
         when('/articles/:articleId', {
-            templateUrl: 'views/articles/view.html'
+            templateUrl: 'views/articles/view'
         }).
         when('/', {
-            templateUrl: 'views/index.html'
+            templateUrl: 'views/index'
         }).
         otherwise({
             redirectTo: '/'

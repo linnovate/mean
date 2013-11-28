@@ -1,4 +1,9 @@
 module.exports = function(app, passport, auth) {
+    // Client View Routes
+    // Serve Client Views from Jade Templates
+    var client = require('../app/controllers/client');
+    app.get('/views/:view(*)', client.getView);
+
     //User Routes
     var users = require('../app/controllers/users');
     app.get('/signin', users.signin);
