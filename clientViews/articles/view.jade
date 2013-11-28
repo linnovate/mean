@@ -1,0 +1,11 @@
+section(data-ng-controller='ArticlesController', data-ng-init='findOne()')
+    span {{article.created | date:'medium'}}
+      | /
+      span {{article.user.name}}
+      h2 {{article.title}}
+      div(data-ng-show='global.user._id == article.user._id')
+        a.btn(href='/#!/articles/{{article._id}}/edit')
+          i.icon-edit
+        a.btn(data-ng-click='remove();')
+          i.icon-trash
+      div {{article.content}}

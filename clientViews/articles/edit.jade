@@ -1,0 +1,13 @@
+section(data-ng-controller='ArticlesController', data-ng-init='findOne()')
+    form.form-horizontal(data-ng-submit='update()')
+        .control-group
+          label.control-label(for='title') Title
+          .controls
+            input#title(type='text', data-ng-model='article.title', placeholder='Title', required='required')
+        .control-group
+          label.control-label(for='content') Content
+          .controls
+            textarea#content(data-ng-model='article.content', cols='30', rows='10', placeholder='Content')
+        .control-group
+          .controls
+            input.btn(type='submit')
