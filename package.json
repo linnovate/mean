@@ -46,6 +46,10 @@
         "grunt-contrib-jshint": "latest",
         "grunt-nodemon": "latest",
         "grunt-concurrent": "latest",
-        "grunt-mocha-test": "latest"
+        "grunt-mocha-test": "latest",
+        "grunt-karma": "latest",
+        "karma": "latest",
+        "karma-mocha": "latest",
+        "karma-chai": "latest"
     }
 }

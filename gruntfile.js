@@ -59,11 +59,36 @@ module.exports = function(grunt) {
             options: {
                 reporter: 'spec'
             },
-            src: ['test/**/*.js']
+            src: ['test/**/*.js', '!test/client/**.js']
         },
         env: {
             test: {
                 NODE_ENV: 'test'
+            }
+        },
+        karma: {
+            options: {
+                autoWatch: true,
+                frameworks: ['mocha', 'chai'],
+                files: [
+                    'public/lib/angular/angular.js',
+                    'public/lib/angular-cookies/angular-cookies.js',
+                    'public/lib/angular-resource/angular-resource.js',
+                    'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
+                    'public/lib/angular-bootstrap/ui-bootstrap.js',
+                    'public/lib/angular-ui-utils/modules/route/route.js',
+                    'public/vendor/angular-mocks/angular-mocks.js',
+                    'public/js/**/*.js',
+                    'test/client/**/*.js'
+                ]
+            },
+            unit: {
+                singleRun: false,
+            },
+            // For a CI
+            continuous: {
+                singleRun: true,
+                browsers: ['PhantomJS']
             }
         }
     });
@@ -75,6 +100,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-env');
+    grunt.loadNpmTasks('grunt-karma');
 
     //Making grunt default to force in order not to break the project.
     grunt.option('force', true);
@@ -83,5 +109,5 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['jshint', 'concurrent']);
 
     //Test task.
-    grunt.registerTask('test', ['env:test', 'mochaTest']);
+    grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:continuous']);
 };
