@@ -1,5 +1,5 @@
-<div class="navbar-inner" data-ng-controller="HeaderController">
-    <ul class="nav">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" data-ng-controller="HeaderController">
+    <ul class="nav navbar-nav">
         <li>
             <a class="brand" href="/">MEAN - A Modern Stack</a>
         </li>
@@ -7,14 +7,14 @@
             <a href="#!/{{item.link}}">{{item.title}}</a>
         </li>
     </ul>
-    <ul class="nav pull-right" data-ng-hide="global.authenticated">
+    <ul class="nav navbar-nav pull-right" data-ng-hide="global.authenticated">
         <li><a href="signup">Signup</a>
         </li>
         <li class="divider-vertical"></li>
         <li><a href="signin">Signin</a>
         </li>
     </ul>
-    <ul class="nav pull-right" data-ng-show="global.authenticated">
+    <ul class="nav navbar-nav pull-right" data-ng-show="global.authenticated">
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				{{global.user.name}} <b class="caret"></b>
@@ -25,4 +25,4 @@
             </ul>
         </li>
     </ul>
-</div>
+</nav>
