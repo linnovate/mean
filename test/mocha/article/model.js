@@ -56,7 +56,7 @@ describe('<Unit Test>', function() {
             User.remove({});
             done();
         });
-        after(function(done){
+        after(function(done) {
             Article.remove().exec();
             User.remove().exec();
             done();

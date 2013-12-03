@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Sat Oct 05 2013 22:00:14 GMT+0700 (ICT)
 
-module.exports = function (config) {
+module.exports = function(config) {
     config.set({
 
         // base path, that will be used to resolve files and exclude
@@ -56,8 +56,8 @@ module.exports = function (config) {
         },
 
         coverageReporter: {
-            type : 'html',
-            dir : 'test/coverage/'
+            type: 'html',
+            dir: 'test/coverage/'
         },
 
         // web server port
