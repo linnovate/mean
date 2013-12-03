@@ -14,7 +14,6 @@ module.exports = function(app, passport, auth) {
     }), users.session);
 
     app.get('/users/me', users.me);
-    app.get('/users/:userId', users.show);
 
     //Setting the facebook oauth routes
     app.get('/auth/facebook', passport.authenticate('facebook', {
