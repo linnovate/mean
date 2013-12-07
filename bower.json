@@ -4,11 +4,14 @@
   "dependencies": {
     "bootstrap": "2.3.2",
     "angular": "1.2.4",
-    "angular-resource": "latest",
-    "angular-cookies": "latest",
-    "angular-bootstrap": "latest",
-    "angular-ui-utils": "latest",
-    "angular-mocks": "latest",
-    "angular-route": "latest"
+    "angular-resource": "1.2.4",
+    "angular-cookies": "1.2.4",
+    "angular-bootstrap": "0.7.0",
+    "angular-ui-utils": "0.0.4",
+    "angular-mocks": "1.2.4",
+    "angular-route": "1.2.4"
+  },
+  "resolutions": {
+    "angular": "1.2.4"
   }
 }
