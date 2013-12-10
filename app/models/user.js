@@ -105,7 +105,7 @@ UserSchema.methods = {
      * @api public
      */
     makeSalt: function() {
-        return Math.round((new Date().valueOf() * Math.random())) + '';
+       return crypto.randomBytes(16).toString('base64'); 
     },
 
     /**
@@ -117,7 +117,8 @@ UserSchema.methods = {
      */
     encryptPassword: function(password) {
         if (!password) return '';
-        return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
+        salt = new Buffer(this.salt, 'base64');
+        return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
     }
 };
 
