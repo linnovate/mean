@@ -40,12 +40,10 @@ ArticleSchema.path('title').validate(function(title) {
 /**
  * Statics
  */
-ArticleSchema.statics = {
-    load: function(id, cb) {
-        this.findOne({
-            _id: id
-        }).populate('user', 'name username').exec(cb);
-    }
+ArticleSchema.statics.load = function(id, cb) {
+    this.findOne({
+        _id: id
+    }).populate('user', 'name username').exec(cb);
 };
 
 mongoose.model('Article', ArticleSchema);
