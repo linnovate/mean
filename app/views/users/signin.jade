@@ -1,15 +1,6 @@
 extends auth
 
 block auth
-  if message.length > 0
-    .fade.in.alert.alert-block.alert-error
-      p #{message}
-      a.close(data-dismiss="alert", href="javascript:void(0)") x
-      ul
-        each error in errors
-          li= error
-
-
   form.signin.form-horizontal(action="/users/session", method="post")
     .control-group
       label.control-label(for='email') Email

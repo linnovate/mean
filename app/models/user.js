@@ -18,8 +18,8 @@ var UserSchema = new Schema({
         type: String,
         unique: true
     },
-    provider: String,
     hashed_password: String,
+    provider: String,
     salt: String,
     facebook: {},
     twitter: {},
@@ -116,8 +116,7 @@ UserSchema.methods = {
      * @api public
      */
     encryptPassword: function(password) {
-        if (!password) return '';
-        if (!this.salt) return '';
+        if (!password || !this.salt) return '';
         salt = new Buffer(this.salt, 'base64');
         return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
     }
