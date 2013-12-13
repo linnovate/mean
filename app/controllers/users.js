@@ -26,8 +26,7 @@ exports.signin = function(req, res) {
  */
 exports.signup = function(req, res) {
     res.render('users/signup', {
-        title: 'Sign up',
-        user: new User()
+        title: 'Sign up'
     });
 };
 
