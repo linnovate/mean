@@ -56,7 +56,6 @@ exports.create = function(req, res) {
     user.provider = 'local';
     user.save(function(err) {
         if (err) {
-            console.log(err);
             switch(err.code){
                 case 11000:
                 case 11001:
