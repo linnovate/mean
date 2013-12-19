@@ -284,6 +284,12 @@ Full-Width Styles
   border-bottom-right-radius: 2px;
 }
 
+.contactus_banner {
+  right: 200px;
+  padding: 10px;
+  background: #f26522;
+}
+
 #header_wrap {
   background: #212121;
   background: -moz-linear-gradient(top, #373737, #212121);
