@@ -269,6 +269,7 @@ Full-Width Styles
   margin: 0 auto;
 }
 
+#contactus_banner,
 #forkme_banner {
   display: block;
   position: absolute;
@@ -284,7 +285,7 @@ Full-Width Styles
   border-bottom-right-radius: 2px;
 }
 
-.contactus_banner {
+#contactus_banner {
   right: 200px;
   padding: 10px;
   background: #f26522;
