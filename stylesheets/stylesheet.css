@@ -39,9 +39,6 @@ ol, ul {
   list-style: none;
 }
 
-blockquote, q {
-}
-
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -121,14 +118,11 @@ a {
   -ms-transition: text-shadow 0.5s ease;
 }
 
-#main_content a:hover {
-  color: #0069ba;
-  text-shadow: #0090ff 0px 0px 2px;
-}
+a:hover, a:focus {text-decoration: underline;}
 
-footer a:hover {
-  color: #43adff;
-  text-shadow: #0090ff 0px 0px 2px;
+footer a {
+  color: #F2F2F2;
+  text-decoration: underline;
 }
 
 em {
@@ -154,6 +148,15 @@ img {
   -ms-box-shadow: 0 0 5px #ebebeb;
 }
 
+p img {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+  text-align: center;
+  border: none;
+}
+
 pre, code {
   width: 100%;
   color: #222;
@@ -165,9 +168,6 @@ pre, code {
   border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
-
-
-
 }
 
 pre {
@@ -195,16 +195,17 @@ blockquote {
   border-left: 3px solid #bbb;
 }
 
+
 ul, ol, dl {
   margin-bottom: 15px
 }
 
-ul li {
+ul {
   list-style: inside;
   padding-left: 20px;
 }
 
-ol li {
+ol {
   list-style: decimal inside;
   padding-left: 20px;
 }
@@ -253,11 +254,6 @@ form {
   padding: 20px;
 }
 
-img {
-  width: 100%;
-  max-width: 100%;
-}
-
 /*******************************************************************************
 Full-Width Styles
 *******************************************************************************/
@@ -286,12 +282,6 @@ Full-Width Styles
   box-shadow: 0 0 10px rgba(0,0,0,.5);
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-}
-
-.contactus_banner {
-  right: 200px;
-  background: #f26522 no-repeat;
-  padding: 10px;
 }
 
 #header_wrap {
