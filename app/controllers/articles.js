@@ -3,7 +3,7 @@
  */
 var mongoose = require('mongoose'),
     Article = mongoose.model('Article'),
-    _ = require('underscore');
+    _ = require('lodash');
 
 
 /**
@@ -78,6 +78,7 @@ exports.show = function(req, res) {
  * List of Articles
  */
 exports.all = function(req, res) {
+    console.log(req.user.password);
     Article.find().sort('-created').populate('user', 'name username').exec(function(err, articles) {
         if (err) {
             res.render('error', {
