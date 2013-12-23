@@ -1,11 +1,11 @@
 module.exports = {
-    db: "mongodb://admin:password@ds027308.mongolab.com:27308/meanstack",
+    db: "mongodb://localhost/mean-dev",
     app: {
         name: "MEAN - A Modern Stack - Development"
     },
     facebook: {
-        clientID: "455818271176818",
-        clientSecret: "db6c579d1fcdc9a3980bc4aade0e3aaf",
+        clientID: "APP_ID",
+        clientSecret: "APP_SECRET",
         callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
     twitter: {
