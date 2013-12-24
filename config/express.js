@@ -22,7 +22,7 @@ module.exports = function(app, passport, db) {
     }));
 
     //use dev logger in dev
-    if (process.env.NODE_ENV === 'dev') {
+    if (process.env.NODE_ENV === 'development') {
         app.use(express.logger('dev'));
     } else {
         app.use(express.logger());
