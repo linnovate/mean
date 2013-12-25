@@ -49,7 +49,7 @@ exports.session = function(req, res) {
 /**
  * Create user
  */
-exports.create = function(req, res) {
+exports.create = function(req, res, next) {
     var user = new User(req.body);
     var message = null;
 
@@ -61,7 +61,7 @@ exports.create = function(req, res) {
                 case 11001:
                     message = 'Username already exists';
                     break;
-                default: 
+                default:
                     message = 'Please fill all the required fields';
             }
 

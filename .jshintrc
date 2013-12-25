@@ -1,7 +1,6 @@
 {
     "node": true, // Enable globals available when code is running inside of the NodeJS runtime environment.
     "browser": true, // Standard browser globals e.g. `window`, `document`.
-    "es5": true, // Allow EcmaScript 5 syntax.
     "esnext": true, // Allow ES.next specific features such as `const` and `let`.
     "bitwise": false, // Prohibit bitwise operators (&, |, ^, etc.).
     "camelcase": false, // Permit only camelcase for `var` and `object indexes`.
@@ -19,7 +18,9 @@
     "trailing": true, // Prohibit trailing whitespaces.
     "smarttabs": false, // Suppresses warnings about mixed tabs and spaces
     "globals": { // Globals variables.
-        "angular": true
+        "angular": true,
+        "expect": true,
+        "inject": true
     },
     "predef": [ // Extra globals.
         "define",
