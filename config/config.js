@@ -1,3 +1,5 @@
+'use strict';
+
 var _ = require('lodash');
 
 // Load app configuration

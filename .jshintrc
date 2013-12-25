@@ -1,7 +1,6 @@
 {
     "node": true, // Enable globals available when code is running inside of the NodeJS runtime environment.
     "browser": true, // Standard browser globals e.g. `window`, `document`.
-    "es5": true, // Allow EcmaScript 5 syntax.
     "esnext": true, // Allow ES.next specific features such as `const` and `let`.
     "bitwise": false, // Prohibit bitwise operators (&, |, ^, etc.).
     "camelcase": false, // Permit only camelcase for `var` and `object indexes`.
@@ -15,7 +14,7 @@
     "regexp": true, // Prohibit `.` and `[^...]` in regular expressions.
     "undef": true, // Require all non-global variables be declared before they are used.
     "unused": true, // Warn unused variables.
-    "strict": false, // Require `use strict` pragma in every file.
+    "strict": true, // Require `use strict` pragma in every file.
     "trailing": true, // Prohibit trailing whitespaces.
     "smarttabs": false, // Suppresses warnings about mixed tabs and spaces
     "globals": { // Globals variables.
@@ -31,10 +30,11 @@
         "beforeEach",
         "after",
         "afterEach",
-        "it"
+        "it",
+        "inject",
+        "expect"
     ],
     "indent": 4, // Specify indentation spacing
-    "maxlen": 120, // Max line lenght
-    "devel": false, // Allow development statements e.g. `console.log();`.
+    "devel": true, // Allow development statements e.g. `console.log();`.
     "noempty": true // Prohibit use of empty blocks.
 }

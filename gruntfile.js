@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(grunt) {
     // Project Configuration
     grunt.initConfig({
@@ -10,7 +12,7 @@ module.exports = function(grunt) {
                 },
             },
             js: {
-                files: ['public/js/**', 'app/**/*.js'],
+                files: ['gruntfile.js', 'server.js', 'app/**/*.js', 'public/js/**', 'test/**/*.js'],
                 tasks: ['jshint'],
                 options: {
                     livereload: true,
@@ -31,7 +33,10 @@ module.exports = function(grunt) {
         },
         jshint: {
             all: {
-                src: ['gruntfile.js', 'public/js/**/*.js', 'test/mocha/**/*.js', 'test/karma/**/*.js', 'app/**/*.js']
+                src: ['gruntfile.js', 'server.js', 'app/**/*.js', 'public/js/**', 'test/**/*.js'],
+                options: {
+                    jshintrc: true
+                }
             }
         },
         nodemon: {
@@ -39,9 +44,8 @@ module.exports = function(grunt) {
                 options: {
                     file: 'server.js',
                     args: [],
-                    ignoredFiles: ['README.md', 'node_modules/**', '.DS_Store'],
+                    ignoredFiles: ['public/**'],
                     watchedExtensions: ['js'],
-                    watchedFolders: ['app', 'config'],
                     debug: true,
                     delayTime: 1,
                     env: {

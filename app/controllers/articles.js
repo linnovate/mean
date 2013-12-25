@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Module dependencies.
  */
@@ -46,7 +48,14 @@ exports.update = function(req, res) {
     article = _.extend(article, req.body);
 
     article.save(function(err) {
-        res.jsonp(article);
+        if (err) {
+            return res.send('users/signup', {
+                errors: err.errors,
+                article: article
+            });
+        } else {
+            res.jsonp(article);
+        }
     });
 };
 
@@ -58,8 +67,9 @@ exports.destroy = function(req, res) {
 
     article.remove(function(err) {
         if (err) {
-            res.render('error', {
-                status: 500
+            return res.send('users/signup', {
+                errors: err.errors,
+                article: article
             });
         } else {
             res.jsonp(article);

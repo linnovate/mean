@@ -1,11 +1,9 @@
-(function() {
-    'use strict';
+'use strict';
 
+(function() {
     // Articles Controller Spec
     describe('MEAN controllers', function() {
-
         describe('ArticlesController', function() {
-
             // The $resource service augments the response object with methods for updating and deleting the resource.
             // If we were to use the standard toEqual matcher, our tests would fail because the test values would not match
             // the responses exactly. To solve the problem, we use a newly-defined toEqualData Jasmine matcher.
@@ -195,8 +193,6 @@
                     expect(scope.articles.length).toBe(0);
 
                 }));
-
         });
-
     });
 }());

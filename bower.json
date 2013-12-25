@@ -1,17 +1,14 @@
 {
-    "name": "mean",
-    "version": "0.1.0",
-    "dependencies": {
-        "angular": "latest",
-        "angular-resource": "latest",
-        "angular-cookies": "latest",
-        "angular-mocks": "latest",
-        "angular-route": "latest",
-        "bootstrap": "2.3.2",
-        "angular-bootstrap": "0.7.0",
-        "angular-ui-utils": "0.0.4"
-    },
-    "resolutions": {
-        "angular": "1.2.6"
-    }
+  "name": "mean",
+  "version": "0.1.0",
+  "dependencies": {
+    "angular": "latest",
+    "angular-resource": "latest",
+    "angular-cookies": "latest",
+    "angular-mocks": "latest",
+    "angular-route": "latest",
+    "bootstrap": "2.3.2",
+    "angular-bootstrap": "0.7.0",
+    "angular-ui-utils": "0.0.4"
+  }
 }
