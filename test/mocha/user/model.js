@@ -7,7 +7,7 @@ var should = require('should'),
     User = mongoose.model('User');
 
 //Globals
-var user;
+var user, user2;
 
 //The tests
 describe('<Unit Test>', function() {
