@@ -36,7 +36,8 @@
         "bower": "latest",
         "grunt": "latest",
         "grunt-cli": "latest",
-        "grunt-env": "latest"
+        "grunt-env": "latest",
+        "forever": "latest"
     },
     "devDependencies": {
         "supertest": "latest",
