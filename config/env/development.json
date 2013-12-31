@@ -1,5 +1,6 @@
 {
     "db": "mongodb://localhost/mean-dev",
+    "redisdb": "http:localhost:6379",
     "app": {
         "name": "MEAN - A Modern Stack - Development"
     },

@@ -1,6 +1,7 @@
 {
     "db": "mongodb://localhost/mean-test",
     "port": 3001,
+    "redisdb": "http:localhost:6379",
     "app": {
         "name": "MEAN - A Modern Stack - Test"
     },

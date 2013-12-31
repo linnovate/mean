@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 var express = require('express'),
-    mongoStore = require('connect-mongo')(express),
+    RedisStore = require('connect-redis')(express),
     flash = require('connect-flash'),
     helpers = require('view-helpers'),
     config = require('./config');
@@ -42,13 +42,10 @@ module.exports = function(app, passport) {
         app.use(express.bodyParser());
         app.use(express.methodOverride());
 
-        //express/mongo session storage
+        //express/redis session storage
         app.use(express.session({
             secret: 'MEAN',
-            store: new mongoStore({
-                url: config.db,
-                collection: 'sessions'
-            })
+            store: new RedisStore({})
         }));
 
         //connect flash for flash messages
