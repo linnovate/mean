@@ -37,7 +37,8 @@
         "grunt": "latest",
         "grunt-cli": "latest",
         "grunt-env": "latest",
-        "grunt-shell-spawn": "latest"
+        "grunt-shell-spawn": "latest",
+        "forever": "latest"
     },
     "devDependencies": {
         "supertest": "latest",
