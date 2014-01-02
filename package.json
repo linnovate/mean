@@ -37,26 +37,27 @@
         "grunt": "latest",
         "grunt-cli": "latest",
         "grunt-env": "latest",
+        "grunt-shell-spawn": "latest",
         "forever": "latest"
     },
-    "devDependencies": {
-        "supertest": "latest",
-        "should": "latest",
-        "grunt-contrib-watch": "latest",
-        "grunt-contrib-jshint": "latest",
-        "grunt-nodemon": "latest",
-        "grunt-concurrent": "latest",
-        "grunt-mocha-test": "latest",
-        "karma-script-launcher": "~0.1.0",
-        "karma-chrome-launcher": "~0.1.0",
-        "karma-firefox-launcher": "~0.1.0",
-        "karma-html2js-preprocessor": "~0.1.0",
-        "karma-jasmine": "~0.1.3",
-        "karma-requirejs": "~0.1.0",
-        "karma-coffee-preprocessor": "~0.1.0",
-        "karma-phantomjs-launcher": "~0.1.0",
-        "karma": "~0.10.4",
-        "grunt-karma": "~0.6.2",
-        "karma-coverage": "~0.1.0"
-    }
+	"devDependencies": {
+		"supertest": "latest",
+		"should": "latest",
+		"grunt-contrib-watch": "latest",
+		"grunt-contrib-jshint": "latest",
+		"grunt-nodemon": "latest",
+		"grunt-concurrent": "latest",
+		"grunt-mocha-test": "latest",
+		"karma-script-launcher": "latest",
+		"karma-chrome-launcher": "latest",
+		"karma-firefox-launcher": "latest",
+		"karma-html2js-preprocessor": "latest",
+		"karma-jasmine": "latest",
+		"karma-requirejs": "latest",
+		"karma-coffee-preprocessor": "latest",
+		"karma-phantomjs-launcher": "latest",
+		"karma": "latest",
+		"grunt-karma": "latest",
+		"karma-coverage": "latest"
+	}
 }
