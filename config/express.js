@@ -33,7 +33,7 @@ module.exports = function(app, passport, db) {
     app.set('view engine', 'jade');
 
     //Enable jsonp
-    app.enable("jsonp callback");
+    app.enable('jsonp callback');
 
     app.configure(function() {
         //cookieParser should be above session
@@ -65,7 +65,7 @@ module.exports = function(app, passport, db) {
 
         //routes should be at the last
         app.use(app.router);
-        
+
         //Setting the fav icon and static folder
         app.use(express.favicon());
         app.use(express.static(config.root + '/public'));
