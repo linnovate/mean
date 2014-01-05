@@ -26,8 +26,8 @@ module.exports = function(app, passport, db) {
         level: 9
     }));
 
-    // Don't use logger for test env
-    if (process.env.NODE_ENV !== 'test') {
+    // Only use logger for development environment
+    if (process.env.NODE_ENV === 'development') {
         app.use(express.logger('dev'));
     }
 
