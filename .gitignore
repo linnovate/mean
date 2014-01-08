@@ -4,6 +4,5 @@
 node_modules/
 public/lib
 test/coverage/
-mongo_data/
 *.iml
 .idea/

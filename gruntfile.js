@@ -77,20 +77,10 @@ module.exports = function(grunt) {
             unit: {
                 configFile: 'test/karma/karma.conf.js'
             }
-        },
-        shell: {
-            mongod: {
-                command: 'mongod --dbpath=mongo_data',
-                options: {
-                    async: true,
-                    stdout: true,
-                    stderr: true
-                }
-            }
         }
     });
 
-    //Load NPM tasks
+    //Load NPM tasks 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-mocha-test');
@@ -98,7 +88,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-env');
-    grunt.loadNpmTasks('grunt-shell-spawn');
 
     //Making grunt default to force in order not to break the project.
     grunt.option('force', true);
@@ -108,10 +97,4 @@ module.exports = function(grunt) {
 
     //Test task.
     grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
-
-    //Run MongoDB
-    grunt.registerTask('mongod', ['shell:mongod']);
-
-    //Run all tasks
-    grunt.registerTask('runall', ['shell:mongod', 'default']);
 };
