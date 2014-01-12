@@ -1,9 +1,18 @@
 'use strict';
 
-module.exports = function(app, passport, auth) {
-    
-    // User Routes
-    var users = require('../controllers/users');
+// User routes use users controller
+var users = require('../controllers/users');
+
+// User authorization helpers
+var hasAuthorization = function(req, res, next) {
+    if (req.profile.id != req.user.id) {
+        return res.send(401, 'User is not authorized');
+    }
+    next();
+}
+
+module.exports = function(app, passport) {
+
     app.get('/signin', users.signin);
     app.get('/signup', users.signup);
     app.get('/signout', users.signout);

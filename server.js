@@ -19,7 +19,6 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Initializing system variables 
 var config = require('./config/config'),
-    auth = require('./config/middlewares/authorization'),
     mongoose = require('mongoose');
 
 // Bootstrap db connection
@@ -58,9 +57,12 @@ var walk = function(path) {
         var stat = fs.statSync(newPath);
         if (stat.isFile()) {
             if (/(.*)\.(js$|coffee$)/.test(file)) {
-                require(newPath)(app, passport, auth);
+                require(newPath)(app, passport);
             }
-        } else if (stat.isDirectory()) {
+        // We skip the app/routes/middlewares directory as it is meant to be
+        // used and shared by routes as further middlewares and is not a 
+        // route by itself
+        } else if (stat.isDirectory() && file !== 'middlewares') {
             walk(newPath);
         }
     });
