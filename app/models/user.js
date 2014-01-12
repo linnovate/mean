@@ -48,25 +48,25 @@ var validatePresenceOf = function(value) {
 UserSchema.path('name').validate(function(name) {
     // if you are authenticating by any of the oauth strategies, don't validate
     if (!this.provider) return true;
-    return name.length;
+    return (typeof name === 'string' && name.length > 0);
 }, 'Name cannot be blank');
 
 UserSchema.path('email').validate(function(email) {
     // if you are authenticating by any of the oauth strategies, don't validate
     if (!this.provider) return true;
-    return email.length;
+    return (typeof email === 'string' && email.length > 0);
 }, 'Email cannot be blank');
 
 UserSchema.path('username').validate(function(username) {
     // if you are authenticating by any of the oauth strategies, don't validate
     if (!this.provider) return true;
-    return username.length;
+    return (typeof username === 'string' && username.length > 0);
 }, 'Username cannot be blank');
 
 UserSchema.path('hashed_password').validate(function(hashed_password) {
     // if you are authenticating by any of the oauth strategies, don't validate
     if (!this.provider) return true;
-    return hashed_password.length;
+    return (typeof hashed_password === 'string' && hashed_password.length > 0);
 }, 'Password cannot be blank');
 
 
