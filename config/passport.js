@@ -11,11 +11,14 @@ var mongoose = require('mongoose'),
 
 
 module.exports = function(passport) {
-    //Serialize sessions
+    
+    // Serialize the user id to push into the session
     passport.serializeUser(function(user, done) {
         done(null, user.id);
     });
 
+    // Deserialize the user object based on a pre-serialized token
+    // which is the user id
     passport.deserializeUser(function(id, done) {
         User.findOne({
             _id: id
@@ -24,7 +27,7 @@ module.exports = function(passport) {
         });
     });
 
-    //Use local strategy
+    // Use local strategy
     passport.use(new LocalStrategy({
             usernameField: 'email',
             passwordField: 'password'
@@ -51,7 +54,7 @@ module.exports = function(passport) {
         }
     ));
 
-    //Use twitter strategy
+    // Use twitter strategy
     passport.use(new TwitterStrategy({
             consumerKey: config.twitter.clientID,
             consumerSecret: config.twitter.clientSecret,
@@ -82,7 +85,7 @@ module.exports = function(passport) {
         }
     ));
 
-    //Use facebook strategy
+    // Use facebook strategy
     passport.use(new FacebookStrategy({
             clientID: config.facebook.clientID,
             clientSecret: config.facebook.clientSecret,
@@ -114,7 +117,7 @@ module.exports = function(passport) {
         }
     ));
 
-    //Use github strategy
+    // Use github strategy
     passport.use(new GitHubStrategy({
             clientID: config.github.clientID,
             clientSecret: config.github.clientSecret,
@@ -143,7 +146,7 @@ module.exports = function(passport) {
         }
     ));
 
-    //Use google strategy
+    // Use google strategy
     passport.use(new GoogleStrategy({
             clientID: config.google.clientID,
             clientSecret: config.google.clientSecret,
