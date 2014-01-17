@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 var express = require('express'),
+    consolidate = require('consolidate'),
     mongoStore = require('connect-mongo')(express),
     flash = require('connect-flash'),
     helpers = require('view-helpers'),
@@ -31,12 +32,17 @@ module.exports = function(app, passport, db) {
         app.use(express.logger('dev'));
     }
 
+    // assign the template engine to .html files
+    app.engine('html', consolidate[config.templateEngine]);
+
+    // set .html as the default extension
+    app.set('view engine', 'html');
+
     // Set views path, template engine and default layout
     app.set('views', config.root + '/app/views');
-    app.set('view engine', 'jade');
 
     // Enable jsonp
-    app.enable("jsonp callback");
+    app.enable('jsonp callback');
 
     app.configure(function() {
         // The cookieParser should be above session
@@ -68,7 +74,7 @@ module.exports = function(app, passport, db) {
 
         // Routes should be at the last
         app.use(app.router);
-        
+
         // Setting the fav icon and static folder
         app.use(express.favicon());
         app.use(express.static(config.root + '/public'));
@@ -90,7 +96,7 @@ module.exports = function(app, passport, db) {
         });
 
         // Assume 404 since no middleware responded
-        app.use(function(req, res, next) {
+        app.use(function(req, res) {
             res.status(404).render('404', {
                 url: req.originalUrl,
                 error: 'Not found'
