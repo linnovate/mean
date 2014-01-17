@@ -1,4 +1,10 @@
 'use strict';
+/**
+ *  Mean container for dependency injection
+ */
+
+var dependable = require('dependable');
+exports.mean = dependable.container();
 
 /**
  * Module dependencies.
@@ -20,10 +26,20 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 // Initializing system variables 
 var config = require('./config/config'),
     auth = require('./config/middlewares/authorization'),
+    modules = require('./config/system/modules'), //might change name
     mongoose = require('mongoose');
+
 
 // Bootstrap db connection
 var db = mongoose.connect(config.db);
+
+// Register database for use by modules
+mean.register('database', {
+  connection : db
+});
+
+// Initialize the modules
+modules();
 
 // Bootstrap models
 var models_path = __dirname + '/app/models';
