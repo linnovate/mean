@@ -2,10 +2,8 @@
 /**
  *  Mean container for dependency injection
  */
-
 var dependable = require('dependable');
-exports.mean = dependable.container();
-
+var mean = exports.mean = dependable.container();
 /**
  * Module dependencies.
  */
@@ -26,20 +24,11 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 // Initializing system variables 
 var config = require('./config/config'),
     auth = require('./config/middlewares/authorization'),
-    modules = require('./config/system/modules'), //might change name
     mongoose = require('mongoose');
 
 
 // Bootstrap db connection
 var db = mongoose.connect(config.db);
-
-// Register database for use by modules
-mean.register('database', {
-  connection : db
-});
-
-// Initialize the modules
-modules();
 
 // Bootstrap models
 var models_path = __dirname + '/app/models';
@@ -77,5 +66,19 @@ console.log('Express app started on port ' + port);
 // Initializing logger
 logger.init(app, passport, mongoose);
 
+// Register database for use by modules
+mean.register('database', {
+  connection : db
+});
+
+mean.register('app',function() {
+  return app;
+})
+
+// Initialize the modules
+require('./config/system/modules')(app); //might change name
+
 // Expose app
 exports = module.exports = app;
+
+
