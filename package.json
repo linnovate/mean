@@ -1,5 +1,8 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 46484e97b27dcfb400da87a87c6f9106fc8fd430
   "name": "mean",
   "description": "MEAN - A Modern Stack: MongoDB, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
   "version": "0.1.2",
@@ -79,6 +82,7 @@
     "karma-coverage": "~0.1.0"
   }
 }
+<<<<<<< HEAD
 =======
     "name": "mean",
     "description": "MEAN - A Modern Stack: MongoDB, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
@@ -143,3 +147,5 @@
     }
 }
 >>>>>>> parent of ab6e15f... MongoDB Grunt task
+=======
+>>>>>>> 46484e97b27dcfb400da87a87c6f9106fc8fd430
