@@ -4,3 +4,8 @@
 node_modules/
 public/lib
 test/coverage/
+<<<<<<< HEAD
+*.iml
+.idea/
+=======
+>>>>>>> parent of ab6e15f... MongoDB Grunt task

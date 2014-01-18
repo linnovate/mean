@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Module dependencies.
  */
@@ -7,7 +9,7 @@ var mongoose = require('mongoose'),
 /**
  * Auth callback
  */
-exports.authCallback = function(req, res, next) {
+exports.authCallback = function(req, res) {
     res.redirect('/');
 };
 
@@ -49,19 +51,19 @@ exports.session = function(req, res) {
 /**
  * Create user
  */
-exports.create = function(req, res) {
+exports.create = function(req, res, next) {
     var user = new User(req.body);
     var message = null;
 
     user.provider = 'local';
     user.save(function(err) {
         if (err) {
-            switch(err.code){
+            switch (err.code) {
                 case 11000:
                 case 11001:
                     message = 'Username already exists';
                     break;
-                default: 
+                default:
                     message = 'Please fill all the required fields';
             }
 

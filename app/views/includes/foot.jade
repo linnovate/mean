@@ -1,3 +1,9 @@
+//jQuery
+script(type='text/javascript', src='/lib/jquery/jquery.js')
+
+//Bootstrap
+script(type='text/javascript', src='/lib/bootstrap/dist/js/bootstrap.js')
+
 //AngularJS
 script(type='text/javascript', src='/lib/angular/angular.js')
 script(type='text/javascript', src='/lib/angular-cookies/angular-cookies.js')
@@ -7,7 +13,7 @@ script(type='text/javascript', src='/lib/angular-route/angular-route.js')
 //Angular UI
 script(type='text/javascript', src='/lib/angular-bootstrap/ui-bootstrap.js')
 script(type='text/javascript', src='/lib/angular-bootstrap/ui-bootstrap-tpls.js')
-script(type='text/javascript', src='/lib/angular-ui-utils/modules/route/route.js')
+script(type='text/javascript', src='/lib/angular-ui-utils/ui-utils.js')
 
 //Application Init
 script(type='text/javascript', src='/js/app.js')
@@ -27,4 +33,4 @@ script(type='text/javascript', src='/js/init.js')
 
 if (process.env.NODE_ENV == 'development')
     //Livereload script rendered
-    script(type='text/javascript', src='http://localhost:35729/livereload.js')
+    script(type='text/javascript', src='http://' + req.host + ':35729/livereload.js')
