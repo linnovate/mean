@@ -4,6 +4,23 @@
  */
 var dependable = require('dependable');
 var mean = exports.mean = dependable.container();
+
+mean.register('preRoute', function() {  
+  return function (req,res,next) {
+    //res.send(404,"404")
+    next();
+  };
+});
+
+mean.register('postRoute', function() {  
+  return function (req,res,next) {    
+    res.send(404,"asd")
+  };
+});
+
+mean.resolve('preRoute');
+mean.resolve('postRoute');
+
 /**
  * Module dependencies.
  */
