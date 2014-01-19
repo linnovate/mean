@@ -1,12 +1,16 @@
 
 module.exports = function() {
-	mean.register('four04', function (app) {	  	 	 
-	  return function (req,res,next) {
-	  	res.send(404,req.url)
-	  };
+	mean.register('404', function (app, middleware) {	  	 	 
+		//very heavy weight to ensure it is last
+		middleware.add('after',999, function(req,res,next) {
+      res.status(404).render('404', {
+        url: req.originalUrl,
+        error: 'Not found!!!!!!!'
+      });
+   	})	  
 	});
 
-	mean.ready({name:'four04',id:module.id,loaded:module.loaded});
+	mean.ready({name:'404',id:module.id,loaded:module.loaded});
 }
 
 

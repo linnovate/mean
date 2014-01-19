@@ -1,30 +1,36 @@
 
 module.exports = function() {
-	mean.register('cms', function (app, database) {
-	  var cms  = {};  
+	mean.register('example', function (app, auth, database) {
+	  var example  = {};  
 	  
-	  app.get('/yonatan', function (req,res,next) {
+	  //example checking for authorization
+	  app.get('/example/auth',auth.requiresLogin, function (req,res,next) {
 	  	var Article = database.connection.model('Article');
 	    Article.find({},function(err,articles) {
 	    	res.jsonp(articles);
 	    })
 	  });
 
-	  cms.articles = function articles(callback) {
+	  //example that uses the database
+		app.get('/example', function (req,res,next) {
+	  	var Article = database.connection.model('Article');
+	    Article.find({},function(err,articles) {
+	    	res.jsonp(articles);
+	    })
+	  });
+
+		//add a function that can be used by other modules
+	  example.articles = function articles(callback) {
 	    var Article = database.connection.model('Article');
 	    Article.find({},function(err,articles) {
 	    	callback(articles);
 	    })
 	  };
 
-	  cms.articles(function (articles) {
-	  	console.log(articles)
-	  });
-
-	  return cms;
+	  return example;
 	});
 
-	mean.ready({name:'cms',id:module.id,loaded:module.loaded});
+	mean.ready({name:'example',id:module.id,loaded:module.loaded});
 }
 
 

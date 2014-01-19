@@ -5,22 +5,6 @@
 var dependable = require('dependable');
 var mean = exports.mean = dependable.container();
 
-mean.register('preRoute', function() {  
-  return function (req,res,next) {
-    //res.send(404,"404")
-    next();
-  };
-});
-
-mean.register('postRoute', function() {  
-  return function (req,res,next) {    
-    res.send(404,"asd")
-  };
-});
-
-mean.resolve('preRoute');
-mean.resolve('postRoute');
-
 /**
  * Module dependencies.
  */
@@ -69,6 +53,29 @@ require('./config/passport')(passport);
 
 var app = express();
 
+//register modules
+mean.register('passport', function() {
+  return passport;
+});
+
+//register modules
+mean.register('auth', function() {
+  return auth;
+});
+
+//register modules
+mean.register('database', {
+  connection : db
+});
+
+//register app
+mean.register('app',function() {
+  return app;
+})
+
+// Initialize the modules
+require('./config/system/modules')(app); //might change name
+
 // Express settings
 require('./config/express')(app, passport, db);
 
@@ -82,18 +89,6 @@ console.log('Express app started on port ' + port);
 
 // Initializing logger
 logger.init(app, passport, mongoose);
-
-// Register database for use by modules
-mean.register('database', {
-  connection : db
-});
-
-mean.register('app',function() {
-  return app;
-})
-
-// Initialize the modules
-require('./config/system/modules')(app); //might change name
 
 // Expose app
 exports = module.exports = app;
