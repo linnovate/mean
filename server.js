@@ -74,7 +74,7 @@ mean.register('app',function() {
 });
 
 // Initialize the modules
-require('./config/system/modules')(); //might change name
+require('./config/system/modules')(mean);
 
 // Express settings
 require('./config/express')(app, passport, db);

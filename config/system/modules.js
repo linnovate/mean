@@ -1,15 +1,15 @@
-var EventEmitter = require('events').EventEmitter;
-var mean = module.parent.exports.mean;
+//Alternative way to access mean from child
+//We dont actually have to pass mean object along
+//var mean = module.parent.exports.mean;
 
-mean.events = new EventEmitter();
+module.exports = function(mean) {
 
-// Middleware for adding chained function before or after routes
-require('./chainware')(mean);
+	// Middleware for adding chained function before or after routes
+	require('./chainware')(mean);
 
-// We have events such as ready for modules to use
-require('./events')(mean);
+	// We have events such as ready for modules to use
+	require('./events')(mean);
 
-module.exports = function() {
 	//catch when module is ready
 	mean.events.on('ready', ready);
 
@@ -26,18 +26,19 @@ module.exports = function() {
 			});
 		});
 	});
-}
 
-// Process the ready event. Will expand this in due course
-function ready(data) {
-	remaining--;
-	if (!remaining) resolve();
-}
+	// Process the ready event. Will expand this in due course
+	ready: function ready(data) {
+		remaining--;
+		if (!remaining) resolve();
+	}
 
-// Resolve the dependencies once all modules are ready
-function resolve() {
-	mean.modules.forEach(function(module) {
-		mean.resolve.apply(this, [module.name]);
-		mean.get(module.name);
-	});
+	// Resolve the dependencies once all modules are ready
+	resolve: function resolve() {
+		mean.modules.forEach(function(module) {
+			mean.resolve.apply(this, [module.name]);
+			mean.get(module.name);
+		});
+	}
+
 }

@@ -24,7 +24,7 @@ module.exports = function(mean) {
 
 		//add some middlware AFTER the routes are initialized
 		//heavy weight so it will be one of the last to be evaluated
-		middleware.add('after', 999, function(req, res, next) {
+		middleware.add('after', 999, function(req, res) {
 			//Just an example so lets just do something random
 			//like add ! to error message
 			res.status(404).render('404', {
@@ -34,12 +34,12 @@ module.exports = function(mean) {
 		});
 
 		//example that uses the database
-		app.get('/example', function(req, res, next) {
+		app.get('/example', function(req, res) {
 			res.send('Some example');
 		});
 
 		//example checking for authorization
-		app.get('/example/auth', auth.requiresLogin, function(req, res, next) {
+		app.get('/example/auth', auth.requiresLogin, function(req, res) {
 			var Article = database.connection.model('Article');
 			Article.findOne({}, function(err, article) {
 				res.jsonp(article);
