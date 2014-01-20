@@ -53,28 +53,28 @@ require('./config/passport')(passport);
 
 var app = express();
 
-//register modules
+// Register passport dependency
 mean.register('passport', function() {
-  return passport;
+    return passport;
 });
 
-//register modules
+// Register auth dependency
 mean.register('auth', function() {
-  return auth;
+    return auth;
 });
 
-//register modules
+// Register database dependency
 mean.register('database', {
-  connection : db
+    connection : db
 });
 
-//register app
+// Register app dependency
 mean.register('app',function() {
-  return app;
-})
+    return app;
+});
 
 // Initialize the modules
-require('./config/system/modules')(app); //might change name
+require('./config/system/modules')(); //might change name
 
 // Express settings
 require('./config/express')(app, passport, db);
