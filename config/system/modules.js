@@ -34,23 +34,27 @@ mean.register('middleware' , function(app) {
 		chain('after', 0, req, res, next);
 	};
 
-	function chain(operator, index, req, res, next) {
-		mean.middleware[operator][index].func(req,res,function(err) {
+	function chain(operator, index, req, res, next) {		
+		var args = [req,res, function(err) {
 			if (mean.middleware[operator][index+1]) {
 				chain('before', index+1, req, res, next);
 			} else {
 				next();
 			}				
-		});	
+		}];
+
+		mean.middleware[operator][index].func.apply(this,args);	
 	}
+
 	return middleware;	
 });
 
 mean.resolve('middleware');
 
 
-//this will be separate file
-
+/* Below will be separate file. 
+All together now as it is in active dev and structure is changing all the time
+*/
 
 //event for modules when they are ready. We expose this to the modules
 mean.ready = function (data) {	
