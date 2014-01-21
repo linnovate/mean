@@ -6,13 +6,13 @@ var authorization = require('./middlewares/authorization');
 
 // Article authorization helpers
 var hasAuthorization = function(req, res, next) {
-	if (req.article.user.id != req.user.id) {
+	if (req.article.user.id !== req.user.id) {
         return res.send(401, 'User is not authorized');
     }
     next();
-}
+};
 
-module.exports = function(app, passport) {
+module.exports = function(app) {
 
     app.get('/articles', articles.all);
     app.post('/articles', authorization.requiresLogin, articles.create);
