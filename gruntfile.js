@@ -1,6 +1,11 @@
 'use strict';
 
 module.exports = function(grunt) {
+    // Load NPM grunt tasks
+    require('load-grunt-tasks')(grunt, {
+        pattern: 'grunt-*'
+    });
+
     // Project Configuration
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -79,9 +84,6 @@ module.exports = function(grunt) {
             }
         }
     });
-
-    //Load NPM tasks 
-    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     //Making grunt default to force in order not to break the project.
     grunt.option('force', true);
