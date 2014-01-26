@@ -59,9 +59,6 @@ module.exports = function(app, passport, db) {
             })
         }));
 
-        // Connect flash for flash messages
-        app.use(flash());
-
         // Dynamic helpers
         app.use(helpers(config.app.name));
 
@@ -72,6 +69,9 @@ module.exports = function(app, passport, db) {
         //mean middleware from modules before routes
         app.use(mean.get('middleware').before);
         
+        // Connect flash for flash messages
+        app.use(flash());
+
         // Routes should be at the last
         app.use(app.router);
         
