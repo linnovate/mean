@@ -63,4 +63,14 @@ module.exports = function(app, passport) {
         failureRedirect: '/signin'
     }), users.authCallback);
 
+    // Setting the linkedin oauth routes
+    app.get('/auth/linkedin', passport.authenticate('linkedin', {
+        failureRedirect: '/signin',
+        scope: [ 'r_emailaddress' ]
+    }), users.signin);
+
+    app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
+        failureRedirect: '/siginin'
+    }), users.authCallback);
+
 };
