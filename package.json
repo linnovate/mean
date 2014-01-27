@@ -32,6 +32,7 @@
     "passport-twitter": "~1.0.2",
     "passport-github": "~0.1.5",
     "passport-google-oauth": "~0.1.5",
+    "passport-linkedin": "~0.1.3",
     "lodash": "~2.4.1",
     "view-helpers": "~0.1.4",
     "mean-logger": "0.0.1",
