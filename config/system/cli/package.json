@@ -9,7 +9,8 @@
         "npm": "1.3.x"
     },
     "dependencies": {
-        "commander": "1.3.2"
+        "commander": "1.3.2",
+        "rimraf":"latest"
     },
     "bin": {
         "mean": "./bin/mean"

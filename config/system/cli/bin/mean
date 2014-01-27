@@ -47,8 +47,10 @@ function list() {
     files.forEach(function(file) {
       fs.readFile('./modules/' + file + '/package.json', function(fileErr, data) {
         if (err) throw fileErr;
-        var json = JSON.parse(data.toString());
-        console.log(' ' + json.name + '@' + json.version);
+        if (data) {
+          var json = JSON.parse(data.toString());
+          console.log(' ' + json.name + '@' + json.version);
+        }
       });
     });
   });
@@ -58,10 +60,15 @@ function uninstall(module) {
   var rimraf = require('rimraf');
   rimraf('./modules/' + module + '/', function(err) {
     if (err) throw err;
+    concatJs('controllers');
+    concatJs('services');
+    concatJs('config');
+    removeLinks(module);
   })
 }
 
 function install(module) {
+
   var npm = require("npm");
   fs.exists('./modules', function(exists) {
     if (exists) return npminstall(module)
@@ -77,8 +84,19 @@ function install(module) {
       npm.commands.install([module], function(er, data) {
         if (er) console.log(er)
         if (err) return console.log(err);
-        fs.rename('./node_modules/' + module, './modules/' + module, function(err) {
-          if (err) console.log(err);
+
+        var rimraf = require('rimraf');
+        rimraf('./modules/' + module, function(err) {
+          if (err) throw err;
+          fs.rename('./node_modules/' + module, './modules/' + module, function(err) {
+            if (err) console.log(err);
+
+            concatJs('controllers');
+            concatJs('services');
+            concatJs('config');
+            buildLinks();
+
+          });
         })
       });
       npm.on("log", function(message) {
@@ -87,4 +105,86 @@ function install(module) {
     });
   }
 
+}
+
+function concatJs(name) {
+
+  var path = 'js/' + name;
+  fs.writeFile('./modules/public/js/' + name + '.js', '//' + new Date() + '\n', function(err) {
+    if (err) throw err;
+    fs.readdir('./modules', function(err, modules) {
+      if (err) console.log(err);
+      modules.forEach(function(module) {
+        if (name == 'config') {
+          fs.readFile('./modules/' + module + '/public/js/config.js', function(fileErr, data) {
+            if (err) throw fileErr;
+            if (data) {
+              fs.appendFile('modules/public/js/' + name + '.js', data, function(err) {
+                if (err) throw err;
+                console.log(name + '.js appended from module: ' + module + ' file: config.js');
+              });
+            }
+          });
+        }
+
+        fs.exists('./modules/' + module + '/public/' + path, function(exists) {
+          if (exists) {
+            fs.readdir('./modules/' + module + '/public/' + path, function(err, files) {
+              files.forEach(function(file) {
+                fs.readFile('./modules/' + module + '/public/' + path + '/' + file, function(fileErr, data) {
+                  if (err) throw fileErr;
+                  fs.appendFile('modules/public/js/' + name + '.js', data, function(err) {
+                    if (err) throw err;
+                    console.log(name + '.js appended from module: ' + module + ' file: ' + file);
+                  });
+                });
+              })
+            });
+          }
+        });
+      });
+    });
+  });
+}
+
+function buildLinks() {
+  fs.readdir('./modules', function(err, modules) {
+    if (err) console.log(err);
+    modules.forEach(function(module) {
+      if (module != 'public' && module != 'views') {
+        fs.exists('./modules/' + module + '/public', function(exists) {
+          if (exists) {
+            fs.unlink('./modules/public/' + module, function(err) {
+              //if (err) console.log(err);
+              fs.symlink('../' + module + '/public', './modules/public/' + module, function(err) {
+                if (err) console.log(err);
+              })
+            })
+          }
+        });
+
+        fs.exists('./modules/' + module + '/app/views/', function(exists) {
+          if (exists) {
+            fs.unlink('./modules/views/' + module, function(err) {
+              //if (err) console.log(err);
+              fs.symlink('../' + module + '/app/views', './modules/views/' + module, function(err) {
+                if (err) console.log(err);
+              })
+            })
+          }
+        });
+      }
+    });
+  });
+}
+
+function removeLinks(module) {
+  
+  fs.unlink('./modules/public/' + module, function(err) {
+    if (err) console.log(err);
+  })
+
+  fs.unlink('./modules/views/' + module, function(err) {
+    if (err) console.log(err);
+  })
 }

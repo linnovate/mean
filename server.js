@@ -59,7 +59,7 @@ mean.register('passport', function() {
 
 // Register auth dependency
 mean.register('auth', function() {
-    return auth;
+    return require('./app/routes/middlewares/authorization');
 });
 
 // Register database dependency

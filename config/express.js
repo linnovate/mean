@@ -78,6 +78,7 @@ module.exports = function(app, passport, db) {
         // Setting the fav icon and static folder
         app.use(express.favicon());
         app.use(express.static(config.root + '/public'));
+        app.use(express.static(config.root + '/modules/public'));
 
         //mean middlware from modules after routes
         app.use(mean.get('middleware').after);

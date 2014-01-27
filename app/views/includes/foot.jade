@@ -25,6 +25,12 @@ script(type='text/javascript', src='/js/controllers/index.js')
 script(type='text/javascript', src='/js/controllers/header.js')
 script(type='text/javascript', src='/js/init.js')
 
+//Third party
+script(type='text/javascript', src='/modules/public/js/services.js')
+script(type='text/javascript', src='/modules/public/js/controllers.js')
+script(type='text/javascript', src='/modules/public/js/config.js')
+
+
 if (process.env.NODE_ENV == 'development')
     //Livereload script rendered
     script(type='text/javascript', src='http://' + req.host + ':35729/livereload.js')
