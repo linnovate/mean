@@ -1,10 +1,22 @@
 fs = require('fs');
 
-exports.rebuild = function () {
-  concatJs('controllers');
-  concatJs('services');
-  concatJs('config');
-  buildLinks();
+var rebuild = exports.rebuild = function(callback) {
+  fileStructure(function() {
+    concatJs('controllers');
+    concatJs('services');
+    concatJs('config');
+    buildLinks();
+  });
+}
+
+var fileStructure = exports.fileStructure = function(callback) {
+  var mkdirp = require('mkdirp');
+  mkdirp('modules/public/js/sys', function(err) {
+    mkdirp('modules/views', function(err) {
+      callback();
+    });
+  });
+
 }
 
 exports.list = function() {
@@ -25,7 +37,7 @@ exports.list = function() {
   });
 }
 
-exports.uninstall = function (module) {
+exports.uninstall = function(module) {
   var rimraf = require('rimraf');
   rimraf('./modules/' + module + '/', function(err) {
     if (err) throw err;
@@ -39,14 +51,8 @@ exports.uninstall = function (module) {
 exports.install = function(module) {
 
   var npm = require("npm");
-  fs.exists('./modules', function(exists) {
-    if (exists) return npminstall(module)
-    fs.mkdir('./modules', function(err) {
-      if (err) console.log(err);
-      npminstall(module);
-    });
-  });
 
+  npminstall(module);
 
   function npminstall(module) {
     npm.load(npm.config, function(err) {
@@ -57,15 +63,13 @@ exports.install = function(module) {
         var rimraf = require('rimraf');
         rimraf('./modules/' + module, function(err) {
           if (err) throw err;
-          fs.rename('./node_modules/' + module, './modules/' + module, function(err) {
-            if (err) console.log(err);
+          fileStructure(function() {
+            fs.rename('./node_modules/' + module, './modules/' + module, function(err) {
+              if (err) console.log(err);
+              rebuild();
+            });
+          })
 
-            concatJs('controllers');
-            concatJs('services');
-            concatJs('config');
-            buildLinks();
-
-          });
         })
       });
       npm.on("log", function(message) {
@@ -80,40 +84,12 @@ function concatJs(name) {
 
   var path = 'js/' + name;
 
-  //ensure all files exist - refactor asap
-  fs.exists('./modules/public/js', function(exists) {
-    //js folder exists
-    if (exists) {
-      checkSys();
-    }
-    //js folder does not exist
-    else {
-      fs.mkdir('./modules/public/js', function(err) {
-        checkSys();
-      });
-    }
-  });
-
-
-  function checkSys() {
-    fs.exists('./modules/public/js/sys', function(exists) {
-      //sys exists
-      if (exists) {
-        build();
-      } else {
-        //sys does not exist
-        fs.mkdir('./modules/public/js/sys', function(err) {
-          build();
-        });
-      }
-    });
-  }
+  build();
 
   function build() {
     fs.writeFile('./modules/public/js/sys/' + name + '.js', '//' + new Date() + '\n', function(err) {
       if (err) throw err;
       fs.readdir('./modules', function(err, modules) {
-        if (err) console.log(err);
         modules.forEach(function(module) {
           if (name == 'config') {
             fs.readFile('./modules/' + module + '/public/js/config.js', function(fileErr, data) {

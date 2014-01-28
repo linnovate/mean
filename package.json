@@ -55,6 +55,7 @@
     "karma-phantomjs-launcher": "~0.1.1",
     "grunt-mocha-test": "~0.8.1",
     "grunt-contrib-jshint": "~0.8.0",
+    "mkdirp":"0.3.5",
     "grunt-nodemon": "0.1.2",
     "grunt-contrib-watch": "~0.5.3",
     "karma-coverage": "~0.1.4",

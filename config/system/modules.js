@@ -18,21 +18,27 @@ module.exports = function(mean) {
 
 	//read the file structure
 	var fs = require('fs');
-	fs.readdir(process.cwd() + '/modules', function(err, files) {
-		if (err) console.log(err);
-		remaining = files.length;
-		files.forEach(function(file) {
-			fs.readFile(process.cwd() + '/modules/' + file + '/package.json', function(fileErr, data) {
-				if (err) throw fileErr;
-				if (data) {
-					var json = JSON.parse(data.toString());
-					require(process.cwd() + '/modules/' + file + '/app.js')(mean);
-				} else {
-					remaining--;
-				}
+	fs.exists(process.cwd() + '/modules', function(exists) {
+		if (exists) {
+			fs.readdir(process.cwd() + '/modules', function(err, files) {
+				if (err) console.log(err);
+				if (!files) files = [];
+				remaining = files.length;
+				files.forEach(function(file) {
+					fs.readFile(process.cwd() + '/modules/' + file + '/package.json', function(fileErr, data) {
+						if (err) throw fileErr;
+						if (data) {
+							var json = JSON.parse(data.toString());
+							require(process.cwd() + '/modules/' + file + '/app.js')(mean);
+						} else {
+							remaining--;
+						}
+					});
+				});
 			});
-		});
-	});
+		}
+	})
+
 
 	// Process the ready event. Will expand this in due course
 	ready: function ready(data) {
