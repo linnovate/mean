@@ -32,11 +32,22 @@ var path = program.args;
     case 'list':
       list();
       break;
+    case 'rebuild':
+      rebuild();
+      break;      
     default:
       console.log('Try [install/uninstall/list] !');
       break;
   }
 })(path);
+
+
+function rebuild() {
+  concatJs('controllers');
+  concatJs('services');
+  concatJs('config');
+  buildLinks();
+}
 
 function list() {
   fs.readdir('./modules', function(err, files) {
@@ -179,7 +190,7 @@ function buildLinks() {
 }
 
 function removeLinks(module) {
-  
+
   fs.unlink('./modules/public/' + module, function(err) {
     if (err) console.log(err);
   })
