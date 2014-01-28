@@ -21,8 +21,12 @@ module.exports = function(mean) {
 		files.forEach(function(file) {
 			fs.readFile(process.cwd() + '/modules/' + file + '/package.json', function(fileErr, data) {
 				if (err) throw fileErr;
-				var json = JSON.parse(data.toString());
-				require(process.cwd() + '/modules/' + file + '/app.js')(mean);
+				if (data) {
+					var json = JSON.parse(data.toString());
+					require(process.cwd() + '/modules/' + file + '/app.js')(mean);
+				} else {
+					remaining--;
+				}
 			});
 		});
 	});

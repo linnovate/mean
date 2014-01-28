@@ -79,6 +79,7 @@ module.exports = function(app, passport, db) {
         app.use(express.favicon());
         app.use(express.static(config.root + '/public'));
         app.use(express.static(config.root + '/modules/public'));
+        app.use(express.static(config.root + '/modules/views'));
 
         //mean middlware from modules after routes
         app.use(mean.get('middleware').after);

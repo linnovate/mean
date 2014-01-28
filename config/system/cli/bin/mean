@@ -121,7 +121,7 @@ function install(module) {
 function concatJs(name) {
 
   var path = 'js/' + name;
-  fs.writeFile('./modules/public/js/' + name + '.js', '//' + new Date() + '\n', function(err) {
+  fs.writeFile('./modules/public/js/sys/' + name + '.js', '//' + new Date() + '\n', function(err) {
     if (err) throw err;
     fs.readdir('./modules', function(err, modules) {
       if (err) console.log(err);
@@ -130,7 +130,7 @@ function concatJs(name) {
           fs.readFile('./modules/' + module + '/public/js/config.js', function(fileErr, data) {
             if (err) throw fileErr;
             if (data) {
-              fs.appendFile('modules/public/js/' + name + '.js', data, function(err) {
+              fs.appendFile('modules/public/js/sys/' + name + '.js', data, function(err) {
                 if (err) throw err;
                 console.log(name + '.js appended from module: ' + module + ' file: config.js');
               });
@@ -144,7 +144,7 @@ function concatJs(name) {
               files.forEach(function(file) {
                 fs.readFile('./modules/' + module + '/public/' + path + '/' + file, function(fileErr, data) {
                   if (err) throw fileErr;
-                  fs.appendFile('modules/public/js/' + name + '.js', data, function(err) {
+                  fs.appendFile('modules/public/js/sys/' + name + '.js', data, function(err) {
                     if (err) throw err;
                     console.log(name + '.js appended from module: ' + module + ' file: ' + file);
                   });
