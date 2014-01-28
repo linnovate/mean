@@ -25,13 +25,13 @@ var path = program.args;
     module = params[1];
   switch (op) {
     case 'install':
-      install(module);
+      lib.install(module);
       break;
     case 'uninstall':
-      uninstall(module);
+      lib.uninstall(module);
       break;
     case 'list':
-      list();
+      lib.list();
       break;
     case 'rebuild':
       lib.rebuild();
