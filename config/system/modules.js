@@ -4,6 +4,9 @@
 
 module.exports = function(mean) {
 
+	//rebuild file structure
+	require('./cli/lib/mean').rebuild();
+
 	// Middleware for adding chained function before or after routes
 	require('./chainware')(mean);
 

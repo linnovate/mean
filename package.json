@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "express": "~3.4.7",
-    "dependable": "0.3.5",
+    "dependable": "0.2.5",
     "jade": "~1.0.2",
     "mongoose": "~3.8.3",
     "connect-mongo": "~0.4.0",
