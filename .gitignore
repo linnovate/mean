@@ -4,4 +4,5 @@
 node_modules/
 public/lib
 test/coverage/
-modules/public/js/sys/
+modules/public/
+modules/views/
