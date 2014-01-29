@@ -20,17 +20,19 @@ var fileStructure = exports.fileStructure = function(callback) {
 }
 
 exports.list = function() {
-  fs.readdir('./modules', function(err, files) {
+  fs.readdir('./node_modules', function(err, files) {
     if (err) console.log(err);
     remaining = files.length;
     console.log(' MEAN Modules List:');
     console.log(' ==================');
     files.forEach(function(file) {
-      fs.readFile('./modules/' + file + '/package.json', function(fileErr, data) {
+      fs.readFile('./node_modules/' + file + '/package.json', function(fileErr, data) {
         if (err) throw fileErr;
         if (data) {
           var json = JSON.parse(data.toString());
-          console.log(' ' + json.name + '@' + json.version);
+          if (json.mean) {
+            console.log(' ' + json.name + '@' + json.version);
+          }
         }
       });
     });
@@ -38,14 +40,23 @@ exports.list = function() {
 }
 
 exports.uninstall = function(module) {
-  var rimraf = require('rimraf');
-  rimraf('./modules/' + module + '/', function(err) {
-    if (err) throw err;
-    concatJs('controllers');
-    concatJs('services');
-    concatJs('config');
-    removeLinks(module);
-  })
+  var npm = require("npm");
+
+  npm.load(npm.config, function(err) {
+    npm.commands.uninstall([module], function(err, data) {
+      if (err) console.log(er)
+      concatJs('controllers');
+      concatJs('services');
+      concatJs('config');
+      rebuild();
+      removeLinks(module);
+    });
+
+  });
+
+  npm.on("log", function(message) {
+    console.log(message);
+  });
 }
 
 exports.install = function(module) {
@@ -56,28 +67,20 @@ exports.install = function(module) {
 
   function npminstall(module) {
     npm.load(npm.config, function(err) {
-      npm.commands.install([module], function(er, data) {
-        if (er) console.log(er)
-        if (err) return console.log(err);
+      npm.commands.install([module], function(err, data) {
+        if (err) console.log(er)
 
-        var rimraf = require('rimraf');
-        rimraf('./modules/' + module, function(err) {
-          if (err) throw err;
-          fileStructure(function() {
-            fs.rename('./node_modules/' + module, './modules/' + module, function(err) {
-              if (err) console.log(err);
-              rebuild();
-            });
-          })
+        fileStructure(function() {
+          rebuild();
+        });
+      });
 
-        })
-      });
-      npm.on("log", function(message) {
-        console.log(message);
-      });
+    });
+
+    npm.on("log", function(message) {
+      console.log(message);
     });
   }
-
 }
 
 function concatJs(name) {
@@ -89,33 +92,40 @@ function concatJs(name) {
   function build() {
     fs.writeFile('./modules/public/js/sys/' + name + '.js', '//' + new Date() + '\n', function(err) {
       if (err) throw err;
-      fs.readdir('./modules', function(err, modules) {
+      fs.readdir('./node_modules', function(err, modules) {
         modules.forEach(function(module) {
-          if (name == 'config') {
-            fs.readFile('./modules/' + module + '/public/js/config.js', function(fileErr, data) {
-              if (err) throw fileErr;
-              if (data) {
-                fs.appendFile('modules/public/js/sys/' + name + '.js', data, function(err) {
-                  if (err) throw err;
-                  console.log(name + '.js appended from module: ' + module + ' file: config.js');
+          fs.readFile('./node_modules/' + module + '/package.json', function(err, data) {;
+            if (data) {
+              var json = JSON.parse(data.toString());
+              if (json.mean) {
+                if (name == 'config') {
+                  fs.readFile('./node_modules/' + module + '/public/js/config.js', function(fileErr, data) {
+                    if (err) throw fileErr;
+                    if (data) {
+                      fs.appendFile('modules/public/js/sys/' + name + '.js', data, function(err) {
+                        if (err) throw err;
+                        console.log(name + '.js appended from module: ' + module + ' file: config.js');
+                      });
+                    }
+                  });
+                }
+
+                fs.exists('./node_modules/' + module + '/public/' + path, function(exists) {
+                  if (exists) {
+                    fs.readdir('./node_modules/' + module + '/public/' + path, function(err, files) {
+                      files.forEach(function(file) {
+                        fs.readFile('./node_modules/' + module + '/public/' + path + '/' + file, function(fileErr, data) {
+                          if (err) throw fileErr;
+                          fs.appendFile('modules/public/js/sys/' + name + '.js', data, function(err) {
+                            if (err) throw err;
+                            console.log(name + '.js appended from module: ' + module + ' file: ' + file);
+                          });
+                        });
+                      })
+                    });
+                  }
                 });
               }
-            });
-          }
-
-          fs.exists('./modules/' + module + '/public/' + path, function(exists) {
-            if (exists) {
-              fs.readdir('./modules/' + module + '/public/' + path, function(err, files) {
-                files.forEach(function(file) {
-                  fs.readFile('./modules/' + module + '/public/' + path + '/' + file, function(fileErr, data) {
-                    if (err) throw fileErr;
-                    fs.appendFile('modules/public/js/sys/' + name + '.js', data, function(err) {
-                      if (err) throw err;
-                      console.log(name + '.js appended from module: ' + module + ' file: ' + file);
-                    });
-                  });
-                })
-              });
             }
           });
         });
@@ -126,43 +136,58 @@ function concatJs(name) {
 }
 
 function buildLinks() {
-  fs.readdir('./modules', function(err, modules) {
+  fs.readdir('./node_modules', function(err, modules) {
     if (err) console.log(err);
     modules.forEach(function(module) {
-      if (module != 'public' && module != 'views') {
-        fs.exists('./modules/' + module + '/public', function(exists) {
-          if (exists) {
-            fs.unlink('./modules/public/' + module, function(err) {
-              //if (err) console.log(err);
-              fs.symlink('../' + module + '/public', './modules/public/' + module, function(err) {
-                if (err) console.log(err);
-              })
-            })
-          }
-        });
 
-        fs.exists('./modules/' + module + '/app/views/', function(exists) {
-          if (exists) {
-            fs.unlink('./modules/views/' + module, function(err) {
-              //if (err) console.log(err);
-              fs.symlink('../' + module + '/app/views', './modules/views/' + module, function(err) {
-                if (err) console.log(err);
-              })
-            })
+      ///check if it is mean
+      fs.readFile('./node_modules/' + module + '/package.json', function(err, data) {;
+        if (data) {
+          var json = JSON.parse(data.toString());
+          if (json.mean) {
+            fs.exists('./node_modules/' + module + '/public', function(exists) {
+              if (exists) {
+                fs.unlink('./modules/public/' + module, function(err) {
+                  //if (err) console.log(err);
+                  fs.symlink('../../node_modules/' + module + '/public', './modules/public/' + module, function(err) {
+                    if (err) console.log(err);
+                  })
+                })
+              }
+            });
+
+            fs.exists('./node_modules/' + module + '/app/views/', function(exists) {
+              if (exists) {
+                fs.unlink('./modules/views/' + module, function(err) {
+                  //if (err) console.log(err);
+                  fs.symlink('../../node_modules/' + module + '/app/views', './modules/views/' + module, function(err) {
+                    if (err) console.log(err);
+                  })
+                })
+              }
+            });
           }
-        });
-      }
+        }
+      })
     });
   });
 }
 
 function removeLinks(module) {
 
-  fs.unlink('./modules/public/' + module, function(err) {
-    if (err) console.log(err);
-  })
+  fs.exists('./modules/public/' + module, function(exists) {
+    if (exists) {
+      fs.unlink('./modules/public/' + module, function(err) {
+        if (err) console.log(err);
+      })
+    }
+  });
 
-  fs.unlink('./modules/views/' + module, function(err) {
-    if (err) console.log(err);
-  })
+  fs.exists('./modules/views/' + module, function(exists) {
+    if (exists) {
+      fs.unlink('./modules/views/' + module, function(err) {
+        if (err) console.log(err);
+      })
+    }
+  });
 }

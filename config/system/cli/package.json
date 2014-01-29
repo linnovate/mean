@@ -10,7 +10,6 @@
     },
     "dependencies": {
         "commander": "1.3.2",
-        "rimraf":"latest",
         "mkdirp":"0.3.5"
     },
     "bin": {
