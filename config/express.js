@@ -62,15 +62,15 @@ module.exports = function(app, passport, db) {
             })
         }));
 
-        // Connect flash for flash messages
-        app.use(flash());
-
         // Dynamic helpers
         app.use(helpers(config.app.name));
 
         // Use passport session
         app.use(passport.initialize());
         app.use(passport.session());
+
+        // Connect flash for flash messages
+        app.use(flash());
 
         // Routes should be at the last
         app.use(app.router);

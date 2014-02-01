@@ -2,7 +2,7 @@ extends ../layouts/default
 
 block content
   .row
-    .offset1.span5
+    .col-md-offset-1.col-md-5
       a(href="/auth/facebook")
         img(src="/img/icons/facebook.png")
       a(href="/auth/github")
@@ -11,7 +11,9 @@ block content
         img(src="/img/icons/twitter.png")
       a(href="/auth/google")
         img(src="/img/icons/google.png")
-    .span6
+      a(href="/auth/linkedin")
+        img(src="/img/icons/linkedin.png")
+    .col-md-6
       if message && message.length
         .fade.in.alert.alert-error
           button.close(type="button", data-dismiss="alert") &times;
