@@ -109,7 +109,7 @@ If you are using node instead of grunt, it is very similar:
   We pre-included an article example, check it out:
   * [The Model](https://github.com/linnovate/mean/blob/master/app/models/article.js) - Where we define our object schema.
   * [The Controller](https://github.com/linnovate/mean/blob/master/app/controllers/articles.js) - Where we take care of our backend logic.
-  * [NodeJS Routes](https://github.com/linnovate/mean/blob/master/config/routes.js) - Where we define our REST service routes.
+  * [NodeJS Routes](https://github.com/linnovate/mean/blob/master/app/routes) - Where we define our REST service routes.
   * [AngularJs Routes](https://github.com/linnovate/mean/blob/master/public/js/config.js) - Where we define our CRUD routes.
   * [The AngularJs Service](https://github.com/linnovate/mean/blob/master/public/js/services/articles.js) - Where we connect to our REST service.
   * [The AngularJs Controller](https://github.com/linnovate/mean/blob/master/public/js/controllers/articles.js) - Where we take care of  our frontend logic.
