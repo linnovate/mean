@@ -2,7 +2,7 @@
     "name": "mean",
     "version": "0.1.3",
     "dependencies": {
-        "angular": "1.2.10",
+        "angular": "latest",
         "angular-resource": "latest",
         "angular-cookies": "latest",
         "angular-mocks": "latest",
