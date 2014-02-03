@@ -8,11 +8,6 @@ MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://w
 
 ### Tools Prerequisites
 * NPM - Node.js package manager, should be installed when you install node.js.
-* Bower - Web package manager, installing [Bower](http://bower.io/) is simple when you have npm:
-
-```
-$ npm install -g bower
-```
 
 ### Optional
 * Grunt - Download and Install [Grunt](http://gruntjs.com).
@@ -27,6 +22,14 @@ $ npm install -g bower
 
 ## Quick Install
   The quickest way to get started with MEAN is to clone the project and utilize it like this:
+
+  Install the project as global npm module (as root):
+
+    $ npm install . -g
+
+  Create as many projects as you want by just typing:
+
+    $ mean yourProjectDirectory
 
   Install dependencies:
 
