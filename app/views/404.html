@@ -1,13 +1,17 @@
-extends layouts/default
+{% extends 'layouts/default.html' %}
 
-block main
-  h1 Oops something went wrong
-  br
-  span 404
+{% block main %}
+    <h1>Oops something went wrong</h1>
+    <br>
+    <span>404</span>
+{% endblock %}
 
-block content
-  #error-message-box
-    #error-stack-trace
-      pre
-        code!= error
-
+{% block content %}
+    <div id="error-message-box">
+        <div id="error-stack-trace">
+            <pre>
+                <code>{{error}}</code>
+            </pre>
+        </div>
+    </div>
+{% endblock %}

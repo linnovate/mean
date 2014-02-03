@@ -1,6 +1,7 @@
 .DS_Store
 .nodemonignore
 .sass-cache/
+.bower-*
 node_modules/
 public/lib
 test/coverage/
