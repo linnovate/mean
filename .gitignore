@@ -4,3 +4,9 @@
 node_modules/
 public/lib
 test/coverage/
+.idea
+mean.iml
+config/secrets.js
+.bower-cache/
+.bower-registry/
+.bower-temp/
