@@ -4,98 +4,107 @@
  * Module dependencies.
  */
 var express = require('express'),
-    mongoStore = require('connect-mongo')(express),
-    flash = require('connect-flash'),
-    helpers = require('view-helpers'),
-    config = require('./config');
+  mongoStore = require('connect-mongo')(express),
+  flash = require('connect-flash'),
+  helpers = require('view-helpers'),
+  config = require('./config'),
+  sass = require('node-sass');
 
 module.exports = function(app, passport, db) {
-    app.set('showStackError', true);
+  app.set('showStackError', true);
 
-    // Prettify HTML
-    app.locals.pretty = true;
+  // Prettify HTML
+  app.locals.pretty = true;
 
-    // Should be placed before express.static
-    // To ensure that all assets and data are compressed (utilize bandwidth)
-    app.use(express.compress({
-        filter: function(req, res) {
-            return (/json|text|javascript|css/).test(res.getHeader('Content-Type'));
-        },
-        // Levels are specified in a range of 0 to 9, where-as 0 is
-        // no compression and 9 is best compression, but slowest
-        level: 9
+  // Should be placed before express.static
+  // To ensure that all assets and data are compressed (utilize bandwidth)
+  app.use(express.compress({
+    filter: function(req, res) {
+      return (/json|text|javascript|css/).test(res.getHeader('Content-Type'));
+    },
+    // Levels are specified in a range of 0 to 9, where-as 0 is
+    // no compression and 9 is best compression, but slowest
+    level: 9
+  }));
+
+  // Only use logger for development environment
+  if (process.env.NODE_ENV === 'development') {
+    app.use(express.logger('dev'));
+  }
+
+  // Set views path, template engine and default layout
+  app.set('views', config.root + '/app/views');
+  app.set('view engine', 'jade');
+  app.use(
+    sass.middleware({
+      src: __dirname + '/public/scss', //where the sass files are
+      dest: __dirname + '/public/css', //where css should go
+      debug: true, // obvious
+      outputStyle: 'compressed'
+    })
+  );
+
+  // Enable jsonp
+  app.enable("jsonp callback");
+
+  app.configure(function() {
+    // The cookieParser should be above session
+    app.use(express.cookieParser());
+
+    // Request body parsing middleware should be above methodOverride
+    app.use(express.urlencoded());
+    app.use(express.json());
+    app.use(express.methodOverride());
+
+    // Express/Mongo session storage
+    app.use(express.session({
+      secret: config.sessionSecret,
+      store: new mongoStore({
+        db: db.connection.db,
+        collection: config.sessionCollection
+      })
     }));
 
-    // Only use logger for development environment
-    if (process.env.NODE_ENV === 'development') {
-        app.use(express.logger('dev'));
-    }
+    // Dynamic helpers
+    app.use(helpers(config.app.name));
 
-    // Set views path, template engine and default layout
-    app.set('views', config.root + '/app/views');
-    app.set('view engine', 'jade');
+    // Use passport session
+    app.use(passport.initialize());
+    app.use(passport.session());
 
-    // Enable jsonp
-    app.enable("jsonp callback");
+    // Connect flash for flash messages
+    app.use(flash());
 
-    app.configure(function() {
-        // The cookieParser should be above session
-        app.use(express.cookieParser());
+    // Routes should be at the last
+    app.use(app.router);
 
-        // Request body parsing middleware should be above methodOverride
-        app.use(express.urlencoded());
-        app.use(express.json());
-        app.use(express.methodOverride());
+    // Setting the fav icon and static folder
+    app.use(express.favicon());
+    app.use(express.static(config.root + '/public'));
 
-        // Express/Mongo session storage
-        app.use(express.session({
-            secret: config.sessionSecret,
-            store: new mongoStore({
-                db: db.connection.db,
-                collection: config.sessionCollection
-            })
-        }));
+    // Assume "not found" in the error msgs is a 404. this is somewhat
+    // silly, but valid, you can do whatever you like, set properties,
+    // use instanceof etc.
+    app.use(function(err, req, res, next) {
+      // Treat as 404
+      if (~err.message.indexOf('not found')) return next();
 
-        // Dynamic helpers
-        app.use(helpers(config.app.name));
+      // Log it
+      console.error(err.stack);
 
-        // Use passport session
-        app.use(passport.initialize());
-        app.use(passport.session());
-
-        // Connect flash for flash messages
-        app.use(flash());
-
-        // Routes should be at the last
-        app.use(app.router);
-        
-        // Setting the fav icon and static folder
-        app.use(express.favicon());
-        app.use(express.static(config.root + '/public'));
-
-        // Assume "not found" in the error msgs is a 404. this is somewhat
-        // silly, but valid, you can do whatever you like, set properties,
-        // use instanceof etc.
-        app.use(function(err, req, res, next) {
-            // Treat as 404
-            if (~err.message.indexOf('not found')) return next();
-
-            // Log it
-            console.error(err.stack);
-
-            // Error page
-            res.status(500).render('500', {
-                error: err.stack
-            });
-        });
-
-        // Assume 404 since no middleware responded
-        app.use(function(req, res, next) {
-            res.status(404).render('404', {
-                url: req.originalUrl,
-                error: 'Not found'
-            });
-        });
-
+      // Error page
+      res.status(500).render('500', {
+        error: err.stack
+      });
     });
+
+    // Assume 404 since no middleware responded
+    app.use(function(req, res, next) {
+      res.status(404).render('404', {
+        url: req.originalUrl,
+        error: 'Not found'
+      });
+    });
+
+  });
 };

@@ -56,7 +56,10 @@
     "grunt-nodemon": "0.1.2",
     "grunt-contrib-watch": "~0.5.3",
     "karma-coverage": "~0.1.4",
-    "karma": "~0.10.9"
+    "karma": "~0.10.9",
+    "node-sass": "~0.8.1",
+    "node-compass": "~0.2.3",
+    "chokidar": "~0.8.1"
   },
   "devDependencies": {
     "supertest": "0.8.2",
