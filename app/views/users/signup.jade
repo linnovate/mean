@@ -1,7 +1,7 @@
 extends auth
 
 block auth
-  form.signup.form-horizontal(action="/users", method="post")
+  form.signup.form-horizontal(action="/signup", method="post")
     .form-group
       label.col-md-4.control-label(for='name') Full Name
       .col-md-8
@@ -21,6 +21,11 @@ block auth
       label.col-md-4.control-label(for='password') Password
       .col-md-8
         input#password.form-control(type='password', name="password", placeholder='Password')
+
+    .form-group
+      label.col-md-4.control-label(for='confirmPassword') Repeat Password
+      .col-md-8
+        input#password.form-control(type='password', name="confirmPassword", placeholder='Password')
 
     .form-group
       .col-md-offset-4.col-md-8

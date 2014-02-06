@@ -8,6 +8,7 @@ var express = require('express'),
   flash = require('connect-flash'),
   helpers = require('view-helpers'),
   config = require('./config'),
+  expressValidator = require("express-validator"),
   sass = require('node-sass');
 
 module.exports = function(app, passport, db) {
@@ -35,14 +36,14 @@ module.exports = function(app, passport, db) {
   // Set views path, template engine and default layout
   app.set('views', config.root + '/app/views');
   app.set('view engine', 'jade');
-  app.use(
+  /* app.use(
     sass.middleware({
-      src: __dirname + '/public/scss', //where the sass files are
-      dest: __dirname + '/public/css', //where css should go
+      src: config.root + '/public/scss', //where the sass files are
+      dest: config.root + '/public', //where css should go
       debug: true, // obvious
       outputStyle: 'compressed'
     })
-  );
+  );*/
 
   // Enable jsonp
   app.enable("jsonp callback");
@@ -54,6 +55,7 @@ module.exports = function(app, passport, db) {
     // Request body parsing middleware should be above methodOverride
     app.use(express.urlencoded());
     app.use(express.json());
+    app.use(expressValidator());
     app.use(express.methodOverride());
 
     // Express/Mongo session storage
@@ -87,7 +89,7 @@ module.exports = function(app, passport, db) {
     // use instanceof etc.
     app.use(function(err, req, res, next) {
       // Treat as 404
-      if (~err.message.indexOf('not found')) return next();
+      if ( err.message.indexOf('not found')) return next();
 
       // Log it
       console.error(err.stack);
