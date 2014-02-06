@@ -155,10 +155,10 @@ module.exports = function(passport) {
         'google.id': profile.id
       }, function(err, user) {
         if (!user) {
-          user = new User({
+            user = new User({
             name: profile.displayName,
             email: profile.emails[0].value,
-            username: profile.username,
+            username: profile.id, // xxx Email checks and everything missing!!! What if ... etc!
             provider: 'google',
             google: profile._json
           });

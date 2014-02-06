@@ -20,25 +20,9 @@ exports.signin = function(req, res) {
   if(req.isAuthenticated()) {
     return res.redirect('/');
   }
-  res.render('users/signin', {
-    title: 'Signin',
-    message: req.flash('error')
-  });
+  res.redirect('#!/login');
 };
 
-/**
- * Show sign up form
- */
-exports.signup = function(req, res) {
-  if(req.isAuthenticated()) {
-    return res.redirect('/');
-  }
-  res.render('users/signup', {
-    title: 'Sign up',
-    user: new User(),
-    message: req.flash('error')
-  });
-};
 
 /**
  * Logout
@@ -68,10 +52,7 @@ exports.create = function(req, res, next) {
   var errors = req.validationErrors();
   req.flash('error', errors);
   if (errors) {
-    return res.render('users/signup', {
-      user: user,
-      message: req.flash('error')
-    });
+    return res.status(401);
   }
 
   user.provider = 'local';
@@ -80,16 +61,15 @@ exports.create = function(req, res, next) {
       switch (err.code) {
         case 11000:
         case 11001:
+          res.status(401);
           req.flash('error', 'Username already taken');
           break;
         default:
+          res.status(401);
           req.flash('error', 'Please fill all the required fields');
       }
 
-      return res.render('users/signup', {
-        user: user,
-        message: req.flash('error')
-      });
+      return res.status(401);
     }
     req.logIn(user, function(err) {
       if (err) return next(err);

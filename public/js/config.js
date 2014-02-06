@@ -28,6 +28,32 @@ angular.module('mean').config(['$stateProvider', '$urlRouterProvider', '$locatio
       return deferred.promise;
     };
     //================================================
+    // Check if the user is not conntect
+    //================================================
+    var checkLoggedOut = function($q, $timeout, $http, $location, $rootScope){
+      // Initialize a new promise
+      var deferred = $q.defer();
+
+      // Make an AJAX call to check if the user is logged in
+      $http.get('/loggedin').success(function(user){
+        // Authenticated
+        if (user !== '0'){
+          $timeout(function(){deferred.reject();}, 0);
+          $location.url('/login');
+
+        }
+
+        // Not Authenticated
+        else {
+          $rootScope.message = 'You need to log in.';
+          $timeout(deferred.resolve, 0);
+
+        }
+      });
+
+      return deferred.promise;
+    };
+    //================================================
 
     //================================================
     // Add an interceptor for AJAX errors
@@ -86,9 +112,22 @@ angular.module('mean').config(['$stateProvider', '$urlRouterProvider', '$locatio
         url: '/',
         templateUrl: 'views/index.html'
       })
-      .state('login', {
+      .state('auth', {
+        templateUrl: 'views/auth/index.html'
+      })
+      .state('auth.login', {
         url: '/login',
-        templateUrl: 'views/login.html'
+        templateUrl: 'views/auth/login.html',
+        resolve: {
+          loggedin: checkLoggedOut
+        }
+      })
+      .state('auth.register', {
+        url: '/register',
+        templateUrl: 'views/auth/register.html',
+        resolve: {
+          loggedin: checkLoggedOut
+        }
       });
   }
 ])
