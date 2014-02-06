@@ -60,7 +60,8 @@
     "node-sass": "~0.8.1",
     "node-compass": "~0.2.3",
     "chokidar": "~0.8.1",
-    "express-validator": "~1.0.1"
+    "express-validator": "~1.0.1",
+    "express-jwt": "~0.1.1"
   },
   "devDependencies": {
     "supertest": "0.8.2",
@@ -80,6 +81,7 @@
     "karma-phantomjs-launcher": "~0.1.0",
     "karma": "~0.10.4",
     "grunt-karma": "~0.6.2",
-    "karma-coverage": "~0.1.0"
+    "karma-coverage": "~0.1.0",
+    "grunt-contrib-sass": "~0.7.2"
   }
 }

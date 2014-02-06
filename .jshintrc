@@ -34,7 +34,7 @@
         "inject",
         "expect"
     ],
-    "indent": 4, // Specify indentation spacing
+    "indent": false, // Specify indentation spacing
     "devel": true, // Allow development statements e.g. `console.log();`.
     "noempty": true // Prohibit use of empty blocks.
 }
