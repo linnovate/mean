@@ -2,6 +2,7 @@
 .nodemonignore
 .sass-cache/
 .bower-*/
+.idea/
 node_modules/
 public/lib
 test/coverage/
