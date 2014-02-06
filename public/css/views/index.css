@@ -1,0 +1,104 @@
+.banner-top {
+    background: url('/img/backgrounds/banner-top-bg.png') center top;
+    height: 450px;
+    color: #fff;
+}
+.banner-top .container {
+    height: 100%;
+    position: relative;
+}
+.banner-top-ninja {
+    position: absolute;
+    right: 0;
+    bottom: -40px;
+}
+.banner-top-titles {
+    margin-top: 40px;
+}
+.banner-top-title {
+    font-family:'Bitter' serif;
+    text-shadow: 1px 1px 1px #555;
+    font-size: 3em;
+}
+.banner-top-subtitle {
+    margin: 20px 0;
+    text-shadow: 1px 1px 1px #555;
+    font-weight: normal;
+}
+a.banner-top-download-button {
+	display: inline-block;
+    color: #fff;
+    font-size: 1.4em;
+    font-family:'Bitter' serif;
+    text-shadow: 1px 1px 1px #555;
+    background: url('/img/buttons/download.png') bottom;
+    width: 292px;
+    height: 61px;
+    line-height: 61px;
+    text-align: center;
+}
+a.banner-top-download-button:hover {
+    background-position: top;
+    text-decoration: none;
+}
+.banner-top-border, .banner-top-border .container {
+    background: #0f96ba;
+    height: 70px;
+}
+.banner-top-border-seperator, .banner-top-border-text {
+    float: left;
+    height: 50px;
+    margin: 10px 0;
+    line-height: 50px;
+    color: #fff;
+}
+.banner-top-border-seperator {
+    width: 0px;
+    border-right: 1px solid #36BBD3;
+    margin: 10px 20px;
+}
+.banner-top-border{
+-webkit-box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.75);
+-moz-box-shadow:    0px 3px 5px 0px rgba(50, 50, 50, 0.75);
+box-shadow:         0px 3px 5px 0px rgba(50, 50, 50, 0.75);
+}
+.banner-technologies {
+	border: none;
+}
+.banner-technologies-title {
+	color: #0f96ba;
+	font-weight: 200;
+	margin: 30px 0 30px 0;
+}
+.banner-technologies-subtitle {
+	color: #1f1f1f;
+	font-weight: 400;
+}
+.banner-technologies-inner-technologies {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.banner-technologies-inner-technologies li{
+	display: inline-block;
+	vertical-align: bottom;
+	width: 21%;
+	margin-left: 4%;
+}
+.banner-technologies-inner-technologies li:first-child{
+	margin-left: 0;
+}
+.banner-technologies-inner-technologies li p{
+	margin-top: 5px;
+	height: 150px;
+}
+
+.linnofoot{
+margin-left:6px;
+}
+/* bootsrap 2.3 missing design elements */
+ul.unstyled,
+ol.unstyled {
+  margin-left: 0;
+  list-style: none;
+}

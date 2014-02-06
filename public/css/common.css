@@ -1,25 +1,105 @@
-.navbar .nav>li>a.brand {
-    padding-left:20px;
-    margin-left:0
+body {
+    background: #e9e9e9;
+    font-family:'Open Sans', sans-serif;
 }
-
+header {
+    font-weight: bold;
+}
+.navbar .brand {
+    font-family: 'Quantico', sans-serif;
+    background: url('');
+}
 .content {
-    margin-top:70px;
+    margin-top:40px;
     width:100%
 }
-
-footer {
-    position:fixed;
-    left:0px;
-    bottom:0px;
-    height:30px;
-    width:100%;
-    background:#ddd;
-    -webkit-box-shadow:0 8px 6px 6px black;
-    -moz-box-shadow:0 8px 6px 6px black;
-    box-shadow:0 8px 6px 6px black
+.green-text {
+    color: #93DD3C;
 }
-
-footer p {
-    padding:5px 0 12px 10px
+a.green-text:hover {
+    color: #9beb3f;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+footer {
+    border: none;
+    background: url('/img/backgrounds/footer-bg.png') center bottom repeat-x;
+    height: 130px;
+-webkit-box-shadow: 0px -3px 5px 0px rgba(50, 50, 50, 0.75);
+-moz-box-shadow:    0px -3px 5px 0px rgba(50, 50, 50, 0.75);
+box-shadow:         0px -3px 5px 0px rgba(50, 50, 50, 0.75);
+}
+footer .container {
+    height: 100%;
+}
+footer .footer-left-menu-container {
+    height: 100%;
+    float: left;
+    width: 25%;
+    margin: 0;
+    padding: 0;
+}
+footer .footer-left-menu {
+    margin: 20px 30px;
+    padding: 0;
+}
+footer .footer-left-menu li:not(:last-child) {
+    margin-bottom: 5px;
+}
+footer .footer-left-menu li a {
+    color: #ddd;
+}
+footer .footer-left-menu li a:hover, footer .footer-left-menu li a:focus {
+    color: #fff;
+    text-decoration: none;
+}
+footer .footer-middle-container {
+    height: 130px;
+    line-height: 130px;
+    float: left;
+    width: 50%;
+    margin: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+footer .footer-middle-ninja {
+    width: 80px;
+    vertical-align: middle;
+}
+footer .footer-middle-text {
+    vertical-align: middle;
+    font-weight: 200;
+    color: #8fadba;
+}
+footer .footer-middle-text img {
+}
+footer .footer-middle-text a {
+    color: #93DD3C;
+}
+footer .footer-middle-text a:hover {
+    color: #9beb3f;
+    cursor: pointer;
+    text-decoration: none;
+}
+footer .footer-right-menu-container {
+    height: 100%;
+    float: right;
+    width: 25%;
+    margin: 0;
+    text-align: center;
+}
+footer .footer-right-menu {
+    margin-top: 30px;
+}
+footer .footer-right-menu li {
+    display: inline-block;
+}
+footer .footer-right-menu li:not(:last-child) {
+    margin-right: 5px;
+}
+footer .footer-right-menu-text {
+    color: #8fadba;
+    font-weight: 200;
+    font-size: 0.9em;
 }

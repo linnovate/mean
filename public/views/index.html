@@ -1,3 +1,52 @@
 <section data-ng-controller="IndexController">
-	<h1>This is the home view</h1>
+    <div class="banner-top">
+        <div class="container">
+            <img class="banner-top-ninja" src="/img/ninja/banner-top-ninja.png" alt="MEAN.IO">
+            <div class="banner-top-titles">
+                <h1 class="banner-top-title">The friendly, fun &amp; fantastic
+                    <br>full stack for your next project.</h1>
+                <h4 class="banner-top-subtitle">MEAN (MongoDB, Express, AngularJS, Node.js) boilerplate.</h4>
+                <a href="https://github.com/linnovate/mean/zipball/master" class="banner-top-download-button">Download Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="banner-top-border">
+        <div class="container" data-ng-show="githubData">
+            <div class="banner-top-border-text">
+                LATEST COMMIT: <b>{{githubData.data.updated_at | date: 'MMM d, y'}}</b>
+            </div>
+            <div class="banner-top-border-seperator"></div>
+            <div class="banner-top-border-text">
+                FORKS: <b>{{githubData.data.forks_count}}</b>
+            </div>
+            <div class="banner-top-border-seperator"></div>
+            <div class="banner-top-border-text">
+                <a class="green-text" href="https://github.com/linnovate/mean">FORK MEAN.IO ON GITHUB</a>
+                </b>
+            </div>
+        </div>
+    </div>
+    <div class="banner-technologies">
+        <div class="container">
+            <h2 class="banner-technologies-title">Built with leading technologies</h2>
+            <ul class="banner-technologies-inner-technologies">
+            	<li>
+            		<img src="/img/logos/mongodb.png" alt="MongoDB" height="70">
+            		<p>MongoDB is the leading NoSQL database, empowering businesses to be more agile and scalable.</p>
+            	</li>
+            	<li>
+            		<img src="/img/logos/express.png" alt="Express" height="50">
+            		<p>Express is a minimal and flexible node.js web application framework, providing a robust set of features for building single and multi-page, and hybrid web applications.</p>
+            	</li>
+            	<li>
+            		<img src="/img/logos/angularjs.png" alt="AngularJS" height="70">
+            		<p>AngularJS lets you extend HTML vocabulary for your application. The resulting environment is extraordinarily expressive, readable, and quick to develop.</p>
+            	</li>
+            	<li>
+            		<img src="/img/logos/nodejs.png" alt="Node.js" height="70">
+            		<p>Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications.</p>
+            	</li>
+            </ul>
+        </div>
+    </div>
 </section>
