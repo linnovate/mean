@@ -1,8 +1,53 @@
 'use strict';
 
 //Setting up route
-angular.module('mean').config(['$stateProvider', '$urlRouterProvider',
-  function($stateProvider, $urlRouterProvider) {
+angular.module('mean').config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider',
+  function($stateProvider, $urlRouterProvider,$locationProvider, $httpProvider) {
+
+    //================================================
+    // Check if the user is connected
+    //================================================
+    var checkLoggedin = function($q, $timeout, $http, $location, $rootScope){
+      // Initialize a new promise
+      var deferred = $q.defer();
+
+      // Make an AJAX call to check if the user is logged in
+      $http.get('/loggedin').success(function(user){
+        // Authenticated
+        if (user !== '0')
+          $timeout(deferred.resolve, 0);
+
+        // Not Authenticated
+        else {
+          $rootScope.message = 'You need to log in.';
+          $timeout(function(){deferred.reject();}, 0);
+          $location.url('/login');
+        }
+      });
+
+      return deferred.promise;
+    };
+    //================================================
+
+    //================================================
+    // Add an interceptor for AJAX errors
+    //================================================
+    $httpProvider.responseInterceptors.push(function($q, $location) {
+      return function(promise) {
+        return promise.then(
+          // Success: just return the response
+          function(response){
+            return response;
+          },
+          // Error: check the error status to get only the 401
+          function(response) {
+            if (response.status === 401)
+              $location.url('/login');
+            return $q.reject(response);
+          }
+        );
+      };
+    });
 
     // For unmatched routes:
     $urlRouterProvider.otherwise('/');
@@ -11,30 +56,52 @@ angular.module('mean').config(['$stateProvider', '$urlRouterProvider',
     $stateProvider
       .state('all articles', {
         url: '/articles',
-        templateUrl: 'views/articles/list.html'
+        templateUrl: 'views/articles/list.html',
+        resolve: {
+          loggedin: checkLoggedin
+        }
       })
       .state('create article', {
         url: '/articles/create',
-        templateUrl: 'views/articles/create.html'
+        templateUrl: 'views/articles/create.html',
+        resolve: {
+          loggedin: checkLoggedin
+        }
       })
       .state('edit article', {
         url: '/articles/:articleId/edit',
-        templateUrl: 'views/articles/edit.html'
+        templateUrl: 'views/articles/edit.html',
+        resolve: {
+          loggedin: checkLoggedin
+        }
       })
       .state('article by id', {
         url: '/articles/:articleId',
-        templateUrl: 'views/articles/view.html'
+        templateUrl: 'views/articles/view.html',
+        resolve: {
+          loggedin: checkLoggedin
+        }
       })
       .state('home', {
         url: '/',
         templateUrl: 'views/index.html'
+      })
+      .state('login', {
+        url: '/login',
+        templateUrl: 'views/login.html'
       });
   }
-]);
-
-//Setting HTML5 Location Mode
-angular.module('mean').config(['$locationProvider',
+])
+.config(['$locationProvider',
   function($locationProvider) {
     $locationProvider.hashPrefix('!');
   }
-]);
+])
+.run(['$rootScope','$http', function ($rootScope,$http) {
+  $rootScope.message = '';
+    // Logout is available anywhere
+    $rootScope.logout = function () {
+      $rootScope.message = 'Logged out';
+      $http.post('/logout');
+    };
+}]);
