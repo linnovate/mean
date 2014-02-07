@@ -24,3 +24,17 @@ footer p {
   padding:5px 0 12px 10px;
   border: 1px solid black;
 }
+
+input.ng-invalid.ng-dirty {
+    border: 2px solid darkred;
+  &:focus {
+    border: none;
+  }
+}
+
+input.ng-valid.ng-dirty {
+    border: 2px solid green;
+  &:focus {
+    border: none;
+  }
+}

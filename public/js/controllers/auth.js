@@ -13,17 +13,20 @@ angular.module('mean-controller-login', [])
       })
         .success(function(user){
           // No error: authentication OK
-          $scope.loginerror = 0;
+          $scope.loginError = 0;
           $rootScope.user = user;
           $rootScope.$emit('loggedin');
           $location.url('/');
           })
-        .error(function(){
-          // Error: authentication failed
-          $scope.loginerror = 'Authentication failed.';
+        .error(function(error) {
+          $scope.loginError = 'Authentication failed.';
           $location.url('/login');
         });
     };
+  }])
+  .controller('RegisterCtrl', ['$scope','$rootScope','$http','$location', function($scope, $rootScope, $http, $location) {
+
+
     $scope.register = function(){
       $http.post('/register', {
         email: $scope.user.email,
@@ -32,18 +35,24 @@ angular.module('mean-controller-login', [])
         username: $scope.user.username,
         name: $scope.user.fullname
       })
-        .success(function(user){
+        .success(function(){
           // No error: authentication OK
-          $scope.registererror = 0;
-          $rootScope.user = user;
+          $scope.registerError = 0;
+          $rootScope.user = $scope.user.fullname;
           $rootScope.$emit('loggedin');
           $location.url('/');
 
         })
-        .error(function(){
+        .error(function(error){
           // Error: authentication failed
-          $scope.registerror = 'Registration failed.';
-          $location.url('/register');
+          if (error == 'Username already taken') {
+            $scope.usernameError = error;
+          }
+          else {
+            $scope.registerError = error;
+             }
+
+
         });
     };
   }]);

@@ -43,16 +43,16 @@ exports.session = function(req, res) {
  * Create user
  */
 exports.create = function(req, res, next) {
+  console.log('We are checking it');
   var user = new User(req.body);
   req.assert('email', 'You must enter a valid email address').isEmail();
   req.assert('password', 'Password must be between 8-20 characters long').len(8, 20);
-  req.assert('username', 'Username must be between 6-20 characters long').len(6, 20);
+  req.assert('username', 'Username cannot be more than 20 characters').len(0,20);
   req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
   var errors = req.validationErrors();
-  req.flash('error', errors);
   if (errors) {
-    return res.status(401);
+    return res.status(400).send(errors);
   }
 
   user.provider = 'local';
@@ -61,20 +61,19 @@ exports.create = function(req, res, next) {
       switch (err.code) {
         case 11000:
         case 11001:
-          res.status(401);
-          req.flash('error', 'Username already taken');
+          res.status(400).send('Username already taken');
           break;
         default:
-          res.status(401);
-          req.flash('error', 'Please fill all the required fields');
+          res.status(400).send('Please fill all the required fields');
       }
 
-      return res.status(401);
+      return res.status(400);
     }
     req.logIn(user, function(err) {
       if (err) return next(err);
       return res.redirect('/');
     });
+    res.status(200);
   });
 };
 

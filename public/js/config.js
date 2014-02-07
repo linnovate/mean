@@ -7,7 +7,7 @@ angular.module('mean').config(['$stateProvider', '$urlRouterProvider', '$locatio
     //================================================
     // Check if the user is connected
     //================================================
-    var checkLoggedin = function($q, $timeout, $http, $location, $rootScope){
+    var checkLoggedin = function($q, $timeout, $http, $location){
       // Initialize a new promise
       var deferred = $q.defer();
 
@@ -19,7 +19,6 @@ angular.module('mean').config(['$stateProvider', '$urlRouterProvider', '$locatio
 
         // Not Authenticated
         else {
-          $rootScope.message = 'You need to log in.';
           $timeout(function(){deferred.reject();}, 0);
           $location.url('/login');
         }
@@ -30,7 +29,7 @@ angular.module('mean').config(['$stateProvider', '$urlRouterProvider', '$locatio
     //================================================
     // Check if the user is not conntect
     //================================================
-    var checkLoggedOut = function($q, $timeout, $http, $location, $rootScope){
+    var checkLoggedOut = function($q, $timeout, $http, $location){
       // Initialize a new promise
       var deferred = $q.defer();
 
@@ -45,7 +44,6 @@ angular.module('mean').config(['$stateProvider', '$urlRouterProvider', '$locatio
 
         // Not Authenticated
         else {
-          $rootScope.message = 'You need to log in.';
           $timeout(deferred.resolve, 0);
 
         }
@@ -55,25 +53,6 @@ angular.module('mean').config(['$stateProvider', '$urlRouterProvider', '$locatio
     };
     //================================================
 
-    //================================================
-    // Add an interceptor for AJAX errors
-    //================================================
-    $httpProvider.responseInterceptors.push(function($q, $location) {
-      return function(promise) {
-        return promise.then(
-          // Success: just return the response
-          function(response){
-            return response;
-          },
-          // Error: check the error status to get only the 401
-          function(response) {
-            if (response.status === 401)
-              $location.url('/login');
-            return $q.reject(response);
-          }
-        );
-      };
-    });
 
     // For unmatched routes:
     $urlRouterProvider.otherwise('/');
@@ -135,12 +114,4 @@ angular.module('mean').config(['$stateProvider', '$urlRouterProvider', '$locatio
   function($locationProvider) {
     $locationProvider.hashPrefix('!');
   }
-])
-.run(['$rootScope','$http', function ($rootScope,$http) {
-  $rootScope.message = '';
-    // Logout is available anywhere
-    $rootScope.logout = function () {
-      $rootScope.message = 'Logged out';
-      $http.post('/logout');
-    };
-}]);
+]);

@@ -29,17 +29,8 @@ module.exports = function(app, passport) {
    Angular JS User routes ends here
    */
 
-  // Setting up the users api
-  app.post('/signup', users.create);
-
   // Setting up the userId param
   app.param('userId', users.user);
-
-  // Setting the local strategy route
-  app.post('/users/session', passport.authenticate('local', {
-    failureRedirect: '#!/login',
-    failureFlash: true
-  }), users.session);
 
   // Setting the facebook oauth routes
   app.get('/auth/facebook', passport.authenticate('facebook', {

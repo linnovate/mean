@@ -60,8 +60,7 @@
     "node-sass": "~0.8.1",
     "node-compass": "~0.2.3",
     "chokidar": "~0.8.1",
-    "express-validator": "~1.0.1",
-    "express-jwt": "~0.1.1"
+    "express-validator": "~1.0.1"
   },
   "devDependencies": {
     "supertest": "0.8.2",

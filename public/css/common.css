@@ -20,3 +20,13 @@ footer {
 footer p {
   padding: 5px 0 12px 10px;
   border: 1px solid black; }
+
+input.ng-invalid.ng-dirty {
+  border: 2px solid darkred; }
+  input.ng-invalid.ng-dirty:focus {
+    border: none; }
+
+input.ng-valid.ng-dirty {
+  border: 2px solid green; }
+  input.ng-valid.ng-dirty:focus {
+    border: none; }

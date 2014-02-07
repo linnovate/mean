@@ -36,14 +36,6 @@ module.exports = function(app, passport, db) {
   // Set views path, template engine and default layout
   app.set('views', config.root + '/app/views');
   app.set('view engine', 'jade');
-  /* app.use(
-    sass.middleware({
-      src: config.root + '/public/scss', //where the sass files are
-      dest: config.root + '/public', //where css should go
-      debug: true, // obvious
-      outputStyle: 'compressed'
-    })
-  );*/
 
   // Enable jsonp
   app.enable("jsonp callback");
