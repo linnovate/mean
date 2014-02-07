@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean-controller-login', [])
+angular.module('mean.controllers.login', [])
   .controller('LoginCtrl', ['$scope','$rootScope','$http','$location', function($scope, $rootScope, $http, $location) {
     // This object will be filled by the form
     $scope.user = {};
@@ -15,17 +15,17 @@ angular.module('mean-controller-login', [])
           // No error: authentication OK
           $scope.loginError = 0;
           $rootScope.user = user;
+          $rootScope.test = 'test';
           $rootScope.$emit('loggedin');
           $location.url('/');
           })
         .error(function(error) {
           $scope.loginError = 'Authentication failed.';
-          $location.url('/login');
         });
     };
   }])
   .controller('RegisterCtrl', ['$scope','$rootScope','$http','$location', function($scope, $rootScope, $http, $location) {
-
+    $scope.user = {};
 
     $scope.register = function(){
       $http.post('/register', {

@@ -2,8 +2,7 @@
 
 angular.module('mean.articles')
   .controller('ArticlesController',
-    ['$scope', '$stateParams', '$location', 'Global', 'Articles',
-      function ($scope, $stateParams, $location, Global, Articles) {
+    ['$scope', '$stateParams', '$location', 'Global', 'Articles', function ($scope, $stateParams, $location, Global, Articles) {
     $scope.global = Global;
 
     $scope.create = function() {
