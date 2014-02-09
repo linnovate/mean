@@ -21,13 +21,7 @@ describe('<Unit Test>', function() {
                 password: 'password',
                 provider: 'local'
             });
-            user2 = new User({
-                name: 'Full name',
-                email: 'test@test.com',
-                username: 'user',
-                password: 'password',
-                provider: 'local'
-            });
+            user2 = new User(user);
 
             done();
         });
