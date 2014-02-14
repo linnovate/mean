@@ -24,13 +24,13 @@
             var ArticlesController,
                 scope,
                 $httpBackend,
-                $routeParams,
+                $stateParams,
                 $location;
 
             // The injector ignores leading and trailing underscores here (i.e. _$httpBackend_).
             // This allows us to inject a service but then attach it to a variable
             // with the same name as the service.
-            beforeEach(inject(function($controller, $rootScope, _$location_, _$routeParams_, _$httpBackend_) {
+            beforeEach(inject(function($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_) {
 
                 scope = $rootScope.$new();
 
@@ -38,7 +38,7 @@
                     $scope: scope
                 });
 
-                $routeParams = _$routeParams_;
+                $stateParams = _$stateParams_;
 
                 $httpBackend = _$httpBackend_;
 
@@ -70,7 +70,7 @@
             it('$scope.findOne() should create an array with one article object fetched ' +
                 'from XHR using a articleId URL parameter', function() {
                     // fixture URL parament
-                    $routeParams.articleId = '525a8422f6d0f87f0e407a33';
+                    $stateParams.articleId = '525a8422f6d0f87f0e407a33';
 
                     // fixture response object
                     var testArticleData = function() {
