@@ -275,7 +275,6 @@ Full-Width Styles
   display: block;
   position: absolute;
   top:0;
-  right: 10px;
   z-index: 10;
   padding: 10px 50px 10px 10px;
   color: #fff;
@@ -286,16 +285,21 @@ Full-Width Styles
   border-bottom-right-radius: 2px;
 }
 
+#forkme_banner {
+  right:192px;
+}
 #contactus_banner {
-  right: 200px;
+  right: 10px;
   padding: 10px;
   background: #f26522;
 }
 #blog_banner {
-  right: 300px;
+  right: 125px;
   padding: 10px;
   background: #f26522;
 }
+
+
 
 #header_wrap {
   background: #212121;
