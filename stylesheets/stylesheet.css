@@ -14,7 +14,7 @@ h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
+b, u, i, center,co
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
@@ -270,6 +270,7 @@ Full-Width Styles
 }
 
 #contactus_banner,
+#blog_banner,
 #forkme_banner {
   display: block;
   position: absolute;
@@ -287,6 +288,11 @@ Full-Width Styles
 
 #contactus_banner {
   right: 200px;
+  padding: 10px;
+  background: #f26522;
+}
+#blog_banner {
+  right: 300px;
   padding: 10px;
   background: #f26522;
 }
