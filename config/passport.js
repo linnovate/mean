@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
 
 
 module.exports = function(passport) {
-    
+
     // Serialize the user id to push into the session
     passport.serializeUser(function(user, done) {
         done(null, user.id);
@@ -184,8 +184,8 @@ module.exports = function(passport) {
             profileFields: ['id', 'first-name', 'last-name', 'email-address']
         },
         function(accessToken, refreshToken, profile, done) {
-          User.findOne({ 
-                'linkedin.id': profile.id 
+            User.findOne({
+                'linkedin.id': profile.id
             }, function (err, user) {
                 if (!user) {
                     user = new User({
@@ -199,7 +199,7 @@ module.exports = function(passport) {
                         return done(err, user);
                     });
                 } else {
-                    return done(err, user)
+                    return done(err, user);
                 }
             });
         }
