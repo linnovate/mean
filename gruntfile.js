@@ -35,11 +35,11 @@ module.exports = function(grunt) {
         },
         nodemon: {
             dev: {
+                script: 'server.js',
                 options: {
-                    file: 'server.js',
                     args: [],
-                    ignoredFiles: ['public/**'],
-                    watchedExtensions: ['js'],
+                    ignore: ['public/**'],
+                    ext: 'js',
                     nodeArgs: ['--debug'],
                     delayTime: 1,
                     env: {
