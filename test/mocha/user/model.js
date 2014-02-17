@@ -18,14 +18,10 @@ describe('<Unit Test>', function() {
                 name: 'Full name',
                 email: 'test@test.com',
                 username: 'user',
-                password: 'password'
+                password: 'password',
+                provider: 'local'
             });
-            user2 = new User({
-                name: 'Full name',
-                email: 'test@test.com',
-                username: 'user',
-                password: 'password'
-            });
+            user2 = new User(user);
 
             done();
         });
@@ -50,7 +46,7 @@ describe('<Unit Test>', function() {
                 });
             });
 
-            it('should be able to show an error when try to save without name', function(done) {
+            it('should show an error when try to save without name', function(done) {
                 user.name = '';
                 return user.save(function(err) {
                     should.exist(err);
