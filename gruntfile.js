@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['gruntfile.js', 'server.js', 'app/**/*.js', 'public/js/**', 'test/**/*.js'],
-                tasks: ['jshint'],
+                tasks: ['jshint', 'uglify'],
                 options: {
                     livereload: true,
                 },
@@ -20,6 +20,7 @@ module.exports = function(grunt) {
             },
             css: {
                 files: ['public/css/**'],
+                tasks: ['cssmin'],
                 options: {
                     livereload: true
                 }
@@ -30,6 +31,42 @@ module.exports = function(grunt) {
                 src: ['gruntfile.js', 'server.js', 'app/**/*.js', 'public/js/**', 'test/**/*.js', '!test/coverage/**/*.js'],
                 options: {
                     jshintrc: true
+                }
+            }
+        },
+        uglify: {
+            options: {
+                mangle: false,
+                compress: true,
+                report: 'gzip'
+            },
+            my_target: {
+                files: {
+                    'public/minified/js/app.min.js': [
+                        'public/js/init.js',
+                        'public/js/app.js',
+                        'public/js/config.js',
+                        'public/js/directives.js',
+                        'public/js/filters.js',
+                        'public/js/controllers/articles.js',
+                        'public/js/controllers/header.js',
+                        'public/js/controllers/index.js',
+                        'public/js/services/global.js',
+                        'public/js/services/articles.js'
+                    ]
+                }
+            }
+        },
+        cssmin: {
+            combine: {
+                options: {
+                    report: 'gzip'
+                },
+                files: {
+                    'public/minified/css/app.min.css': [
+                        'public/css/common.css',
+                        'public/css/views/articles.css'
+                    ]
                 }
             }
         },
@@ -80,6 +117,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-nodemon');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-env');
 
@@ -87,7 +126,7 @@ module.exports = function(grunt) {
     grunt.option('force', true);
 
     //Default task(s).
-    grunt.registerTask('default', ['jshint', 'concurrent']);
+    grunt.registerTask('default', ['jshint', 'uglify', 'cssmin', 'concurrent']);
 
     //Test task.
     grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
