@@ -5,4 +5,5 @@
 .idea/
 node_modules/
 public/lib
-test/coverage/
+test/coverage
+mean.iml
