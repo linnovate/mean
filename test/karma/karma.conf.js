@@ -29,9 +29,11 @@ module.exports = function(config) {
             'public/js/filters.js',
             'public/js/services/global.js',
             'public/js/services/articles.js',
+            'public/js/services/interceptor.js',
             'public/js/controllers/articles.js',
             'public/js/controllers/index.js',
             'public/js/controllers/header.js',
+            'public/js/controllers/auth.js',
             'public/js/init.js',
             'test/karma/unit/**/*.js'
         ],
