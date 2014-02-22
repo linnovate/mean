@@ -1,15 +1,15 @@
 {
   "name": "mean",
   "description": "MEAN.io: A fullstack javascript platformed powerd by MongoDB, ExpressJS, AngularJS, NodeJS.",
-  "version": "0.3",
+  "version": "0.1.3",
   "private": false,
-  "author": "Linnovate (mean@linnovate.net)",
-  "contributors": {
-	"Lior Kesos <lior@linnovate.net>",
-	"Yonatan Ellman <yonatan@linnovate.net>",
-	"Ehud Shahak <ehud@linnovate.net>",
-	"Amos Haviv <mail@amoshaviv.com>"
-	},
+  "author": "Linnovate <mean@linnovate.net>",
+  "contributors":[ 
+		{"name":"Lior Kesos", "mail": "lior@linnovate.net"},
+		{"name":"Yonatan Ellman", "mail": "yonatan@linnovate.net"},
+		{"name":"Ehud Shahak", "mail": "ehud@linnovate.net"},
+		{"name":"Amos Haviv", "mail": "mail@amoshaviv"}
+	],
   "repository": {
     "type": "git",
     "url": "https://github.com/linnovate/mean.git"
