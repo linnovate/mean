@@ -1,9 +1,15 @@
 {
   "name": "mean",
-  "description": "MEAN - A Modern Stack: MongoDB, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
-  "version": "0.1.2",
+  "description": "MEAN.io: A fullstack javascript platformed powerd by MongoDB, ExpressJS, AngularJS, NodeJS.",
+  "version": "0.3",
   "private": false,
-  "author": "Amos Haviv",
+  "author": "Linnovate (mean@linnovate.net)",
+  "contributors": {
+	"Lior Kesos <lior@linnovate.net>",
+	"Yonatan Ellman <yonatan@linnovate.net>",
+	"Ehud Shahak <ehud@linnovate.net>",
+	"Amos Haviv <mail@amoshaviv.com>"
+	},
   "repository": {
     "type": "git",
     "url": "https://github.com/linnovate/mean.git"
