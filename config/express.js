@@ -11,6 +11,9 @@ var express = require('express'),
     config = require('./config');
 
 module.exports = function(app, passport, db) {
+
+    var mean = module.parent.exports.mean;
+
     app.set('showStackError', true);
 
     // Prettify HTML
@@ -71,6 +74,9 @@ module.exports = function(app, passport, db) {
         app.use(passport.initialize());
         app.use(passport.session());
 
+        //mean middleware from modules before routes
+        app.use(mean.get('middleware').before);
+        
         // Connect flash for flash messages
         app.use(flash());
 
@@ -80,7 +86,12 @@ module.exports = function(app, passport, db) {
         // Setting the fav icon and static folder
         app.use(express.favicon());
         app.use(express.static(config.root + '/public'));
+        app.use(express.static(config.root + '/modules/public'));
+        app.use(express.static(config.root + '/modules/views'));
 
+        //mean middlware from modules after routes
+        app.use(mean.get('middleware').after);
+        
         // Assume "not found" in the error msgs is a 404. this is somewhat
         // silly, but valid, you can do whatever you like, set properties,
         // use instanceof etc.
