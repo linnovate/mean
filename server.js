@@ -1,4 +1,9 @@
 'use strict';
+/**
+ *  Mean container for dependency injection
+ */
+var dependable = require('dependable');
+var mean = exports.mean = dependable.container();
 
 /**
  * Module dependencies.
@@ -20,6 +25,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 // Initializing system variables 
 var config = require('./config/config'),
     mongoose = require('mongoose');
+
 
 // Bootstrap db connection
 var db = mongoose.connect(config.db);
@@ -45,6 +51,29 @@ walk(models_path);
 require('./config/passport')(passport);
 
 var app = express();
+
+// Register passport dependency
+mean.register('passport', function() {
+    return passport;
+});
+
+// Register auth dependency
+mean.register('auth', function() {
+    return require('./app/routes/middlewares/authorization');
+});
+
+// Register database dependency
+mean.register('database', {
+    connection : db
+});
+
+// Register app dependency
+mean.register('app',function() {
+    return app;
+});
+
+// Initialize the modules
+require('./config/system/modules')(mean);
 
 // Express settings
 require('./config/express')(app, passport, db);
@@ -80,3 +109,5 @@ logger.init(app, passport, mongoose);
 
 // Expose app
 exports = module.exports = app;
+
+

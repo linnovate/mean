@@ -5,5 +5,7 @@
 .idea/
 node_modules/
 public/lib
-test/coverage
 mean.iml
+test/coverage/
+modules/public/
+modules/views/

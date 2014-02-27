@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var program = require('commander'),
+  pkg = require('../package.json'),
+  version = pkg.version,
+  os = require('os');
+
+program
+  .version(version)
+  .usage('[options] [npm module]')
+  .option('-v, --verbose', 'verbose messaging')
+  .parse(process.argv);
+
+
+var lib = require('../lib/mean');
+// Path
+var path = program.args;
+
+(function mean(params) {
+  var op = params[0],
+    module = params[1];
+  switch (op) {
+    case 'install':
+      lib.install(module);
+      break;
+    case 'uninstall':
+      lib.uninstall(module);
+      break;
+    case 'list':
+      lib.list();
+      break;
+    case 'rebuild':
+      lib.rebuild();
+      break;
+    default:
+      console.log('Try [install/uninstall/list] !');
+      break;
+  }
+})(path);
+
