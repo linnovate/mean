@@ -102,6 +102,7 @@ function concatJs(name) {
                   fs.readFile('./node_modules/' + module + '/public/js/config.js', function(fileErr, data) {
                     if (err) throw fileErr;
                     if (data) {
+                      data = "(function(){"+data+"})()";
                       fs.appendFile('modules/public/js/sys/' + name + '.js', data, function(err) {
                         if (err) throw err;
                         console.log(name + '.js appended from module: ' + module + ' file: config.js');
@@ -116,6 +117,7 @@ function concatJs(name) {
                       files.forEach(function(file) {
                         fs.readFile('./node_modules/' + module + '/public/' + path + '/' + file, function(fileErr, data) {
                           if (err) throw fileErr;
+                          data = "(function(){"+data+"})()";
                           fs.appendFile('modules/public/js/sys/' + name + '.js', data, function(err) {
                             if (err) throw err;
                             console.log(name + '.js appended from module: ' + module + ' file: ' + file);
