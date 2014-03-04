@@ -9,14 +9,14 @@ module.exports = function(grunt) {
                 files: ['gruntfile.js', 'server.js', 'app/**/*.js', 'public/js/**', 'test/**/*.js'],
                 tasks: ['jshint'],
                 options: {
-                    livereload: true,
-                },
+                    livereload: true
+                }
             },
             html: {
                 files: ['public/views/**', 'app/views/**'],
                 options: {
-                    livereload: true,
-                },
+                    livereload: true
+                }
             },
             css: {
                 files: ['public/css/**'],
