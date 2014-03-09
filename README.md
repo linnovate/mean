@@ -47,7 +47,7 @@ $ npm install -g bower
 
 ## Troubleshooting
 During install some of you may encounter some issues, most of this issues can be solved by one of the following tips.
-If you went through all this and still can't solve the issue, feel free to contact me(Amos), via the repository issue tracker or the links provided below.
+If you went through all this and still can't solve the issue, feel free to contact us via the repository issue tracker or the links provided below.
 
 #### Update NPM, Bower or Grunt
 Sometimes you may find there is a weird error during install like npm's *Error: ENOENT*, usually updating those tools to the latest version solves the issue.
@@ -109,7 +109,7 @@ If you are using node instead of grunt, it is very similar:
   We pre-included an article example, check it out:
   * [The Model](app/models/article.js) - Where we define our object schema.
   * [The Controller](app/controllers/articles.js) - Where we take care of our backend logic.
-  * [NodeJS Routes](app/routes/articles.js) - Where we define our REST service routes.
+  * [NodeJS Routes](app/routes) - Where we define our REST service routes.
   * [AngularJs Routes](public/js/config.js) - Where we define our CRUD routes.
   * [The AngularJs Service](public/js/services/articles.js) - Where we connect to our REST service.
   * [The AngularJs Controller](public/js/controllers/articles.js) - Where we take care of  our frontend logic.
