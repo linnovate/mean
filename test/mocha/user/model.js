@@ -27,14 +27,14 @@ describe('<Unit Test>', function() {
         });
 
         describe('Method Save', function() {
-            it('should begin with no users', function(done) {
-                User.find({}, function(err, users) {
+            it('should begin without the test user', function(done) {
+                User.find({ email: 'test@test.com' }, function(err, users) {
                     users.should.have.length(0);
                     done();
                 });
             });
 
-            it('should be able to save whithout problems', function(done) {
+            it('should be able to save without problems', function(done) {
                 user.save(done);
             });
 
@@ -56,7 +56,7 @@ describe('<Unit Test>', function() {
         });
 
         after(function(done) {
-            User.remove().exec();
+            user.remove();
             done();
         });
     });
