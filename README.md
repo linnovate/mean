@@ -131,7 +131,9 @@ git push heroku master
   * Visit our [Ninja's Zone](http://www.meanleanstartupmachine.com/) for extended support.
 
 ## Credits
-Inspired by the great work of [Madhusudhan Srinivasa](https://github.com/madhums/)
+  * Inspired by the great work of [Madhusudhan Srinivasa](https://github.com/madhums/)
+  * The MEAN name was coined by [Valeri Karpov](http://blog.mongodb.org/post/49262866911/the-mean-stack-mongodb-expressjs-angularjs-and)
+  * The project was started by [Amos Haviv](http://www.twitter.com/amoshaviv) who led the development until Dec 2013
 
 ## License
 (The MIT License)
