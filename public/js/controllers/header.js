@@ -9,7 +9,10 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
     }, {
         'title': 'Create New Article',
         'link': 'articles/create'
+    }, {
+        'title': 'Account',
+        'link': 'account'
     }];
-    
+
     $scope.isCollapsed = false;
 }]);
