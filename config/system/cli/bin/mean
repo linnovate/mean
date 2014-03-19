@@ -13,6 +13,7 @@ program
   .version(version)
   .usage('[options] [npm module]')
   .option('-v, --verbose', 'verbose messaging')
+  .option('-i, --install', 'run npm install')  
   .parse(process.argv);
 
 
@@ -22,8 +23,12 @@ var path = program.args;
 
 (function mean(params) {
   var op = params[0],
-    module = params[1];
+    module = params[1];    
+    var options = {install:program.install};
   switch (op) {
+   case 'init':
+      lib.init(params[1],options);    
+      break;
     case 'install':
       lib.install(module);
       break;

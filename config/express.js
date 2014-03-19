@@ -19,9 +19,9 @@ module.exports = function(app, passport, db) {
 
     // Prettify HTML
     app.locals.pretty = true;
-		// cache=memory or swig dies in NODE_ENV=production
-		app.locals.cache = 'memory';
-		
+    // cache=memory or swig dies in NODE_ENV=production
+    app.locals.cache = 'memory';
+
     // Should be placed before express.static
     // To ensure that all assets and data are compressed (utilize bandwidth)
     app.use(express.compress({
@@ -78,7 +78,7 @@ module.exports = function(app, passport, db) {
 
         //mean middleware from modules before routes
         app.use(mean.get('middleware').before);
-        
+
         // Connect flash for flash messages
         app.use(flash());
 
@@ -88,35 +88,43 @@ module.exports = function(app, passport, db) {
         // Setting the fav icon and static folder
         app.use(express.favicon());
         app.use(express.static(config.root + '/public'));
-        app.use(express.static(config.root + '/modules/public'));
-        app.use(express.static(config.root + '/modules/views'));
 
-        //mean middlware from modules after routes
-        app.use(mean.get('middleware').after);
-        
-        // Assume "not found" in the error msgs is a 404. this is somewhat
-        // silly, but valid, you can do whatever you like, set properties,
-        // use instanceof etc.
-        app.use(function(err, req, res, next) {
-            // Treat as 404
-            if (~err.message.indexOf('not found')) return next();
 
-            // Log it
-            console.error(err.stack);
-
-            // Error page
-            res.status(500).render('500', {
-                error: err.stack
+        mean.events.on('enableMeanModules', function() {
+    
+            mean.modules.forEach(function(module, index) {
+                app.use('/' + module.name, express.static(config.root + '/node_modules/' + module.name + '/public'));
             });
+
+            //mean middlware from modules after routes
+            app.use(mean.get('middleware').after);
+
+            // Assume "not found" in the error msgs is a 404. this is somewhat
+            // silly, but valid, you can do whatever you like, set properties,
+            // use instanceof etc.
+            app.use(function(err, req, res, next) {
+                // Treat as 404
+                if (~err.message.indexOf('not found')) return next();
+
+                // Log it
+                console.error(err.stack);
+
+                // Error page
+                res.status(500).render('500', {
+                    error: err.stack
+                });
+            });
+
+            // Assume 404 since no middleware responded
+            app.use(function(req, res) {
+                res.status(404).render('404', {
+                    url: req.originalUrl,
+                    error: 'Not found'
+                });
+            });
+
         });
 
-        // Assume 404 since no middleware responded
-        app.use(function(req, res) {
-            res.status(404).render('404', {
-                url: req.originalUrl,
-                error: 'Not found'
-            });
-        });
 
     });
 };

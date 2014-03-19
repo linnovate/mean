@@ -1,59 +1,102 @@
 //Alternative way to access mean from child
 //We dont actually have to pass mean object along
 //var mean = module.parent.exports.mean;
+var fs = require('fs');
+var express = require('express');
 
-module.exports = function(mean) {
 
-	//rebuild file structure
-	require('./cli/lib/mean').rebuild();
+module.exports = function(mean, app, auth, database, events) {
+	mean.modules = [];
 
-	// Middleware for adding chained function before or after routes
-	require('./chainware')(mean);
+	mean.middleware = {
+		before: [],
+		after: []
+	};
+	mean.aggregated = {
+		js: '',
+		css: ''
+	};
 
-	// We have events such as ready for modules to use
-	require('./events')(mean);
+	findMeanModules();
+	enableMeanModules();
+	aggregateJs();
 
-	//catch when module is ready
-	mean.events.on('ready', ready);
+	app.get('/modules/aggregated.js', function(req, res, next) {
+		res.setHeader('content-type', 'text/javascript');
+		res.send(mean.aggregated.js);
+	});
 
-	//read the file structure
-	var fs = require('fs');
-	fs.exists(process.cwd() + '/node_modules', function(exists) {
-		if (exists) {
-			fs.readdir(process.cwd() + '/node_modules', function(err, files) {
-				if (err) console.log(err);
-				if (!files) files = [];
-				remaining = files.length;
-				files.forEach(function(file) {
-					fs.readFile(process.cwd() + '/node_modules/' + file + '/package.json', function(fileErr, data) {
-						if (err) throw fileErr;
-						if (data) {
-							var json = JSON.parse(data.toString());
-							if (json.mean) {
-								require(process.cwd() + '/node_modules/' + file + '/app.js')(mean);
-							} else {
-								ready();
+	function findMeanModules() {
+		var modules = [];
+		fs.exists(process.cwd() + '/node_modules', function(exists) {
+			if (exists) {
+				fs.readdir(process.cwd() + '/node_modules', function(err, files) {
+					if (err) console.log(err);
+					if (!files) files = [];
+					files.forEach(function(file, index) {
+						fs.readFile(process.cwd() + '/node_modules/' + file + '/package.json', function(fileErr, data) {
+							if (err) throw fileErr;
+							if (data) {
+								var json = JSON.parse(data.toString());
+								if (json.mean) {
+									mean.modules.push({
+										name: json.name,
+										version: json.version
+									});
+								}
 							}
-						} else {
-							ready();
-						}
+							if (files.length - 1 == index) mean.events.emit('enableMeanModules');
+						});
 					});
 				});
-			});
-		}
-	})
-
-	// Process the ready event. Will expand this in due course
-	ready: function ready(data) {
-		remaining--;
-		if (!remaining) resolve();
+			}
+		})
 	}
 
-	// Resolve the dependencies once all modules are ready
-	resolve: function resolve() {
-		mean.modules.forEach(function(module) {
-			mean.resolve.apply(this, [module.name]);
-			mean.get(module.name);
+	function enableMeanModules() {
+		mean.events.on('enableMeanModules', function() {
+
+			mean.modules.forEach(function(module, index) {
+				require(process.cwd() + '/node_modules/' + module.name + '/app.js')(mean);
+			});
+
+			mean.modules.forEach(function(module) {
+				mean.resolve.apply(this, [module.name]);
+				mean.get(module.name);
+			});
+
+			return mean.modules;
+		});
+
+	}
+
+	function aggregateJs() {
+		mean.aggregated.js = '';
+		mean.events.on('enableMeanModules', function() {
+			var files = ['config', 'services', 'controllers']
+			mean.modules.forEach(function(module, index) {
+				readFiles(process.cwd() + '/node_modules/' + module.name + '/public/js/');
+
+				function readFiles(path) {
+					fs.exists(path, function(exists) {
+						if (exists) {
+							fs.readdir(path, function(err, files) {
+								files.forEach(function(file) {
+									fs.readFile(path + file, function(fileErr, data) {
+										if (err) throw fileErr;
+
+										if (!data) {
+											readFiles(path + file + '/');
+										} else {
+											mean.aggregated.js += '(function(){' + data.toString() + '})();';
+										}
+									});
+								})
+							});
+						}
+					});
+				}
+			});
 		});
 	}
 
