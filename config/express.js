@@ -9,8 +9,8 @@ var express = require('express'),
     flash = require('connect-flash'),
     helpers = require('view-helpers'),
     config = require('./config'),
-    expressValidator = require("express-validator");
-    assetmanager = require('assetmanager'),
+    expressValidator = require("express-validator"),
+    assetmanager = require('assetmanager');
 
 module.exports = function(app, passport, db) {
 

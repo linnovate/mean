@@ -73,9 +73,9 @@ mean.register('app', function() {
     return app;
 });
 
-mean.register('events', function() {    
+mean.register('events', function() { 
     return mean.events;
-})
+});
 
 mean.register('middleware', function(app) {
     var middleware = {};
@@ -92,7 +92,7 @@ mean.register('middleware', function(app) {
             } else {
                 b.next = a.func;
             }
-            return (a.weight - b.weight)
+            return (a.weight - b.weight);
         });
     };
 
@@ -126,7 +126,7 @@ mean.register('middleware', function(app) {
 
 mean.register('modules', function(app, auth, database, events, middleware) {
     require('./config/system/modules')(mean, app, auth, database, events);
-})
+});
 
 // Express settings
 require('./config/express')(app, passport, db);
@@ -154,7 +154,7 @@ walk(routes_path);
 
 mean.resolve({}, function(modules) {
     
-})
+});
 // Start the app by listening on <port>
 var port = process.env.PORT || config.port;
 app.listen(port);
