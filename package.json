@@ -17,6 +17,7 @@
     "postinstall": "node node_modules/bower/bin/bower install"
   },
   "dependencies": {
+    "assetmanager": "^0.1.1",
     "express": "~3.4.7",
     "bower": "~1.2.8",
     "grunt-cli": "~0.1.11",
@@ -38,7 +39,10 @@
     "mean-logger": "0.0.1"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "grunt-env": "~0.4.1",
+    "grunt-contrib-cssmin": "^0.9.0",
+    "grunt-contrib-uglify": "^0.4.0",
     "grunt-contrib-watch": "latest",
     "grunt-contrib-jshint": "latest",
     "grunt-karma": "~0.6.2",

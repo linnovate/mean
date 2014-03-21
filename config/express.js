@@ -8,6 +8,7 @@ var express = require('express'),
     mongoStore = require('connect-mongo')(express),
     flash = require('connect-flash'),
     helpers = require('view-helpers'),
+    assetmanager = require('assetmanager'),
     config = require('./config');
 
 module.exports = function(app, passport, db) {
@@ -17,7 +18,7 @@ module.exports = function(app, passport, db) {
     app.locals.pretty = true;
 		// cache=memory or swig dies in NODE_ENV=production
 		app.locals.cache = 'memory';
-		
+
     // Should be placed before express.static
     // To ensure that all assets and data are compressed (utilize bandwidth)
     app.use(express.compress({
@@ -54,6 +55,22 @@ module.exports = function(app, passport, db) {
         app.use(express.urlencoded());
         app.use(express.json());
         app.use(express.methodOverride());
+
+        // Import your asset file
+        var assets = require('./assets.json');
+        assetmanager.init({
+            js: assets.js,
+            css: assets.css,
+            debug: (process.env.NODE_ENV !== 'production'),
+            webroot: 'public'
+        });
+        // Add assets to local variables
+        app.use(function (req, res, next) {
+            res.locals({
+                assets: assetmanager.assets
+            });
+            next();
+        });
 
         // Express/Mongo session storage
         app.use(express.session({
