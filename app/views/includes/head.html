@@ -19,11 +19,9 @@
     <meta property="og:site_name" content="MEAN - A Modern Stack">
     <meta property="fb:admins" content="APP_ADMIN">
 
-    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap-responsive.css"> -->
-    <link rel="stylesheet" href="/css/common.css">
-
-    <link rel="stylesheet" href="/css/views/articles.css">
+    {% for file in assets.css %}
+        <link rel="stylesheet" href="{{file}}">
+    {% endfor %}
 
 <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

@@ -47,7 +47,7 @@ $ npm install -g bower
 
 ## Troubleshooting
 During install some of you may encounter some issues, most of this issues can be solved by one of the following tips.
-If you went through all this and still can't solve the issue, feel free to contact me(Amos), via the repository issue tracker or the links provided below.
+If you went through all this and still can't solve the issue, feel free to contact us via the repository issue tracker or the links provided below.
 
 #### Update NPM, Bower or Grunt
 Sometimes you may find there is a weird error during install like npm's *Error: ENOENT*, usually updating those tools to the latest version solves the issue.
@@ -109,7 +109,7 @@ If you are using node instead of grunt, it is very similar:
   We pre-included an article example, check it out:
   * [The Model](app/models/article.js) - Where we define our object schema.
   * [The Controller](app/controllers/articles.js) - Where we take care of our backend logic.
-  * [NodeJS Routes](app/routes/articles.js) - Where we define our REST service routes.
+  * [NodeJS Routes](app/routes) - Where we define our REST service routes.
   * [AngularJs Routes](public/js/config.js) - Where we define our CRUD routes.
   * [The AngularJs Service](public/js/services/articles.js) - Where we connect to our REST service.
   * [The AngularJs Controller](public/js/controllers/articles.js) - Where we take care of  our frontend logic.
@@ -127,12 +127,13 @@ git push heroku master
 ```
 
 ## More Information
-  * Contact Amos Haviv on any issue via [E-Mail](mailto:mail@amoshaviv.com), [Facebook](http://www.facebook.com/amoshaviv), or [Twitter](http://www.twitter.com/amoshaviv).
   * Visit us at [Linnovate.net](http://www.linnovate.net/).
   * Visit our [Ninja's Zone](http://www.meanleanstartupmachine.com/) for extended support.
 
 ## Credits
-Inspired by the great work of [Madhusudhan Srinivasa](https://github.com/madhums/)
+* Inspired by the great work of [Madhusudhan Srinivasa](https://github.com/madhums/)
+* The MEAN name was coined by [Valeri Karpov](http://blog.mongodb.org/post/49262866911/the-mean-stack-mongodb-expressjs-angularjs-and)
+* MEAN could not be as great as it is without the contribution of the [following people](https://github.com/linnovate/mean/blob/master/AUTHORS). 
 
 ## License
 (The MIT License)
