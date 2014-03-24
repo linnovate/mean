@@ -36,7 +36,7 @@ var UserSchema = new Schema({
 UserSchema.virtual('password').set(function(password) {
     this._password = password;
     this.salt = this.makeSalt();
-    this.hashed_password = this.encryptPassword(password);
+    this.hashed_password = this.hashPassword(password);
 }).get(function() {
     return this._password;
 });
@@ -98,7 +98,7 @@ UserSchema.methods = {
      * @api public
      */
     authenticate: function(plainText) {
-        return this.encryptPassword(plainText) === this.hashed_password;
+        return this.hashPassword(plainText) === this.hashed_password;
     },
 
     /**
@@ -112,13 +112,13 @@ UserSchema.methods = {
     },
 
     /**
-     * Encrypt password
+     * Hash password
      *
      * @param {String} password
      * @return {String}
      * @api public
      */
-    encryptPassword: function(password) {
+    hashPassword: function(password) {
         if (!password || !this.salt) return '';
         var salt = new Buffer(this.salt, 'base64');
         return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
