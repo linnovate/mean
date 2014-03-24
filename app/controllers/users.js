@@ -83,7 +83,7 @@ exports.create = function(req, res, next) {
  * Send User
  */
 exports.me = function(req, res) {
-    res.jsonp(req.user || null);
+    res.json(req.user || null);
 };
 
 /**

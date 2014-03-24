@@ -34,7 +34,7 @@ exports.create = function(req, res) {
                 article: article
             });
         } else {
-            res.jsonp(article);
+            res.json(article);
         }
     });
 };
@@ -54,7 +54,7 @@ exports.update = function(req, res) {
                 article: article
             });
         } else {
-            res.jsonp(article);
+            res.json(article);
         }
     });
 };
@@ -72,7 +72,7 @@ exports.destroy = function(req, res) {
                 article: article
             });
         } else {
-            res.jsonp(article);
+            res.json(article);
         }
     });
 };
@@ -81,7 +81,7 @@ exports.destroy = function(req, res) {
  * Show an article
  */
 exports.show = function(req, res) {
-    res.jsonp(req.article);
+    res.json(req.article);
 };
 
 /**
@@ -94,7 +94,7 @@ exports.all = function(req, res) {
                 status: 500
             });
         } else {
-            res.jsonp(articles);
+            res.json(articles);
         }
     });
 };

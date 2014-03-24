@@ -44,9 +44,6 @@ module.exports = function(app, passport, db) {
     // Set views path, template engine and default layout
     app.set('views', config.root + '/app/views');
 
-    // Enable jsonp
-    app.enable('jsonp callback');
-
     app.configure(function() {
         // The cookieParser should be above session
         app.use(express.cookieParser());
