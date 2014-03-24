@@ -23,6 +23,10 @@ var config = require('./config/config'),
 
 // Bootstrap db connection
 var db = mongoose.connect(config.db);
+mongoose.connection.on('error', function (err) {
+    console.error('mongoose error: ' + err.message);
+    console.error(' is Mongo connected?');
+});
 
 // Bootstrap models
 var models_path = __dirname + '/app/models';
