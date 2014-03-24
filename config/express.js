@@ -12,10 +12,7 @@ var express = require('express'),
     expressValidator = require("express-validator"),
     assetmanager = require('assetmanager');
 
-module.exports = function(app, passport, db) {
-
-    var mean = module.parent.exports.mean;
-
+module.exports = function(mean, app, passport, db) {
     app.set('showStackError', true);
 
     // Prettify HTML
