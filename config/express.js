@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 var express = require('express'),
+    mean = require('meanio'),
     consolidate = require('consolidate'),
     mongoStore = require('connect-mongo')(express),
     flash = require('connect-flash'),
@@ -12,7 +13,7 @@ var express = require('express'),
     expressValidator = require("express-validator"),
     assetmanager = require('assetmanager');
 
-module.exports = function(mean, app, passport, db) {
+module.exports = function(app, passport, db) {
     app.set('showStackError', true);
 
     // Prettify HTML
@@ -68,7 +69,7 @@ module.exports = function(mean, app, passport, db) {
             webroot: 'public'
         });
         // Add assets to local variables
-        app.use(function (req, res, next) {
+        app.use(function(req, res, next) {
             res.locals({
                 assets: assetmanager.assets
             });
@@ -92,7 +93,7 @@ module.exports = function(mean, app, passport, db) {
         app.use(passport.session());
 
         //mean middleware from modules before routes
-        app.use(mean.get('middleware').before);
+        app.use(mean.chainware.before);
 
         // Connect flash for flash messages
         app.use(flash());
@@ -104,15 +105,19 @@ module.exports = function(mean, app, passport, db) {
         app.use(express.favicon());
         app.use(express.static(config.root + '/public'));
 
+        app.get('/modules/aggregated.js', function(req, res, next) {
+            res.setHeader('content-type', 'text/javascript');
+            res.send(mean.aggregated.js);
+        });
 
-        mean.events.on('enableMeanModules', function() {
-    
+        mean.events.on('modulesFound', function() {
+
             mean.modules.forEach(function(module, index) {
                 app.use('/' + module.name, express.static(config.root + '/node_modules/' + module.name + '/public'));
             });
 
             //mean middlware from modules after routes
-            app.use(mean.get('middleware').after);
+            app.use(mean.chainware.after);
 
             // Assume "not found" in the error msgs is a 404. this is somewhat
             // silly, but valid, you can do whatever you like, set properties,

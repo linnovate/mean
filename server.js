@@ -2,16 +2,21 @@
 /**
  *  Mean container for dependency injection
  */
-var dependable = require('dependable');
-var mean = exports.mean = dependable.container();
-var EventEmitter = require('events').EventEmitter;
-mean.events = new EventEmitter();
+var mean = require('meanio');
+mean.app('Mean Demo App',{});
+
+mean.register('one', function() {
+	return {
+		echo:function(text) {			
+			console.log(text);
+		}
+	}
+});
 
 /**
  * Module dependencies.
  */
-var express = require('express'),
-    mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
     passport = require('passport'),
     logger = require('mean-logger');
 
@@ -29,12 +34,7 @@ var config = require('./config/config');
 var db = mongoose.connect(config.db);
 
 // Bootstrap Models, Dependencies, Routes and the app as an express app
-var app = require('./config/system/bootstrap')(mean, passport, db);
-
-// TODO: add comment about what is this
-mean.resolve({}, function(modules) {
-
-});
+var app = require('./config/system/bootstrap')(passport, db);
 
 // Start the app by listening on <port>
 var port = process.env.PORT || config.port;

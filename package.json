@@ -25,6 +25,7 @@
     "postinstall": "node node_modules/bower/bin/bower install"
   },
   "dependencies": {
+    "meanio":"latest",
     "assetmanager": "^0.1.1",
     "express": "~3.4.7",
     "dependable": "0.2.5",

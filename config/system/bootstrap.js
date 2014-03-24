@@ -2,7 +2,9 @@ var fs = require('fs'),
     express = require('express'),
     appPath = process.cwd();
 
-module.exports = function(mean, passport, db) {
+var mean = require('meanio');
+
+module.exports = function(passport, db) {
     bootstrapModels();
 
     // Bootstrap passport config
@@ -11,14 +13,14 @@ module.exports = function(mean, passport, db) {
 
     // Express settings
     var app = express();
-    require(appPath + '/config/express')(mean, app, passport, db);
+    require(appPath + '/config/express')(app, passport, db);
 
     bootstrapRoutes();
 
     function bootstrapModels() {
         var models_path = appPath + '/app/models';
-        var walk = function (path) {
-            fs.readdirSync(path).forEach(function (file) {
+        var walk = function(path) {
+            fs.readdirSync(path).forEach(function(file) {
                 var newPath = path + '/' + file;
                 var stat = fs.statSync(newPath);
                 if (stat.isFile()) {
@@ -53,67 +55,11 @@ module.exports = function(mean, passport, db) {
         mean.register('app', function() {
             return app;
         });
-
-        mean.register('events', function() {
-            return mean.events;
-        });
-
-        mean.register('middleware', function() {
-            var middleware = {};
-
-            middleware.add = function(event, weight, func) {
-                mean.middleware[event].splice(weight, 0, {
-                    weight: weight,
-                    func: func
-                });
-                mean.middleware[event].join();
-                mean.middleware[event].sort(function(a, b) {
-                    if (a.weight < b.weight) {
-                        a.next = b.func;
-                    } else {
-                        b.next = a.func;
-                    }
-                    return (a.weight - b.weight);
-                });
-            };
-
-            middleware.before = function(req, res, next) {
-                if (!mean.middleware.before.length) return next();
-                chain('before', 0, req, res, next);
-            };
-
-            middleware.after = function(req, res, next) {
-                if (!mean.middleware.after.length) return next();
-                chain('after', 0, req, res, next);
-            };
-
-            function chain(operator, index, req, res, next) {
-                var args = [req, res,
-                    function() {
-                        if (mean.middleware[operator][index + 1]) {
-                            chain('before', index + 1, req, res, next);
-                        } else {
-                            next();
-                        }
-                    }
-                ];
-
-                mean.middleware[operator][index].func.apply(this, args);
-            }
-
-            return middleware;
-        });
-
-
-        mean.register('modules', function(app, auth, database, events, middleware) {
-            require(appPath + '/config/system/modules')(mean, app, auth, database, events, middleware);
-        });
     }
 
     function bootstrapRoutes() {
-        var routes_path =  appPath + '/app/routes';
+        var routes_path = appPath + '/app/routes';
         var walk = function(path) {
-            console.log(path);
             fs.readdirSync(path).forEach(function(file) {
                 var newPath = path + '/' + file;
                 var stat = fs.statSync(newPath);
