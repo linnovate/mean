@@ -110,6 +110,12 @@ module.exports = function(app, passport, db) {
             res.send(mean.aggregated.js);
         });
 
+
+        app.get('/modules/aggregated.css', function(req, res, next) {
+            res.setHeader('content-type', 'text/css');
+            res.send(mean.aggregated.css);
+        });        
+
         mean.events.on('modulesFound', function() {
 
             mean.modules.forEach(function(module, index) {
