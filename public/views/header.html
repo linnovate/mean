@@ -3,8 +3,8 @@
         <li>
             <a class="navbar-brand" href="/">MEAN - A Modern Stack</a>
         </li>
-        <li data-ng-repeat="item in menu" data-ng-show="global.user" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
-            <a href="#!/{{item.link}}">{{item.title}}</a>
+        <li data-ng-repeat="item in menu" data-ng-show="global.user" ui-sref-active="active" class="item">
+            <a ui-sref="{{item.link}}">{{item.title}}</a>
         </li>
     </ul>
     <ul class="navbar-nav nav pull-right" data-ng-hide="global.authenticated">
