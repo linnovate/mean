@@ -23,6 +23,7 @@ module.exports = function(config) {
             'public/lib/angular-ui-router/release/angular-ui-router.js',
             'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
             'public/lib/angular-bootstrap/ui-bootstrap.js',
+            "public/lib/angular-ui-utils/route.js",
             'public/js/app.js',
             'public/js/config.js',
             'public/js/directives.js',
