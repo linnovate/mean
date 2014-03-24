@@ -8,7 +8,7 @@ angular.module('mean').config(['$stateProvider', '$urlRouterProvider',
 
     // states for my app
     $stateProvider
-      .state('all articles', {
+      .state('articles', {
         url: '/articles',
         templateUrl: 'views/articles/list.html'
     })
@@ -20,7 +20,7 @@ angular.module('mean').config(['$stateProvider', '$urlRouterProvider',
         url: '/articles/:articleId/edit',
         templateUrl: 'views/articles/edit.html'
     })
-      .state('article by id', {
+      .state('view article', {
         url: '/articles/:articleId',
         templateUrl: 'views/articles/view.html'
     })
