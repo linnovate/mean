@@ -2,12 +2,12 @@
 
 var mongoose = require('mongoose'),
     LocalStrategy = require('passport-local').Strategy,
-    TwitterStrategy = require('passport-twitter').Strategy,
-    FacebookStrategy = require('passport-facebook').Strategy,
-    GitHubStrategy = require('passport-github').Strategy,
-    GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
-    LinkedinStrategy = require('passport-linkedin').Strategy,
-    User = mongoose.model('User'),
+    //TwitterStrategy = require('passport-twitter').Strategy,
+    //FacebookStrategy = require('passport-facebook').Strategy,
+    //GitHubStrategy = require('passport-github').Strategy,
+    //GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
+    //LinkedinStrategy = require('passport-linkedin').Strategy,
+    User = mongoose.model('Company'),
     config = require('./config');
 
 module.exports = function(passport) {
@@ -55,6 +55,7 @@ module.exports = function(passport) {
     ));
 
     // Use twitter strategy
+    /*
     passport.use(new TwitterStrategy({
             consumerKey: config.twitter.clientID,
             consumerSecret: config.twitter.clientSecret,
@@ -84,8 +85,10 @@ module.exports = function(passport) {
             });
         }
     ));
+    */
 
     // Use facebook strategy
+    /*
     passport.use(new FacebookStrategy({
             clientID: config.facebook.clientID,
             clientSecret: config.facebook.clientSecret,
@@ -116,8 +119,10 @@ module.exports = function(passport) {
             });
         }
     ));
+    */
 
     // Use github strategy
+    /*
     passport.use(new GitHubStrategy({
             clientID: config.github.clientID,
             clientSecret: config.github.clientSecret,
@@ -145,8 +150,10 @@ module.exports = function(passport) {
             });
         }
     ));
+    */
 
     // Use google strategy
+    /*
     passport.use(new GoogleStrategy({
             clientID: config.google.clientID,
             clientSecret: config.google.clientSecret,
@@ -174,8 +181,10 @@ module.exports = function(passport) {
             });
         }
     ));
+    */
 
     // use linkedin strategy
+    /*
     passport.use(new LinkedinStrategy({
             consumerKey: config.linkedin.clientID,
             consumerSecret: config.linkedin.clientSecret,
@@ -203,4 +212,5 @@ module.exports = function(passport) {
             });
         }
     ));
+    */
 };

@@ -1,0 +1,63 @@
+db
+
+
+compnay=
+{
+	"id":{},
+	"register_info":{},
+	"team_info":{},
+	“activity":{},
+	"account_info":{
+		"username":{},
+		"password":{}
+	},
+	"report_info”:{},
+	
+}
+
+manager=
+{
+	"id":{},
+	"team":[],
+	"company_id":{}
+}
+
+team=
+{
+	"id":{},
+	"name":{},
+	"logo":{},
+	"score":{},
+	"memberNum":{},
+	"company_id":{}
+}
+
+
+permission=
+{
+	"name":{},
+	"id":{},
+	"role":["MANAGER","EMPLOYEE","TEAMLEADER"],
+	"team_id":{},
+	"company_id":{}
+}
+
+employee=
+{
+	"info":{
+		"alias":{},
+		"phone":{},
+		"department:"{},
+		"job":{},
+		""
+	}
+	"id":{},
+	"team_id":{},
+	"username":{},
+	"active":false,
+	"role":{},
+	"company_id":{}
+}
+
+
+

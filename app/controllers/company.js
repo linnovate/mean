@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    User = mongoose.model('User');
+    Company = mongoose.model('Company');
 
 /**
  * Auth callback
@@ -17,8 +17,8 @@ exports.authCallback = function(req, res) {
  * Show login form
  */
 exports.signin = function(req, res) {
-    res.render('users/signin', {
-        title: 'Signin',
+    res.render('company/signin', {
+        title: '登录',
         message: req.flash('error')
     });
 };
@@ -27,9 +27,9 @@ exports.signin = function(req, res) {
  * Show sign up form
  */
 exports.signup = function(req, res) {
-    res.render('users/signup', {
-        title: 'Sign up',
-        user: new User()
+    res.render('company/signup', {
+        title: '注册',
+        company: new Company()
     });
 };
 
@@ -49,14 +49,14 @@ exports.session = function(req, res) {
 };
 
 /**
- * Create user
+ * Create company
  */
 exports.create = function(req, res, next) {
-    var user = new User(req.body);
+    var comapny = new Company(req.body);
     var message = null;
 
-    user.provider = 'local';
-    user.save(function(err) {
+    comapny.provider = 'local';
+    comapny.save(function(err) {
         if (err) {
             switch (err.code) {
                 case 11000:
@@ -67,12 +67,12 @@ exports.create = function(req, res, next) {
                     message = '请填写完整信息啊!';
             }
 
-            return res.render('users/signup', {
+            return res.render('comapny/signup', {
                 message: message,
-                user: user
+                comapny: comapny
             });
         }
-        req.logIn(user, function(err) {
+        req.logIn(company, function(err) {
             if (err) return next(err);
             return res.redirect('/');
         });
@@ -80,24 +80,24 @@ exports.create = function(req, res, next) {
 };
 
 /**
- * Send User
+ * Send Company
  */
 exports.me = function(req, res) {
-    res.jsonp(req.user || null);
+    res.jsonp(req.company || null);
 };
 
 /**
- * Find user by id
+ * Find company by id
  */
-exports.user = function(req, res, next, id) {
-    User
+exports.comapny = function(req, res, next, id) {
+    Company
         .findOne({
             _id: id
         })
-        .exec(function(err, user) {
+        .exec(function(err, company) {
             if (err) return next(err);
-            if (!user) return next(new Error('Failed to load User ' + id));
-            req.profile = user;
+            if (!company) return next(new Error('Failed to load Company ' + id));
+            req.profile = company;
             next();
         });
 };

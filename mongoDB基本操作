@@ -1,0 +1,22 @@
+mongoDB基本操作
+
+>use database
+>db
+
+>row={"name":"value","uid":"222","num":99}
+>db.collections.insert(row);
+>db.collections.find();      //一个集合的所有文档［一张表的所有行］
+>db.collections.findOne();
+
+//增加新的键
+>row.password=
+>db.collections.update({"uid":"222"},row); 
+
+
+//删除
+>db.collections.remove({"name":"value"});
+
+
+//修改器
+>database.collections.update({"name":"value"},{"$inc":{"num":1}})
+>database.collections.update({"name":"value"},{"$set":{"doubi":"you"}})
