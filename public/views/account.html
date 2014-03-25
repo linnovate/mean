@@ -1,0 +1,8 @@
+<section data-ng-controller="IndexController">
+	<h1>This is the Account view</h1>
+	<a target="_self" ng-disabled="global.user.github" href="auth/github" class="btn btn-lg btn-primary">{{global.user.github ? 'Github added!' : 'Add Github Account'}}</a>
+  	<a target="_self" ng-disabled="global.user.twitter" href="auth/twitter" class="btn btn-lg btn-primary">{{global.user.twitter ? 'Twitter added!' : 'Add Twitter Account'}}</a>
+  	<a target="_self" ng-disabled="global.user.facebook" href="auth/facebook" class="btn btn-lg btn-primary">{{global.user.facebook ? 'Facebook added!' : 'Add Facebook Account'}}</a>
+  	<a target="_self" ng-disabled="global.user.google" href="auth/google" class="btn btn-lg btn-primary">{{global.user.google ? 'Google added!' : 'Add Google Account'}}</a>
+  	<a target="_self" ng-disabled="global.user.linkedin" href="auth/linkedin" class="btn btn-lg btn-primary">{{global.user.linkedin ? 'LinkedIn added!' : 'Add LinkedIn Account'}}</a>
+</section>
