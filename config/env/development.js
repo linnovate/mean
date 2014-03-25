@@ -4,7 +4,8 @@ module.exports = {
     db: 'mongodb://localhost/mean-dev',
     app: {
         name: 'MEAN - A Modern Stack - Development'
-    },
+    }
+    /*
     facebook: {
         clientID: 'APP_ID',
         clientSecret: 'APP_SECRET',
@@ -30,4 +31,5 @@ module.exports = {
         clientSecret: 'SECRET_KEY',
         callbackURL: 'http://localhost:3000/auth/linkedin/callback'
     }
+    */
 };
