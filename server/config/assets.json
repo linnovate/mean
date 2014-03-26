@@ -13,8 +13,7 @@
 			"public/lib/angular-ui-router/release/angular-ui-router.js",
 			"public/lib/angular-bootstrap/ui-bootstrap.js",
 			"public/lib/angular-bootstrap/ui-bootstrap-tpls.js",
-			"public/js/**/*.js",
-                        "modules/aggregated.js"
+			"public/js/**/*.js"
 		]
 	}
 }

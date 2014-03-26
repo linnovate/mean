@@ -22,11 +22,11 @@ var mongoose = require('mongoose'),
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Initializing system variables
-var config = require('./config/config');
+var config = require('./server/config/config');
 var db = mongoose.connect(config.db);
 
 // Bootstrap Models, Dependencies, Routes and the app as an express app
-var app = require('./config/system/bootstrap')(passport, db);
+var app = require('./server/config/system/bootstrap')(passport, db);
 
 // Start the app by listening on <port>
 var port = process.env.PORT || config.port;

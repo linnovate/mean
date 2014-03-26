@@ -47,7 +47,7 @@ module.exports = function(app, passport, db) {
     app.set('view engine', 'html');
 
     // Set views path, template engine and default layout
-    app.set('views', config.root + '/app/views');
+    app.set('views', config.root + '/server/views');
 
     // Enable jsonp
     app.enable('jsonp callback');
@@ -159,7 +159,7 @@ module.exports = function(app, passport, db) {
     });
 
     function bootstrapRoutes() {
-        var routes_path = appPath + '/app/routes';
+        var routes_path = appPath + '/server/routes';
         var walk = function(path) {
             fs.readdirSync(path).forEach(function(file) {
                 var newPath = path + '/' + file;

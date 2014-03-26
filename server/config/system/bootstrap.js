@@ -8,15 +8,15 @@ module.exports = function(passport, db) {
     bootstrapModels();
 
     // Bootstrap passport config
-    require(appPath + '/config/passport')(passport);
+    require(appPath + '/server/config/passport')(passport);
     bootstrapDependencies();
 
     // Express settings
     var app = express();
-    require(appPath + '/config/express')(app, passport, db);
+    require(appPath + '/server/config/express')(app, passport, db);
 
     function bootstrapModels() {
-        var models_path = appPath + '/app/models';
+        var models_path = appPath + '/server/models';
         var walk = function(path) {
             fs.readdirSync(path).forEach(function(file) {
                 var newPath = path + '/' + file;
@@ -41,7 +41,7 @@ module.exports = function(passport, db) {
 
         // Register auth dependency
         mean.register('auth', function() {
-            return require(appPath + '/app/routes/middlewares/authorization');
+            return require(appPath + '/server/routes/middlewares/authorization');
         });
 
         // Register database dependency
