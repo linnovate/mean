@@ -34,11 +34,11 @@ module.exports = function(app, passport, db) {
         app.use(express.logger('dev'));
     }
 
-    // assign the template engine to .html files
-    app.engine('html', consolidate[config.templateEngine]);
+    // assign the template engine to .jade files
+    app.engine('jade', consolidate[config.templateEngine]);
 
-    // set .html as the default extension
-    app.set('view engine', 'html');
+    // set .jade as the default extension
+    app.set('view engine', 'jade');
 
     // Set views path, template engine and default layout
     app.set('views', config.root + '/app/views');
