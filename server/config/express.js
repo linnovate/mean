@@ -68,7 +68,7 @@ module.exports = function(app, passport, db) {
             js: assets.js,
             css: assets.css,
             debug: (process.env.NODE_ENV !== 'production'),
-            webroot: 'public'
+            webroot: 'public/public'
         });
         // Add assets to local variables
         app.use(function(req, res, next) {
@@ -105,7 +105,7 @@ module.exports = function(app, passport, db) {
 
         // Setting the fav icon and static folder
         app.use(express.favicon());
-        app.use(express.static(config.root + '/public'));
+        app.use('/public',express.static(config.root + '/public'));
 
         app.get('/modules/aggregated.js', function(req, res, next) {
             res.setHeader('content-type', 'text/javascript');
