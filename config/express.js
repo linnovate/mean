@@ -77,6 +77,9 @@ module.exports = function(app, passport, db) {
         // Routes should be at the last
         app.use(app.router);
 
+        // Setting the stylus, must before the static folder setting
+        app.use(require('stylus').middleware(config.root + '/public'));
+
         // Setting the fav icon and static folder
         app.use(express.favicon());
         app.use(express.static(config.root + '/public'));
