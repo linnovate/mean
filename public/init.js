@@ -6,7 +6,7 @@ angular.element(document).ready(function() {
 
     //Then init the app
     angular.bootstrap(document, ['mean']);
-});
 
+});
 
 angular.module('mean', ['ngCookies', 'ngResource', 'ui.bootstrap', 'ui.router', 'mean.system', 'mean.articles','mean.auth']);
