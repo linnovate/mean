@@ -61,49 +61,49 @@ angular.module('mean').config(['$stateProvider', '$urlRouterProvider',
             $stateProvider
                 .state('all articles', {
                     url: '/articles',
-                    templateUrl: 'views/articles/list.html',
+                    templateUrl: 'articles/views/list.html',
                     resolve: {
                         loggedin: checkLoggedin
                     }
                 })
                 .state('create article', {
                     url: '/articles/create',
-                    templateUrl: 'views/articles/create.html',
+                    templateUrl: 'articles/views/create.html',
                     resolve: {
                         loggedin: checkLoggedin
                     }
                 })
                 .state('edit article', {
                     url: '/articles/:articleId/edit',
-                    templateUrl: 'views/articles/edit.html',
+                    templateUrl: 'articles/views/edit.html',
                     resolve: {
                         loggedin: checkLoggedin
                     }
                 })
                 .state('article by id', {
                     url: '/articles/:articleId',
-                    templateUrl: 'views/articles/view.html',
+                    templateUrl: 'articles/views/view.html',
                     resolve: {
                         loggedin: checkLoggedin
                     }
                 })
                 .state('home', {
                     url: '/',
-                    templateUrl: 'views/index.html'
+                    templateUrl: 'system/views/index.html'
                 })
                 .state('auth', {
-                    templateUrl: 'views/auth/index.html'
+                    templateUrl: 'auth/views/index.html'
                 })
                 .state('auth.login', {
                     url: '/login',
-                    templateUrl: 'views/auth/login.html',
+                    templateUrl: 'auth/views/login.html',
                     resolve: {
                         loggedin: checkLoggedOut
                     }
                 })
                 .state('auth.register', {
                     url: '/register',
-                    templateUrl: 'views/auth/register.html',
+                    templateUrl: 'auth/views/register.html',
                     resolve: {
                         loggedin: checkLoggedOut
                     }
