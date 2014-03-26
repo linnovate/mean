@@ -10,25 +10,30 @@ angular.module('mean').config(['$stateProvider', '$urlRouterProvider',
     $stateProvider
       .state('all articles', {
         url: '/articles',
-        templateUrl: 'views/articles/list.html'
-    })
-      .state('create article', {
+            controller: 'ArticlesController',
+            templateUrl: 'views/articles/list.html'
+        })
+        .state('create article', {
         url: '/articles/create',
-        templateUrl: 'views/articles/create.html'
-    })
-      .state('edit article', {
+            controller: 'ArticlesController',
+            templateUrl: 'views/articles/create.html'
+        })
+        .state('edit article', {
         url: '/articles/:articleId/edit',
-        templateUrl: 'views/articles/edit.html'
-    })
-      .state('article by id', {
+            controller: 'ArticlesController',
+            templateUrl: 'views/articles/edit.html'
+        })
+        .state('article by id', {
         url: '/articles/:articleId',
-        templateUrl: 'views/articles/view.html'
-    })
-      .state('home', {
+            controller: 'ArticlesController',
+            templateUrl: 'views/articles/view.html'
+        })
+        .state('home', {
         url: '/',
-        templateUrl: 'views/index.html'
-    });
-}
+            controller: 'IndexController',
+            templateUrl: 'views/index.html'
+        });
+  }
 ]);
 
 //Setting HTML5 Location Mode
