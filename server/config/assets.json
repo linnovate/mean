@@ -1,19 +1,20 @@
 {
 	"css": {
 		"public/build/css/dist.min.css": [
-			"public/lib/bootstrap/dist/css/bootstrap.css",
+			"public/system/lib/bootstrap/dist/css/bootstrap.css",
 			"public/**/assets/css/*.css"
 		]
 	},
 	"js": {
 		"public/build/js/dist.min.js": [
-			"public/lib/angular/angular.js",
-			"public/lib/angular-cookies/angular-cookies.js",
-			"public/lib/angular-resource/angular-resource.js",
-			"public/lib/angular-ui-router/release/angular-ui-router.js",
-			"public/lib/angular-bootstrap/ui-bootstrap.js",
-			"public/lib/angular-bootstrap/ui-bootstrap-tpls.js",
-			"public/js/**/*.js"
+			"public/system/lib/angular/angular.js",
+			"public/system/lib/angular-cookies/angular-cookies.js",
+			"public/system/lib/angular-resource/angular-resource.js",
+			"public/system/lib/angular-ui-router/release/angular-ui-router.js",
+			"public/system/lib/angular-bootstrap/ui-bootstrap.js",
+			"public/system/lib/angular-bootstrap/ui-bootstrap-tpls.js",			
+			"public/*/*.js",
+			"public/*/*/*.js"			
 		]
 	}
 }

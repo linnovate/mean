@@ -1,5 +1,5 @@
 {
-  "directory": "public/lib",
+  "directory": "public/system/lib",
   "storage": {
           "packages": ".bower-cache",
           "registry": ".bower-registry"
