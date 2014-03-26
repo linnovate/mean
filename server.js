@@ -5,14 +5,6 @@
 var mean = require('meanio');
 mean.app('Mean Demo App',{});
 
-mean.register('one', function() {
-	return {
-		echo:function(text) {			
-			console.log(text);
-		}
-	}
-});
-
 /**
  * Module dependencies.
  */
