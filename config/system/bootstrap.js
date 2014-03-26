@@ -15,8 +15,6 @@ module.exports = function(passport, db) {
     var app = express();
     require(appPath + '/config/express')(app, passport, db);
 
-    bootstrapRoutes();
-
     function bootstrapModels() {
         var models_path = appPath + '/app/models';
         var walk = function(path) {
@@ -55,27 +53,6 @@ module.exports = function(passport, db) {
         mean.register('app', function() {
             return app;
         });     
-    }
-
-    function bootstrapRoutes() {
-        var routes_path = appPath + '/app/routes';
-        var walk = function(path) {
-            fs.readdirSync(path).forEach(function(file) {
-                var newPath = path + '/' + file;
-                var stat = fs.statSync(newPath);
-                if (stat.isFile()) {
-                    if (/(.*)\.(js$|coffee$)/.test(file)) {
-                        require(newPath)(app, passport);
-                    }
-                    // We skip the app/routes/middlewares directory as it is meant to be
-                    // used and shared by routes as further middlewares and is not a
-                    // route by itself
-                } else if (stat.isDirectory() && file !== 'middlewares') {
-                    walk(newPath);
-                }
-            });
-        };
-        walk(routes_path);
     }
 
     return app;

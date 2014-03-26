@@ -11,6 +11,8 @@ var express = require('express'),
     helpers = require('view-helpers'),
     config = require('./config'),
     expressValidator = require("express-validator"),
+    appPath = process.cwd(),
+    fs = require('fs'),
     assetmanager = require('assetmanager');
 
 module.exports = function(app, passport, db) {
@@ -114,13 +116,15 @@ module.exports = function(app, passport, db) {
         app.get('/modules/aggregated.css', function(req, res, next) {
             res.setHeader('content-type', 'text/css');
             res.send(mean.aggregated.css);
-        });        
+        });
 
         mean.events.on('modulesFound', function() {
 
             mean.modules.forEach(function(module, index) {
                 app.use('/' + module.name, express.static(config.root + '/node_modules/' + module.name + '/public'));
             });
+
+            bootstrapRoutes();
 
             //mean middlware from modules after routes
             app.use(mean.chainware.after);
@@ -153,4 +157,25 @@ module.exports = function(app, passport, db) {
 
 
     });
+
+    function bootstrapRoutes() {
+        var routes_path = appPath + '/app/routes';
+        var walk = function(path) {
+            fs.readdirSync(path).forEach(function(file) {
+                var newPath = path + '/' + file;
+                var stat = fs.statSync(newPath);
+                if (stat.isFile()) {
+                    if (/(.*)\.(js$|coffee$)/.test(file)) {
+                        require(newPath)(app, passport);
+                    }
+                    // We skip the app/routes/middlewares directory as it is meant to be
+                    // used and shared by routes as further middlewares and is not a
+                    // route by itself
+                } else if (stat.isDirectory() && file !== 'middlewares') {
+                    walk(newPath);
+                }
+            });
+        };
+        walk(routes_path);
+    }
 };
