@@ -10,9 +10,6 @@ module.exports = function(app, passport) {
     app.get('/signout', users.signout);
     app.get('/users/me', users.me);
 
-    // Setting up the users api
-    app.post('/users', users.create);
-
     // Setting up the userId param
     app.param('userId', users.user);
 

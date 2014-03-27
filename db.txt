@@ -60,4 +60,55 @@ employee=
 }
 
 
+.form-group
+      label.col-md-4.control-label(for="name") 公司名称
+      .col-md-8
+        input#name.form-control(type="text" name="name" placeholder="Full Name" value=company.info.name)
+
+    .form-group
+      label.col-md-4.control-label(for="province") 省
+      .col-md-8
+        input#province.form-control(type="text" name="province" placeholder="Province" value=company.info.city.province)
+
+    .form-group
+      label.col-md-4.control-label(for="city") 城市
+      .col-md-8
+        input#city.form-control(type="text" name="city" placeholder="City" value=company.info.city.city)
+
+    .form-group
+      label.col-md-4.control-label(for="linkman") 联系人
+      .col-md-8
+        input#linkman.form-control(type="text" name="linkman" placeholder="Linkman" value=company.info.linkman)
+
+    .form-group
+      label.col-md-4.control-label(for="address") 公司地址
+      .col-md-8
+        input#address.form-control(type="text" name="address" placeholder="Address" value=company.info.address)
+
+    .form-group
+      label.col-md-4.control-label(for="areacode") 区号
+      .col-md-8
+        input#areacode.form-control(type="text" name="areacode" placeholder="Areacode" value=company.info.lindline.areacode)
+    .form-group
+      label.col-md-4.control-label(for="number") 号码
+      .col-md-8
+        input#number.form-control(type="text" name="number" placeholder="NUmber" value=company.info.lindline.number)
+    .form-group
+      label.col-md-4.control-label(for="extension") 分机
+      .col-md-8
+        input#extension.form-control(type="text" name="extension" placeholder="Extension" value=company.info.lindline.extension)
+
+    .form-group
+      label.col-md-4.control-label(for="phone") 联系人电话
+      .col-md-8
+        input#phone.form-control(type="text" name="phone" placeholder="Phone" value=company.info.phone)
+
+    .form-group
+      label.col-md-4.control-label(for="host") Email-Host
+      .col-md-8
+        input#host.form-control(type="text" name="host" placeholder="邮箱名" value=company.email.host)
+    .form-group
+      label.col-md-4.control-label(for="domain") Email-Domain
+      .col-md-8
+        input#domain.form-control(type="text" name="domain" placeholder="邮箱后缀" value=company.email.domain[0])
 

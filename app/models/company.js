@@ -12,24 +12,47 @@ var mongoose = require('mongoose'),
  */
 var CompanySchema = new Schema({
     id: String,
-
-    name: String,
-    city: String,
-    address: String,
-    phone: String,
-    lindline: String,
-
-    email: String,
-
-    domain: Array,
-    invate_code: String,
-    
     username: String,
     hashed_password: String,
+
+
+    email: {
+        host: String,               //邮箱名
+        domain: Array               //邮箱后缀(多个)
+    },
+
+    //是否激活
+    active: {
+        type: Boolean,
+        default: false
+    },
+
+    //公司信息
+    info: {
+        name: String,                //公司名
+        city: {
+            province: String,
+            city: String
+        },
+        address: String,
+        phone: String,
+
+        //固话
+        lindline: {
+            areacode: String,         //区号
+            number: String,           //号码
+            extension: String         //分机
+        },
+        linkman: String               //联系人
+    },
+    
+    //公司内部组件
+    main: {
+        invate_code: String,
+        team_info: Array              //存放组的id
+    },
     provider: String,
-    salt: String,
-    team_info: Array,          //存放组的id
-    active: false              //是否激活
+    salt: String
 });
 
 /**
@@ -51,13 +74,13 @@ var validatePresenceOf = function(value) {
 };
 
 // The 4 validations below only apply if you are signing up traditionally.
-CompanySchema.path('name').validate(function(name) {
+CompanySchema.path('info.name').validate(function(name) {
     // If you are authenticating by any of the oauth strategies, don't validate.
     if (!this.provider) return true;
     return (typeof name === 'string' && name.length > 0);
 }, 'Name cannot be blank');
 
-CompanySchema.path('email').validate(function(email) {
+CompanySchema.path('email.host').validate(function(email) {
     // If you are authenticating by any of the oauth strategies, don't validate.
     if (!this.provider) return true;
     return (typeof email === 'string' && email.length > 0);

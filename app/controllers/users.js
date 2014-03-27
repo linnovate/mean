@@ -45,39 +45,36 @@ exports.signout = function(req, res) {
  * Session
  */
 exports.session = function(req, res) {
-    res.redirect('/');
-};
-
-/**
- * Create user
- */
-exports.create = function(req, res, next) {
-    var user = new User(req.body);
-    var message = null;
-
-    user.provider = 'local';
-    user.save(function(err) {
-        if (err) {
-            switch (err.code) {
-                case 11000:
-                case 11001:
-                    message = '用户名已经存在!';
-                    break;
-                default:
-                    message = '请填写完整信息啊!';
-            }
-
-            return res.render('users/signup', {
-                message: message,
-                user: user
+    User.findOne({
+        username: req.body.username
+    },
+    function (err, user) {
+        if (user) {
+            if (err) 
+                res.render('users/signin', {
+                    title: '用户登录',
+                    message: "用户名不存在!"
+                });
+            if (User.eptPass(req.password)==user.hashed_password) {
+                req.session.user.name = user.username;
+                req.session.user.permission = user.permission;
+                res.redirect('/');
+            }else{
+                res.render('users/signin', {
+                    title: '用户登录',
+                    message: "密码不正确!"
+                });
+            };
+        } else {
+            res.render('users/signin', {
+                title: '用户登录',
+                message: "用户不存在!"
             });
         }
-        req.logIn(user, function(err) {
-            if (err) return next(err);
-            return res.redirect('/');
-        });
     });
+    
 };
+
 
 /**
  * Send User
