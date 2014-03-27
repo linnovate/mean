@@ -88,16 +88,15 @@ exports.create = function(req, res, next) {
     comapny.provider = 'local';
     comapny.save(function(err) {
         if (err) {
-                //检查信息是否重复
+            //检查信息是否重复
             
-
             return res.render('comapny/company_signup', {
                 message: message,
                 comapny: comapny
             });
         }
-        //req.session.user = company;
-        //res.redirect('/');
+        req.session.user = company;
+        res.redirect('/');
     });
 };
 

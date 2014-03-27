@@ -12,14 +12,18 @@ var mongoose = require('mongoose'),
  */
 var CompanySchema = new Schema({
     id: String,
+
     name: String,
     city: String,
     address: String,
     phone: String,
     lindline: String,
+
     email: String,
+
     domain: Array,
     invate_code: String,
+    
     username: String,
     hashed_password: String,
     provider: String,
