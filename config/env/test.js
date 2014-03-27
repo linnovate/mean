@@ -5,7 +5,9 @@ module.exports = {
     port: 3001,
     app: {
         name: 'MEAN - A Modern Stack - Test'
-    },
+    }
+    
+    /*
     facebook: {
         clientID: 'APP_ID',
         clientSecret: 'APP_SECRET',
@@ -31,4 +33,5 @@ module.exports = {
         clientSecret: 'SECRET_KEY',
         callbackURL: 'http://localhost:3000/auth/linkedin/callback'
     }
+    */
 };

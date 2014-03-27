@@ -18,5 +18,15 @@ footer {
   box-shadow: 0 8px 6px 6px #000;
 }
 footer p {
+<<<<<<< HEAD
   padding: 5px 0 12px 10px;
 }
+=======
+    padding:5px 0 12px 10px
+}
+
+.navbar-inverse {
+    background-color: green;
+    border-color: #fff
+}
+>>>>>>> 51ca9daa752b531c9391cdfcdd56cf0ee928da8a

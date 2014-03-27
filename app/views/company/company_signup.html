@@ -1,0 +1,34 @@
+{% block auth %}
+    <form class="signin form-horizontal" action="/company" method="post">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="name">公司名称</label>
+            <div class="col-md-8">
+                <input id="name" class="form-control" type="text" name="name" placeholder="Full Name" value="{{company.name}}" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="email">Email</label>
+            <div class="col-md-8">
+                <input id="email" class="form-control" type="text" name="email" placeholder="Email" value="{{company.email}}" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="username">用户名</label>
+            <div class="col-md-8">
+                <input id="username" class="form-control" type="text" name="username" placeholder="Username" value="{{company.username}}" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">密码</label>
+            <div class="col-md-8">
+                <input id="password" class="form-control" type="password" name="password" placeholder="Password" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-8">
+                <button class="btn btn-primary" type="submit">注册</button>&nbsp;
+                or&nbsp;<a class="show-login" href="/signin">登录</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}

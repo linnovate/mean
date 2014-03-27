@@ -6,7 +6,7 @@
 var express = require('express'),
     consolidate = require('consolidate'),
     mongoStore = require('connect-mongo')(express),
-    flash = require('connect-flash'),
+    flash = require('connect-flash'),   //session operate
     helpers = require('view-helpers'),
     config = require('./config');
 

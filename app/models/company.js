@@ -10,36 +10,27 @@ var mongoose = require('mongoose'),
 /**
  * User Schema
  */
-var UserSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
+var CompanySchema = new Schema({
+    id: String,
+    name: String,
+    city: String,
+    address: String,
+    phone: String,
+
     email: String,
-    username: {
-        type: String,
-        unique: true
-    },
+    domain: Array,
+    invate_code: String,
+    username: String,
     hashed_password: String,
     provider: String,
     salt: String,
-    info:{
-        alial: String,
-        phone: String,
-        department: String,
-        job: String,
-        job_id: String
-    }
-    team_id: String,
-    company_id: String
-    role: String,
-    active: false
+    team_info: Array          //存放组的id
 });
 
 /**
  * Virtuals
  */
-UserSchema.virtual('password').set(function(password) {
+CompanySchema.virtual('password').set(function(password) {
     this._password = password;
     this.salt = this.makeSalt();
     this.hashed_password = this.encryptPassword(password);
@@ -55,25 +46,25 @@ var validatePresenceOf = function(value) {
 };
 
 // The 4 validations below only apply if you are signing up traditionally.
-UserSchema.path('name').validate(function(name) {
+CompanySchema.path('name').validate(function(name) {
     // If you are authenticating by any of the oauth strategies, don't validate.
     if (!this.provider) return true;
     return (typeof name === 'string' && name.length > 0);
 }, 'Name cannot be blank');
 
-UserSchema.path('email').validate(function(email) {
+CompanySchema.path('email').validate(function(email) {
     // If you are authenticating by any of the oauth strategies, don't validate.
     if (!this.provider) return true;
     return (typeof email === 'string' && email.length > 0);
 }, 'Email cannot be blank');
 
-UserSchema.path('username').validate(function(username) {
+CompanySchema.path('username').validate(function(username) {
     // If you are authenticating by any of the oauth strategies, don't validate.
     if (!this.provider) return true;
     return (typeof username === 'string' && username.length > 0);
 }, 'Username cannot be blank');
 
-UserSchema.path('hashed_password').validate(function(hashed_password) {
+CompanySchema.path('hashed_password').validate(function(hashed_password) {
     // If you are authenticating by any of the oauth strategies, don't validate.
     if (!this.provider) return true;
     return (typeof hashed_password === 'string' && hashed_password.length > 0);
@@ -83,7 +74,7 @@ UserSchema.path('hashed_password').validate(function(hashed_password) {
 /**
  * Pre-save hook
  */
-UserSchema.pre('save', function(next) {
+CompanySchema.pre('save', function(next) {
     if (!this.isNew) return next();
 
     if (!validatePresenceOf(this.password) && !this.provider)
@@ -95,7 +86,7 @@ UserSchema.pre('save', function(next) {
 /**
  * Methods
  */
-UserSchema.methods = {
+CompanySchema.methods = {
     /**
      * Authenticate - check if the passwords are the same
      *
@@ -131,4 +122,4 @@ UserSchema.methods = {
     }
 };
 
-mongoose.model('User', UserSchema);
+mongoose.model('Company', CompanySchema);
