@@ -3,6 +3,7 @@
 angular.module('mean.company').controller('CompanyController', ['$scope', 'Global', function ($scope, Global) {
     $scope.global = Global;
 
-    $scope.province = ['广东'];
+    $scope.province = {};
+    
 
 }]);
