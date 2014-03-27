@@ -1,5 +1,6 @@
-extends company_auth
+extends ../layouts/default
 
+<<<<<<< HEAD
 block auth
   form.signin.form-horizontal(action="/company" method="post")
     .form-group
@@ -34,7 +35,7 @@ block auth
     .form-group
       label.col-md-4.control-label(for="number") 号码
       .col-md-8
-        input#number.form-control(type="text" name="number" placeholder="NUmber" value="66134737")
+        input#number.form-control(type="text" name="number" placeholder="Number" value="66134737")
     .form-group
       label.col-md-4.control-label(for="extension") 分机
       .col-md-8
@@ -59,3 +60,73 @@ block auth
         button.btn.btn-primary(type="submit") 注册
         | &nbsp;or&nbsp;
         a.show-login(href="/company_signin") 登录
+=======
+block headExt
+  link(rel="stylesheet" href="/css/views/company_signup.css")
+
+block content
+  .row
+    .col-xs-5.text-right.col-left
+      h1.text-right
+        small 加入
+        | 动梨
+      p 为了保证您在动梨遇到的小伙伴们都是真实可靠的
+      p 我们会对每家申请加入的团体当然也包括您在内
+      p 认真的核实资料，感谢您的配合
+    .col-xs-2
+    form.col-xs-5.signin.form-horizontal(action="/company" method="post")
+      .form-group
+        label.col-xs-3.control-label(for="name") ＊公司全称
+        .col-xs-9.input-module.input-module-left
+          input#name.form-control(type="text" name="name" placeholder="请与贵公司营业执照注册名保持一致")
+      .form-group#city
+        label.col-xs-3.control-label(for="city-province") ＊城市
+        .col-xs-5.input-module.input-module-left
+          select#city-province.form-control.prov(type="text" name="city-province")
+        .col-xs-4.input-module
+          select#city-city.form-control.city(type="text" name="city-city" disabled="disabled")
+      .form-group
+        label.col-xs-3.control-label(for="address") ＊地址
+        .col-xs-9.input-module.input-module-left
+          input#address.form-control(type="text" name="address")
+      .form-group
+        label.col-xs-3.control-label(for="contacts") ＊联系人
+        .col-xs-9.input-module.input-module-left
+          input#contacts.form-control(type="text" name="contacts")
+      .form-group
+        label.col-xs-3.control-label(for="lindline") ＊公司电话
+        .col-xs-2.input-module.input-module-left.lindline-left
+          input#lindline-areacode.form-control(type="text" name="lindline-areacode" placeholder="区号")
+        .col-xs-1.input-module.input-separator 
+          label.control-label -
+        .col-xs-3.input-module.lindline-middle
+          input#lindline-number.form-control(type="text" name="lindline-number" placeholder="电话号码")
+        .col-xs-1.input-module.input-separator 
+          label.control-label -
+        .col-xs-2.input-module.lindline-right
+          input#lindline-extension.form-control(type="text" name="lindline-extension" placeholder="分机")  
+      .form-group
+        label.col-xs-3.control-label(for="phone") 手机号码
+        .col-xs-9.input-module.input-module-left
+          input#phone.form-control(type="text" name="phone")
+      .form-group
+        label.col-xs-3.control-label(for="email-host") ＊电子邮箱
+        .col-xs-5.input-module.input-module-left
+          input#email-host.form-control(type="text" name="email-host")
+        .col-xs-1.input-module.text-center
+          label.control-label.label-at @
+        .col-xs-3.input-module
+          input#email-domain.form-control(type="text" name="email-domain")
+      .form-group
+        .col-xs-offset-3.col-xs-9.input-module.input-module-left
+          .checkbox
+            label
+              input(type="checkbox")
+              | 我已阅读并同意<a href="#">服务条款</a>
+      .form-group
+        .col-xs-offset-3.col-xs-9.input-module.input-module-left 
+          button.btn.btn-success.btn-submit 提交申请
+
+block footExt
+  script(src="/js/company/jquery.cityselect.js")
+>>>>>>> e89c6707ce4aa5a6121488df32462fa115064b76

@@ -1,0 +1,53 @@
+.content .container {
+  padding-top: 120px;
+  width: 900px;
+}
+.col-left {
+  margin-top: 50px;
+}
+.col-left h1 {
+  font-family: "KaiTi", "STKaiti", "BiauKai";
+  font-size: 50px;
+  margin-bottom: 40px;
+}
+.col-left p {
+  margin: 13px 0;
+  color: #808080;
+}
+.form-group {
+  margin-bottom: 5px;
+}
+.control-label {
+  padding: 0;
+  color: #808080;
+  font-weight: normal;
+}
+.input-module {
+  padding-right: 0;
+  padding-left: 0;
+}
+.input-module-left {
+  padding-left: 15px;
+}
+.lindline-left {
+  width: 22%;
+}
+.lindline-middle {
+  width: 27%;
+}
+.lindline-right {
+  width: 22%;
+}
+.input-separator {
+  width: 2%;
+}
+.label-at {
+  padding-top: 7px !important;
+  padding-bottom: 7px !important;
+  font-size: 20px;
+  line-height: 1;
+}
+.btn-submit {
+  width: 100%;
+  height: 40px;
+}
