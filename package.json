@@ -19,6 +19,7 @@
   "dependencies": {
     "express": "~3.4.7",
     "jade": "~1.0.2",
+    "stylus": "0.42.*",
     "consolidate": "~0.10.0",
     "mongoose": "~3.8.3",
     "connect-mongo": "~0.4.0",

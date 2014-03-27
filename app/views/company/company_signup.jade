@@ -1,0 +1,41 @@
+extends company_auth
+
+block auth
+  form.signin.form-horizontal(action="/company" method="post")
+    .form-group
+      label.col-md-4.control-label(for="name") 公司名称
+      .col-md-8
+        input#name.form-control(type="text" name="name" placeholder="Full Name" value=company.name)
+    .form-group
+      label.col-md-4.control-label(for="city") 所在城市
+      .col-md-8
+        input#city.form-control(type="text" name="city" placeholder="City" value=company.city)
+    .form-group
+      label.col-md-4.control-label(for="address") 公司地址
+      .col-md-8
+        input#address.form-control(type="text" name="address" placeholder="Address" value=company.address)
+    .form-group
+      label.col-md-4.control-label(for="lindline") 固定电话
+      .col-md-8
+        input#lindline.form-control(type="text" name="lindline" placeholder="Lindline" value=company.lindline)
+    .form-group
+      label.col-md-4.control-label(for="phone") 联系人电话
+      .col-md-8
+        input#phone.form-control(type="text" name="phone" placeholder="Phone" value=company.phone)
+    .form-group
+      label.col-md-4.control-label(for="email") Email
+      .col-md-8
+        input#email.form-control(type="email" name="email" placeholder="Email" value=company.email)
+    .form-group
+      label.col-md-4.control-label(for="username") 公司用户名
+      .col-md-8
+        input#username.form-control(type="text" name="username" placeholder="Username" value=company.username)
+    .form-group
+      label.col-md-4.control-label(for="password") 密码
+      .col-md-8
+        input#password.form-control(type="password" name="password" placeholder="Password" value=company.password)
+    .form-group
+      .col-md-offset-4.col-md-8
+        button.btn.btn-primary(type="submit") 注册
+        | &nbsp;or&nbsp;
+        a.show-login(href="/company_signin") 登录

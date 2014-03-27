@@ -1,0 +1,626 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/usr/local/lib/node_modules/cnpm/node_modules/.bin/npm',
+1 verbose cli   '--userconfig=/Users/cahavar/.cnpmrc',
+1 verbose cli   '--disturl=http://dist.cnpmjs.org',
+1 verbose cli   '--cache=/Users/cahavar/.npm/.cache_cnpm',
+1 verbose cli   '--registry=http://r.cnpmjs.org',
+1 verbose cli   'install' ]
+2 info using npm@1.4.6
+3 info using node@v0.10.26
+4 verbose readDependencies using package.json deps
+5 verbose install where, deps [ '/www/mean',
+5 verbose install   [ 'express',
+5 verbose install     'jade',
+5 verbose install     'stylus',
+5 verbose install     'consolidate',
+5 verbose install     'mongoose',
+5 verbose install     'connect-mongo',
+5 verbose install     'connect-flash',
+5 verbose install     'crypto',
+5 verbose install     'passport',
+5 verbose install     'passport-local',
+5 verbose install     'passport-facebook',
+5 verbose install     'passport-twitter',
+5 verbose install     'passport-github',
+5 verbose install     'passport-google-oauth',
+5 verbose install     'passport-linkedin',
+5 verbose install     'lodash',
+5 verbose install     'view-helpers',
+5 verbose install     'mean-logger',
+5 verbose install     'bower',
+5 verbose install     'grunt',
+5 verbose install     'grunt-cli',
+5 verbose install     'grunt-env',
+5 verbose install     'forever',
+5 verbose install     'karma-script-launcher',
+5 verbose install     'karma-chrome-launcher',
+5 verbose install     'karma-firefox-launcher',
+5 verbose install     'karma-html2js-preprocessor',
+5 verbose install     'karma-jasmine',
+5 verbose install     'karma-requirejs',
+5 verbose install     'should',
+5 verbose install     'grunt-concurrent',
+5 verbose install     'grunt-karma',
+5 verbose install     'karma-coffee-preprocessor',
+5 verbose install     'supertest',
+5 verbose install     'karma-phantomjs-launcher',
+5 verbose install     'grunt-mocha-test',
+5 verbose install     'grunt-contrib-jshint',
+5 verbose install     'grunt-nodemon',
+5 verbose install     'grunt-contrib-watch',
+5 verbose install     'karma-coverage',
+5 verbose install     'karma',
+5 verbose install     'swig' ] ]
+6 info preinstall mean@0.1.2
+7 warn package.json crypto@0.0.3 crypto is also the name of a node core module.
+8 verbose readDependencies using package.json deps
+9 verbose already installed skipping crypto@0.0.3 /www/mean
+10 verbose already installed skipping passport@~0.1.18 /www/mean
+11 verbose already installed skipping passport-local@~0.1.6 /www/mean
+12 verbose already installed skipping passport-facebook@~1.0.2 /www/mean
+13 verbose already installed skipping passport-twitter@~1.0.2 /www/mean
+14 verbose already installed skipping passport-github@~0.1.5 /www/mean
+15 verbose already installed skipping passport-google-oauth@~0.1.5 /www/mean
+16 verbose already installed skipping passport-linkedin@~0.1.3 /www/mean
+17 verbose already installed skipping lodash@~2.4.1 /www/mean
+18 verbose already installed skipping view-helpers@~0.1.4 /www/mean
+19 verbose already installed skipping mean-logger@0.0.1 /www/mean
+20 verbose already installed skipping bower@~1.2.8 /www/mean
+21 verbose already installed skipping grunt@~0.4.2 /www/mean
+22 verbose already installed skipping grunt-cli@~0.1.11 /www/mean
+23 verbose already installed skipping grunt-env@~0.4.1 /www/mean
+24 verbose already installed skipping forever@~0.10.11 /www/mean
+25 verbose already installed skipping karma-script-launcher@~0.1.0 /www/mean
+26 verbose already installed skipping karma-chrome-launcher@~0.1.0 /www/mean
+27 verbose already installed skipping karma-firefox-launcher@~0.1.0 /www/mean
+28 verbose already installed skipping karma-html2js-preprocessor@~0.1.0 /www/mean
+29 verbose already installed skipping karma-jasmine@~0.1.3 /www/mean
+30 verbose already installed skipping karma-requirejs@~0.1.0 /www/mean
+31 verbose already installed skipping should@2.1.1 /www/mean
+32 verbose cache add [ 'grunt-concurrent@latest', null ]
+33 verbose cache add name=undefined spec="grunt-concurrent@latest" args=["grunt-concurrent@latest",null]
+34 verbose parsed url { protocol: null,
+34 verbose parsed url   slashes: null,
+34 verbose parsed url   auth: null,
+34 verbose parsed url   host: null,
+34 verbose parsed url   port: null,
+34 verbose parsed url   hostname: null,
+34 verbose parsed url   hash: null,
+34 verbose parsed url   search: null,
+34 verbose parsed url   query: null,
+34 verbose parsed url   pathname: 'grunt-concurrent@latest',
+34 verbose parsed url   path: 'grunt-concurrent@latest',
+34 verbose parsed url   href: 'grunt-concurrent@latest' }
+35 verbose cache add name="grunt-concurrent" spec="latest" args=["grunt-concurrent","latest"]
+36 verbose parsed url { protocol: null,
+36 verbose parsed url   slashes: null,
+36 verbose parsed url   auth: null,
+36 verbose parsed url   host: null,
+36 verbose parsed url   port: null,
+36 verbose parsed url   hostname: null,
+36 verbose parsed url   hash: null,
+36 verbose parsed url   search: null,
+36 verbose parsed url   query: null,
+36 verbose parsed url   pathname: 'latest',
+36 verbose parsed url   path: 'latest',
+36 verbose parsed url   href: 'latest' }
+37 verbose addNamed [ 'grunt-concurrent', 'latest' ]
+38 verbose addNamed [ null, null ]
+39 verbose already installed skipping grunt-karma@~0.6.2 /www/mean
+40 verbose already installed skipping karma-coffee-preprocessor@~0.1.0 /www/mean
+41 silly lockFile 50a8c415-grunt-concurrent-latest grunt-concurrent@latest
+42 verbose lock grunt-concurrent@latest /Users/cahavar/.npm/.cache_cnpm/50a8c415-grunt-concurrent-latest.lock
+43 verbose already installed skipping supertest@0.8.2 /www/mean
+44 info addNameTag [ 'grunt-concurrent', 'latest' ]
+45 verbose already installed skipping karma-phantomjs-launcher@~0.1.0 /www/mean
+46 verbose url raw grunt-concurrent
+47 verbose url resolving [ 'http://r.cnpmjs.org/', './grunt-concurrent' ]
+48 verbose url resolved http://r.cnpmjs.org/grunt-concurrent
+49 info trying registry request attempt 1 at 10:58:44
+50 http GET http://r.cnpmjs.org/grunt-concurrent
+51 verbose already installed skipping grunt-nodemon@0.2.0 /www/mean
+52 verbose cache add [ 'grunt-mocha-test@latest', null ]
+53 verbose cache add name=undefined spec="grunt-mocha-test@latest" args=["grunt-mocha-test@latest",null]
+54 verbose parsed url { protocol: null,
+54 verbose parsed url   slashes: null,
+54 verbose parsed url   auth: null,
+54 verbose parsed url   host: null,
+54 verbose parsed url   port: null,
+54 verbose parsed url   hostname: null,
+54 verbose parsed url   hash: null,
+54 verbose parsed url   search: null,
+54 verbose parsed url   query: null,
+54 verbose parsed url   pathname: 'grunt-mocha-test@latest',
+54 verbose parsed url   path: 'grunt-mocha-test@latest',
+54 verbose parsed url   href: 'grunt-mocha-test@latest' }
+55 verbose cache add name="grunt-mocha-test" spec="latest" args=["grunt-mocha-test","latest"]
+56 verbose parsed url { protocol: null,
+56 verbose parsed url   slashes: null,
+56 verbose parsed url   auth: null,
+56 verbose parsed url   host: null,
+56 verbose parsed url   port: null,
+56 verbose parsed url   hostname: null,
+56 verbose parsed url   hash: null,
+56 verbose parsed url   search: null,
+56 verbose parsed url   query: null,
+56 verbose parsed url   pathname: 'latest',
+56 verbose parsed url   path: 'latest',
+56 verbose parsed url   href: 'latest' }
+57 verbose addNamed [ 'grunt-mocha-test', 'latest' ]
+58 verbose addNamed [ null, null ]
+59 silly lockFile 29185e6c-grunt-mocha-test-latest grunt-mocha-test@latest
+60 verbose lock grunt-mocha-test@latest /Users/cahavar/.npm/.cache_cnpm/29185e6c-grunt-mocha-test-latest.lock
+61 verbose cache add [ 'grunt-contrib-watch@latest', null ]
+62 verbose cache add name=undefined spec="grunt-contrib-watch@latest" args=["grunt-contrib-watch@latest",null]
+63 verbose parsed url { protocol: null,
+63 verbose parsed url   slashes: null,
+63 verbose parsed url   auth: null,
+63 verbose parsed url   host: null,
+63 verbose parsed url   port: null,
+63 verbose parsed url   hostname: null,
+63 verbose parsed url   hash: null,
+63 verbose parsed url   search: null,
+63 verbose parsed url   query: null,
+63 verbose parsed url   pathname: 'grunt-contrib-watch@latest',
+63 verbose parsed url   path: 'grunt-contrib-watch@latest',
+63 verbose parsed url   href: 'grunt-contrib-watch@latest' }
+64 verbose cache add name="grunt-contrib-watch" spec="latest" args=["grunt-contrib-watch","latest"]
+65 verbose parsed url { protocol: null,
+65 verbose parsed url   slashes: null,
+65 verbose parsed url   auth: null,
+65 verbose parsed url   host: null,
+65 verbose parsed url   port: null,
+65 verbose parsed url   hostname: null,
+65 verbose parsed url   hash: null,
+65 verbose parsed url   search: null,
+65 verbose parsed url   query: null,
+65 verbose parsed url   pathname: 'latest',
+65 verbose parsed url   path: 'latest',
+65 verbose parsed url   href: 'latest' }
+66 verbose addNamed [ 'grunt-contrib-watch', 'latest' ]
+67 verbose addNamed [ null, null ]
+68 silly lockFile 72016001-grunt-contrib-watch-latest grunt-contrib-watch@latest
+69 verbose lock grunt-contrib-watch@latest /Users/cahavar/.npm/.cache_cnpm/72016001-grunt-contrib-watch-latest.lock
+70 verbose cache add [ 'grunt-contrib-jshint@latest', null ]
+71 verbose cache add name=undefined spec="grunt-contrib-jshint@latest" args=["grunt-contrib-jshint@latest",null]
+72 verbose parsed url { protocol: null,
+72 verbose parsed url   slashes: null,
+72 verbose parsed url   auth: null,
+72 verbose parsed url   host: null,
+72 verbose parsed url   port: null,
+72 verbose parsed url   hostname: null,
+72 verbose parsed url   hash: null,
+72 verbose parsed url   search: null,
+72 verbose parsed url   query: null,
+72 verbose parsed url   pathname: 'grunt-contrib-jshint@latest',
+72 verbose parsed url   path: 'grunt-contrib-jshint@latest',
+72 verbose parsed url   href: 'grunt-contrib-jshint@latest' }
+73 verbose cache add name="grunt-contrib-jshint" spec="latest" args=["grunt-contrib-jshint","latest"]
+74 verbose parsed url { protocol: null,
+74 verbose parsed url   slashes: null,
+74 verbose parsed url   auth: null,
+74 verbose parsed url   host: null,
+74 verbose parsed url   port: null,
+74 verbose parsed url   hostname: null,
+74 verbose parsed url   hash: null,
+74 verbose parsed url   search: null,
+74 verbose parsed url   query: null,
+74 verbose parsed url   pathname: 'latest',
+74 verbose parsed url   path: 'latest',
+74 verbose parsed url   href: 'latest' }
+75 verbose addNamed [ 'grunt-contrib-jshint', 'latest' ]
+76 verbose addNamed [ null, null ]
+77 silly lockFile 23ae4c0c-grunt-contrib-jshint-latest grunt-contrib-jshint@latest
+78 verbose lock grunt-contrib-jshint@latest /Users/cahavar/.npm/.cache_cnpm/23ae4c0c-grunt-contrib-jshint-latest.lock
+79 verbose already installed skipping karma-coverage@~0.1.0 /www/mean
+80 verbose already installed skipping karma@~0.10.4 /www/mean
+81 verbose already installed skipping swig@~1.3.2 /www/mean
+82 verbose already installed skipping express@~3.4.7 /www/mean
+83 info addNameTag [ 'grunt-mocha-test', 'latest' ]
+84 info addNameTag [ 'grunt-contrib-watch', 'latest' ]
+85 info addNameTag [ 'grunt-contrib-jshint', 'latest' ]
+86 verbose url raw grunt-mocha-test
+87 verbose url resolving [ 'http://r.cnpmjs.org/', './grunt-mocha-test' ]
+88 verbose url resolved http://r.cnpmjs.org/grunt-mocha-test
+89 info trying registry request attempt 1 at 10:58:44
+90 http GET http://r.cnpmjs.org/grunt-mocha-test
+91 verbose url raw grunt-contrib-watch
+92 verbose url resolving [ 'http://r.cnpmjs.org/', './grunt-contrib-watch' ]
+93 verbose url resolved http://r.cnpmjs.org/grunt-contrib-watch
+94 info trying registry request attempt 1 at 10:58:44
+95 http GET http://r.cnpmjs.org/grunt-contrib-watch
+96 verbose already installed skipping consolidate@~0.10.0 /www/mean
+97 verbose already installed skipping jade@~1.0.2 /www/mean
+98 verbose url raw grunt-contrib-jshint
+99 verbose url resolving [ 'http://r.cnpmjs.org/', './grunt-contrib-jshint' ]
+100 verbose url resolved http://r.cnpmjs.org/grunt-contrib-jshint
+101 info trying registry request attempt 1 at 10:58:44
+102 http GET http://r.cnpmjs.org/grunt-contrib-jshint
+103 verbose already installed skipping stylus@0.42.* /www/mean
+104 verbose already installed skipping mongoose@~3.8.3 /www/mean
+105 verbose already installed skipping connect-mongo@~0.4.0 /www/mean
+106 verbose already installed skipping connect-flash@~0.1.1 /www/mean
+107 http 200 http://r.cnpmjs.org/grunt-concurrent
+108 silly registry.get cb [ 200,
+108 silly registry.get   { server: 'nginx/1.4.1 (Ubuntu)',
+108 silly registry.get     date: 'Wed, 26 Mar 2014 02:58:48 GMT',
+108 silly registry.get     'content-type': 'application/json',
+108 silly registry.get     'content-length': '3018',
+108 silly registry.get     connection: 'keep-alive',
+108 silly registry.get     'x-powered-by': 'koa',
+108 silly registry.get     etag: '"1394153286000"',
+108 silly registry.get     'content-encoding': 'gzip',
+108 silly registry.get     'x-readtime': '84489' } ]
+109 verbose addNamed [ 'grunt-concurrent', '0.5.0' ]
+110 verbose addNamed [ '0.5.0', '0.5.0' ]
+111 silly lockFile 32992192-grunt-concurrent-0-5-0 grunt-concurrent@0.5.0
+112 verbose lock grunt-concurrent@0.5.0 /Users/cahavar/.npm/.cache_cnpm/32992192-grunt-concurrent-0-5-0.lock
+113 silly lockFile 1a91ba35-nload-grunt-concurrent-0-5-0-tgz http://r.cnpmjs.org/grunt-concurrent/download/grunt-concurrent-0.5.0.tgz
+114 verbose lock http://r.cnpmjs.org/grunt-concurrent/download/grunt-concurrent-0.5.0.tgz /Users/cahavar/.npm/.cache_cnpm/1a91ba35-nload-grunt-concurrent-0-5-0-tgz.lock
+115 verbose addRemoteTarball [ 'http://r.cnpmjs.org/grunt-concurrent/download/grunt-concurrent-0.5.0.tgz',
+115 verbose addRemoteTarball   '4a519a4c287825f0de0715f73b85d150c750d9f7' ]
+116 info retry fetch attempt 1 at 10:58:46
+117 verbose fetch to= /var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726611-0.017144049052149057/tmp.tgz
+118 http GET http://r.cnpmjs.org/grunt-concurrent/download/grunt-concurrent-0.5.0.tgz
+119 http 200 http://r.cnpmjs.org/grunt-contrib-watch
+120 silly registry.get cb [ 200,
+120 silly registry.get   { server: 'nginx/1.4.1 (Ubuntu)',
+120 silly registry.get     date: 'Wed, 26 Mar 2014 02:58:48 GMT',
+120 silly registry.get     'content-type': 'application/json',
+120 silly registry.get     'content-length': '10821',
+120 silly registry.get     connection: 'keep-alive',
+120 silly registry.get     'x-powered-by': 'koa',
+120 silly registry.get     etag: '"1395260289000"',
+120 silly registry.get     'content-encoding': 'gzip',
+120 silly registry.get     'x-readtime': '158662' } ]
+121 http 200 http://r.cnpmjs.org/grunt-contrib-jshint
+122 silly registry.get cb [ 200,
+122 silly registry.get   { server: 'nginx/1.4.1 (Ubuntu)',
+122 silly registry.get     date: 'Wed, 26 Mar 2014 02:58:48 GMT',
+122 silly registry.get     'content-type': 'application/json',
+122 silly registry.get     'content-length': '6801',
+122 silly registry.get     connection: 'keep-alive',
+122 silly registry.get     'x-powered-by': 'koa',
+122 silly registry.get     etag: '"1394671692000"',
+122 silly registry.get     'content-encoding': 'gzip',
+122 silly registry.get     'x-readtime': '176360' } ]
+123 verbose addNamed [ 'grunt-contrib-watch', '0.6.1' ]
+124 verbose addNamed [ '0.6.1', '0.6.1' ]
+125 silly lockFile 08049756-grunt-contrib-watch-0-6-1 grunt-contrib-watch@0.6.1
+126 verbose lock grunt-contrib-watch@0.6.1 /Users/cahavar/.npm/.cache_cnpm/08049756-grunt-contrib-watch-0-6-1.lock
+127 silly lockFile 1e265bbe-ad-grunt-contrib-watch-0-6-1-tgz http://r.cnpmjs.org/grunt-contrib-watch/download/grunt-contrib-watch-0.6.1.tgz
+128 verbose lock http://r.cnpmjs.org/grunt-contrib-watch/download/grunt-contrib-watch-0.6.1.tgz /Users/cahavar/.npm/.cache_cnpm/1e265bbe-ad-grunt-contrib-watch-0-6-1-tgz.lock
+129 verbose addRemoteTarball [ 'http://r.cnpmjs.org/grunt-contrib-watch/download/grunt-contrib-watch-0.6.1.tgz',
+129 verbose addRemoteTarball   '64fdcba25a635f5b4da1b6ce6f90da0aeb6e3f15' ]
+130 info retry fetch attempt 1 at 10:58:46
+131 verbose fetch to= /var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726705-0.6365204341709614/tmp.tgz
+132 verbose addNamed [ 'grunt-contrib-jshint', '0.9.2' ]
+133 verbose addNamed [ '0.9.2', '0.9.2' ]
+134 silly lockFile 42d4a20a-grunt-contrib-jshint-0-9-2 grunt-contrib-jshint@0.9.2
+135 verbose lock grunt-contrib-jshint@0.9.2 /Users/cahavar/.npm/.cache_cnpm/42d4a20a-grunt-contrib-jshint-0-9-2.lock
+136 http GET http://r.cnpmjs.org/grunt-contrib-watch/download/grunt-contrib-watch-0.6.1.tgz
+137 silly lockFile cc0bcbfd-d-grunt-contrib-jshint-0-9-2-tgz http://r.cnpmjs.org/grunt-contrib-jshint/download/grunt-contrib-jshint-0.9.2.tgz
+138 verbose lock http://r.cnpmjs.org/grunt-contrib-jshint/download/grunt-contrib-jshint-0.9.2.tgz /Users/cahavar/.npm/.cache_cnpm/cc0bcbfd-d-grunt-contrib-jshint-0-9-2-tgz.lock
+139 verbose addRemoteTarball [ 'http://r.cnpmjs.org/grunt-contrib-jshint/download/grunt-contrib-jshint-0.9.2.tgz',
+139 verbose addRemoteTarball   'd6301597bcc3611e95f5f35ff582a7b3d73d20fb' ]
+140 info retry fetch attempt 1 at 10:58:46
+141 verbose fetch to= /var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726708-0.5961914646904916/tmp.tgz
+142 http GET http://r.cnpmjs.org/grunt-contrib-jshint/download/grunt-contrib-jshint-0.9.2.tgz
+143 http 200 http://r.cnpmjs.org/grunt-mocha-test
+144 silly registry.get cb [ 200,
+144 silly registry.get   { server: 'nginx/1.4.1 (Ubuntu)',
+144 silly registry.get     date: 'Wed, 26 Mar 2014 02:58:48 GMT',
+144 silly registry.get     'content-type': 'application/json',
+144 silly registry.get     'content-length': '6780',
+144 silly registry.get     connection: 'keep-alive',
+144 silly registry.get     'x-powered-by': 'koa',
+144 silly registry.get     etag: '"1394822470000"',
+144 silly registry.get     'content-encoding': 'gzip',
+144 silly registry.get     'x-readtime': '173296' } ]
+145 verbose addNamed [ 'grunt-mocha-test', '0.10.0' ]
+146 verbose addNamed [ '0.10.0', '0.10.0' ]
+147 silly lockFile 8b2b1dea-grunt-mocha-test-0-10-0 grunt-mocha-test@0.10.0
+148 verbose lock grunt-mocha-test@0.10.0 /Users/cahavar/.npm/.cache_cnpm/8b2b1dea-grunt-mocha-test-0-10-0.lock
+149 silly lockFile 4e293ac2-load-grunt-mocha-test-0-10-0-tgz http://r.cnpmjs.org/grunt-mocha-test/download/grunt-mocha-test-0.10.0.tgz
+150 verbose lock http://r.cnpmjs.org/grunt-mocha-test/download/grunt-mocha-test-0.10.0.tgz /Users/cahavar/.npm/.cache_cnpm/4e293ac2-load-grunt-mocha-test-0-10-0-tgz.lock
+151 verbose addRemoteTarball [ 'http://r.cnpmjs.org/grunt-mocha-test/download/grunt-mocha-test-0.10.0.tgz',
+151 verbose addRemoteTarball   '5cc4c269d329037f9f7baebacca9edd0f8e4b3f4' ]
+152 info retry fetch attempt 1 at 10:58:46
+153 verbose fetch to= /var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726715-0.6739122697617859/tmp.tgz
+154 http GET http://r.cnpmjs.org/grunt-mocha-test/download/grunt-mocha-test-0.10.0.tgz
+155 http 200 http://r.cnpmjs.org/grunt-mocha-test/download/grunt-mocha-test-0.10.0.tgz
+156 http 200 http://r.cnpmjs.org/grunt-contrib-jshint/download/grunt-contrib-jshint-0.9.2.tgz
+157 verbose tar unpack /var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726715-0.6739122697617859/tmp.tgz
+158 silly lockFile a5f93216-26715-0-6739122697617859-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726715-0.6739122697617859/package
+159 verbose lock tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726715-0.6739122697617859/package /Users/cahavar/.npm/.cache_cnpm/a5f93216-26715-0-6739122697617859-package.lock
+160 silly lockFile 4e4182b3-26715-0-6739122697617859-tmp-tgz tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726715-0.6739122697617859/tmp.tgz
+161 verbose lock tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726715-0.6739122697617859/tmp.tgz /Users/cahavar/.npm/.cache_cnpm/4e4182b3-26715-0-6739122697617859-tmp-tgz.lock
+162 silly gunzTarPerm modes [ '755', '644' ]
+163 silly gunzTarPerm extractEntry package.json
+164 http 200 http://r.cnpmjs.org/grunt-concurrent/download/grunt-concurrent-0.5.0.tgz
+165 silly gunzTarPerm extractEntry README.md
+166 silly gunzTarPerm extractEntry LICENSE-MIT
+167 verbose tar unpack /var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726708-0.5961914646904916/tmp.tgz
+168 silly lockFile 896472bd-26708-0-5961914646904916-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726708-0.5961914646904916/package
+169 verbose lock tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726708-0.5961914646904916/package /Users/cahavar/.npm/.cache_cnpm/896472bd-26708-0-5961914646904916-package.lock
+170 silly lockFile 1e48515b-26708-0-5961914646904916-tmp-tgz tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726708-0.5961914646904916/tmp.tgz
+171 verbose lock tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726708-0.5961914646904916/tmp.tgz /Users/cahavar/.npm/.cache_cnpm/1e48515b-26708-0-5961914646904916-tmp-tgz.lock
+172 verbose tar unpack /var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726611-0.017144049052149057/tmp.tgz
+173 silly lockFile 57d46111-611-0-017144049052149057-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726611-0.017144049052149057/package
+174 verbose lock tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726611-0.017144049052149057/package /Users/cahavar/.npm/.cache_cnpm/57d46111-611-0-017144049052149057-package.lock
+175 silly lockFile 56ac756d-611-0-017144049052149057-tmp-tgz tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726611-0.017144049052149057/tmp.tgz
+176 verbose lock tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726611-0.017144049052149057/tmp.tgz /Users/cahavar/.npm/.cache_cnpm/56ac756d-611-0-017144049052149057-tmp-tgz.lock
+177 http 200 http://r.cnpmjs.org/grunt-contrib-watch/download/grunt-contrib-watch-0.6.1.tgz
+178 silly gunzTarPerm modes [ '755', '644' ]
+179 silly gunzTarPerm modes [ '755', '644' ]
+180 silly gunzTarPerm extractEntry bin/grunt-mocha-test
+181 silly gunzTarPerm extractEntry tasks/mocha.js
+182 silly gunzTarPerm extractEntry tasks/lib/MochaWrapper.js
+183 silly gunzTarPerm extractEntry package.json
+184 silly gunzTarPerm extractEntry package.json
+185 silly gunzTarPerm extractEntry README.md
+186 silly gunzTarPerm extractEntry LICENSE-MIT
+187 silly gunzTarPerm extractEntry .gitattributes
+188 silly gunzTarPerm extractEntry readme.md
+189 silly gunzTarPerm extractEntry tasks/concurrent.js
+190 silly gunzTarPerm extractEntry tasks/jshint.js
+191 silly gunzTarPerm extractEntry tasks/lib/jshint.js
+192 silly lockFile 57d46111-611-0-017144049052149057-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726611-0.017144049052149057/package
+193 silly lockFile 57d46111-611-0-017144049052149057-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726611-0.017144049052149057/package
+194 silly lockFile 56ac756d-611-0-017144049052149057-tmp-tgz tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726611-0.017144049052149057/tmp.tgz
+195 silly lockFile 56ac756d-611-0-017144049052149057-tmp-tgz tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726611-0.017144049052149057/tmp.tgz
+196 verbose tar pack [ '/Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package.tgz',
+196 verbose tar pack   '/var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726611-0.017144049052149057/package' ]
+197 verbose tarball /Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package.tgz
+198 verbose folder /var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726611-0.017144049052149057/package
+199 silly lockFile 57d46111-611-0-017144049052149057-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726611-0.017144049052149057/package
+200 verbose lock tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726611-0.017144049052149057/package /Users/cahavar/.npm/.cache_cnpm/57d46111-611-0-017144049052149057-package.lock
+201 silly lockFile 413e6d94-unt-concurrent-0-5-0-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package.tgz
+202 verbose lock tar:///Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package.tgz /Users/cahavar/.npm/.cache_cnpm/413e6d94-unt-concurrent-0-5-0-package-tgz.lock
+203 silly lockFile a5f93216-26715-0-6739122697617859-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726715-0.6739122697617859/package
+204 silly lockFile a5f93216-26715-0-6739122697617859-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726715-0.6739122697617859/package
+205 silly lockFile 4e4182b3-26715-0-6739122697617859-tmp-tgz tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726715-0.6739122697617859/tmp.tgz
+206 silly lockFile 4e4182b3-26715-0-6739122697617859-tmp-tgz tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726715-0.6739122697617859/tmp.tgz
+207 verbose tar pack [ '/Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package.tgz',
+207 verbose tar pack   '/var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726715-0.6739122697617859/package' ]
+208 verbose tarball /Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package.tgz
+209 verbose folder /var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726715-0.6739122697617859/package
+210 silly lockFile a5f93216-26715-0-6739122697617859-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726715-0.6739122697617859/package
+211 verbose lock tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726715-0.6739122697617859/package /Users/cahavar/.npm/.cache_cnpm/a5f93216-26715-0-6739122697617859-package.lock
+212 silly lockFile aae1bcf9-nt-mocha-test-0-10-0-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package.tgz
+213 verbose lock tar:///Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package.tgz /Users/cahavar/.npm/.cache_cnpm/aae1bcf9-nt-mocha-test-0-10-0-package-tgz.lock
+214 silly lockFile 896472bd-26708-0-5961914646904916-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726708-0.5961914646904916/package
+215 silly lockFile 896472bd-26708-0-5961914646904916-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726708-0.5961914646904916/package
+216 silly lockFile 1e48515b-26708-0-5961914646904916-tmp-tgz tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726708-0.5961914646904916/tmp.tgz
+217 silly lockFile 1e48515b-26708-0-5961914646904916-tmp-tgz tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726708-0.5961914646904916/tmp.tgz
+218 verbose tar pack [ '/Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package.tgz',
+218 verbose tar pack   '/var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726708-0.5961914646904916/package' ]
+219 verbose tarball /Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package.tgz
+220 verbose folder /var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726708-0.5961914646904916/package
+221 silly lockFile 896472bd-26708-0-5961914646904916-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726708-0.5961914646904916/package
+222 verbose lock tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726708-0.5961914646904916/package /Users/cahavar/.npm/.cache_cnpm/896472bd-26708-0-5961914646904916-package.lock
+223 silly lockFile dd82c932-contrib-jshint-0-9-2-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package.tgz
+224 verbose lock tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package.tgz /Users/cahavar/.npm/.cache_cnpm/dd82c932-contrib-jshint-0-9-2-package-tgz.lock
+225 silly lockFile 57d46111-611-0-017144049052149057-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726611-0.017144049052149057/package
+226 silly lockFile 57d46111-611-0-017144049052149057-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726611-0.017144049052149057/package
+227 silly lockFile 413e6d94-unt-concurrent-0-5-0-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package.tgz
+228 silly lockFile 413e6d94-unt-concurrent-0-5-0-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package.tgz
+229 verbose tar unpack /var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726705-0.6365204341709614/tmp.tgz
+230 silly lockFile 3a75c4eb-26705-0-6365204341709614-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726705-0.6365204341709614/package
+231 verbose lock tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726705-0.6365204341709614/package /Users/cahavar/.npm/.cache_cnpm/3a75c4eb-26705-0-6365204341709614-package.lock
+232 silly lockFile 6c495a4f-26705-0-6365204341709614-tmp-tgz tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726705-0.6365204341709614/tmp.tgz
+233 verbose lock tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726705-0.6365204341709614/tmp.tgz /Users/cahavar/.npm/.cache_cnpm/6c495a4f-26705-0-6365204341709614-tmp-tgz.lock
+234 silly gunzTarPerm modes [ '755', '644' ]
+235 silly lockFile 23c444cd-m-grunt-concurrent-0-5-0-package /Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package
+236 verbose lock /Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package /Users/cahavar/.npm/.cache_cnpm/23c444cd-m-grunt-concurrent-0-5-0-package.lock
+237 silly lockFile 23c444cd-m-grunt-concurrent-0-5-0-package /Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package
+238 silly lockFile 23c444cd-m-grunt-concurrent-0-5-0-package /Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package
+239 verbose tar unpack /Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package.tgz
+240 silly lockFile b00fe871-m-grunt-concurrent-0-5-0-package tar:///Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package
+241 verbose lock tar:///Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package /Users/cahavar/.npm/.cache_cnpm/b00fe871-m-grunt-concurrent-0-5-0-package.lock
+242 silly lockFile 413e6d94-unt-concurrent-0-5-0-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package.tgz
+243 verbose lock tar:///Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package.tgz /Users/cahavar/.npm/.cache_cnpm/413e6d94-unt-concurrent-0-5-0-package-tgz.lock
+244 silly gunzTarPerm extractEntry package.json
+245 silly gunzTarPerm modes [ '755', '644' ]
+246 silly gunzTarPerm extractEntry README.md
+247 silly gunzTarPerm extractEntry LICENSE-MIT
+248 silly gunzTarPerm extractEntry tasks/watch.js
+249 silly gunzTarPerm extractEntry tasks/lib/livereload.js
+250 silly gunzTarPerm extractEntry tasks/lib/taskrun.js
+251 silly gunzTarPerm extractEntry tasks/lib/taskrunner.js
+252 silly gunzTarPerm extractEntry package.json
+253 silly gunzTarPerm extractEntry .gitattributes
+254 silly gunzTarPerm extractEntry readme.md
+255 silly gunzTarPerm extractEntry tasks/concurrent.js
+256 silly lockFile a5f93216-26715-0-6739122697617859-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726715-0.6739122697617859/package
+257 silly lockFile a5f93216-26715-0-6739122697617859-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726715-0.6739122697617859/package
+258 silly lockFile aae1bcf9-nt-mocha-test-0-10-0-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package.tgz
+259 silly lockFile aae1bcf9-nt-mocha-test-0-10-0-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package.tgz
+260 silly lockFile 48d78e1d--grunt-mocha-test-0-10-0-package /Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package
+261 verbose lock /Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package /Users/cahavar/.npm/.cache_cnpm/48d78e1d--grunt-mocha-test-0-10-0-package.lock
+262 silly lockFile 896472bd-26708-0-5961914646904916-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726708-0.5961914646904916/package
+263 silly lockFile 896472bd-26708-0-5961914646904916-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726708-0.5961914646904916/package
+264 silly lockFile dd82c932-contrib-jshint-0-9-2-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package.tgz
+265 silly lockFile dd82c932-contrib-jshint-0-9-2-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package.tgz
+266 silly lockFile 48d78e1d--grunt-mocha-test-0-10-0-package /Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package
+267 silly lockFile 48d78e1d--grunt-mocha-test-0-10-0-package /Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package
+268 verbose tar unpack /Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package.tgz
+269 silly lockFile 6b153ac2--grunt-mocha-test-0-10-0-package tar:///Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package
+270 verbose lock tar:///Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package /Users/cahavar/.npm/.cache_cnpm/6b153ac2--grunt-mocha-test-0-10-0-package.lock
+271 silly lockFile aae1bcf9-nt-mocha-test-0-10-0-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package.tgz
+272 verbose lock tar:///Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package.tgz /Users/cahavar/.npm/.cache_cnpm/aae1bcf9-nt-mocha-test-0-10-0-package-tgz.lock
+273 silly lockFile f7204a8d-unt-contrib-jshint-0-9-2-package /Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package
+274 verbose lock /Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package /Users/cahavar/.npm/.cache_cnpm/f7204a8d-unt-contrib-jshint-0-9-2-package.lock
+275 silly gunzTarPerm modes [ '755', '644' ]
+276 silly lockFile f7204a8d-unt-contrib-jshint-0-9-2-package /Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package
+277 silly lockFile f7204a8d-unt-contrib-jshint-0-9-2-package /Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package
+278 verbose tar unpack /Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package.tgz
+279 silly lockFile 2bb3f93d-unt-contrib-jshint-0-9-2-package tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package
+280 verbose lock tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package /Users/cahavar/.npm/.cache_cnpm/2bb3f93d-unt-contrib-jshint-0-9-2-package.lock
+281 silly lockFile dd82c932-contrib-jshint-0-9-2-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package.tgz
+282 verbose lock tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package.tgz /Users/cahavar/.npm/.cache_cnpm/dd82c932-contrib-jshint-0-9-2-package-tgz.lock
+283 silly gunzTarPerm extractEntry package.json
+284 silly gunzTarPerm modes [ '755', '644' ]
+285 silly lockFile b00fe871-m-grunt-concurrent-0-5-0-package tar:///Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package
+286 silly lockFile b00fe871-m-grunt-concurrent-0-5-0-package tar:///Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package
+287 silly lockFile 413e6d94-unt-concurrent-0-5-0-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package.tgz
+288 silly lockFile 413e6d94-unt-concurrent-0-5-0-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package.tgz
+289 silly gunzTarPerm extractEntry README.md
+290 silly gunzTarPerm extractEntry LICENSE-MIT
+291 verbose chmod /Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package.tgz 644
+292 verbose chown /Users/cahavar/.npm/.cache_cnpm/grunt-concurrent/0.5.0/package.tgz [ 501, 20 ]
+293 silly gunzTarPerm extractEntry package.json
+294 silly lockFile 1a91ba35-nload-grunt-concurrent-0-5-0-tgz http://r.cnpmjs.org/grunt-concurrent/download/grunt-concurrent-0.5.0.tgz
+295 silly lockFile 1a91ba35-nload-grunt-concurrent-0-5-0-tgz http://r.cnpmjs.org/grunt-concurrent/download/grunt-concurrent-0.5.0.tgz
+296 silly lockFile 32992192-grunt-concurrent-0-5-0 grunt-concurrent@0.5.0
+297 silly lockFile 32992192-grunt-concurrent-0-5-0 grunt-concurrent@0.5.0
+298 silly lockFile 50a8c415-grunt-concurrent-latest grunt-concurrent@latest
+299 silly lockFile 50a8c415-grunt-concurrent-latest grunt-concurrent@latest
+300 info already installed grunt-concurrent@0.5.0
+301 silly gunzTarPerm extractEntry README.md
+302 silly gunzTarPerm extractEntry LICENSE-MIT
+303 silly gunzTarPerm extractEntry bin/grunt-mocha-test
+304 silly gunzTarPerm extractEntry tasks/mocha.js
+305 silly gunzTarPerm extractEntry tasks/lib/MochaWrapper.js
+306 silly gunzTarPerm extractEntry tasks/jshint.js
+307 silly gunzTarPerm extractEntry tasks/lib/jshint.js
+308 silly lockFile 3a75c4eb-26705-0-6365204341709614-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726705-0.6365204341709614/package
+309 silly lockFile 3a75c4eb-26705-0-6365204341709614-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726705-0.6365204341709614/package
+310 silly lockFile 6c495a4f-26705-0-6365204341709614-tmp-tgz tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726705-0.6365204341709614/tmp.tgz
+311 silly lockFile 6c495a4f-26705-0-6365204341709614-tmp-tgz tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726705-0.6365204341709614/tmp.tgz
+312 verbose tar pack [ '/Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package.tgz',
+312 verbose tar pack   '/var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726705-0.6365204341709614/package' ]
+313 verbose tarball /Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package.tgz
+314 verbose folder /var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726705-0.6365204341709614/package
+315 silly lockFile 3a75c4eb-26705-0-6365204341709614-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726705-0.6365204341709614/package
+316 verbose lock tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726705-0.6365204341709614/package /Users/cahavar/.npm/.cache_cnpm/3a75c4eb-26705-0-6365204341709614-package.lock
+317 silly lockFile 7e392e92--contrib-watch-0-6-1-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package.tgz
+318 verbose lock tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package.tgz /Users/cahavar/.npm/.cache_cnpm/7e392e92--contrib-watch-0-6-1-package-tgz.lock
+319 silly lockFile 2bb3f93d-unt-contrib-jshint-0-9-2-package tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package
+320 silly lockFile 2bb3f93d-unt-contrib-jshint-0-9-2-package tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package
+321 silly lockFile 6b153ac2--grunt-mocha-test-0-10-0-package tar:///Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package
+322 silly lockFile 6b153ac2--grunt-mocha-test-0-10-0-package tar:///Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package
+323 silly lockFile dd82c932-contrib-jshint-0-9-2-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package.tgz
+324 silly lockFile dd82c932-contrib-jshint-0-9-2-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package.tgz
+325 silly lockFile aae1bcf9-nt-mocha-test-0-10-0-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package.tgz
+326 silly lockFile aae1bcf9-nt-mocha-test-0-10-0-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package.tgz
+327 verbose chmod /Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package.tgz 644
+328 verbose chown /Users/cahavar/.npm/.cache_cnpm/grunt-contrib-jshint/0.9.2/package.tgz [ 501, 20 ]
+329 verbose chmod /Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package.tgz 644
+330 verbose chown /Users/cahavar/.npm/.cache_cnpm/grunt-mocha-test/0.10.0/package.tgz [ 501, 20 ]
+331 silly lockFile cc0bcbfd-d-grunt-contrib-jshint-0-9-2-tgz http://r.cnpmjs.org/grunt-contrib-jshint/download/grunt-contrib-jshint-0.9.2.tgz
+332 silly lockFile cc0bcbfd-d-grunt-contrib-jshint-0-9-2-tgz http://r.cnpmjs.org/grunt-contrib-jshint/download/grunt-contrib-jshint-0.9.2.tgz
+333 silly lockFile 4e293ac2-load-grunt-mocha-test-0-10-0-tgz http://r.cnpmjs.org/grunt-mocha-test/download/grunt-mocha-test-0.10.0.tgz
+334 silly lockFile 4e293ac2-load-grunt-mocha-test-0-10-0-tgz http://r.cnpmjs.org/grunt-mocha-test/download/grunt-mocha-test-0.10.0.tgz
+335 silly lockFile 42d4a20a-grunt-contrib-jshint-0-9-2 grunt-contrib-jshint@0.9.2
+336 silly lockFile 42d4a20a-grunt-contrib-jshint-0-9-2 grunt-contrib-jshint@0.9.2
+337 silly lockFile 8b2b1dea-grunt-mocha-test-0-10-0 grunt-mocha-test@0.10.0
+338 silly lockFile 8b2b1dea-grunt-mocha-test-0-10-0 grunt-mocha-test@0.10.0
+339 silly lockFile 23ae4c0c-grunt-contrib-jshint-latest grunt-contrib-jshint@latest
+340 silly lockFile 23ae4c0c-grunt-contrib-jshint-latest grunt-contrib-jshint@latest
+341 silly lockFile 29185e6c-grunt-mocha-test-latest grunt-mocha-test@latest
+342 silly lockFile 29185e6c-grunt-mocha-test-latest grunt-mocha-test@latest
+343 info already installed grunt-contrib-jshint@0.9.2
+344 info already installed grunt-mocha-test@0.10.0
+345 silly lockFile 3a75c4eb-26705-0-6365204341709614-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726705-0.6365204341709614/package
+346 silly lockFile 3a75c4eb-26705-0-6365204341709614-package tar:///var/folders/py/zznbbry17msdp8bb_36knk0m0000gn/T/npm-455-E8r2frZe/1395802726705-0.6365204341709614/package
+347 silly lockFile 7e392e92--contrib-watch-0-6-1-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package.tgz
+348 silly lockFile 7e392e92--contrib-watch-0-6-1-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package.tgz
+349 silly lockFile 83d4ab2b-runt-contrib-watch-0-6-1-package /Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package
+350 verbose lock /Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package /Users/cahavar/.npm/.cache_cnpm/83d4ab2b-runt-contrib-watch-0-6-1-package.lock
+351 silly lockFile 83d4ab2b-runt-contrib-watch-0-6-1-package /Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package
+352 silly lockFile 83d4ab2b-runt-contrib-watch-0-6-1-package /Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package
+353 verbose tar unpack /Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package.tgz
+354 silly lockFile 513e2f33-runt-contrib-watch-0-6-1-package tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package
+355 verbose lock tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package /Users/cahavar/.npm/.cache_cnpm/513e2f33-runt-contrib-watch-0-6-1-package.lock
+356 silly lockFile 7e392e92--contrib-watch-0-6-1-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package.tgz
+357 verbose lock tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package.tgz /Users/cahavar/.npm/.cache_cnpm/7e392e92--contrib-watch-0-6-1-package-tgz.lock
+358 silly gunzTarPerm modes [ '755', '644' ]
+359 silly gunzTarPerm extractEntry package.json
+360 silly gunzTarPerm extractEntry README.md
+361 silly gunzTarPerm extractEntry LICENSE-MIT
+362 silly gunzTarPerm extractEntry tasks/watch.js
+363 silly gunzTarPerm extractEntry tasks/lib/livereload.js
+364 silly gunzTarPerm extractEntry tasks/lib/taskrun.js
+365 silly gunzTarPerm extractEntry tasks/lib/taskrunner.js
+366 silly lockFile 513e2f33-runt-contrib-watch-0-6-1-package tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package
+367 silly lockFile 513e2f33-runt-contrib-watch-0-6-1-package tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package
+368 silly lockFile 7e392e92--contrib-watch-0-6-1-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package.tgz
+369 silly lockFile 7e392e92--contrib-watch-0-6-1-package-tgz tar:///Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package.tgz
+370 verbose chmod /Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package.tgz 644
+371 verbose chown /Users/cahavar/.npm/.cache_cnpm/grunt-contrib-watch/0.6.1/package.tgz [ 501, 20 ]
+372 silly lockFile 1e265bbe-ad-grunt-contrib-watch-0-6-1-tgz http://r.cnpmjs.org/grunt-contrib-watch/download/grunt-contrib-watch-0.6.1.tgz
+373 silly lockFile 1e265bbe-ad-grunt-contrib-watch-0-6-1-tgz http://r.cnpmjs.org/grunt-contrib-watch/download/grunt-contrib-watch-0.6.1.tgz
+374 silly lockFile 08049756-grunt-contrib-watch-0-6-1 grunt-contrib-watch@0.6.1
+375 silly lockFile 08049756-grunt-contrib-watch-0-6-1 grunt-contrib-watch@0.6.1
+376 silly lockFile 72016001-grunt-contrib-watch-latest grunt-contrib-watch@latest
+377 silly lockFile 72016001-grunt-contrib-watch-latest grunt-contrib-watch@latest
+378 info already installed grunt-contrib-watch@0.6.1
+379 silly resolved []
+380 info build /www/mean
+381 verbose linkStuff [ false, false, false, '/www' ]
+382 info linkStuff mean@0.1.2
+383 verbose linkBins mean@0.1.2
+384 verbose linkMans mean@0.1.2
+385 verbose rebuildBundles mean@0.1.2
+386 verbose rebuildBundles [ '.DS_Store',
+386 verbose rebuildBundles   '.bin',
+386 verbose rebuildBundles   'bower',
+386 verbose rebuildBundles   'connect-flash',
+386 verbose rebuildBundles   'connect-mongo',
+386 verbose rebuildBundles   'consolidate',
+386 verbose rebuildBundles   'crypto',
+386 verbose rebuildBundles   'express',
+386 verbose rebuildBundles   'forever',
+386 verbose rebuildBundles   'grunt',
+386 verbose rebuildBundles   'grunt-cli',
+386 verbose rebuildBundles   'grunt-concurrent',
+386 verbose rebuildBundles   'grunt-contrib-jshint',
+386 verbose rebuildBundles   'grunt-contrib-watch',
+386 verbose rebuildBundles   'grunt-env',
+386 verbose rebuildBundles   'grunt-karma',
+386 verbose rebuildBundles   'grunt-mocha-test',
+386 verbose rebuildBundles   'grunt-nodemon',
+386 verbose rebuildBundles   'jade',
+386 verbose rebuildBundles   'karma',
+386 verbose rebuildBundles   'karma-chrome-launcher',
+386 verbose rebuildBundles   'karma-coffee-preprocessor',
+386 verbose rebuildBundles   'karma-coverage',
+386 verbose rebuildBundles   'karma-firefox-launcher',
+386 verbose rebuildBundles   'karma-html2js-preprocessor',
+386 verbose rebuildBundles   'karma-jasmine',
+386 verbose rebuildBundles   'karma-phantomjs-launcher',
+386 verbose rebuildBundles   'karma-requirejs',
+386 verbose rebuildBundles   'karma-script-launcher',
+386 verbose rebuildBundles   'lodash',
+386 verbose rebuildBundles   'mean-logger',
+386 verbose rebuildBundles   'mongoose',
+386 verbose rebuildBundles   'passport',
+386 verbose rebuildBundles   'passport-facebook',
+386 verbose rebuildBundles   'passport-github',
+386 verbose rebuildBundles   'passport-google-oauth',
+386 verbose rebuildBundles   'passport-linkedin',
+386 verbose rebuildBundles   'passport-local',
+386 verbose rebuildBundles   'passport-twitter',
+386 verbose rebuildBundles   'should',
+386 verbose rebuildBundles   'stylus',
+386 verbose rebuildBundles   'supertest',
+386 verbose rebuildBundles   'swig',
+386 verbose rebuildBundles   'view-helpers' ]
+387 info install mean@0.1.2
+388 info postinstall mean@0.1.2
+389 verbose unsafe-perm in lifecycle true
+390 info prepublish mean@0.1.2
+391 warn unmet dependency /www/mean/node_modules/grunt-contrib-watch/node_modules/gaze/node_modules/globule requires lodash@'~1.0.1' but will load
+391 warn unmet dependency /www/mean/node_modules/lodash,
+391 warn unmet dependency which is version 2.4.1
+392 error peerinvalid The package karma-requirejs does not satisfy its siblings' peerDependencies requirements!
+392 error peerinvalid Peer karma@0.10.10 wants karma-requirejs@~0.2.0
+393 error System Darwin 13.0.0
+394 error command "node" "/usr/local/lib/node_modules/cnpm/node_modules/.bin/npm" "--userconfig=/Users/cahavar/.cnpmrc" "--disturl=http://dist.cnpmjs.org" "--cache=/Users/cahavar/.npm/.cache_cnpm" "--registry=http://r.cnpmjs.org" "install"
+395 error cwd /www/mean
+396 error node -v v0.10.26
+397 error npm -v 1.4.6
+398 error code EPEERINVALID
+399 verbose exit [ 1, true ]
