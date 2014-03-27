@@ -13,7 +13,7 @@ block content
       p 我们会对每家申请加入的团体当然也包括您在内
       p 认真的核实资料，感谢您的配合
     .col-xs-2
-    form.col-xs-5.col-right.signin.form-horizontal(action="/company" method="post")
+    form.col-xs-5.signin.form-horizontal(action="/company" method="post" data-ng-controller="CompanyController")
       .form-group
         label.col-xs-3.control-label(for="name") ＊公司全称
         .col-xs-9.input-module.input-module-left
@@ -21,10 +21,10 @@ block content
       .form-group
         label.col-xs-3.control-label(for="city-province") ＊城市
         .col-xs-5.input-module.input-module-left
-          select#city-province.form-control(type="text" name="city-province" placeholder="-省份-")
+          select#city-province.form-control(type="text" name="city-province")
             option 广西
         .col-xs-4.input-module
-          select#city-city.form-control(type="text" name="city-city" placeholder="-城市-")
+          select#city-city.form-control(type="text" name="city-city")
             option 梧州
       .form-group
         label.col-xs-3.control-label(for="address") ＊地址
