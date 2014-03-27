@@ -82,9 +82,9 @@ block content
       .form-group#city
         label.col-xs-3.control-label(for="city-province") ＊城市
         .col-xs-5.input-module.input-module-left
-          select#city-province.form-control.prov(type="text" name="city-province")
+          select#city-province.form-control.prov(type="text" name="province")
         .col-xs-4.input-module
-          select#city-city.form-control.city(type="text" name="city-city" disabled="disabled")
+          select#city-city.form-control.city(type="text" name="city" disabled="disabled")
       .form-group
         label.col-xs-3.control-label(for="address") ＊地址
         .col-xs-9.input-module.input-module-left
@@ -96,15 +96,15 @@ block content
       .form-group
         label.col-xs-3.control-label(for="lindline") ＊公司电话
         .col-xs-2.input-module.input-module-left.lindline-left
-          input#lindline-areacode.form-control(type="text" name="lindline-areacode" placeholder="区号")
+          input#lindline-areacode.form-control(type="text" name="areacode" placeholder="区号")
         .col-xs-1.input-module.input-separator 
           label.control-label -
         .col-xs-3.input-module.lindline-middle
-          input#lindline-number.form-control(type="text" name="lindline-number" placeholder="电话号码")
+          input#lindline-number.form-control(type="text" name="number" placeholder="电话号码")
         .col-xs-1.input-module.input-separator 
           label.control-label -
         .col-xs-2.input-module.lindline-right
-          input#lindline-extension.form-control(type="text" name="lindline-extension" placeholder="分机")  
+          input#lindline-extension.form-control(type="text" name="extension" placeholder="分机")  
       .form-group
         label.col-xs-3.control-label(for="phone") 手机号码
         .col-xs-9.input-module.input-module-left
@@ -112,11 +112,11 @@ block content
       .form-group
         label.col-xs-3.control-label(for="email-host") ＊电子邮箱
         .col-xs-5.input-module.input-module-left
-          input#email-host.form-control(type="text" name="email-host")
+          input#email-host.form-control(type="text" name="host")
         .col-xs-1.input-module.text-center
           label.control-label.label-at @
         .col-xs-3.input-module
-          input#email-domain.form-control(type="text" name="email-domain")
+          input#email-domain.form-control(type="text" name="domain")
       .form-group
         .col-xs-offset-3.col-xs-9.input-module.input-module-left
           .checkbox
