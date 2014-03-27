@@ -29,9 +29,9 @@ var UserSchema = new Schema({
         department: String,
         job: String,
         job_id: String
-    }
+    },
     team_id: String,
-    company_id: String
+    company_id: String,
     role: String,
     active: false
 });

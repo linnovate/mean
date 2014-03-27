@@ -14,14 +14,14 @@ var TeamSchema = new Schema({
     id: {
     	type: String,
     	default: "NULL"
-    }
+    },
     
     name: String,
     logo_path: String,
     member:{
     	member_id: Array,
     	member_score: Array
-    }
+    },
     company_id: String,
     leader_id: String
 });
