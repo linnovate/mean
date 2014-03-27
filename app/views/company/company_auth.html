@@ -1,0 +1,17 @@
+{% extends '../layouts/default.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            {% if message && message.length  %}
+            <div class="fade in alert alert-error">
+                <button class="close" data-dismiss="alert">&times;</button>
+                <div class="strong">
+                    {{ message }}
+                </div>
+            </div>
+            {% endif %}
+            {% block auth %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

@@ -17,7 +17,7 @@ exports.authCallback = function(req, res) {
  * Show login form
  */
 exports.signin = function(req, res) {
-    res.render('company/signin', {
+    res.render('company/company_signin', {
         title: '登录',
         message: req.flash('error')
     });
@@ -27,7 +27,7 @@ exports.signin = function(req, res) {
  * Show sign up form
  */
 exports.signup = function(req, res) {
-    res.render('company/signup', {
+    res.render('company/company_signup', {
         title: '注册',
         company: new Company()
     });
@@ -45,11 +45,41 @@ exports.signout = function(req, res) {
  * Session
  */
 exports.session = function(req, res) {
-    res.redirect('/');
+    Company.findOne({
+        email: req.body.email
+    },
+    function (err, user) {
+        if (user) {
+            if (err) 
+                res.render('company/company_signin', {
+                    title: 'Signin',
+                    message: "用户名不存在!"
+                });
+            if (Company.eptPass(req.password)==user.hashed_password) {
+                req.session.user = user;
+                res.redirect('/');
+            }else{
+                res.render('company/company_signin', {
+                    title: 'Signin',
+                    message: "密码不正确!"
+                });
+            };
+        } else {
+            return fn(new Error('cannot find user'));
+        }
+    });
+    
 };
 
+
+//收到验证码后确认验证
+exports.validate = function(req, res, next) {
+
+};
+
+
 /**
- * Create company
+ * 创建公司账号
  */
 exports.create = function(req, res, next) {
     var comapny = new Company(req.body);
@@ -58,24 +88,16 @@ exports.create = function(req, res, next) {
     comapny.provider = 'local';
     comapny.save(function(err) {
         if (err) {
-            switch (err.code) {
-                case 11000:
-                case 11001:
-                    message = '用户名已经存在!';
-                    break;
-                default:
-                    message = '请填写完整信息啊!';
-            }
+                //检查信息是否重复
+            
 
-            return res.render('comapny/signup', {
+            return res.render('comapny/company_signup', {
                 message: message,
                 comapny: comapny
             });
         }
-        req.logIn(company, function(err) {
-            if (err) return next(err);
-            return res.redirect('/');
-        });
+        //req.session.user = company;
+        //res.redirect('/');
     });
 };
 
@@ -89,7 +111,7 @@ exports.me = function(req, res) {
 /**
  * Find company by id
  */
-exports.comapny = function(req, res, next, id) {
+exports.company = function(req, res, next, id) {
     Company
         .findOne({
             _id: id

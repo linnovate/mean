@@ -16,7 +16,7 @@ var CompanySchema = new Schema({
     city: String,
     address: String,
     phone: String,
-
+    lindline: String,
     email: String,
     domain: Array,
     invate_code: String,
@@ -24,7 +24,8 @@ var CompanySchema = new Schema({
     hashed_password: String,
     provider: String,
     salt: String,
-    team_info: Array          //存放组的id
+    team_info: Array,          //存放组的id
+    active: false              //是否激活
 });
 
 /**
@@ -120,6 +121,10 @@ CompanySchema.methods = {
         var salt = new Buffer(this.salt, 'base64');
         return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
     }
+};
+
+CompanySchema.statics.eptPass = function(password) {
+    return this.encryptPassword(password);
 };
 
 mongoose.model('Company', CompanySchema);

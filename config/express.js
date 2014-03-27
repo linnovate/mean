@@ -64,10 +64,12 @@ module.exports = function(app, passport, db) {
             })
         }));
 
+        //app.use(middleware.auth_user);
+
         // Dynamic helpers
         app.use(helpers(config.app.name));
 
-        // Use passport session
+        // Use passport sessions
         app.use(passport.initialize());
         app.use(passport.session());
 
