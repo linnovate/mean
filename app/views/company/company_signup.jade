@@ -1,41 +1,70 @@
-extends company_auth
+extends ../layouts/default
 
-block auth
-  form.signin.form-horizontal(action="/company" method="post")
-    .form-group
-      label.col-md-4.control-label(for="name") 公司名称
-      .col-md-8
-        input#name.form-control(type="text" name="name" placeholder="Full Name" value=company.name)
-    .form-group
-      label.col-md-4.control-label(for="city") 所在城市
-      .col-md-8
-        input#city.form-control(type="text" name="city" placeholder="City" value=company.city)
-    .form-group
-      label.col-md-4.control-label(for="address") 公司地址
-      .col-md-8
-        input#address.form-control(type="text" name="address" placeholder="Address" value=company.address)
-    .form-group
-      label.col-md-4.control-label(for="lindline") 固定电话
-      .col-md-8
-        input#lindline.form-control(type="text" name="lindline" placeholder="Lindline" value=company.lindline)
-    .form-group
-      label.col-md-4.control-label(for="phone") 联系人电话
-      .col-md-8
-        input#phone.form-control(type="text" name="phone" placeholder="Phone" value=company.phone)
-    .form-group
-      label.col-md-4.control-label(for="email") Email
-      .col-md-8
-        input#email.form-control(type="email" name="email" placeholder="Email" value=company.email)
-    .form-group
-      label.col-md-4.control-label(for="username") 公司用户名
-      .col-md-8
-        input#username.form-control(type="text" name="username" placeholder="Username" value=company.username)
-    .form-group
-      label.col-md-4.control-label(for="password") 密码
-      .col-md-8
-        input#password.form-control(type="password" name="password" placeholder="Password" value=company.password)
-    .form-group
-      .col-md-offset-4.col-md-8
-        button.btn.btn-primary(type="submit") 注册
-        | &nbsp;or&nbsp;
-        a.show-login(href="/company_signin") 登录
+block headExt
+  link(rel="stylesheet" href="/css/views/company_signup.css")
+
+block content
+  .row
+    .col-xs-5.text-right.col-left
+      h1.text-right
+        small 加入
+        | 动梨
+      p 为了保证您在动梨遇到的小伙伴们都是真实可靠的
+      p 我们会对每家申请加入的团体当然也包括您在内
+      p 认真的核实资料，感谢您的配合
+    .col-xs-2
+    form.col-xs-5.col-right.signin.form-horizontal(action="/company" method="post")
+      .form-group
+        label.col-xs-3.control-label(for="name") ＊公司全称
+        .col-xs-9.input-module.input-module-left
+          input#name.form-control(type="text" name="name" placeholder="请与贵公司营业执照注册名保持一致")
+      .form-group
+        label.col-xs-3.control-label(for="city-province") ＊城市
+        .col-xs-5.input-module.input-module-left
+          select#city-province.form-control(type="text" name="city-province" placeholder="-省份-")
+            option 广西
+        .col-xs-4.input-module
+          select#city-city.form-control(type="text" name="city-city" placeholder="-城市-")
+            option 梧州
+      .form-group
+        label.col-xs-3.control-label(for="address") ＊地址
+        .col-xs-9.input-module.input-module-left
+          input#address.form-control(type="text" name="address")
+      .form-group
+        label.col-xs-3.control-label(for="contacts") ＊联系人
+        .col-xs-9.input-module.input-module-left
+          input#contacts.form-control(type="text" name="contacts")
+      .form-group
+        label.col-xs-3.control-label(for="lindline") ＊公司电话
+        .col-xs-2.input-module.input-module-left.lindline-left
+          input#lindline-areacode.form-control(type="text" name="lindline-areacode" placeholder="区号")
+        .col-xs-1.input-module.input-separator 
+          label.control-label -
+        .col-xs-3.input-module.lindline-middle
+          input#lindline-number.form-control(type="text" name="lindline-number" placeholder="电话号码")
+        .col-xs-1.input-module.input-separator 
+          label.control-label -
+        .col-xs-2.input-module.lindline-right
+          input#lindline-extension.form-control(type="text" name="lindline-extension" placeholder="分机")  
+      .form-group
+        label.col-xs-3.control-label(for="phone") 手机号码
+        .col-xs-9.input-module.input-module-left
+          input#phone.form-control(type="text" name="phone")
+      .form-group
+        label.col-xs-3.control-label(for="email-host") ＊电子邮箱
+        .col-xs-5.input-module.input-module-left
+          input#email-host.form-control(type="text" name="email-host")
+        .col-xs-1.input-module.text-center
+          label.control-label.label-at @
+        .col-xs-3.input-module
+          input#email-domain.form-control(type="text" name="email-domain")
+      .form-group
+        .col-xs-offset-3.col-xs-9.input-module.input-module-left
+          .checkbox
+            label
+              input(type="checkbox")
+              | 我已阅读并同意<a href="#">服务条款</a>
+      .form-group
+        .col-xs-offset-3.col-xs-9.input-module.input-module-left 
+          button.btn.btn-success.btn-submit 提交申请
+
