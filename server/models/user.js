@@ -102,9 +102,9 @@ UserSchema.methods = {
      * @return {Boolean}
      * @api public
      */
-    hasRole: function(role) {        
+    hasRole: function(role) {
         var roles = this.roles;
-        return (roles.indexOf('admin') != -1 || roles.indexOf(role) != -1);
+        return (roles.indexOf('admin') !== -1 || roles.indexOf(role) !== -1);
     },
     /**
      * Authenticate - check if the passwords are the same
