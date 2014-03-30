@@ -1,0 +1,457 @@
+#!/usr/bin/env node
+
+//Experimental MEAN CLI.
+var progress = new Progress();
+var opener = require("opener");
+var scaffold = require("../lib/scaffold.js");
+var program = require('commander'),
+  pkg = require('../package.json'),
+  version = pkg.version,
+  fs = require('fs'),
+  os = require('os');
+
+program
+  .version(version)
+  .option('-b, --branch [type]', 'git branch')
+  .option('-mn, --machine [type]', 'Specify "machine name" --machine tokens')
+  .option('-g, --git', 'clone using git:// instead of https')
+  .option('--npm', 'Download MEAN Packages from NPM')
+  .option('--repo', 'Specify repository to install')
+  .option('--author [type]', 'Whis is the author')
+  .option('-f, --force', 'force')
+  .option('--env [type]', 'Mean environment defaults to `development`')
+
+program
+  .command('init')
+  .description('Create a MEAN application in the current working directory')
+  .action(function(name) {
+    name = (typeof name == 'object' ? 'mean' : name);
+    init(name, options());
+  })
+
+program
+  .command('install <module>')
+  .description('Installs a MEAN module')
+  .action(function(module) {
+    requiresRoot(function() {
+      install(module, options());
+    });
+  })
+
+program
+  .command('uninstall <module>')
+  .description('Installs a MEAN module')
+  .action(function(module) {
+    requiresRoot(function() {
+      uninstall(module, options());
+    });
+  })
+
+program
+  .command('docs')
+  .description('Opens MEAN documentation in your local browser')
+  .action(function(module) {
+    opener("http://www.mean.io/#!/docs");
+  })
+
+program
+  .command('package <name>')
+  .description('Scaffolds a new MEAN package.')
+  .action(function(name) {
+    requiresRoot(function() {
+      ensureEmpty('./node_modules/' + name, function() {
+        scaffold.packages(name, options());
+      });
+    });
+  })
+
+program
+  .command('list')
+  .description('List all installed packages ')
+  .action(function(env) {
+    requiresRoot(function() {
+      list(options);
+    });
+  });
+
+program
+  .command('status')
+  .description('Overall system status ')
+  .action(function(env) {
+    requiresRoot(function() {
+      status(options());
+    });
+  });
+
+program
+  .command('userAddRole <email> <role>')
+  .description('Assigns role to user ')
+  .action(function(email, role) {
+    requiresRoot(function() {
+      addRole(email, role, options());
+    });
+  });
+
+program
+  .command('userRemoveRole <email> <role>')
+  .description('Removes role from user ')
+  .action(function(email, role) {
+    requiresRoot(function() {
+      removeRole(email, role, options());
+    });
+  });
+
+program
+  .command('user <email>')
+  .description('List roles of specific user ')
+  .action(function(email) {
+    requiresRoot(function() {
+      printUser(email, options());
+    });
+  });
+
+program.parse(process.argv);
+
+
+function options() {
+  return {
+    git: program.git,
+    force: program.force,
+    verbose: program.verbose,
+    branch: program.branch,
+    author: program.author,
+    env: (program.env ? program.env : 'development')
+  }
+}
+
+function printUser(email, options) {
+
+  var config = require(process.cwd() + '/server/config/env/' + options.env + '.js');
+
+  var MongoClient = require('mongodb').MongoClient,
+    format = require('util').format;
+
+  MongoClient.connect(config.db, function(err, db) {
+    if (err) {
+      console.log("    Error Connecting to database");
+      console.log(err);
+    } else {
+      console.log("    DB connecting successful!");
+      console.log();
+      db.collection('users').find({
+        email: email
+      }).toArray(function(err, user) {
+        console.dir(user);
+        db.close();
+      });
+    }
+  })
+}
+
+
+function addRole(email, role, options) {
+
+  var config = require(process.cwd() + '/server/config/env/' + options.env + '.js');
+
+  var MongoClient = require('mongodb').MongoClient,
+    format = require('util').format;
+
+  MongoClient.connect(config.db, function(err, db) {
+    if (err) {
+      console.log("    Error Connecting to database");
+      console.log(err);
+    } else {
+      console.log("    DB connecting successful!");
+      console.log();
+      db.collection('users').update({
+        email: email
+      }, {
+        $push: {
+          roles: role
+        }
+      }, {
+        w: 1,
+        upsert: false,
+        multi: false
+      }, function(err) {
+        if (err) console.warn(err.message);
+        else console.log('successfully updated');
+        db.close();
+
+      });
+    }
+  })
+}
+
+function removeRole(email, role, options) {
+  var config = require(process.cwd() + '/server/config/env/' + options.env + '.js');
+
+  var MongoClient = require('mongodb').MongoClient,
+    format = require('util').format;
+
+  MongoClient.connect(config.db, function(err, db) {
+    if (err) {
+      console.log("    Error Connecting to database");
+      console.log(err);
+    } else {
+      console.log("    DB connecting successful!");
+      console.log();
+      db.collection('users').update({
+        email: email
+      }, {
+        $pull: {
+          roles: role
+        }
+      }, {
+        w: 1,
+        upsert: false,
+        multi: false
+      }, function(err) {
+        if (err) console.warn(err.message);
+        else console.log('successfully updated');
+        db.close();
+
+      });
+    }
+  })
+}
+
+function status(options) {
+  var config = require(process.cwd() + '/server/config/env/' + options.env + '.js');
+  console.log();
+  console.log('    MEAN Status');
+  console.log('    -----------')
+  console.log();
+  loadPackageJson('./package.json', function(err, data) {
+    console.log("    MEAN VERSION: " + data.version);
+    console.log();
+    console.log("    MongoDB URI: " + config.db);
+
+    var MongoClient = require('mongodb').MongoClient,
+      format = require('util').format;
+
+    MongoClient.connect(config.db, function(err, db) {
+      if (err) {
+        console.log("    Error Connecting to database");
+        console.log(err);
+      } else {
+        console.log("    DB connecting successful!");
+        console.log();
+      }
+      db.close();
+    })
+  });
+}
+
+function init(name, options) {
+  ensureEmpty(name, function() {
+    cloneRepo(name, options);
+  });
+}
+
+function cloneRepo(name, options) {
+  options.branch = (typeof options.branch == 'string' ? options.branch : 'master');
+
+  progress.start();
+
+  var spawn = require('child_process').spawn;
+  var source = (options.git ? 'git@github.com:linnovate/mean.git' : 'https://github.com/linnovate/mean.git');
+  var git = spawn('git', ['clone', '-b', options.branch, source, name]);
+
+  console.log("Cloning branch: " + options.branch + " into destination folder: " + name);
+
+  git.stderr.setEncoding('utf8');
+  git.stdout.setEncoding('utf8');
+
+  git.on('close', function(code, signal) {
+    progress.stop();
+    loadPackageJson('./' + name + '/package.json', function(err, data) {
+      if (err) {
+        console.log("Something went wrong. Try again or use --git flag");
+        console.log("If the problem persists see past issues here: https://github.com/linnovate/mean/issues");
+        console.log("Or open a new issue here https://github.com/linnovate/mean/issues/new");
+        //fallback code here
+        process.exit();
+      }
+
+      console.log("Version: " + data.version + " cloned");
+      console.log();
+      fs.readFile(__dirname + '/logo.txt', function(err, data) {
+        console.log(data.toString())
+        console.log();
+        console.log('   install dependencies:');
+        console.log('     $ cd %s && npm install', name);
+        console.log();
+        console.log('   run the app:');
+        console.log('     $ grunt');
+        console.log();
+        console.log('   Extra Docs at http://mean.io');
+      });
+
+    });
+  });
+
+  git.stdout.on('data', function(data) {
+    console.log(data);
+  });
+
+  git.stderr.on('data', function(data) {
+    console.log(data);
+    //errors = true;
+  });
+}
+
+function loadPackageJson(path, callback) {
+  fs.readFile(path, function(err, data) {
+    if (err) return callback(true, err);
+
+    try {
+      var json = JSON.parse(data.toString());
+      callback(null, json);
+    } catch (err) {
+      return callback(true, err);
+    }
+  })
+}
+
+function ensureEmpty(path, callback) {
+  emptyDirectory(path, function(empty) {
+    if (empty || program.force) {
+      callback();
+    } else {
+      console.log('Destination is not empty: ' + path);
+    }
+  })
+
+}
+// From express
+function emptyDirectory(path, fn) {
+  fs.readdir('./' + path, function(err, files) {
+    if (err && 'ENOENT' != err.code) throw err;
+    fn(!files || !files.length);
+  });
+}
+
+function list(options) {
+  fs.readdir('./node_modules', function(err, files) {
+    if (err) return console.log("No Modules. Make sure you are within a valid MEAN APP");
+    remaining = files.length;
+    console.log('   MEAN Modules List:');
+    console.log('   -----------------');
+    files.forEach(function(file) {
+      loadPackageJson('./node_modules/' + file + '/package.json', function(err, data) {
+        if (!err && data.mean) console.log('   ' + data.name + '@' + data.version + (data.author ? ' Author: ' + data.author.name : ''));
+      });
+    });
+  });
+}
+
+function uninstall(module, options) {
+  var spawn = require('child_process').spawn;
+
+  var npm = spawn('npm', ['uninstall', module]);
+
+  console.log("Removing module: " + module);
+
+  npm.stderr.setEncoding('utf8');
+  npm.stdout.setEncoding('utf8');
+
+  npm.on('close', function(code, signal) {
+    console.log('   npm uninstall complete')
+  });
+
+  npm.stdout.on('data', function(data) {
+    console.log(data);
+  });
+
+  npm.stderr.on('data', function(data) {
+    errors = true;
+    console.log(data);
+  });
+}
+
+function install(module, options) {
+  progress.start();
+  options.branch = (typeof options.branch == 'string' ? options.branch : 'master');
+  var source = 'https://github.com/linnovate/' + module + '/tarball/' + options.branch;
+  var spawn = require('child_process').spawn;
+  var npm = spawn('npm', ['install', source]);
+
+  console.log("Installing module: " + module + " from branch (version): " + options.branch);
+  npm.stderr.setEncoding('utf8');
+  npm.stdout.setEncoding('utf8');
+
+  npm.on('close', function(code, signal) {
+    progress.stop();
+    loadPackageJson('./node_modules/' + module + '/package.json', function(err, data) {
+      if (err) {
+        console.log("Error: npm install failed")
+        return console.log(data);
+      }
+      console.log(data.name + '@' + data.version + (data.author ? ' Author: ' + data.author.name : ''));
+      if (!data.mean) {
+        console.log();
+        console.log("Warning: The module installed is not a valid MEAN module");
+      }
+    });
+
+  });
+
+  npm.stdout.on('data', function(data) {
+    console.log(data);
+  });
+
+  npm.stderr.on('data', function(data) {
+    console.log(data);
+  });
+}
+
+function requiresRoot(callback) {
+  loadPackageJson(process.cwd() + '/package.json', function(err, data) {
+    if (err || data.name != 'mean') {
+      console.log("Invalid MEAN app or not in app root");
+    } else {
+      callback();
+    }
+  })
+}
+
+function Progress() {
+  var interval = null
+  var counter = 0;
+
+  var progress = {
+    start: function() {
+      counter = 0;
+      interval = setInterval(printMsg, 3000);
+    },
+    stop: function() {
+      clearInterval(interval);
+    }
+  };
+
+  function printMsg() {
+
+    switch (counter) {
+      case 0:
+        console.log("Use `mean --help` from command line for all CLI options");
+        break;
+      case 1:
+        console.log("Be sure to checkout all the docs on http://mean.io");
+        break;
+      case 2:
+        console.log("This may take a little while depending on your connection speed");
+        break;
+      case 15:
+        console.log("Seems a bit slow. Check your internet connection...");
+        break;
+      default:
+        console.log('Still cloning...');
+        break;
+    }
+
+    counter++;
+  }
+
+  return progress;
+}
