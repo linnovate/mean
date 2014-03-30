@@ -17,10 +17,7 @@ var CompanySchema = new Schema({
         unique: true
     },
 
-    hashed_password: {
-        type: String,
-        unique: true
-    },
+    hashed_password: String,
 
     email: {
         host: String,               //邮箱名
@@ -35,7 +32,11 @@ var CompanySchema = new Schema({
 
     //公司信息
     info: {
-        name: String,                //公司名
+        name: {
+            type: String,
+            unique: true
+        },                           //公司名
+        
         city: {
             province: String,
             city: String

@@ -15,6 +15,8 @@ module.exports = function(app) {
     // Setting up the company api
     app.post('/company', company.create);
 
+    app.post('/company_validate', company.createDetail)
+
     // Setting up the companyId param
     app.param('companyId', company.company);
 };

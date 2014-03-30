@@ -66,9 +66,16 @@ exports.create = function(req, res, next) {
     company.save(function(err) {
         if (err) {
             //检查信息是否重复
-            
+            switch (err.code) {
+                case 11000:
+                    break;
+                case 11001:
+                    res.status(400).send('该公司已经存在!');
+                    break;
+                default:
+                    break;
+            }
             return res.render('company/company_signup', {
-                message: message,
                 company: company
             });
         }
@@ -85,7 +92,7 @@ exports.create = function(req, res, next) {
 /**
  * 验证通过后创建公司进一步的信息(用户名\密码等)
  */
-exports.createCompanyDetail = function(req, res, next) {
+exports.createDetail = function(req, res, next) {
     var company = new Company();
     company.username = req.body.username;
     company.password = req.body.password;
@@ -93,9 +100,19 @@ exports.createCompanyDetail = function(req, res, next) {
     company.save(function(err) {
         if (err) {
             //检查信息是否重复
-            
+            switch (err.code) {
+                case 11000:
+                    break;
+                case 11001:
+                    res.status(400).send('该公司用户已经存在!');
+                    break;
+                default:
+                    break;
+            }
+            return res.render('company/company_validate', {
+                company: company
+            });
         }
-    
     });
 };
 
