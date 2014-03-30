@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
     encrypt = require('../middlewares/encrypt');
 
 
-exports.validate = function(req, res) {
+exports.companyValidate = function(req, res) {
 
 	var key = req.query.key;
 	var name = req.query.name;
@@ -31,4 +31,9 @@ exports.validate = function(req, res) {
             });
         }
     });
+};
+
+
+exports.employeeValidate = function(req, res) {
+
 };

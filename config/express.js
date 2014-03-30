@@ -8,8 +8,9 @@ var express = require('express'),
     mongoStore = require('connect-mongo')(express),
     flash = require('connect-flash'),   //session operate
     helpers = require('view-helpers'),
-    config = require('./config');
-
+    config = require('./config'),
+    middleware = require('./middleware');
+    
 module.exports = function(app, passport, db) {
     app.set('showStackError', true);
 

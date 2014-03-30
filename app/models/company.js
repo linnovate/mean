@@ -12,9 +12,15 @@ var mongoose = require('mongoose'),
  */
 var CompanySchema = new Schema({
     id: String,
-    username: String,
-    hashed_password: String,
+    username: {
+        type: String,
+        unique: true
+    },
 
+    hashed_password: {
+        type: String,
+        unique: true
+    },
 
     email: {
         host: String,               //邮箱名

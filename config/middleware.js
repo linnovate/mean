@@ -1,5 +1,6 @@
 'use strict';
 
+/*
 var crypto = require('crypto');
 
 var PERMISSION = ["MANAGER","EMPLOYEE","TEAMLEADER"];
@@ -72,3 +73,4 @@ function md5(str) {
   str = md5sum.digest('hex');
   return str;
 }
+*/

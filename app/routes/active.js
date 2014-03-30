@@ -5,5 +5,5 @@ var active = require('../controllers/active');
 
 module.exports = function(app, passport) {
 
-    app.get('/active_account', active.validate);
+    app.get('/company_active_account', active.companyValidate);
 };

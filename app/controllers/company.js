@@ -47,7 +47,7 @@ exports.validate_next = function(req, res) {
  * 创建公司基本信息
  */
 exports.create = function(req, res, next) {
-    var company = new Company(req.body);
+    var company = new Company();
     var message = null;
 
     company.info.name = req.body.name;
@@ -73,7 +73,7 @@ exports.create = function(req, res, next) {
             });
         }
         //发送邮件
-        mail.sendActiveMail(company.email.host+'@'+company.email.domain[0],company.info.name);
+        mail.sendCompanyActiveMail(company.email.host+'@'+company.email.domain[0],company.info.name);
         res.render('company/company_wait', {
             title: '等待验证',
             message: '您的申请信息已经提交,等验证通过后我们会向您发送一封激活邮件,请注意查收!'
@@ -85,7 +85,19 @@ exports.create = function(req, res, next) {
 /**
  * 验证通过后创建公司进一步的信息(用户名\密码等)
  */
+exports.createCompanyDetail = function(req, res, next) {
+    var company = new Company();
+    company.username = req.body.username;
+    company.password = req.body.password;
 
+    company.save(function(err) {
+        if (err) {
+            //检查信息是否重复
+            
+        }
+    
+    });
+};
 
 /**
  * Send Company
