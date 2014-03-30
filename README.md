@@ -110,7 +110,7 @@ If you are using node instead of grunt, it is very similar:
   * [The Model](server/models/article.js) - Where we define our object schema.
   * [The Controller](server/controllers/articles.js) - Where we take care of our backend logic.
   * [NodeJS Routes](server/routes) - Where we define our REST service routes.
-  * [AngularJs Routes](public/articles/articles.js) - Where we define our CRUD routes.
+  * [AngularJs Routes](public/articles/routes/articles.js) - Where we define our CRUD routes.
   * [The AngularJs Service](public/articles/services/articles.js) - Where we connect to our REST service.
   * [The AngularJs Controller](public/articles/controllers/articles.js) - Where we take care of  our frontend logic.
   * [The AngularJs Views Folder](public/articles/views) - Where we keep our CRUD views.
