@@ -25,7 +25,7 @@ module.exports = function(passport, db) {
         };
         walk(models_path);
     }
-    
+
     bootstrapModels();
 
     // Bootstrap passport config
@@ -53,14 +53,11 @@ module.exports = function(passport, db) {
         });
     }
 
-
     bootstrapDependencies();
 
     // Express settings
     var app = express();
     require(appPath + '/server/config/express')(app, passport, db);
-
-
 
     return app;
 };
