@@ -1,3 +1,5 @@
+'use strict';
+
 var fs = require('fs'),
     express = require('express'),
     appPath = process.cwd();
@@ -5,17 +7,8 @@ var fs = require('fs'),
 var mean = require('meanio');
 
 module.exports = function(passport, db) {
-    bootstrapModels();
 
-    // Bootstrap passport config
-    require(appPath + '/server/config/passport')(passport);
-    bootstrapDependencies();
-
-    // Express settings
-    var app = express();
-    require(appPath + '/server/config/express')(app, passport, db);
-
-    function bootstrapModels() {
+    var bootstrapModels = function() {
         var models_path = appPath + '/server/models';
         var walk = function(path) {
             fs.readdirSync(path).forEach(function(file) {
@@ -31,9 +24,9 @@ module.exports = function(passport, db) {
             });
         };
         walk(models_path);
-    }
+    };
 
-    function bootstrapDependencies() {
+    var bootstrapDependencies = function() {
         // Register passport dependency
         mean.register('passport', function() {
             return passport;
@@ -52,8 +45,19 @@ module.exports = function(passport, db) {
         // Register app dependency
         mean.register('app', function() {
             return app;
-        });  
-    }
+        });
+    };
+
+    bootstrapModels();
+
+    // Bootstrap passport config
+    require(appPath + '/server/config/passport')(passport);
+
+    bootstrapDependencies();
+
+    // Express settings
+    var app = express();
+    require(appPath + '/server/config/express')(app, passport, db);
 
     return app;
 };
