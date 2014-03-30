@@ -105,22 +105,22 @@ module.exports = function(app, passport, db) {
 
         // Setting the fav icon and static folder
         app.use(express.favicon());
-        app.use('/public',express.static(config.root + '/public'));
+        app.use('/public', express.static(config.root + '/public'));
 
-        app.get('/modules/aggregated.js', function(req, res, next) {
+        app.get('/modules/aggregated.js', function(req, res) {
             res.setHeader('content-type', 'text/javascript');
             res.send(mean.aggregated.js);
         });
 
 
-        app.get('/modules/aggregated.css', function(req, res, next) {
+        app.get('/modules/aggregated.css', function(req, res) {
             res.setHeader('content-type', 'text/css');
             res.send(mean.aggregated.css);
         });
 
         mean.events.on('modulesFound', function() {
 
-            mean.modules.forEach(function(module, index) {
+            mean.modules.forEach(function(module) {
                 app.use('/' + module.name, express.static(config.root + '/node_modules/' + module.name + '/public'));
             });
 
