@@ -83,7 +83,7 @@ $ bower cache clean
 
  
 ## Configuration
-All configuration is specified in the [config](config/) folder, particularly the [config.js](config/config.js) file and the [env](config/env/) files. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, GitHub or Google.
+All configuration is specified in the [server/config](server/config/) folder, particularly the [config.js](server/config/config.js) file and the [env](server/config/env/) files. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, GitHub or Google.
 
 ### Environmental Settings
 
@@ -107,13 +107,13 @@ If you are using node instead of grunt, it is very similar:
 
 ## Getting Started
   We pre-included an article example, check it out:
-  * [The Model](app/models/article.js) - Where we define our object schema.
-  * [The Controller](app/controllers/articles.js) - Where we take care of our backend logic.
-  * [NodeJS Routes](app/routes) - Where we define our REST service routes.
-  * [AngularJs Routes](public/js/config.js) - Where we define our CRUD routes.
-  * [The AngularJs Service](public/js/services/articles.js) - Where we connect to our REST service.
-  * [The AngularJs Controller](public/js/controllers/articles.js) - Where we take care of  our frontend logic.
-  * [The AngularJs Views Folder](public/views/articles) - Where we keep our CRUD views.
+  * [The Model](server/models/article.js) - Where we define our object schema.
+  * [The Controller](server/controllers/articles.js) - Where we take care of our backend logic.
+  * [NodeJS Routes](server/routes) - Where we define our REST service routes.
+  * [AngularJs Routes](public/articles/routes/articles.js) - Where we define our CRUD routes.
+  * [The AngularJs Service](public/articles/services/articles.js) - Where we connect to our REST service.
+  * [The AngularJs Controller](public/articles/controllers/articles.js) - Where we take care of  our frontend logic.
+  * [The AngularJs Views Folder](public/articles/views) - Where we keep our CRUD views.
 
 ## Heroku Quick Deployment
 Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed and an accessible mongo db instance - you can try <a href="http://www.mongohq.com/">mongohq</a> which have an easy setup )
