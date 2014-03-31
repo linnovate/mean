@@ -20,9 +20,9 @@ block content
           input#name.form-control(type="text" name="name" placeholder="请与贵公司营业执照注册名保持一致")
       .form-group#city
         label.col-xs-3.control-label(for="city-province") ＊城市
-        .col-xs-5.input-module.input-module-left
+        .col-xs-5.input-module.input-module-left.pc-selector
           select#city-province.form-control.prov(type="text" name="province" ng-model="pcSelector.province" ng-options="prov.name for prov in pcSelector.provinces" ng-change="pcSelector.change()")
-        .col-xs-4.input-module
+        .col-xs-4.input-module.pc-selector
           select#city-city.form-control.city(type="text" name="city" ng-model="pcSelector.city" ng-options="city.name for city in pcSelector.cities")
       .form-group
         label.col-xs-3.control-label(for="address") ＊地址
