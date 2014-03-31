@@ -7,6 +7,11 @@ body
 .main-navbar
   height 70px
   background-color themeColor
+  background -ms-linear-gradient(top, themeColor, navbarLinearColor)
+  background -moz-linear-gradient(top, themeColor, navbarLinearColor)
+  background -webkit-gradient(linear, 0% 0%, 0% 100%, from(themeColor), to(navbarLinearColor))
+  background -webkit-linear-gradient(top, themeColor, navbarLinearColor)
+  background -o-linear-gradient(top, themeColor, navbarLinearColor)
   border-color #fff
   color navbarFontColor
 

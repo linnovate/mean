@@ -4,7 +4,12 @@ body {
 }
 .main-navbar {
   height: 70px;
-  background-color: #33b6e5;
+  background-color: #32afe0;
+  background: -ms-linear-gradient(top, #32afe0, #33b0e3);
+  background: -moz-linear-gradient(top, #32afe0, #33b0e3);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#32afe0), to(#33b0e3));
+  background: -webkit-linear-gradient(top, #32afe0, #33b0e3);
+  background: -o-linear-gradient(top, #32afe0, #33b0e3);
   border-color: #fff;
   color: #fff;
 }
