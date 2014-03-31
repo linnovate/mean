@@ -1,7 +1,10 @@
 <div class="" data-ng-controller="HeaderController">
+    <div class="container">
     <ul class="navbar-nav nav">
         <li>
-            <a class="navbar-brand" href="/">动梨</a>
+            <a class="navbar-brand" href="/">
+                <img class="logo" src="/img/logo_w.png"/>
+            </a>
         </li>
         <li data-ng-repeat="item in menu" data-ng-show="global.user" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
             <a href="#!/{{item.link}}">{{item.title}}</a>
@@ -35,4 +38,5 @@
             </ul>
         </li>
     </ul>
+    </div>
 </div>

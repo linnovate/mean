@@ -1,26 +1,35 @@
-.navbar .nav>li>a.brand {
-  padding-left: 20px;
-  margin-left: 0;
+body {
+  color: #666;
+  background-color: #f9f9f9;
+}
+.main-navbar {
+  height: 70px;
+  background-color: #33b6e5;
+  border-color: #fff;
+  color: #fff;
+}
+.main-navbar .logo {
+  margin-top: 5px;
 }
 .content {
   margin-top: 70px;
   width: 100%;
 }
+a {
+  color: #28689b;
+}
 footer {
   position: fixed;
   left: 0px;
   bottom: 0px;
-  height: 30px;
+  height: 60px;
   width: 100%;
-  background: #ddd;
-  -webkit-box-shadow: 0 8px 6px 6px #000;
-  -moz-box-shadow: 0 8px 6px 6px #000;
-  box-shadow: 0 8px 6px 6px #000;
+  color: #999;
+}
+footer hr {
+  margin-top: 0;
+  margin-bottom: 15px;
 }
 footer p {
   padding: 5px 0 12px 10px;
-}
-.navbar-inverse {
-  background-color: #008000;
-  border-color: #fff;
 }

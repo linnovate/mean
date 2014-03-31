@@ -1,25 +1,36 @@
-.navbar .nav>li>a.brand
-  padding-left 20px
-  margin-left 0
+@require 'variables'
+
+body
+  color fontColor
+  background-color backgroundColor
+
+.main-navbar
+  height 70px
+  background-color themeColor
+  border-color #fff
+  color navbarFontColor
+
+  .logo
+    margin-top 5px
 
 .content
   margin-top 70px
   width 100%
 
+a
+  color linkColor
+
 footer
   position fixed
   left 0px
   bottom 0px
-  height 30px
+  height 60px
   width 100%
-  background #ddd
-  -webkit-box-shadow 0 8px 6px 6px black
-  -moz-box-shadow 0 8px 6px 6px black
-  box-shadow 0 8px 6px 6px black
+  color footerFontColor
+
+  hr
+    margin-top 0
+    margin-bottom 15px
 
   p
     padding 5px 0 12px 10px
-
-.navbar-inverse
-  background-color green
-  border-color #fff
