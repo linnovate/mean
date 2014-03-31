@@ -38,8 +38,8 @@ exports.validate_error = function(req, res) {
     });
 };
 
-exports.validate_next = function(req, res) {
-    res.render('company/company_validate_next', {
+exports.validate_confirm = function(req, res) {
+    res.render('company/validate/confirm', {
         title: '验证成功,可以进行下一步!'
     });
 };
@@ -108,14 +108,14 @@ exports.createDetail = function(req, res, next) {
                 default:
                     break;
             }
-            res.render('company/company_validate', {
+            res.render('company/validate/confirm', {
                 company: company
             });
         }
         req.session.user.name = req.body.username;
         req.session.user.role = 'MANAGER';
         //hr进入公司管理界面
-        res.render('manager/company', {
+        res.render('company/validate/confirm', {
             message: '公司管理'
         });
     });
