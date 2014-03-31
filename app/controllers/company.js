@@ -120,10 +120,7 @@ exports.createDetail = function(req, res, next) {
             req.session.user = req.body.username;
             req.session.role = 'MANAGER';
             //hr进入公司组件选择界面
-            res.render('company/validate/group_select', {
-                tittle: '公司管理',
-                message: '组件选择'
-            });
+            res.redirect('/company/groupSelect');
         } else {
             res.render('company/validate/confirm', {
                 tittle: '该公司不存在!'
