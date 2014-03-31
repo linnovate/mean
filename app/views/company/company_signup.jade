@@ -4,7 +4,7 @@ block headExt
   link(rel="stylesheet" href="/css/views/company_signup.css")
 
 block content
-  .row
+  .row(ng-controller="RegisterController")
     .col-xs-5.text-right.col-left
       h1.text-right
         small 加入
@@ -21,9 +21,9 @@ block content
       .form-group#city
         label.col-xs-3.control-label(for="city-province") ＊城市
         .col-xs-5.input-module.input-module-left
-          select#city-province.form-control.prov(type="text" name="province")
+          select#city-province.form-control.prov(type="text" name="province" ng-model="pcSelector.province" ng-options="prov.name for prov in pcSelector.provinces" ng-change="pcSelector.change()")
         .col-xs-4.input-module
-          select#city-city.form-control.city(type="text" name="city" disabled="disabled")
+          select#city-city.form-control.city(type="text" name="city" ng-model="pcSelector.city" ng-options="city.name for city in pcSelector.cities")
       .form-group
         label.col-xs-3.control-label(for="address") ＊地址
         .col-xs-9.input-module.input-module-left
@@ -66,3 +66,5 @@ block content
         .col-xs-offset-3.col-xs-9.input-module.input-module-left 
           button.btn.btn-success.btn-submit 提交申请
 
+block footExt
+  script(src="/js/controllers/company.js")
