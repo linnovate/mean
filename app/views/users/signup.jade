@@ -4,10 +4,12 @@ block headExt
   link(rel="stylesheet" href="/css/views/staff_register.css")
 
 block content
-  .row
-    .col-xs-12.col-sm-6
-      h1 加入鸭梨
-    .col-xs-12.col-sm-6
+  .row.wrap
+    .col-xs-12.col-sm-5.register-text
+      h1.text-right
+        small 加入
+        | 鸭梨
+    .col-xs-12.col-sm-7
       form.form-horizontal.center-block.register-form
         .col-xs-offset-3.col-xs-9
           h2 激活成功！
@@ -44,4 +46,4 @@ block content
                 | 我已阅读并同意<a href="#">服务条款</a>
         .form-group
           .col-xs-offset-3.col-xs-9
-            button.btn.btn-primary 下一步
+            button.btn.btn-primary.btn-theme 下一步

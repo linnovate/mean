@@ -53,4 +53,6 @@
 .btn-submit {
   width: 100%;
   height: 40px;
+  background-color: #33b6e5;
+  border: none;
 }
