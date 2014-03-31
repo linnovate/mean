@@ -32,15 +32,27 @@ exports.wait = function(req, res) {
     });
 };
 
-exports.validate_error = function(req, res) {
+exports.validateError = function(req, res) {
     res.render('company/company_validate_error', {
         title: '验证错误'
     });
 };
 
-exports.validate_confirm = function(req, res) {
+exports.validateConfirm = function(req, res) {
     res.render('company/validate/confirm', {
         title: '验证成功,可以进行下一步!'
+    });
+};
+
+exports.groupSelect = function(req, res) {
+    res.render('company/validate/group_select', {
+            message: '组件选择'
+    });
+};
+
+exports.sendInvateCode = function(req, res) {
+    res.render('company/validate/send_invate_code', {
+        message: '发送邀请码'
     });
 };
 /**
@@ -115,8 +127,8 @@ exports.createDetail = function(req, res, next) {
         req.session.user.name = req.body.username;
         req.session.user.role = 'MANAGER';
         //hr进入公司管理界面
-        res.render('company/validate/confirm', {
-            message: '公司管理'
+        res.render('company/validate/group_select', {
+            message: '组件选择'
         });
     });
 };
