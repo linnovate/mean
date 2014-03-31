@@ -5,14 +5,14 @@ var company = require('../controllers/company');
 
 module.exports = function(app) {
 
-    app.get('/company_signup', company.signup);
+    app.get('/company/signup', company.signup);
     app.get('/company/me', company.me);
-    app.get('/company_wait', company.wait);
+    app.get('/company/wait', company.wait);
 
-    app.get('/company_validate_error', company.validateError);
-    app.get('/company_validate_confirm', company.validateConfirm);
-    app.get('/company_group_select', company.groupSelect);
-    app.get('/company_send_invate_code', company.sendInvateCode);
+    app.get('/company/validate/error', company.validateError);
+    app.get('/company/confirm', company.validateConfirm);
+    app.get('/company/groupSelect', company.groupSelect);
+    app.get('/company/sendInvateCode', company.sendInvateCode);
 
     // 提交公司申请信息
     app.post('/company', company.create);

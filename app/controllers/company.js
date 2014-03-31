@@ -46,7 +46,7 @@ exports.validateConfirm = function(req, res) {
 
 exports.groupSelect = function(req, res) {
     res.render('company/validate/group_select', {
-            message: '组件选择'
+        message: '组件选择'
     });
 };
 
@@ -105,31 +105,30 @@ exports.create = function(req, res, next) {
  * 验证通过后创建公司进一步的信息(用户名\密码等)
  */
 exports.createDetail = function(req, res, next) {
-    var company = new Company();
-    company.username = req.body.username;
-    company.password = req.body.password;
-    company.save(function(err) {
-        if (err) {
-            //检查信息是否重复
-            switch (err.code) {
-                case 11000:
-                    break;
-                case 11001:
-                    res.status(400).send('该公司用户已经存在!');
-                    break;
-                default:
-                    break;
+
+    Company.findOne({'info.name': req.session.company_validate}, function(err, _body) {
+        if(_body) {
+            if (err) {
+                res.status(400).send('该公司信息不存在!');
+                return;
             }
+        
+            _body.username = req.body.username;
+            _body.password = req.body.password;
+
+            _body.save();
+            req.session.user = req.body.username;
+            req.session.role = 'MANAGER';
+            //hr进入公司组件选择界面
+            res.render('company/validate/group_select', {
+                tittle: '公司管理',
+                message: '组件选择'
+            });
+        } else {
             res.render('company/validate/confirm', {
-                company: company
+                tittle: '该公司不存在!'
             });
         }
-        req.session.user.name = req.body.username;
-        req.session.user.role = 'MANAGER';
-        //hr进入公司管理界面
-        res.render('company/validate/group_select', {
-            message: '组件选择'
-        });
     });
 };
 
