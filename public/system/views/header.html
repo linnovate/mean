@@ -4,7 +4,7 @@
             <a class="navbar-brand" href="/">MEAN - A Modern Stack</a>
         </li>
         <li data-ng-repeat="item in menus.main" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
-            <a data-ng-if="global.hasRole(item.role)" ui-sref='{{item.link}}'>{{item.title}}</a>
+            <a data-ng-if="global.hasRole(item.roles)" ui-sref='{{item.link}}'>{{item.title}}</a>
         </li>                
     </ul>
 

@@ -6,11 +6,11 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
 
         $scope.menus = {
             main: [{
-                'role': 'authenticated',
+                'roles': ['authenticated'],
                 'title': 'Articles',
                 'link': 'all articles'
             }, {
-                'role': 'authenticated',
+                'roles': ['authenticated'],
                 'title': 'Create New Article',
                 'link': 'create article'
             }]
