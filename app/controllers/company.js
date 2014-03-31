@@ -96,7 +96,6 @@ exports.createDetail = function(req, res, next) {
     var company = new Company();
     company.username = req.body.username;
     company.password = req.body.password;
-
     company.save(function(err) {
         if (err) {
             //检查信息是否重复
@@ -113,6 +112,9 @@ exports.createDetail = function(req, res, next) {
                 company: company
             });
         }
+        req.session.user.name = req.body.username;
+        req.session.user.role = 'MANAGER';
+        
     });
 };
 
