@@ -16,7 +16,7 @@ program
   .option('-mn, --machine [type]', 'Specify "machine name" --machine tokens')
   .option('-g, --git', 'clone using git:// instead of https')
   .option('--npm', 'Download MEAN Packages from NPM')
-  .option('--repo', 'Specify repository to install')
+  .option('--repo [type]', 'Specify repository to install')
   .option('--author [type]', 'Whis is the author')
   .option('-f, --force', 'force')
   .option('--env [type]', 'Mean environment defaults to `development`')
@@ -115,6 +115,7 @@ program.parse(process.argv);
 
 function options() {
   return {
+    npm: program.npm,
     git: program.git,
     force: program.force,
     verbose: program.verbose,
@@ -375,6 +376,17 @@ function install(module, options) {
   options.branch = (typeof options.branch == 'string' ? options.branch : 'master');
   var source = 'https://github.com/linnovate/' + module + '/tarball/' + options.branch;
   var spawn = require('child_process').spawn;
+
+  // Allow specifying specific repo
+  if (options.repo) {
+    source = options.repo;
+  }
+
+  // Allow installing packages from npm
+  if (options.npm) {
+    source = module;    
+  } 
+
   var npm = spawn('npm', ['install', source]);
 
   console.log("Installing module: " + module + " from branch (version): " + options.branch);
