@@ -108,13 +108,16 @@ exports.createDetail = function(req, res, next) {
                 default:
                     break;
             }
-            return res.render('company/company_validate', {
+            res.render('company/company_validate', {
                 company: company
             });
         }
         req.session.user.name = req.body.username;
         req.session.user.role = 'MANAGER';
-        
+        //hr进入公司管理界面
+        res.render('manager/company', {
+            message: '公司管理'
+        });
     });
 };
 
