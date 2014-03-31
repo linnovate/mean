@@ -5,3 +5,9 @@ env:
   - NODE_ENV=travis
 services:
   - mongodb
+branches:
+    only:
+        - dev
+notifications:
+    email:
+        - <avocado.cn@gmail.com>

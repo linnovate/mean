@@ -16,10 +16,8 @@ exports.companyValidate = function(req, res) {
     function (err, user) {
         if (user) {
             if(encrypt.encrypt(name,'18801912891') === key){
-            	res.render('company/company_validate', {
-                    title: '进一步注册',
-                    message: '验证成功!'
-            	});
+                req.session.company_validate = name;
+            	res.redirect('/company/confirm');
             } else {
             	res.render('company/company_validate_error', {
                     title: '验证失败',
