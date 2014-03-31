@@ -1,3 +1,7 @@
+html,
+body {
+  height: 100%;
+}
 body {
   color: #666;
   background-color: #f9f9f9;
@@ -19,14 +23,15 @@ body {
 .content {
   margin-top: 70px;
   width: 100%;
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -60px;
+  padding: 0 0 60px;
 }
 a {
   color: #28689b;
 }
 footer {
-  position: fixed;
-  left: 0px;
-  bottom: 0px;
   height: 60px;
   width: 100%;
   color: #999;
