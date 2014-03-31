@@ -15,7 +15,7 @@
 			"public/system/lib/angular-bootstrap/ui-bootstrap-tpls.js",
 			"public/init.js",
 			"public/*/*.js",
-			"public/*/*/*.js"
+			"public/*/{controllers,routes,services}/*.js"
 		]
 	}
 }
