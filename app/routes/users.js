@@ -18,4 +18,6 @@ module.exports = function(app, passport) {
         failureRedirect: '/signin',
         failureFlash: true
     }), users.session);
+
+    app.post('/signup/next', users.create);
 };

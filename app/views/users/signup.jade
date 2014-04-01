@@ -10,34 +10,34 @@ block content
         small 加入
         | 动梨
     .col-xs-12.col-sm-7
-      form.form-horizontal.center-block.register-form
+      form.form-horizontal.center-block.register-form(action="/signup/next" method="post")
         .col-xs-offset-3.col-xs-9
           h2 激活成功！
           p 现在可以完成注册，加入动梨啦！
         .form-group
-          label.col-xs-3.control-label ＊用户名
+          label.col-xs-3.control-label(for="username") ＊用户名
           .col-xs-9
-            input.form-control(type="text")
+            input#username.form-control(type="text" name="username")
         .form-group
-          label.col-xs-3.control-label ＊密码
+          label.col-xs-3.control-label(for="password") ＊密码
           .col-xs-9
-            input.form-control(type="password")
+            input#password.form-control(type="password" name="password")
         .form-group
-          label.col-xs-3.control-label ＊密码确认
+          label.col-xs-3.control-label(for="passconf") ＊密码确认
           .col-xs-9
-            input.form-control(type="password")
+            input#passconf.form-control(type="password" name="passconf")
         .form-group
-          label.col-xs-3.control-label ＊真实姓名
+          label.col-xs-3.control-label(for="realName") ＊真实姓名
           .col-xs-9
-            input.form-control(type="text" placeholder="仅公司成员可见")
+            input#realName.form-control(type="text" placeholder="仅公司成员可见" name="realName")
         .form-group
-          label.col-xs-3.control-label 部门
+          label.col-xs-3.control-label(for="department") 部门
           .col-xs-9
-            input.form-control(type="text")
+            input#department.form-control(type="text" name="department")
         .form-group
-          label.col-xs-3.control-label 手机
+          label.col-xs-3.control-label(for="phone") 手机
           .col-xs-9
-            input.form-control(type="text")
+            input#phone.form-control(type="text" name="phone")
         .form-group
           .col-xs-offset-3.col-xs-9
             .checkbox
@@ -46,4 +46,4 @@ block content
                 | 我已阅读并同意<a href="#">服务条款</a>
         .form-group
           .col-xs-offset-3.col-xs-9
-            button.btn.btn-primary.btn-theme 下一步
+            button.btn.btn-primary.btn-theme(type="submit") 下一步

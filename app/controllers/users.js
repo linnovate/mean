@@ -76,6 +76,23 @@ exports.session = function(req, res) {
 };
 
 
+exports.create = function(req, res) {
+    var user = new User();
+
+    user.username = req.body.username;
+    user.password = req.body.password;
+    user.name = req.body.realName;
+    user.info.department = req.body.department;
+    user.info.phone = req.body.phone;
+
+    user.save(function(err) {
+        if(err) {
+            // error produce
+        }
+        res.render('users/signup_success', {title: '注册成功'});
+    });
+};
+
 /**
  * Send User
  */
