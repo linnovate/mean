@@ -82,8 +82,8 @@ Meanio.prototype.Menus = function(name) {
 
 		if (!allMenus[options.menu] && !options.defaultMenu) return [];
 
-		var items = options.defaultMenu.concat(allMenus[options.menu]);
-
+		var items = options.defaultMenu.concat((allMenus[options.menu]?allMenus[options.menu]:[]));
+		
 		items.forEach(function(item) {
 
 			var hasRole = false;
