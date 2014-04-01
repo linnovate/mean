@@ -80,9 +80,11 @@ Meanio.prototype.Menus = function(name) {
 		options.roles = (options.roles ? options.roles : ['annonymous']);
 		options.menu = (options.menu ? options.menu : 'main');
 
+		if (!allMenus[options.menu] && !options.defaultMenu) return [];
 
-		if (!allMenus[options.menu]) return [];
-		allMenus[options.menu].forEach(function(item) {
+		var items = options.defaultMenu.concat(allMenus[options.menu]);
+
+		items.forEach(function(item) {
 
 			var hasRole = false;
 			options.roles.forEach(function(role) {
