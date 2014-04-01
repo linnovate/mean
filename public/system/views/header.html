@@ -4,7 +4,7 @@
             <a class="navbar-brand" href="/">MEAN - A Modern Stack</a>
         </li>
         <li data-ng-repeat="item in menus.main" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
-            <a data-ng-if="global.hasRole(item.roles)" ui-sref='{{item.link}}'>{{item.title}}</a>
+            <a ui-sref='{{item.link}}'>{{item.title}}</a>
         </li>                
     </ul>
 
@@ -12,7 +12,7 @@
         <li><a ui-sref='auth.register'>Register</a>
         </li>
         <li class="divider-vertical"></li>
-        <li><a ui-sref='auth.login'>Sign in</a>
+        <li><a ui-sref='auth.login'>Login</a>
         </li>
     </ul>
 
@@ -22,7 +22,7 @@
                 {{global.user}} <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="/logout">Sign out</a>
+                <li><a href="/logout">Signout</a>
                 </li>
             </ul>
         </li>
