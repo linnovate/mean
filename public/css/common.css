@@ -21,12 +21,12 @@ body {
   margin-top: 5px;
 }
 .content {
-  margin-top: 70px;
   width: 100%;
   min-height: 100%;
   height: auto;
   margin: 0 auto -60px;
-  padding: 0 0 60px;
+  padding-top: 70px;
+  padding-bottom: 60px;
 }
 a {
   color: #28689b;
