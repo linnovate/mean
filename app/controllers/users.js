@@ -23,6 +23,10 @@ exports.signin = function(req, res) {
     });
 };
 
+exports.invite = function(req, res) {
+
+};
+
 /**
  * Show sign up form
  */
