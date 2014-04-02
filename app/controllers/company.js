@@ -135,7 +135,6 @@ exports.create = function(req, res, next) {
     });
 };
 
-
 /**
  * 验证通过后创建公司进一步的信息(用户名\密码等)
  */
@@ -147,7 +146,7 @@ exports.createDetail = function(req, res, next) {
                 res.status(400).send('该公司信息不存在!');
                 return;
             }
-        
+
             _body.username = req.body.username;
             _body.password = req.body.password;
 
@@ -162,6 +161,16 @@ exports.createDetail = function(req, res, next) {
             });
         }
     });
+};
+
+
+exports.invite = function(req, res) {
+    var name = req.session.user;
+    var inviteUrl = 'http://localhost:3000' + '/user/validate?key=' + encrypt.encrypt(name,'18801912891') + '&name=' + name;
+    res.render('company/validate/invite', {
+        title: '邀请链接',
+        inviteLink: inviteUrl
+    })
 };
 
 /**
