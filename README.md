@@ -1,5 +1,5 @@
-mean-cli
-========
+Mean Command Line
+
 
 Source for npm package meanio. mean-cli is a core package of the mean.io project and is used primarily to manage packages used for extending functionality such as for example adding a package to enable inline editable tokens. 
 
