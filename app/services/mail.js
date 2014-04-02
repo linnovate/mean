@@ -46,3 +46,19 @@ exports.sendCompanyActiveMail = function (who, name) {
     html: html
   });
 };
+
+exports.sendStaffActiveMail = function(who, userId) {
+  var from = '动梨无限<nicoJiang@55yali.com>';
+  var to = who;
+  var subject = '动梨社区员工账号激活';
+  var html = '<p>您好：<p/>' +
+    '<p>我们收到您在动梨的申请信息，请点击下面的链接来激活帐户：</p>' +
+    '<a href="' + SITE_ROOT_URL + '/user/signup?key=' + encrypt.encrypt(userId,'18801912891') + '&uid=' + userId + '">激活链接</a>';
+
+  sendMail({
+    from: from,
+    to: to,
+    subject: subject,
+    html: html
+  });
+};

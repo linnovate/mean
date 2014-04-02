@@ -6,7 +6,7 @@ var users = require('../controllers/users');
 module.exports = function(app, passport) {
 
     app.get('/signin', users.signin);
-    app.get('/signup', users.signup);
+    app.get('/user/signup', users.signup);
     app.get('/signout', users.signout);
     app.get('/users/me', users.me);
 
@@ -22,7 +22,7 @@ module.exports = function(app, passport) {
     app.post('/signup/next', users.create);
 
 
-    
-
+    app.get('/user/invite', users.invite);
+    app.post('/user/validate', users.validate);
 
 };

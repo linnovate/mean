@@ -12,9 +12,12 @@ var mongoose = require('mongoose'),
  * User Schema
  */
 var UserSchema = new Schema({
+    username: {
+        type: String,
+        default: Date.now().toString(32)
+    },
     email: {
         type: String,
-        require: true,
         validate: [validate.email, '请填写有正确的邮箱地址']
     },
     active: {
@@ -22,7 +25,10 @@ var UserSchema = new Schema({
         default: false
     },
     hashed_password: String,
-    provider: String,
+    provider: {
+        type: String,
+        default: 'user'
+    },
     salt: String,
 
     nickname: String,
@@ -79,14 +85,14 @@ var validatePresenceOf = function(value) {
 /**
  * Pre-save hook
  */
-UserSchema.pre('save', function(next) {
+/*UserSchema.pre('save', function(next) {
     if (!this.isNew) return next();
 
     if (!validatePresenceOf(this.password) && !this.provider)
         next(new Error('Invalid password'));
     else
         next();
-});
+});*/
 
 /**
  * Methods
