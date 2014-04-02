@@ -22,7 +22,7 @@ var config = require('./config/config'),
     mongoose = require('mongoose');
 
 // Bootstrap db connection
-var db = mongoose.connect(config.db);
+var db = mongoose.connect('');
 
 // Bootstrap models
 var models_path = __dirname + '/app/models';

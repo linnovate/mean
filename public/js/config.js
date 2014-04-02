@@ -8,22 +8,22 @@ angular.module('mean').config(['$stateProvider', '$urlRouterProvider',
 
     // states for my app
     $stateProvider
-      .state('all articles', {
-        url: '/articles',
-        templateUrl: 'views/articles/list.html'
+      .state('all questions', {
+        url: '/questions',
+        templateUrl: 'views/questions/list.html'
     })
-      .state('create article', {
-        url: '/articles/create',
-        templateUrl: 'views/articles/create.html'
-    })
-      .state('edit article', {
-        url: '/articles/:articleId/edit',
-        templateUrl: 'views/articles/edit.html'
-    })
-      .state('article by id', {
-        url: '/articles/:articleId',
-        templateUrl: 'views/articles/view.html'
-    })
+//      .state('create article', {
+//        url: '/articles/create',
+//        templateUrl: 'views/articles/create.html'
+//    })
+//      .state('edit article', {
+//        url: '/articles/:articleId/edit',
+//        templateUrl: 'views/articles/edit.html'
+//    })
+//      .state('article by id', {
+//        url: '/articles/:articleId',
+//        templateUrl: 'views/articles/view.html'
+//    })
       .state('home', {
         url: '/',
         templateUrl: 'views/index.html'
