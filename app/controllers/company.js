@@ -45,9 +45,27 @@ exports.validateConfirm = function(req, res) {
 };
 
 exports.groupSelect = function(req, res) {
-    res.render('company/validate/group_select', {
-        message: '组件选择'
+    if(req.body.selected==undefined){
+        return  res.redirect('/company/signup');
+    }
+     Company.findOne({'info.name': req.session.company_validate}, function(err, _body) {
+        if(_body) {
+            if (err) {
+                res.status(400).send('该公司信息不存在!');
+                return;
+            }
+            _body.main.team_info = req.body.selected;
+            _body.save();
+            res.render('company/validate/send_invate_code', {
+                message: '发送邀请码'
+            });
+        } else {
+            res.render('company/validate/confirm', {
+                tittle: '该公司不存在!'
+            });
+        }
     });
+    
 };
 
 exports.sendInvateCode = function(req, res) {
@@ -120,7 +138,10 @@ exports.createDetail = function(req, res, next) {
             req.session.user = req.body.username;
             req.session.role = 'MANAGER';
             //hr进入公司组件选择界面
-            res.redirect('/company/groupSelect');
+
+            res.render('company/validate/group_select',{
+                group_head : '企业'
+            });
         } else {
             res.render('company/validate/confirm', {
                 tittle: '该公司不存在!'

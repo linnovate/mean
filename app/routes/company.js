@@ -11,7 +11,7 @@ module.exports = function(app) {
 
     app.get('/company/validate/error', company.validateError);
     app.get('/company/confirm', company.validateConfirm);
-    app.get('/company/groupSelect', company.groupSelect);
+    app.post('/company/groupSelect', company.groupSelect);
     app.get('/company/sendInvateCode', company.sendInvateCode);
 
     // 提交公司申请信息

@@ -4,27 +4,24 @@
 }
 .group {
   height: 200px;
-  border: 10px;
-  border-color: #000;
-  background-color: #ff0;
+  padding: 0;
 }
 .group input {
   display: none;
 }
 .group label {
   width: 100%;
+  background-image: url("/img/icons/groups.jpg");
+  background-position: -225px 0;
 }
 .group span {
   position: absolute;
   right: 0;
   bottom: 0;
+  width: 50px;
+  height: 50px;
 }
 .group.active span {
-  background-color: #f00;
-}
-.group.inactive span {
-  background-color: #008000;
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  background-image: url("/img/icons/select.jpg");
+  background-repeat: no-repeat;
 }

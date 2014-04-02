@@ -1,19 +1,16 @@
 extends ../../layouts/default
 
 block headExt
-	link(rel="stylesheet" href="/css/views/group_select.css")
+  link(rel="stylesheet" href="/css/views/group_select.css")
 
 block content
-	.text-center.h3.group_head 请选择企业兴趣小组组件
-	.groups(ng-controller="groupsController")
-		.row
-			.group_arrow.col-xs-2(ng-click(left)) <
-			.col-xs-8
-				.row
-					.group.col-xs-3(ng-repeat="group in groups" ng-class="{'1': 'active', '0': 'inactive'}[group.select]")
-						input(type='checkbox' name='group' id='{{group.id}}' value='{{group.name}}' ng-model='group.select' ng-true-value=1 ng-false-value=0)
-						label.group(for='{{group.id}}') {{group.name}}
-						span  {{group.name}}
-			.group_arrow.col-xs-2(ng-click(right)) >
+  .text-center.h3.group_head='请选择' + group_head + '兴趣小组组件'
+
+  .groups.row(ng-controller='groupsController')
+    .group.col-xs-3(ng-repeat='group in groups' ng-class="{'1': 'active', '0': 'inactive'}[group.select]")
+      input(type='checkbox' name='group' id='{{group.id}}' value='{{group.name}}' ng-model='group.select' ng-true-value=1 ng-false-value=0)
+      label.group(for='{{group.id}}') {{group.name}}
+      span
+    button.next.btn.btn-primary.btn-lg.center-block(ng-click='group_next()') 下一步
 block footExt
-	script(src="/js/controllers/company.js")
+  script(src='/js/controllers/company.js')
