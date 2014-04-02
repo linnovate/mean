@@ -36,7 +36,7 @@ var CompanySchema = new Schema({
             type: String,
             unique: true
         },                           //公司名
-        
+
         city: {
             province: String,
             city: String
@@ -52,7 +52,7 @@ var CompanySchema = new Schema({
         },
         linkman: String               //联系人
     },
-    
+
     //公司内部组件
     main: {
         invate_code: String,

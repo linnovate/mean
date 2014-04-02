@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
+    encrypt = require('../middlewares/encrypt'),
     Company = mongoose.model('Company');
 
 var mail = require('../services/mail');
@@ -73,6 +74,39 @@ exports.sendInvateCode = function(req, res) {
         message: '发送邀请码'
     });
 };
+
+
+exports.validate = function(req, res) {
+
+    var key = req.query.key;
+    var name = req.query.name;
+
+    Company.findOne({
+        'info.name' : name
+    },
+    function (err, user) {
+        if (user) {
+            if(encrypt.encrypt(name,'18801912891') === key){
+                req.session.company_validate = name;
+                res.render('company/validate/confirm', {
+                    title: '验证成功,可以进行下一步!'
+                });
+            } else {
+                res.render('company/company_validate_error', {
+                    title: '验证失败',
+                    message: '验证码不正确!'
+                });
+            }
+        } else {
+            res.render('company/company_validate_error', {
+                title: '验证失败',
+                message: '用户不存在!'
+            });
+        }
+    });
+};
+
+
 /**
  * 创建公司基本信息
  */
@@ -92,9 +126,10 @@ exports.create = function(req, res, next) {
     company.email.host = req.body.host;
     company.email.domain[0] = req.body.domain;
 
-    company.provider = 'local';
+    company.provider = 'company';
     company.save(function(err) {
         if (err) {
+            console.log(err);
             //检查信息是否重复
             switch (err.code) {
                 case 11000:
@@ -118,7 +153,6 @@ exports.create = function(req, res, next) {
     });
 };
 
-
 /**
  * 验证通过后创建公司进一步的信息(用户名\密码等)
  */
@@ -130,7 +164,7 @@ exports.createDetail = function(req, res, next) {
                 res.status(400).send('该公司信息不存在!');
                 return;
             }
-        
+
             _body.username = req.body.username;
             _body.password = req.body.password;
 
@@ -150,11 +184,14 @@ exports.createDetail = function(req, res, next) {
     });
 };
 
-/**
- * Send Company
- */
-exports.me = function(req, res) {
-    res.jsonp(req.company || null);
+
+exports.invite = function(req, res) {
+    var name = req.session.user;
+    var inviteUrl = 'http://localhost:3000' + '/user/validate?key=' + encrypt.encrypt(name,'18801912891') + '&name=' + name;
+    res.render('company/validate/invite', {
+        title: '邀请链接',
+        inviteLink: inviteUrl
+    })
 };
 
 /**

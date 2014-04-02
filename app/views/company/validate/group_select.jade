@@ -5,7 +5,6 @@ block headExt
 
 block content
   .text-center.h3.group_head='请选择' + group_head + '兴趣小组组件'
-
   .groups.row(ng-controller='groupsController')
     .group.col-xs-3(ng-repeat='group in groups' ng-class="{'1': 'active', '0': 'inactive'}[group.select]")
       input(type='checkbox' name='group' id='{{group.id}}' value='{{group.name}}' ng-model='group.select' ng-true-value=1 ng-false-value=0)

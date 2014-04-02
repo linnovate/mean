@@ -5,35 +5,56 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
+    validate = require('mongoose-validate'),
     crypto = require('crypto');
 
 /**
  * User Schema
  */
 var UserSchema = new Schema({
-    name: {
+    email: {
         type: String,
-        required: true
+        require: true,
+        validate: [validate.email, '请填写有正确的邮箱地址']
     },
-    email: String,
-    username: {
-        type: String,
-        unique: true
+    active: {
+        type: Boolean,
+        default: false
     },
     hashed_password: String,
     provider: String,
     salt: String,
-    info:{
-        alial: String,
-        phone: String,
-        department: String,
-        job: String,
-        job_id: String
-    },
-    team_id: String,
+
+    nickname: String,
+    realname: String,
     company_id: String,
-    role: String,
-    active: false
+    department: String,
+    position: String,
+    sex: {
+        type: String,
+        enum: ['男', '女']
+    },
+    birthday: {
+        type: Date
+    },
+    bloodType: {
+        type: String,
+        enum: ['AB', 'A', 'B', 'O' ]
+    },
+    introduce: {
+        type: String
+    },
+    registerDate: {
+        type: Date,
+        default: Date.now
+    },
+    phone: {
+        type: String
+    },
+    qq: {
+        type: String,
+        validate: [validate.numeric, '请填写正确的QQ号']
+    }
 });
 
 /**
@@ -53,31 +74,6 @@ UserSchema.virtual('password').set(function(password) {
 var validatePresenceOf = function(value) {
     return value && value.length;
 };
-
-// The 4 validations below only apply if you are signing up traditionally.
-UserSchema.path('name').validate(function(name) {
-    // If you are authenticating by any of the oauth strategies, don't validate.
-    if (!this.provider) return true;
-    return (typeof name === 'string' && name.length > 0);
-}, 'Name cannot be blank');
-
-UserSchema.path('email').validate(function(email) {
-    // If you are authenticating by any of the oauth strategies, don't validate.
-    if (!this.provider) return true;
-    return (typeof email === 'string' && email.length > 0);
-}, 'Email cannot be blank');
-
-UserSchema.path('username').validate(function(username) {
-    // If you are authenticating by any of the oauth strategies, don't validate.
-    if (!this.provider) return true;
-    return (typeof username === 'string' && username.length > 0);
-}, 'Username cannot be blank');
-
-UserSchema.path('hashed_password').validate(function(hashed_password) {
-    // If you are authenticating by any of the oauth strategies, don't validate.
-    if (!this.provider) return true;
-    return (typeof hashed_password === 'string' && hashed_password.length > 0);
-}, 'Password cannot be blank');
 
 
 /**

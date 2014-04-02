@@ -14,10 +14,15 @@ module.exports = function(app, passport) {
     app.param('userId', users.user);
 
     // Setting the local strategy route
-    app.post('/users/session', passport.authenticate('local', {
+    app.post('/users/session', passport.authenticate('user', {
         failureRedirect: '/signin',
         failureFlash: true
     }), users.session);
 
     app.post('/signup/next', users.create);
+
+
+    
+
+
 };
