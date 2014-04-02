@@ -142,7 +142,7 @@ function checkVersion() {
 
     try {
       var json = JSON.parse(chunks);
-      if (json.meanio.latest) {
+      if (json.meanio.latest && json.meanio.latest != version) {
         console.log("    meanio command line is out of date".warn);
         console.log("    Current: " + version + " Latest: " + json.meanio.latest);
       } else {
