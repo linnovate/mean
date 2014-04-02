@@ -52,7 +52,11 @@ exports.validate = function(req, res) {
                     if(req.body.domain === company.email.domain[i]) {
                         var user = new User();
                         console.log(user);
-                        user.save();
+                        user.save(function(err) {
+                            if (err) {
+                                console.log(err);
+                            }
+                        });
                         mail.sendStaffActiveMail(req.body.host+'@'+company.email.domain[i], user.id);
                         res.render('users/message', {title: '验证邮件', message: '我们已经给您发送了验证邮件，请登录您的邮箱完成激活'});
                         return;
@@ -122,24 +126,30 @@ exports.session = function(req, res) {
 
 
 exports.create = function(req, res) {
-    User.findOne({
-        'id': req.query.uid
-    }, function(err, user) {
-        if (user) {
-            user.nickname = req.body.nickname;
-            user.password = req.body.password;
-            user.realName = req.body.realName;
-            user.department = req.body.department;
-            user.phone = req.body.phone;
+    User.findById(
+        req.query.uid
+    , function(err, user) {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            if (user) {
+                user.nickname = req.body.nickname;
+                user.password = req.body.password;
+                user.realName = req.body.realName;
+                user.department = req.body.department;
+                user.phone = req.body.phone;
 
-            user.save(function(err) {
-                if(err) {
+                user.save(function(err) {
+                    if(err) {
                         // error produce
-                }
-                res.render('users/message', {title: '注册成功', message: '注册成功'});
-            });
-        } else {
-            res.render('users/message', {title: 'failed', message: 'failed'});
+                        console.log(err);
+                    }
+                    res.render('users/message', {title: '注册成功', message: '注册成功'});
+                });
+            } else {
+                res.render('users/message', {title: 'failed', message: 'failed'});
+            }
         }
     });
 

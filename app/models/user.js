@@ -12,10 +12,14 @@ var mongoose = require('mongoose'),
  * User Schema
  */
 var UserSchema = new Schema({
-/*    email: {
+    username: {
+        type: String,
+        default: Date.now().toString(32)
+    },
+    email: {
         type: String,
         validate: [validate.email, '请填写有正确的邮箱地址']
-    },*/
+    },
     active: {
         type: Boolean,
         default: false
@@ -25,9 +29,9 @@ var UserSchema = new Schema({
         type: String,
         default: 'user'
     },
-    salt: String
+    salt: String,
 
-/*    nickname: String,
+    nickname: String,
     realname: String,
     company_id: String,
     department: String,
@@ -56,7 +60,7 @@ var UserSchema = new Schema({
     qq: {
         type: String,
         validate: [validate.numeric, '请填写正确的QQ号']
-    }*/
+    }
 });
 
 /**
