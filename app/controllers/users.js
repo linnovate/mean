@@ -4,7 +4,10 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    Company = mongoose.model('Company'),
+    encrypt = require('../middlewares/encrypt'),
+    mail = require('../services/mail');
 
 /**
  * Auth callback
@@ -24,7 +27,39 @@ exports.signin = function(req, res) {
 };
 
 exports.invite = function(req, res) {
+    var key = req.query.key;
+    var name = req.query.name;
+    if(key === undefined || name === undefined) {
+        res.render('users/message', {title: 'error', message: 'bad request'});
+    } else {
+        if (encrypt.encrypt(name,'18801912891') === key) {
+            req.session.key = key;
+            req.session.name = name;
+            res.render('users/invite', {
+                title: 'validate'
+            });
+        }
+    }
+};
 
+exports.validate = function(req, res) {
+    var key = req.session.key;
+    var name = req.session.name;
+    if(encrypt.encrypt(name,'18801912891') === key) {
+        Company.findOne({'username': name}).exec(function(err, company){
+            if (company !== null) {
+                for(var i = 0; i < company.email.domain.length; i++) {
+                    if(req.body.domain === company.email.domain[i]) {
+                        var user = new User();
+                        mail.sendStaffActiveMail(req.body.host+'@'+company.email.domain[i], user.id);
+                        res.render('users/message', {title: '验证邮件', message: '我们已经给您发送了验证邮件，请登录您的邮箱完成激活'});
+                        return;
+                    }
+                }
+            }
+            res.render('users/message', {title: '验证失败', message: '验证失败'});
+        });
+    }
 };
 
 /**
@@ -93,7 +128,7 @@ exports.create = function(req, res) {
         if(err) {
             // error produce
         }
-        res.render('users/signup_success', {title: '注册成功'});
+        res.render('users/message', {title: '注册成功', message: '注册成功'});
     });
 };
 

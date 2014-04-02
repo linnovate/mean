@@ -22,7 +22,7 @@ module.exports = function(app, passport) {
     app.post('/signup/next', users.create);
 
 
-    
-
+    app.get('/user/invite', users.invite);
+    app.post('/user/validate', users.validate);
 
 };

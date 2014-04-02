@@ -14,7 +14,6 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
     email: {
         type: String,
-        require: true,
         validate: [validate.email, '请填写有正确的邮箱地址']
     },
     active: {
