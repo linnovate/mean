@@ -51,6 +51,8 @@ exports.validate = function(req, res) {
                 for(var i = 0; i < company.email.domain.length; i++) {
                     if(req.body.domain === company.email.domain[i]) {
                         var user = new User();
+                        console.log(user);
+                        user.save();
                         mail.sendStaffActiveMail(req.body.host+'@'+company.email.domain[i], user.id);
                         res.render('users/message', {title: '验证邮件', message: '我们已经给您发送了验证邮件，请登录您的邮箱完成激活'});
                         return;
@@ -66,10 +68,15 @@ exports.validate = function(req, res) {
  * Show sign up form
  */
 exports.signup = function(req, res) {
-    res.render('users/signup', {
-        title: 'Sign up',
-        user: new User()
-    });
+    var key = req.query.key;
+    var uid = req.query.uid;
+    if(encrypt.encrypt(uid,'18801912891') === key) {
+        res.render('users/signup', {
+            title: 'Sign up',
+            key: key,
+            uid: uid
+        });
+    }
 };
 
 /**
@@ -111,25 +118,31 @@ exports.session = function(req, res) {
             });
         }
     });
-    
 };
 
 
 exports.create = function(req, res) {
-    var user = new User();
+    User.findOne({
+        'id': req.query.uid
+    }, function(err, user) {
+        if (user) {
+            user.nickname = req.body.nickname;
+            user.password = req.body.password;
+            user.realName = req.body.realName;
+            user.department = req.body.department;
+            user.phone = req.body.phone;
 
-    user.username = req.body.username;
-    user.password = req.body.password;
-    user.name = req.body.realName;
-    user.info.department = req.body.department;
-    user.info.phone = req.body.phone;
-
-    user.save(function(err) {
-        if(err) {
-            // error produce
+            user.save(function(err) {
+                if(err) {
+                        // error produce
+                }
+                res.render('users/message', {title: '注册成功', message: '注册成功'});
+            });
+        } else {
+            res.render('users/message', {title: 'failed', message: 'failed'});
         }
-        res.render('users/message', {title: '注册成功', message: '注册成功'});
     });
+
 };
 
 /**

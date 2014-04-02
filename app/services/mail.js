@@ -53,7 +53,7 @@ exports.sendStaffActiveMail = function(who, userId) {
   var subject = '动梨社区员工账号激活';
   var html = '<p>您好：<p/>' +
     '<p>我们收到您在动梨的申请信息，请点击下面的链接来激活帐户：</p>' +
-    '<a href="' + SITE_ROOT_URL + '/user/validate?key=' + encrypt.encrypt(userId,'18801912891') + '&uid=' + userId + '">激活链接</a>';
+    '<a href="' + SITE_ROOT_URL + '/user/signup?key=' + encrypt.encrypt(userId,'18801912891') + '&uid=' + userId + '">激活链接</a>';
 
   sendMail({
     from: from,
