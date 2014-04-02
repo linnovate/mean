@@ -12,10 +12,10 @@ var mongoose = require('mongoose'),
  */
 var CompanySchema = new Schema({
     id: String,
-    username: {
+    /*username: {
         type: String,
         unique: true
-    },
+    },*/
 
     hashed_password: String,
 
@@ -36,7 +36,7 @@ var CompanySchema = new Schema({
             type: String,
             unique: true
         },                           //公司名
-        
+
         city: {
             province: String,
             city: String
@@ -52,7 +52,7 @@ var CompanySchema = new Schema({
         },
         linkman: String               //联系人
     },
-    
+
     //公司内部组件
     main: {
         invate_code: String,
@@ -93,11 +93,11 @@ CompanySchema.path('email.host').validate(function(email) {
     return (typeof email === 'string' && email.length > 0);
 }, 'Email cannot be blank');
 
-CompanySchema.path('username').validate(function(username) {
+/*CompanySchema.path('username').validate(function(username) {
     // If you are authenticating by any of the oauth strategies, don't validate.
     if (!this.provider) return true;
     return (typeof username === 'string' && username.length > 0);
-}, 'Username cannot be blank');
+}, 'Username cannot be blank');*/
 
 CompanySchema.path('hashed_password').validate(function(hashed_password) {
     // If you are authenticating by any of the oauth strategies, don't validate.

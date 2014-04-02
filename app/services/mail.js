@@ -37,7 +37,7 @@ exports.sendCompanyActiveMail = function (who, name) {
   var subject = name + ' 动梨社区公司账号激活';
   var html = '<p>您好：<p/>' +
     '<p>我们收到您在动梨的申请信息，请点击下面的链接来激活帐户：</p>' +
-    '<a href="' + SITE_ROOT_URL + '/company_active_account?key=' + encrypt.encrypt(name,'18801912891') + '&name=' + name + '">激活链接</a>';
+    '<a href="' + SITE_ROOT_URL + '/company/validate?key=' + encrypt.encrypt(name,'18801912891') + '&name=' + name + '">激活链接</a>';
 
   sendMail({
     from: from,

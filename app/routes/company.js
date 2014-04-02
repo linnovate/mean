@@ -6,8 +6,9 @@ var company = require('../controllers/company');
 module.exports = function(app) {
 
     app.get('/company/signup', company.signup);
-    app.get('/company/me', company.me);
     app.get('/company/wait', company.wait);
+
+    app.get('/company/validate', company.validate);
 
     app.get('/company/validate/error', company.validateError);
     app.get('/company/confirm', company.validateConfirm);
