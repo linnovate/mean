@@ -22,6 +22,7 @@
     "stylus": "0.42.*",
     "consolidate": "~0.10.0",
     "mongoose": "~3.8.3",
+    "mongoose-validate": "~0.0.5",
     "connect-mongo": "~0.4.0",
     "connect-flash": "~0.1.1",
     "crypto": "0.0.3",
