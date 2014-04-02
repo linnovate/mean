@@ -57,9 +57,7 @@ exports.groupSelect = function(req, res) {
             }
             _body.main.team_info = req.body.selected;
             _body.save();
-            res.render('company/validate/send_invate_code', {
-                message: '发送邀请码'
-            });
+            res.redirect('company/invite');
         } else {
             res.render('company/validate/confirm', {
                 tittle: '该公司不存在!'
@@ -70,7 +68,7 @@ exports.groupSelect = function(req, res) {
 };
 
 exports.sendInvateCode = function(req, res) {
-    res.render('company/validate/send_invate_code', {
+    res.render('company/invite', {
         message: '发送邀请码'
     });
 };

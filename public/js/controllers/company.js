@@ -28,29 +28,24 @@ angular.module('company')
                     $scope.selected.push(value.id);
                 }
             });
-            try{$http({
-                method: 'post',
-                url: '/company/groupSelect',
-                data:{
-                    selected : $scope.selected
-                }
-              }).success(function(data, status) {
-                // Now we have a list of the stories (data.list.story)
-                // in the data object that the NPR API 
-                // returns in JSON that looks like:
-                // data: { "list": {
-                //   "title": ...
-                //   "story": [
-                //     { "id": ...
-                //       "title": ...
-                alert('success');
-                console.log(data);
-              }).error(function(data, status) {
-               conole.log(data);
-              });
-          }
-          catch(e){
-            alert(e);
-          }
+            try{
+                $http({
+                    method: 'post',
+                    url: '/company/groupSelect',
+                    data:{
+                        selected : $scope.selected
+                    }
+                }).success(function(data, status) {
+                    //alert('success');
+                    // console.log(data);
+                    alert("选择组件成功！");
+                    window.location.href="/company/invite";
+                }).error(function(data, status) {
+                    alert("数据发生错误！");
+                });
+            }
+            catch(e){
+                console.log(e);
+            }
         };
     }]);
