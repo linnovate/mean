@@ -124,6 +124,55 @@ Meanio.prototype.Module = function(name) {
 		container.register(name, callback);
 	}
 
+	this.settings = function() {
+
+		if (!arguments.length) return;
+
+		var database = container.get('database');
+		if (!database || !database.connection) {
+			return {
+				err: true,
+				message: "No database connection"
+			};
+		}
+		var Package = database.connection.model('Package');
+		if (arguments.length == 2) return updateSettings(this.name,arguments[0], arguments[1]);
+		if (arguments.length == 1 && typeof arguments[0] == 'object') return updateSettings(this.name,arguments[0], function(){});		
+		if (arguments.length == 1 && typeof arguments[0] == 'function') return getSettings(this.name,arguments[0]);		
+
+		function updateSettings(name, settings, callback) {
+			Package.findOneAndUpdate({
+				name: name
+			}, {
+				$set: {
+					settings: settings,
+					updated: new Date()
+				}
+			}, {
+				upsert: true,
+				multi: false
+			}, function(err, doc) {
+				if (err) {
+					console.log(err);
+					return callback(true, 'Failed to update settings');
+				}
+				return callback(null, doc)
+			})
+		}
+
+		function getSettings(name, callback) {
+			Package.findOne({
+				name: name
+			}, function(err, doc) {
+				if (err) {
+					console.log(err);
+					return callback(true, 'Failed to retrieve settings');
+				}
+				return callback(null, doc)
+			})
+		}
+	};	
+
 }
 
 function modulePath(name) {
