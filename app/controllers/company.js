@@ -200,7 +200,7 @@ exports.createDetail = function(req, res, next) {
 
 exports.invite = function(req, res) {
     var name = req.session.user;
-    var inviteUrl = 'http://localhost:3000' + '/users/invite?key=' + encrypt.encrypt(name,'18801912891') + '&name=' + name;
+    var inviteUrl = 'http://'+ req.headers.host + '/users/invite?key=' + encrypt.encrypt(name,'18801912891') + '&name=' + name;
     res.render('company/validate/invite', {
         title: '邀请链接',
         inviteLink: inviteUrl
