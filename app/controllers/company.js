@@ -40,7 +40,7 @@ exports.validateError = function(req, res) {
 };
 
 exports.validateConfirm = function(req, res) {
-    res.render('company/validate/confirm', {
+    res.render('company/validate/create_detail', {
         title: '验证成功,可以进行下一步!'
     });
 };
@@ -94,7 +94,7 @@ exports.validate = function(req, res) {
         if (user) {
             if(encrypt.encrypt(name,'18801912891') === key){
                 req.session.company_validate = name;
-                res.render('company/validate/confirm', {
+                res.render('company/validate/create_detail', {
                     title: '验证成功,可以进行下一步!'
                 });
             } else {
@@ -183,7 +183,7 @@ exports.createDetail = function(req, res, next) {
                 group_head : '企业'
             });
         } else {
-            res.render('company/validate/confirm', {
+            res.render('company/validate/create_detail', {
                 tittle: '该公司不存在!'
             });
         }
