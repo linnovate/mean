@@ -7,8 +7,8 @@ block content
   .text-center.h3.group_head='请选择' + group_head + '兴趣小组组件'
   .groups.row(ng-controller='groupsController')
     .group.col-xs-3(ng-repeat='group in groups' ng-class="{'1': 'active', '0': 'inactive'}[group.select]")
-      input(type='checkbox' name='group' id='{{group.id}}' value='{{group.name}}' ng-model='group.select' ng-true-value=1 ng-false-value=0)
-      label.group(for='{{group.id}}') {{group.name}}
+      input(type='checkbox' name='group' id='{{group.type}}' value='{{group.name}}' ng-model='group.select' ng-true-value='1' ng-false-value='0')
+      label.group(for='{{group.type}}') {{group.name}}
       span
     button.next.btn.btn-primary.btn-lg.center-block(ng-click='group_next()') 下一步
 block footExt
