@@ -25,27 +25,27 @@ module.exports = function(passport) {
 
     // Use local strategy
     passport.use('company', new LocalStrategy({
-            usernameField: 'email',
+            usernameField: 'username',
             passwordField: 'password'
         },
-        function(email, password, done) {
+        function(username, password, done) {
             Company.findOne({
-                email: email
-            }, function(err, user) {
+                username: username
+            }, function(err, company) {
                 if (err) {
                     return done(err);
                 }
-                if (!user) {
+                if (!company) {
                     return done(null, false, {
                         message: 'Unknown user'
                     });
                 }
-                if (!user.authenticate(password)) {
+                if (!company.authenticate(password)) {
                     return done(null, false, {
                         message: 'Invalid password'
                     });
                 }
-                return done(null, user);
+                return done(null, company);
             });
         }
     ));

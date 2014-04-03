@@ -95,33 +95,9 @@ exports.signout = function(req, res) {
 /**
  * Session
  */
-exports.session = function(req, res) {
-    User.findOne({
-        username: req.body.email
-    },
-    function (err, user) {
-        if (user) {
-            if (err)
-                res.render('users/signin', {
-                    title: '用户登录',
-                    message: '用户名不存在!'
-                });
-            if (user.authenticate(req.body.password)) {
-                req.session.username = user.username;
-                res.redirect('/users/edit/info');
-            }else{
-                res.render('users/signin', {
-                    title: '用户登录',
-                    message: '密码不正确!'
-                });
-            }
-        } else {
-            res.render('users/signin', {
-                title: '用户登录',
-                message: '用户不存在!'
-            });
-        }
-    });
+exports.loginSuccess = function(req, res) {
+    req.session.username = req.body.email;
+    res.redirect('/users/edit/info');
 };
 
 
