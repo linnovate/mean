@@ -12,9 +12,10 @@ module.exports = function(app) {
 
     app.get('/company/validate/error', company.validateError);
     app.get('/company/confirm', company.validateConfirm);
-    app.post('/company/groupSelect', company.groupSelect);
+
     app.get('/company/sendInvateCode', company.sendInvateCode);
 
+    app.post('/company/groupSelect', company.groupSelect);
     // 提交公司申请信息
     app.post('/company', company.create);
     // 验证通过后进一步提交公司注册信息
