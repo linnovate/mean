@@ -51,13 +51,13 @@ exports.validate = function(req, res) {
                 for(var i = 0; i < company.email.domain.length; i++) {
                     if(req.body.domain === company.email.domain[i]) {
                         var user = new User();
-                        console.log(user);
+                        user.email = req.body.host + '@' + req.body.domain;
                         user.save(function(err) {
                             if (err) {
                                 console.log(err);
                             }
                         });
-                        mail.sendStaffActiveMail(req.body.host+'@'+company.email.domain[i], user.id);
+                        mail.sendStaffActiveMail(user.email, user.id);
                         res.render('users/message', {title: '验证邮件', message: '我们已经给您发送了验证邮件，请登录您的邮箱完成激活'});
                         return;
                     }
@@ -96,7 +96,7 @@ exports.signout = function(req, res) {
  */
 exports.session = function(req, res) {
     User.findOne({
-        username: req.body.username
+        username: req.body.email
     },
     function (err, user) {
         if (user) {
@@ -105,9 +105,8 @@ exports.session = function(req, res) {
                     title: '用户登录',
                     message: '用户名不存在!'
                 });
-            if (User.eptPass(req.password) === user.hashed_password) {
+            if (user.authenticate(req.body.password)) {
                 req.session.user.name = user.username;
-                req.session.user.permission = user.permission;
                 res.redirect('/');
             }else{
                 res.render('users/signin', {
@@ -134,11 +133,13 @@ exports.create = function(req, res) {
         }
         else {
             if (user) {
+                user.username = user.email;
                 user.nickname = req.body.nickname;
                 user.password = req.body.password;
                 user.realName = req.body.realName;
                 user.department = req.body.department;
                 user.phone = req.body.phone;
+                user.active = true;
 
                 user.save(function(err) {
                     if(err) {
@@ -154,6 +155,8 @@ exports.create = function(req, res) {
     });
 
 };
+
+
 
 /**
  * Send User

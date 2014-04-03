@@ -5,9 +5,9 @@ var users = require('../controllers/users');
 
 module.exports = function(app, passport) {
 
-    app.get('/signin', users.signin);
-    app.get('/user/signup', users.signup);
-    app.get('/signout', users.signout);
+    app.get('/users/signin', users.signin);
+    app.get('/users/signup', users.signup);
+    app.get('/users/signout', users.signout);
     app.get('/users/me', users.me);
 
     // Setting up the userId param
@@ -15,14 +15,14 @@ module.exports = function(app, passport) {
 
     // Setting the local strategy route
     app.post('/users/session', passport.authenticate('user', {
-        failureRedirect: '/signin',
+        failureRedirect: '/users/signin',
         failureFlash: true
     }), users.session);
 
-    app.post('/signup/next', users.create);
+    app.post('/users/create', users.create);
 
 
-    app.get('/user/invite', users.invite);
-    app.post('/user/validate', users.validate);
+    app.get('/users/invite', users.invite);
+    app.post('/users/validate', users.validate);
 
 };

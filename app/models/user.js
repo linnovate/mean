@@ -14,10 +14,12 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
     username: {
         type: String,
+        unique: true,
         default: Date.now().toString(32)
     },
     email: {
         type: String,
+        unique: true,
         validate: [validate.email, '请填写有正确的邮箱地址']
     },
     active: {
