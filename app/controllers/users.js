@@ -51,13 +51,13 @@ exports.validate = function(req, res) {
                 for(var i = 0; i < company.email.domain.length; i++) {
                     if(req.body.domain === company.email.domain[i]) {
                         var user = new User();
-                        console.log(user);
+                        user.email = req.body.host + '@' + req.body.domain;
                         user.save(function(err) {
                             if (err) {
                                 console.log(err);
                             }
                         });
-                        mail.sendStaffActiveMail(req.body.host+'@'+company.email.domain[i], user.id);
+                        mail.sendStaffActiveMail(user.email, user.id);
                         res.render('users/message', {title: '验证邮件', message: '我们已经给您发送了验证邮件，请登录您的邮箱完成激活'});
                         return;
                     }
@@ -139,6 +139,7 @@ exports.create = function(req, res) {
                 user.realName = req.body.realName;
                 user.department = req.body.department;
                 user.phone = req.body.phone;
+                user.active =
 
                 user.save(function(err) {
                     if(err) {
@@ -154,6 +155,8 @@ exports.create = function(req, res) {
     });
 
 };
+
+
 
 /**
  * Send User
