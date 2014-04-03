@@ -106,8 +106,8 @@ exports.session = function(req, res) {
                     message: '用户名不存在!'
                 });
             if (user.authenticate(req.body.password)) {
-                req.session.user.name = user.username;
-                res.redirect('/');
+                req.session.username = user.username;
+                res.redirect('/users/edit/info');
             }else{
                 res.render('users/signin', {
                     title: '用户登录',
@@ -143,7 +143,6 @@ exports.create = function(req, res) {
 
                 user.save(function(err) {
                     if(err) {
-                        // error produce
                         console.log(err);
                     }
                     res.render('users/message', {title: '注册成功', message: '注册成功'});
@@ -154,6 +153,48 @@ exports.create = function(req, res) {
         }
     });
 
+};
+
+
+exports.infoEditForm = function(req, res) {
+    User.findOne({
+        username: req.session.username
+    },
+    function (err, user) {
+        if(err) {
+            console.log(err);
+        } else if(user) {
+            res.render('users/edit_info', {title: '编辑个人资料', user: user});
+        }
+    });
+};
+
+exports.edit = function(req, res) {
+    User.findOne({
+        username: req.session.username
+    },
+    function(err, user) {
+        if(err) {
+            console.log(err);
+        } else if(user) {
+            user.nickname = req.body.nickname;
+            user.realname = req.body.realname;
+            user.position = req.body.position;
+            user.sex = req.body.sex;
+            user.birthday = req.body.birthday;
+            user.bloodType = req.body.bloodType;
+            user.introduce = req.body.introduce;
+            user.save(function(err){
+                if(err) {
+                    console.log(err);
+                } else {
+                    res.render('users/message', {title: '保存成功', message: '保存成功'});
+                }
+            });
+        } else {
+            res.render('users/message', {title: '保存失败', message: '保存失败'});
+        }
+    });
 };
 
 

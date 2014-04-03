@@ -1,0 +1,53 @@
+extends ../layouts/default
+
+block content
+  h1 基本信息
+  form.form-horizontal(action="/users/edit" method="post")
+    .form-group
+      label.col-xs-2.control-label 登录邮箱
+      label.col-xs-10.control-label= user.email
+    .form-group
+      label.col-xs-2.control-label 昵称
+      .col-xs-10
+        input.form-control(type="text" name="nickname" value="#{user.nickname}")
+    .form-group
+      label.col-xs-2.control-label 真实姓名
+      .col-xs-10
+        input.form-control(type="text" name="realname" value="#{user.realname}")
+    .form-group
+      label.col-xs-2.control-label 公司
+      label.col-xs-10.control-label= user.company_id
+    .form-group
+      label.col-xs-2.control-label 职位
+      .col-xs-10
+        input.form-control(type="text" name="position" value="#{user.position}")
+    .form-group
+      label.col-xs-2.control-label 所在地
+      .col-xs-10
+        input.form-control(type="text")
+    .form-group
+      label.col-xs-2.control-label 性别
+      .col-xs-5.radio
+        label
+          input(type="radio" name="sex" value="男")
+          | 男
+      .col-xs-5.radio
+        label
+          input(type="radio" name="sex" value="女")
+          | 女
+    .form-group
+      label.col-xs-2.control-label 生日
+      .col-xs-10
+        input.form-control(type="text" name="birthday" value="#{user.birthday}")
+    .form-group
+      label.col-xs-2.control-label 血型
+      .col-xs-10
+        input.form-control(type="text" name="bloodType" value="#{user.bloodType}")
+    .form-group
+      label.col-xs-2.control-label 简介
+      .col-xs-10
+        input.form-control(type="text" name="introduce" value="#{user.introduce}")
+    .form-group
+      label.col-xs-2.control-label 注册时间
+      label.col-xs-10.control-label= user.registerDate
+    button.btn.btn-primary(type="submit") 保存
