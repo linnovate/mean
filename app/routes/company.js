@@ -20,7 +20,7 @@ module.exports = function(app, passport) {
     app.get('/company/confirm', company.validateConfirm);
 
     app.get('/company/sendInvateCode', company.sendInvateCode);
-
+    app.get('/company/editInfo', company.editInfo);
     app.post('/company/groupSelect', company.groupSelect);
     // 提交公司申请信息
     app.post('/company', company.create);

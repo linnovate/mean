@@ -204,7 +204,13 @@ exports.invite = function(req, res) {
     res.render('company/validate/invite', {
         title: '邀请链接',
         inviteLink: inviteUrl
-    })
+    });
+};
+
+exports.editInfo = function(req, res){
+    res.render('company/edit_info', {
+        title: '企业信息管理'
+    });
 };
 
 /**

@@ -15,25 +15,25 @@ block content
     .col-xs-2
     form.col-xs-5.signin.form-horizontal(action="/company" method="post")
       .form-group
-        label.col-xs-3.control-label(for="name") ＊公司全称
+        label.col-xs-3.control-label(for="name") *公司全称
         .col-xs-9.input-module.input-module-left
           input#name.form-control(type="text" name="name" placeholder="请与贵公司营业执照注册名保持一致")
       .form-group#city
-        label.col-xs-3.control-label(for="city-province") ＊城市
+        label.col-xs-3.control-label(for="city-province") *城市
         .col-xs-5.input-module.input-module-left.pc-selector
           select#city-province.form-control.prov(type="text" name="province" ng-model="pcSelector.province" ng-options="prov.name for prov in pcSelector.provinces" ng-change="pcSelector.change()")
         .col-xs-4.input-module.pc-selector
           select#city-city.form-control.city(type="text" name="city" ng-model="pcSelector.city" ng-options="city.name for city in pcSelector.cities")
       .form-group
-        label.col-xs-3.control-label(for="address") ＊地址
+        label.col-xs-3.control-label(for="address") *地址
         .col-xs-9.input-module.input-module-left
           input#address.form-control(type="text" name="address")
       .form-group
-        label.col-xs-3.control-label(for="contacts") ＊联系人
+        label.col-xs-3.control-label(for="contacts") *联系人
         .col-xs-9.input-module.input-module-left
           input#contacts.form-control(type="text" name="contacts")
       .form-group
-        label.col-xs-3.control-label(for="lindline") ＊公司电话
+        label.col-xs-3.control-label(for="lindline") *公司电话
         .col-xs-2.input-module.input-module-left.lindline-left
           input#lindline-areacode.form-control(type="text" name="areacode" placeholder="区号")
         .col-xs-1.input-module.input-separator 
@@ -49,7 +49,7 @@ block content
         .col-xs-9.input-module.input-module-left
           input#phone.form-control(type="text" name="phone")
       .form-group
-        label.col-xs-3.control-label(for="email-host") ＊电子邮箱
+        label.col-xs-3.control-label(for="email-host") *电子邮箱
         .col-xs-5.input-module.input-module-left
           input#email-host.form-control(type="text" name="host")
         .col-xs-1.input-module.text-center
@@ -65,6 +65,3 @@ block content
       .form-group
         .col-xs-offset-3.col-xs-9.input-module.input-module-left
           button.btn.btn-primary.btn-submit 提交申请
-
-block footExt
-  script(src="/lib/angular-pc-selector/angular-pc-selector.js")
