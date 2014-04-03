@@ -15,13 +15,7 @@ var GroupSchema = new Schema({
         type: String,
         unique: true
     },
-
-    name: String,
-
-    select: {
-        type: Boolean,
-        default: false
-    }
+    name: String
 });
 
 /**

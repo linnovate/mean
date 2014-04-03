@@ -49,6 +49,7 @@ exports.groupSelect = function(req, res) {
     if(req.body.selected==undefined){
         return  res.redirect('/company/signup');
     }
+    console.log(req.session.company_validate);
      Company.findOne({'info.name': req.session.company_validate}, function(err, _body) {
         if(_body) {
             if (err) {
@@ -56,7 +57,12 @@ exports.groupSelect = function(req, res) {
                 return;
             }
             _body.main.team_info = req.body.selected;
-            _body.save();
+            console.log(_body.main.team_info);
+            _body.save(function(s_err){
+                if(s_err){
+                    console.log(s_err);
+                }
+            });
             res.render('company/validate/send_invate_code', {
                 message: '发送邀请码'
             });
