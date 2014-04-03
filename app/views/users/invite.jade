@@ -2,7 +2,7 @@ extends ../layouts/default
 
 block content
   p 请输入您的企业邮箱
-  form.form-inline(role="form" action="/user/validate" method="post")
+  form.form-inline(role="form" action="/users/validate" method="post")
     .form-group
       label.sr-only Email Host
       input.form-control(type="text" name="host" placeholder="email")
