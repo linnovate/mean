@@ -52,6 +52,7 @@ exports.validate = function(req, res) {
                     if(req.body.domain === company.email.domain[i]) {
                         var user = new User();
                         user.email = req.body.host + '@' + req.body.domain;
+                        user.company_id = company._id;
                         user.save(function(err) {
                             if (err) {
                                 console.log(err);
@@ -164,7 +165,13 @@ exports.infoEditForm = function(req, res) {
         if(err) {
             console.log(err);
         } else if(user) {
-            res.render('users/edit_info', {title: '编辑个人资料', user: user});
+            Company.findById(user.company_id, function(err, company) {
+                if(err) {
+                    console.log(err);
+                } else if(company) {
+                    res.render('users/edit_info', {title: '编辑个人资料', user: user, company: company});
+                }
+            });
         }
     });
 };

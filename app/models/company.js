@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
  * Company Schema
  */
 var CompanySchema = new Schema({
-    id: String,
+
     username: {
         type: String,
         unique: true
