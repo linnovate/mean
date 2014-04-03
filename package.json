@@ -4,7 +4,7 @@
   "version": "0.3.0",
   "private": false,
   "author": "Linnovate <mean@linnovate.net>",
-  "contributors":[ 
+  "contributors":[
     {"name":"Lior Kesos", "mail": "lior@linnovate.net"},
     {"name":"Yonatan Ellman", "mail": "yonatan@linnovate.net"},
     {"name":"Ehud Shahak", "mail": "ehud@linnovate.net"},
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "meanio":"latest",
-    "assetmanager": "^0.1.1",
+    "assetmanager": "^0.1.2",
     "express": "~3.4.7",
     "consolidate": "~0.10.0",
     "dependable": "0.2.5",
