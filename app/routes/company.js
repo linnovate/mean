@@ -3,10 +3,16 @@
 // Company routes use company controller
 var company = require('../controllers/company');
 
-module.exports = function(app) {
+module.exports = function(app, passport) {
 
     app.get('/company/signup', company.signup);
     app.get('/company/wait', company.wait);
+
+    app.get('/company/signin', company.signin);
+    app.post('/company/session', passport.authenticate('company', {
+        failureRedirect: '/company/signin',
+        failureFlash: true
+    }), company.loginSuccess);
 
     app.get('/company/validate', company.validate);
 

@@ -15,7 +15,14 @@ exports.authCallback = function(req, res) {
     res.redirect('/');
 };
 
+exports.signin = function(req, res) {
+    res.render('company/signin', {title: '公司登录'});
+}
 
+exports.loginSuccess = function(req, res) {
+    req.session.cpusername = req.body.username;
+    res.redirect('/');
+};
 
 /**
  * Show sign up form

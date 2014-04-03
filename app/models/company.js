@@ -58,7 +58,10 @@ var CompanySchema = new Schema({
         invate_code: String,
         team_info: Array              //存放组的id
     },
-    provider: String,
+    provider: {
+        type: String,
+        default: 'company'
+    },
     salt: String
 });
 

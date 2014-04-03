@@ -17,7 +17,7 @@ module.exports = function(app, passport) {
     app.post('/users/session', passport.authenticate('user', {
         failureRedirect: '/users/signin',
         failureFlash: true
-    }), users.session);
+    }), users.loginSuccess);
 
     app.post('/users/create', users.create);
 
