@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
     crypto = require('crypto');
 
 /**
- * User Schema
+ * Company Schema
  */
 var CompanySchema = new Schema({
     id: String,

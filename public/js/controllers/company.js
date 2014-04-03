@@ -6,7 +6,15 @@ angular.module('company')
   }]);
 angular.module('company')
     .controller('groupsController',['$scope','$http', function($scope,$http) {
-        $scope.groups = [
+        $http.get('group/getgroups').success(function(data,status){
+            console.log(data);
+            if(typeof data == Array){
+                $scope.groups =data;
+            };
+        }).error(function(data,status){
+            alert('组件获取失败！');
+        });
+/*        $scope.groups = [
             {id:1,name:'足球1',select:'0'},
             {id:2,name:'篮球1',select:'1'},
             {id:3,name:'跑步1',select:'0'},
@@ -19,7 +27,7 @@ angular.module('company')
             {id:10,name:'篮球3',select:'1'},
             {id:11,name:'跑步3',select:'0'},
             {id:12,name:'读书3',select:'1'}
-        ];
+        ];*/
         $scope.selected =[];
         $scope.group_next = function(){
             $scope.selected.length = 0;
@@ -28,29 +36,24 @@ angular.module('company')
                     $scope.selected.push(value.id);
                 }
             });
-            try{$http({
-                method: 'post',
-                url: '/company/groupSelect',
-                data:{
-                    selected : $scope.selected
-                }
-              }).success(function(data, status) {
-                // Now we have a list of the stories (data.list.story)
-                // in the data object that the NPR API 
-                // returns in JSON that looks like:
-                // data: { "list": {
-                //   "title": ...
-                //   "story": [
-                //     { "id": ...
-                //       "title": ...
-                alert('success');
-                console.log(data);
-              }).error(function(data, status) {
-               conole.log(data);
-              });
-          }
-          catch(e){
-            alert(e);
-          }
+            try{
+                $http({
+                    method: 'post',
+                    url: '/company/groupSelect',
+                    data:{
+                        selected : $scope.selected
+                    }
+                }).success(function(data, status) {
+                    //alert('success');
+                    // console.log(data);
+                    alert("选择组件成功！");
+                    window.location.href="/company/invite";
+                }).error(function(data, status) {
+                    alert("数据发生错误！");
+                });
+            }
+            catch(e){
+                console.log(e);
+            }
         };
     }]);
