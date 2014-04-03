@@ -25,7 +25,7 @@ module.exports = function(app, passport) {
     // 提交公司申请信息
     app.post('/company', company.create);
     // 验证通过后进一步提交公司注册信息
-    app.post('/confirm', company.createDetail);
+    app.post('/company/createDetail', company.createDetail);
 
     app.get('/company/invite', company.invite);
 

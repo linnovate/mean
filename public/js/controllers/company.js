@@ -6,7 +6,7 @@ angular.module('company')
   }]);
 angular.module('company')
     .controller('groupsController',['$scope','$http', function($scope,$http) {
-        $http.get('group/getgroups').success(function(data,status){
+        $http.get('/group/getgroups').success(function(data,status){
             $scope.groups =data;
         }).error(function(data,status){
             alert('组件获取失败！');
