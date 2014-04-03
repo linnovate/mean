@@ -1,10 +1,10 @@
-extends ../layouts/default
+extends ../layouts/company
 
 block headExt
   link(rel="stylesheet" href="/css/views/company_signup.css")
 
 block content
-  .row(ng-controller="RegisterController")
+  .row(ng-app="company" ng-controller="RegisterController")
     .col-xs-5.text-right.col-left
       h1.text-right
         small 加入
@@ -63,8 +63,8 @@ block content
               input(type="checkbox")
               | 我已阅读并同意<a href="#">服务条款</a>
       .form-group
-        .col-xs-offset-3.col-xs-9.input-module.input-module-left 
+        .col-xs-offset-3.col-xs-9.input-module.input-module-left
           button.btn.btn-primary.btn-submit 提交申请
 
 block footExt
-  script(src="/js/controllers/company.js")
+  script(src="/lib/angular-pc-selector/angular-pc-selector.js")
