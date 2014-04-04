@@ -1,6 +1,6 @@
 {
   "name": "meanio",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "Simple command line interface for installing and managing mean apps",
   "author": {
     "name": "linnovate"
@@ -12,7 +12,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/linnovate/mean-cli.git"
-  },  
+  },
   "engines": {
     "node": "0.10.x",
     "npm": "1.4.x"
@@ -26,5 +26,5 @@
     "mkdirp": "0.3.5"
   },
   "license": "ISC",
-  "readme": "Experimental POC. See http://mean.io for additional documentation"  
+  "readme": "See http://mean.io for additional documentation"
 }

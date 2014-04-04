@@ -1,15 +1,16 @@
 #!/usr/bin/env node
 
 //Experimental MEAN CLI.
-var progress = new Progress();
-var opener = require("opener");
-var scaffold = require("../lib/scaffold.js");
 var program = require('commander'),
+  opener = require('opener'),
   pkg = require('../package.json'),
   version = pkg.version,
   fs = require('fs'),
   colors = require('colors'),
   os = require('os');
+
+var progress = new Progress();
+var _npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 
 colors.setTheme({
   input: 'grey',
@@ -28,12 +29,12 @@ program
   .version(version)
   .option('-b, --branch [type]', 'git branch')
   .option('-mn, --machine [type]', 'Specify "machine name" --machine tokens')
-  .option('-g, --git', 'clone using git:// instead of https')
+  .option('-g, --git', 'clone using git:// instead of https://')
   .option('--npm', 'Download MEAN Packages from NPM')
   .option('--repo [type]', 'Specify repository to install')
-  .option('--author [type]', 'Whis is the author')
+  .option('--author [type]', 'This is the author')
   .option('-f, --force', 'force')
-  .option('--env [type]', 'Mean environment defaults to `development`')
+  .option('--env [type]', 'Mean environment defaults to `development`');
 
 program
   .command('init')
@@ -41,7 +42,7 @@ program
   .action(function(name) {
     name = (typeof name == 'object' ? 'mean' : name);
     init(name, options());
-  })
+  });
 
 program
   .command('install <module>')
@@ -50,7 +51,7 @@ program
     requiresRoot(function() {
       install(module, options());
     });
-  })
+  });
 
 program
   .command('uninstall <module>')
@@ -59,14 +60,14 @@ program
     requiresRoot(function() {
       uninstall(module, options());
     });
-  })
+  });
 
 program
   .command('docs')
   .description('Opens MEAN documentation in your local browser')
-  .action(function(module) {
-    opener("http://www.mean.io/#!/docs");
-  })
+  .action(function() {
+    opener('http://www.mean.io/#!/docs');
+  });
 
 program
   .command('package <name>')
@@ -74,10 +75,10 @@ program
   .action(function(name) {
     requiresRoot(function() {
       ensureEmpty('./node_modules/' + name, function() {
-        scaffold.packages(name, options());
+        require('../lib/scaffold.js').packages(name, options());
       });
     });
-  })
+  });
 
 program
   .command('list')
@@ -130,23 +131,24 @@ program.parse(process.argv);
 function checkVersion() {
 
   var spawn = require('child_process').spawn;
-  var npm = spawn('npm', ['outdated', 'meanio', '-g', '--json']);
+
+  var npm = spawn(_npm, ['outdated', 'meanio', '-g', '--json']);
 
   npm.stderr.setEncoding('utf8');
   npm.stdout.setEncoding('utf8');
 
   var chunks = '';
   console.log();
-  console.log("    checking meanio command line version")
+  console.log('    checking meanio command line version');
   npm.on('close', function(code, signal) {
 
     try {
       var json = JSON.parse(chunks);
       if (json.meanio.latest && json.meanio.latest != version) {
-        console.log("    meanio command line is out of date".warn);
-        console.log("    Current: " + version + " Latest: " + json.meanio.latest);
+        console.log('    meanio command line is out of date'.warn);
+        console.log('    Current: ' + version + ' Latest: ' + json.meanio.latest);
       } else {
-        console.log("    meanio command line at latest version: ".info + version);
+        console.log('    meanio command line at latest version: '.info + version);
       }
     } catch (e) {
       console.log(e);
@@ -173,7 +175,7 @@ function options() {
     branch: program.branch,
     author: program.author,
     env: (program.env ? program.env : 'development')
-  }
+  };
 }
 
 function printUser(email, options) {
@@ -185,10 +187,10 @@ function printUser(email, options) {
 
   MongoClient.connect(config.db, function(err, db) {
     if (err) {
-      console.log("    Error Connecting to database".error);
+      console.log('    Error Connecting to database'.error);
       console.log(err);
     } else {
-      console.log("    DB connecting successful!".info);
+      console.log('    DB connecting successful!'.info);
       console.log();
       db.collection('users').find({
         email: email
@@ -197,7 +199,7 @@ function printUser(email, options) {
         db.close();
       });
     }
-  })
+  });
 }
 
 
@@ -210,10 +212,10 @@ function addRole(email, role, options) {
 
   MongoClient.connect(config.db, function(err, db) {
     if (err) {
-      console.log("    Error Connecting to database".error);
+      console.log('    Error Connecting to database'.error);
       console.log(err);
     } else {
-      console.log("    DB connecting successful!".info);
+      console.log('    DB connecting successful!'.info);
       console.log();
       db.collection('users').update({
         email: email
@@ -229,10 +231,9 @@ function addRole(email, role, options) {
         if (err) console.log(err.message);
         else console.log('successfully updated'.info);
         db.close();
-
       });
     }
-  })
+  });
 }
 
 function removeRole(email, role, options) {
@@ -243,10 +244,10 @@ function removeRole(email, role, options) {
 
   MongoClient.connect(config.db, function(err, db) {
     if (err) {
-      console.log("    Error Connecting to database".error);
+      console.log('    Error Connecting to database'.error);
       console.log(err);
     } else {
-      console.log("    DB connecting successful!".info);
+      console.log('    DB connecting successful!'.info);
       console.log();
       db.collection('users').update({
         email: email
@@ -265,34 +266,34 @@ function removeRole(email, role, options) {
 
       });
     }
-  })
+  });
 }
 
 function status(options) {
   var config = require(process.cwd() + '/server/config/env/' + options.env + '.js');
   console.log();
   console.log('    MEAN Status'.info);
-  console.log('    -----------')
+  console.log('    -----------');
   console.log();
   loadPackageJson('./package.json', function(err, data) {
-    console.log("    MEAN VERSION: " + data.version);
+    console.log('    MEAN VERSION: ' + data.version);
     console.log();
-    console.log("    MongoDB URI: " + config.db);
+    console.log('    MongoDB URI: ' + config.db);
 
     var MongoClient = require('mongodb').MongoClient,
       format = require('util').format;
 
     MongoClient.connect(config.db, function(err, db) {
       if (err) {
-        console.log("    Error Connecting to database".error);
+        console.log('    Error Connecting to database'.error);
         console.log(err);
       } else {
-        console.log("    DB connecting successful!".info);
+        console.log('    DB connecting successful!'.info);
         console.log();
       }
       checkVersion();
       db.close();
-    })
+    });
   });
 }
 
@@ -310,7 +311,7 @@ function cloneRepo(name, options) {
   var spawn = require('child_process').spawn;
   var source = (options.git ? 'git@github.com:linnovate/mean.git' : 'https://github.com/linnovate/mean.git');
   var git = spawn('git', ['clone', '-b', options.branch, source, name]);
-  var message  = "Cloning branch: " + options.branch + " into destination folder: " + name
+  var message = 'Cloning branch: ' + options.branch + ' into destination folder: ' + name;
   console.log(message.info);
 
   git.stderr.setEncoding('utf8');
@@ -320,18 +321,18 @@ function cloneRepo(name, options) {
     progress.stop();
     loadPackageJson('./' + name + '/package.json', function(err, data) {
       if (err) {
-        console.log("Something went wrong. Try again or use --git flag".warn);
-        console.log("If the problem persists see past issues here: https://github.com/linnovate/mean/issues".warn);
-        console.log("Or open a new issue here https://github.com/linnovate/mean/issues/new".warn);
+        console.log('Something went wrong. Try again or use --git flag'.warn);
+        console.log('If the problem persists see past issues here: https://github.com/linnovate/mean/issues'.warn);
+        console.log('Or open a new issue here https://github.com/linnovate/mean/issues/new'.warn);
         //fallback code here
         process.exit();
       }
 
-      message  = "Version: " + data.version + " cloned"
+      message = 'Version: ' + data.version + ' cloned';
       console.log(message.info);
       console.log();
       fs.readFile(__dirname + '/logo.txt', function(err, data) {
-        console.log(data.toString())
+        console.log(data.toString());
         console.log();
         console.log('   install dependencies:');
         console.log('     $ cd %s && npm install', name);
@@ -365,7 +366,7 @@ function loadPackageJson(path, callback) {
     } catch (err) {
       return callback(true, err);
     }
-  })
+  });
 }
 
 function ensureEmpty(path, callback) {
@@ -375,9 +376,9 @@ function ensureEmpty(path, callback) {
     } else {
       console.log('Destination is not empty: '.warn + path);
     }
-  })
-
+  });
 }
+
 // From express
 function emptyDirectory(path, fn) {
   fs.readdir('./' + path, function(err, files) {
@@ -388,8 +389,7 @@ function emptyDirectory(path, fn) {
 
 function list(options) {
   fs.readdir('./node_modules', function(err, files) {
-    if (err) return console.log("No Modules. Make sure you are within a valid MEAN APP".warn);
-    remaining = files.length;
+    if (err) return console.log('No Modules. Make sure you are within a valid MEAN app'.warn);
     console.log('   MEAN Modules List:'.info);
     console.log('   -----------------');
     files.forEach(function(file) {
@@ -403,15 +403,15 @@ function list(options) {
 function uninstall(module, options) {
   var spawn = require('child_process').spawn;
 
-  var npm = spawn('npm', ['uninstall', module]);
+  var npm = spawn(_npm, ['uninstall', module]);
 
-  console.log("Removing module: ".info + module);
+  console.log('Removing module: '.info + module);
 
   npm.stderr.setEncoding('utf8');
   npm.stdout.setEncoding('utf8');
 
   npm.on('close', function(code, signal) {
-    console.log('   npm uninstall complete'.info)
+    console.log('   npm uninstall complete'.info);
   });
 
   npm.stdout.on('data', function(data) {
@@ -440,20 +440,20 @@ function install(module, options) {
     source = module;
   }
 
-  var npm = spawn('npm', ['install', source]);
+  var npm = spawn(_npm, ['install', source]);
 
-  var message = "Installing module: " + module + " from branch (version): " + options.branch;
-  
+  var message = 'Installing module: ' + module + ' from branch (version): ' + options.branch;
+
   console.log(message.info);
   console.log();
 
   npm.stderr.setEncoding('utf8');
   npm.stdout.setEncoding('utf8');
 
-  npm.on('close', function(code, signal) {    
+  npm.on('close', function(code, signal) {
     loadPackageJson('./node_modules/' + module + '/package.json', function(err, data) {
       if (err) {
-        console.log("Error: npm install failed")
+        console.log('Error: npm install failed');
         return console.log(data);
       }
 
@@ -463,7 +463,7 @@ function install(module, options) {
       console.log();
       if (!data.mean) {
         console.log();
-        console.log("Warning: The module installed is not a valid MEAN module".warn);
+        console.log('Warning: The module installed is not a valid MEAN module'.warn);
       }
     });
 
@@ -498,7 +498,7 @@ function printNpmOutput(data) {
         process.stdout.write(str.info + ' ');
         break;
       default:
-        if (str != '' && str != ' ') {
+        if (str) {
           process.stdout.write(str);
           if (str.indexOf('\n') == -1) {
             process.stdout.write(' ');
@@ -506,22 +506,21 @@ function printNpmOutput(data) {
         }
         break;
     }
-  })
+  });
 }
 
 function requiresRoot(callback) {
   loadPackageJson(process.cwd() + '/package.json', function(err, data) {
     if (err || data.name != 'mean') {
-      console.log("Invalid MEAN app or not in app root".warn);
+      console.log('Invalid MEAN app or not in app root'.warn);
     } else {
       callback();
     }
-  })
+  });
 }
 
 function Progress() {
-  var interval = null
-  var counter = 0;
+  var interval, counter;
 
   var progress = {
     start: function() {
@@ -537,16 +536,16 @@ function Progress() {
 
     switch (counter) {
       case 0:
-        console.log("Use `mean --help` from command line for all CLI options");
+        console.log('Use `mean --help` from command line for all CLI options');
         break;
       case 1:
-        console.log("Be sure to checkout all the docs on http://mean.io");
+        console.log('Be sure to checkout all the docs on http://mean.io');
         break;
       case 2:
-        console.log("This may take a little while depending on your connection speed");
+        console.log('This may take a little while depending on your connection speed');
         break;
       case 15:
-        console.log("Seems a bit slow. Check your internet connection...");
+        console.log('Seems a bit slow. Check your internet connection...');
         break;
       default:
         console.log('Still cloning...');
