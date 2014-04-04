@@ -1,6 +1,6 @@
-var PERMISSION = ['MANAGER','EMPLOYEE','TEAM_LEADER'];
+exports.PERMISSION = ['MANAGER','EMPLOYEE','TEAM_LEADER'];
 
-var MAIL_OPTION = {
+exports.MAIL_OPTION = {
     host: 'smtp.ym.163.com',
     secureConnection: true, // use SSL
     port: 994, // port for secure SMTP  默认端口号:25  SSL端口号:994
@@ -10,4 +10,6 @@ var MAIL_OPTION = {
     }
 };
 
-var SITE_ROOT_URL = 'http://127.0.0.1:3000';
+exports.BASE_URL = 'http://127.0.0.1:3000';
+
+exports.SECRET = '18801912891';

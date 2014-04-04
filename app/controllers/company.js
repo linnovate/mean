@@ -5,7 +5,8 @@
  */
 var mongoose = require('mongoose'),
     encrypt = require('../middlewares/encrypt'),
-    Company = mongoose.model('Company');
+    Company = mongoose.model('Company'),
+    config = require('../config/config');
 
 var mail = require('../services/mail');
 /**
@@ -200,7 +201,7 @@ exports.createDetail = function(req, res, next) {
 
 exports.invite = function(req, res) {
     var name = req.session.user;
-    var inviteUrl = 'http://'+ req.headers.host + '/users/invite?key=' + encrypt.encrypt(name,'18801912891') + '&name=' + name;
+    var inviteUrl = config.BASE_URL + '/users/invite?key=' + encrypt.encrypt(name, config.SECRET) + '&name=' + name;
     res.render('company/validate/invite', {
         title: '邀请链接',
         inviteLink: inviteUrl

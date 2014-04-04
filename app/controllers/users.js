@@ -7,7 +7,8 @@ var mongoose = require('mongoose'),
     User = mongoose.model('User'),
     Company = mongoose.model('Company'),
     encrypt = require('../middlewares/encrypt'),
-    mail = require('../services/mail');
+    mail = require('../services/mail'),
+    config = require('../config/config');
 
 /**
  * Auth callback
@@ -32,7 +33,7 @@ exports.invite = function(req, res) {
     if(key === undefined || name === undefined) {
         res.render('users/message', {title: 'error', message: 'bad request'});
     } else {
-        if (encrypt.encrypt(name,'18801912891') === key) {
+        if (encrypt.encrypt(name, config.SECRET) === key) {
             req.session.key = key;
             req.session.name = name;
             res.render('users/invite', {
@@ -45,7 +46,7 @@ exports.invite = function(req, res) {
 exports.validate = function(req, res) {
     var key = req.session.key;
     var name = req.session.name;
-    if(encrypt.encrypt(name,'18801912891') === key) {
+    if(encrypt.encrypt(name, config.SECRET) === key) {
         Company.findOne({'username': name}).exec(function(err, company){
             if (company !== null) {
                 for(var i = 0; i < company.email.domain.length; i++) {
@@ -75,7 +76,7 @@ exports.validate = function(req, res) {
 exports.signup = function(req, res) {
     var key = req.query.key;
     var uid = req.query.uid;
-    if(encrypt.encrypt(uid,'18801912891') === key) {
+    if(encrypt.encrypt(uid, config.SECRET) === key) {
         res.render('users/signup', {
             title: 'Sign up',
             key: key,
