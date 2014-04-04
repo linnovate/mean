@@ -55,16 +55,21 @@ exports.saveGroups = function(req,res){
 };
 
 exports.getGroups = function(req,res){
-  Group.find(null,{'type':1,'name':1,'_id':0},function(err,_body){
+  Group.find(null,function(err,_body){
       if (err) {
           res.status(400).send([]);
           return;
       };
-      var _length = _body.length;
-      var _groups =[];
+      var _length = _body[0].group.gid.length;
+      var _groups = [];
+
+      
       for(var _i=0;_i<_length;_i++){
-        _groups.push({'type':_body[_i].type,'name':_body[_i].name,'select':'0'});
+        _groups.push({'id':_body[0].group.gid[_i],'type':_body[0].group._type[_i],'select':'0'});
       }
+      
+      console.log(_groups);
+      console.log(_body[0]);
       res.send(_groups);
   });
 };

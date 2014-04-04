@@ -58,7 +58,10 @@ var CompanySchema = new Schema({
         },
         linkman: String               //联系人
     },
-
+    registerDate: {
+        type: Date,
+        default: Date.now
+    },
     //公司内部组件
     main: {
         invate_code: String,

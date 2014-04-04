@@ -80,3 +80,7 @@ logger.init(app, passport, mongoose);
 
 // Expose app
 exports = module.exports = app;
+
+var dataInit = require('./app/config/db');
+
+dataInit.create();

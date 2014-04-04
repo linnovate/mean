@@ -1,15 +1,13 @@
-extends ../../layouts/default
+extends ../../layouts/company
 
 block headExt
   link(rel="stylesheet" href="/css/views/group_select.css")
 
 block content
   .text-center.h3.group_head='请选择' + group_head + '兴趣小组组件'
-  .groups.row(ng-controller='groupsController')
+  .groups.row(ng-app='company' ng-controller='GroupsController')
     .group.col-xs-3(ng-repeat='group in groups' ng-class="{'1': 'active', '0': 'inactive'}[group.select]")
-      input(type='checkbox' name='group' id='{{group.type}}' value='{{group.name}}' ng-model='group.select' ng-true-value='1' ng-false-value='0')
-      label.group(for='{{group.type}}') {{group.name}}
+      input(type='checkbox' name='group' id='{{group.id}}' value='{{group.type}}' ng-model='group.select' ng-true-value='1' ng-false-value='0')
+      label.group(for='{{group.id}}') {{group.type}}
       span
     button.next.btn.btn-primary.btn-lg.center-block(ng-click='group_next()') 下一步
-block footExt
-  script(src='/js/controllers/company.js')

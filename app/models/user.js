@@ -66,6 +66,7 @@ var UserSchema = new Schema({
     role: String,
     cid: String,
     gid: Array
+
 });
 
 /**

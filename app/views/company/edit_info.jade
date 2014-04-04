@@ -1,0 +1,54 @@
+extends ../layouts/default
+
+block content
+  
+  form.form-horizontal(action="/company/accountEdit" method="post")
+    h1 账户信息
+    button.btn.btn-primary(type="submit") 保存
+    .form-group
+      label.col-xs-2.control-label 登录邮箱
+      label.col-xs-10.control-label
+      a(href="#") 修改密码
+    .form-group
+      label.col-xs-2.control-label 官方用户名
+      .col-xs-10
+        input.form-control(type="text" name="nickname" value="")
+    .form-group
+      label.col-xs-2.control-label 简介
+      .col-xs-10
+        input.form-control(type="text" name="realname" value="")
+    .form-group
+      label.col-xs-2.control-label 注册时间
+      label.col-xs-10.control-label
+  a(href="#") 编辑>
+  form.form-horizontal(action="/company/infoEdit" method="post")
+    h1 企业信息
+    button.btn.btn-primary(type="submit") 保存
+    .form-group
+      label.col-xs-2.control-label 公司全称
+      .col-xs-10
+        input.form-control(type="text" name="position" value="")
+    .form-group
+      label.col-xs-2.control-label 所在地
+      .col-xs-10
+        input.form-control(type="text")
+    .form-group
+      label.col-xs-2.control-label 地址
+      .col-xs-10
+        input.form-control(type="text" name="position" value="")
+    .form-group
+      label.col-xs-2.control-label 联系人
+      .col-xs-10
+        input.form-control(type="text" name="birthday" value="")
+    .form-group
+      label.col-xs-2.control-label 公司电话
+      .col-xs-10
+        input.form-control(type="text" name="bloodType" value="")
+    .form-group
+      label.col-xs-2.control-label 手机号码
+      .col-xs-10
+        input.form-control(type="text" name="introduce" value="")
+    .form-group
+      label.col-xs-2.control-label 电子邮箱
+      .col-xs-10
+        input.form-control(type="text" name="bloodType" value="")

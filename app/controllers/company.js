@@ -5,7 +5,8 @@
  */
 var mongoose = require('mongoose'),
     encrypt = require('../middlewares/encrypt'),
-    Company = mongoose.model('Company');
+    Company = mongoose.model('Company'),
+    config = require('../config/config');
 
 var mail = require('../services/mail');
 var encrypt = require('../middlewares/encrypt');
@@ -53,19 +54,27 @@ exports.validateConfirm = function(req, res) {
     });
 };
 
+exports.select = function(req, res) {
+    res.render('company/validate/group_select', {
+        group_head: '企业',
+        title: '选择组件!'
+    });
+};
+
+
 exports.groupSelect = function(req, res) {
-    if(req.body.selected==undefined){
+    if(req.body.item == undefined){
         return  res.redirect('/company/signup');
     }
     console.log(req.session.company_validate);
-     Company.findOne({'info.name': req.session.company_validate}, function(err, _body) {
+     Company.findOne({id : req.session.company_validate}, function(err, _body) {
         if(_body) {
             if (err) {
                 res.status(400).send('该公司信息不存在!');
                 return;
             }
-            _body.main.team_info = req.body.selected;
-            console.log(_body.main.team_info);
+            _body.main.team_info = req.body.item;
+            //console.log(_body.main.team_info);
             _body.save(function(s_err){
                 if(s_err){
                     console.log(s_err);
@@ -75,9 +84,7 @@ exports.groupSelect = function(req, res) {
                 message: '发送邀请码'
             });
         } else {
-            res.render('company/validate/confirm', {
-                tittle: '该公司不存在!'
-            });
+            ;
         }
     });
     
@@ -192,8 +199,9 @@ exports.createDetail = function(req, res, next) {
             req.session.role = 'MANAGER';
             //hr进入公司组件选择界面
 
-            res.render('company/validate/group_select',{
-                group_head : '企业'
+            res.render('company/validate/group_select', {
+                group_head: '企业',
+                title: '选择组件!'
             });
         } else {
             res.render('company/validate/create_detail', {
@@ -206,11 +214,17 @@ exports.createDetail = function(req, res, next) {
 
 exports.invite = function(req, res) {
     var name = req.session.user;
-    var inviteUrl = 'http://localhost:3000' + '/users/invite?key=' + encrypt.encrypt(name,'18801912891') + '&name=' + name;
+    var inviteUrl = config.BASE_URL + '/users/invite?key=' + encrypt.encrypt(name, config.SECRET) + '&name=' + name;
     res.render('company/validate/invite', {
         title: '邀请链接',
         inviteLink: inviteUrl
-    })
+    });
+};
+
+exports.editInfo = function(req, res){
+    res.render('company/edit_info', {
+        title: '企业信息管理'
+    });
 };
 
 /**

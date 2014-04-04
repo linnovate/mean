@@ -11,18 +11,9 @@ var mongoose = require('mongoose'),
  */
 var GroupModel = new Schema({
     group: {
-        id: {
-            type: Array,
-            default: [0, 1, 2, 3]  //注意: id type icon 一定要一一对应
-        },
-        type: {
-            type: Array,
-            default: ['basketball', 'football', 'game', 'virtual']
-        },
-        icon: {
-            type: Array,
-            default: ['path_b', 'path_f', 'path_g', 'path_v']
-        }
+        gid: Array,
+        _type: Array,
+        icon: Array
     }
 });
 /**

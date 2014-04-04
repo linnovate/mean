@@ -14,12 +14,16 @@ module.exports = function(app, passport) {
         failureFlash: true
     }), company.loginSuccess);
 
-    app.get('/company/validate', company.validate);
+    app.get('/company/validate', company.validate);//点击公司激活链接
 
     app.get('/company/validate/error', company.validateError);
     app.get('/company/confirm', company.validateConfirm);//验证通过后进入创建公司账号信息页面
 
+
     app.get('/company/sendInvateCode', company.sendInvateCode);
+    app.get('/company/editInfo', company.editInfo);
+    app.get('/company/select', company.select);
+    app.get('/company/invite', company.invite);//点击员工邀请链接
 
     app.post('/company/groupSelect', company.groupSelect);
     
@@ -27,7 +31,7 @@ module.exports = function(app, passport) {
     
     app.post('/company/createDetail', company.createDetail);// 验证通过后进一步提交公司注册信息
 
-    app.get('/company/invite', company.invite);
+    
 
     // Setting up the companyId param
     app.param('companyId', company.company);
