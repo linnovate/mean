@@ -25,6 +25,10 @@ module.exports = function(app, passport) {
     app.get('/users/invite', users.invite);
     app.post('/users/validate', users.validate);
 
+    app.get('/users/signup/groupList', users.groupList);
+    app.post('/users/signup/groupSelect', users.groupSelect);
+    app.get('/users/signup/finished', users.signupFinished);
+
     app.get('/users/edit/info', users.infoEditForm);
     app.post('/users/edit', users.edit);
 

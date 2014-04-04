@@ -62,7 +62,8 @@ var UserSchema = new Schema({
     qq: {
         type: String,
         validate: [validate.numeric, '请填写正确的QQ号']
-    }
+    },
+    team_info: Array
 });
 
 /**

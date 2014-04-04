@@ -123,7 +123,8 @@ exports.create = function(req, res) {
                     if(err) {
                         console.log(err);
                     }
-                    res.render('users/message', {title: '注册成功', message: '注册成功'});
+                    req.session.username = user.username;
+                    res.redirect('/users/signup/groupList');
                 });
             } else {
                 res.render('users/message', {title: 'failed', message: 'failed'});
@@ -131,6 +132,40 @@ exports.create = function(req, res) {
         }
     });
 
+};
+
+exports.groupList = function(req, res) {
+    res.render('users/group_select', {title: '选择你的兴趣小组', group_head: '个人'});
+}
+
+exports.groupSelect = function(req, res) {
+    if(req.body.selected == undefined) {
+        return res.redirect('/users/signup');
+    }
+    User.findOne({'username': req.session.username}, function(err, user) {
+        if(user) {
+            if (err) {
+                res.status(400).send('用户不存在!');
+                return;
+            }
+            user.team_info = req.body.selected;
+            user.save(function(err){
+                if(err){
+                    console.log(err);
+                }
+            });
+            res.redirect('/users/signup/finished');
+        } else {
+            res.render('users/message', {
+                tittle: '错误!',
+                message: '请通过邀请链接激活后再选择兴趣小组'
+            });
+        }
+    });
+};
+
+exports.signupFinished = function(req, res) {
+    res.render('users/message', {title: '注册成功', message: '注册成功'});
 };
 
 
