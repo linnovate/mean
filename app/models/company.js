@@ -12,6 +12,7 @@ var mongoose = require('mongoose'),
  */
 var CompanySchema = new Schema({
 
+    id: String,
     username: {
         type: String,
         unique: true
@@ -25,10 +26,15 @@ var CompanySchema = new Schema({
     },
 
     //是否激活
-    active: {
-        type: Boolean,
-        default: false
+    status: {
+        active: {
+            type: Boolean,
+            default: false
+        },
+
+        date: Number
     },
+    
 
     //公司信息
     info: {

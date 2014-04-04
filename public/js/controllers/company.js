@@ -7,6 +7,7 @@ companyApp.controller('RegisterController', ['$scope', 'PCSelector',
         $scope.pcSelector = new PCSelector.PCSelector();
     }
 ]);
+
 companyApp.controller('groupsController',['$scope','$http', function($scope,$http) {
     $http.get('/group/getgroups').success(function(data,status){
         $scope.groups =data;

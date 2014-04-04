@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
     Company = mongoose.model('Company');
 
 var mail = require('../services/mail');
+var encrypt = require('../middlewares/encrypt');
 /**
  * Auth callback
  */
@@ -92,18 +93,18 @@ exports.sendInvateCode = function(req, res) {
 exports.validate = function(req, res) {
 
     var key = req.query.key;
-    var name = req.query.name;
+    var _id = req.query.id;
 
     Company.findOne({
-        'info.name' : name
+        id : _id
     },
     function (err, user) {
         if (user) {
-            if(encrypt.encrypt(name,'18801912891') === key){
-                req.session.company_validate = name;
-                res.render('company/validate/create_detail', {
-                    title: '验证成功,可以进行下一步!'
-                });
+
+            //到底要不要限制验证邮件的时间呢?
+            if(encrypt.encrypt(_id,'18801912891') === key){
+                req.session.company_validate = _id;
+                res.redirect('/company/confirm');
             } else {
                 res.render('company/company_validate_error', {
                     title: '验证失败',
@@ -131,15 +132,18 @@ exports.create = function(req, res, next) {
     company.info.city.province = req.body.province;
     company.info.city.city = req.body.city;
     company.info.address = req.body.address;
-    company.info.linkman = req.body.linkman;
+    company.info.linkman = req.body.contacts;
     company.info.lindline.areacode = req.body.areacode;
     company.info.lindline.number = req.body.number;
     company.info.lindline.extension = req.body.extension;
     company.info.phone = req.body.phone;
-    company.email.host = req.body.host;
-    company.email.domain[0] = req.body.domain;
+    company.id = encrypt.valueEncrypt(req.body.phone);//公司的id就是hr的手机的加密
 
     company.provider = 'company';
+
+    //注意,日期保存和发邮件是同步的,也要放到后台管理里去,这里只是测试需要
+    company.status.date = new Date().getTime();
+
     company.save(function(err) {
         if (err) {
             console.log(err);
@@ -157,12 +161,13 @@ exports.create = function(req, res, next) {
                 company: company
             });
         }
+
         //发送邮件
-        mail.sendCompanyActiveMail(company.email.host+'@'+company.email.domain[0],company.info.name);
-        res.render('company/company_wait', {
-            title: '等待验证',
-            message: '您的申请信息已经提交,等验证通过后我们会向您发送一封激活邮件,请注意查收!'
-        });
+        //注意,这里只是测试发送邮件,正常流程是应该在平台的后台管理中向hr发送确认邮件
+        mail.sendCompanyActiveMail(req.body.host+'@'+req.body.domain,req.body.name,company.id);
+        
+
+        res.redirect('/company/wait');
     });
 };
 
@@ -171,7 +176,7 @@ exports.create = function(req, res, next) {
  */
 exports.createDetail = function(req, res, next) {
 
-    Company.findOne({'info.name': req.session.company_validate}, function(err, _body) {
+    Company.findOne({id: req.session.company_validate}, function(err, _body) {
         if(_body) {
             if (err) {
                 res.status(400).send('该公司信息不存在!');
@@ -180,6 +185,7 @@ exports.createDetail = function(req, res, next) {
 
             _body.username = req.body.username;
             _body.password = req.body.password;
+            _body.status.active = true;
 
             _body.save();
             req.session.user = req.body.username;

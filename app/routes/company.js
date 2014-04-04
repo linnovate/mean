@@ -17,15 +17,15 @@ module.exports = function(app, passport) {
     app.get('/company/validate', company.validate);
 
     app.get('/company/validate/error', company.validateError);
-    app.get('/company/confirm', company.validateConfirm);
+    app.get('/company/confirm', company.validateConfirm);//验证通过后进入创建公司账号信息页面
 
     app.get('/company/sendInvateCode', company.sendInvateCode);
 
     app.post('/company/groupSelect', company.groupSelect);
-    // 提交公司申请信息
-    app.post('/company', company.create);
-    // 验证通过后进一步提交公司注册信息
-    app.post('/company/createDetail', company.createDetail);
+    
+    app.post('/company', company.create);// 提交公司申请信息
+    
+    app.post('/company/createDetail', company.createDetail);// 验证通过后进一步提交公司注册信息
 
     app.get('/company/invite', company.invite);
 
