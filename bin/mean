@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
+'use strict';
+
 //Experimental MEAN CLI.
 var program = require('commander'),
   opener = require('opener'),
-  pkg = require('../package.json'),
-  version = pkg.version,
   fs = require('fs'),
   colors = require('colors'),
-  os = require('os');
+  _ = require('lodash');
 
 var progress = new Progress();
 var _npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
@@ -25,8 +25,11 @@ colors.setTheme({
   httpCode: 'blue'
 });
 
+// set program version
+var version = require('../package').version;
+program.version(version, '-v, --version');
+
 program
-  .version(version)
   .option('-b, --branch [type]', 'git branch')
   .option('-mn, --machine [type]', 'Specify "machine name" --machine tokens')
   .option('-g, --git', 'clone using git:// instead of https://')
@@ -55,7 +58,7 @@ program
 
 program
   .command('uninstall <module>')
-  .description('Installs a MEAN module')
+  .description('Uninstalls a MEAN module')
   .action(function(module) {
     requiresRoot(function() {
       uninstall(module, options());
@@ -127,6 +130,20 @@ program
 
 program.parse(process.argv);
 
+// print help with no args
+if (program.args.length < 1) {
+  program.help();
+}
+
+// if there is a command, make sure it's valid
+var commands = program.commands.map(function (command) {
+  return command._name;
+});
+if (!_.contains(commands, program.rawArgs[2])) {
+  console.log('mean: `' + program.rawArgs[2] + '` is not a mean command. See `mean --help`.');
+  console.log();
+  process.exit(1);
+}
 
 function checkVersion() {
 
@@ -174,7 +191,7 @@ function options() {
     verbose: program.verbose,
     branch: program.branch,
     author: program.author,
-    env: (program.env ? program.env : 'development')
+    env: program.env || 'development'
   };
 }
 
@@ -342,7 +359,6 @@ function cloneRepo(name, options) {
         console.log();
         console.log('   Extra Docs at http://mean.io');
       });
-
     });
   });
 
