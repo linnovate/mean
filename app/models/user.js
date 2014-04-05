@@ -12,6 +12,7 @@ var mongoose = require('mongoose'),
  * User Schema
  */
 var UserSchema = new Schema({
+    uid: String,
     username: {
         type: String,
         unique: true,
@@ -20,7 +21,7 @@ var UserSchema = new Schema({
     email: {
         type: String,
         unique: true,
-        validate: [validate.email, '请填写有正确的邮箱地址']
+        validate: [validate.email, '请填写正确的邮箱地址']
     },
     active: {
         type: Boolean,
@@ -63,9 +64,16 @@ var UserSchema = new Schema({
         type: String,
         validate: [validate.numeric, '请填写正确的QQ号']
     },
-    role: String,
+    role: {
+        type: String,
+        enum: ['M','L','E']      //HR 组长 普通员工
+    },
     cid: String,
-    gid: Array
+    leader_group: {
+        gid: String,             //一个组长对应一个组,一个组长不可能管理多个组(如果不是组长就空着)
+        _type: String            //组件类型
+    },          
+    gid: Array                   //作为组员,可以加入多个组
 
 });
 

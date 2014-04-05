@@ -20,7 +20,7 @@ var GroupModel = new Schema({
  * 组件的具体规则
  */
 var GroupRule = new Schema({
-    gid: String, //和 GroupModel 里的 id 绑定
+    gid: String, //和 GroupModel 里的 gid 绑定
     rule: {
         //具体的规则,每种组件的规则可能各不一样,无法统一
     }
@@ -33,8 +33,8 @@ var GroupRule = new Schema({
 var CompanyGroup = new Schema({
     cid: String,
     group: {
-        id: Array,
-        type: Array,
+        gid: Array,
+        _type: Array,
         member: {
             number: Array,
             leader: Array
@@ -43,17 +43,34 @@ var CompanyGroup = new Schema({
 });
 
 
+
+/**
+ * 用于子文档嵌套
+ */
+var _member = new Schema({
+    cid: String,
+    gid: String,
+    uid: String,
+    person_score: Number
+});
+
+/**
+ * 活动
+ */
 var Event = new Schema({
-    event: {
+    _event: {
         gid: Array,
-        type: Array,
+        _type: Array,
         cid: Array,
         poster: {
             cid: String,
             uid: String,
-            role: String
+            role: {
+                type: String,
+                enum: ['M','L','E']      //HR 组长 普通员工
+            },
         },
-        member: Array
+        member: [_member]
     },
     create_time: String,
     start_time: String,
@@ -62,12 +79,12 @@ var Event = new Schema({
 
 /*
 //Event示例
-
+//两个公司的两个组一起联谊搞活动
 {
     event: {
-        gid: ['0','1'],
+        gid: ['0','1'],                     //两个组
         type: ['basketball', 'football'],
-        cid: ['0010', '0056'],
+        cid: ['0010', '0056'],              //两个公司
         poster: {
             cid: '0056',
             uid: '10120979',
@@ -77,37 +94,44 @@ var Event = new Schema({
             {
                 cid: '0010',
                 gid: '0',
-                uid: '10120089'
+                uid: '10120089',
+                person_score: 2773
             },
             {
                 cid: '0056',
                 gid: '1',
-                uid: '10120039'
+                uid: '10120039',
+                person_score: 277308089
             },
             {
                 cid: '0010',
                 gid: '0',
-                uid: '13120089'
+                uid: '13120089',
+                person_score: 2
             },
             {
                 cid: '0056',
                 gid: '0',
-                uid: '30126087'
+                uid: '30126087',
+                person_score: 13
             },
             {
                 cid: '0010',
                 gid: '0',
-                uid: '70120039'
+                uid: '70120039',
+                person_score: -3
             },
             {
                 cid: '0010',
                 gid: '1',
-                uid: '60120022'
+                uid: '60120022',
+                person_score: 567
             },
             {
                 cid: '0010',
                 gid: '1',
-                uid: '90120111'
+                uid: '90120111',
+                person_score: 0
             }
         ],
         create_time: '2013-06-07 22:33:44',
@@ -115,14 +139,31 @@ var Event = new Schema({
         end_time: '2013-06-09 01:33:44'
     }
 }
-
 */
+
 /**
- * Validations
+ * 消息
  */
-var validatePresenceOf = function(value) {
-    return value && value.length;
-};
+var Message = new Schema({
+    group: {
+        gid: String,
+        _type: String
+    },
+    cid :String,
+    active: Boolean,
+    poster: {
+        cid: String,
+        uid: String,
+        role: {
+            type: String,
+            enum: ['M','L','E']      //HR 组长 普通员工
+        },
+    },
+    count: Array
+});
 
 
 mongoose.model('Group', GroupModel);
+mongoose.model('CompanyGroup', CompanyGroup);
+mongoose.model('Event', Event);
+mongoose.model('Message', Message);
