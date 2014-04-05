@@ -77,7 +77,6 @@
             var RegisterCtrl,
                 Global,
                 scope,
-                $rootScope,
                 $httpBackend,
                 $location;
 
