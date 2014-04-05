@@ -331,7 +331,7 @@ function cloneRepo(name, options) {
       message = 'Version: ' + data.version + ' cloned';
       console.log(message.info);
       console.log();
-      fs.readFile(__dirname + '/logo.txt', function(err, data) {
+      fs.readFile(__dirname + '/../img/logo.txt', function(err, data) {
         console.log(data.toString());
         console.log();
         console.log('   install dependencies:');
