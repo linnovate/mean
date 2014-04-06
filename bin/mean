@@ -212,7 +212,7 @@ function printUser(email, options) {
       db.collection('users').find({
         email: email
       }).toArray(function(err, user) {
-        console.dir(user.data);
+        console.dir(user);
         db.close();
       });
     }
