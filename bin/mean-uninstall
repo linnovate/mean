@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var cli = require('../lib/cli'),
+  program = require('commander');
+
+program
+  .description('Uninstalls a MEAN module')
+  .parse(process.argv);
+
+cli.uninstall(program.args.length ? program.args[0] : 'mean');

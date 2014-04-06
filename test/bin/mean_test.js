@@ -16,7 +16,7 @@ describe('`mean`', function() {
     });
   });
 
-  ['', '--help'].forEach(function(args) {
+  ['', '--help', 'help'].forEach(function(args) {
     var suffix = args ? '"' + args + '"' : 'no arguments';
     it('shows help when executed with ' + suffix, function(done) {
       exec(CMD + ' ' + args, function(err, stdout) {

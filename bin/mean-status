@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var cli = require('../lib/cli'),
+  program = require('commander');
+
+program
+  .description('Overall system status')
+  .option('--env [env]', 'Mean environment defaults to `development`')
+  .parse(process.argv);
+
+var options = {
+  env: program.env || 'development'
+};
+
+cli.status(options);
