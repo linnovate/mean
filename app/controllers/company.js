@@ -19,7 +19,7 @@ exports.authCallback = function(req, res) {
 
 exports.signin = function(req, res) {
     res.render('company/signin', {title: '公司登录'});
-}
+};
 
 exports.loginSuccess = function(req, res) {
     req.session.cpusername = req.body.username;
@@ -103,6 +103,8 @@ exports.groupSelect = function(req, res) {
                 if(s_err){
                     console.log(s_err);
                 }
+
+                res.send('ok');
             });
         } else {
             ;
@@ -213,6 +215,7 @@ exports.createDetail = function(req, res, next) {
             req.session.user = req.body.username;
             req.session.role = 'M';
 
+            res.send('ok');
             //console.log('创建成功');
             
         } else {
