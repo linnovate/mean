@@ -51,14 +51,13 @@ exports.validateError = function(req, res) {
 
 //开始转入公司注册账户页面
 exports.validateConfirm = function(req, res) {
-    if(req.session.company_validate != '') {
+    if(req.session.company_validate !== '') {
         res.render('company/validate/confirm', {
             title: '验证成功,可以进行下一步!'
         });
     } else {
         //非法进入!
     }
-    
 };
 
 //配合路由渲染公司注册账户页面
@@ -107,7 +106,7 @@ exports.groupSelect = function(req, res) {
                 res.send('ok');
             });
         } else {
-            ;
+            
         }
     });
     
@@ -127,7 +126,7 @@ exports.validate = function(req, res) {
         if (user) {
 
             //到底要不要限制验证邮件的时间呢?
-            if(encrypt.encrypt(_id,'18801912891') === key){
+            if(encrypt.encrypt(_id,config.SECRET) === key){
                 req.session.company_validate = _id;
                 res.redirect('/company/confirm');
             } else {
@@ -230,7 +229,7 @@ exports.createDetail = function(req, res, next) {
 
 
 exports.editInfo = function(req, res){
-    if(req.session.company_validate != '') {
+    if(req.session.company_validate !== '') {
         res.render('company/edit_info', {
             title: '企业信息管理'
         });

@@ -1,15 +1,10 @@
-var mailer = require('nodemailer');
-var encrypt = require('../middlewares/encrypt');
+'use strict';
 
-var transport = mailer.createTransport('SMTP', {
-    host: 'smtp.ym.163.com',
-    secureConnection: true, // use SSL
-    port: 994, // port for secure SMTP
-    auth: {
-        user: 'nicoJiang@55yali.com',
-        pass: '~!jzl1234'
-    }
-});
+var mailer = require('nodemailer'),
+    encrypt = require('../middlewares/encrypt'),
+    config = require('../config/config');
+
+var transport = mailer.createTransport('SMTP', config.MAIL_OPTION);
 
 var SITE_ROOT_URL = 'http://127.0.0.1:3000';
 /**
@@ -37,7 +32,7 @@ exports.sendCompanyActiveMail = function (who, name, id) {
   var subject = name + ' 动梨社区公司账号激活';
   var html = '<p>您好：<p/>' +
     '<p>我们收到您在动梨的申请信息，请点击下面的链接来激活帐户：</p>' +
-    '<a href="' + SITE_ROOT_URL + '/company/validate?key=' + encrypt.encrypt(id,'18801912891') + '&id=' + id + '">激活链接</a>';
+    '<a href="' + SITE_ROOT_URL + '/company/validate?key=' + encrypt.encrypt(id,config.SECRET) + '&id=' + id + '">激活链接</a>';
 
   sendMail({
     from: from,
@@ -53,7 +48,7 @@ exports.sendStaffActiveMail = function(who, userId) {
   var subject = '动梨社区员工账号激活';
   var html = '<p>您好：<p/>' +
     '<p>我们收到您在动梨的申请信息，请点击下面的链接来激活帐户：</p>' +
-    '<a href="' + SITE_ROOT_URL + '/users/signup?key=' + encrypt.encrypt(userId,'18801912891') + '&uid=' + userId + '">激活链接</a>';
+    '<a href="' + SITE_ROOT_URL + '/users/signup?key=' + encrypt.encrypt(userId,config.SECRET) + '&uid=' + userId + '">激活链接</a>';
 
   sendMail({
     from: from,
