@@ -163,7 +163,7 @@ exports.create = function(req, res, next) {
     var company = new Company();
     var message = null;
 
-    company.username = Date.now().toString(32) + Math.random().toString(32),
+    company.username = Date.now().toString(32) + Math.random().toString(32);
     company.info.name = req.body.name;
     company.info.city.province = req.body.province;
     company.info.city.city = req.body.city;
