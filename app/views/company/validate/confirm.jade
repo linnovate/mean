@@ -6,4 +6,4 @@ extends ../../layouts/company
 block headExt
   link(rel="stylesheet" href="/css/views/group_select.css")
 block content
-  div(ng-app='company' id='confirm' ng-controller='ConfirmController' ng-include src='page_generator()')
+  div(ng-app='company' id='confirm' ng-view )
