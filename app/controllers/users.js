@@ -48,17 +48,19 @@ exports.validate = function(req, res) {
     var name = req.session.name;
     if(encrypt.encrypt(name, config.SECRET) === key) {
         Company.findOne({'username': name}).exec(function(err, company){
-            if (company !== null) {
+            if (company != null) {
                 for(var i = 0; i < company.email.domain.length; i++) {
                     if(req.body.domain === company.email.domain[i]) {
                         var user = new User();
                         user.email = req.body.host + '@' + req.body.domain;
                         user.company_id = company._id;
+                        user.id = company.id + Date.now().toString(32) + Math.random().toString(32);
                         user.save(function(err) {
                             if (err) {
                                 console.log(err);
                             }
                         });
+                        //系统再给员工发一封激活邮件
                         mail.sendStaffActiveMail(user.email, user.id);
                         res.render('users/message', {title: '验证邮件', message: '我们已经给您发送了验证邮件，请登录您的邮箱完成激活'});
                         return;
@@ -71,7 +73,7 @@ exports.validate = function(req, res) {
 };
 
 /**
- * Show sign up form
+ * 员工点击系统发送的激活邮件后进一步补充个人信息
  */
 exports.signup = function(req, res) {
     var key = req.query.key;
@@ -102,9 +104,9 @@ exports.loginSuccess = function(req, res) {
 };
 
 
-exports.create = function(req, res) {
-    User.findById(
-        req.query.uid
+exports.updateProfile = function(req, res) {
+    User.findOne(
+        {id : req.query.uid}
     , function(err, user) {
         if(err) {
             console.log(err);

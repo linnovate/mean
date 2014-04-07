@@ -174,7 +174,7 @@ exports.create = function(req, res, next) {
     company.info.lindline.extension = req.body.extension;
     company.info.phone = req.body.phone;
     company.id = Date.now().toString(32) + Math.random().toString(32);//公司的id
-
+    company.email.domain.push(req.body.domain);
     company.provider = 'company';
 
     //注意,日期保存和发邮件是同步的,也要放到后台管理里去,这里只是测试需要
