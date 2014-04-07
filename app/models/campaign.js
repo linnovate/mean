@@ -38,4 +38,7 @@ var Campaign = new Schema({
     end_time: Date
 });
 
+
+
+
 mongoose.model('Campaign', Campaign);

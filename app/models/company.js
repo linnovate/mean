@@ -61,7 +61,7 @@ var CompanySchema = new Schema({
 
     register_date: {
         type: Date,
-        default: Date.now
+        default: Date.now()
     },
     //公司内部组件
     gid: Array,                       //存放组的id
