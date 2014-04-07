@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
     encrypt = require('../middlewares/encrypt'),
     Company = mongoose.model('Company'),
+    CompanyGroup = mongoose.model('CompanyGroup'),
     config = require('../config/config');
 
 var mail = require('../services/mail');
@@ -51,7 +52,7 @@ exports.validateError = function(req, res) {
 
 //开始转入公司注册账户页面
 exports.validateConfirm = function(req, res) {
-    if(req.session.company_validate !== '') {
+    if(req.session.company_id !== '') {
         res.render('company/validate/confirm', {
             title: '验证成功,可以进行下一步!'
         });
@@ -86,25 +87,35 @@ exports.invite = function(req, res) {
 
 
 exports.groupSelect = function(req, res) {
-    if(req.body.item == undefined){
+    if(req.body.gid == undefined){
         return  res.redirect('/company/signup');
     }
-    console.log('session' + req.session.company_validate);
-     Company.findOne({id : req.session.company_validate}, function(err, _body) {
-        if(_body) {
+
+    Company.findOne({id : req.session.company_id}, function(err, company) {
+        if(company) {
             if (err) {
                 console.log('不存在公司');
                 return;
             }
-            _body.main.team_info = req.body.item;
-            //console.log(_body.main.team_info);
-            _body.save(function(s_err){
+            company.gid = req.body.gid;
+
+            company.save(function (s_err){
                 if(s_err){
                     console.log(s_err);
                 }
 
-                res.send('ok');
+                var companyGroup = new CompanyGroup();
+                companyGroup.cid = req.session.company_id;
+                companyGroup.group.gid = req.body.gid;
+
+                companyGroup.save(function (err){
+                    if (err) {
+                        console.log(err);
+                    }
+                });
             });
+            res.send('ok');
+            
         } else {
             
         }
@@ -127,7 +138,7 @@ exports.validate = function(req, res) {
 
             //到底要不要限制验证邮件的时间呢?
             if(encrypt.encrypt(_id,config.SECRET) === key){
-                req.session.company_validate = _id;
+                req.session.company_id = _id;
                 res.redirect('/company/confirm');
             } else {
                 res.render('company/company_validate_error', {
@@ -152,6 +163,7 @@ exports.create = function(req, res, next) {
     var company = new Company();
     var message = null;
 
+    company.username = Date.now().toString(32) + Math.random().toString(32),
     company.info.name = req.body.name;
     company.info.city.province = req.body.province;
     company.info.city.city = req.body.city;
@@ -161,7 +173,7 @@ exports.create = function(req, res, next) {
     company.info.lindline.number = req.body.number;
     company.info.lindline.extension = req.body.extension;
     company.info.phone = req.body.phone;
-    company.id = encrypt.valueEncrypt(req.body.phone);//公司的id就是hr的手机的加密
+    company.id = Date.now().toString(32) + Math.random().toString(32);//公司的id
 
     company.provider = 'company';
 
@@ -200,19 +212,19 @@ exports.create = function(req, res, next) {
  */
 exports.createDetail = function(req, res, next) {
 
-    Company.findOne({id: req.session.company_validate}, function(err, _body) {
-        if(_body) {
+    Company.findOne({id: req.session.company_id}, function(err, company) {
+        if(company) {
             if (err) {
                 console.log('错误');
             }
 
-            _body.username = req.body.username;
-            _body.password = req.body.password;
-            _body.status.active = true;
+            company.username = req.body.username;
+            company.password = req.body.password;
+            company.status.active = true;
 
-            _body.save();
+            company.save();
             req.session.user = req.body.username;
-            req.session.role = 'M';
+            req.session.role = 'HR';
 
             res.send('ok');
             //console.log('创建成功');
@@ -229,7 +241,7 @@ exports.createDetail = function(req, res, next) {
 
 
 exports.editInfo = function(req, res){
-    if(req.session.company_validate !== '') {
+    if(req.session.company_id !== '') {
         res.render('company/edit_info', {
             title: '企业信息管理'
         });

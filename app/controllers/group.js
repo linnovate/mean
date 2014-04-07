@@ -55,22 +55,22 @@ exports.saveGroups = function(req,res){
 };
 
 exports.getGroups = function(req,res){
-  Group.find(null,function(err,_body){
+  Group.find(null,function(err,group){
       if (err) {
           res.status(400).send([]);
           return;
       };
-      var _length = _body[0].group.gid.length;
-      var _groups = [];
+      var _length = group[0].group.gid.length;
+      var groups = [];
 
       
-      for(var _i=0;_i<_length;_i++){
-        _groups.push({'id':_body[0].group.gid[_i],'type':_body[0].group._type[_i],'select':'0'});
+      for(var i = 0; i < _length; i ++){
+        groups.push({'id':group[0].group.gid[i],'type':group[0].group.group_type[i],'select':'0'});
       }
       
-      console.log(_groups);
-      console.log(_body[0]);
-      res.send(_groups);
+      console.log(groups);
+      console.log(group[0]);
+      res.send(groups);
   });
 };
 

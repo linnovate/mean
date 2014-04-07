@@ -58,15 +58,14 @@ var CompanySchema = new Schema({
         },
         linkman: String               //联系人
     },
-    registerDate: {
+
+    register_date: {
         type: Date,
         default: Date.now
     },
     //公司内部组件
-    main: {
-        invate_code: String,
-        team_info: Array              //存放组的id
-    },
+    gid: Array,                       //存放组的id
+    
     provider: {
         type: String,
         default: 'company'

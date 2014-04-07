@@ -17,13 +17,13 @@ companyApp.controller('ConfirmController', ['$scope', '$http', function($scope, 
     $scope.page_generator = function(){
         switch(page) {
             case 0:
-                return '/company/create_company_account';
+                $scope.page_url = '/company/create_company_account';
             case 1:
-                return '/company/select';
+                $scope.page_url = '/company/select';
             case 2:
-                return '/company/invite';
+                $scope.page_url = '/company/invite';
             default:
-                return '/';
+                $scope.page_url = '/';
         }
     };
 }]);
@@ -63,12 +63,12 @@ companyApp.controller('GroupsController',['$scope','$http', function($scope,$htt
     }).error(function(data,status){
         alert('组件获取失败！');
     });
-    $scope.item =[];
+    $scope.gid =[];
     $scope.group_next = function(){
-        $scope.item.length = 0;
+        $scope.gid.length = 0;
         angular.forEach($scope.groups, function(value, key){
             if(value.select==='1'){
-                $scope.item.push(value.id);
+                $scope.gid.push(value.id);
             }
         });
         try{
@@ -76,7 +76,7 @@ companyApp.controller('GroupsController',['$scope','$http', function($scope,$htt
                 method: 'post',
                 url: '/company/groupSelect',
                 data:{
-                    item : $scope.item
+                    gid : $scope.gid
                 }
             }).success(function(data, status) {
                 //alert('success');

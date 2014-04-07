@@ -12,11 +12,10 @@ var mongoose = require('mongoose'),
  * User Schema
  */
 var UserSchema = new Schema({
-    uid: String,
+    id: String,
     username: {
         type: String,
-        unique: true,
-        default: Date.now().toString(32)
+        unique: true
     },
     email: {
         type: String,
@@ -53,7 +52,7 @@ var UserSchema = new Schema({
     introduce: {
         type: String
     },
-    registerDate: {
+    register_date: {
         type: Date,
         default: Date.now
     },
@@ -66,12 +65,12 @@ var UserSchema = new Schema({
     },
     role: {
         type: String,
-        enum: ['M','L','E']      //HR 组长 普通员工
+        enum: ['HR','LEADER','EMPLOYEE']      //HR 组长 普通员工
     },
     cid: String,
     leader_group: {
-        gid: String,             //一个组长对应一个组,一个组长不可能管理多个组(如果不是组长就空着)
-        _type: String            //组件类型
+        gid: Array,             
+        group_type: Array            
     },          
     gid: Array                   //作为组员,可以加入多个组
 

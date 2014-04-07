@@ -43,6 +43,7 @@ exports.invite = function(req, res) {
     }
 };
 
+//员工点击邀请链接后创建员工信息
 exports.validate = function(req, res) {
     var key = req.session.key;
     var name = req.session.name;
@@ -52,8 +53,9 @@ exports.validate = function(req, res) {
                 for(var i = 0; i < company.email.domain.length; i++) {
                     if(req.body.domain === company.email.domain[i]) {
                         var user = new User();
+                        user.username = Date.now().toString(32) + Math.random().toString(32);
                         user.email = req.body.host + '@' + req.body.domain;
-                        user.company_id = company._id;
+                        user.company_id = company.id;
                         user.save(function(err) {
                             if (err) {
                                 console.log(err);
@@ -102,7 +104,8 @@ exports.loginSuccess = function(req, res) {
 };
 
 
-exports.create = function(req, res) {
+//进一步创建员工信息
+exports.updateProfile = function(req, res) {
     User.findById(
         req.query.uid
     , function(err, user) {
@@ -177,7 +180,7 @@ exports.infoEditForm = function(req, res) {
         if(err) {
             console.log(err);
         } else if(user) {
-            Company.findById(user.company_id, function(err, company) {
+            Company.findOne({ id : user.company_id }, function (err, company) {
                 if(err) {
                     console.log(err);
                 } else if(company) {
