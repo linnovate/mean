@@ -43,7 +43,6 @@ exports.invite = function(req, res) {
     }
 };
 
-//员工点击邀请链接后创建员工信息
 exports.validate = function(req, res) {
     var key = req.session.key;
     var name = req.session.name;
@@ -53,16 +52,13 @@ exports.validate = function(req, res) {
                 for(var i = 0; i < company.email.domain.length; i++) {
                     if(req.body.domain === company.email.domain[i]) {
                         var user = new User();
-                        user.username = Date.now().toString(32) + Math.random().toString(32);
                         user.email = req.body.host + '@' + req.body.domain;
-                        user.company_id = company.id;
-                        user.id = company.id + Date.now().toString(32) + Math.random().toString(32);
+                        user.company_id = company._id;
                         user.save(function(err) {
                             if (err) {
                                 console.log(err);
                             }
                         });
-                        //系统再给员工发一封激活邮件
                         mail.sendStaffActiveMail(user.email, user.id);
                         res.render('users/message', {title: '验证邮件', message: '我们已经给您发送了验证邮件，请登录您的邮箱完成激活'});
                         return;
@@ -75,7 +71,7 @@ exports.validate = function(req, res) {
 };
 
 /**
- * 员工点击系统发送的激活邮件后进一步补充个人信息页面
+ * Show sign up form
  */
 exports.signup = function(req, res) {
     var key = req.query.key;
@@ -106,10 +102,9 @@ exports.loginSuccess = function(req, res) {
 };
 
 
-//员工点击系统发送的激活邮件后进一步补充个人信息
-exports.updateProfile = function(req, res) {
-    User.findOne(
-        {id : req.query.uid}
+exports.create = function(req, res) {
+    User.findById(
+        req.query.uid
     , function(err, user) {
         if(err) {
             console.log(err);
@@ -182,7 +177,7 @@ exports.infoEditForm = function(req, res) {
         if(err) {
             console.log(err);
         } else if(user) {
-            Company.findOne({ id : user.company_id }, function (err, company) {
+            Company.findById(user.company_id, function(err, company) {
                 if(err) {
                     console.log(err);
                 } else if(company) {

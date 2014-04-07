@@ -1,7 +1,24 @@
 'use strict';
 
-var companyApp = angular.module('company', ['pcselector']);
+var companyApp = angular.module('company', ['pcselector','ngRoute']);
 
+//路由管理
+companyApp.config(['$routeProvider',function ($routeProvider) {
+    $routeProvider
+        .when('/', {
+            templateUrl:'/company/create_company_account',
+            controller: 'DetailController',
+            controllerAs: 'detail'
+        })
+        .when('/groupSelect',{
+            templateUrl:'/company/select',
+            controller: 'GroupsController',
+            controllerAs: 'groupModel'
+        })
+        .when('/invite',{templateUrl:'/company/invite'})
+        .otherwise({ redirectTo: '/company/create_company_account' });
+
+}]);
 //企业提交申请信息,这里也要改成ajax的
 companyApp.controller('RegisterController', ['$scope', 'PCSelector', 
     function($scope, PCSelector) {
@@ -9,43 +26,24 @@ companyApp.controller('RegisterController', ['$scope', 'PCSelector',
     }
 ]);
 
-
-var page = 0;
-
-//控制局部页面跳转
-companyApp.controller('ConfirmController', ['$scope', '$http', function($scope, $http) {
-    $scope.page_generator = function(){
-        switch(page) {
-            case 0:
-                $scope.page_url = '/company/create_company_account';
-            case 1:
-                $scope.page_url = '/company/select';
-            case 2:
-                $scope.page_url = '/company/invite';
-            default:
-                $scope.page_url = '/';
-        }
-    };
-}]);
-
-
 //企业激活后注册企业用户名和密码
-companyApp.controller('DetailController', ['$scope', '$http', function($scope, $http) {
-    $scope.create_detail = function(){
+companyApp.controller('DetailController', ['$http', function($http) {
+    var _this = this;
+    this.create_detail = function() {
         try{
             $http({
                 method: 'post',
                 url: '/company/createDetail',
                 data:{
-                    username : $scope.username,
-                    password : $scope.password
+                    username : _this.username,
+                    password : _this.password
                 }
             }).success(function(data, status) {
 
-                page = 1;
-                page_generator();
+                window.location.href ='#/groupSelect';
 
             }).error(function(data, status) {
+                //TODO:更改对话框
                 alert("数据发生错误！");
             });
         }
@@ -56,43 +54,42 @@ companyApp.controller('DetailController', ['$scope', '$http', function($scope, $
 }]);
 
 //企业选择组件
-companyApp.controller('GroupsController',['$scope','$http', function($scope,$http) {
+companyApp.controller('GroupsController',['$http', function($http) {
+    var _this = this;
     $http.get('/group/getgroups').success(function(data,status){
-        $scope.groups = data;
-        console.log($scope.groups);
-    }).error(function(data,status){
+        _this.groups = data;
+        console.log(_this.groups);
+    }).error(function(data,status) {
+        //TODO:更改对话框
         alert('组件获取失败！');
     });
-    $scope.gid =[];
-    $scope.group_next = function(){
-        $scope.gid.length = 0;
-        angular.forEach($scope.groups, function(value, key){
-            if(value.select==='1'){
-                $scope.gid.push(value.id);
+    this.item =[];
+    this.group_next = function() {
+        _this.item.length = 0;
+        angular.forEach(_this.groups, function(value, key) {
+            if(value.select === '1') {
+                _this.item.push(value.id);
             }
         });
         try{
             $http({
-                method: 'post',
-                url: '/company/groupSelect',
-                data:{
-                    gid : $scope.gid
+                method : 'post',
+                url : '/company/groupSelect',
+                data : {
+                    item : _this.item
                 }
             }).success(function(data, status) {
-                //alert('success');
-                // console.log(data);
+                //TODO:更改对话框
                 alert("选择组件成功！");
-
-                page = 2;
-                page_generator();
+                window.location.href ='#/invite';
 
             }).error(function(data, status) {
+                //TODO:更改对话框
                 alert("数据发生错误！");
             });
         }
-        catch(e){
+        catch(e) {
             console.log(e);
         }
     };
 }]);
-
