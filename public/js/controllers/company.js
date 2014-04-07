@@ -26,7 +26,6 @@ companyApp.controller('RegisterController', ['$scope', 'PCSelector',
     }
 ]);
 
-
 //企业激活后注册企业用户名和密码
 companyApp.controller('DetailController', ['$http', function($http) {
     var _this = this;

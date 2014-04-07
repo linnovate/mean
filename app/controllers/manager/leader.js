@@ -11,12 +11,13 @@ var mongoose = require('mongoose'),
 
 
 //组长发布一个活动
+/*
 exports.sponsor = function (req, res) {
   var _cid = req.session.cid;  //公司id
-  var _uid = req.session.uid;  //用户id
+  var uid = req.session.uid;  //用户id
 
   User.findOne({
-        uid : _uid
+        id : uid
     },
     function (err, user) {
       if (user) {
@@ -71,3 +72,4 @@ exports.sponsor = function (req, res) {
       }
   });
 };
+*/

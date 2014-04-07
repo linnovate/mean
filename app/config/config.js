@@ -1,4 +1,4 @@
-exports.PERMISSION = ['MANAGER','EMPLOYEE','TEAM_LEADER'];
+exports.PERMISSION = ['HR','LEADER','EMPLOYEE'];
 
 exports.MAIL_OPTION = {
     host: 'smtp.ym.163.com',
