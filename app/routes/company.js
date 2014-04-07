@@ -25,7 +25,7 @@ module.exports = function(app, passport) {
     app.get('/company/invite', company.invite);//发送邀请链接
 
 
-    app.get('/company/editInfo', company.editInfo);
+    app.get('/company/info', company.Info);
 
     app.post('/company/groupSelect', company.groupSelect);
     
