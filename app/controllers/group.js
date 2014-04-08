@@ -60,16 +60,13 @@ exports.getGroups = function(req,res){
           res.status(400).send([]);
           return;
       };
-      var _length = group[0].group.gid.length;
+      var _length = group.length;
       var groups = [];
 
-      
       for(var i = 0; i < _length; i ++){
-        groups.push({'id':group[0].group.gid[i],'type':group[0].group.group_type[i],'select':'0'});
+        groups.push({'id':group[i].gid,'type':group[i].group_type,'select':'0'});
       }
       
-      console.log(groups);
-      console.log(group[0]);
       res.send(groups);
   });
 };

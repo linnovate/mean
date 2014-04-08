@@ -6,8 +6,9 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+
 /**
- * 组件消息
+ * 组件消息(如果是企业发布的活动消息则归为虚拟组)
  */
 var GroupMessage = new Schema({
     group: {
@@ -21,19 +22,12 @@ var GroupMessage = new Schema({
         uid: String,
         role: {
             type: String,
-            enum: ['HR','LEADER','EMPLOYEE']      //HR 组长 普通员工
+            enum: ['HR','LEADER']      //HR 组长
         },
     },
-    content: Array
+    content: String
 });
 
-
-/**
- * 企业活动消息
- */
-var CampaignMessage = new Schema({
-
-});
 
 /**
  * 系统消息
@@ -42,6 +36,6 @@ var SystemMessage = new Schema({
 
 });
 
+
+
 mongoose.model('GroupMessage', GroupMessage);
-mongoose.model('CampaignMessage', CampaignMessage);
-mongoose.model('SystemMessage', SystemMessage);
