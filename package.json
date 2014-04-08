@@ -1,6 +1,6 @@
 {
   "name": "meanio",
-  "version": "0.3.15",
+  "version": "0.3.16",
   "preferGlobal": true,
   "description": "Simple command line interface for installing and managing mean apps",
   "author": {
@@ -15,6 +15,10 @@
     "type": "git",
     "url": "https://github.com/linnovate/mean-cli.git"
   },
+  "keywords": [
+    "mean",
+    "meanio"
+  ],
   "engines": {
     "node": "0.10.x",
     "npm": "1.4.x"
