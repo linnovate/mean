@@ -39,7 +39,6 @@ exports.signout = function(req, res) {
  * Session
  */
 exports.loginSuccess = function(req, res) {
-    req.session.username = req.body.username;
     res.redirect('/users/editInfo');
 };
 
@@ -211,7 +210,7 @@ exports.finishRegister = function(req, res) {
 
 exports.editInfo = function(req, res) {
     User.findOne({
-        username: req.session.username
+        id: req.user.id
     },
     function (err, user) {
         if(err) {
@@ -230,7 +229,7 @@ exports.editInfo = function(req, res) {
 
 exports.dealEditInfo = function(req, res) {
     User.findOne({
-        username: req.session.username
+        id: req.user.id
     },
     function(err, user) {
         if(err) {
