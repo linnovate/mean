@@ -2,7 +2,7 @@ extends ../layouts/company
 
 block content
   div(ng-app="company")
-    form.form-horizontal(ng-controller="AccountFormController" name="accountForm") 
+    form.form-horizontal(ng-controller="AccountFormController" name="accountForm")
       .infoHead.row
         h4.pull-left 账户信息
         a.pull-right(ng-click="editToggle()" ng-bind="buttonStatus")
@@ -22,7 +22,7 @@ block content
       .row
         label.col-xs-2.control-label 注册时间
         label.col-xs-5.control-label(ng-bind="company.register_date")
-    form.form-horizontal(ng-controller="infoFormController" name="infoForm") 
+    form.form-horizontal(ng-controller="infoFormController" name="infoForm")
       .infoHead.row
         h4.pull-left 企业信息
         a.pull-right(ng-click="editToggle()" ng-bind="buttonStatus")

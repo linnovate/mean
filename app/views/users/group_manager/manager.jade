@@ -2,6 +2,19 @@
 
 extends ../../layouts/company
 block headExt
-  link(rel="stylesheet" href="/css/views/group_select.css")
+
 block content
-  div(ng-app='company' id='confirm' ng-view )
+  .row
+    .row
+      .col-md-10
+        .row
+        .row(ng-app='list' id='list' ng-view)
+      .col-md-6
+        .row
+        .row
+    .row
+      .col-md-10
+        .row
+      .col-md-6
+        .row
+        .row
