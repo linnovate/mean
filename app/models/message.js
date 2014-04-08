@@ -20,6 +20,9 @@ var GroupMessage = new Schema({
     poster: {
         cid: String,
         uid: String,
+        cname: String,
+        realname: String,
+        username: String,
         role: {
             type: String,
             enum: ['HR','LEADER']      //HR 组长

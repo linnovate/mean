@@ -25,19 +25,16 @@ module.exports = function(app, passport) {
     app.get('/company/invite', company.invite);//发送邀请链接
 
     app.get('/company/getAccount', company.getAccount);
-    app.get('/company/getInfo', company.getInfo);  
+    app.get('/company/getInfo', company.getInfo);
     app.get('/company/info', company.Info);
 
     app.post('/company/saveAccount', company.saveAccount);
     app.post('/company/saveInfo', company.saveInfo);
 
     app.post('/company/groupSelect', company.groupSelect);
-    
     app.post('/company', company.create);// 提交公司申请信息
-    
     app.post('/company/createDetail', company.createDetail);// 验证通过后进一步提交公司注册信息
 
-    
 
     // Setting up the companyId param
     app.param('companyId', company.company);

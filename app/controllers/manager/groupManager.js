@@ -2,15 +2,23 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    encrypt = require('../middlewares/encrypt'),
+    encrypt = require('../../middlewares/encrypt'),
     CompanyGroup = mongoose.model('CompanyGroup'),
     GroupMessage = mongoose.model('GroupMessage'),
     Campaign = mongoose.model('Campaign'),
     User = mongoose.model('User'),
-    Comapny = mogoose.model('Company'),
-    config = require('../config/config');
+    Comapny = mongoose.model('Company'),
+    config = require('../../config/config');
 
 
+
+
+
+exports.groupManager = function (req, res) {
+  res.render('users/group_manager/manager', {
+        title: '小组管理'
+    });
+};
 //组长发布一个活动(只能是一个企业)
 
 exports.sponsor = function (req, res) {
@@ -19,7 +27,7 @@ exports.sponsor = function (req, res) {
   var gid = req.body.gid;  //组件id,注意,这里是数组,因为一个组长可以管理很多组
   var group_type = req.body.group_type; //组件类型,和id一一对应
   var content = req.body.content;//活动内容
-
+  var cname = '';
 
 
   User.findOne({
@@ -38,14 +46,16 @@ exports.sponsor = function (req, res) {
             id : cid
           },
           function (err, company) {
-            campaign.campaign.cname.push(company.info.name);
+            cname = company.info.name;
         });
 
+        campaign.campaign.poster.cname = cname;
         campaign.campaign.poster.cid = cid;
         campaign.campaign.poster.uid = uid;
         campaign.campaign.poster.role = 'LEADER';
         campaign.campaign.poster.realname = user.realname;
         campaign.campaign.poster.username = user.username;
+        campaign.campaign.content = content;
 
         campaign.create_time = req.body.create_time;
         campaign.start_time = req.body.start_time;
@@ -68,20 +78,22 @@ exports.sponsor = function (req, res) {
 
           //生成动态消息
 
-          var message = new Message();
-          message.message_type = 'GroupMessage';
-          message.group_message_body.group.gid.push(gid);
-          message.group_message_body.group.group_type.push(group_type);
-          message.group_message_body.group.active = true,
-          message.group_message_body.group.date = req.body.create_time,
+          var groupMessage = new GroupMessage();
+          groupMessage.group.gid.push(gid);
+          groupMessage.group.group_type.push(group_type);
+          groupMessage.group.active = true,
+          groupMessage.group.date = req.body.create_time,
 
-          message.group_message_body.group.poster.cid = cid;
-          message.group_message_body.group.poster.uid = uid;
-          message.group_message_body.group.poster.role = 'LEADER';
+          groupMessage.group.poster.cname = cname;
+          groupMessage.group.poster.cid = cid;
+          groupMessage.group.poster.uid = uid;
+          groupMessage.group.poster.role = 'LEADER';
+          groupMessage.group.poster.realname = user.realname;
+          groupMessage.group.poster.username = user.username;
 
-          message.content = content;
+          groupMessage.content = content;
 
-          message.save(function(err) {
+          groupMessage.save(function(err) {
             if (err) {
               //错误信息
               return;
@@ -95,7 +107,7 @@ exports.sponsor = function (req, res) {
 };
 
 
-//生成小组活动列表
+//生成小组活动列表(目前是显示所有活动,以后会考虑相关限制(比如只显示最近三天的活动))
 exports.list = function (req, res) {
   Campaign.find(null,function(err,campaign){
       if (err) {
@@ -106,13 +118,24 @@ exports.list = function (req, res) {
       var campaigns = [];
 
       for(var i = 0; i < _length; i ++){
-        campaigns.push({ 
-          'cid':campaign[i].campaign.cid[0],
-          'gid':campaign[i].campaign.gid,
-          'group_type':campaign[i].campaign.group_type
-        });
+        //非虚拟组的活动才是小组发布的活动
+        if (campaign[i].campaign.gid[0] !== 0) {
+          campaigns.push({
+            'cid':campaign[i].campaign.poster.cid,        //由于组长发布的是企业内部活动,因此只有一个企业的id和名字
+            'cname':campaign[i].campaign.poster.cname,
+            'gid':campaign[i].campaign.gid,               //数组,一个组长同时发布多个组的活动
+            'group_type':campaign[i].campaign.group_type, //数组,一个组长同时发布多个组的活动
+            'poster_account':campaign[i].campaign.poster.username,
+            'poster_name':campaign[i].campaign.poster.realname,
+            'content':campaign[i].campaign.content,
+            'create_time':req.body.create_time,
+            'start_time':req.body.start_time,
+            'end_time':req.body.end_time
+          });
+        }
       }
-      
       res.send(campaigns);
   });
-}
+};
+
+
