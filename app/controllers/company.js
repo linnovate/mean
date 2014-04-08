@@ -245,6 +245,31 @@ exports.createDetail = function(req, res, next) {
 
 
 
+exports.Info = function(req, res){
+    if(req.session.company_id !== '') {
+        Company.findOne({id: req.session.company_id}, function(err, _company) {         
+            if (err) {
+                console.log('错误');
+                return;
+            }  
+            if(_company) {
+                console.log(_company);
+                 
+                res.render('company/company_info', {
+                    title: '企业信息管理',
+                    company: _company      
+                });   
+                return;
+            }
+        });
+
+    } 
+    //res.render('company/company_validate_error', {
+    //        title: '验证失败',
+     //       message: '用户不存在!'
+    //});
+};
+
 exports.editInfo = function(req, res){
     if(req.session.company_id !== '') {
         res.render('company/edit_info', {
