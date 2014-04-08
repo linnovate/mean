@@ -1,7 +1,7 @@
 {
   "name": "mean",
   "description": "MEAN.io: A fullstack javascript platformed powerd by MongoDB, ExpressJS, AngularJS, NodeJS.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": false,
   "author": "Linnovate <mean@linnovate.net>",
   "contributors": [

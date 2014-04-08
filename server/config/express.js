@@ -120,9 +120,8 @@ module.exports = function(app, passport, db) {
 
         mean.events.on('modulesFound', function() {
 
-            var mod2 = (mean.version ? mean.version > '0.3.17' : false);
             for (var name in mean.modules) {
-                app.use('/' + (mod2 ? name : mean.modules[name].name), express.static(config.root + '/node_modules/' + (mod2 ? name : mean.modules[name].name) + '/public'));
+                app.use('/' + name, express.static(config.root + '/node_modules/' + name + '/public'));
             };
 
             bootstrapRoutes();
