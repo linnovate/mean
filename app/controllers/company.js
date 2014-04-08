@@ -100,9 +100,6 @@ exports.groupSelect = function(req, res) {
             }
             company.gid = req.body.gid;
 
-
-            console.log("组件" + req.body.gid);
-
             company.save(function (s_err){
                 if(s_err){
                     console.log(s_err);

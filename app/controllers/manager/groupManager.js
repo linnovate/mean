@@ -4,7 +4,7 @@
 var mongoose = require('mongoose'),
     encrypt = require('../middlewares/encrypt'),
     CompanyGroup = mongoose.model('CompanyGroup'),
-    Message = mongoose.model('Message'),
+    GroupMessage = mongoose.model('GroupMessage'),
     Campaign = mongoose.model('Campaign'),
     User = mongoose.model('User'),
     Comapny = mogoose.model('Company'),
