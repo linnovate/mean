@@ -69,9 +69,9 @@ var UserSchema = new Schema({
     },
     cid: String,
     leader_group: {
-        gid: Array,             
-        group_type: Array            
-    },          
+        gid: Array,
+        group_type: Array
+    },
     gid: Array                   //作为组员,可以加入多个组
 
 });

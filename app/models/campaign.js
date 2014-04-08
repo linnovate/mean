@@ -26,6 +26,7 @@ var Campaign = new Schema({
         cname: Array,
         poster: {
             cid: String,
+            cname: String,
             uid: String,
             realname: String,
             username: String,
@@ -34,6 +35,7 @@ var Campaign = new Schema({
                 enum: ['HR','LEADER']      //HR 组长
             },
         },
+        content: String,
         member: [_member]
     },
     create_time: Date,

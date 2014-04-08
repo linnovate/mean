@@ -91,7 +91,6 @@ exports.groupSelect = function(req, res) {
         return  res.redirect('/company/signup');
     }
 
-    console.log("公司id"+req.session.company_id);
     Company.findOne({id : req.session.company_id}, function(err, company) {
         if(company) {
             if (err) {
@@ -116,12 +115,10 @@ exports.groupSelect = function(req, res) {
                 });
             });
             res.send('ok');
-            
         } else {
-            
+
         }
     });
-    
 };
 
 
@@ -178,6 +175,7 @@ exports.create = function(req, res, next) {
     company.id = Date.now().toString(32) + Math.random().toString(32);//公司的id
     company.email.domain.push(req.body.domain);
     company.provider = 'company';
+    company.login_email = req.body.host+'@'+req.body.domain;
 
     //注意,日期保存和发邮件是同步的,也要放到后台管理里去,这里只是测试需要
     company.status.date = new Date().getTime();
@@ -203,8 +201,6 @@ exports.create = function(req, res, next) {
         //发送邮件
         //注意,这里只是测试发送邮件,正常流程是应该在平台的后台管理中向hr发送确认邮件
         mail.sendCompanyActiveMail(req.body.host+'@'+req.body.domain,req.body.name,company.id);
-        
-
         res.redirect('/company/wait');
     });
 };
@@ -230,7 +226,6 @@ exports.createDetail = function(req, res, next) {
 
             res.send('ok');
             //console.log('创建成功');
-            
         } else {
             res.render('company/validate/create_detail', {
                 tittle: '该公司不存在!'
@@ -243,49 +238,49 @@ exports.createDetail = function(req, res, next) {
 
 
 exports.Info = function(req, res){
-    if(req.session.company_id !== '') {             
+    if(req.session.company_id !== '') {
         res.render('company/company_info', {
-            title: '企业信息管理'   
-        });   
-    } 
+            title: '企业信息管理'
+        });
+    }
     else
         res.redirect('/company/signup');
 };
 
 exports.getAccount = function(req, res) {
     if(req.session.company_id !== '') {
-        Company.findOne({id: req.session.company_id}, {"_id":0,"username": 1,"register_date":1},function(err, _company) {         
+        Company.findOne({id: req.session.company_id}, {"_id":0,"username": 1,"register_date":1},function(err, _company) {
             if (err) {
                 console.log('错误');
                 res.send("error");
                 return;
-            }  
+            }
             if(_company) {
                 res.send({
-                    company: _company      
-                });   
+                    company: _company
+                });
             }
         });
-    } 
+    }
     else
         res.send("error");
 };
 
 exports.getInfo = function(req, res) {
     if(req.session.company_id !== '') {
-        Company.findOne({id: req.session.company_id}, {"_id":0,"info": 1},function(err, _company) {         
+        Company.findOne({id: req.session.company_id}, {"_id":0,"info": 1},function(err, _company) {
             if (err) {
                 console.log('错误');
                 res.send("error");
                 return;
-            }  
+            }
             if(_company) {
                 res.send({
-                    info: _company.info    
-                });   
+                    info: _company.info
+                });
             }
         });
-    } 
+    }
     else
         res.send("error");
 };
@@ -308,7 +303,6 @@ exports.saveAccount = function(req, res) {
                     }
                 });
                 res.send({'result':1,'msg':'更新成功'});
-                
             } else {
                 res.send({'result':0,'msg':'不存在该公司'});
             }
@@ -336,12 +330,11 @@ exports.saveInfo = function(req, res) {
                     }
                 });
                 res.send({'result':1,'msg':'更新成功'});
-                
             } else {
                 res.send({'result':0,'msg':'不存在该公司'});
             }
         });
-    } 
+    }
     else
         res.send("error");
 };
