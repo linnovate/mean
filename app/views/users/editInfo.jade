@@ -2,7 +2,7 @@ extends ../layouts/default
 
 block content
   h1 基本信息
-  form.form-horizontal(action="/users/edit" method="post")
+  form.form-horizontal(action="/users/dealEditInfo" method="post")
     .form-group
       label.col-xs-2.control-label 登录邮箱
       label.col-xs-10.control-label= user.email
