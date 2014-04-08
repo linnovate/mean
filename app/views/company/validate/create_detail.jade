@@ -1,9 +1,17 @@
 div(ng-app='company')
-  label.col-md-4.control-label(for="username") 账号
-  .col-md-8
-    input#username.form-control(type="text" name="username" ng-model="detail.username" placeholder="Username")
-  label.col-md-4.control-label(for="password") 密码
-  .col-md-8
-    input#password.form-control(type="password" name="password" ng-model="detail.password" placeholder="Password")
-  .col-md-offset-4.col-md-8
-    button.btn.btn-primary.btn-lg.center-block(ng-click="detail.create_detail()") 创建
+  form.form-horizontal(name="createForm")
+    .form-group
+      label.col-md-2.control-label(for="username" ) *企业官方用户名：
+      .col-md-4
+        input#username.form-control(type="text" name="username" ng-model="detail.username" placeholder="Username" required)
+    .form-group
+      label.col-md-2.control-label(for="password") *密码：
+      .col-md-4
+        input#password.form-control(type="password" name="password" ng-model="detail.password" placeholder="Password" required)
+    .form-group
+      label.col-md-2.control-label(for="password") *密码确认：
+      .col-md-4
+        input#password.form-control(type="password" name="confirmPassword" ng-model="detail.confirmPassword" placeholder="confirmPassword" required)
+    .form-group
+      .col-md-4
+        button.btn.btn-primary.btn-lg.center-block(ng-disabled="createForm.$invalid" ng-click="detail.create_detail()") 创建

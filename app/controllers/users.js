@@ -40,6 +40,7 @@ exports.signout = function(req, res) {
  */
 exports.loginSuccess = function(req, res) {
     req.session.username = req.body.username;
+    console.log(req);
     res.redirect('/users/editInfo');
 };
 
