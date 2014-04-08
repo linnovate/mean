@@ -6,9 +6,11 @@
 var mongoose = require('mongoose'),
     encrypt = require('../middlewares/encrypt'),
     Company = mongoose.model('Company'),
+    CompanyGroup = mongoose.model('CompanyGroup'),
     config = require('../config/config');
 
 var mail = require('../services/mail');
+var encrypt = require('../middlewares/encrypt');
 /**
  * Auth callback
  */
@@ -18,7 +20,7 @@ exports.authCallback = function(req, res) {
 
 exports.signin = function(req, res) {
     res.render('company/signin', {title: '公司登录'});
-}
+};
 
 exports.loginSuccess = function(req, res) {
     req.session.cpusername = req.body.username;
@@ -47,64 +49,98 @@ exports.validateError = function(req, res) {
     });
 };
 
+
+//开始转入公司注册账户页面
 exports.validateConfirm = function(req, res) {
+    if(req.session.company_id !== '') {
+        res.render('company/validate/confirm', {
+            title: '验证成功,可以进行下一步!'
+        });
+    } else {
+        //非法进入!
+    }
+};
+
+//配合路由渲染公司注册账户页面
+exports.create_company_account = function(req, res) {
     res.render('company/validate/create_detail', {
-        title: '验证成功,可以进行下一步!'
+        group_head: '企业',
+        title: '选择组件!'
+    });
+};
+//配合路由渲染公司选组件页面
+exports.select = function(req, res) {
+    res.render('company/validate/group_select', {
+        group_head: '企业',
+        title: '选择组件!'
+    });
+};
+//配合路由渲染邀请链接页面
+exports.invite = function(req, res) {
+    var name = req.session.user;
+    var inviteUrl = config.BASE_URL + '/users/invite?key=' + encrypt.encrypt(name, config.SECRET) + '&name=' + name;
+    res.render('company/validate/invite', {
+        title: '邀请链接',
+        inviteLink: inviteUrl
     });
 };
 
+
 exports.groupSelect = function(req, res) {
-    if(req.body.selected==undefined){
+    if(req.body.gid == undefined){
         return  res.redirect('/company/signup');
     }
-    console.log(req.session.company_validate);
-     Company.findOne({'info.name': req.session.company_validate}, function(err, _body) {
-        if(_body) {
+
+    console.log("公司id"+req.session.company_id);
+    Company.findOne({id : req.session.company_id}, function(err, company) {
+        if(company) {
             if (err) {
-                res.status(400).send('该公司信息不存在!');
+                console.log('不存在公司');
                 return;
             }
-            _body.main.team_info = req.body.selected;
-            console.log(_body.main.team_info);
-            _body.save(function(s_err){
+            company.gid = req.body.gid;
+
+            company.save(function (s_err){
                 if(s_err){
                     console.log(s_err);
                 }
+
+                var companyGroup = new CompanyGroup();
+                companyGroup.cid = req.session.company_id;
+                companyGroup.group.gid = req.body.gid;
+
+                companyGroup.save(function (err){
+                    if (err) {
+                        console.log(err);
+                    }
+                });
             });
-            res.render('company/validate/send_invate_code', {
-                message: '发送邀请码'
-            });
+            res.send('ok');
+            
         } else {
-            res.render('company/validate/confirm', {
-                tittle: '该公司不存在!'
-            });
+            
         }
     });
     
 };
 
-exports.sendInvateCode = function(req, res) {
-    res.render('company/validate/send_invate_code', {
-        message: '发送邀请码'
-    });
-};
 
 
 exports.validate = function(req, res) {
 
     var key = req.query.key;
-    var name = req.query.name;
+    var _id = req.query.id;
 
     Company.findOne({
-        'info.name' : name
+        id : _id
     },
     function (err, user) {
         if (user) {
-            if(encrypt.encrypt(name,'18801912891') === key){
-                req.session.company_validate = name;
-                res.render('company/validate/create_detail', {
-                    title: '验证成功,可以进行下一步!'
-                });
+
+            //到底要不要限制验证邮件的时间呢?
+            if(encrypt.encrypt(_id,config.SECRET) === key){
+                req.session.company_id = _id;
+                res.redirect('/company/confirm');
             } else {
                 res.render('company/company_validate_error', {
                     title: '验证失败',
@@ -128,19 +164,24 @@ exports.create = function(req, res, next) {
     var company = new Company();
     var message = null;
 
+    company.password = Date.now().toString(32) + Math.random().toString(32);
+    company.username = Date.now().toString(32) + Math.random().toString(32);
     company.info.name = req.body.name;
     company.info.city.province = req.body.province;
     company.info.city.city = req.body.city;
     company.info.address = req.body.address;
-    company.info.linkman = req.body.linkman;
+    company.info.linkman = req.body.contacts;
     company.info.lindline.areacode = req.body.areacode;
     company.info.lindline.number = req.body.number;
     company.info.lindline.extension = req.body.extension;
     company.info.phone = req.body.phone;
-    company.email.host = req.body.host;
-    company.email.domain[0] = req.body.domain;
-
+    company.id = Date.now().toString(32) + Math.random().toString(32);//公司的id
+    company.email.domain.push(req.body.domain);
     company.provider = 'company';
+
+    //注意,日期保存和发邮件是同步的,也要放到后台管理里去,这里只是测试需要
+    company.status.date = new Date().getTime();
+
     company.save(function(err) {
         if (err) {
             console.log(err);
@@ -158,12 +199,13 @@ exports.create = function(req, res, next) {
                 company: company
             });
         }
+
         //发送邮件
-        mail.sendCompanyActiveMail(company.email.host+'@'+company.email.domain[0],company.info.name);
-        res.render('company/company_wait', {
-            title: '等待验证',
-            message: '您的申请信息已经提交,等验证通过后我们会向您发送一封激活邮件,请注意查收!'
-        });
+        //注意,这里只是测试发送邮件,正常流程是应该在平台的后台管理中向hr发送确认邮件
+        mail.sendCompanyActiveMail(req.body.host+'@'+req.body.domain,req.body.name,company.id);
+        
+
+        res.redirect('/company/wait');
     });
 };
 
@@ -172,24 +214,23 @@ exports.create = function(req, res, next) {
  */
 exports.createDetail = function(req, res, next) {
 
-    Company.findOne({'info.name': req.session.company_validate}, function(err, _body) {
-        if(_body) {
+    Company.findOne({id: req.session.company_id}, function(err, company) {
+        if(company) {
             if (err) {
-                res.status(400).send('该公司信息不存在!');
-                return;
+                console.log('错误');
             }
 
-            _body.username = req.body.username;
-            _body.password = req.body.password;
+            company.username = req.body.username;
+            company.password = req.body.password;
+            company.status.active = true;
 
-            _body.save();
+            company.save();
             req.session.user = req.body.username;
-            req.session.role = 'MANAGER';
-            //hr进入公司组件选择界面
+            req.session.role = 'HR';
 
-            res.render('company/validate/group_select',{
-                group_head : '企业'
-            });
+            res.send('ok');
+            //console.log('创建成功');
+            
         } else {
             res.render('company/validate/create_detail', {
                 tittle: '该公司不存在!'
@@ -199,19 +240,41 @@ exports.createDetail = function(req, res, next) {
 };
 
 
-exports.invite = function(req, res) {
-    var name = req.session.user;
-    var inviteUrl = config.BASE_URL + '/users/invite?key=' + encrypt.encrypt(name, config.SECRET) + '&name=' + name;
-    res.render('company/validate/invite', {
-        title: '邀请链接',
-        inviteLink: inviteUrl
-    });
+
+
+exports.Info = function(req, res){
+    if(req.session.company_id !== '') {
+        Company.findOne({id: req.session.company_id}, function(err, _company) {         
+            if (err) {
+                console.log('错误');
+                return;
+            }  
+            if(_company) {
+                console.log(_company);
+                 
+                res.render('company/company_info', {
+                    title: '企业信息管理',
+                    company: _company      
+                });   
+                return;
+            }
+        });
+
+    } 
+    //res.render('company/company_validate_error', {
+    //        title: '验证失败',
+     //       message: '用户不存在!'
+    //});
 };
 
 exports.editInfo = function(req, res){
-    res.render('company/edit_info', {
-        title: '企业信息管理'
-    });
+    if(req.session.company_id !== '') {
+        res.render('company/edit_info', {
+            title: '企业信息管理'
+        });
+    } else {
+        //非法进入!
+    }
 };
 
 /**

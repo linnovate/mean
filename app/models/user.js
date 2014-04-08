@@ -12,15 +12,15 @@ var mongoose = require('mongoose'),
  * User Schema
  */
 var UserSchema = new Schema({
+    id: String,
     username: {
         type: String,
-        unique: true,
-        default: Date.now().toString(32)
+        unique: true
     },
     email: {
         type: String,
         unique: true,
-        validate: [validate.email, '请填写有正确的邮箱地址']
+        validate: [validate.email, '请填写正确的邮箱地址']
     },
     active: {
         type: Boolean,
@@ -52,7 +52,7 @@ var UserSchema = new Schema({
     introduce: {
         type: String
     },
-    registerDate: {
+    register_date: {
         type: Date,
         default: Date.now
     },
@@ -63,7 +63,17 @@ var UserSchema = new Schema({
         type: String,
         validate: [validate.numeric, '请填写正确的QQ号']
     },
-    team_info: Array
+    role: {
+        type: String,
+        enum: ['HR','LEADER','EMPLOYEE']      //HR 组长 普通员工
+    },
+    cid: String,
+    leader_group: {
+        gid: Array,             
+        group_type: Array            
+    },          
+    gid: Array                   //作为组员,可以加入多个组
+
 });
 
 /**

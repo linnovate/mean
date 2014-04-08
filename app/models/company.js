@@ -12,6 +12,7 @@ var mongoose = require('mongoose'),
  */
 var CompanySchema = new Schema({
 
+    id: String,
     username: {
         type: String,
         unique: true
@@ -20,15 +21,19 @@ var CompanySchema = new Schema({
     hashed_password: String,
 
     email: {
-        host: String,               //邮箱名
         domain: Array               //邮箱后缀(多个)
     },
 
     //是否激活
-    active: {
-        type: Boolean,
-        default: false
+    status: {
+        active: {
+            type: Boolean,
+            default: false
+        },
+
+        date: Number
     },
+    
 
     //公司信息
     info: {
@@ -52,15 +57,14 @@ var CompanySchema = new Schema({
         },
         linkman: String               //联系人
     },
-    registerDate: {
+
+    register_date: {
         type: Date,
-        default: Date.now
+        default: Date.now()
     },
     //公司内部组件
-    main: {
-        invate_code: String,
-        team_info: Array              //存放组的id
-    },
+    gid: Array,                       //存放组的id
+    
     provider: {
         type: String,
         default: 'company'
@@ -93,11 +97,6 @@ CompanySchema.path('info.name').validate(function(name) {
     return (typeof name === 'string' && name.length > 0);
 }, 'Name cannot be blank');
 
-CompanySchema.path('email.host').validate(function(email) {
-    // If you are authenticating by any of the oauth strategies, don't validate.
-    if (!this.provider) return true;
-    return (typeof email === 'string' && email.length > 0);
-}, 'Email cannot be blank');
 
 CompanySchema.path('username').validate(function(username) {
     // If you are authenticating by any of the oauth strategies, don't validate.

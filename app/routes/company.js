@@ -14,20 +14,26 @@ module.exports = function(app, passport) {
         failureFlash: true
     }), company.loginSuccess);
 
-    app.get('/company/validate', company.validate);
+    app.get('/company/validate', company.validate);//点击公司激活链接
 
     app.get('/company/validate/error', company.validateError);
-    app.get('/company/confirm', company.validateConfirm);
 
-    app.get('/company/sendInvateCode', company.sendInvateCode);
-    app.get('/company/editInfo', company.editInfo);
+
+    app.get('/company/confirm', company.validateConfirm);//下面三个子页面当父页面
+    app.get('/company/create_company_account', company.create_company_account);//创建公司账号
+    app.get('/company/select', company.select);//选择组件
+    app.get('/company/invite', company.invite);//发送邀请链接
+
+
+    app.get('/company/info', company.Info);
+
     app.post('/company/groupSelect', company.groupSelect);
-    // 提交公司申请信息
-    app.post('/company', company.create);
-    // 验证通过后进一步提交公司注册信息
-    app.post('/company/createDetail', company.createDetail);
+    
+    app.post('/company', company.create);// 提交公司申请信息
+    
+    app.post('/company/createDetail', company.createDetail);// 验证通过后进一步提交公司注册信息
 
-    app.get('/company/invite', company.invite);
+    
 
     // Setting up the companyId param
     app.param('companyId', company.company);

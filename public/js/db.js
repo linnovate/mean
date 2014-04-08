@@ -1,19 +1,93 @@
 
 var db =connect("localhost/mean-dev");
+
 var _group =[
-            {type:'1',name:'足球1'},
-            {type:'2',name:'篮球1'},
-            {type:'3',name:'跑步1'},
-            {type:'4',name:'读书1'},
-            {type:'5',name:'足球2'},
-            {type:'6',name:'篮球2'},
-            {type:'7',name:'跑步2'},
-            {type:'8',name:'读书2'},
-            {type:'9',name:'足球3'},
-            {type:'10',name:'篮球3'},
-            {type:'11',name:'跑步3'},
-            {type:'12',name:'读书3'}
+            {
+                'gid':0,
+                'group_type':'篮球',
+                'icon':'default',
+                'active':true,
+                'group_rule':'default'
+            },
+            {
+                'gid':1,
+                'group_type':'足球',
+                'icon':'default',
+                'active':true,
+                'group_rule':'default'
+            },
+            {
+                'gid':2,
+                'group_type':'排球',
+                'icon':'default',
+                'active':true,
+                'group_rule':'default'
+            },
+            {
+                'gid':3,
+                'group_type':'桌球',
+                'icon':'default',
+                'active':true,
+                'group_rule':'default'
+            },
+            {
+                'gid':4,
+                'group_type':'游泳',
+                'icon':'default',
+                'active':true,
+                'group_rule':'default'
+            },
+            {
+                'gid':5,
+                'group_type':'桌游',
+                'icon':'default',
+                'active':true,
+                'group_rule':'default'
+            },
+            {
+                'gid':6,
+                'group_type':'阅读',
+                'icon':'default',
+                'active':true,
+                'group_rule':'default'
+            },
+            {
+                'gid':7,
+                'group_type':'唱歌',
+                'icon':'default',
+                'active':true,
+                'group_rule':'default'
+            },
+            {
+                'gid':8,
+                'group_type':'写生',
+                'icon':'default',
+                'active':true,
+                'group_rule':'default'
+            },
+            {
+                'gid':9,
+                'group_type':'桑拿',
+                'icon':'default',
+                'active':true,
+                'group_rule':'default'
+            },
+            {
+                'gid':10,
+                'group_type':'跳舞',
+                'icon':'default',
+                'active':true,
+                'group_rule':'default'
+            },
+            {
+                'gid':11,
+                'group_type':'约炮',
+                'icon':'default',
+                'active':true,
+                'group_rule':'default'
+            }
         ];
+        
         try{
           _group.forEach(function (value) {
             db.groups.insert(value);
@@ -22,4 +96,17 @@ var _group =[
         catch (e){
           print(e);
         }
+
+        /*
+        for( var i = 0; i < _group.length; i ++) {
+          try{
+            db.groups.insert(_group[i]);
+            print(i);
+          } catch (e) {
+            print(e);
+          }
+          
+        }
+        */
+        
 

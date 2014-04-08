@@ -55,17 +55,19 @@ exports.saveGroups = function(req,res){
 };
 
 exports.getGroups = function(req,res){
-  Group.find(null,{'type':1,'name':1,'_id':0},function(err,_body){
+  Group.find(null,function(err,group){
       if (err) {
           res.status(400).send([]);
           return;
       };
-      var _length = _body.length;
-      var _groups =[];
-      for(var _i=0;_i<_length;_i++){
-        _groups.push({'type':_body[_i].type,'name':_body[_i].name,'select':'0'});
+      var _length = group.length;
+      var groups = [];
+
+      for(var i = 0; i < _length; i ++){
+        groups.push({'id':group[i].gid,'type':group[i].group_type,'select':'0'});
       }
-      res.send(_groups);
+      
+      res.send(groups);
   });
 };
 

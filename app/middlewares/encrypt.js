@@ -15,3 +15,12 @@ exports.decrypt = function(str, secret) {
  	dec += decipher.final('utf8');
  	return dec;
 };
+
+
+exports.valueEncrypt = function(value) {
+	var rst = '';
+	for (var i = 0; i < value.length; i ++) {
+		rst += value.charCodeAt(i);
+	}
+	return rst;
+};

@@ -19,7 +19,7 @@ module.exports = function(app, passport) {
         failureFlash: true
     }), users.loginSuccess);
 
-    app.post('/users/create', users.create);
+    app.post('/users/updateProfile', users.updateProfile);
 
 
     app.get('/users/invite', users.invite);

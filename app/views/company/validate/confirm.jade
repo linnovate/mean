@@ -1,0 +1,9 @@
+//现在公司的 注册账户 选择组件 生成邀请链接 这三个页面全部改成局部刷新的方式
+//也就是说,confirm.jade是上面三个页面的父页面, create_detail.jade group_select.jade invite.jade
+//都将在 confirm.jade 里加载出来,从而实现无刷新切换
+
+extends ../../layouts/company
+block headExt
+  link(rel="stylesheet" href="/css/views/group_select.css")
+block content
+  div(ng-app='company' id='confirm' ng-view )

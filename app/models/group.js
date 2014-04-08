@@ -7,41 +7,16 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 /**
- * group Schema
+ * 组件模型
  */
-var GroupSchema = new Schema({
-    id: String,
-    type: {
-        type: String,
-        unique: true
-    },
-    name: String
+var GroupModel = new Schema({
+    gid: String,
+    group_type: String,
+    icon: String,
+    active: false,
+    group_rule: String,
 });
 
-/**
- * Validations
- */
-var validatePresenceOf = function(value) {
-    return value && value.length;
-};
 
-/**
- * Pre-save hook
- */
-GroupSchema.pre('save', function(next) {
-    if (!this.isNew) return next();
 
-    if (!validatePresenceOf(this.type) && !this.name)
-        next(new Error('Invalid password'));
-    else
-        next();
-});
-
-/**
- * Methods
- */
-GroupSchema.methods = {
-
-};
-
-mongoose.model('Group', GroupSchema);
+mongoose.model('Group', GroupModel);
