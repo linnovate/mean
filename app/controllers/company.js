@@ -243,40 +243,108 @@ exports.createDetail = function(req, res, next) {
 
 
 exports.Info = function(req, res){
+    if(req.session.company_id !== '') {             
+        res.render('company/company_info', {
+            title: '企业信息管理'   
+        });   
+    } 
+    else
+        res.redirect('/company/signup');
+};
+
+exports.getAccount = function(req, res) {
     if(req.session.company_id !== '') {
-        Company.findOne({id: req.session.company_id}, function(err, _company) {         
+        Company.findOne({id: req.session.company_id}, {"_id":0,"username": 1,"register_date":1},function(err, _company) {         
             if (err) {
                 console.log('错误');
+                res.send("error");
                 return;
             }  
             if(_company) {
-                console.log(_company);
-                 
-                res.render('company/company_info', {
-                    title: '企业信息管理',
+                res.send({
                     company: _company      
                 });   
-                return;
             }
         });
-
     } 
-    //res.render('company/company_validate_error', {
-    //        title: '验证失败',
-     //       message: '用户不存在!'
-    //});
+    else
+        res.send("error");
 };
 
-exports.editInfo = function(req, res){
+exports.getInfo = function(req, res) {
     if(req.session.company_id !== '') {
-        res.render('company/edit_info', {
-            title: '企业信息管理'
+        Company.findOne({id: req.session.company_id}, {"_id":0,"info": 1},function(err, _company) {         
+            if (err) {
+                console.log('错误');
+                res.send("error");
+                return;
+            }  
+            if(_company) {
+                res.send({
+                    info: _company.info    
+                });   
+            }
         });
-    } else {
-        //非法进入!
-    }
+    } 
+    else
+        res.send("error");
 };
 
+exports.saveAccount = function(req, res) {
+    if(req.session.company_id !== '') {
+        Company.findOne({id : req.session.company_id}, function(err, company) {
+            if (err) {
+                console.log('数据错误');
+                res.send({'result':0,'msg':'数据查询错误'});
+                return;
+            };
+            if(company) {
+                company.username = req.body.company.username;
+                company.save(function (s_err){
+                    if(s_err){
+                        console.log(s_err);
+                        res.send({'result':0,'msg':'数据保存错误'});
+                        return;
+                    }
+                });
+                res.send({'result':1,'msg':'更新成功'});
+                
+            } else {
+                res.send({'result':0,'msg':'不存在该公司'});
+            }
+        });
+    } 
+    else
+        res.send("error");
+};
+
+exports.saveInfo = function(req, res) {
+    if(req.session.company_id !== '') {
+        Company.findOne({id : req.session.company_id}, function(err, company) {
+            if (err) {
+                console.log('数据错误');
+                res.send({'result':0,'msg':'数据查询错误'});
+                return;
+            };
+            if(company) {
+                company.info = req.body.info;
+                company.save(function (s_err){
+                    if(s_err){
+                        console.log(s_err);
+                        res.send({'result':0,'msg':'数据保存错误'});
+                        return;
+                    }
+                });
+                res.send({'result':1,'msg':'更新成功'});
+                
+            } else {
+                res.send({'result':0,'msg':'不存在该公司'});
+            }
+        });
+    } 
+    else
+        res.send("error");
+};
 /**
  * Find company by id
  */
