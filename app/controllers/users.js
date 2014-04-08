@@ -99,7 +99,7 @@ exports.signout = function(req, res) {
  * Session
  */
 exports.loginSuccess = function(req, res) {
-    req.session.username = req.body.email;
+    req.session.username = req.body.username;
     res.redirect('/users/edit/info');
 };
 
