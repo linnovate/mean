@@ -10,12 +10,12 @@ var mongoose = require('mongoose'),
     mail = require('../services/mail'),
     config = require('../config/config');
 
-/**
- * Auth callback
- */
-exports.authCallback = function(req, res) {
-    res.redirect('/');
-};
+
+
+
+
+
+
 
 /**
  * Show login form
@@ -27,6 +27,35 @@ exports.signin = function(req, res) {
     });
 };
 
+/**
+ * Logout
+ */
+exports.signout = function(req, res) {
+    req.logout();
+    res.redirect('/');
+};
+
+/**
+ * Session
+ */
+exports.loginSuccess = function(req, res) {
+    req.session.username = req.body.username;
+    res.redirect('/users/edit/info');
+};
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * 通过邀请链接进入激活流程
+ */
 exports.invite = function(req, res) {
     var key = req.query.key;
     var name = req.query.name;
@@ -43,7 +72,10 @@ exports.invite = function(req, res) {
     }
 };
 
-exports.validate = function(req, res) {
+/**
+ * 处理激活验证
+ */
+exports.dealActive = function(req, res) {
     var key = req.session.key;
     var name = req.session.name;
     if(encrypt.encrypt(name, config.SECRET) === key) {
@@ -75,12 +107,12 @@ exports.validate = function(req, res) {
 /**
  * 员工点击系统发送的激活邮件后进一步补充个人信息
  */
-exports.signup = function(req, res) {
+exports.setProfile = function(req, res) {
     var key = req.query.key;
     var uid = req.query.uid;
     if(encrypt.encrypt(uid, config.SECRET) === key) {
-        res.render('users/signup', {
-            title: 'Sign up',
+        res.render('users/setProfile', {
+            title: '设置个人信息',
             key: key,
             uid: uid
         });
@@ -88,23 +120,9 @@ exports.signup = function(req, res) {
 };
 
 /**
- * Logout
+ * 处理个人信息表单
  */
-exports.signout = function(req, res) {
-    req.logout();
-    res.redirect('/');
-};
-
-/**
- * Session
- */
-exports.loginSuccess = function(req, res) {
-    req.session.username = req.body.username;
-    res.redirect('/users/edit/info');
-};
-
-
-exports.updateProfile = function(req, res) {
+exports.dealSetProfile = function(req, res) {
     User.findOne(
         {id : req.query.uid}
     , function(err, user) {
@@ -126,7 +144,7 @@ exports.updateProfile = function(req, res) {
                         console.log(err);
                     }
                     req.session.username = user.username;
-                    res.redirect('/users/signup/groupList');
+                    res.redirect('/users/selectGroup');
                 });
             } else {
                 res.render('users/message', {title: 'failed', message: 'failed'});
@@ -136,13 +154,19 @@ exports.updateProfile = function(req, res) {
 
 };
 
-exports.groupList = function(req, res) {
-    res.render('users/group_select', {title: '选择你的兴趣小组', group_head: '个人'});
+/**
+ * 选择组件页面
+ */
+exports.selectGroup = function(req, res) {
+    res.render('users/selectGroup', {title: '选择你的兴趣小组', group_head: '个人'});
 }
 
-exports.groupSelect = function(req, res) {
+/**
+ * 处理选择组件表单
+ */
+exports.dealSelectGroup = function(req, res) {
     if(req.body.selected == undefined) {
-        return res.redirect('/users/signup');
+        return res.redirect('/users/selectGroup');
     }
     User.findOne({'username': req.session.username}, function(err, user) {
         if(user) {
@@ -156,7 +180,7 @@ exports.groupSelect = function(req, res) {
                     console.log(err);
                 }
             });
-            res.redirect('/users/signup/finished');
+            res.redirect('/users/finishRegister');
         } else {
             res.render('users/message', {
                 tittle: '错误!',
@@ -166,9 +190,23 @@ exports.groupSelect = function(req, res) {
     });
 };
 
-exports.signupFinished = function(req, res) {
+/**
+ * 完成注册
+ */
+exports.finishRegister = function(req, res) {
     res.render('users/message', {title: '注册成功', message: '注册成功'});
 };
+
+
+
+
+
+
+
+
+
+
+
 
 
 exports.infoEditForm = function(req, res) {
@@ -216,29 +254,4 @@ exports.edit = function(req, res) {
             res.render('users/message', {title: '保存失败', message: '保存失败'});
         }
     });
-};
-
-
-
-/**
- * Send User
- */
-exports.me = function(req, res) {
-    res.jsonp(req.user || null);
-};
-
-/**
- * Find user by id
- */
-exports.user = function(req, res, next, id) {
-    User
-        .findOne({
-            _id: id
-        })
-        .exec(function(err, user) {
-            if (err) return next(err);
-            if (!user) return next(new Error('Failed to load User ' + id));
-            req.profile = user;
-            next();
-        });
 };

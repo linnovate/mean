@@ -19,13 +19,13 @@ userApp.controller('GroupsController', ['$scope','$http', function($scope,$http)
         try{
             $http({
                 method: 'post',
-                url: '/users/signup/groupSelect',
+                url: '/users/dealSelectGroup',
                 data:{
                     selected : $scope.selected
                 }
             }).success(function(data, status) {
                 alert("选择组件成功！");
-                window.location.href="/users/signup/finished";
+                window.location.href="/users/finishRegister";
             }).error(function(data, status) {
                 alert("数据发生错误！");
             });

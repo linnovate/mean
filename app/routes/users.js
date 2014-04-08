@@ -6,28 +6,23 @@ var users = require('../controllers/users');
 module.exports = function(app, passport) {
 
     app.get('/users/signin', users.signin);
-    app.get('/users/signup', users.signup);
     app.get('/users/signout', users.signout);
-    app.get('/users/me', users.me);
-
-    // Setting up the userId param
-    app.param('userId', users.user);
-
     // Setting the local strategy route
     app.post('/users/session', passport.authenticate('user', {
         failureRedirect: '/users/signin',
         failureFlash: true
     }), users.loginSuccess);
 
-    app.post('/users/updateProfile', users.updateProfile);
 
-
+    // Active produce
     app.get('/users/invite', users.invite);
-    app.post('/users/validate', users.validate);
+    app.post('/users/dealActive', users.dealActive);
+    app.get('/users/setProfile', users.setProfile);
+    app.post('/users/dealSetProfile', users.dealSetProfile);
+    app.get('/users/selectGroup', users.selectGroup);
+    app.post('/users/dealSelectGroup', users.dealSelectGroup);
+    app.get('/users/finishRegister', users.finishRegister);
 
-    app.get('/users/signup/groupList', users.groupList);
-    app.post('/users/signup/groupSelect', users.groupSelect);
-    app.get('/users/signup/finished', users.signupFinished);
 
     app.get('/users/edit/info', users.infoEditForm);
     app.post('/users/edit', users.edit);
