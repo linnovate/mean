@@ -16,7 +16,7 @@ companyApp.config(['$routeProvider',function ($routeProvider) {
             controllerAs: 'groupModel'
         })
         .when('/invite',{templateUrl:'/company/invite'})
-        .otherwise({ redirectTo: '/company/create_company_account' });
+        .otherwise({ redirectTo: '/' });
 
 }]);
 //企业提交申请信息,这里也要改成ajax的
@@ -39,8 +39,7 @@ companyApp.controller('DetailController', ['$http', function($http) {
                     password : _this.password
                 }
             }).success(function(data, status) {
-
-                window.location.href ='#/groupSelect';
+                window.location.href = '#/groupSelect';
 
             }).error(function(data, status) {
                 //TODO:更改对话框
@@ -54,11 +53,10 @@ companyApp.controller('DetailController', ['$http', function($http) {
 }]);
 
 //企业选择组件
-companyApp.controller('GroupsController',['$http', function($http) {
+companyApp.controller('GroupsController',['$http',function($http) {
     var _this = this;
     $http.get('/group/getgroups').success(function(data,status){
         _this.groups = data;
-        console.log(_this.groups);
     }).error(function(data,status) {
         //TODO:更改对话框
         alert('组件获取失败！');
@@ -81,7 +79,7 @@ companyApp.controller('GroupsController',['$http', function($http) {
             }).success(function(data, status) {
                 //TODO:更改对话框
                 alert("选择组件成功！");
-                window.location.href ='#/invite';
+                window.location.href='#/invite';
 
             }).error(function(data, status) {
                 //TODO:更改对话框
@@ -91,5 +89,88 @@ companyApp.controller('GroupsController',['$http', function($http) {
         catch(e) {
             console.log(e);
         }
+    };
+}]);
+//企业账号表单
+companyApp.controller('AccountFormController',['$scope','$http',function($scope, $http) {
+    $http.get('/company/getAccount').success(function(data,status){
+        $scope.company = data.company;
+        console.log($scope.company);
+    }).error(function(data,status) {
+        //TODO:更改对话框
+        alert('企业账号信息获取失败！');
+    });
+    $scope.unEdit = true;
+    $scope.buttonStatus = "编辑>"
+    $scope.editToggle = function() {
+        $scope.unEdit = !$scope.unEdit;
+        if($scope.unEdit) {   
+            try{
+                $http({
+                    method : 'post',
+                    url : '/company/saveAccount',
+                    data : {
+                        company : $scope.company
+                    }
+                }).success(function(data, status) {
+                    console.log(data);
+                    //TODO:更改对话框
+                    if(data.result === 1)
+                        alert("信息修改成功！");
+                    else
+                        alert(data.msg);
+                }).error(function(data, status) {
+                    //TODO:更改对话框
+                    alert("数据发生错误！");
+                });
+            }
+            catch(e) {
+                console.log(e);
+            }     
+            $scope.buttonStatus = "编辑>";
+        }
+        else {            
+            $scope.buttonStatus = "保存";
+        }
+            
+    };
+}]);
+//企业信息表单
+companyApp.controller('infoFormController',['$scope','$http',function($scope, $http) {
+    $http.get('/company/getInfo').success(function(data,status){
+        $scope.info = data.info;
+        console.log($scope.info);
+    }).error(function(data,status) {
+        //TODO:更改对话框
+        alert('企业信息获取失败！');
+    });
+    $scope.unEdit = true;
+    $scope.buttonStatus = "编辑>"
+    $scope.editToggle = function() {
+        $scope.unEdit = !$scope.unEdit;
+        if($scope.unEdit) {     
+            try{
+                $http({
+                    method : 'post',
+                    url : '/company/saveInfo',
+                    data : {
+                        info : $scope.info
+                    }
+                }).success(function(data, status) {
+                    //TODO:更改对话框
+                    alert("信息修改成功！");
+                }).error(function(data, status) {
+                    //TODO:更改对话框
+                    alert("数据发生错误！");
+                });
+            }
+            catch(e) {
+                console.log(e);
+            }
+            $scope.buttonStatus = "编辑>";
+        }
+        else {            
+            $scope.buttonStatus = "保存";
+        }        
     };
 }]);
