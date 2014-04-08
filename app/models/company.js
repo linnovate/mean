@@ -17,7 +17,7 @@ var CompanySchema = new Schema({
         type: String,
         unique: true
     },
-
+    login_email: String,
     hashed_password: String,
 
     email: {
@@ -33,7 +33,6 @@ var CompanySchema = new Schema({
 
         date: Number
     },
-    
 
     //公司信息
     info: {
@@ -55,7 +54,10 @@ var CompanySchema = new Schema({
             number: String,           //号码
             extension: String         //分机
         },
-        linkman: String               //联系人
+        linkman: String,              //联系人
+        email: String,
+        brief: String,
+        official_name: String
     },
 
     register_date: {
@@ -64,7 +66,6 @@ var CompanySchema = new Schema({
     },
     //公司内部组件
     gid: Array,                       //存放组的id
-    
     provider: {
         type: String,
         default: 'company'

@@ -66,7 +66,6 @@ exports.getGroups = function(req,res){
       for(var i = 0; i < _length; i ++){
         groups.push({'id':group[i].gid,'type':group[i].group_type,'select':'0'});
       }
-      
       res.send(groups);
   });
 };

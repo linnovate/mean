@@ -4,7 +4,7 @@ var db =connect("localhost/mean-dev");
 var _group =[
             {
                 'gid':0,
-                'group_type':'篮球',
+                'group_type':'虚拟组',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
@@ -87,26 +87,13 @@ var _group =[
                 'group_rule':'default'
             }
         ];
-        
         try{
-          _group.forEach(function (value) {
-            db.groups.insert(value);
-          });
+            db.groups.dropIndexes();
+            _group.forEach(function (value) {
+                db.groups.insert(value);
+            });
         }
         catch (e){
           print(e);
         }
-
-        /*
-        for( var i = 0; i < _group.length; i ++) {
-          try{
-            db.groups.insert(_group[i]);
-            print(i);
-          } catch (e) {
-            print(e);
-          }
-          
-        }
-        */
-        
 

@@ -8,5 +8,3 @@ exports.campaignList = function (req, res) {
 
 };
 
-
-exports.group
