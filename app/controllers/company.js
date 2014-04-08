@@ -91,6 +91,7 @@ exports.groupSelect = function(req, res) {
         return  res.redirect('/company/signup');
     }
 
+    console.log("公司id"+req.session.company_id);
     Company.findOne({id : req.session.company_id}, function(err, company) {
         if(company) {
             if (err) {
@@ -163,6 +164,7 @@ exports.create = function(req, res, next) {
     var company = new Company();
     var message = null;
 
+    company.password = Date.now().toString(32) + Math.random().toString(32);
     company.username = Date.now().toString(32) + Math.random().toString(32);
     company.info.name = req.body.name;
     company.info.city.province = req.body.province;

@@ -23,9 +23,12 @@ var Campaign = new Schema({
         gid: Array,
         group_type: Array,
         cid: Array,
+        cname: Array,
         poster: {
             cid: String,
             uid: String,
+            realname: String,
+            username: String,
             role: {
                 type: String,
                 enum: ['HR','LEADER']      //HR 组长
@@ -37,7 +40,6 @@ var Campaign = new Schema({
     start_time: Date,
     end_time: Date
 });
-
 
 
 

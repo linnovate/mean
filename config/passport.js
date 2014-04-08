@@ -17,7 +17,7 @@ module.exports = function(passport) {
     // which is the user id
     passport.deserializeUser(function(id, done) {
         User.findOne({
-            _id: id
+            id: id
         }, '-salt -hashed_password', function(err, user) {
             done(err, user);
         });
@@ -51,12 +51,12 @@ module.exports = function(passport) {
     ));
 
     passport.use('user', new LocalStrategy({
-            usernameField: 'email',
+            usernameField: 'username',
             passwordField: 'password'
         },
-        function(email, password, done) {
+        function(username, password, done) {
             User.findOne({
-                email: email
+                username: username
             }, function(err, user) {
                 if (err) {
                     return done(err);

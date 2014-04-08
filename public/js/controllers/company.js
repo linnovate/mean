@@ -61,12 +61,12 @@ companyApp.controller('GroupsController',['$http',function($http) {
         //TODO:更改对话框
         alert('组件获取失败！');
     });
-    this.item =[];
+    this.gid =[];
     this.group_next = function() {
-        _this.item.length = 0;
+        _this.gid.length = 0;
         angular.forEach(_this.groups, function(value, key) {
             if(value.select === '1') {
-                _this.item.push(value.id);
+                _this.gid.push(value.id);
             }
         });
         try{
@@ -74,7 +74,7 @@ companyApp.controller('GroupsController',['$http',function($http) {
                 method : 'post',
                 url : '/company/groupSelect',
                 data : {
-                    item : _this.item
+                    gid : _this.gid
                 }
             }).success(function(data, status) {
                 //TODO:更改对话框
