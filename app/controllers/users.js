@@ -40,7 +40,7 @@ exports.signout = function(req, res) {
  */
 exports.loginSuccess = function(req, res) {
     req.session.username = req.body.username;
-    res.redirect('/users/edit/info');
+    res.redirect('/users/editInfo');
 };
 
 
@@ -209,7 +209,7 @@ exports.finishRegister = function(req, res) {
 
 
 
-exports.infoEditForm = function(req, res) {
+exports.editInfo = function(req, res) {
     User.findOne({
         username: req.session.username
     },
@@ -221,14 +221,14 @@ exports.infoEditForm = function(req, res) {
                 if(err) {
                     console.log(err);
                 } else if(company) {
-                    res.render('users/edit_info', {title: '编辑个人资料', user: user, company: company});
+                    res.render('users/editInfo', {title: '编辑个人资料', user: user, company: company});
                 }
             });
         }
     });
 };
 
-exports.edit = function(req, res) {
+exports.dealEditInfo = function(req, res) {
     User.findOne({
         username: req.session.username
     },

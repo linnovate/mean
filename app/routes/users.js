@@ -24,7 +24,7 @@ module.exports = function(app, passport) {
     app.get('/users/finishRegister', users.finishRegister);
 
 
-    app.get('/users/edit/info', users.infoEditForm);
-    app.post('/users/edit', users.edit);
+    app.get('/users/editInfo', users.editInfo);
+    app.post('/users/dealEditInfo', users.dealEditInfo);
 
 };
