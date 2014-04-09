@@ -1,6 +1,6 @@
 {
   "name": "meanio",
-  "version": "0.3.16",
+  "version": "0.3.17",
   "preferGlobal": true,
   "description": "Simple command line interface for installing and managing mean apps",
   "author": {
@@ -17,7 +17,8 @@
   },
   "keywords": [
     "mean",
-    "meanio"
+    "meanio",
+    "mean.io"
   ],
   "engines": {
     "node": "0.10.x",
