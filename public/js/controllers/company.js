@@ -20,7 +20,7 @@ companyApp.config(['$routeProvider',function ($routeProvider) {
 
 }]);
 //企业提交申请信息,这里也要改成ajax的
-companyApp.controller('RegisterController', ['$scope', 'PCSelector', 
+companyApp.controller('RegisterController', ['$scope', 'PCSelector',
     function($scope, PCSelector) {
         $scope.pcSelector = new PCSelector.PCSelector();
     }
