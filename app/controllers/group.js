@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
     Group = mongoose.model('Group');
 
 
-exports.saveGroups = function(req,res){
+exports.saveGroups = function(req,res) {
     res.send('save');
    /* var _length =req.body.group.length();
     for(var _i=0;_i<_length;_i++){
@@ -54,7 +54,7 @@ exports.saveGroups = function(req,res){
     });*/
 };
 
-exports.getGroups = function(req,res){
+exports.getGroups = function(req,res) {
   Group.find(null,function(err,group){
       if (err) {
           res.status(400).send([]);
@@ -69,4 +69,31 @@ exports.getGroups = function(req,res){
       res.send(groups);
   });
 };
+
+exports.getAccount =function(req,res) {
+
+};
+
+exports.getInfo =function(req,res) {
+
+};
+
+exports.Info =function(req,res) {
+    if(req.session.cpname != null || req.session.username != null ) {
+        res.render('group/group_info', {
+            title: '小组信息管理'
+        });
+    }
+    else
+        res.redirect('/users/signin');
+};
+
+exports.saveAccount =function(req,res) {
+
+};
+
+exports.saveInfo =function(req,res) {
+
+};
+
 

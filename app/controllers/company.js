@@ -23,7 +23,7 @@ exports.signin = function(req, res) {
 };
 
 exports.loginSuccess = function(req, res) {
-    req.session.cpusername = req.body.username;
+    req.session.cpname = req.body.username;
     res.redirect('/');
 };
 
@@ -77,8 +77,9 @@ exports.select = function(req, res) {
 };
 //配合路由渲染邀请链接页面
 exports.invite = function(req, res) {
-    var name = req.session.user;
+    var name = req.session.cpname;
     var inviteUrl = config.BASE_URL + '/users/invite?key=' + encrypt.encrypt(name, config.SECRET) + '&name=' + name;
+    req.session.company_id = null;
     res.render('company/validate/invite', {
         title: '邀请链接',
         inviteLink: inviteUrl
@@ -221,7 +222,7 @@ exports.createDetail = function(req, res, next) {
             company.status.active = true;
 
             company.save();
-            req.session.user = req.body.username;
+            req.session.cpname = req.body.username;
             req.session.role = 'HR';
 
             res.send('ok');
@@ -238,18 +239,18 @@ exports.createDetail = function(req, res, next) {
 
 
 exports.Info = function(req, res){
-    if(req.session.company_id !== '') {
+    if(req.session.cpname != null) {
         res.render('company/company_info', {
             title: '企业信息管理'
         });
     }
     else
-        res.redirect('/company/signup');
+        res.redirect('/company/signin');
 };
 
 exports.getAccount = function(req, res) {
-    if(req.session.company_id !== '') {
-        Company.findOne({id: req.session.company_id}, {"_id":0,"username": 1,"register_date":1},function(err, _company) {
+    if(req.session.cpname != null) {
+        Company.findOne({id: req.session.cpname}, {"_id":0,"username": 1,"register_date":1},function(err, _company) {
             if (err) {
                 console.log('错误');
                 res.send("error");
@@ -267,8 +268,8 @@ exports.getAccount = function(req, res) {
 };
 
 exports.getInfo = function(req, res) {
-    if(req.session.company_id !== '') {
-        Company.findOne({id: req.session.company_id}, {"_id":0,"info": 1},function(err, _company) {
+    if(req.session.cpname != null) {
+        Company.findOne({id: req.session.cpname}, {"_id":0,"info": 1},function(err, _company) {
             if (err) {
                 console.log('错误');
                 res.send("error");
@@ -286,8 +287,8 @@ exports.getInfo = function(req, res) {
 };
 
 exports.saveAccount = function(req, res) {
-    if(req.session.company_id !== '') {
-        Company.findOne({id : req.session.company_id}, function(err, company) {
+    if(req.session.cpname != null) {
+        Company.findOne({id : req.session.cpname}, function(err, company) {
             if (err) {
                 console.log('数据错误');
                 res.send({'result':0,'msg':'数据查询错误'});
@@ -313,8 +314,8 @@ exports.saveAccount = function(req, res) {
 };
 
 exports.saveInfo = function(req, res) {
-    if(req.session.company_id !== '') {
-        Company.findOne({id : req.session.company_id}, function(err, company) {
+    if(req.session.cpname != null) {
+        Company.findOne({id : req.session.cpname}, function(err, company) {
             if (err) {
                 console.log('数据错误');
                 res.send({'result':0,'msg':'数据查询错误'});
