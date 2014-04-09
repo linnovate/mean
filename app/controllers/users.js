@@ -10,6 +10,7 @@ var mongoose = require('mongoose'),
     mail = require('../services/mail'),
     CompanyGroup = mongoose.model('CompanyGroup'),
     GroupMessage = mongoose.model('GroupMessage'),
+    Campaign = mongoose.model('Campaign'),
     config = require('../config/config');
 
 
@@ -224,15 +225,23 @@ exports.editInfo = function(req, res) {
                 if(err) {
                     console.log(err);
                 } else if(company) {
-                    GroupMessage.find({"poster.cid": company.id}, function(err, group_messages) {
+                    GroupMessage.find({'poster.cid': company.id}, function(err, group_messages) {
                         if (err) {
                             console.log(err);
                         } else {
-                            return res.render('users/editInfo',
-                                {title: '编辑个人资料',
-                                user: user,
-                                company: company,
-                                group_messages: group_messages
+                            Campaign.find({'campaign.member': {'$elemMatch': {uid: user.id}}}, function(err, campaigns){
+                                console.log(campaigns);
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    return res.render('users/editInfo',
+                                        {title: '编辑个人资料',
+                                        user: user,
+                                        company: company,
+                                        group_messages: group_messages,
+                                        campaigns: campaigns
+                                    });
+                                }
                             });
                         }
                     });
