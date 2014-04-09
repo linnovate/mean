@@ -1,0 +1,63 @@
+extends ../layouts/default
+
+block content
+  div(ng-app="company")
+    form.form-horizontal(ng-controller="AccountFormController" name="accountForm")
+      .infoHead.row
+        h4.pull-left 账户信息
+        a.pull-right(ng-click="editToggle()" ng-bind="buttonStatus")
+      hr
+      .form-group
+        label.col-xs-2.control-label 登录邮箱
+        label.col-xs-5.control-label(ng-bind="company.username")
+        a.col-xs-5(href="#") 修改密码
+      .form-group
+        label.col-xs-2.control-label 官方用户名
+        .col-xs-5
+          input.form-control(type="text" name ="username" ng-model="company.username" ng-disabled="unEdit")
+      .form-group
+        label.col-xs-2.control-label 简介
+        .col-xs-5
+          input.form-control(type="textarea" name ="introduction" ng-model="company.username" ng-disabled="unEdit")
+      .form-group
+        label.col-xs-2.control-label 注册时间
+        label.col-xs-5.control-label(ng-bind="company.register_date")
+    form.form-horizontal(ng-controller="infoFormController" name="infoForm")
+      .infoHead.row
+        h4.pull-left 企业信息
+        a.pull-right(ng-click="editToggle()" ng-bind="buttonStatus")
+      hr
+      .form-group
+        label.col-xs-2.control-label 企业全称
+        .col-xs-5
+          input.form-control(type="text" name ="infoname" ng-model="info.name" ng-disabled="unEdit")
+      .form-group
+        label.col-xs-2.control-label 所在地
+        .col-xs-5
+          input.form-control(type="text" name ="province" ng-model="info.city.province" ng-disabled="unEdit")
+        .col-xs-5
+          input.form-control(type="text" name ="city" ng-model="info.city.city" ng-disabled="unEdit")
+      .form-group
+        label.col-xs-2.control-label 地址
+        .col-xs-5
+          input.form-control(type="text" name ="address" ng-model="info.address" ng-disabled="unEdit")
+      .form-group
+        label.col-xs-2.control-label 联系人
+        .col-xs-5
+          input.form-control(type="text" name ="linkman" ng-model="info.linkman" ng-disabled="unEdit")
+      .form-group
+        label.col-xs-2.control-label 公司电话
+        .col-xs-2
+          input.form-control(type="text" name ="areacode" ng-model="info.lindline.areacode" ng-disabled="unEdit")
+        .col-xs-6
+          input.form-control(type="text" name ="number" ng-model="info.lindline.number" ngπ-disabled="unEdit")
+        .col-xs-2
+          input.form-control(type="text" name ="extension" ng-model="info.lindline.extension" ng-disabled="unEdit")
+      .form-group
+        label.col-xs-2.control-label 手机号码
+        .col-xs-2
+          input.form-control(type="text" name ="phone" ng-model="info.phone" ng-disabled="unEdit")
+      .form-group
+        label.col-xs-2.control-label 电子邮箱
+        .col-xs-2
+          input.form-control(type="text" name ="email" ng-model="info.email" ng-disabled="unEdit")
