@@ -56,3 +56,11 @@ block content
   ul
     each gid in user.gid
       li= gid
+
+  h1 状态列表
+  ul
+    each group_message in group_messages
+      li
+        h2= group_message.content
+        p= '小组类型：' + group_message.group.group_type
+        p= '发起人：' + group_message.poster.username

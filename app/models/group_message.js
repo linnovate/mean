@@ -32,13 +32,5 @@ var GroupMessage = new Schema({
 });
 
 
-/**
- * 系统消息
- */
-var SystemMessage = new Schema({
-
-});
-
-
 
 mongoose.model('GroupMessage', GroupMessage);
