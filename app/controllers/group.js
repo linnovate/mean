@@ -83,7 +83,7 @@ exports.getCompanyGroups = function(req, res) {
     if (err) {
       return res.status(404).send([]);
     } else {
-      console.log(company_group);
+      
       var groups = [];
       for(var i = 0, length = company_group.length; i < length; i++) {
         if(!param) {
@@ -100,6 +100,7 @@ exports.getCompanyGroups = function(req, res) {
           });
         }
       }
+      console.log(groups);
       return res.send(groups);
     }
   });
