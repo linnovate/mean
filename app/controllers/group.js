@@ -75,8 +75,11 @@ exports.getGroups = function(req,res){
 exports.getCompanyGroups = function(req, res) {
 
   var company_id = req.session.cid;
-  var param = req.param.detail;
+  var param = req.params.detail;
 
+  console.log(param);
+
+  //测试用,之后要删掉
   company_id = '18l2ehk9s0.sh99jp';
 
   CompanyGroup.find({cid: company_id}, function(err, company_group) {
@@ -99,7 +102,6 @@ exports.getCompanyGroups = function(req, res) {
           });
         }
       }
-      console.log(groups);
       return res.send(groups);
     }
   });

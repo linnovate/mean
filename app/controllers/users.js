@@ -12,12 +12,6 @@ var mongoose = require('mongoose'),
     config = require('../config/config');
 
 
-
-
-
-
-
-
 /**
  * Show login form
  */
@@ -42,14 +36,6 @@ exports.signout = function(req, res) {
 exports.loginSuccess = function(req, res) {
     res.redirect('/users/editInfo');
 };
-
-
-
-
-
-
-
-
 
 
 
