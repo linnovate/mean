@@ -33,5 +33,4 @@ var GroupMessage = new Schema({
 
 
 
-
 mongoose.model('GroupMessage', GroupMessage);

@@ -9,6 +9,7 @@ var mongoose = require('mongoose'),
     encrypt = require('../middlewares/encrypt'),
     mail = require('../services/mail'),
     CompanyGroup = mongoose.model('CompanyGroup'),
+    GroupMessage = mongoose.model('GroupMessage'),
     config = require('../config/config');
 
 
@@ -214,11 +215,25 @@ exports.editInfo = function(req, res) {
         if(err) {
             console.log(err);
         } else if(user) {
-            Company.findOne({id : user.cid}, function(err, company) {
+            Company.findOne({
+                id: user.cid
+            },
+            function(err, company) {
                 if(err) {
                     console.log(err);
                 } else if(company) {
-                    res.render('users/editInfo', {title: '编辑个人资料', user: user, company: company});
+                    GroupMessage.find({"poster.cid": company.id}, function(err, group_messages) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            return res.render('users/editInfo',
+                                {title: '编辑个人资料',
+                                user: user,
+                                company: company,
+                                group_messages: group_messages
+                            });
+                        }
+                    });
                 }
             });
         }
