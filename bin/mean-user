@@ -13,6 +13,8 @@ program
   .parse(process.argv);
 
 var options = {
+  addRole: program.addRole,
+  removeRole: program.removeRole,
   env: program.env || 'development'
 };
 
@@ -23,8 +25,8 @@ if (!program.args.length) {
 
 var email = program.args[0];
 if (program.addRole || program.removeRole) {
-  if (program.addRole) cli.addRole(email, program.addRole, options);
-  if (program.removeRole) cli.removeRole(email, program.removeRole, options);
+  if (program.addRole) cli.updateRole(email, options, 'a');
+  if (program.removeRole) cli.updateRole(email, options, 'r');
 } else {
   cli.printUser(email, options);
 }
