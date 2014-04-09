@@ -4,21 +4,11 @@ extends ../../layouts/company
 block headExt
 
 block content
-  .row 小组导航头
+  .row 企业小组导航头
   .row
     .col-md-6
-      .row 小组管理标题
-      .row(ng-app='list' id='list' ng-view) 列表
+      .row 企业兴趣小组
+      .row
+        .group_list
     .col-md-6
-      .row 小组陈列标题
-      .row 小组陈列
-        .group.col-xs-3(ng-repeat='group in groupModel.groups' ng-class="{'1': 'active', '0': 'inactive'}[group.select]")
-          input(type='checkbox' name='group' id='{{group.id}}' value='{{group.type}}' ng-model='group.select' ng-true-value='1' ng-false-value='0')
-          label.group(for='{{group.id}}') {{group.type}}
-          span
-  .row
-    .col-md-6
-      .row 小组照片
-    .col-md-6
-      .row 小组成员标题
-      .row 小组成员
+      .row 企业导航
