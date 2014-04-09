@@ -19,8 +19,19 @@ companyApp.config(['$routeProvider',function ($routeProvider) {
         .otherwise({ redirectTo: '/' });
 
 }]);
+
+
+//企业组建列表
+companyApp.controller('GroupListController', ['$scope','$http', function($scope, $http) {
+    $http.get('/group/getCompanyGroups/true').success(function(data, status) {
+        $scope.groups = data;
+    }).error(function(data,status) {
+        alert('组件获取失败！');
+    });
+}]);
+
 //企业提交申请信息,这里也要改成ajax的
-companyApp.controller('RegisterController', ['$scope', 'PCSelector', 
+companyApp.controller('RegisterController', ['$scope', 'PCSelector',
     function($scope, PCSelector) {
         $scope.pcSelector = new PCSelector.PCSelector();
     }
@@ -104,7 +115,7 @@ companyApp.controller('AccountFormController',['$scope','$http',function($scope,
     $scope.buttonStatus = "编辑>"
     $scope.editToggle = function() {
         $scope.unEdit = !$scope.unEdit;
-        if($scope.unEdit) {   
+        if($scope.unEdit) {
             try{
                 $http({
                     method : 'post',
@@ -126,13 +137,12 @@ companyApp.controller('AccountFormController',['$scope','$http',function($scope,
             }
             catch(e) {
                 console.log(e);
-            }     
+            }
             $scope.buttonStatus = "编辑>";
         }
-        else {            
+        else {
             $scope.buttonStatus = "保存";
         }
-            
     };
 }]);
 //企业信息表单
@@ -148,7 +158,7 @@ companyApp.controller('infoFormController',['$scope','$http',function($scope, $h
     $scope.buttonStatus = "编辑>"
     $scope.editToggle = function() {
         $scope.unEdit = !$scope.unEdit;
-        if($scope.unEdit) {     
+        if($scope.unEdit) {
             try{
                 $http({
                     method : 'post',
@@ -169,8 +179,8 @@ companyApp.controller('infoFormController',['$scope','$http',function($scope, $h
             }
             $scope.buttonStatus = "编辑>";
         }
-        else {            
+        else {
             $scope.buttonStatus = "保存";
-        }        
+        }
     };
 }]);

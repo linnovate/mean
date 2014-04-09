@@ -8,6 +8,8 @@ var mongoose = require('mongoose'),
     Company = mongoose.model('Company'),
     encrypt = require('../middlewares/encrypt'),
     mail = require('../services/mail'),
+    CompanyGroup = mongoose.model('CompanyGroup'),
+    GroupMessage = mongoose.model('GroupMessage'),
     config = require('../config/config');
 
 
@@ -85,7 +87,7 @@ exports.dealActive = function(req, res) {
                     if(req.body.domain === company.email.domain[i]) {
                         var user = new User();
                         user.email = req.body.host + '@' + req.body.domain;
-                        user.company_id = company._id;
+                        user.cid = company.id;
                         user.id = company.id + Date.now().toString(32) + Math.random().toString(32);
                         user.save(function(err) {
                             if (err) {
@@ -93,7 +95,7 @@ exports.dealActive = function(req, res) {
                             }
                         });
                         //系统再给员工发一封激活邮件
-                        mail.sendStaffActiveMail(user.email, user.id);
+                        mail.sendStaffActiveMail(user.email, user.id, company.id);
                         res.render('users/message', {title: '验证邮件', message: '我们已经给您发送了验证邮件，请登录您的邮箱完成激活'});
                         return;
                     }
@@ -105,11 +107,12 @@ exports.dealActive = function(req, res) {
 };
 
 /**
- * 员工点击系统发送的激活邮件后进一步补充个人信息
+ * 通过激活链接进入，完善个人信息
  */
 exports.setProfile = function(req, res) {
     var key = req.query.key;
     var uid = req.query.uid;
+    req.session.cid = req.query.cid;
     if(encrypt.encrypt(uid, config.SECRET) === key) {
         res.render('users/setProfile', {
             title: '设置个人信息',
@@ -179,6 +182,16 @@ exports.dealSelectGroup = function(req, res) {
                 if(err){
                     console.log(err);
                 }
+                for( var i = 0; i < user.gid.length; i ++) {
+                    CompanyGroup.findOne({'cid':user.cid,'group.gid':user.gid[i]}, function(err, company) {
+                        company.group.member.push(user.id);
+                        company.save(function(err){
+                            if(err){
+                                console.log(err);
+                            }
+                        });
+                    });
+                }
             });
             res.redirect('/users/finishRegister');
         } else {
@@ -217,11 +230,25 @@ exports.editInfo = function(req, res) {
         if(err) {
             console.log(err);
         } else if(user) {
-            Company.findById(user.company_id, function(err, company) {
+            Company.findOne({
+                id: user.cid
+            },
+            function(err, company) {
                 if(err) {
                     console.log(err);
                 } else if(company) {
-                    res.render('users/editInfo', {title: '编辑个人资料', user: user, company: company});
+                    GroupMessage.find({"poster.cid": company.id}, function(err, group_messages) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            return res.render('users/editInfo',
+                                {title: '编辑个人资料',
+                                user: user,
+                                company: company,
+                                group_messages: group_messages
+                            });
+                        }
+                    });
                 }
             });
         }

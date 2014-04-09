@@ -5,7 +5,8 @@
  */
 var mongoose = require('mongoose'),
     encrypt = require('../middlewares/encrypt'),
-    Group = mongoose.model('Group');
+    Group = mongoose.model('Group'),
+    CompanyGroup = mongoose.model('CompanyGroup');
 
 
 exports.saveGroups = function(req,res) {
@@ -63,13 +64,14 @@ exports.getGroups = function(req,res) {
       var _length = group.length;
       var groups = [];
 
-      for(var i = 0; i < _length; i ++){
+      for(var i = 0; i < _length; i++ ){
         groups.push({'id':group[i].gid,'type':group[i].group_type,'select':'0'});
       }
       res.send(groups);
   });
 };
 
+<<<<<<< HEAD
 exports.getAccount =function(req,res) {
 
 };
@@ -97,3 +99,40 @@ exports.saveInfo =function(req,res) {
 };
 
 
+=======
+
+exports.getCompanyGroups = function(req, res) {
+
+  var company_id = req.session.cid;
+  var param = req.param.detail;
+
+  company_id = '18l2ehk9s0.sh99jp';
+
+  CompanyGroup.find({cid: company_id}, function(err, company_group) {
+    if (err) {
+      return res.status(404).send([]);
+    } else {
+      var groups = [];
+      for(var i = 0, length = company_group.length; i < length; i++) {
+        if(!param) {
+          groups.push({'id': company_group[i].group.gid,
+          'type': company_group[i].group.group_type, 'select':'0'});
+        } else {
+          groups.push({
+            'id': company_group[i].group.gid,
+            'type': company_group[i].group.group_type,
+            'member_num':'33',
+            'name':'长跑队',
+            'score':897,
+            'leader':'暂无'
+          });
+        }
+      }
+      console.log(groups);
+      return res.send(groups);
+    }
+  });
+
+};
+
+>>>>>>> 6ebd04ed3daa1cae8b188b1e27fe96e1ecca9047

@@ -86,7 +86,12 @@ exports.invite = function(req, res) {
     });
 };
 
-
+//显示企业小组列表
+exports.groupList = function(req, res) {
+    res.render('company/company_group_list', {
+        title: '兴趣小组'
+    });
+};
 exports.groupSelect = function(req, res) {
     if(req.body.gid == undefined){
         return  res.redirect('/company/signup');
@@ -105,15 +110,17 @@ exports.groupSelect = function(req, res) {
                     console.log(s_err);
                 }
 
-                var companyGroup = new CompanyGroup();
-                companyGroup.cid = req.session.company_id;
-                companyGroup.group.gid = req.body.gid;
+                for ( var i = 0; i < req.body.gid.length; i ++) {
+                    var companyGroup = new CompanyGroup();
+                    companyGroup.cid = req.session.company_id;
+                    companyGroup.group.gid = req.body.gid[i];
 
-                companyGroup.save(function (err){
-                    if (err) {
-                        console.log(err);
-                    }
-                });
+                    companyGroup.save(function (err){
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                }
             });
             res.send('ok');
         } else {
