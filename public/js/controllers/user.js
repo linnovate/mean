@@ -5,11 +5,10 @@ var userApp = angular.module('user', []);
 //员工注册后在公司组件列表里选择组件
 userApp.controller('GroupsController', ['$scope','$http', function($scope, $http) {
     $http.get('/group/getCompanyGroups').success(function(data, status) {
-        var _groups = data;
-        for(var i = 0, length = _groups.length; i < length; i++) {
-            _groups[i].select = '0';
+        $scope.groups = data;
+        for(var i = 0, length = $scope.groups.length; i < length; i++) {
+            $scope.groups[i].select = '0';
         }
-        $scope.groups = _groups;
     }).error(function(data,status) {
         alert('组件获取失败');
     });
