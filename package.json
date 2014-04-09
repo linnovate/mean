@@ -37,7 +37,7 @@
     "grunt-cli": "^0.1.13",
     "lodash": "^2.4.1",
     "mean-logger": "0.0.1",
-    "meanio": "latest",
+    "meanio": ">=0.3.18",
     "mongoose": "^3.8.3",
     "passport": "^0.1.18",
     "passport-facebook": "^1.0.2",
