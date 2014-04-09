@@ -11,16 +11,16 @@ var mongoose = require('mongoose'),
  */
 var CompanyGroup = new Schema({
     cid: String,
-    group: {
-        score: Number,
-        rank: Number,
-        create_date: Date,
-        brief: String,
-        gid: String,
-        group_type: String,
-        member: Array,
-        leader: Array
-    }
+    gid: String,
+    group_type: String,
+    name: String,
+    member: Array,
+    leader: Array,
+    score: Number,
+    rank: Number,
+    create_date: Date,
+    brief: String
+
 });
 
 mongoose.model('CompanyGroup', CompanyGroup);

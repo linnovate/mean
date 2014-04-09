@@ -81,9 +81,13 @@ exports.getInfo =function(req,res) {
 };
 
 exports.Info =function(req,res) {
+  console.log(req.companyGroup);
+  console.log(req.session);
     if(req.session.cpname != null || req.session.username != null ) {
         res.render('group/group_info', {
-            title: '小组信息管理'
+            title: '小组信息管理',
+            companyGroup: req.companyGroup,
+            companyname: req.session.cpname
         });
     }
     else
@@ -118,15 +122,16 @@ exports.getCompanyGroups = function(req, res) {
 };
 
 exports.group = function(req, res, next, id) {
-  Company
-        .findOne({
-            _id: id
-        })
-        .exec(function(err, company) {
-            if (err) return next(err);
-            if (!company) return next(new Error('Failed to load Company ' + id));
-            req.profile = company;
-            next();
-        });
+  CompanyGroup
+    .findOne({
+        cid: req.session.cid,
+        gid: id
+    })
+    .exec(function(err, companyGroup) {
+        if (err) return next(err);
+        if (!companyGroup) return next(new Error('Failed to load companyGroup ' + id));
+        req.companyGroup = companyGroup;
+        next();
+    });
 }
 

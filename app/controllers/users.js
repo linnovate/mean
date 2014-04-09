@@ -112,6 +112,7 @@ exports.setProfile = function(req, res) {
  * 处理个人信息表单
  */
 exports.dealSetProfile = function(req, res) {
+    console.log(req.query);
     User.findOne(
         {id : req.query.uid}
     , function(err, user) {
@@ -169,8 +170,8 @@ exports.dealSelectGroup = function(req, res) {
                     console.log(err);
                 }
                 for( var i = 0; i < user.gid.length; i ++) {
-                    CompanyGroup.findOne({'cid':user.cid,'group.gid':user.gid[i]}, function(err, company) {
-                        company.group.member.push(user.id);
+                    CompanyGroup.findOne({'cid':user.cid,'gid':user.gid[i]}, function(err, company) {
+                        company.member.push(user.id);
                         company.save(function(err){
                             if(err){
                                 console.log(err);
