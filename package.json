@@ -1,6 +1,6 @@
 {
   "name": "meanio",
-  "version": "0.3.17",
+  "version": "0.3.18",
   "preferGlobal": true,
   "description": "Simple command line interface for installing and managing mean apps",
   "author": {
@@ -9,7 +9,15 @@
   "license": "ISC",
   "main": "index",
   "bin": {
-    "mean": "./bin/mean"
+    "mean": "./bin/mean",
+    "mean-init": "./bin/mean-init",
+    "mean-install": "./bin/mean-install",
+    "mean-uninstall": "./bin/mean-uninstall",
+    "mean-docs": "./bin/mean-docs",
+    "mean-package": "./bin/mean-package",
+    "mean-list": "./bin/mean-list",
+    "mean-status": "./bin/mean-status",
+    "mean-user": "./bin/mean-user"
   },
   "repository": {
     "type": "git",

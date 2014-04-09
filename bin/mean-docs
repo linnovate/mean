@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var program = require('commander');
+
+program
+  .description('Opens MEAN documentation in your local browser')
+  .parse(process.argv);
+
+require('opener')('http://www.mean.io/#!/docs');

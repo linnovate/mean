@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var cli = require('../lib/cli'),
+  program = require('commander');
+
+program
+  .description('Installs a MEAN module')
+  .option('-b, --branch [branch]', 'git branch')
+  .option('-g, --git', 'clone using git:// instead of https://')
+  .option('--npm', 'Download MEAN Packages from NPM')
+  .option('--repo [repo]', 'Specify repository to install')
+  .parse(process.argv);
+
+var options = {
+  branch: program.branch || 'master',
+  git: program.git,
+  npm: program.npm,
+  repo: program.repo
+};
+
+cli.install(program.args.length ? program.args[0] : 'mean', options);

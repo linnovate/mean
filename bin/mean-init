@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var cli = require('../lib/cli'),
+  program = require('commander');
+
+program
+  .description('Create a MEAN application in the current working directory')
+  .option('-b, --branch <branch>', 'git branch')
+  .option('-g, --git', 'clone using git:// instead of https://')
+  .option('--repo <repo>', 'Specify repository to install')
+  .option('-f, --force', 'force')
+  .parse(process.argv);
+
+var options = {
+  branch: program.branch || 'master',
+  git: program.git,
+  repo: program.repo,
+  force: program.force
+};
+
+cli.init(program.args.length ? program.args[0] : 'mean', options);
