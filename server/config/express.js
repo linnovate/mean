@@ -122,7 +122,7 @@ module.exports = function(app, passport, db) {
 
             for (var name in mean.modules) {
                 app.use('/' + name, express.static(config.root + '/node_modules/' + name + '/public'));
-            };
+            }
 
             bootstrapRoutes();
 

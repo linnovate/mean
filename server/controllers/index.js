@@ -14,7 +14,7 @@ exports.render = function(req, res) {
 			module: 'mean.' + name,
 			angularDependencies: mean.modules[name].angularDependencies
 		});
-	};
+	}
 
 
 	// Send some basic starting info to the view
