@@ -85,7 +85,12 @@ exports.invite = function(req, res) {
     });
 };
 
-
+//显示企业小组列表
+exports.groupList = function(req, res) {
+    res.render('company/company_group_list', {
+        title: '兴趣小组'
+    });
+};
 exports.groupSelect = function(req, res) {
     if(req.body.gid == undefined){
         return  res.redirect('/company/signup');
