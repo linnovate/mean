@@ -83,7 +83,6 @@ exports.getCompanyGroups = function(req, res) {
     if (err) {
       return res.status(404).send([]);
     } else {
-      
       var groups = [];
       for(var i = 0, length = company_group.length; i < length; i++) {
         if(!param) {
