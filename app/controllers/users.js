@@ -228,7 +228,7 @@ exports.editInfo = function(req, res) {
         if(err) {
             console.log(err);
         } else if(user) {
-            Company.findById(user.company_id, function(err, company) {
+            Company.findOne({id : user.cid}, function(err, company) {
                 if(err) {
                     console.log(err);
                 } else if(company) {

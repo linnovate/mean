@@ -5,6 +5,8 @@ var company = require('../controllers/company');
 
 module.exports = function(app, passport) {
 
+    //显示企业小组列表
+    app.get('/company/groupList', company.groupList);
     app.get('/company/signup', company.signup);
     app.get('/company/wait', company.wait);
 

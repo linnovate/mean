@@ -73,19 +73,36 @@ exports.getGroups = function(req,res){
 
 
 exports.getCompanyGroups = function(req, res) {
+
   var company_id = req.session.cid;
-  CompanyGroup.findOne({cid: company_id}, function(err, company_group) {
+  var param = req.param.detail;
+
+  company_id = '18l2ehk9s0.sh99jp';
+
+  CompanyGroup.find({cid: company_id}, function(err, company_group) {
     if (err) {
       return res.status(404).send([]);
     } else {
       console.log(company_group);
       var groups = [];
-      for(var i = 0, length = company_group.group.gid.length; i < length; i++) {
-        groups.push({'id': company_group.group.gid[i],
-          'type': company_group.group.group_type[i], 'select':'0'});
+      for(var i = 0, length = company_group.length; i < length; i++) {
+        if(!param) {
+          groups.push({'id': company_group[i].group.gid,
+          'type': company_group[i].group.group_type, 'select':'0'});
+        } else {
+          groups.push({
+            'id': company_group[i].group.gid,
+            'type': company_group[i].group.group_type,
+            'member_num':'33',
+            'name':'长跑队',
+            'score':897,
+            'leader':'暂无'
+          });
+        }
       }
       return res.send(groups);
     }
   });
+
 };
 
