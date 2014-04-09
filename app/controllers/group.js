@@ -71,6 +71,10 @@ exports.getGroups = function(req,res) {
   });
 };
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5976680d5a7cd305c24a4962b6500cc55c1df283
 exports.getAccount =function(req,res) {
 
 };
@@ -97,11 +101,16 @@ exports.saveInfo =function(req,res) {
 
 };
 
+
+//返回公司组件的所有数据,待前台调用
 exports.getCompanyGroups = function(req, res) {
 
   var company_id = req.session.cid;
-  var param = req.param.detail;
+  var param = req.params.detail;
 
+  console.log(param);
+
+  //测试用,之后要删掉
   company_id = '18l2ehk9s0.sh99jp';
 
   CompanyGroup.find({cid: company_id}, function(err, company_group) {
@@ -124,7 +133,6 @@ exports.getCompanyGroups = function(req, res) {
           });
         }
       }
-      console.log(groups);
       return res.send(groups);
     }
   });
@@ -143,3 +151,4 @@ exports.group = function(req, res, next, id) {
             next();
         });
 }
+

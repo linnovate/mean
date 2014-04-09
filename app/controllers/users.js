@@ -13,12 +13,6 @@ var mongoose = require('mongoose'),
     config = require('../config/config');
 
 
-
-
-
-
-
-
 /**
  * Show login form
  */
@@ -44,14 +38,6 @@ exports.loginSuccess = function(req, res) {
     req.session.username = req.body.username;
     res.redirect('/users/editInfo');
 };
-
-
-
-
-
-
-
-
 
 
 

@@ -2,11 +2,12 @@
 
 var userApp = angular.module('user', []);
 
+//员工注册后在公司组件列表里选择组件
 userApp.controller('GroupsController', ['$scope','$http', function($scope, $http) {
-    $http.get('/group/getCompanyGroups').success(function(data, status) {
+    $http.get('/group/getCompanyGroups/selectGroups').success(function(data, status) {
         $scope.groups = data;
     }).error(function(data,status) {
-        alert('组件获取失败！');
+        alert('组件获取失败');
     });
     $scope.selected = [];
     $scope.group_next = function() {
@@ -34,4 +35,10 @@ userApp.controller('GroupsController', ['$scope','$http', function($scope, $http
             console.log(e);
         }
     };
+}]);
+
+
+//员工进入自己的组件管理页面后显示组件列表
+userApp.controller('GroupsManager', ['$scope', '$http', function($scope, $http) {
+
 }]);
