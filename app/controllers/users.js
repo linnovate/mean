@@ -93,7 +93,7 @@ exports.dealActive = function(req, res) {
                             }
                         });
                         //系统再给员工发一封激活邮件
-                        mail.sendStaffActiveMail(user.email, user.id);
+                        mail.sendStaffActiveMail(user.email, user.id, company.id);
                         res.render('users/message', {title: '验证邮件', message: '我们已经给您发送了验证邮件，请登录您的邮箱完成激活'});
                         return;
                     }
@@ -105,11 +105,12 @@ exports.dealActive = function(req, res) {
 };
 
 /**
- * 员工点击系统发送的激活邮件后进一步补充个人信息
+ * 通过激活链接进入，完善个人信息
  */
 exports.setProfile = function(req, res) {
     var key = req.query.key;
     var uid = req.query.uid;
+    req.session.cid = req.query.cid;
     if(encrypt.encrypt(uid, config.SECRET) === key) {
         res.render('users/setProfile', {
             title: '设置个人信息',

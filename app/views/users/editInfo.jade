@@ -51,3 +51,8 @@ block content
       label.col-xs-2.control-label 注册时间
       label.col-xs-10.control-label= user.register_date
     button.btn.btn-primary(type="submit") 保存
+
+  h1 小组列表
+  ul
+    each gid in user.gid
+      li= gid

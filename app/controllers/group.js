@@ -5,7 +5,8 @@
  */
 var mongoose = require('mongoose'),
     encrypt = require('../middlewares/encrypt'),
-    Group = mongoose.model('Group');
+    Group = mongoose.model('Group'),
+    CompanyGroup = mongoose.model('CompanyGroup');
 
 
 exports.saveGroups = function(req,res){
@@ -63,10 +64,28 @@ exports.getGroups = function(req,res){
       var _length = group.length;
       var groups = [];
 
-      for(var i = 0; i < _length; i ++){
+      for(var i = 0; i < _length; i++ ){
         groups.push({'id':group[i].gid,'type':group[i].group_type,'select':'0'});
       }
       res.send(groups);
+  });
+};
+
+
+exports.getCompanyGroups = function(req, res) {
+  var company_id = req.session.cid;
+  CompanyGroup.findOne({cid: company_id}, function(err, company_group) {
+    if (err) {
+      return res.status(404).send([]);
+    } else {
+      console.log(company_group);
+      var groups = [];
+      for(var i = 0, length = company_group.group.gid.length; i < length; i++) {
+        groups.push({'id': company_group.group.gid[i],
+          'type': company_group.group.group_type[i], 'select':'0'});
+      }
+      return res.send(groups);
+    }
   });
 };
 
