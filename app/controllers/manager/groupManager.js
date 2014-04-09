@@ -20,7 +20,6 @@ exports.groupManager = function (req, res) {
     });
 };
 //组长发布一个活动(只能是一个企业)
-
 exports.sponsor = function (req, res) {
   var cid = req.session.cid;  //公司id
   var uid = req.session.uid;  //用户id
@@ -77,7 +76,6 @@ exports.sponsor = function (req, res) {
           };
 
           //生成动态消息
-
           var groupMessage = new GroupMessage();
           groupMessage.group.gid.push(gid);
           groupMessage.group.group_type.push(group_type);

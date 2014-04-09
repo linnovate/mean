@@ -9,16 +9,12 @@ block content
       hr
       .row
         label.col-xs-2.control-label 登录邮箱
-        label.col-xs-5.control-label(ng-bind="company.username")
+        label.col-xs-5.control-label(ng-bind="company.login_email")
         a.col-xs-5(href="#") 修改密码
       .row
-        label.col-xs-2.control-label 官方用户名
+        label.col-xs-2.control-label 用户名
         .col-xs-5
           input.form-control(type="text" name ="username" ng-model="company.username" ng-disabled="unEdit")
-      .row
-        label.col-xs-2.control-label 简介
-        .col-xs-5
-          input.form-control(type="textarea" name ="introduction" ng-model="company.username" ng-disabled="unEdit")
       .row
         label.col-xs-2.control-label 注册时间
         label.col-xs-5.control-label(ng-bind="company.register_date")
@@ -27,6 +23,10 @@ block content
         h4.pull-left 企业信息
         a.pull-right(ng-click="editToggle()" ng-bind="buttonStatus")
       hr
+      .row
+        label.col-xs-2.control-label 官方用户名
+        .col-xs-5
+          input.form-control(type="text" name ="username" ng-model="info.official_name" ng-disabled="unEdit")
       .row
         label.col-xs-2.control-label 企业全称
         .col-xs-5
@@ -61,3 +61,7 @@ block content
         label.col-xs-2.control-label 电子邮箱
         .col-xs-2
           input.form-control(type="text" name ="email" ng-model="info.email" ng-disabled="unEdit")
+      .row
+        label.col-xs-2.control-label 简介
+        .col-xs-5
+          input.form-control(type="textarea" name ="brief" ng-model="info.brief" ng-disabled="unEdit")

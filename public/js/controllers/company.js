@@ -30,6 +30,7 @@ companyApp.controller('GroupListController', ['$scope','$http', function($scope,
     });
 }]);
 
+
 //企业提交申请信息,这里也要改成ajax的
 companyApp.controller('RegisterController', ['$scope', 'PCSelector',
     function($scope, PCSelector) {

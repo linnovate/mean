@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
     CompanyGroup = mongoose.model('CompanyGroup');
 
 
-exports.saveGroups = function(req,res){
+exports.saveGroups = function(req,res) {
     res.send('save');
    /* var _length =req.body.group.length();
     for(var _i=0;_i<_length;_i++){
@@ -55,7 +55,7 @@ exports.saveGroups = function(req,res){
     });*/
 };
 
-exports.getGroups = function(req,res){
+exports.getGroups = function(req,res) {
   Group.find(null,function(err,group){
       if (err) {
           res.status(400).send([]);
@@ -72,6 +72,34 @@ exports.getGroups = function(req,res){
 };
 
 
+exports.getAccount =function(req,res) {
+
+};
+
+exports.getInfo =function(req,res) {
+
+};
+
+exports.Info =function(req,res) {
+    if(req.session.cpname != null || req.session.username != null ) {
+        res.render('group/group_info', {
+            title: '小组信息管理'
+        });
+    }
+    else
+        res.redirect('/users/signin');
+};
+
+exports.saveAccount =function(req,res) {
+
+};
+
+exports.saveInfo =function(req,res) {
+
+};
+
+
+//返回公司组件的所有数据,待前台调用
 exports.getCompanyGroups = function(req, res) {
 
   var company_id = req.session.cid;
@@ -79,30 +107,26 @@ exports.getCompanyGroups = function(req, res) {
   if(param_id) {
     company_id = param_id;
   }
-  console.log(param_id);
   CompanyGroup.find({cid: company_id}, function(err, company_groups) {
     if (err) {
       return res.status(404).send([]);
     } else {
-      /*var groups = [];
-      for(var i = 0, length = company_group.length; i < length; i++) {
-        if(detail === 'false' | detail == null) {
-          groups.push({'id': company_group[i].group.gid,
-          'type': company_group[i].group.group_type, 'select':'0'});
-        } else if (detail === 'true') {
-          groups.push({
-            'id': company_group[i].group.gid,
-            'type': company_group[i].group.group_type,
-            'member_num':'33',
-            'name':'长跑队',
-            'score':897,
-            'leader':'暂无'
-          });
-        }
-      }*/
       return res.send(company_groups);
     }
   });
 
 };
+
+exports.group = function(req, res, next, id) {
+  Company
+        .findOne({
+            _id: id
+        })
+        .exec(function(err, company) {
+            if (err) return next(err);
+            if (!company) return next(new Error('Failed to load Company ' + id));
+            req.profile = company;
+            next();
+        });
+}
 
