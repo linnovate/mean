@@ -10,5 +10,11 @@ module.exports = function(app) {
   app.get('/group/savegroups',group.saveGroups);
   app.get('/group/getCompanyGroups/:detail', group.getCompanyGroups);
 
+    app.get('/group/getAccount', group.getAccount);
+    app.get('/group/getInfo', group.getInfo);
+    app.get('/group/info', group.Info);
+
+    app.post('/group/saveAccount', group.saveAccount);
+    app.post('/group/saveInfo', group.saveInfo);
 
 };
