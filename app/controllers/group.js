@@ -71,7 +71,7 @@ exports.getGroups = function(req,res) {
   });
 };
 
-<<<<<<< HEAD
+
 exports.getAccount =function(req,res) {
 
 };
@@ -99,8 +99,8 @@ exports.saveInfo =function(req,res) {
 };
 
 
-=======
 
+//返回公司组件的所有数据,待前台调用
 exports.getCompanyGroups = function(req, res) {
 
   var company_id = req.session.cid;
@@ -137,4 +137,3 @@ exports.getCompanyGroups = function(req, res) {
 
 };
 
->>>>>>> 6ebd04ed3daa1cae8b188b1e27fe96e1ecca9047
