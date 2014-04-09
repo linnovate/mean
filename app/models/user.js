@@ -35,7 +35,6 @@ var UserSchema = new Schema({
 
     nickname: String,
     realname: String,
-    company_id: String,
     department: String,
     position: String,
     sex: {

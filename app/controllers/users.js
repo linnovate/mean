@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
     Company = mongoose.model('Company'),
     encrypt = require('../middlewares/encrypt'),
     mail = require('../services/mail'),
+    CompanyGroup = mongoose.model('CompanyGroup'),
     config = require('../config/config');
 
 
@@ -84,7 +85,7 @@ exports.dealActive = function(req, res) {
                     if(req.body.domain === company.email.domain[i]) {
                         var user = new User();
                         user.email = req.body.host + '@' + req.body.domain;
-                        user.company_id = company._id;
+                        user.cid = company.id;
                         user.id = company.id + Date.now().toString(32) + Math.random().toString(32);
                         user.save(function(err) {
                             if (err) {
@@ -177,6 +178,16 @@ exports.dealSelectGroup = function(req, res) {
             user.save(function(err){
                 if(err){
                     console.log(err);
+                }
+                for( var i = 0; i < user.gid.length; i ++) {
+                    CompanyGroup.findOne({'cid':user.cid,'group.gid':user.gid[i]}, function(err, company) {
+                        company.group.member.push(user.id);
+                        company.save(function(err){
+                            if(err){
+                                console.log(err);
+                            }
+                        });
+                    });
                 }
             });
             res.redirect('/users/finishRegister');
