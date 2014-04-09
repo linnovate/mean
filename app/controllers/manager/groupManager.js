@@ -2,15 +2,23 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    encrypt = require('../middlewares/encrypt'),
+    encrypt = require('../../middlewares/encrypt'),
     CompanyGroup = mongoose.model('CompanyGroup'),
     GroupMessage = mongoose.model('GroupMessage'),
     Campaign = mongoose.model('Campaign'),
     User = mongoose.model('User'),
-    Comapny = mogoose.model('Company'),
-    config = require('../config/config');
+    Comapny = mongoose.model('Company'),
+    config = require('../../config/config');
 
 
+
+
+
+exports.groupManager = function (req, res) {
+  res.render('users/group_manager/manager', {
+        title: '小组管理'
+    });
+};
 //组长发布一个活动(只能是一个企业)
 
 exports.sponsor = function (req, res) {
@@ -120,12 +128,14 @@ exports.list = function (req, res) {
             'poster_account':campaign[i].campaign.poster.username,
             'poster_name':campaign[i].campaign.poster.realname,
             'content':campaign[i].campaign.content,
-            'create_time':req.body.create_time;
-            'start_time':req.body.start_time;
-            'end_time':req.body.end_time;
+            'create_time':req.body.create_time,
+            'start_time':req.body.start_time,
+            'end_time':req.body.end_time
           });
         }
       }
       res.send(campaigns);
   });
-}
+};
+
+

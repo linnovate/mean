@@ -2,6 +2,19 @@
 
 extends ../../layouts/company
 block headExt
-  link(rel="stylesheet" href="/css/views/group_select.css")
+
 block content
-  div(ng-app='company' id='confirm' ng-view )
+  .row 小组导航头
+  .row
+    .col-md-6
+      .row 小组管理标题
+      .row(ng-app='list' id='list' ng-view) 列表
+    .col-md-6
+      .row 小组陈列标题
+      .row 小组陈列
+  .row
+    .col-md-6
+      .row 小组照片
+    .col-md-6
+      .row 小组成员标题
+      .row 小组成员
