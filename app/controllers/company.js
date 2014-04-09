@@ -122,7 +122,7 @@ exports.groupSelect = function(req, res) {
                     });
                 }
             });
-            res.send('ok');
+            res.send({'result':1,'msg':'组件选择成功！'});
         } else {
 
         }
@@ -196,7 +196,7 @@ exports.create = function(req, res, next) {
                 case 11000:
                     break;
                 case 11001:
-                    res.status(400).send('该公司已经存在!');
+                    res.status(400).send({'result':0,'msg':'该公司已经存在!'});
                     break;
                 default:
                     break;
@@ -232,7 +232,7 @@ exports.createDetail = function(req, res, next) {
             req.session.cpname = req.body.username;
             req.session.role = 'HR';
 
-            res.send('ok');
+            res.send({'result':1,'msg':'创建成功！'});
             //console.log('创建成功');
         } else {
             res.render('company/validate/create_detail', {
@@ -256,46 +256,53 @@ exports.Info = function(req, res){
 };
 
 exports.getAccount = function(req, res) {
+    console.log(req.session.cpname);
     if(req.session.cpname != null) {
-        Company.findOne({id: req.session.cpname}, {"_id":0,"username": 1,"register_date":1},function(err, _company) {
+        console.log("cc");
+        Company.findOne({username: req.session.cpname}, {"_id":0,"username": 1,"login_email":1, "register_date":1},function(err, _company) {
             if (err) {
-                console.log('错误');
-                res.send("error");
+                res.send({'result':0,'msg':'数据查询失败！'});
                 return;
             }
             if(_company) {
+                console.log(_company);
                 res.send({
                     company: _company
                 });
+                return;
             }
         });
     }
-    else
-        res.send("error");
+    else {
+        res.send({'result':0,'msg':'您未登录！'});
+    }
+
 };
 
 exports.getInfo = function(req, res) {
+    console.log(req.session.cpname);
     if(req.session.cpname != null) {
-        Company.findOne({id: req.session.cpname}, {"_id":0,"info": 1},function(err, _company) {
+        Company.findOne({username: req.session.cpname}, {"_id":0,"info": 1},function(err, _company) {
             if (err) {
-                console.log('错误');
-                res.send("error");
+                res.send({'result':0,'msg':'数据查询失败！'});
                 return;
             }
             if(_company) {
                 res.send({
+                    'result':0,
                     info: _company.info
                 });
+                return;
             }
         });
     }
     else
-        res.send("error");
+        res.send({'result':0,'msg':'您未登录！'});
 };
 
 exports.saveAccount = function(req, res) {
     if(req.session.cpname != null) {
-        Company.findOne({id : req.session.cpname}, function(err, company) {
+        Company.findOne({username : req.session.cpname}, function(err, company) {
             if (err) {
                 console.log('数据错误');
                 res.send({'result':0,'msg':'数据查询错误'});
@@ -322,7 +329,7 @@ exports.saveAccount = function(req, res) {
 
 exports.saveInfo = function(req, res) {
     if(req.session.cpname != null) {
-        Company.findOne({id : req.session.cpname}, function(err, company) {
+        Company.findOne({username : req.session.cpname}, function(err, company) {
             if (err) {
                 console.log('数据错误');
                 res.send({'result':0,'msg':'数据查询错误'});

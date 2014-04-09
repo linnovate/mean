@@ -71,7 +71,6 @@ exports.getGroups = function(req,res) {
   });
 };
 
-<<<<<<< HEAD
 exports.getAccount =function(req,res) {
 
 };
@@ -97,9 +96,6 @@ exports.saveAccount =function(req,res) {
 exports.saveInfo =function(req,res) {
 
 };
-
-
-=======
 
 exports.getCompanyGroups = function(req, res) {
 
@@ -135,4 +131,15 @@ exports.getCompanyGroups = function(req, res) {
 
 };
 
->>>>>>> 6ebd04ed3daa1cae8b188b1e27fe96e1ecca9047
+exports.group = function(req, res, next, id) {
+  Company
+        .findOne({
+            _id: id
+        })
+        .exec(function(err, company) {
+            if (err) return next(err);
+            if (!company) return next(new Error('Failed to load Company ' + id));
+            req.profile = company;
+            next();
+        });
+}
