@@ -75,20 +75,21 @@ exports.getGroups = function(req,res){
 exports.getCompanyGroups = function(req, res) {
 
   var company_id = req.session.cid;
-  var param = req.param.detail;
-
-  company_id = '18l2ehk9s0.sh99jp';
-
-  CompanyGroup.find({cid: company_id}, function(err, company_group) {
+  var param_id = req.params.id;
+  if(param_id) {
+    company_id = param_id;
+  }
+  console.log(param_id);
+  CompanyGroup.find({cid: company_id}, function(err, company_groups) {
     if (err) {
       return res.status(404).send([]);
     } else {
-      var groups = [];
+      /*var groups = [];
       for(var i = 0, length = company_group.length; i < length; i++) {
-        if(!param) {
+        if(detail === 'false' | detail == null) {
           groups.push({'id': company_group[i].group.gid,
           'type': company_group[i].group.group_type, 'select':'0'});
-        } else {
+        } else if (detail === 'true') {
           groups.push({
             'id': company_group[i].group.gid,
             'type': company_group[i].group.group_type,
@@ -98,9 +99,8 @@ exports.getCompanyGroups = function(req, res) {
             'leader':'暂无'
           });
         }
-      }
-      console.log(groups);
-      return res.send(groups);
+      }*/
+      return res.send(company_groups);
     }
   });
 

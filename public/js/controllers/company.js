@@ -72,12 +72,15 @@ companyApp.controller('GroupsController',['$http',function($http) {
         //TODO:更改对话框
         alert('组件获取失败！');
     });
-    this.gid =[];
+    this.selected_groups =[];
     this.group_next = function() {
-        _this.gid.length = 0;
+        _this.selected_groups.length = 0;
         angular.forEach(_this.groups, function(value, key) {
             if(value.select === '1') {
-                _this.gid.push(value.id);
+                _this.selected_groups.push({
+                    'gid': value.id,
+                    'group_type': value.type
+                });
             }
         });
         try{
@@ -85,7 +88,7 @@ companyApp.controller('GroupsController',['$http',function($http) {
                 method : 'post',
                 url : '/company/groupSelect',
                 data : {
-                    gid : _this.gid
+                    'selected_groups' : _this.selected_groups
                 }
             }).success(function(data, status) {
                 //TODO:更改对话框

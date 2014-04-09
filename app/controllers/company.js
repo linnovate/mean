@@ -92,7 +92,8 @@ exports.groupList = function(req, res) {
     });
 };
 exports.groupSelect = function(req, res) {
-    if(req.body.gid == undefined){
+    var selected_groups = req.body.selected_groups;
+    if(selected_groups == undefined){
         return  res.redirect('/company/signup');
     }
 
@@ -102,24 +103,27 @@ exports.groupSelect = function(req, res) {
                 console.log('不存在公司');
                 return;
             }
-            company.gid = req.body.gid;
+
+            for (var i = 0, length = selected_groups.length; i < length; i++) {
+                company.gid.push(selected_groups[i].gid);
+                var companyGroup = new CompanyGroup();
+                companyGroup.cid = req.session.company_id;
+                companyGroup.group.gid = selected_groups[i].gid;
+                companyGroup.group.group_type = selected_groups[i].group_type;
+
+                companyGroup.save(function (err){
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+            }
 
             company.save(function (s_err){
                 if(s_err){
                     console.log(s_err);
                 }
 
-                for ( var i = 0; i < req.body.gid.length; i ++) {
-                    var companyGroup = new CompanyGroup();
-                    companyGroup.cid = req.session.company_id;
-                    companyGroup.group.gid = req.body.gid[i];
 
-                    companyGroup.save(function (err){
-                        if (err) {
-                            console.log(err);
-                        }
-                    });
-                }
             });
             res.send('ok');
         } else {

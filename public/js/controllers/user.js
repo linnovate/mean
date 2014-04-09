@@ -5,6 +5,10 @@ var userApp = angular.module('user', []);
 userApp.controller('GroupsController', ['$scope','$http', function($scope, $http) {
     $http.get('/group/getCompanyGroups').success(function(data, status) {
         $scope.groups = data;
+        for(var i = 0, length = $scope.groups.length; i < length; i++) {
+            $scope.groups[i].select = '0';
+        }
+        console.log($scope.groups);
     }).error(function(data,status) {
         alert('组件获取失败！');
     });
@@ -13,7 +17,7 @@ userApp.controller('GroupsController', ['$scope','$http', function($scope, $http
         $scope.selected.length = 0;
         angular.forEach($scope.groups, function(value, key) {
             if(value.select === '1') {
-                $scope.selected.push(value.type);
+                $scope.selected.push(value.group.group_type);
             }
         });
         try {

@@ -92,8 +92,53 @@ var _group =[
             _group.forEach(function (value) {
                 db.groups.insert(value);
             });
-        }
-        catch (e){
-          print(e);
+        } catch (e){
+            print(e);
         }
 
+// insert to companygroups for test
+var user = db.users.findOne();
+var company = db.companies.findOne();
+
+var gm1 = {
+  group: {
+    gid: "1",
+    group_type: "足球"
+  },
+  active: true,
+  date: "20140401",
+  poster: {
+    cid: company.id,
+    uid: user.id,
+    cname: company.info.name,
+    realname: user.realname,
+    username: user.username,
+    role: {
+      type: "LEADER"
+    }
+  },
+  content: "足球比赛"
+};
+
+var gm2 = {
+  group: {
+    gid: "4",
+    group_type: "游泳"
+  },
+  active: true,
+  date: "20140401",
+  poster: {
+    cid: company.id,
+    uid: user.id,
+    cname: company.info.name,
+    realname: user.realname,
+    username: user.username,
+    role: {
+      type: "LEADER"
+    }
+  },
+  content: "搏击大海"
+};
+
+db.groupmessages.insert(gm1);
+db.groupmessages.insert(gm2);
