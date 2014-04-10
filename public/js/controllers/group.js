@@ -5,17 +5,16 @@
 var groupApp = angular.module('group', []);
 
 //小组发布活动
-groupApp.controller('GroupCampaignSponsorController', ['$http', function($http) {
-    var _this = this;
-    this.sponsor = function() {
+groupApp.controller('GroupCampaignSponsorController', ['$scope','$http', function ($scope, $http) {
+    $scope.sponsor = function() {
         try{
             $http({
                 method: 'post',
                 url: '/group/campaignSponsor',
                 data:{
-                    content : _this.content,
-                    start_time : _this.start_time,
-                    end_time : _this.end_time
+                    content : $scope.content,
+                    start_time : $scope.start_time,
+                    end_time : $scope.end_time
                 }
             }).success(function(data, status) {
                 //发布活动后跳转到显示活动列表页面
@@ -35,7 +34,7 @@ groupApp.controller('GroupCampaignSponsorController', ['$http', function($http) 
 
 
 //小组信息表单
-groupApp.controller('InfoFormController',['$scope','$http',function($scope, $http) {
+groupApp.controller('InfoFormController',['$scope','$http',function ($scope, $http) {
   $scope.unEdit = true;
   $scope.buttonStatus = "编辑>";
   $scope.editToggle = function() {

@@ -299,6 +299,7 @@ exports.joinCampaign = function (req, res) {
           console.log('没有此活动!');
       }
   });
+  res.send("ok");
 };
 
 
@@ -329,5 +330,6 @@ exports.quitCampaign = function (req, res) {
           console.log('没有此活动!');
       }
   });
+  res.send("ok");
 };
 

@@ -22,17 +22,16 @@ companyApp.config(['$routeProvider',function ($routeProvider) {
 
 
 //企业发布活动
-companyApp.controller('CompanyCampaignSponsorController', ['$http', function($http) {
-    var _this = this;
-    this.sponsor = function() {
+companyApp.controller('CompanyCampaignSponsorController', ['$scope', '$http', function($scope, $http) {
+   $scope.sponsor = function() {
         try{
             $http({
                 method: 'post',
                 url: '/company/campaignSponsor',
                 data:{
-                    content : _this.content,
-                    start_time : _this.start_time,
-                    end_time : _this.end_time
+                    content : $scope.content,
+                    start_time : $scope.start_time,
+                    end_time : $scope.end_time
                 }
             }).success(function(data, status) {
                 //发布活动后跳转到显示活动列表页面

@@ -377,7 +377,11 @@ exports.company = function(req, res, next, id) {
         });
 };
 
-
+exports.showSponsor = function (req, res) {
+    res.render('company/company_campaign_sponsor', {
+        title: '企业活动发布'
+    });
+};
 //HR发布一个活动(可能是多个企业)
 exports.sponsor = function (req, res) {
 
@@ -467,13 +471,14 @@ exports.sponsor = function (req, res) {
 
           groupMessage.save(function(err) {
             if (err) {
-              //错误信息
+              res.send(err);
               return;
             }
           });
         });
       } else {
-          //查无此人
+          res.send(" usernot exist");
       }
   });
+    res.send("ok");
 };

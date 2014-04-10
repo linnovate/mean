@@ -2,11 +2,11 @@ extends ../layouts/default
 
 block content
 
-h1(ng-app="user" ng-controller="CampaignController") 活动列表
+div(ng-app="user" ng-controller="CampaignController") 活动列表
   ul
     each campaign in campaigns
       li
-        h3= 参加活动人数: campaign.campaign.member.length;
+        h3= '参加活动人数:' + campaign.campaign.member.length
         h2= campaign.campaign.content
         p= '创建时间' + campaign.create_time
         p= '开始时间' + campaign.start_time

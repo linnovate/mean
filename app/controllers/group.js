@@ -137,10 +137,13 @@ exports.getCompanyGroups = function(req, res) {
   if(param_id) {
     company_id = param_id;
   }
+  //console.log(company_id);
   CompanyGroup.find({cid: company_id}, function(err, company_groups) {
     if (err) {
+      //console.log(err);
       return res.status(404).send([]);
     } else {
+      //console.log(company_groups);
       return res.send(company_groups);
     }
   });
@@ -161,7 +164,11 @@ exports.group = function(req, res, next, id) {
     });
 };
 
-
+exports.showSponsor = function (req, res) {
+    res.render('group/group_campaign_sponsor', {
+        title: '小组活动发布'
+    });
+};
 
 //组长发布一个活动(只能是一个企业)
 exports.sponsor = function (req, res) {
@@ -172,7 +179,6 @@ exports.sponsor = function (req, res) {
   var group_type = req.body.group_type; //组件类型,和id一一对应
   var content = req.body.content;//活动内容
   var cname = '';
-
 
   User.findOne({
         id : uid
@@ -241,14 +247,15 @@ exports.sponsor = function (req, res) {
 
           groupMessage.save(function(err) {
             if (err) {
-              //错误信息
+              res.send(err);
               return;
             }
           });
         });
       } else {
-          //查无此人
+          res.send("user not exist");
       }
   });
+  res.send("ok");
 };
 
