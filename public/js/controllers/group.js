@@ -12,6 +12,8 @@ groupApp.controller('GroupCampaignSponsorController', ['$scope','$http', functio
                 method: 'post',
                 url: '/group/campaignSponsor',
                 data:{
+                    gid : $scope.gid,
+                    group_type: $scope.group_type,
                     content : $scope.content,
                     start_time : $scope.start_time,
                     end_time : $scope.end_time

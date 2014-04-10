@@ -6,6 +6,12 @@ extends ../layouts/default
 block content
   div(ng-app="group" ng-controller="GroupCampaignSponsorController")
     .row
+      label.col-xs-2.control-label 小组ID
+      .col-xs-5
+        input.form-control(type="text" name ="gid" ng-model="gid" )
+      label.col-xs-2.control-label 小组类型
+      .col-xs-5
+        input.form-control(type="text" name ="group_type" ng-model="group_type" )
       label.col-xs-2.control-label 小组活动内容
       .col-xs-5
         input.form-control(type="text" name ="content" ng-model="content" )

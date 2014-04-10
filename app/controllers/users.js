@@ -316,9 +316,9 @@ exports.quitCampaign = function (req, res) {
       if (campaign) {
 
         //删除该员工信息
-        for( var i = 0; i < campaign.member.length; i ++) {
-          if (campaign.member[i].uid === uid) {
-            campaign.member.splice(i,1);
+        for( var i = 0; i < campaign.campaign.member.length; i ++) {
+          if (campaign.campaign.member[i].uid === uid) {
+            campaign.campaign.member.splice(i,1);
             break;
           }
         }

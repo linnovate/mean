@@ -9,6 +9,7 @@ mixin campaign_list(campaigns)
           p= '创建时间' + campaign.create_time
           p= '开始时间' + campaign.start_time
           p= '结束时间' + campaign.end_time
+          p= '是否已经参加该活动' + status ? '是' : '否'
           button.next.btn.btn-primary.btn-lg.center-block(ng-click="join(#{campaign.id})") 参加
           button.next.btn.btn-primary.btn-lg.center-block(ng-click="quit(#{campaign.id})") 退出
 append footExt
