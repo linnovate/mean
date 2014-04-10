@@ -37,7 +37,8 @@ module.exports = function(app, passport) {
     app.post('/company', company.create);// 提交公司申请信息
     app.post('/company/createDetail', company.createDetail);// 验证通过后进一步提交公司注册信息
 
-
+    //企业发布活动
+    app.post('/company/campaignSponsor', company.sponsor);
     // Setting up the companyId param
     app.param('companyId', company.company);
 };

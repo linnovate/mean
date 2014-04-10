@@ -21,6 +21,34 @@ companyApp.config(['$routeProvider',function ($routeProvider) {
 }]);
 
 
+//企业发布活动
+companyApp.controller('CompanyCampaignSponsorController', ['$http', function($http) {
+    var _this = this;
+    this.sponsor = function() {
+        try{
+            $http({
+                method: 'post',
+                url: '/company/campaignSponsor',
+                data:{
+                    content : _this.content,
+                    start_time : _this.start_time,
+                    end_time : _this.end_time
+                }
+            }).success(function(data, status) {
+                //发布活动后跳转到显示活动列表页面
+                window.location.href = '/comapny/campaign';
+
+            }).error(function(data, status) {
+                //TODO:更改对话框
+                alert("数据发生错误！");
+            });
+        }
+        catch(e){
+            console.log(e);
+        }
+    };
+}]);
+
 //企业组建列表
 companyApp.controller('GroupListController', ['$scope','$http', function($scope, $http) {
     $http.get('/group/getCompanyGroups/true').success(function(data, status) {

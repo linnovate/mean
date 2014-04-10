@@ -278,3 +278,57 @@ exports.dealEditInfo = function(req, res) {
         }
     });
 };
+
+
+
+//员工参加活动
+exports.joinCampaign = function (req, res) {
+  var cid = req.params.cid;
+  var gid = req.params.gid;
+  var uid = req.params.uid;
+  var campaign_id = req.params.compaign_id; //该活动的id
+  Campaign.findOne({
+        id : campaign_id
+    },
+    function (err, campaign) {
+      if (campaign) {
+        campaign.campaign.member.push({'cid':cid, 'gid':gid, 'uid':uid});
+        campaign.save(function (err) {
+          console.log(err);
+        });
+      } else {
+          console.log('没有此活动!');
+      }
+  });
+};
+
+
+//员工退出活动
+exports.joinCampaign = function (req, res) {
+  var cid = req.params.cid;
+  var gid = req.params.gid;
+  var uid = req.params.uid;
+  var campaign_id = req.params.compaign_id; //该活动的id
+  Campaign.findOne({
+        id : campaign_id
+    },
+    function (err, campaign) {
+      if (campaign) {
+
+        //删除该员工信息
+        for( var i = 0; i < campaign.member.length; i ++) {
+          if (campaign.member[i].uid === uid) {
+            campaign.member.splice(i,1);
+            break;
+          }
+        }
+
+        campaign.save(function (err) {
+          console.log(err);
+        });
+      } else {
+          console.log('没有此活动!');
+      }
+  });
+};
+

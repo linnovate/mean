@@ -3,7 +3,6 @@
 // group routes use group controller
 var group = require('../controllers/group');
 
-var group_manager = require('../controllers/manager/groupManager');
 
 module.exports = function(app) {
   app.get('/group/getgroups',group.getGroups);
@@ -20,5 +19,9 @@ module.exports = function(app) {
 
   app.post('/group/saveAccount', group.saveAccount);
   app.post('/group/saveInfo', group.saveInfo);
+
+
+  //小组发布活动
+  app.post('/group/campaignSponsor', group.sponsor);
   app.param('groupId',group.group);
 };
