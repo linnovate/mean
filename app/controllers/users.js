@@ -37,6 +37,7 @@ exports.signout = function(req, res) {
  */
 exports.loginSuccess = function(req, res) {
     req.session.username = req.body.username;
+    req.session.cid = req.user.cid;
     res.redirect('/users/editInfo');
 };
 
@@ -284,7 +285,7 @@ exports.joinCampaign = function (req, res) {
   var cid = req.session.cid;
   var gid = req.session.gid;
   var uid = req.session.uid;
-  var campaign_id = req.body.compaign_id; //该活动的id
+  var campaign_id = req.body.campaign_id; //该活动的id
   Campaign.findOne({
         id : campaign_id
     },
@@ -306,7 +307,7 @@ exports.quitCampaign = function (req, res) {
   var cid = req.session.cid;
   var gid = req.session.gid;
   var uid = req.session.uid;
-  var campaign_id = req.body.compaign_id; //该活动的id
+  var campaign_id = req.body.campaign_id; //该活动的id
   Campaign.findOne({
         id : campaign_id
     },

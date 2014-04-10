@@ -53,10 +53,8 @@ block personal
     button.btn.btn-primary(type="submit") 保存
 
 block aside
-  h1 小组列表
-  ul
-    each gid in user.gid
-      li= gid
+  include ../partials/group_thumbnail
+  +group_thumbnail(user.gid)
 
 block dynamic
   h1 动态列表
