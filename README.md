@@ -116,7 +116,7 @@ If you are using node instead of grunt, it is very similar:
   * [The AngularJs Views Folder](public/articles/views) - Where we keep our CRUD views.
 
 ## Heroku Quick Deployment
-Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed and an accessible mongo db instance - you can try <a href="http://www.mongohq.com/">mongohq</a> which have an easy setup )
+Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed and an accessible mongo db instance - you can try <a href="http://www.mongohq.com/">mongohq</a> which has an easy setup.
 
 ```bash
 git init
