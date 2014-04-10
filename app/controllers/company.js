@@ -392,8 +392,11 @@ exports.sponsor = function (req, res) {
     var uid = req.session.uid;    //用户id
     var gid = 0;                  //HR发布的活动,全部归在虚拟组里,虚拟组的id默认是0
     var group_type = '虚拟组';
-    var company_id = req.body.cid;//公司id数组,HR可以发布多个公司一起的的联谊或者约战活动,注意:第一个公司默认就是次hr所在的公司!
+    var company_in_campaign = req.body.company_in_campaign;//公司id数组,HR可以发布多个公司一起的的联谊或者约战活动,注意:第一个公司默认就是次hr所在的公司!
 
+    if(company_in_campaign == undefined) {
+        company_in_campaign = [cid];
+    }
     var content = req.body.content;//活动内容
 
     var cname = '';
@@ -410,7 +413,7 @@ exports.sponsor = function (req, res) {
     campaign.campaign.gid.push(gid);
     campaign.campaign.group_type.push(group_type);
 
-    campaign.campaign.cid = company_id; //一定要和cid区分开啊
+    campaign.campaign.cid = company_in_campaign; //一定要和cid区分开啊,这是参加活动蛋所有公司的id
 
     campaign.id = Date.now().toString(32) + Math.random().toString(32) + '0';
     campaign.campaign.poster.cname = cname;

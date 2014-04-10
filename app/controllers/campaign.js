@@ -24,8 +24,8 @@ exports.getCompanyCampaign = function(req, res) {
       }
       return res.render('partials/campaign_list',
         {title: '企业活动列表',
-          campaigns: campaigns
-          status : join;   //uid所对应成员是否已经参加该活动
+          campaigns: campaigns,
+          status : join //uid所对应成员是否已经参加该活动
       });
     }
   });
@@ -54,8 +54,8 @@ exports.getGroupCampaign = function(req, res) {
       }
       return res.render('partials/campaign_list',
         {title: '小组活动列表',
-          campaigns: campaigns
-          status : join;   //uid所对应成员是否已经参加该活动
+          campaigns: campaigns,
+          status : join //uid所对应成员是否已经参加该活动
       });
     }
   });
