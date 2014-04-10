@@ -19,6 +19,9 @@ tabView.config(['$routeProvider', '$locationProvider',
         templateUrl: '/users/editInfo',
         controller: 'AccountFormController',
         controllerAs: 'account'
+      }).
+      otherwise({
+        redirectTo: '/group_message'
       });
   }]);
 
