@@ -285,7 +285,7 @@ exports.joinCampaign = function (req, res) {
   var cid = req.session.cid;
   var gid = req.session.gid;
   var uid = req.session.uid;
-  var campaign_id = req.session.compaign_id; //该活动的id
+  var campaign_id = req.body.campaign_id; //该活动的id
   Campaign.findOne({
         id : campaign_id
     },
@@ -303,11 +303,11 @@ exports.joinCampaign = function (req, res) {
 
 
 //员工退出活动
-exports.joinCampaign = function (req, res) {
+exports.quitCampaign = function (req, res) {
   var cid = req.session.cid;
   var gid = req.session.gid;
   var uid = req.session.uid;
-  var campaign_id = req.session.compaign_id; //该活动的id
+  var campaign_id = req.body.campaign_id; //该活动的id
   Campaign.findOne({
         id : campaign_id
     },
