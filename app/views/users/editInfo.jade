@@ -57,20 +57,9 @@ block aside
   +group_thumbnail(user.gid)
 
 block dynamic
-  h1 动态列表
-  ul
-    each group_message in group_messages
-      li
-        h2= group_message.content
-        p= '小组类型：' + group_message.group.group_type
-        p= '发起人：' + group_message.poster.username
+  include ../partials/groupMessage_list
+  +groupMessage_list(group_messages)
 
 block schedule
-  h1 活动列表
-  ul
-    each campaign in campaigns
-      li
-        h2= campaign.campaign.content
-        p= '创建时间' + campaign.create_time
-        p= '开始时间' + campaign.start_time
-        p= '结束时间' + campaign.end_time
+  include ../partials/campaign_list
+  +campaign_list(campaigns)

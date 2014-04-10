@@ -1,8 +1,5 @@
-extends ../layouts/default
-
-block content
-
-h1 状态列表
+mixin groupMessage_list(group_messages)
+  h1 状态列表
   ul
     each group_message in group_messages
       li
