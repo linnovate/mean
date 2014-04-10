@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
 //返回公司动态消息的所有数据,待前台调用
 exports.getCompanyMessage = function(req, res) {
 
-  var cid = req.params.cid;//根据公司id取出该公司的动态消息(公司id是参数传进来的)
+  var cid = req.session.cid;//根据公司id取出该公司的动态消息(公司id是参数传进来的)
 
   //公司的动态消息都归在虚拟组里
   GroupMessage.find({'poster.cid' : cid , 'group.gid[0]' : 0}, function(err, group_messages) {
@@ -31,8 +31,8 @@ exports.getCompanyMessage = function(req, res) {
 //返回小组动态消息
 exports.getGroupMessage = function(req, res) {
 
-  var cid = req.params.cid;//根据公司id取出该公司的所有活动(公司id是参数传进来的)
-  var gid = req.params.gid;//必须是数字类型哦,必要的时候要用parseInt()转换
+  var cid = req.session.cid;//根据公司id取出该公司的所有活动(公司id是参数传进来的)
+  var gid = req.session.gid;//必须是数字类型哦,必要的时候要用parseInt()转换
 
   //有包含gid的消息都列出来
   GroupMessage.find({'poster.cid' : cid, 'gid' : {'$all':[gid]}}, function(err, group_messages) {
