@@ -9,12 +9,12 @@ exports.getCompanyCampaign = function(req, res) {
   var cid = req.params.cid;//根据公司id取出该公司的所有活动(公司id是参数传进来的)
 
   //公司发布的活动都归在虚拟组 gid = 0 里
-  Campaign.find({'poster.cid' : cid, 'group.gid[0]' : 0}, function(err, campaign) {
+  Campaign.find({'poster.cid' : cid, 'group.gid[0]' : 0}, function(err, campaigns) {
     if (err) {
       console.log(err);
       return res.status(404).send([]);
     } else {
-      return res.send(campaign);
+      return res.send(campaigns);
     }
   });
 };
@@ -27,12 +27,12 @@ exports.getGroupCampaign = function(req, res) {
   var gid = req.params.gid;//必须是数字类型哦,必要的时候要用parseInt()转换
 
   //有包含gid的活动都列出来
-  Campaign.find({'poster.cid' : cid, 'gid' : {'$all':[gid]}}, function(err, campaign) {
+  Campaign.find({'poster.cid' : cid, 'gid' : {'$all':[gid]}}, function(err, campaigns) {
     if (err) {
       console.log(err);
       return res.status(404).send([]);
     } else {
-      return res.send(campaign);
+      return res.send(campaigns);
     }
   });
 };

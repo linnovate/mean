@@ -33,7 +33,6 @@ exports.joinCampaign = function (req, res) {
 };
 
 
-
 //员工退出活动
 exports.joinCampaign = function (req, res) {
   var cid = req.params.cid;
