@@ -1,7 +1,7 @@
 {
   "name": "mean",
   "description": "MEAN.io: A fullstack javascript platformed powerd by MongoDB, ExpressJS, AngularJS, NodeJS.",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "private": false,
   "author": "Linnovate <mean@linnovate.net>",
   "contributors": [
@@ -37,7 +37,7 @@
     "grunt-cli": "^0.1.13",
     "lodash": "^2.4.1",
     "mean-logger": "0.0.1",
-    "meanio": ">=0.3.18",
+    "meanio": "0.4.x",
     "mongoose": "^3.8.3",
     "passport": "^0.1.18",
     "passport-facebook": "^1.0.2",
