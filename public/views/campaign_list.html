@@ -1,0 +1,12 @@
+<div>
+  <h1>活动列表</h1>
+  <ul>
+    <li ng-repeat="campaign in campaign.campaigns">
+      <h2>{{ campaign.campaign.content }}</h2>
+      <p>参加活动人数：{{ campaign.campaign.member.length }}</p>
+      <p>创建时间：{{ campaign.create_time}}</p>
+      <p>开始时间：{{ campaign.start_time }}</p>
+      <p>结束时间：{{ campaign.end_time }}</p>
+    </li>
+  </ul>
+</div>

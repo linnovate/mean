@@ -9,6 +9,11 @@ tabView.config(['$routeProvider', '$locationProvider',
         templateUrl: '/views/group_message_list.html',
         controller: 'GroupMessageController',
         controllerAs: 'messages'
+      })
+      .when('/schedule', {
+        templateUrl: '/views/campaign_list.html',
+        controller: 'CampaignListController',
+        controllerAs: 'campaign'
       });
   }]);
 
@@ -20,3 +25,10 @@ tabView.controller('GroupMessageController', ['$http',
     });
 }]);
 
+tabView.controller('CampaignListController', ['$http',
+  function($http){
+    var that = this;
+    $http.get('/users/getCampaigns').success(function(data, status) {
+      that.campaigns = data;
+    });
+}]);
