@@ -40,7 +40,45 @@ userApp.controller('GroupsController', ['$scope','$http', function($scope, $http
     };
 }]);
 
+userApp.controller('CampaignController', ['$scope','$http', function($scope, $http) {
+    $scope.join = function(campaign_id) {
+        try {
+            $http({
+                method: 'post',
+                url: '/users/joinCampaign',
+                data:{
+                    campaign_id : campaign_id
+                }
+            }).success(function(data, status) {
+                alert("成功加入该活动!");
+            }).error(function(data, status) {
+                alert("数据发生错误！");
+            });
+        }
+        catch(e) {
+            console.log(e);
+        }
+    };
 
+    $scope.quit = function(campaign_id) {
+        try {
+            $http({
+                method: 'post',
+                url: '/users/quitCampaign',
+                data:{
+                    campaign_id : campaign_id
+                }
+            }).success(function(data, status) {
+                alert("您已退出该活动!");
+            }).error(function(data, status) {
+                alert("数据发生错误！");
+            });
+        }
+        catch(e) {
+            console.log(e);
+        }
+    };
+});
 //员工进入自己的组件管理页面后显示组件列表
 userApp.controller('GroupsManager', ['$scope', '$http', function($scope, $http) {
 
