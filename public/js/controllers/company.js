@@ -47,7 +47,7 @@ companyApp.controller('CompanyCampaignSponsorController', ['$scope', '$http', fu
                 }
             }).success(function(data, status) {
                 //发布活动后跳转到显示活动列表页面
-                window.location.href = '/comapny/campaign';
+                window.location.href = '/company/campaign';
 
             }).error(function(data, status) {
                 //TODO:更改对话框

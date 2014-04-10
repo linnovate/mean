@@ -18,7 +18,9 @@ module.exports = function(app) {
   app.get('/group/info', group.Info);
   app.post('/group/saveInfo', group.saveInfo);
 
-
+  //获取小组活动列表
+  app.get('/group/campaign', group.getGroupCampaign);
+  app.get('/group/groupMessage', group.getGroupMessage);
   //小组发布活动
   app.get('/group/campaignSponsor', group.showSponsor);
   app.post('/group/campaignSponsor', group.sponsor);

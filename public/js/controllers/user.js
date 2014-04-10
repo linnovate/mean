@@ -91,7 +91,7 @@ userApp.controller('CampaignController', ['$scope','$http', function($scope, $ht
             console.log(e);
         }
     };
-});
+}]);
 
    //个人信息表单
 userApp.controller('AccountFormController',['$scope','$http',function($scope, $http) {
