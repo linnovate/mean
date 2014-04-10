@@ -14,7 +14,10 @@ exports.getCompanyCampaign = function(req, res) {
       console.log(err);
       return res.status(404).send([]);
     } else {
-      return res.send(campaigns);
+      return res.render('partials/campaign_list',
+        {title: '企业活动列表',
+          campaigns: campaigns
+      });
     }
   });
 };
@@ -32,7 +35,10 @@ exports.getGroupCampaign = function(req, res) {
       console.log(err);
       return res.status(404).send([]);
     } else {
-      return res.send(campaigns);
+      return res.render('partials/campaign_list',
+        {title: '小组活动列表',
+          campaigns: campaigns
+      });
     }
   });
 };
