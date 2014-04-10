@@ -31,7 +31,6 @@ module.exports = function(app, passport) {
     app.get('/company/info', company.Info);
 
     app.post('/company/saveAccount', company.saveAccount);
-    app.post('/company/saveInfo', company.saveInfo);
 
     app.post('/company/groupSelect', company.groupSelect);
     app.post('/company', company.create);// 提交公司申请信息
