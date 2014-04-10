@@ -135,7 +135,7 @@ userApp.controller('AccountFormController',['$scope','$http',function($scope, $h
                     console.log(data);
                     //TODO:更改对话框
                     if(data.result === 1)
-                        alert("信息修改成功！");
+                        alert(data.msg);
                     else
                         alert(data.msg);
                 }).error(function(data, status) {
@@ -171,7 +171,7 @@ userApp.controller('AccountFormController',['$scope','$http',function($scope, $h
                     console.log(data);
                     //TODO:更改对话框
                     if(data.result === 1)
-                        alert("信息修改成功！");
+                        alert(data.msg);
                     else
                         alert(data.msg);
                 }).error(function(data, status) {

@@ -251,35 +251,6 @@ exports.editInfo = function(req, res) {
     });
 };
 
-exports.dealEditInfo = function(req, res) {
-    User.findOne({
-        id: req.user.id
-    },
-    function(err, user) {
-        if(err) {
-            console.log(err);
-        } else if(user) {
-            user.nickname = req.body.nickname;
-            user.realname = req.body.realname;
-            user.position = req.body.position;
-            user.sex = req.body.sex;
-            user.birthday = req.body.birthday;
-            user.bloodType = req.body.bloodType;
-            user.introduce = req.body.introduce;
-            user.save(function(err){
-                if(err) {
-                    console.log(err);
-                } else {
-                    res.render('users/message', {title: '保存成功', message: '保存成功'});
-                }
-            });
-        } else {
-            res.render('users/message', {title: '保存失败', message: '保存失败'});
-        }
-    });
-};
-
-
 
 //员工参加活动
 exports.joinCampaign = function (req, res) {
@@ -356,16 +327,16 @@ exports.getAccount = function (req, res) {
 
 //保存用户信息
 exports.saveAccount = function (req, res) {
-    User.findOne({
+    User.findOneAndUpdate({
             id : req.session.uid
-        }, function(err, user) {
+        }, req.body.user,null,function(err, user) {
             if(err) {
                 console.log(err);
                 res.send({'result':0,'msg':'数据错误'});
             }
             else {
                 if (user) {
-                    res.send({'result':1,'msg':'用户查找成功','data':user});
+                    res.send({'result':1,'msg':'修改成功'});
                 } else {
                     res.send({'result':0,'msg':'不存在该用户'});
                 }
