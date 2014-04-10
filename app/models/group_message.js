@@ -17,7 +17,10 @@ var GroupMessage = new Schema({
         group_type: Array
     },
     active: Boolean,
-    date: Date,
+    date: {
+        type: Date,
+        default: Date.now()
+    },
     poster: {
         cid: String,                  //消息发布者所属的公司
         uid: String,

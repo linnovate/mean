@@ -45,3 +45,9 @@ userApp.controller('GroupsController', ['$scope','$http', function($scope, $http
 userApp.controller('GroupsManager', ['$scope', '$http', function($scope, $http) {
 
 }]);
+
+
+//员工自己的某一小组的活动列表和操作
+userApp.controller('CampaignManager', '$scope', '$http', function($scope, $http) {
+
+}]);

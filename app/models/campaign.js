@@ -39,11 +39,12 @@ var Campaign = new Schema({
         content: String,
         member: [_member]
     },
-    create_time: Date,
+    create_time: {
+        type: Date,
+        default: Date.now()
+    },
     start_time: Date,
     end_time: Date
 });
-
-
 
 mongoose.model('Campaign', Campaign);

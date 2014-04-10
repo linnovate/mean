@@ -21,6 +21,7 @@ exports.groupManager = function (req, res) {
 };
 //组长发布一个活动(只能是一个企业)
 exports.sponsor = function (req, res) {
+
   var cid = req.session.cid;  //公司id
   var uid = req.session.uid;  //用户id
   var gid = req.body.gid;  //组件id,注意,这里是数组,因为一个组长可以管理很多组
