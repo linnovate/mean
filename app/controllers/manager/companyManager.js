@@ -51,6 +51,7 @@ exports.sponsor = function (req, res) {
           });
         }
 
+        campaign.id = Date.now().toString(32) + Math.random().toString(32) + '0';
         campaign.campaign.poster.cname = cname;
         campaign.campaign.poster.cid = cid;
         campaign.campaign.poster.uid = uid;
@@ -82,6 +83,8 @@ exports.sponsor = function (req, res) {
           //生成动态消息
 
           var groupMessage = new GroupMessage();
+
+          groupMessage.id = Date.now().toString(32) + Math.random().toString(32) + '1';
           groupMessage.group.gid.push(gid);
           groupMessage.group.group_type.push(group_type);
           groupMessage.group.active = true,
@@ -108,33 +111,3 @@ exports.sponsor = function (req, res) {
       }
   });
 };
-
-
-//生成企业活动列表(目前是显示所有活动,以后会考虑相关限制(比如只显示最近三天的活动))
-exports.list = function (req, res) {
-  Campaign.find(null,function(err,campaign){
-      if (err) {
-          res.status(400).send([]);
-          return;
-      };
-      var _length = campaign.length;
-      var campaigns = [];
-
-      for(var i = 0; i < _length; i ++){
-        //只有虚拟组的是企业活动
-        if (campaign[i].campaign.gid[0] === 0) {
-          campaigns.push({
-            'cid':campaign[i].campaign.cid,
-            'cname':campaign[i].campaign.cname,
-            'poster_account':campaign[i].campaign.poster.username,
-            'poster_name':campaign[i].campaign.poster.realname,
-            'content':campaign[i].campaign.content,
-            'create_time':req.body.create_time,
-            'start_time':req.body.start_time,
-            'end_time':req.body.end_time
-          });
-        }
-      }
-      res.send(campaigns);
-  });
-}

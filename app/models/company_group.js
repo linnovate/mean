@@ -20,7 +20,6 @@ var CompanyGroup = new Schema({
     rank: Number,
     create_date: Date,
     brief: String
-
 });
 
 mongoose.model('CompanyGroup', CompanyGroup);

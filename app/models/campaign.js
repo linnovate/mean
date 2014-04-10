@@ -19,13 +19,14 @@ var _member = new Schema({
  * 活动
  */
 var Campaign = new Schema({
+    id: String,
     campaign: {
         gid: Array,
         group_type: Array,
-        cid: Array,
+        cid: Array,           //参加该活动的所有公司
         cname: Array,
         poster: {
-            cid: String,
+            cid: String,      //活动发起者所属的公司
             cname: String,
             uid: String,
             realname: String,

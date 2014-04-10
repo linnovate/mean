@@ -7,30 +7,43 @@ var mongoose = require('mongoose'),
 
 
 
-//返回动态消息待所有数据,待前台调用
+//返回公司动态消息的所有数据,待前台调用
+exports.getCompanyMessage = function(req, res) {
 
-/* 还没完成
-exports.getMessage = function(req, res) {
+  var cid = req.params.cid;//根据公司id取出该公司的动态消息(公司id是参数传进来的)
 
-  var cid = req.params.cid;
-  GroupMessage.find({'poster.cid' : cid}, function(err, groupMessage) {
+  //公司的动态消息都归在虚拟组里
+  GroupMessage.find({'poster.cid' : cid , 'group.gid[0]' : 0}, function(err, groupMessage) {
     if (err) {
+      console.log(err);
       return res.status(404).send([]);
     } else {
-      var messages = [];
-      for(var i = 0, length = groupMessage.length; i < length; i++) {
-        messages.push({
-          'id': company_group[i].group.gid,
-          'type': company_group[i].group.group_type,
-          'member_num':'33',
-          'name':'长跑队',
-          'score':897,
-          'leader':'暂无'
-        });
-      }
-      return res.send(messages);
+      return res.send(groupMessage);
     }
   });
 
 };
-*/
+
+
+//返回小组动态消息
+exports.getGroupMessage = function(req, res) {
+
+  var cid = req.params.cid;//根据公司id取出该公司的所有活动(公司id是参数传进来的)
+  var gid = req.params.gid;//必须是数字类型哦,必要的时候要用parseInt()转换
+
+  //有包含gid的消息都列出来
+  GroupMessage.find({'poster.cid' : cid, 'gid' : {'$all':[gid]}}, function(err, groupMessage) {
+    if (err) {
+      console.log(err);
+      return res.status(404).send([]);
+    } else {
+      return res.send(groupMessage);
+    }
+  });
+};
+
+
+
+
+
+//返回系统消息,待定

@@ -11,6 +11,7 @@ var mongoose = require('mongoose'),
  * 组件消息(如果是企业发布的活动消息则归为虚拟组)
  */
 var GroupMessage = new Schema({
+    id: String,
     group: {
         gid: Array,
         group_type: Array
@@ -18,7 +19,7 @@ var GroupMessage = new Schema({
     active: Boolean,
     date: Date,
     poster: {
-        cid: String,
+        cid: String,                  //消息发布者所属的公司
         uid: String,
         cname: String,
         realname: String,

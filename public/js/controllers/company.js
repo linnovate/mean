@@ -79,7 +79,7 @@ companyApp.controller('GroupsController',['$http',function($http) {
         angular.forEach(_this.groups, function(value, key) {
             if(value.select === '1') {
                 _this.selected_groups.push({
-                    'gid': value.id,
+                    'gid': parseInt(value.id),
                     'group_type': value.type
                 });
             }

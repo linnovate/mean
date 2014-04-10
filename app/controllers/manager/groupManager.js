@@ -48,6 +48,7 @@ exports.sponsor = function (req, res) {
             cname = company.info.name;
         });
 
+        campaign.id = Date.now().toString(32) + Math.random().toString(32) + '0';
         campaign.campaign.poster.cname = cname;
         campaign.campaign.poster.cid = cid;
         campaign.campaign.poster.uid = uid;
@@ -77,6 +78,8 @@ exports.sponsor = function (req, res) {
 
           //生成动态消息
           var groupMessage = new GroupMessage();
+
+          groupMessage.id = Date.now().toString(32) + Math.random().toString(32) + '1';
           groupMessage.group.gid.push(gid);
           groupMessage.group.group_type.push(group_type);
           groupMessage.group.active = true,
@@ -103,37 +106,4 @@ exports.sponsor = function (req, res) {
       }
   });
 };
-
-
-//生成小组活动列表(目前是显示所有活动,以后会考虑相关限制(比如只显示最近三天的活动))
-exports.list = function (req, res) {
-  Campaign.find(null,function(err,campaign){
-      if (err) {
-          res.status(400).send([]);
-          return;
-      };
-      var _length = campaign.length;
-      var campaigns = [];
-
-      for(var i = 0; i < _length; i ++){
-        //非虚拟组的活动才是小组发布的活动
-        if (campaign[i].campaign.gid[0] !== 0) {
-          campaigns.push({
-            'cid':campaign[i].campaign.poster.cid,        //由于组长发布的是企业内部活动,因此只有一个企业的id和名字
-            'cname':campaign[i].campaign.poster.cname,
-            'gid':campaign[i].campaign.gid,               //数组,一个组长同时发布多个组的活动
-            'group_type':campaign[i].campaign.group_type, //数组,一个组长同时发布多个组的活动
-            'poster_account':campaign[i].campaign.poster.username,
-            'poster_name':campaign[i].campaign.poster.realname,
-            'content':campaign[i].campaign.content,
-            'create_time':req.body.create_time,
-            'start_time':req.body.start_time,
-            'end_time':req.body.end_time
-          });
-        }
-      }
-      res.send(campaigns);
-  });
-};
-
 
