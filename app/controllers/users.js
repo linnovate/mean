@@ -38,6 +38,7 @@ exports.signout = function(req, res) {
 exports.loginSuccess = function(req, res) {
     req.session.username = req.body.username;
     req.session.cid = req.user.cid;
+    req.session.uid = req.user.id;
     res.redirect('/users/editInfo');
 };
 
@@ -331,5 +332,44 @@ exports.quitCampaign = function (req, res) {
       }
   });
   res.send("ok");
+};
+
+
+//获取账户信息
+exports.getAccount = function (req, res) {
+    User.findOneAndUpdate({
+            id : req.session.uid
+        },req.body.user,null, function(err, user) {
+            if(err) {
+                console.log(err);
+                res.send({'result':0,'msg':'数据错误'});
+            }
+            else {
+                if (user) {
+                    res.send({'result':1,'msg':'用户查找成功','data': user});
+                } else {
+                    res.send({'result':0,'msg':'不存在该用户'});
+                }
+            }
+        });
+};
+
+//保存用户信息
+exports.saveAccount = function (req, res) {
+    User.findOne({
+            id : req.session.uid
+        }, function(err, user) {
+            if(err) {
+                console.log(err);
+                res.send({'result':0,'msg':'数据错误'});
+            }
+            else {
+                if (user) {
+                    res.send({'result':1,'msg':'用户查找成功','data':user});
+                } else {
+                    res.send({'result':0,'msg':'不存在该用户'});
+                }
+            }
+        });
 };
 
