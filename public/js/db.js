@@ -97,6 +97,7 @@ var _group =[
         }
 
 // insert to companygroups for test
+/*
 var user = db.users.findOne();
 var company = db.companies.findOne();
 var group = db.groups.findOne();
@@ -169,3 +170,4 @@ var campaign = {
 };
 
 db.campaigns.insert(campaign);
+*/

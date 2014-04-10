@@ -1,65 +1,68 @@
-extends layouts/personal
 
-block personal
-  h1 基本信息
-  form.form-horizontal(action="/users/dealEditInfo" method="post")
+div
+  form.form-horizontal(name="accountForm")
+    .infoHead.row
+      h1 基本信息
+      a.pull-right(ng-click="baseEditToggle()" ng-bind="baseButtonStatus")
     .form-group
       label.col-xs-2.control-label 登录邮箱
-      label.col-xs-10.control-label= user.email
+      label.col-xs-8.control-label(ng-bind="user.email")
+      a.col-xs-2(href="#") 修改密码
     .form-group
       label.col-xs-2.control-label 昵称
       .col-xs-10
-        input.form-control(type="text" name="nickname" value="#{user.nickname}")
+        input.form-control(type="text" name ="nickname" ng-model="user.nickname" ng-disabled="baseUnEdit")
     .form-group
       label.col-xs-2.control-label 真实姓名
       .col-xs-10
-        input.form-control(type="text" name="realname" value="#{user.realname}")
+        input.form-control(type="text" name="realname" ng-model="user.realname" ng-disabled="baseUnEdit")
     .form-group
       label.col-xs-2.control-label 公司
       label.col-xs-10.control-label= company.info.name
     .form-group
       label.col-xs-2.control-label 职位
       .col-xs-10
-        input.form-control(type="text" name="position" value="#{user.position}")
+        input.form-control(type="text" name="position" ng-model="user.position" ng-disabled="baseUnEdit")
     .form-group
       label.col-xs-2.control-label 所在地
-      .col-xs-10
-        input.form-control(type="text")
     .form-group
       label.col-xs-2.control-label 性别
       .col-xs-5.radio
         label
-          input(type="radio" name="sex" value="男" checked=(user.sex === '男'))
+          input(type="radio" name="sex" value="男" ng-model="user.sex" ng-disabled="baseUnEdit")
           | 男
       .col-xs-5.radio
         label
-          input(type="radio" name="sex" value="女" checked=(user.sex === '女'))
+          input(type="radio" name="sex" value="女" ng-model="user.sex" ng-disabled="baseUnEdit")
           | 女
     .form-group
       label.col-xs-2.control-label 生日
       .col-xs-10
-        input.form-control(type="text" name="birthday" value="#{user.birthday}")
+        input.form-control(type="text" name="birthday" ng-model="user.birthday" ng-disabled="baseUnEdit")
     .form-group
       label.col-xs-2.control-label 血型
       .col-xs-10
-        input.form-control(type="text" name="bloodType" value="#{user.bloodType}")
+        input.form-control(type="text" name="bloodType" ng-model="user.bloodType" ng-disabled="baseUnEdit")
     .form-group
       label.col-xs-2.control-label 简介
       .col-xs-10
-        input.form-control(type="text" name="introduce" value="#{user.introduce}")
+        input.form-control(type="text" name="introduce" ng-model="user.introduce" ng-disabled="baseUnEdit")
     .form-group
       label.col-xs-2.control-label 注册时间
       label.col-xs-10.control-label= user.register_date
-    button.btn.btn-primary(type="submit") 保存
-
-block aside
-  include ../partials/group_thumbnail
-  +group_thumbnail(user.gid)
-
-block dynamic
-  include ../partials/groupMessage_list
-  +groupMessage_list(group_messages)
-
-block schedule
-  include ../partials/campaign_list
-  +campaign_list(campaigns)
+  form.form-horizontal(name="linkForm")
+      .infoHead.row
+        h1 基本信息
+        a.pull-right(ng-click="linkEditToggle()" ng-bind="linkButtonStatus")
+      .form-group
+        label.col-xs-2.control-label 手机
+        .col-xs-10
+          input.form-control(type="text" name="phone" ng-model="user.phone" ng-disabled="linkUnEdit")
+      .form-group
+        label.col-xs-2.control-label 邮箱
+        .col-xs-10
+          input.form-control(type="email" name="email" ng-model="user.email" ng-disabled="linkUnEdit")
+      .form-group
+        label.col-xs-2.control-label QQ
+        .col-xs-10
+          input.form-control(type="text" name="qq" ng-model="user.qq" ng-disabled="linkUnEdit")

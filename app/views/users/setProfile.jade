@@ -17,19 +17,19 @@ block content
         .form-group
           label.col-xs-3.control-label(for="nickname") ＊昵称
           .col-xs-9
-            input#nickname.form-control(type="text" name="nickname")
+            input#nickname.form-control(type="text" name="nickname" required)
         .form-group
           label.col-xs-3.control-label(for="password") ＊密码
           .col-xs-9
-            input#password.form-control(type="password" name="password")
+            input#password.form-control(type="password" name="password" required)
         .form-group
           label.col-xs-3.control-label(for="passconf") ＊密码确认
           .col-xs-9
-            input#passconf.form-control(type="password" name="passconf")
+            input#passconf.form-control(type="password" name="passconf" required)
         .form-group
           label.col-xs-3.control-label(for="realName") ＊真实姓名
           .col-xs-9
-            input#realName.form-control(type="text" placeholder="仅公司成员可见" name="realName")
+            input#realName.form-control(type="text" placeholder="仅公司成员可见" name="realName" required)
         .form-group
           label.col-xs-3.control-label(for="department") 部门
           .col-xs-9
@@ -42,7 +42,7 @@ block content
           .col-xs-offset-3.col-xs-9
             .checkbox
               label
-                input(type="checkbox")
+                input(type="checkbox" required)
                 | 我已阅读并同意<a href="#">服务条款</a>
         .form-group
           .col-xs-offset-3.col-xs-9

@@ -24,8 +24,12 @@ module.exports = function(app, passport) {
     app.post('/users/dealSelectGroup', users.dealSelectGroup);
     app.get('/users/finishRegister', users.finishRegister);
 
+
     app.get('/users/getGroupMessages', users.getGroupMessages);
     app.get('/users/getCampaigns', users.getCampaigns);
+
+    app.get('/users/getAccount', users.getAccount);
+    app.post('/users/saveAccount', users.saveAccount);
 
     app.get('/users/editInfo', users.editInfo);
     app.post('/users/dealEditInfo', users.dealEditInfo);

@@ -38,7 +38,9 @@ exports.signout = function(req, res) {
 exports.loginSuccess = function(req, res) {
   req.session.username = req.body.username;
   req.session.cid = req.user.cid;
+  req.session.uid = req.user.id;
   res.redirect('/users/home');
+
 };
 
 
@@ -224,6 +226,7 @@ exports.getCampaigns = function(req, res) {
   });
 };
 
+
 exports.home = function(req, res) {
   return res.render('users/home', {gids: req.user.gid});
 }
@@ -243,24 +246,10 @@ exports.editInfo = function(req, res) {
         if(err) {
           console.log(err);
         } else if(company) {
-          GroupMessage.find({'poster.cid': company.id}, function(err, group_messages) {
-            if (err) {
-              console.log(err);
-            } else {
-              Campaign.find({'campaign.member': {'$elemMatch': {uid: user.id}}}, function(err, campaigns){
-                if (err) {
-                  console.log(err);
-                } else {
-                  return res.render('users/editInfo',
-                    {title: '编辑个人资料',
-                    user: user,
-                    company: company,
-                    group_messages: group_messages,
-                    campaigns: campaigns
-                  });
-                }
-              });
-            }
+          return res.render('users/editInfo',
+            {title: '编辑个人资料',
+            user: user,
+            company: company
           });
         }
       });
@@ -317,6 +306,7 @@ exports.joinCampaign = function (req, res) {
       console.log('没有此活动!');
     }
   });
+  res.send("ok");
 };
 
 
@@ -327,25 +317,65 @@ exports.quitCampaign = function (req, res) {
   var uid = req.session.uid;
   var campaign_id = req.body.campaign_id; //该活动的id
   Campaign.findOne({
-    id : campaign_id
-  },
-  function (err, campaign) {
-    if (campaign) {
+        id : campaign_id
+    },
+    function (err, campaign) {
+      if (campaign) {
 
-    //删除该员工信息
-    for( var i = 0; i < campaign.member.length; i ++) {
-      if (campaign.member[i].uid === uid) {
-      campaign.member.splice(i,1);
-      break;
+        //删除该员工信息
+        for( var i = 0; i < campaign.campaign.member.length; i ++) {
+          if (campaign.campaign.member[i].uid === uid) {
+            campaign.campaign.member.splice(i,1);
+            break;
+          }
+        }
+
+        campaign.save(function (err) {
+          console.log(err);
+        });
+      } else {
+          console.log('没有此活动!');
       }
-    }
-
-    campaign.save(function (err) {
-      console.log(err);
     });
-    } else {
-      console.log('没有此活动!');
-    }
-  });
+  res.send("ok");
+};
+
+
+//获取账户信息
+exports.getAccount = function (req, res) {
+    User.findOneAndUpdate({
+            id : req.session.uid
+        },req.body.user,null, function(err, user) {
+            if(err) {
+                console.log(err);
+                res.send({'result':0,'msg':'数据错误'});
+            }
+            else {
+                if (user) {
+                    res.send({'result':1,'msg':'用户查找成功','data': user});
+                } else {
+                    res.send({'result':0,'msg':'不存在该用户'});
+                }
+            }
+        });
+};
+
+//保存用户信息
+exports.saveAccount = function (req, res) {
+    User.findOne({
+            id : req.session.uid
+        }, function(err, user) {
+            if(err) {
+                console.log(err);
+                res.send({'result':0,'msg':'数据错误'});
+            }
+            else {
+                if (user) {
+                    res.send({'result':1,'msg':'用户查找成功','data':user});
+                } else {
+                    res.send({'result':0,'msg':'不存在该用户'});
+                }
+            }
+        });
 };
 
