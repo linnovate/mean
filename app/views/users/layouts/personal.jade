@@ -1,0 +1,17 @@
+extends manager
+
+block panel
+  ul.nav.nav-tabs
+    li.active
+      a(href="#dynamic" data-toggle="tab") 小组动态
+    li
+      a(href="#schedule" data-toggle="tab") 日程列表
+    li
+      a(href="#personal" data-toggle="tab") 个人资料
+  .tab-content
+    .tab-pane.active#dynamic
+      block dynamic
+    .tab-pane#schedule
+      block schedule
+    .tab-pane#personal
+      block personal

@@ -113,7 +113,6 @@ exports.setProfile = function(req, res) {
  * 处理个人信息表单
  */
 exports.dealSetProfile = function(req, res) {
-    console.log(req.query);
     User.findOne(
         {id : req.query.uid}
     , function(err, user) {
@@ -230,7 +229,6 @@ exports.editInfo = function(req, res) {
                             console.log(err);
                         } else {
                             Campaign.find({'campaign.member': {'$elemMatch': {uid: user.id}}}, function(err, campaigns){
-                                console.log(campaigns);
                                 if (err) {
                                     console.log(err);
                                 } else {

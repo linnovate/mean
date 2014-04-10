@@ -27,6 +27,7 @@ exports.signin = function(req, res) {
 
 exports.loginSuccess = function(req, res) {
     req.session.cpname = req.body.username;
+    req.session.cid = req.user.id;
     res.redirect('/');
 };
 

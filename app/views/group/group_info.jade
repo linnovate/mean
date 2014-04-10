@@ -1,26 +1,29 @@
 extends ../layouts/default
 
 block content
-  div(ng-app="group")
-    .infoHead.row
-      h4.pull-left 基本信息
-      a.pull-right 编辑>
-    hr
-    .row
-      label.col-xs-2.control-label 小队名称
-      label.col-xs-5.control-label= companyGroup.gid
-    .row
-      label.col-xs-2.control-label 所属公司
-      label.col-xs-5.control-label= companyname
-    .row
-      label.col-xs-2.control-label 队员
-      label.col-xs-5.control-label= companyGroup.member.length
-    .row
-      label.col-xs-2.control-label 简介
-      label.col-xs-5.control-label= companyGroup.brief
-    .row
-      label.col-xs-2.control-label 成立时间
-      label.col-xs-5.control-label= companyGroup.create_date
+  div
+    form.form-horizontal(ng-app="group" ng-controller="InfoFormController" name="infoForm" ng-init="companyGroup={'gid':'#{companyGroup.gid}','name':'#{companyGroup.name}','brief':'#{companyGroup.brief}'}")
+      .infoHead.row
+        h4.pull-left 基本信息
+        a.pull-right(ng-click="editToggle()" ng-bind="buttonStatus")
+      hr
+      .row
+        label.col-xs-2.control-label 小队名称
+        .col-xs-5
+            input.form-control(type="text" name ="username" ng-model="companyGroup.name"  ng-disabled="unEdit")
+      .row
+        label.col-xs-2.control-label 所属公司
+        label.col-xs-5.control-label= companyname
+      .row
+        label.col-xs-2.control-label 队员
+        label.col-xs-5.control-label= companyGroup.member.length
+      .row
+        label.col-xs-2.control-label 简介
+        .col-xs-5
+            input.form-control(type="text" name ="brief" ng-model="companyGroup.brief" ng-disabled="unEdit")
+      .row
+        label.col-xs-2.control-label 成立时间
+        label.col-xs-5.control-label= companyGroup.create_date
     .infoHead.row
       h4.pull-left 比赛信息
     hr
@@ -36,3 +39,6 @@ block content
     .row
       label.col-xs-2.control-label 排名
       label.col-xs-2.control-label= companyGroup.rank
+
+block angularModules
+  script(src="/js/controllers/group.js")

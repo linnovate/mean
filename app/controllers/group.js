@@ -84,25 +84,48 @@ exports.getInfo =function(req,res) {
 };
 
 exports.Info =function(req,res) {
-  console.log(req.companyGroup);
-  console.log(req.session);
-    if(req.session.cpname != null || req.session.username != null ) {
-        res.render('group/group_info', {
-            title: '小组信息管理',
-            companyGroup: req.companyGroup,
-            companyname: req.session.cpname
-        });
-    }
-    else
-        res.redirect('/users/signin');
-};
-
-exports.saveAccount =function(req,res) {
-
+  if(req.params.groupId == null) {
+    res.redirect('/');
+  }
+  if(req.session.cpname != null || req.session.username != null ) {
+      console.log(req.companyGroup);
+      res.render('group/group_info', {
+          title: '小组信息管理',
+          companyGroup: req.companyGroup,
+          companyname: req.session.cpname
+      });
+  }
+  else
+      res.redirect('/users/signin');
 };
 
 exports.saveInfo =function(req,res) {
-
+    if(req.session.cid != null) {
+      console.log(req.body);
+        CompanyGroup.findOne({cid : req.session.cid, gid : req.body.companyGroup.gid}, function(err, companyGroup) {
+            if (err) {
+                console.log('数据错误');
+                res.send({'result':0,'msg':'数据查询错误'});
+                return;
+            };
+            if(companyGroup) {
+                companyGroup.name = req.body.companyGroup.name;
+                companyGroup.brief = req.body.companyGroup.brief;
+                companyGroup.save(function (s_err){
+                    if(s_err){
+                        console.log(s_err);
+                        res.send({'result':0,'msg':'数据保存错误'});
+                        return;
+                    }
+                });
+                res.send({'result':1,'msg':'更新成功'});
+            } else {
+                res.send({'result':0,'msg':'不存在组件！'});
+            }
+        });
+    }
+    else
+        res.send("error");
 };
 
 
@@ -132,7 +155,7 @@ exports.group = function(req, res, next, id) {
     })
     .exec(function(err, companyGroup) {
         if (err) return next(err);
-        if (!companyGroup) return next(new Error('Failed to load companyGroup ' + id));
+        if (!companyGroup) return next(new Error(req.session.cid+' Failed to load companyGroup ' + id));
         req.companyGroup = companyGroup;
         next();
     });
