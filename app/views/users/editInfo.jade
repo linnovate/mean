@@ -1,6 +1,6 @@
-extends ../layouts/default
+extends layouts/personal
 
-block content
+block personal
   h1 基本信息
   form.form-horizontal(action="/users/dealEditInfo" method="post")
     .form-group
@@ -52,12 +52,14 @@ block content
       label.col-xs-10.control-label= user.register_date
     button.btn.btn-primary(type="submit") 保存
 
+block aside
   h1 小组列表
   ul
     each gid in user.gid
       li= gid
 
-  h1 状态列表
+block dynamic
+  h1 动态列表
   ul
     each group_message in group_messages
       li
@@ -65,6 +67,7 @@ block content
         p= '小组类型：' + group_message.group.group_type
         p= '发起人：' + group_message.poster.username
 
+block schedule
   h1 活动列表
   ul
     each campaign in campaigns

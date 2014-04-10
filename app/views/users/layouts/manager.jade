@@ -9,5 +9,44 @@ html
     link(rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css")
     block headExt
   body
-    block content
+    nav.navbar.navbar-inverse(rolo="navigation")
+      .navbar-header
+        button.navbar-toggle(type="button" data-toggle="collapse" data-target="#personal_nav")
+          span.sr-only 切换导航栏
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(href="#") donler
+      .collapse.navbar-collapse#personal_nav
+        ul.nav.navbar-nav
+          li
+            a(href="#") 公司
+          li
+            a(href="#") 小组
+          li
+            a(href="#") 个人
+
+    .container
+      .row
+        block baseInfo
+      .row
+        .col-xs-12.col-sm-8.col-md-8.col-lg-8
+          block panel
+        .col-xs-12.col-sm-4.col-md-4.col-lg-4
+          block aside
+
+    footer
+      hr
+      .container
+        .row
+          .col-xs-12.col-sm-6
+            p.pull-left &copy; 8 Inc.2013 沪 ICP 2893750275
+          .col-xs-12.col-sm-6
+            p.pull-right 隐私政策
+            p.pull-right 服务条款
+            p.pull-right 鸭梨助手
+            p.pull-right 关于我们
+
+    script(src="/lib/jquery/dist/jquery.min.js")
+    script(src="/lib/bootstrap/dist/js/bootstrap.min.js")
     block footExt
