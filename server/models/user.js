@@ -16,10 +16,7 @@ var UserSchema = new Schema({
         required: true
     },
     email: String,
-    username: {
-        type: String,
-        unique: true
-    },
+    username: String,
     roles: [{
         type: String,
         default: 'authenticated'
@@ -33,6 +30,7 @@ var UserSchema = new Schema({
     google: {},
     linkedin: {}
 });
+UserSchema.index({ username: 1, provider: 1 }, {unique: true});
 
 /**
  * Virtuals
