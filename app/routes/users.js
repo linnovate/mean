@@ -32,7 +32,6 @@ module.exports = function(app, passport) {
     app.post('/users/saveAccount', users.saveAccount);
 
     app.get('/users/editInfo', users.editInfo);
-    app.post('/users/dealEditInfo', users.dealEditInfo);
 
     app.post('/users/joinCampaign', users.joinCampaign);
     app.post('/users/quitCampaign', users.quitCampaign);

@@ -257,34 +257,6 @@ exports.editInfo = function(req, res) {
   });
 };
 
-exports.dealEditInfo = function(req, res) {
-  User.findOne({
-    id: req.user.id
-  },
-  function(err, user) {
-    if(err) {
-      console.log(err);
-    } else if(user) {
-      user.nickname = req.body.nickname;
-      user.realname = req.body.realname;
-      user.position = req.body.position;
-      user.sex = req.body.sex;
-      user.birthday = req.body.birthday;
-      user.bloodType = req.body.bloodType;
-      user.introduce = req.body.introduce;
-      user.save(function(err){
-        if(err) {
-          console.log(err);
-        } else {
-          res.render('users/message', {title: '保存成功', message: '保存成功'});
-        }
-      });
-    } else {
-      res.render('users/message', {title: '保存失败', message: '保存失败'});
-    }
-  });
-};
-
 
 
 //员工参加活动
