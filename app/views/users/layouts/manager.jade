@@ -16,7 +16,7 @@ html
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        a.navbar-brand(href="#") donler
+        a.navbar-brand(href="/") donler
       .collapse.navbar-collapse#personal_nav
         ul.nav.navbar-nav
           li
@@ -24,7 +24,7 @@ html
           li
             a(href="#") 小组
           li
-            a(href="#") 个人
+            a(href="/users/home") 个人
 
     .container
       .row
@@ -47,6 +47,5 @@ html
             p.pull-right 鸭梨助手
             p.pull-right 关于我们
 
-    script(src="/lib/jquery/dist/jquery.min.js")
-    script(src="/lib/bootstrap/dist/js/bootstrap.min.js")
+    script(src="/lib/angular/angular.min.js")
     block footExt

@@ -80,3 +80,7 @@ userApp.controller('CampaignController', ['$scope','$http', function($scope, $ht
         }
     };
 });
+
+userApp.controller('TabController', ['$scope', '$http', function($scope, $http) {
+    
+}]);

@@ -13,6 +13,7 @@ module.exports = function(app, passport) {
         failureFlash: true
     }), users.loginSuccess);
 
+    app.get('/users/home', users.home);
 
     // Active produce
     app.get('/users/invite', users.invite);
@@ -23,6 +24,8 @@ module.exports = function(app, passport) {
     app.post('/users/dealSelectGroup', users.dealSelectGroup);
     app.get('/users/finishRegister', users.finishRegister);
 
+    app.get('/users/getGroupMessages', users.getGroupMessages);
+    app.get('/users/getCampaigns', users.getCampaigns);
 
     app.get('/users/editInfo', users.editInfo);
     app.post('/users/dealEditInfo', users.dealEditInfo);
