@@ -39,6 +39,11 @@ module.exports = function(app, passport) {
     //企业发布活动
     app.get('/company/campaignSponsor', company.showSponsor);
     app.post('/company/campaignSponsor', company.sponsor);
+
+    app.get('/company/groupMessage', company.getCompanyMessage);
+
+    //获取企业活动列表
+    app.get('/company/campaign', company.getCompanyCampaign);
     // Setting up the companyId param
     app.param('companyId', company.company);
 };

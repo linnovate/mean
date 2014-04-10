@@ -91,6 +91,5 @@ userApp.controller('CampaignController', ['$scope','$http', function($scope, $ht
             console.log(e);
         }
     };
-});
-
+}]);
 

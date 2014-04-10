@@ -51,18 +51,19 @@ div
       label.col-xs-2.control-label 注册时间
       label.col-xs-10.control-label= user.register_date
   form.form-horizontal(name="linkForm")
-      .infoHead.row
-        h1 基本信息
-        a.pull-right(ng-click="linkEditToggle()" ng-bind="linkButtonStatus")
-      .form-group
-        label.col-xs-2.control-label 手机
-        .col-xs-10
-          input.form-control(type="text" name="phone" ng-model="user.phone" ng-disabled="linkUnEdit")
-      .form-group
-        label.col-xs-2.control-label 邮箱
-        .col-xs-10
-          input.form-control(type="email" name="email" ng-model="user.email" ng-disabled="linkUnEdit")
-      .form-group
-        label.col-xs-2.control-label QQ
-        .col-xs-10
-          input.form-control(type="text" name="qq" ng-model="user.qq" ng-disabled="linkUnEdit")
+    .infoHead.row
+      h1 基本信息
+      a.pull-right(ng-click="linkEditToggle()" ng-bind="linkButtonStatus")
+    .form-group
+      label.col-xs-2.control-label 手机
+      .col-xs-10
+        input.form-control(type="text" name="phone" ng-model="user.phone" ng-disabled="linkUnEdit")
+    .form-group
+      label.col-xs-2.control-label 邮箱
+      .col-xs-10
+        input.form-control(type="email" name="email" ng-model="user.email" ng-disabled="linkUnEdit")
+    .form-group
+      label.col-xs-2.control-label QQ
+      .col-xs-10
+        input.form-control(type="text" name="qq" ng-model="user.qq" ng-disabled="linkUnEdit")
+

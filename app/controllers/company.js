@@ -335,7 +335,7 @@ exports.saveAccount = function(req, res) {
                 res.send({'result':0,'msg':'不存在该公司'});
             }
         });
-    } 
+    }
     else
         res.send({'result':0,'msg':'未登录'});
 };
@@ -363,6 +363,65 @@ exports.showSponsor = function (req, res) {
 };
 
 
+
+//返回公司动态消息的所有数据,待前台调用
+exports.getCompanyMessage = function(req, res) {
+
+  var cid = req.session.cid;//根据公司id取出该公司的动态消息(公司id是参数传进来的)
+
+  //公司的动态消息都归在虚拟组里
+  GroupMessage.find({'poster.cid' : cid , 'group.gid' : {'$all':[0]}}, function(err, group_messages) {
+    if (err) {
+      console.log(err);
+      return res.status(404).send([]);
+    } else {
+        console.log(group_messages);
+      return res.render('partials/groupMessage_list',
+        { title: '企业动态消息',
+          group_messages: group_messages
+      });
+    }
+  });
+
+};
+
+
+//返回公司发布的所有活动,待前台调用
+exports.getCompanyCampaign = function(req, res) {
+
+  var cid = req.session.cid;//根据公司id取出该公司的所有活动(公司id是参数传进来的)
+  var uid = req.session.uid;
+
+  //公司发布的活动都归在虚拟组 gid = 0 里
+  Campaign.find({'poster.cid' : cid, 'group.gid' : {'$all':[0]}}, function(err, campaigns) {
+    if (err) {
+      console.log(err);
+      return res.status(404).send([]);
+    } else {
+      if(campaigns.length === 0) {
+        return res.render('partials/campaign_list',
+          {title: '企业活动列表',
+            campaigns: [],
+            status : false //uid所对应成员是否已经参加该活动
+        });
+      } else {
+        var join = false;
+        for(var i = 0;i < campaigns.member.length; i ++) {
+          if(campaigns.member[i].uid === uid) {
+            join = true;
+            break;
+          }
+        }
+        return res.render('partials/campaign_list',
+          {title: '企业活动列表',
+            campaigns: campaigns,
+            status : join //uid所对应成员是否已经参加该活动
+        });
+      }
+    }
+  });
+};
+
 //HR发布一个活动(可能是多个企业)
 exports.sponsor = function (req, res) {
 
@@ -371,8 +430,11 @@ exports.sponsor = function (req, res) {
     var uid = req.session.uid;    //用户id
     var gid = 0;                  //HR发布的活动,全部归在虚拟组里,虚拟组的id默认是0
     var group_type = '虚拟组';
-    var company_id = req.body.cid;//公司id数组,HR可以发布多个公司一起的的联谊或者约战活动,注意:第一个公司默认就是次hr所在的公司!
+    var company_in_campaign = req.body.company_in_campaign;//公司id数组,HR可以发布多个公司一起的的联谊或者约战活动,注意:第一个公司默认就是次hr所在的公司!
 
+    if(company_in_campaign == undefined) {
+        company_in_campaign = [cid];
+    }
     var content = req.body.content;//活动内容
 
     var cname = '';
@@ -386,20 +448,20 @@ exports.sponsor = function (req, res) {
 
     var campaign = new Campaign();
 
-    campaign.campaign.gid.push(gid);
-    campaign.campaign.group_type.push(group_type);
+    campaign.gid.push(gid);
+    campaign.group_type.push(group_type);
 
-    campaign.campaign.cid = company_id; //一定要和cid区分开啊
+    campaign.cid = company_in_campaign; //一定要和cid区分开啊,这是参加活动蛋所有公司的id
 
     campaign.id = Date.now().toString(32) + Math.random().toString(32) + '0';
-    campaign.campaign.poster.cname = cname;
-    campaign.campaign.poster.cid = cid;
-    campaign.campaign.poster.uid = uid;
-    campaign.campaign.poster.role = 'HR';
+    campaign.poster.cname = cname;
+    campaign.poster.cid = cid;
+    campaign.poster.uid = uid;
+    campaign.poster.role = 'HR';
 
-    campaign.campaign.poster.username = username;
+    campaign.poster.username = username;
 
-    campaign.campaign.content = content;
+    campaign.content = content;
 
     campaign.save(function(err) {
         if (err) {
@@ -427,11 +489,11 @@ exports.sponsor = function (req, res) {
         groupMessage.group.active = true,
         groupMessage.group.date = req.body.create_time,
 
-        groupMessage.group.poster.cname = cname;
-        groupMessage.group.poster.cid = cid;
-        groupMessage.group.poster.uid = uid;
-        groupMessage.group.poster.role = 'HR';
-        groupMessage.group.poster.username = username;
+        groupMessage.poster.cname = cname;
+        groupMessage.poster.cid = cid;
+        groupMessage.poster.uid = uid;
+        groupMessage.poster.role = 'HR';
+        groupMessage.poster.username = username;
 
         groupMessage.content = content;
 

@@ -258,7 +258,6 @@ exports.editInfo = function(req, res) {
 };
 
 
-
 //员工参加活动
 exports.joinCampaign = function (req, res) {
   var cid = req.session.cid;
@@ -334,16 +333,16 @@ exports.getAccount = function (req, res) {
 
 //保存用户信息
 exports.saveAccount = function (req, res) {
-    User.findOne({
+    User.findOneAndUpdate({
             id : req.session.uid
-        }, function(err, user) {
+        }, req.body.user,null,function(err, user) {
             if(err) {
                 console.log(err);
                 res.send({'result':0,'msg':'数据错误'});
             }
             else {
                 if (user) {
-                    res.send({'result':1,'msg':'用户查找成功','data':user});
+                    res.send({'result':1,'msg':'修改成功'});
                 } else {
                     res.send({'result':0,'msg':'不存在该用户'});
                 }
