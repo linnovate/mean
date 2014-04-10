@@ -125,7 +125,7 @@ exports.saveInfo =function(req,res) {
         });
     }
     else
-        res.send("error");
+        res.send({'result':0,'msg':'未登录'});
 };
 
 
@@ -311,3 +311,17 @@ exports.sponsor = function (req, res) {
   res.send("ok");
 };
 
+exports.member = function(req,res){
+  if(req.params.groupId == null) {
+    res.redirect('/users/signin');
+    return;
+  }
+  if(req.session.cpname != null || req.session.username != null ) {
+      res.render('partials/member', {
+          title: '小组成员列表',
+          group_members: req.companyGroup.member
+      });
+  }
+  else
+      res.redirect('/users/signin');
+}

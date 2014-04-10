@@ -16,6 +16,8 @@ module.exports = function(app) {
   app.get('/group/getInfo', group.getInfo);
   app.get('/group/info/:groupId', group.Info);
   app.get('/group/info', group.Info);
+  app.get('/group/member/:groupId', group.member);
+  app.get('/group/member', group.member);
   app.post('/group/saveInfo', group.saveInfo);
 
   //获取小组活动列表

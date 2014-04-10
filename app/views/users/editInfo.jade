@@ -68,14 +68,4 @@ block personal
           label.col-xs-2.control-label QQ
           .col-xs-10
             input.form-control(type="text" name="qq" ng-model="user.qq" ng-disabled="linkUnEdit")
-block aside
-  include ../partials/group_thumbnail
-  +group_thumbnail(user.gid)
 
-block dynamic
-  include ../partials/groupMessage_list
-  +groupMessage_list(group_messages)
-
-block schedule
-  include ../partials/campaign_list
-  +campaign_list(campaigns)

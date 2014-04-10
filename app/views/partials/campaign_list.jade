@@ -12,5 +12,3 @@ mixin campaign_list(campaigns)
           p= '是否已经参加该活动' + status ? '是' : '否'
           button.next.btn.btn-primary.btn-lg.center-block(ng-click="join(#{campaign.id})") 参加
           button.next.btn.btn-primary.btn-lg.center-block(ng-click="quit(#{campaign.id})") 退出
-append footExt
-  script(src="/js/controllers/user.js")
