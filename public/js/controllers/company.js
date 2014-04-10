@@ -20,6 +20,18 @@ companyApp.config(['$routeProvider',function ($routeProvider) {
 
 }]);
 
+companyApp.directive('match', function($parse) {
+  return {
+    require: 'ngModel',
+    link: function(scope, elem, attrs, ctrl) {
+      scope.$watch(function() {
+        return $parse(attrs.match)(scope) === ctrl.$modelValue;
+      }, function(currentValue) {
+        ctrl.$setValidity('mismatch', currentValue);
+      });
+    }
+  };
+});
 
 //企业发布活动
 companyApp.controller('CompanyCampaignSponsorController', ['$http', function($http) {
@@ -194,7 +206,7 @@ companyApp.controller('infoFormController',['$scope','$http',function($scope, $h
             try{
                 $http({
                     method : 'post',
-                    url : '/company/saveInfo',
+                    url : '/company/saveAccount',
                     data : {
                         info : $scope.info
                     }

@@ -317,7 +317,12 @@ exports.saveAccount = function(req, res) {
                 return;
             };
             if(company) {
-                company.username = req.body.company.username;
+                if(req.body.company.username!=null) {
+                    company.username = req.body.company.username;
+                }
+                if(req.body.info) {
+                    company.info = req.body.info;
+                }
                 company.save(function (s_err){
                     if(s_err){
                         console.log(s_err);
@@ -332,35 +337,9 @@ exports.saveAccount = function(req, res) {
         });
     } 
     else
-        res.send("error");
+        res.send({'result':0,'msg':'未登录'});
 };
 
-exports.saveInfo = function(req, res) {
-    if(req.session.cpname != null) {
-        Company.findOne({username : req.session.cpname}, function(err, company) {
-            if (err) {
-                console.log('数据错误');
-                res.send({'result':0,'msg':'数据查询错误'});
-                return;
-            };
-            if(company) {
-                company.info = req.body.info;
-                company.save(function (s_err){
-                    if(s_err){
-                        console.log(s_err);
-                        res.send({'result':0,'msg':'数据保存错误'});
-                        return;
-                    }
-                });
-                res.send({'result':1,'msg':'更新成功'});
-            } else {
-                res.send({'result':0,'msg':'不存在该公司'});
-            }
-        });
-    }
-    else
-        res.send("error");
-};
 /**
  * Find company by id
  */
