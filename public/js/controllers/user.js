@@ -51,7 +51,6 @@ userApp.controller('GroupsController', ['$scope','$http', function($scope, $http
         }
     };
 }]);
-
    //个人信息表单
 userApp.controller('AccountFormController',['$scope','$http',function($scope, $http) {
     $http.get('/users/getAccount').success(function(data,status){
@@ -105,10 +104,10 @@ userApp.controller('AccountFormController',['$scope','$http',function($scope, $h
             catch(e) {
                 console.log(e);
             }
-            $scope.buttonStatus = "编辑>";
+            $scope.baseButtonStatus = "编辑>";
         }
         else {
-            $scope.buttonStatus = "保存";
+            $scope.baseButtonStatus = "保存";
         }
     };
     $scope.linkEditToggle = function() {
@@ -141,10 +140,10 @@ userApp.controller('AccountFormController',['$scope','$http',function($scope, $h
             catch(e) {
                 console.log(e);
             }
-            $scope.buttonStatus = "编辑>";
+            $scope.linkButtonStatus = "编辑>";
         }
         else {
-            $scope.buttonStatus = "保存";
+            $scope.linkButtonStatus = "保存";
         }
     };
 }]);
