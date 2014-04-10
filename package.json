@@ -1,8 +1,8 @@
 {
   "name": "meanio",
-  "version": "0.3.19",
+  "version": "0.3.20",
   "preferGlobal": true,
-  "description": "Simple command line interface for installing and managing mean apps",
+  "description": "Simple command line interface for installing and managing MEAN apps",
   "author": {
     "name": "linnovate"
   },
