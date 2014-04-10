@@ -37,6 +37,7 @@ exports.signout = function(req, res) {
  */
 exports.loginSuccess = function(req, res) {
     req.session.username = req.body.username;
+    req.session.cid = req.user.cid;
     res.redirect('/users/editInfo');
 };
 
