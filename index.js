@@ -1,8 +1,15 @@
 var meanVersion = require(process.cwd() + '/package.json').version;
 
-//temporary measure to allow for some more rapi devlopment without breaking current versions
 if (meanVersion > '0.3.0') {
-	module.exports = require('./lib/mean0.3.1');
+	switch (meanVersion) {
+		case '0.3.1':
+			module.exports = require('./lib/mean0.3.1');
+			break;
+		default:
+			module.exports = require('./lib/mean0.3.2');
+			break;
+	}
 } else {
+	//all older versions of mean
 	module.exports = require('./lib/mean');
 }
