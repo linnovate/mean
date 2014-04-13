@@ -4,7 +4,7 @@ var mean = require('meanio');
 
 module.exports = function(app) {
     app.get('/admin/menu/:name', function(req, res) {
-        var roles = (req.user ? req.user.roles : ['annonymous']);
+        var roles = (req.user ? req.user.roles : ['anonymous']);
         var menu = req.params.name ? req.params.name : 'main';
         var defaultMenu = (req.query.defaultMenu ? req.query.defaultMenu : []);
 
