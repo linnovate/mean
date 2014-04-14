@@ -204,6 +204,7 @@ exports.finishRegister = function(req, res) {
 //列出该user加入的所有小组的动态
 exports.getGroupMessages = function(req, res) {
   var group_messages = [];
+  var flag = 0;
   for(var i = 0; i < req.user.gid.length; i ++) {
      GroupMessage.find({'group.gid': {'$all': [req.user.gid[i]]} }, function(err, group_message) {
       if (group_message.length > 0) {
@@ -211,15 +212,20 @@ exports.getGroupMessages = function(req, res) {
           console.log(err);
           return;
         } else {
+          flag ++;
           for(var j = 0; j < group_message.length; j ++) {
             group_messages.push(group_message[j]);
           }
+          console.log(flag + '-----------' + group_messages);
+          if(flag === req.user.gid.length - 1) {
+            res.send(group_messages);
+          }
         }
       }
-      console.log(i + '-----------' + group_messages);
+      
     });
   }
-  res.send([]);
+  
 };
 
 
@@ -227,6 +233,7 @@ exports.getGroupMessages = function(req, res) {
 exports.getCampaigns = function(req, res) {
   var campaigns = [];
   var join = false;
+  var flag = 0;
   for(var i = 0; i < req.user.gid.length; i ++) {
 
      Campaign.find({ 'gid' : {'$all':[req.user.gid[i]]} }, function(err, campaign) {
@@ -236,6 +243,7 @@ exports.getCampaigns = function(req, res) {
           console.log(err);
           return;
         } else {
+          flag ++;
           for(var j = 0; j < campaign.length; j ++) {
             join = false;
             for(var k = 0;k < campaign[j].member.length; k ++) {
@@ -259,8 +267,8 @@ exports.getCampaigns = function(req, res) {
               'join':join
             });
           }
-          if(i === parseInt(req.user.gid.length) - 1){
-            return res.send(campaigns);
+          if(flag === req.user.gid.length - 1) {
+            res.send(campaigns);
           }
         }
       }
