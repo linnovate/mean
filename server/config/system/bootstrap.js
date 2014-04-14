@@ -1,29 +1,18 @@
 'use strict';
 
-var fs = require('fs'),
-    express = require('express'),
+var express = require('express'),
     appPath = process.cwd();
 
 var mean = require('meanio');
+mean.app('Mean Demo App', {});
 
 module.exports = function(passport, db) {
 
     function bootstrapModels() {
-        var models_path = appPath + '/server/models';
-        var walk = function(path) {
-            fs.readdirSync(path).forEach(function(file) {
-                var newPath = path + '/' + file;
-                var stat = fs.statSync(newPath);
-                if (stat.isFile()) {
-                    if (/(.*)\.(js$|coffee$)/.test(file)) {
-                        require(newPath);
-                    }
-                } else if (stat.isDirectory()) {
-                    walk(newPath);
-                }
-            });
-        };
-        walk(models_path);
+        // Bootstrap models
+        require('../util').walk(appPath + '/server/models', null, function(path) {
+            require(path);
+        });
     }
 
     bootstrapModels();

@@ -1,9 +1,4 @@
 'use strict';
-/**
- *  Mean container for dependency injection
- */
-var mean = require('meanio');
-mean.app('Mean Demo App',{});
 
 /**
  * Module dependencies.
