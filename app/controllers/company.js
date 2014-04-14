@@ -381,7 +381,6 @@ exports.getCompanyMessage = function(req, res) {
       console.log(err);
       return res.status(404).send([]);
     } else {
-        console.log(group_messages);
         return res.send(group_messages);
     }
   });

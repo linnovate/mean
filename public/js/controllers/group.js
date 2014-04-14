@@ -18,7 +18,7 @@ groupApp.controller('GroupCampaignSponsorController', ['$scope','$http', functio
                 }
             }).success(function(data, status) {
                 //发布活动后跳转到显示活动列表页面
-                window.location.href = '/group/campaign';
+                window.location.href = '/group/home';
 
             }).error(function(data, status) {
                 //TODO:更改对话框

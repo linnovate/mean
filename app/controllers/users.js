@@ -214,11 +214,12 @@ exports.getGroupMessages = function(req, res) {
           for(var j = 0; j < group_message.length; j ++) {
             group_messages.push(group_message[j]);
           }
-          return res.send(group_messages);
         }
       }
+      console.log(i + '-----------' + group_messages);
     });
   }
+  res.send([]);
 };
 
 
@@ -243,7 +244,6 @@ exports.getCampaigns = function(req, res) {
                 break;
               }
             }
-
             campaigns.push({
               'id': campaign[j].gid,
               'gid': campaign[j].gid,
@@ -259,7 +259,9 @@ exports.getCampaigns = function(req, res) {
               'join':join
             });
           }
-          return res.send(campaigns);
+          if(i === parseInt(req.user.gid.length) - 1){
+            return res.send(campaigns);
+          }
         }
       }
     });

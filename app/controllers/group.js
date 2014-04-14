@@ -63,7 +63,6 @@ exports.saveGroups = function(req,res) {
 exports.getGroups = function(req,res) {
   console.log('ok');
   Group.find(null,function(err,group){
-      
       if (err) {
           console.log(err);
           res.status(400).send([]);
@@ -205,7 +204,6 @@ exports.getGroupMessage = function(req, res) {
       console.log(err);
       return res.status(404).send([]);
     } else {
-        console.log(group_messages);
         return res.send(group_messages);
     }
   });
