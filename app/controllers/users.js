@@ -11,17 +11,24 @@ var mongoose = require('mongoose'),
   CompanyGroup = mongoose.model('CompanyGroup'),
   GroupMessage = mongoose.model('GroupMessage'),
   Campaign = mongoose.model('Campaign'),
-  config = require('../config/config');
+  config = require('../config/config'),
+  message = require('../language/zh-cn/message');
+
+
 
 
 /**
  * Show login form
  */
 exports.signin = function(req, res) {
-  res.render('users/signin', {
-    title: 'Signin',
-    message: req.flash('error')
-  });
+  if(req.user) {
+    res.redirect('/users/home');
+  } else {
+    res.render('users/signin', {
+      title: 'Signin',
+      message: req.flash('error')
+    });
+  }
 };
 
 /**
@@ -70,30 +77,50 @@ exports.invite = function(req, res) {
 exports.dealActive = function(req, res) {
   var key = req.session.key;
   var name = req.session.name;
-  if(encrypt.encrypt(name, config.SECRET) === key) {
-    Company.findOne({'username': name}).exec(function(err, company){
-      if (company != null) {
-        for(var i = 0; i < company.email.domain.length; i++) {
-          if(req.body.domain === company.email.domain[i]) {
-            var user = new User();
-            user.email = req.body.host + '@' + req.body.domain;
-            user.cid = company.id;
-            user.id = company.id + Date.now().toString(32) + Math.random().toString(32);
-            user.save(function(err) {
-              if (err) {
-                console.log(err);
-              }
-            });
-            //系统再给员工发一封激活邮件
-            mail.sendStaffActiveMail(user.email, user.id, company.id);
-            res.render('users/message', {title: '验证邮件', message: '我们已经给您发送了验证邮件，请登录您的邮箱完成激活'});
-            return;
-          }
-        }
+
+  User.findOne({username: req.body.host + '@' + req.body.domain}, function(err, user) {
+    if(err) {
+      console.log(err);
+    } else if(user) {
+      if(user.active === false) {
+        res.render('users/message', message.registered);
+      } else {
+        res.render('users/message', message.actived);
       }
-      res.render('users/message', {title: '验证失败', message: '验证失败'});
-    });
-  }
+    } else {
+      if(encrypt.encrypt(name, config.SECRET) === key) {
+        Company.findOne({'username': name}).exec(function(err, company){
+          if (company != null) {
+            for(var i = 0; i < company.email.domain.length; i++) {
+              if(req.body.domain === company.email.domain[i]) {
+                var user = new User();
+                user.email = req.body.host + '@' + req.body.domain;
+                user.username = user.email;
+                user.cid = company.id;
+                user.id = company.id + Date.now().toString(32) + Math.random().toString(32);
+                user.save(function(err) {
+                  if (err) {
+                    console.log(err);
+                    res.render('users/message', message.dbError);
+                  }
+                });
+                //系统再给员工发一封激活邮件
+                mail.sendStaffActiveMail(user.email, user.id, company.id);
+                res.render('users/message', message.wait);
+                return;
+              }
+            }
+            res.render('users/message', message.emailError);
+          } else {
+            res.render('users/message', message.invalid);
+          }
+        });
+      } else {
+        res.render('users/message', message.invalid);
+      }
+    }
+
+  });
 };
 
 /**
@@ -102,14 +129,30 @@ exports.dealActive = function(req, res) {
 exports.setProfile = function(req, res) {
   var key = req.query.key;
   var uid = req.query.uid;
-  req.session.cid = req.query.cid;
-  if(encrypt.encrypt(uid, config.SECRET) === key) {
-    res.render('users/setProfile', {
-      title: '设置个人信息',
-      key: key,
-      uid: uid
-    });
-  }
+  User.findOne({id: uid}, function(err, user) {
+    if(err) {
+      console.log(err);
+      res.render('users/message', message.dbError);
+    } else if(user) {
+      if(user.active === true) {
+        res.render('users/message', message.actived);
+      } else {
+        req.session.cid = req.query.cid;
+        if(encrypt.encrypt(uid, config.SECRET) === key) {
+          res.render('users/setProfile', {
+            title: '设置个人信息',
+            key: key,
+            uid: uid
+          });
+        } else {
+          res.render('users/message', message.invalid);
+        }
+      }
+    } else {
+      res.render('users/message', message.unregister);
+    }
+  });
+  
 };
 
 /**
@@ -121,26 +164,32 @@ exports.dealSetProfile = function(req, res) {
   , function(err, user) {
     if(err) {
       console.log(err);
+      res.render('users/message', message.dbError);
     }
     else {
-      if (user) {
-        user.username = user.email;
-        user.nickname = req.body.nickname;
-        user.password = req.body.password;
-        user.realName = req.body.realName;
-        user.department = req.body.department;
-        user.phone = req.body.phone;
-        user.active = true;
-        user.role = 'EMPLOYEE';
-        user.save(function(err) {
-          if(err) {
-            console.log(err);
-          }
-          req.session.username = user.username;
-          res.redirect('/users/selectGroup');
-        });
+      if(user) {
+        if(user.active === false) {
+          user.nickname = req.body.nickname;
+          user.password = req.body.password;
+          user.realName = req.body.realName;
+          user.department = req.body.department;
+          user.phone = req.body.phone;
+          user.active = true;
+          user.role = 'EMPLOYEE';
+
+          user.save(function(err) {
+            if(err) {
+              console.log(err);
+              res.render('users/message', message.dbError);
+            }
+            req.session.username = user.username;
+            res.redirect('/users/selectGroup');
+          });
+        } else {
+          res.render('users/message', message.actived);
+        }
       } else {
-        res.render('users/message', {title: 'failed', message: 'failed'});
+        res.render('users/message', message.unregister);
       }
     }
   });
@@ -151,7 +200,20 @@ exports.dealSetProfile = function(req, res) {
  * 选择组件页面
  */
 exports.selectGroup = function(req, res) {
-  res.render('users/selectGroup', {title: '选择你的兴趣小组', group_head: '个人'});
+  User.findOne({username: req.session.username}, function(err, user) {
+    if(err) {
+      console.log(err);
+      res.render('users/message', message.dbError);
+    } else if(user) {
+      if(user.active === true) {
+        res.render('users/message', message.actived);
+      } else {
+        res.render('users/selectGroup', {title: '选择你的兴趣小组', group_head: '个人'});
+      }
+    } else {
+      res.render('users/message', message.unregister);
+    }
+  });
 }
 
 /**
@@ -166,29 +228,33 @@ exports.dealSelectGroup = function(req, res) {
       if (err) {
         res.status(400).send('用户不存在!');
         return;
-      }
-      user.gid = req.body.selected;
-      user.save(function(err){
-        if(err){
-          console.log(err);
-        }
-        for( var i = 0; i < user.gid.length; i ++) {
-          CompanyGroup.findOne({'cid':user.cid,'gid':user.gid[i]}, function(err, company) {
-            company.member.push(user.id);
-            company.save(function(err){
-              if(err){
-                console.log(err);
-              }
-            });
+      } else if(user) {
+        if(user.active === false) {
+          user.gid = req.body.selected;
+          user.active = true;
+          user.save(function(err){
+            if(err){
+              console.log(err);
+              res.render('users/message', message.dbError);
+            }
+            for( var i = 0; i < user.gid.length; i ++) {
+              CompanyGroup.findOne({'cid':user.cid,'gid':user.gid[i]}, function(err, company) {
+                company.member.push(user.id);
+                company.save(function(err){
+                  if(err){
+                    console.log(err);
+                  }
+                });
+              });
+            }
           });
+          res.redirect('/users/finishRegister');
+        } else {
+          res.render('users/message', message.actived);
         }
-      });
-      res.redirect('/users/finishRegister');
+      }
     } else {
-      res.render('users/message', {
-        tittle: '错误!',
-        message: '请通过邀请链接激活后再选择兴趣小组'
-      });
+      res.render('users/message', message.unregister);
     }
   });
 };
@@ -197,7 +263,7 @@ exports.dealSelectGroup = function(req, res) {
  * 完成注册
  */
 exports.finishRegister = function(req, res) {
-  res.render('users/message', {title: '注册成功', message: '注册成功'});
+  res.render('users/message', {title: '激活成功', message: '激活成功'});
 };
 
 
