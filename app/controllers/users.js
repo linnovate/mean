@@ -18,10 +18,14 @@ var mongoose = require('mongoose'),
  * Show login form
  */
 exports.signin = function(req, res) {
-  res.render('users/signin', {
-    title: 'Signin',
-    message: req.flash('error')
-  });
+  if(req.user) {
+    res.redirect('/users/home');
+  } else {
+    res.render('users/signin', {
+      title: 'Signin',
+      message: req.flash('error')
+    });
+  }
 };
 
 /**
