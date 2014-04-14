@@ -222,10 +222,8 @@ exports.getGroupMessages = function(req, res) {
           }
         }
       }
-      
     });
   }
-  
 };
 
 
