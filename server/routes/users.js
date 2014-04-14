@@ -23,7 +23,7 @@ module.exports = function(app, passport) {
     app.post('/login', passport.authenticate('local', {
         failureFlash: true
     }), function (req,res) {
-        res.send(req.user.name);
+        res.send(req.user);
     });
 
     // Setting the facebook oauth routes
