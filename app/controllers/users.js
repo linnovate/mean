@@ -15,8 +15,6 @@ var mongoose = require('mongoose'),
   message = require('../language/zh-cn/message');
 
 
-
-
 /**
  * Show login form
  */
@@ -152,7 +150,6 @@ exports.setProfile = function(req, res) {
       res.render('users/message', message.unregister);
     }
   });
-  
 };
 
 /**
@@ -174,7 +171,6 @@ exports.dealSetProfile = function(req, res) {
           user.realName = req.body.realName;
           user.department = req.body.department;
           user.phone = req.body.phone;
-          user.active = true;
           user.role = 'EMPLOYEE';
 
           user.save(function(err) {
@@ -279,7 +275,8 @@ exports.getGroupMessages = function(req, res) {
           return;
         } else {
           flag ++;
-          for(var j = 0; j < group_message.length; j ++) {
+          var length = group_message.length;
+          for(var j = 0; j < length; j ++) {
             group_messages.push(group_message[j]);
           }
           if(flag === req.user.gid.length - 1) {
@@ -307,7 +304,8 @@ exports.getCampaigns = function(req, res) {
           return;
         } else {
           flag ++;
-          for(var j = 0; j < campaign.length; j ++) {
+          var length = campaign.length;
+          for(var j = 0; j < length; j ++) {
             join = false;
             for(var k = 0;k < campaign[j].member.length; k ++) {
               if(req.user.id === campaign[j].member[k].uid) {

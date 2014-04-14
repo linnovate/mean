@@ -402,7 +402,8 @@ exports.getCompanyCampaign = function(req, res) {
         } else {
             var campaigns = [];
             var join = false;
-            for(var i = 0;i < campaign.length; i ++) {
+            var length = campaign.length;
+            for(var i = 0;i < length; i ++) {
                 join = false;
                 for(var j = 0;j < campaign[i].member.length; j ++) {
                     if(uid === campaign[i].member[j].uid) {

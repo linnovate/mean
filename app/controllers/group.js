@@ -214,7 +214,7 @@ exports.getGroupMessage = function(req, res) {
 exports.getGroupCampaign = function(req, res) {
 
   var cid = req.session.cid;
-  var gid = req.session.gid;//必须是数字类型哦,必要的时候要用parseInt()转换
+  var gid = req.session.gid;
   var uid = req.session.uid;
 
   console.log('-----' + cid + '  ' + gid);
@@ -226,7 +226,8 @@ exports.getGroupCampaign = function(req, res) {
     } else {
       var campaigns = [];
       var join = false;
-      for(var i = 0;i < campaign.length; i ++) {
+      var length = campaign.length;
+      for(var i = 0;i < length; i ++) {
         join = false;
         for(var j = 0;j < campaign[i].member.length; j ++) {
           if(uid === campaign[i].member[j].uid) {

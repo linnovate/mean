@@ -14,7 +14,10 @@ var CompanyGroup = new Schema({
     gid: String,
     group_type: String,
     name: String,
-    member: Array,
+    member: {
+        type: Array,
+        unique: true
+    },
     leader: {
         uid: Array,
         username: Array,

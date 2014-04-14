@@ -1,25 +1,25 @@
-// Angular JS 
+// Angular JS
 script(type="text/javascript" src="/lib/angular/angular.min.js")
 script(type="text/javascript" src="/lib/angular-cookies/angular-cookies.min.js")
 script(type="text/javascript" src="/lib/angular-resource/angular-resource.min.js")
 script(type="text/javascript" src="/lib/angular-ui-router/release/angular-ui-router.js")
 script(type="text/javascript" src="/lib/angular-route/angular-route.min.js")
 
-// Angular UI 
+// Angular UI
 script(type="text/javascript" src="/lib/angular-bootstrap/ui-bootstrap.js")
 script(type="text/javascript" src="/lib/angular-bootstrap/ui-bootstrap-tpls.js")
 
 
-// Application Init 
+// Application Init
 script(type="text/javascript" src="/js/app.js")
 script(type="text/javascript" src="/js/config.js")
 script(type="text/javascript" src="/js/directives.js")
 script(type="text/javascript" src="/js/filters.js")
 
-// Application Services 
+// Application Services
 script(type="text/javascript" src="/js/services/global.js")
 
-// Application Controllers 
+// Application Controllers
 script(type="text/javascript" src="/js/controllers/index.js")
 script(type="text/javascript" src="/js/controllers/header.js")
 script(type="text/javascript" src="/js/init.js")
@@ -28,5 +28,5 @@ block footExt
 block angularModules
 
 if (process.env.NODE_ENV == 'development')
-  // Livereload script rendered 
+  // Livereload script rendered
   script(type="text/javascript" src="{{'http://' + req.host + ':35729/livereload.js'}}")
