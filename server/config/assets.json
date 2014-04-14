@@ -12,10 +12,11 @@
 			"public/system/lib/angular-resource/angular-resource.js",
 			"public/system/lib/angular-ui-router/release/angular-ui-router.js",
 			"public/system/lib/angular-bootstrap/ui-bootstrap.js",
-			"public/system/lib/angular-bootstrap/ui-bootstrap-tpls.js",			
+			"public/system/lib/angular-bootstrap/ui-bootstrap-tpls.js",
 			"public/init.js",
-			"public/*/*.js",			
-			"public/*/*/*.js"			
+			"public/*/*.js",
+			"public/*/*/*.js",
+			"!public/build/**"
 		]
 	}
 }
