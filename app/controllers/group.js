@@ -214,7 +214,7 @@ exports.getGroupMessage = function(req, res) {
 exports.getGroupCampaign = function(req, res) {
 
   var cid = req.session.cid;
-  var gid = req.session.gid;//必须是数字类型哦,必要的时候要用parseInt()转换
+  var gid = req.session.gid;
   var uid = req.session.uid;
 
   console.log('-----' + cid + '  ' + gid);
@@ -226,7 +226,8 @@ exports.getGroupCampaign = function(req, res) {
     } else {
       var campaigns = [];
       var join = false;
-      for(var i = 0;i < campaign.length; i ++) {
+      var length = campaign.length;
+      for(var i = 0;i < length; i ++) {
         join = false;
         for(var j = 0;j < campaign[i].member.length; j ++) {
           if(uid === campaign[i].member[j].uid) {
@@ -235,7 +236,8 @@ exports.getGroupCampaign = function(req, res) {
           }
         }
         campaigns.push({
-          'id': campaign[i].gid,
+          'active':campaign[i].active,
+          'id': campaign[i].id,
           'gid': campaign[i].gid,
           'group_type': campaign[i].group_type,
           'cid': campaign[i].cid,
@@ -256,7 +258,28 @@ exports.getGroupCampaign = function(req, res) {
 
 //任命组长
 exports.appointLeader = function (req, res) {
+  var leader_id = req.body.lid;
+  var gid = req.body.gid;
+  User
+    .findOne({
+        id : lid
+    },function (err, user) {
+      if (err) {
 
+      } else {
+        user.leader_group.gid.push(gid);
+      }
+    });
+  CompanyGroup
+  .findOne({
+        gid : gid
+    },function (err, company_group) {
+      if (err) {
+
+      } else {
+        company_group.leader.uid.push(lid);
+      }
+    });
 };
 
 //组长发布一个活动(只能是一个企业)

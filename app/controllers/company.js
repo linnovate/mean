@@ -365,7 +365,8 @@ exports.getCompanyCampaign = function(req, res) {
         } else {
             var campaigns = [];
             var join = false;
-            for(var i = 0;i < campaign.length; i ++) {
+            var length = campaign.length;
+            for(var i = 0;i < length; i ++) {
                 join = false;
                 for(var j = 0;j < campaign[i].member.length; j ++) {
                     if(uid === campaign[i].member[j].uid) {
@@ -374,7 +375,8 @@ exports.getCompanyCampaign = function(req, res) {
                     }
                 }
                 campaigns.push({
-                    'id': campaign[i].gid,
+                    'active':campaign[i].active,
+                    'id': campaign[i].id,
                     'gid': campaign[i].gid,
                     'group_type': campaign[i].group_type,
                     'cid': campaign[i].cid,

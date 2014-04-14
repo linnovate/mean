@@ -11,17 +11,22 @@ var mongoose = require('mongoose'),
   CompanyGroup = mongoose.model('CompanyGroup'),
   GroupMessage = mongoose.model('GroupMessage'),
   Campaign = mongoose.model('Campaign'),
-  config = require('../config/config');
+  config = require('../config/config'),
+  message = require('../language/zh-cn/message');
 
 
 /**
  * Show login form
  */
 exports.signin = function(req, res) {
-  res.render('users/signin', {
-    title: 'Signin',
-    message: req.flash('error')
-  });
+  if(req.user) {
+    res.redirect('/users/home');
+  } else {
+    res.render('users/signin', {
+      title: 'Signin',
+      message: req.flash('error')
+    });
+  }
 };
 
 /**
@@ -76,9 +81,9 @@ exports.dealActive = function(req, res) {
       console.log(err);
     } else if(user) {
       if(user.active === false) {
-        res.render('users/message', {title: '激活失败', message: '该用户已注册，但还没有激活，请通过激活链接完成激活。'});
+        res.render('users/message', message.registered);
       } else {
-        res.render('users/message', {title: '重复激活', message: '该用户已注册并激活。'});
+        res.render('users/message', message.actived);
       }
     } else {
       if(encrypt.encrypt(name, config.SECRET) === key) {
@@ -94,22 +99,22 @@ exports.dealActive = function(req, res) {
                 user.save(function(err) {
                   if (err) {
                     console.log(err);
-                    res.render('users/message', {title: '存入数据库失败', message: '存入数据库失败'});
+                    res.render('users/message', message.dbError);
                   }
                 });
                 //系统再给员工发一封激活邮件
                 mail.sendStaffActiveMail(user.email, user.id, company.id);
-                res.render('users/message', {title: '验证邮件', message: '我们已经给您发送了验证邮件，请登录您的邮箱完成激活'});
+                res.render('users/message', message.wait);
                 return;
               }
             }
-            res.render('users/message', {title: '验证失败', message: '请使用您的企业邮箱'});
+            res.render('users/message', message.emailError);
           } else {
-            res.render('users/message', {title: '验证失败', message: '这是一个无效的邀请链接'});
+            res.render('users/message', message.invalid);
           }
         });
       } else {
-        res.render('users/message', {title: '验证失败', message: '这是一个无效的邀请链接'});
+        res.render('users/message', message.invalid);
       }
     }
 
@@ -125,10 +130,10 @@ exports.setProfile = function(req, res) {
   User.findOne({id: uid}, function(err, user) {
     if(err) {
       console.log(err);
-      res.render('users/message', {title: '数据库错误', message: '数据库错误'});
+      res.render('users/message', message.dbError);
     } else if(user) {
       if(user.active === true) {
-        res.render('users/message', {title: '重复激活', message: '您已完成注册和激活，可以使用您的企业邮箱登录了。'});
+        res.render('users/message', message.actived);
       } else {
         req.session.cid = req.query.cid;
         if(encrypt.encrypt(uid, config.SECRET) === key) {
@@ -138,14 +143,13 @@ exports.setProfile = function(req, res) {
             uid: uid
           });
         } else {
-          res.render('users/message', {title: '验证失败', message: '这是一个无效的邀请链接'});
+          res.render('users/message', message.invalid);
         }
       }
     } else {
-      res.render('users/message', {title: '激活失败', message: '您还没有注册，请通过邀请链接注册后再激活'});
+      res.render('users/message', message.unregister);
     }
   });
-  
 };
 
 /**
@@ -157,7 +161,7 @@ exports.dealSetProfile = function(req, res) {
   , function(err, user) {
     if(err) {
       console.log(err);
-      res.render('users/message', {title: '数据库错误', message: '数据库错误'});
+      res.render('users/message', message.dbError);
     }
     else {
       if(user) {
@@ -167,22 +171,21 @@ exports.dealSetProfile = function(req, res) {
           user.realName = req.body.realName;
           user.department = req.body.department;
           user.phone = req.body.phone;
-          user.active = true;
           user.role = 'EMPLOYEE';
 
           user.save(function(err) {
             if(err) {
               console.log(err);
-              res.render('users/message', {title: '数据库错误', message: '数据库错误'});
+              res.render('users/message', message.dbError);
             }
             req.session.username = user.username;
             res.redirect('/users/selectGroup');
           });
         } else {
-          res.render('users/message', {title: '重复激活', message: '您已完成注册和激活，可以使用您的企业邮箱登录了。'});
+          res.render('users/message', message.actived);
         }
       } else {
-        res.render('users/message', {title: '激活失败', message: '您还没有注册，请通过邀请链接注册后再激活'});
+        res.render('users/message', message.unregister);
       }
     }
   });
@@ -196,15 +199,15 @@ exports.selectGroup = function(req, res) {
   User.findOne({username: req.session.username}, function(err, user) {
     if(err) {
       console.log(err);
-      res.render('users/message', {title: '数据库错误', message: '数据库错误'});
+      res.render('users/message', message.dbError);
     } else if(user) {
       if(user.active === true) {
-        res.render('users/message', {title: '重复激活', message: '您已完成注册和激活，可以使用您的企业邮箱登录了。'});
+        res.render('users/message', message.actived);
       } else {
         res.render('users/selectGroup', {title: '选择你的兴趣小组', group_head: '个人'});
       }
     } else {
-      res.render('users/message', {title: '激活失败', message: '您还没有注册，请通过邀请链接注册后再激活'});
+      res.render('users/message', message.unregister);
     }
   });
 }
@@ -228,7 +231,7 @@ exports.dealSelectGroup = function(req, res) {
           user.save(function(err){
             if(err){
               console.log(err);
-              res.render('users/message', {title: '数据库错误', message: '数据库错误'});
+              res.render('users/message', message.dbError);
             }
             for( var i = 0; i < user.gid.length; i ++) {
               CompanyGroup.findOne({'cid':user.cid,'gid':user.gid[i]}, function(err, company) {
@@ -243,14 +246,11 @@ exports.dealSelectGroup = function(req, res) {
           });
           res.redirect('/users/finishRegister');
         } else {
-          res.render('users/message', {title: '重复激活', message: '您已完成注册和激活，可以使用您的企业邮箱登录了。'});
+          res.render('users/message', message.actived);
         }
       }
     } else {
-      res.render('users/message', {
-        tittle: '错误!',
-        message: '请通过邀请链接激活后再选择兴趣小组'
-      });
+      res.render('users/message', message.unregister);
     }
   });
 };
@@ -275,10 +275,10 @@ exports.getGroupMessages = function(req, res) {
           return;
         } else {
           flag ++;
-          for(var j = 0; j < group_message.length; j ++) {
+          var length = group_message.length;
+          for(var j = 0; j < length; j ++) {
             group_messages.push(group_message[j]);
           }
-          console.log(flag + '-----------' + group_messages);
           if(flag === req.user.gid.length - 1) {
             res.send(group_messages);
           }
@@ -304,16 +304,18 @@ exports.getCampaigns = function(req, res) {
           return;
         } else {
           flag ++;
-          for(var j = 0; j < campaign.length; j ++) {
+          var length = campaign.length;
+          for(var j = 0; j < length; j ++) {
             join = false;
             for(var k = 0;k < campaign[j].member.length; k ++) {
-              if(uid === campaign[j].member[k].uid) {
+              if(req.user.id === campaign[j].member[k].uid) {
                 join = true;
                 break;
               }
             }
             campaigns.push({
-              'id': campaign[j].gid,
+              'active':campaign[j].active,
+              'id': campaign[j].id,
               'gid': campaign[j].gid,
               'group_type': campaign[j].group_type,
               'cid': campaign[j].cid,
@@ -326,6 +328,7 @@ exports.getCampaigns = function(req, res) {
               'end_time': campaign[j].end_time,
               'join':join
             });
+
           }
           if(flag === req.user.gid.length - 1) {
             res.send(campaigns);
@@ -378,8 +381,8 @@ exports.joinCampaign = function (req, res) {
   },
   function (err, campaign) {
     if (campaign) {
-    campaign.campaign.member.push({'cid':cid,'uid':uid});
-    campaign.save(function (err) {
+      campaign.member.push({'cid':cid,'uid':uid});
+      campaign.save(function (err) {
       console.log(err);
     });
     } else {
@@ -402,9 +405,9 @@ exports.quitCampaign = function (req, res) {
       if (campaign) {
 
         //删除该员工信息
-        for( var i = 0; i < campaign.campaign.member.length; i ++) {
-          if (campaign.campaign.member[i].uid === uid) {
-            campaign.campaign.member.splice(i,1);
+        for( var i = 0; i < campaign.member.length; i ++) {
+          if (campaign.member[i].uid === uid) {
+            campaign.member.splice(i,1);
             break;
           }
         }
