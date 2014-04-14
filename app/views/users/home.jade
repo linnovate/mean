@@ -1,7 +1,8 @@
-extends layouts/manager
+
+extends ../layouts/manager
 
 block panel
-  div(ng-app="tabView")
+  div(ng-app="tabViewUser")
     ul.nav.nav-tabs
       li
         a(href="#/group_message") 小组动态
@@ -19,4 +20,5 @@ block aside
 
 append footExt
   script(src="/lib/angular-route/angular-route.min.js")
-  script(src="/js/controllers/tabview.js")
+  script(src="/js/controllers/tabviewUser.js")
+

@@ -167,6 +167,8 @@ exports.dealSetProfile = function(req, res) {
           user.realName = req.body.realName;
           user.department = req.body.department;
           user.phone = req.body.phone;
+          user.active = true;
+          user.role = 'EMPLOYEE';
 
           user.save(function(err) {
             if(err) {
@@ -261,29 +263,77 @@ exports.finishRegister = function(req, res) {
 };
 
 
-
-
-
-
-
+//列出该user加入的所有小组的动态
 exports.getGroupMessages = function(req, res) {
-  GroupMessage.find({'poster.cid': req.user.cid}, function(err, group_messages) {
-    if (err) {
-      console.log(err);
-    } else {
-      return res.send(group_messages);
-    }
-  });
+  var group_messages = [];
+  var flag = 0;
+  for(var i = 0; i < req.user.gid.length; i ++) {
+     GroupMessage.find({'group.gid': {'$all': [req.user.gid[i]]} }, function(err, group_message) {
+      if (group_message.length > 0) {
+        if (err) {
+          console.log(err);
+          return;
+        } else {
+          flag ++;
+          for(var j = 0; j < group_message.length; j ++) {
+            group_messages.push(group_message[j]);
+          }
+          console.log(flag + '-----------' + group_messages);
+          if(flag === req.user.gid.length - 1) {
+            res.send(group_messages);
+          }
+        }
+      }
+    });
+  }
 };
 
+
+//列出该user加入的所有小组的活动
 exports.getCampaigns = function(req, res) {
-  Campaign.find({'campaign.member': {'$elemMatch': {uid: req.user.id}}}, function(err, campaigns){
-    if (err) {
-      console.log(err);
-    } else {
-      return res.send(campaigns)
-    }
-  });
+  var campaigns = [];
+  var join = false;
+  var flag = 0;
+  for(var i = 0; i < req.user.gid.length; i ++) {
+
+     Campaign.find({ 'gid' : {'$all':[req.user.gid[i]]} }, function(err, campaign) {
+
+      if(campaign.length > 0) {
+        if (err) {
+          console.log(err);
+          return;
+        } else {
+          flag ++;
+          for(var j = 0; j < campaign.length; j ++) {
+            join = false;
+            for(var k = 0;k < campaign[j].member.length; k ++) {
+              if(uid === campaign[j].member[k].uid) {
+                join = true;
+                break;
+              }
+            }
+            campaigns.push({
+              'id': campaign[j].gid,
+              'gid': campaign[j].gid,
+              'group_type': campaign[j].group_type,
+              'cid': campaign[j].cid,
+              'cname': campaign[j].cname,
+              'poster': campaign[j].poster,
+              'content': campaign[j].content,
+              'member': campaign[j].member,
+              'create_time': campaign[j].create_time,
+              'start_time': campaign[j].start_time,
+              'end_time': campaign[j].end_time,
+              'join':join
+            });
+          }
+          if(flag === req.user.gid.length - 1) {
+            res.send(campaigns);
+          }
+        }
+      }
+    });
+  }
 };
 
 
@@ -321,7 +371,6 @@ exports.editInfo = function(req, res) {
 //员工参加活动
 exports.joinCampaign = function (req, res) {
   var cid = req.session.cid;
-  var gid = req.session.gid;
   var uid = req.session.uid;
   var campaign_id = req.body.campaign_id; //该活动的id
   Campaign.findOne({
@@ -329,7 +378,7 @@ exports.joinCampaign = function (req, res) {
   },
   function (err, campaign) {
     if (campaign) {
-    campaign.campaign.member.push({'cid':cid, 'gid':gid, 'uid':uid});
+    campaign.campaign.member.push({'cid':cid,'uid':uid});
     campaign.save(function (err) {
       console.log(err);
     });
@@ -344,7 +393,6 @@ exports.joinCampaign = function (req, res) {
 //员工退出活动
 exports.quitCampaign = function (req, res) {
   var cid = req.session.cid;
-  var gid = req.session.gid;
   var uid = req.session.uid;
   var campaign_id = req.body.campaign_id; //该活动的id
   Campaign.findOne({

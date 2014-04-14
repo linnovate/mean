@@ -1,0 +1,6 @@
+mixin group_list(gids)
+  h3 显示在组件页面的该企业所有小组
+  ul
+    each gid in gids
+      li
+        a(href="/group/home/#{gid}")= gid

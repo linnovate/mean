@@ -33,6 +33,12 @@ companyApp.directive('match', function($parse) {
   };
 });
 
+
+companyApp.controller('AppointLeaderController', ['$scope', '$http', function($scope, $http) {
+    $scope.appointLeader = function (gid) {
+        alert(gid);
+    }
+}]);
 //企业发布活动
 companyApp.controller('CompanyCampaignSponsorController', ['$scope', '$http', function($scope, $http) {
    $scope.sponsor = function() {
@@ -47,7 +53,7 @@ companyApp.controller('CompanyCampaignSponsorController', ['$scope', '$http', fu
                 }
             }).success(function(data, status) {
                 //发布活动后跳转到显示活动列表页面
-                window.location.href = '/company/campaign';
+                window.location.href = '/company/home';
 
             }).error(function(data, status) {
                 //TODO:更改对话框
@@ -58,15 +64,6 @@ companyApp.controller('CompanyCampaignSponsorController', ['$scope', '$http', fu
             console.log(e);
         }
     };
-}]);
-
-//企业组建列表
-companyApp.controller('GroupListController', ['$scope','$http', function($scope, $http) {
-    $http.get('/group/getCompanyGroups/true').success(function(data, status) {
-        $scope.groups = data;
-    }).error(function(data,status) {
-        alert('组件获取失败！');
-    });
 }]);
 
 

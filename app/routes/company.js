@@ -40,10 +40,11 @@ module.exports = function(app, passport) {
     app.get('/company/campaignSponsor', company.showSponsor);
     app.post('/company/campaignSponsor', company.sponsor);
 
-    app.get('/company/groupMessage', company.getCompanyMessage);
+    app.get('/company/getCompanyMessages', company.getCompanyMessage);
+    app.get('/company/getCampaigns', company.getCompanyCampaign);
 
-    //获取企业活动列表
-    app.get('/company/campaign', company.getCompanyCampaign);
+    app.get('/company/home', company.home);
+
     // Setting up the companyId param
     app.param('companyId', company.company);
 };

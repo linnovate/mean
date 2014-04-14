@@ -12,15 +12,13 @@ groupApp.controller('GroupCampaignSponsorController', ['$scope','$http', functio
                 method: 'post',
                 url: '/group/campaignSponsor',
                 data:{
-                    gid : $scope.gid,
-                    group_type: $scope.group_type,
                     content : $scope.content,
                     start_time : $scope.start_time,
                     end_time : $scope.end_time
                 }
             }).success(function(data, status) {
                 //发布活动后跳转到显示活动列表页面
-                window.location.href = '/group/campaign';
+                window.location.href = '/group/home';
 
             }).error(function(data, status) {
                 //TODO:更改对话框
@@ -32,8 +30,6 @@ groupApp.controller('GroupCampaignSponsorController', ['$scope','$http', functio
         }
     };
 }]);
-
-
 
 //小组信息表单
 groupApp.controller('InfoFormController',['$scope','$http',function ($scope, $http) {

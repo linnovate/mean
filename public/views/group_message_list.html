@@ -1,7 +1,8 @@
 <h1>动态列表</h1>
 <ul>
-  <li ng-repeat="group_message in messages.group_messages">
-    <h2>{{ group_message.content }}</h2>
-    <p>小组类型：{{ group_message.group.group_type }}</p>
-    <p>发起人：{{ group_message.poster.username }}</p>
+  	<li ng-repeat="group_message in messages.group_messages">
+    	<h2>{{ group_message.content }}</h2>
+    	<p>小组类型：{{ group_message.group.group_type }}</p>
+    	<p>发起人：{{ group_message.poster.username }}</p>
+	</li>
 </ul>
