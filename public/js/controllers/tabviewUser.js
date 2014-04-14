@@ -33,12 +33,49 @@ tabViewUser.controller('GroupMessageController', ['$http',
     });
 }]);
 
-tabViewUser.controller('CampaignListController', ['$http',
-  function($http) {
+tabViewUser.controller('CampaignListController', ['$http','$scope',
+  function ($http, $scope) {
     var that = this;
     $http.get('/users/getCampaigns').success(function(data, status) {
       that.campaigns = data;
     });
+    $scope.join = function(campaign_id) {
+        try {
+            $http({
+                method: 'post',
+                url: '/users/joinCampaign',
+                data:{
+                    campaign_id : campaign_id
+                }
+            }).success(function(data, status) {
+                alert("成功加入该活动!");
+            }).error(function(data, status) {
+                alert("数据发生错误！");
+            });
+        }
+        catch(e) {
+            console.log(e);
+        }
+    };
+
+    $scope.quit = function(campaign_id) {
+        try {
+            $http({
+                method: 'post',
+                url: '/users/quitCampaign',
+                data:{
+                    campaign_id : campaign_id
+                }
+            }).success(function(data, status) {
+                alert("您已退出该活动!");
+            }).error(function(data, status) {
+                alert("数据发生错误！");
+            });
+        }
+        catch(e) {
+            console.log(e);
+        }
+    };
 }]);
 
 tabViewUser.controller('AccountFormController',['$scope','$http',function($scope, $http) {

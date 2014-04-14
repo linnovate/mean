@@ -34,7 +34,7 @@ tabViewCompany.controller('GroupListController', ['$http', '$scope',
     });
 
     $scope.appointLeader = function (_id) {
-      //根据小组id任命组长,待定
+      alert(_id);
     };
 }]);
 
@@ -47,11 +47,50 @@ tabViewCompany.controller('GroupMessageController', ['$http',
     });
 }]);
 
-tabViewCompany.controller('CampaignListController', ['$http',
-  function($http) {
+tabViewCompany.controller('CampaignListController', ['$http','$scope',
+  function($http,$scope) {
     var that = this;
     $http.get('/company/getCampaigns').success(function(data, status) {
       that.campaigns = data;
     });
+
+    $scope.join = function(campaign_id) {
+      alert(campaign_id);
+        try {
+            $http({
+                method: 'post',
+                url: '/users/joinCampaign',
+                data:{
+                    campaign_id : campaign_id
+                }
+            }).success(function(data, status) {
+                alert("成功加入该活动!");
+            }).error(function(data, status) {
+                alert("数据发生错误！");
+            });
+        }
+        catch(e) {
+            console.log(e);
+        }
+    };
+
+    $scope.quit = function(campaign_id) {
+        try {
+            $http({
+                method: 'post',
+                url: '/users/quitCampaign',
+                data:{
+                    campaign_id : campaign_id
+                }
+            }).success(function(data, status) {
+                alert("您已退出该活动!");
+            }).error(function(data, status) {
+                alert("数据发生错误！");
+            });
+        }
+        catch(e) {
+            console.log(e);
+        }
+    };
 }]);
 

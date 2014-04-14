@@ -216,7 +216,6 @@ exports.getGroupMessages = function(req, res) {
           for(var j = 0; j < group_message.length; j ++) {
             group_messages.push(group_message[j]);
           }
-          console.log(flag + '-----------' + group_messages);
           if(flag === req.user.gid.length - 1) {
             res.send(group_messages);
           }
@@ -245,13 +244,14 @@ exports.getCampaigns = function(req, res) {
           for(var j = 0; j < campaign.length; j ++) {
             join = false;
             for(var k = 0;k < campaign[j].member.length; k ++) {
-              if(uid === campaign[j].member[k].uid) {
+              if(req.user.id === campaign[j].member[k].uid) {
                 join = true;
                 break;
               }
             }
             campaigns.push({
-              'id': campaign[j].gid,
+              'active':campaign[j].active,
+              'id': campaign[j].id,
               'gid': campaign[j].gid,
               'group_type': campaign[j].group_type,
               'cid': campaign[j].cid,
@@ -264,6 +264,7 @@ exports.getCampaigns = function(req, res) {
               'end_time': campaign[j].end_time,
               'join':join
             });
+
           }
           if(flag === req.user.gid.length - 1) {
             res.send(campaigns);
@@ -316,8 +317,8 @@ exports.joinCampaign = function (req, res) {
   },
   function (err, campaign) {
     if (campaign) {
-    campaign.campaign.member.push({'cid':cid,'uid':uid});
-    campaign.save(function (err) {
+      campaign.member.push({'cid':cid,'uid':uid});
+      campaign.save(function (err) {
       console.log(err);
     });
     } else {
@@ -340,9 +341,9 @@ exports.quitCampaign = function (req, res) {
       if (campaign) {
 
         //删除该员工信息
-        for( var i = 0; i < campaign.campaign.member.length; i ++) {
-          if (campaign.campaign.member[i].uid === uid) {
-            campaign.campaign.member.splice(i,1);
+        for( var i = 0; i < campaign.member.length; i ++) {
+          if (campaign.member[i].uid === uid) {
+            campaign.member.splice(i,1);
             break;
           }
         }

@@ -235,7 +235,8 @@ exports.getGroupCampaign = function(req, res) {
           }
         }
         campaigns.push({
-          'id': campaign[i].gid,
+          'active':campaign[i].active,
+          'id': campaign[i].id,
           'gid': campaign[i].gid,
           'group_type': campaign[i].group_type,
           'cid': campaign[i].cid,
@@ -256,7 +257,28 @@ exports.getGroupCampaign = function(req, res) {
 
 //任命组长
 exports.appointLeader = function (req, res) {
+  var leader_id = req.body.lid;
+  var gid = req.body.gid;
+  User
+    .findOne({
+        id : lid
+    },function (err, user) {
+      if (err) {
 
+      } else {
+        user.leader_group.gid.push(gid);
+      }
+    });
+  CompanyGroup
+  .findOne({
+        gid : gid
+    },function (err, company_group) {
+      if (err) {
+
+      } else {
+        company_group.leader.uid.push(lid);
+      }
+    });
 };
 
 //组长发布一个活动(只能是一个企业)

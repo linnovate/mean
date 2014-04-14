@@ -2,7 +2,8 @@
 	<h1>企业组件列表</h1>
   	<ul>
   		<div>
-    		<li ng-repeat="group in group.group_lists">
+    		<li ng-repeat="group in group.group_lists" >
+            <p>id：{{ group.gid }}</p>
       			<h2>{{ group.name }}</h2>
       			<p>组件类型：{{ group.group_type }}</p>
       			<p>组件组长：{{ group.leader.username}}</p>
@@ -10,7 +11,7 @@
       			<p>分数：{{ group.score }}</p>
       			<p>排名：{{ group.rank }}</p>
       			<p>简介：{{ group.brief }}</p>
-            <input type = "button" value="{{group.gid}}" ng-click="appointLeader({group.gid})"/>
+            <input type = "button" value = "任命组长" ng-click="appointLeader(group.gid)" />
     		</li>
     	</div>
   	</ul>

@@ -411,7 +411,8 @@ exports.getCompanyCampaign = function(req, res) {
                     }
                 }
                 campaigns.push({
-                    'id': campaign[i].gid,
+                    'active':campaign[i].active,
+                    'id': campaign[i].id,
                     'gid': campaign[i].gid,
                     'group_type': campaign[i].group_type,
                     'cid': campaign[i].cid,
