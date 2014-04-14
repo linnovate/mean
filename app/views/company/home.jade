@@ -1,0 +1,20 @@
+extends ../layouts/manager
+
+block panel
+  div(ng-app="tabViewCompany")
+    ul.nav.nav-tabs
+      li
+        a(href="#/company_message") 公司动态
+      li
+        a(href="#/company_group") 公司组件
+      li
+        a(href="#/company_campaign") 公司活动
+    .tab-content
+      .tab-pane.active
+        div(ng-view)
+
+block aside
+  待定区域
+append footExt
+  script(src="/lib/angular-route/angular-route.min.js")
+  script(src="/js/controllers/tabviewCompany.js")

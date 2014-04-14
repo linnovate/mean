@@ -1,0 +1,20 @@
+extends ../layouts/manager
+
+block panel
+  div(ng-app="tabViewGroup")
+    ul.nav.nav-tabs
+      li
+        a(href="#/group_message") 小组动态
+      li
+        a(href="#/group_campaign") 小组活动
+    .tab-content
+      .tab-pane.active
+        div(ng-view)
+
+block aside
+  include ../partials/group_list
+  +group_list(gids)
+  
+append footExt
+  script(src="/lib/angular-route/angular-route.min.js")
+  script(src="/js/controllers/tabviewGroup.js")

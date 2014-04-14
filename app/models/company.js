@@ -66,6 +66,7 @@ var CompanySchema = new Schema({
     },
     //公司内部组件
     gid: Array,                       //存放组的id
+    group_type: Array,
     provider: {
         type: String,
         default: 'company'

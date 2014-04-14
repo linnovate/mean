@@ -11,7 +11,6 @@ var mongoose = require('mongoose'),
  */
 var _member = new Schema({
     cid: String,
-    gid: String,
     uid: String
 });
 
@@ -20,7 +19,7 @@ var _member = new Schema({
  */
 var Campaign = new Schema({
     id: String,
-
+    active: false,
     gid: Array,
     group_type: Array,
     cid: Array,           //参加该活动的所有公司

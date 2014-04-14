@@ -96,6 +96,7 @@ exports.groupList = function(req, res) {
         title: '兴趣小组'
     });
 };
+
 exports.groupSelect = function(req, res) {
     var selected_groups = req.body.selected_groups;
     if(selected_groups == undefined){
@@ -110,7 +111,9 @@ exports.groupSelect = function(req, res) {
             }
 
             for (var i = 0, length = selected_groups.length; i < length; i++) {
+
                 company.gid.push(selected_groups[i].gid);
+                company.group_type.push(selected_groups[i].group_type);
                 var companyGroup = new CompanyGroup();
                 companyGroup.cid = req.session.company_id;
                 companyGroup.gid = selected_groups[i].gid;
@@ -252,8 +255,11 @@ exports.createDetail = function(req, res, next) {
 
 
 
+exports.home = function(req, res) {
+    return res.render('company/home', {title : '公司组件和活动'});
+};
 
-exports.Info = function(req, res){
+exports.Info = function(req, res) {
     if(req.session.cpname != null) {
         res.render('company/company_info', {
             title: '企业信息管理'
@@ -367,7 +373,7 @@ exports.showSponsor = function (req, res) {
 //返回公司动态消息的所有数据,待前台调用
 exports.getCompanyMessage = function(req, res) {
 
-  var cid = req.session.cid;//根据公司id取出该公司的动态消息(公司id是参数传进来的)
+  var cid = req.session.cid;
 
   //公司的动态消息都归在虚拟组里
   GroupMessage.find({'poster.cid' : cid , 'group.gid' : {'$all':[0]}}, function(err, group_messages) {
@@ -376,10 +382,7 @@ exports.getCompanyMessage = function(req, res) {
       return res.status(404).send([]);
     } else {
         console.log(group_messages);
-      return res.render('partials/groupMessage_list',
-        { title: '企业动态消息',
-          group_messages: group_messages
-      });
+        return res.send(group_messages);
     }
   });
 
@@ -389,37 +392,43 @@ exports.getCompanyMessage = function(req, res) {
 //返回公司发布的所有活动,待前台调用
 exports.getCompanyCampaign = function(req, res) {
 
-  var cid = req.session.cid;//根据公司id取出该公司的所有活动(公司id是参数传进来的)
-  var uid = req.session.uid;
+    var cid = req.session.cid;//根据公司id取出该公司的所有活动(公司id是参数传进来的)
+    var uid = req.session.uid;
 
-  //公司发布的活动都归在虚拟组 gid = 0 里
-  Campaign.find({'poster.cid' : cid, 'group.gid' : {'$all':[0]}}, function(err, campaigns) {
-    if (err) {
-      console.log(err);
-      return res.status(404).send([]);
-    } else {
-      if(campaigns.length === 0) {
-        return res.render('partials/campaign_list',
-          {title: '企业活动列表',
-            campaigns: [],
-            status : false //uid所对应成员是否已经参加该活动
-        });
-      } else {
-        var join = false;
-        for(var i = 0;i < campaigns.member.length; i ++) {
-          if(campaigns.member[i].uid === uid) {
-            join = true;
-            break;
-          }
+    //公司发布的活动都归在虚拟组 gid = 0 里
+    Campaign.find({'poster.cid' : cid, 'gid' : {'$all':[0]}}, function(err, campaign) {
+        if (err) {
+            console.log(err);
+            return res.status(404).send([]);
+        } else {
+            var campaigns = [];
+            var join = false;
+            for(var i = 0;i < campaign.length; i ++) {
+                join = false;
+                for(var j = 0;j < campaign[i].member.length; j ++) {
+                    if(uid === campaign[i].member[j].uid) {
+                        join = true;
+                        break;
+                    }
+                }
+                campaigns.push({
+                    'id': campaign[i].gid,
+                    'gid': campaign[i].gid,
+                    'group_type': campaign[i].group_type,
+                    'cid': campaign[i].cid,
+                    'cname': campaign[i].cname,
+                    'poster': campaign[i].poster,
+                    'content': campaign[i].content,
+                    'member': campaign[i].member,
+                    'create_time': campaign[i].create_time,
+                    'start_time': campaign[i].start_time,
+                    'end_time': campaign[i].end_time,
+                    'join':join
+                });
+            }
+            return res.send(campaigns);
         }
-        return res.render('partials/campaign_list',
-          {title: '企业活动列表',
-            campaigns: campaigns,
-            status : join //uid所对应成员是否已经参加该活动
-        });
-      }
-    }
-  });
+    });
 };
 
 //HR发布一个活动(可能是多个企业)
@@ -451,13 +460,14 @@ exports.sponsor = function (req, res) {
     campaign.gid.push(gid);
     campaign.group_type.push(group_type);
 
-    campaign.cid = company_in_campaign; //一定要和cid区分开啊,这是参加活动蛋所有公司的id
+    campaign.cid = company_in_campaign; //一定要和cid区分开啊,这是参加活动的所有公司的id
 
     campaign.id = Date.now().toString(32) + Math.random().toString(32) + '0';
     campaign.poster.cname = cname;
     campaign.poster.cid = cid;
     campaign.poster.uid = uid;
     campaign.poster.role = 'HR';
+    campaign.active = true;
 
     campaign.poster.username = username;
 

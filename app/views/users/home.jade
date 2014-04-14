@@ -1,0 +1,22 @@
+extends ../layouts/manager
+
+block panel
+  div(ng-app="tabViewUser")
+    ul.nav.nav-tabs
+      li
+        a(href="#/group_message") 小组动态
+      li
+        a(href="#/schedule") 日程列表
+      li
+        a(href="#/personal") 个人资料
+    .tab-content
+      .tab-pane.active
+        div(ng-view)
+
+block aside
+  include ../partials/group_thumbnail
+  +group_thumbnail(gids)
+
+append footExt
+  script(src="/lib/angular-route/angular-route.min.js")
+  script(src="/js/controllers/tabviewUser.js")

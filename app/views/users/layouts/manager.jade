@@ -16,7 +16,7 @@ html
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        a.navbar-brand(href="#") donler
+        a.navbar-brand(href="/") donler
       .collapse.navbar-collapse#personal_nav
         ul.nav.navbar-nav
           li
@@ -24,7 +24,7 @@ html
           li
             a(href="#") 小组
           li
-            a(href="#") 个人
+            a(href="/users/home") 个人
 
     .container
       .row
@@ -47,32 +47,5 @@ html
             p.pull-right 鸭梨助手
             p.pull-right 关于我们
 
-    script(src="/lib/jquery/dist/jquery.min.js")
-    script(src="/lib/bootstrap/dist/js/bootstrap.min.js")
-      // Angular JS 
-    script(type="text/javascript" src="/lib/angular/angular.min.js")
-    script(type="text/javascript" src="/lib/angular-cookies/angular-cookies.min.js")
-    script(type="text/javascript" src="/lib/angular-resource/angular-resource.min.js")
-    script(type="text/javascript" src="/lib/angular-ui-router/release/angular-ui-router.js")
-    script(type="text/javascript" src="/lib/angular-route/angular-route.min.js")
-
-    // Angular UI 
-    script(type="text/javascript" src="/lib/angular-bootstrap/ui-bootstrap.js")
-    script(type="text/javascript" src="/lib/angular-bootstrap/ui-bootstrap-tpls.js")
-
-
-    // Application Init 
-    script(type="text/javascript" src="/js/app.js")
-    script(type="text/javascript" src="/js/config.js")
-    script(type="text/javascript" src="/js/directives.js")
-    script(type="text/javascript" src="/js/filters.js")
-
-    // Application Services 
-    script(type="text/javascript" src="/js/services/global.js")
-
-    // Application Controllers 
-    script(type="text/javascript" src="/js/controllers/index.js")
-    script(type="text/javascript" src="/js/controllers/header.js")
-    script(type="text/javascript" src="/js/init.js")
-    script(src="/js/controllers/user.js")
+    script(src="/lib/angular/angular.min.js")
     block footExt
