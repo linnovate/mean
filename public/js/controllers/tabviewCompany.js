@@ -210,7 +210,7 @@ tabViewCompany.controller('PasswordFormController', ['$http', function($http) {
             //TODO:更改对话框
             if(data.result === 1){
                 alert(data.msg);
-                window.loaction.href = "#/personal";
+                window.location.href = "#/company_info";
             }
             else
                 alert(data.msg);
