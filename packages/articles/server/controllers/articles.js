@@ -1,5 +1,7 @@
 'use strict';
 
+require('../models/article');
+
 /**
  * Module dependencies.
  */
