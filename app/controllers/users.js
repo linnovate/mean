@@ -422,9 +422,9 @@ exports.quitCampaign = function (req, res) {
 
 //获取账户信息
 exports.getAccount = function (req, res) {
-    User.findOneAndUpdate({
+    User.findOne({
             id : req.session.uid
-        },req.body.user,null, function(err, user) {
+        }, function(err, user) {
             if(err) {
                 console.log(err);
                 res.send({'result':0,'msg':'数据错误'});
@@ -458,3 +458,40 @@ exports.saveAccount = function (req, res) {
         });
 };
 
+//修改密码
+exports.changePassword = function (req, res) {
+  if(req.user.id==null){
+      return res.send({'result':0,'msg':'您没有登录'});
+  }
+  User.findOne({
+      id : req.session.uid
+    },function(err, user) {
+      if(err) {
+        console.log(err);
+        res.send({'result':0,'msg':'数据错误'});
+      }
+      else {
+        if (user) {
+          if(user.authenticate(req.body.nowpassword)==true){
+            user.password = req.body.newpassword;
+            user.save(function(err){
+              if(err){
+                console.log(err);
+                res.send({'result':0,'msg':'密码修改失败'});
+              }
+              else {
+                res.send({'result':1,'msg':'密码修改成功'});
+              }
+              return;
+            });
+          }
+          else{
+            res.send({'result':0,'msg':'密码不正确，请重新输入'});
+          }
+        }
+        else {
+          res.send({'result':0,'msg':'您没有登录'});
+        }
+      }
+    });
+};

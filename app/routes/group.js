@@ -19,12 +19,12 @@ module.exports = function(app) {
   app.get('/group/getInfo', group.getInfo);
   app.get('/group/info/:groupId', group.Info);
   app.get('/group/info', group.Info);
-  app.get('/group/member/:groupId', group.member);
-  app.get('/group/member', group.member);
+
   app.post('/group/saveInfo', group.saveInfo);
 
   app.get('/group/getCampaigns', group.getGroupCampaign);
   app.get('/group/getGroupMessages', group.getGroupMessage);
+  app.get('/group/getGroupMembers', group.getGroupMember);
 
   //小组发布活动
   app.get('/group/campaignSponsor', group.showSponsor);

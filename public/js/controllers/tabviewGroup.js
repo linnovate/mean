@@ -14,6 +14,11 @@ tabViewGroup.config(['$routeProvider', '$locationProvider',
         templateUrl: '/views/campaign_list.html',
         controller: 'CampaignListController',
         controllerAs: 'campaign'
+      })
+      .when('/group_member', {
+        templateUrl: '/views/member_list.html',
+        controller: 'MemberListController',
+        controllerAs: 'member'
       }).
       otherwise({
         redirectTo: '/group_message'
@@ -33,5 +38,14 @@ tabViewGroup.controller('CampaignListController', ['$http',
     var that = this;
     $http.get('/group/getCampaigns?' + Math.round(Math.random()*100)).success(function(data, status) {
       that.campaigns = data;
+    });
+}]);
+
+tabViewGroup.controller('MemberListController', ['$http',
+  function($http) {
+    var that = this;
+    $http.get('/group/getGroupMembers?' + Math.round(Math.random()*100)).success(function(data, status) {
+      that.group_members = data;
+      console.log(that.group_members);
     });
 }]);

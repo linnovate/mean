@@ -2,6 +2,19 @@
 
 var tabViewUser = angular.module('tabViewUser', ['ngRoute']);
 
+tabViewUser.directive('match', function($parse) {
+  return {
+    require: 'ngModel',
+    link: function(scope, elem, attrs, ctrl) {
+      scope.$watch(function() {
+        return $parse(attrs.match)(scope) === ctrl.$modelValue;
+      }, function(currentValue) {
+        ctrl.$setValidity('mismatch', currentValue);
+      });
+    }
+  };
+});
+
 tabViewUser.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
     $routeProvider
@@ -19,6 +32,11 @@ tabViewUser.config(['$routeProvider', '$locationProvider',
         templateUrl: '/users/editInfo',
         controller: 'AccountFormController',
         controllerAs: 'account'
+      })
+      .when('/changePassword', {
+        templateUrl: '/views/change_password.html',
+        controller: 'PasswordFormController',
+        controllerAs: 'password'
       }).
       otherwise({
         redirectTo: '/group_message'
@@ -136,4 +154,33 @@ tabViewUser.controller('AccountFormController',['$scope','$http',function($scope
         }
     };
 
+}]);
+
+tabViewUser.controller('PasswordFormController', ['$http', function($http) {
+    var that = this;
+    this.nowpassword = "";
+    this.newpassword = "";
+    this.confirmpassword = "";
+    this.change_password = function(){
+        $http({
+            method : 'post',
+            url : '/users/changePassword',
+            data : {
+                'nowpassword' : that.nowpassword,
+                'newpassword' : that.newpassword
+            }
+        }).success(function(data, status) {
+            console.log(data);
+            //TODO:更改对话框
+            if(data.result === 1){
+                alert(data.msg);
+                window.loaction.href = "#/personal";
+            }
+            else
+                alert(data.msg);
+        }).error(function(data, status) {
+            //TODO:更改对话框
+            alert("数据发生错误！");
+        });
+    };
 }]);

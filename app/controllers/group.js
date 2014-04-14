@@ -337,17 +337,26 @@ exports.sponsor = function (req, res) {
 };
 
 
-exports.member = function(req,res){
-  if(req.params.groupId == null) {
-    res.redirect('/users/signin');
-    return;
-  }
-  if(req.session.cpname != null || req.session.username != null ) {
-      res.render('partials/member', {
-          title: '小组成员列表',
-          group_members: req.companyGroup.member
-      });
-  }
-  else
-      res.redirect('/users/signin');
-}
+exports.getGroupMember = function(req,res){
+
+  var cid = req.session.cid;
+  var gid = req.session.gid;
+
+  CompanyGroup
+    .findOne({
+        'cid': cid,
+        'gid': gid
+    },function(err, companyGroup) {
+        if(err){
+          console.log(err);
+          return res.status(404).send(err);
+        };
+        var _member_list =[];
+        if(companyGroup){
+          _member_list = companyGroup.member;
+        };
+        console.log(_member_list);
+        return res.send(_member_list);
+    });
+
+};
