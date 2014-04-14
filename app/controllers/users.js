@@ -174,7 +174,6 @@ exports.dealSetProfile = function(req, res) {
           user.realName = req.body.realName;
           user.department = req.body.department;
           user.phone = req.body.phone;
-          user.active = true;
           user.role = 'EMPLOYEE';
 
           user.save(function(err) {
