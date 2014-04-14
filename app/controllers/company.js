@@ -259,6 +259,16 @@ exports.home = function(req, res) {
     return res.render('company/home', {title : '公司组件和活动'});
 };
 
+exports.Info = function(req, res) {
+    if(req.session.cpname != null) {
+        res.render('company/company_info', {
+            title: '企业信息管理'
+        });
+    }
+    else
+        res.redirect('/company/signin');
+};
+
 exports.getAccount = function(req, res) {
     if(req.session.cid != null) {
         Company.findOne({'id': req.session.cid}, {"_id":0,"username": 1,"login_email":1, "register_date":1,"info":1},function(err, _company) {
@@ -365,8 +375,7 @@ exports.getCompanyCampaign = function(req, res) {
         } else {
             var campaigns = [];
             var join = false;
-            var length = campaign.length;
-            for(var i = 0;i < length; i ++) {
+            for(var i = 0;i < campaign.length; i ++) {
                 join = false;
                 for(var j = 0;j < campaign[i].member.length; j ++) {
                     if(uid === campaign[i].member[j].uid) {
@@ -375,8 +384,7 @@ exports.getCompanyCampaign = function(req, res) {
                     }
                 }
                 campaigns.push({
-                    'active':campaign[i].active,
-                    'id': campaign[i].id,
+                    'id': campaign[i].gid,
                     'gid': campaign[i].gid,
                     'group_type': campaign[i].group_type,
                     'cid': campaign[i].cid,
