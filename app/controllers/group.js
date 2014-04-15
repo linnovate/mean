@@ -91,10 +91,24 @@ exports.getInfo =function(req,res) {
 
 
 exports.Info =function(req,res) {
-  if(req.params.groupId == null) {
-    res.redirect('/');
+  if(req.params.groupId == null && req.session.gid!=null) {
+    CompanyGroup.findOne({
+        cid: req.session.cid,
+        gid: req.session.gid
+      },function(err, companyGroup) {
+          if (err) {
+              console.log(err);
+              return;
+          }
+          else {
+              res.render('group/group_info', {
+                  'companyGroup': companyGroup,
+                  'companyname': req.session.cpname
+              });
+          }
+      });
   }
-  if(req.session.cpname != null || req.session.username != null ) {
+  else if(req.session.cpname != null || req.session.username != null ) {
       console.log(req.companyGroup);
       res.render('group/group_info', {
           title: '小组信息管理',
