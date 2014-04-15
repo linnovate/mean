@@ -392,7 +392,6 @@ exports.getCompanyCampaign = function(req, res) {
                     'join':join
                 });
             }
-            console.log(campaigns);
             return res.send(campaigns);
         }
     });
@@ -428,6 +427,23 @@ exports.appointLeader = function (req, res) {
 //关闭企业活动
 exports.campaignCancel = function (req, res) {
     var campaign_id = req.body.campaign_id;
+    Campaign.findOne({id:campaign_id},function(err, campaign) {
+        if(campaign) {
+            if (err) {
+                console.log('错误');
+            }
+
+            var active = campaign.active;
+            campaign.active = !active;
+            campaign.save();
+
+            return res.send('ok');
+            //console.log('创建成功');
+        } else {
+            return res.send('not exist');
+        }
+    });
+    /*
     Campaign.findOneAndUpdate({ id: campaign_id}, { $set: { active: false }},null, function(err, company) {
         if (err) {
             console.log('数据错误');
@@ -440,10 +456,11 @@ exports.campaignCancel = function (req, res) {
             res.send({'result':0,'msg':'不存在该公司'});
         }
     });
+    */
 };
 //HR发布一个活动(可能是多个企业)
 exports.sponsor = function (req, res) {
-
+    
     var username = req.session.username;
     var cid = req.session.cid;    //公司id
     var uid = req.session.uid;    //用户id
@@ -482,6 +499,8 @@ exports.sponsor = function (req, res) {
     campaign.poster.username = username;
 
     campaign.content = content;
+
+    console.log(campaign);
 
     campaign.save(function(err) {
         if (err) {

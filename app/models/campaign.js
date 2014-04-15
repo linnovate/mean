@@ -50,8 +50,10 @@ var Campaign = new Schema({
 /**
  * Pre-save hook
  */
+ /*
 Campaign.pre('save', function(next) {
     if (!this.isNew) return next();
 });
+*/
 
 mongoose.model('Campaign', Campaign);
