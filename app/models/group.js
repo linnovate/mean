@@ -17,6 +17,4 @@ var GroupModel = new Schema({
     group_rule: String,
 });
 
-
-
 mongoose.model('Group', GroupModel);
