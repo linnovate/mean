@@ -362,13 +362,6 @@ exports.company = function(req, res, next, id) {
         });
 };
 
-exports.showSponsor = function (req, res) {
-    res.render('company/company_campaign_sponsor', {
-        title: '企业活动发布'
-    });
-};
-
-
 
 //返回公司动态消息的所有数据,待前台调用
 exports.getCompanyMessage = function(req, res) {

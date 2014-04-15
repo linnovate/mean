@@ -39,32 +39,6 @@ companyApp.controller('AppointLeaderController', ['$scope', '$http', function($s
         alert(gid);
     }
 }]);
-//企业发布活动
-companyApp.controller('CompanyCampaignSponsorController', ['$scope', '$http', function($scope, $http) {
-   $scope.sponsor = function() {
-        try{
-            $http({
-                method: 'post',
-                url: '/company/campaignSponsor',
-                data:{
-                    content : $scope.content,
-                    start_time : $scope.start_time,
-                    end_time : $scope.end_time
-                }
-            }).success(function(data, status) {
-                //发布活动后跳转到显示活动列表页面
-                window.location.href = '/company/home';
-
-            }).error(function(data, status) {
-                //TODO:更改对话框
-                alert("数据发生错误！");
-            });
-        }
-        catch(e){
-            console.log(e);
-        }
-    };
-}]);
 
 
 //企业提交申请信息,这里也要改成ajax的

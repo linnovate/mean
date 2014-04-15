@@ -168,7 +168,6 @@ exports.getCompanyGroups = function(req, res) {
       return res.send(company_groups);
     }
   });
-
 };
 
 exports.group = function(req, res, next, id) {
@@ -184,13 +183,6 @@ exports.group = function(req, res, next, id) {
         next();
     });
 };
-
-exports.showSponsor = function (req, res) {
-    res.render('group/group_campaign_sponsor', {
-        title: '小组活动发布'
-    });
-};
-
 
 //返回小组动态消息
 exports.getGroupMessage = function(req, res) {
