@@ -67,7 +67,7 @@ tabViewCompany.controller('GroupMessageController', ['$http',
     var that = this;
     $http.get('/company/getCompanyMessages').success(function(data, status) {
       that.group_messages = data;
-      that.show = true;
+
     });
 }]);
 
@@ -76,6 +76,7 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
     var that = this;
     $http.get('/company/getCampaigns').success(function(data, status) {
       that.campaigns = data;
+      that.show = true;
     });
 
     $scope.join = function(campaign_id) {
