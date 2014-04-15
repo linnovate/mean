@@ -1,14 +1,12 @@
 # Mean Command Line
 
+[![NPM version](https://badge.fury.io/js/meanio.svg)](http://badge.fury.io/js/meanio)
 
-Source for npm package meanio. mean-cli is a core package of the mean.io project and is used primarily to manage packages used for extending functionality such as for example adding a package to enable inline editable tokens. 
+Source for npm package meanio. mean-cli is a core package of the mean.io project and is used primarily to manage packages for extending functionality, for example adding a package to enable inline editable tokens. 
 
-The cli provides a lot of useful functionality as well as scaffolding options to ceate new packages, assign roles to users, check the mongo status add/remove packages and list currently installed packages
+The cli provides a lot of useful functionality, such as scaffolding options to ceate new packages, assign roles to users, check the mongo status, add/remove packages and list currently installed packages.
 
-FULL Documentation to be included in version 0.3.2 of the http://mean.io project.
-
-
-See http://mean.io for more indepth information about mean.
+See http://mean.io/#!/docs for more in-depth information about mean.
 
 ## The repository contains
 * The bin file used for cli operations.
@@ -20,18 +18,18 @@ See http://mean.io for more indepth information about mean.
 
     $ sudo npm install -g meanio
 
-  Explore CLI function:
+  Explore CLI functionality:
 
     $ mean --help
-    
+
   Create a new mean app:
 
     $ mean init <NameOfYourApp>
-    
+
   Install Dependencies:
 
     $ cd <NameOfYourApp> && npm install
-    
+
   Create a sample mean package:
 
     $ mean package <NameOfYourPackage>
