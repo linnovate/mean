@@ -19,9 +19,11 @@
         <p>结束时间: {{ campaign.end_time }}</p>
         <p>是否参加: {{ campaign.join}}</p>
         <p>活动是否关闭: {{ campaign.active}} </p>
-        <input type = "button"  class="btn btn-primary btn-lg" value = "参加" ng-click="join(campaign.id)" ng-hide＝"{{ campaign.join}}"/>
-        <input type = "button"  class="btn btn-primary btn-lg" value = "退出" ng-click="quit(campaign.id)" ng-show＝"{{ campaign.join}}"/>
-        <input type = "button"  class="btn btn-primary btn-lg" value = "关闭/开启" ng-click="cancel(campaign.id)" ng-show＝"{{ campaign.active}}"/>
+        <div ng-switch on="{{campaign.join}}">
+          <input type = "button"  class="btn btn-primary btn-lg" value = "退出" ng-click="quit(campaign.id)" ng-switch-when="true"/>
+          <input type = "button"  class="btn btn-primary btn-lg" value = "参加" ng-click="join(campaign.id)" ng-switch-default/>
+          <input type = "button"  class="btn btn-primary btn-lg" value = "关闭" ng-click="cancel(campaign.id)" ng-show＝"{{ campaign.active}}"/>
+      </div>
       </li>
     </div>
   </ul>
