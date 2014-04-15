@@ -28,7 +28,7 @@ exports.signin = function(req, res) {
 exports.loginSuccess = function(req, res) {
     req.session.cpname = req.body.username;
     req.session.cid = req.user.id;
-    res.redirect('/');
+    res.redirect('/company/home');
 };
 
 /**
@@ -270,72 +270,45 @@ exports.Info = function(req, res) {
 };
 
 exports.getAccount = function(req, res) {
-    console.log(req.session.cpname);
-    if(req.session.cpname != null) {
-        console.log("cc");
-        Company.findOne({username: req.session.cpname}, {"_id":0,"username": 1,"login_email":1, "register_date":1},function(err, _company) {
+    if(req.session.cid != null) {
+        Company.findOne({'id': req.session.cid}, {"_id":0,"username": 1,"login_email":1, "register_date":1,"info":1},function(err, _company) {
             if (err) {
-                res.send({'result':0,'msg':'数据查询失败！'});
-                return;
+
             }
             if(_company) {
-                console.log(_company);
-                res.send({
-                    company: _company
+                var _account = {
+                    'username': _company.username,
+                    'login_email': _company.login_email,
+                    'register_date': _company.register_date
+                }
+                return res.send({
+                    'result': 1,
+                    'company': _account,
+                    'info': _company.info
                 });
-                return;
             }
+            else
+                return res.send({'result':0,'msg':'数据查询失败！'});
         });
     }
-    else {
-        res.send({'result':0,'msg':'您未登录！'});
-    }
-
-};
-
-exports.getInfo = function(req, res) {
-    console.log(req.session.cpname);
-    if(req.session.cpname != null) {
-        Company.findOne({username: req.session.cpname}, {"_id":0,"info": 1},function(err, _company) {
-            if (err) {
-                res.send({'result':0,'msg':'数据查询失败！'});
-                return;
-            }
-            if(_company) {
-                res.send({
-                    'result':0,
-                    info: _company.info
-                });
-                return;
-            }
-        });
-    }
-    else
-        res.send({'result':0,'msg':'您未登录！'});
 };
 
 exports.saveAccount = function(req, res) {
-    if(req.session.cpname != null) {
-        Company.findOne({username : req.session.cpname}, function(err, company) {
+    if(req.session.cid != null) {
+        var _company = {};
+        if(req.body.company!=null){
+            _company = req.body.company;
+        }
+        else if(req.body.info!=null){
+            _company.info = req.body.info;
+        }
+        Company.findOneAndUpdate({'id': req.session.cid}, _company,null, function(err, company) {
             if (err) {
                 console.log('数据错误');
                 res.send({'result':0,'msg':'数据查询错误'});
                 return;
             };
             if(company) {
-                if(req.body.company.username!=null) {
-                    company.username = req.body.company.username;
-                }
-                if(req.body.info) {
-                    company.info = req.body.info;
-                }
-                company.save(function (s_err){
-                    if(s_err){
-                        console.log(s_err);
-                        res.send({'result':0,'msg':'数据保存错误'});
-                        return;
-                    }
-                });
                 res.send({'result':1,'msg':'更新成功'});
             } else {
                 res.send({'result':0,'msg':'不存在该公司'});
@@ -395,8 +368,7 @@ exports.getCompanyCampaign = function(req, res) {
         } else {
             var campaigns = [];
             var join = false;
-            var length = campaign.length;
-            for(var i = 0;i < length; i ++) {
+            for(var i = 0;i < campaign.length; i ++) {
                 join = false;
                 for(var j = 0;j < campaign[i].member.length; j ++) {
                     if(uid === campaign[i].member[j].uid) {
@@ -405,8 +377,7 @@ exports.getCompanyCampaign = function(req, res) {
                     }
                 }
                 campaigns.push({
-                    'active':campaign[i].active,
-                    'id': campaign[i].id,
+                    'id': campaign[i].gid,
                     'gid': campaign[i].gid,
                     'group_type': campaign[i].group_type,
                     'cid': campaign[i].cid,
@@ -510,3 +481,40 @@ exports.sponsor = function (req, res) {
     });
     res.send("ok");
 };
+
+exports.changePassword = function(req, res){
+    if(req.session.cid==null){
+        return res.send({'result':0,'msg':'您没有登录'});
+    }
+    Company.findOne({
+            id : req.session.cid
+        },function(err, company) {
+            if(err) {
+                console.log(err);
+                res.send({'result':0,'msg':'数据错误'});
+            }
+            else {
+                if (company) {
+                  if(company.authenticate(req.body.nowpassword)==true){
+                    company.password = req.body.newpassword;
+                    company.save(function(err){
+                      if(err){
+                        console.log(err);
+                        res.send({'result':0,'msg':'密码修改失败'});
+                      }
+                      else {
+                        res.send({'result':1,'msg':'密码修改成功'});
+                      }
+                      return;
+                    });
+                  }
+                  else{
+                     res.send({'result':0,'msg':'密码不正确，请重新输入'});
+                  }
+
+                } else {
+                    res.send({'result':0,'msg':'您没有登录'});
+                }
+            }
+        });
+}
