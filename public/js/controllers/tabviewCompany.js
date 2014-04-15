@@ -87,6 +87,7 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
                     campaign_id : campaign_id
                 }
             }).success(function(data, status) {
+                window.location.reload();
                 alert("成功加入该活动!");
             }).error(function(data, status) {
                 alert("数据发生错误！");
@@ -106,6 +107,7 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
                     campaign_id : campaign_id
                 }
             }).success(function(data, status) {
+                window.location.reload();
                 alert("您已退出该活动!");
             }).error(function(data, status) {
                 alert("数据发生错误！");
