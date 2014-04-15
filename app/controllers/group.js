@@ -251,21 +251,18 @@ exports.getGroupCampaign = function(req, res) {
 //组长关闭活动
 exports.campaignCancel = function (req, res) {
   var campaign_id = req.body.campaign_id;
-  Campaign.find({'id' : campaign_id}, function(err, campaign) {
-    if (err) {
-      console.log(err);
-      return res.send(err);
-    } else {
-      var active = campaign.active;
-      campaign.active = !active;
-      campaign.save(function (err) {
+   Campaign.findOneAndUpdate({ id: campaign_id}, { $set: { active: false }},null, function(err, company) {
         if (err) {
-          return res.send(err);
+            console.log('数据错误');
+            res.send({'result':0,'msg':'数据查询错误'});
+            return;
+        };
+        if(company) {
+            res.send({'result':1,'msg':'更新成功'});
+        } else {
+            res.send({'result':0,'msg':'不存在该公司'});
         }
-      });
-      return res.send('ok');
-    }
-  });
+    });
 };
 
 //组长发布一个活动(只能是一个企业)

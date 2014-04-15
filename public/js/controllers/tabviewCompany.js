@@ -143,7 +143,22 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
     };
 
     $scope.cancel = function (_id) {
-        alert(_id);
+        try {
+            $http({
+                method: 'post',
+                url: '/company/campaignCancel',
+                data:{
+                    campaign_id : _id
+                }
+            }).success(function(data, status) {
+                window.location.reload();
+            }).error(function(data, status) {
+                alert("数据发生错误！");
+            });
+        }
+        catch(e) {
+            console.log(e);
+        }
     };
 }]);
 tabViewCompany.controller('AccountFormController',['$scope','$http',function($scope, $http) {

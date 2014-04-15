@@ -41,6 +41,8 @@ module.exports = function(app, passport) {
     app.get('/company/getCompanyMessages', company.getCompanyMessage);
     app.get('/company/getCampaigns', company.getCompanyCampaign);
 
+    app.post('/company/campaignCancel', company.campaignCancel);
+
     app.get('/company/home', company.home);
 
     // Setting up the companyId param

@@ -26,6 +26,8 @@ module.exports = function(app) {
   app.get('/group/getGroupMessages', group.getGroupMessage);
   app.get('/group/getGroupMembers', group.getGroupMember);
 
+  app.post('/group/campaignCancel', group.campaignCancel);
+
   //小组发布活动
   app.post('/group/campaignSponsor', group.sponsor);
   app.param('groupId',group.group);

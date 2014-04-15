@@ -46,4 +46,12 @@ var Campaign = new Schema({
     end_time: Date
 });
 
+
+/**
+ * Pre-save hook
+ */
+Campaign.pre('save', function(next) {
+    if (!this.isNew) return next();
+});
+
 mongoose.model('Campaign', Campaign);
