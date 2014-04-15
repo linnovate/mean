@@ -341,8 +341,13 @@ exports.getCampaigns = function(req, res) {
 
 
 exports.home = function(req, res) {
-  return res.render('users/home', {gids: req.user.gid});
-}
+  if(req.user==null){
+    return res.redirect('/users/signin');
+  }
+  else{
+    return res.render('users/home', {gids: req.user.gid});
+  }
+};
 
 exports.editInfo = function(req, res) {
   User.findOne({
