@@ -44,8 +44,8 @@ exports.loginSuccess = function(req, res) {
   req.session.username = req.body.username;
   req.session.cid = req.user.cid;
   req.session.uid = req.user.id;
+  req.session.role = req.user.role;
   res.redirect('/users/home');
-
 };
 
 

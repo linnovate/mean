@@ -15,17 +15,26 @@ var Provoke = new Schema({
       enum: ['exercise','against','credit']
     },
     group_a: {
+        cid: String,
         lid: String,
         lname: String,
         lrealname: String,
         gid: String,
         group_type: String,
         score: Number,
-        vote: Number,
+
+        vote: {
+            positive: Number,
+            positive_uid: Array,
+            negative: Number,
+            negative_uid: Array
+        },
+
         start_confirm: false,
         update_rst_confirm: false
     },
     group_b: {
+        cid: String,
         lid: String,
         lname: String,
         lrealname: String,
@@ -37,7 +46,7 @@ var Provoke = new Schema({
         update_rst_confirm: false
     },
 
-    active: Boolean,
+    active: false,
     date: {
         type: Date,
         default: Date.now()
@@ -55,7 +64,8 @@ var Provoke = new Schema({
         },
     },
     content: String,
-    convert_to_campaign: false
+    convert_to_campaign: false,
+    provoke_message_id: String
 });
 
 

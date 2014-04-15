@@ -56,6 +56,7 @@ tabViewUser.controller('CampaignListController', ['$http','$scope',
     var that = this;
     $http.get('/users/getCampaigns').success(function(data, status) {
       that.campaigns = data;
+      that.show = false;
     });
     $scope.join = function(campaign_id) {
         try {
@@ -95,10 +96,6 @@ tabViewUser.controller('CampaignListController', ['$http','$scope',
         catch(e) {
             console.log(e);
         }
-    };
-
-    $scope.cancel = function (_id) {
-        alert(_id);
     };
 }]);
 

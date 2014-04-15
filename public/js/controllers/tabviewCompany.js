@@ -67,6 +67,7 @@ tabViewCompany.controller('GroupMessageController', ['$http',
     var that = this;
     $http.get('/company/getCompanyMessages').success(function(data, status) {
       that.group_messages = data;
+      that.show = true;
     });
 }]);
 

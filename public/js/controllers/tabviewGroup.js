@@ -43,6 +43,7 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
     var that = this;
     $http.get('/group/getCampaigns?' + Math.round(Math.random()*100)).success(function(data, status) {
       that.campaigns = data;
+      that.show = true;
     });
 
     $scope.join = function(campaign_id) {

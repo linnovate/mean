@@ -10,7 +10,8 @@ var mongoose = require('mongoose'),
     User = mongoose.model('User'),
     Company = mongoose.model('Company'),
     Group = mongoose.model('Group'),
-    CompanyGroup = mongoose.model('CompanyGroup');
+    CompanyGroup = mongoose.model('CompanyGroup'),
+    Provoke = mongoose.model('Provoke');
 
 exports.saveGroups = function(req,res) {
     res.send('save');
@@ -281,6 +282,38 @@ exports.campaignCancel = function (req, res) {
         }
     });
 };
+
+
+//约战
+exports.provoke = function (req, res) {
+  var lid = req.session.uid;
+  var lname = req.session.username;
+  var provoke_model = req.body.provoke_model;
+  var cid_a = req.session.cid;    //约战方公司id
+  var cid_b = req.body.cid;       //被约方公司id(如果是同一家公司那么cid_b = cid_a)
+  var gid_a = req.body.gid_a;     //约战方小组id
+  var gid_b = req.body.gid_b;     //被约方小组id
+  var content = req.body.content;
+  var provoke = new Provoke();
+  provoke.id = Date.now().toString(32) + Math.random().toString(32);
+  provoke.group_a.cid = cid_a;
+  provoke.group_a.lid = lid;
+  provoke.group_a.lname = lname;
+  provoke.group_a.gid = gid_a;
+  provoke.poster.cid = cid_a;
+  provoke.poster.uid = lid;
+  provoke.poster.username = lname;
+  provoke.poster.role = "LEADER";
+  provoke.content = req.body.content;
+
+};
+
+
+//应约
+exports.responseProvoke = function (req, res) {
+
+};
+
 
 //组长发布一个活动(只能是一个企业)
 exports.sponsor = function (req, res) {
