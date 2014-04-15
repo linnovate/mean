@@ -68,9 +68,9 @@ tabViewUser.controller('CampaignListController', ['$http','$scope',
                 }
             }).success(function(data, status) {
                 window.location.reload();
-                alert("成功加入该活动!");
+                alert('成功加入该活动!');
             }).error(function(data, status) {
-                alert("数据发生错误！");
+                alert('数据发生错误！');
             });
         }
         catch(e) {
@@ -88,9 +88,9 @@ tabViewUser.controller('CampaignListController', ['$http','$scope',
                 }
             }).success(function(data, status) {
                 window.location.reload();
-                alert("您已退出该活动!");
+                alert('您已退出该活动!');
             }).error(function(data, status) {
-                alert("数据发生错误！");
+                alert('数据发生错误！');
             });
         }
         catch(e) {
@@ -101,7 +101,7 @@ tabViewUser.controller('CampaignListController', ['$http','$scope',
 
 tabViewUser.controller('AccountFormController',['$scope','$http',function($scope, $http) {
     $http.get('/users/getAccount').success(function(data,status){
-        if(data.result==1){
+        if(data.result === 1){
             $scope.user = data.data;
         }
         else{
@@ -113,9 +113,9 @@ tabViewUser.controller('AccountFormController',['$scope','$http',function($scope
         console.log('个人账号信息获取失败！');
     });
     $scope.baseUnEdit = true;
-    $scope.baseButtonStatus = "编辑>";
+    $scope.baseButtonStatus = '编辑>';
     $scope.linkUnEdit = true;
-    $scope.linkButtonStatus = "编辑>"
+    $scope.linkButtonStatus = '编辑>'
     $scope.baseEditToggle = function() {
         $scope.baseUnEdit = !$scope.baseUnEdit;
         if($scope.baseUnEdit) {
@@ -140,21 +140,21 @@ tabViewUser.controller('AccountFormController',['$scope','$http',function($scope
                     console.log(data);
                     //TODO:更改对话框
                     if(data.result === 1)
-                        alert("信息修改成功！");
+                        alert('信息修改成功！');
                     else
                         alert(data.msg);
                 }).error(function(data, status) {
                     //TODO:更改对话框
-                    alert("数据发生错误！");
+                    alert('数据发生错误！');
                 });
             }
             catch(e) {
                 console.log(e);
             }
-            $scope.baseButtonStatus = "编辑>";
+            $scope.baseButtonStatus = '编辑>';
         }
         else {
-            $scope.baseButtonStatus = "保存";
+            $scope.baseButtonStatus = '保存';
         }
     };
     $scope.linkEditToggle = function() {
@@ -176,21 +176,21 @@ tabViewUser.controller('AccountFormController',['$scope','$http',function($scope
                     console.log(data);
                     //TODO:更改对话框
                     if(data.result === 1)
-                        alert("信息修改成功！");
+                        alert('信息修改成功！');
                     else
                         alert(data.msg);
                 }).error(function(data, status) {
                     //TODO:更改对话框
-                    alert("数据发生错误！");
+                    alert('数据发生错误！');
                 });
             }
             catch(e) {
                 console.log(e);
             }
-            $scope.linkButtonStatus = "编辑>";
+            $scope.linkButtonStatus = '编辑>';
         }
         else {
-            $scope.linkButtonStatus = "保存";
+            $scope.linkButtonStatus = '保存';
         }
     };
 
@@ -198,9 +198,9 @@ tabViewUser.controller('AccountFormController',['$scope','$http',function($scope
 
 tabViewUser.controller('PasswordFormController', ['$http', function($http) {
     var that = this;
-    this.nowpassword = "";
-    this.newpassword = "";
-    this.confirmpassword = "";
+    this.nowpassword = '';
+    this.newpassword = '';
+    this.confirmpassword = '';
     this.change_password = function(){
         $http({
             method : 'post',
@@ -214,13 +214,13 @@ tabViewUser.controller('PasswordFormController', ['$http', function($http) {
             //TODO:更改对话框
             if(data.result === 1){
                 alert(data.msg);
-                window.loaction.href = "#/personal";
+                window.loaction.href = '#/personal';
             }
             else
                 alert(data.msg);
         }).error(function(data, status) {
             //TODO:更改对话框
-            alert("数据发生错误！");
+            alert('数据发生错误！');
         });
     };
 }]);

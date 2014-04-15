@@ -1,5 +1,4 @@
-
-var db =connect("localhost/mean-dev");
+'use strict';
 
 var _group =[
             {
