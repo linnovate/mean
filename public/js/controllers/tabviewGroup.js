@@ -101,6 +101,10 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
             console.log(e);
         }
     };
+
+    $scope.cancel = function (_id) {
+        alert(_id);
+    };
 }]);
 
 tabViewGroup.controller('MemberListController', ['$http',

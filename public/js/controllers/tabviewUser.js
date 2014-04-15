@@ -94,6 +94,10 @@ tabViewUser.controller('CampaignListController', ['$http','$scope',
             console.log(e);
         }
     };
+
+    $scope.cancel = function (_id) {
+        alert(_id);
+    };
 }]);
 
 tabViewUser.controller('AccountFormController',['$scope','$http',function($scope, $http) {

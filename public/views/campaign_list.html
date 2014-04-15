@@ -21,6 +21,7 @@
         <p>活动是否关闭: {{ campaign.active}} </p>
         <input type = "button"  class="btn btn-primary btn-lg" value = "参加" ng-click="join(campaign.id)" ng-hide＝"{{ campaign.join}}"/>
         <input type = "button"  class="btn btn-primary btn-lg" value = "退出" ng-click="quit(campaign.id)" ng-show＝"{{ campaign.join}}"/>
+        <input type = "button"  class="btn btn-primary btn-lg" value = "关闭/开启" ng-click="cancel(campaign.id)" ng-show＝"{{ campaign.active}}"/>
       </li>
     </div>
   </ul>

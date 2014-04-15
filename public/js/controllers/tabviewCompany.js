@@ -139,6 +139,10 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
             console.log(e);
         }
     };
+
+    $scope.cancel = function (_id) {
+        alert(_id);
+    };
 }]);
 tabViewCompany.controller('AccountFormController',['$scope','$http',function($scope, $http) {
     $http.get('/company/getAccount').success(function(data,status){

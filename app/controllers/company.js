@@ -377,7 +377,7 @@ exports.getCompanyCampaign = function(req, res) {
                     }
                 }
                 campaigns.push({
-                    'id': campaign[i].gid,
+                    'id': campaign[i].id,
                     'gid': campaign[i].gid,
                     'group_type': campaign[i].group_type,
                     'cid': campaign[i].cid,
@@ -391,11 +391,58 @@ exports.getCompanyCampaign = function(req, res) {
                     'join':join
                 });
             }
+            console.log(campaigns);
             return res.send(campaigns);
         }
     });
 };
 
+
+//任命组长
+exports.appointLeader = function (req, res) {
+  var leader_id = req.body.lid;
+  var gid = req.body.gid;
+  User
+    .findOne({
+        id : lid
+    },function (err, user) {
+      if (err) {
+
+      } else {
+        user.leader_group.gid.push(gid);
+      }
+    });
+  CompanyGroup
+  .findOne({
+        gid : gid
+    },function (err, company_group) {
+      if (err) {
+
+      } else {
+        company_group.leader.uid.push(lid);
+      }
+    });
+};
+
+//关闭企业活动
+exports.campaignCancel = function (req, res) {
+    var campaign_id = req.body.campaign_id;
+    Campaign.find({'id' : campaign_id}, function(err, campaign) {
+        if (err) {
+            console.log(err);
+            return res.send(err);
+        } else {
+            var active = campaign.active;
+            campaign.active = !active;
+            campaign.save(function (err) {
+                if (err) {
+                    return res.send(err);
+                }
+            });
+            return res.send('ok');
+        }
+    });
+};
 //HR发布一个活动(可能是多个企业)
 exports.sponsor = function (req, res) {
 

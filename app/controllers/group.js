@@ -248,30 +248,24 @@ exports.getGroupCampaign = function(req, res) {
   });
 };
 
-//任命组长
-exports.appointLeader = function (req, res) {
-  var leader_id = req.body.lid;
-  var gid = req.body.gid;
-  User
-    .findOne({
-        id : lid
-    },function (err, user) {
-      if (err) {
-
-      } else {
-        user.leader_group.gid.push(gid);
-      }
-    });
-  CompanyGroup
-  .findOne({
-        gid : gid
-    },function (err, company_group) {
-      if (err) {
-
-      } else {
-        company_group.leader.uid.push(lid);
-      }
-    });
+//组长关闭活动
+exports.campaignCancel = function (req, res) {
+  var campaign_id = req.body.campaign_id;
+  Campaign.find({'id' : campaign_id}, function(err, campaign) {
+    if (err) {
+      console.log(err);
+      return res.send(err);
+    } else {
+      var active = campaign.active;
+      campaign.active = !active;
+      campaign.save(function (err) {
+        if (err) {
+          return res.send(err);
+        }
+      });
+      return res.send('ok');
+    }
+  });
 };
 
 //组长发布一个活动(只能是一个企业)
@@ -340,7 +334,7 @@ exports.sponsor = function (req, res) {
 
     groupMessage.content = content;
 
-    groupMessage.save(function(err) {
+    groupMessage.save(function (err) {
       if (err) {
         res.send(err);
         return;
