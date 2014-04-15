@@ -335,13 +335,6 @@ exports.company = function(req, res, next, id) {
         });
 };
 
-exports.showSponsor = function (req, res) {
-    res.render('company/company_campaign_sponsor', {
-        title: '企业活动发布'
-    });
-};
-
-
 
 //返回公司动态消息的所有数据,待前台调用
 exports.getCompanyMessage = function(req, res) {
@@ -384,7 +377,8 @@ exports.getCompanyCampaign = function(req, res) {
                     }
                 }
                 campaigns.push({
-                    'id': campaign[i].gid,
+                    'active':campaign[i].active,
+                    'id': campaign[i].id,
                     'gid': campaign[i].gid,
                     'group_type': campaign[i].group_type,
                     'cid': campaign[i].cid,
@@ -398,11 +392,55 @@ exports.getCompanyCampaign = function(req, res) {
                     'join':join
                 });
             }
+            console.log(campaigns);
             return res.send(campaigns);
         }
     });
 };
 
+
+//任命组长
+exports.appointLeader = function (req, res) {
+  var leader_id = req.body.lid;
+  var gid = req.body.gid;
+  User
+    .findOne({
+        id : lid
+    },function (err, user) {
+      if (err) {
+
+      } else {
+        user.leader_group.gid.push(gid);
+      }
+    });
+  CompanyGroup
+  .findOne({
+        gid : gid
+    },function (err, company_group) {
+      if (err) {
+
+      } else {
+        company_group.leader.uid.push(lid);
+      }
+    });
+};
+
+//关闭企业活动
+exports.campaignCancel = function (req, res) {
+    var campaign_id = req.body.campaign_id;
+    Campaign.findOneAndUpdate({ id: campaign_id}, { $set: { active: false }},null, function(err, company) {
+        if (err) {
+            console.log('数据错误');
+            res.send({'result':0,'msg':'数据查询错误'});
+            return;
+        };
+        if(company) {
+            res.send({'result':1,'msg':'更新成功'});
+        } else {
+            res.send({'result':0,'msg':'不存在该公司'});
+        }
+    });
+};
 //HR发布一个活动(可能是多个企业)
 exports.sponsor = function (req, res) {
 

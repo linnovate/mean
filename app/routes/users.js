@@ -36,4 +36,7 @@ module.exports = function(app, passport) {
     app.post('/users/joinCampaign', users.joinCampaign);
     app.post('/users/quitCampaign', users.quitCampaign);
 
+
+    
+
 };

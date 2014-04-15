@@ -182,7 +182,6 @@ exports.getCompanyGroups = function(req, res) {
       return res.send(company_groups);
     }
   });
-
 };
 
 exports.group = function(req, res, next, id) {
@@ -198,13 +197,6 @@ exports.group = function(req, res, next, id) {
         next();
     });
 };
-
-exports.showSponsor = function (req, res) {
-    res.render('group/group_campaign_sponsor', {
-        title: '小组活动发布'
-    });
-};
-
 
 //返回小组动态消息
 exports.getGroupMessage = function(req, res) {
@@ -270,29 +262,20 @@ exports.getGroupCampaign = function(req, res) {
   });
 };
 
-//任命组长
-exports.appointLeader = function (req, res) {
-  var leader_id = req.body.lid;
-  var gid = req.body.gid;
-  User
-    .findOne({
-        id : lid
-    },function (err, user) {
-      if (err) {
-
-      } else {
-        user.leader_group.gid.push(gid);
-      }
-    });
-  CompanyGroup
-  .findOne({
-        gid : gid
-    },function (err, company_group) {
-      if (err) {
-
-      } else {
-        company_group.leader.uid.push(lid);
-      }
+//组长关闭活动
+exports.campaignCancel = function (req, res) {
+  var campaign_id = req.body.campaign_id;
+   Campaign.findOneAndUpdate({ id: campaign_id}, { $set: { active: false }},null, function(err, company) {
+        if (err) {
+            console.log('数据错误');
+            res.send({'result':0,'msg':'数据查询错误'});
+            return;
+        };
+        if(company) {
+            res.send({'result':1,'msg':'更新成功'});
+        } else {
+            res.send({'result':0,'msg':'不存在该公司'});
+        }
     });
 };
 
@@ -362,7 +345,7 @@ exports.sponsor = function (req, res) {
 
     groupMessage.content = content;
 
-    groupMessage.save(function(err) {
+    groupMessage.save(function (err) {
       if (err) {
         res.send(err);
         return;

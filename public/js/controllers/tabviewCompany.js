@@ -87,6 +87,7 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
                     campaign_id : campaign_id
                 }
             }).success(function(data, status) {
+                window.location.reload();
                 alert("成功加入该活动!");
             }).error(function(data, status) {
                 alert("数据发生错误！");
@@ -106,7 +107,51 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
                     campaign_id : campaign_id
                 }
             }).success(function(data, status) {
+                window.location.reload();
                 alert("您已退出该活动!");
+            }).error(function(data, status) {
+                alert("数据发生错误！");
+            });
+        }
+        catch(e) {
+            console.log(e);
+        }
+    };
+
+    $scope.sponsor = function() {
+        try{
+            $http({
+                method: 'post',
+                url: '/company/campaignSponsor',
+                data:{
+                    content : $scope.content,
+                    start_time : $scope.start_time,
+                    end_time : $scope.end_time
+                }
+            }).success(function(data, status) {
+                //发布活动后跳转到显示活动列表页面
+                window.location.reload();
+
+            }).error(function(data, status) {
+                //TODO:更改对话框
+                alert("数据发生错误！");
+            });
+        }
+        catch(e){
+            console.log(e);
+        }
+    };
+
+    $scope.cancel = function (_id) {
+        try {
+            $http({
+                method: 'post',
+                url: '/company/campaignCancel',
+                data:{
+                    campaign_id : _id
+                }
+            }).success(function(data, status) {
+                window.location.reload();
             }).error(function(data, status) {
                 alert("数据发生错误！");
             });

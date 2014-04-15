@@ -36,11 +36,12 @@ module.exports = function(app, passport) {
     app.post('/company/createDetail', company.createDetail);// 验证通过后进一步提交公司注册信息
 
     //企业发布活动
-    app.get('/company/campaignSponsor', company.showSponsor);
     app.post('/company/campaignSponsor', company.sponsor);
 
     app.get('/company/getCompanyMessages', company.getCompanyMessage);
     app.get('/company/getCampaigns', company.getCompanyCampaign);
+
+    app.post('/company/campaignCancel', company.campaignCancel);
 
     app.get('/company/home', company.home);
 
