@@ -460,7 +460,7 @@ exports.campaignCancel = function (req, res) {
 };
 //HR发布一个活动(可能是多个企业)
 exports.sponsor = function (req, res) {
-    
+
     var username = req.session.username;
     var cid = req.session.cid;    //公司id
     var uid = req.session.uid;    //用户id
@@ -500,7 +500,9 @@ exports.sponsor = function (req, res) {
 
     campaign.content = content;
 
-    console.log(campaign);
+    campaign.create_time = req.body.create_time;
+    campaign.start_time = req.body.start_time;
+    campaign.end_time = req.body.end_time;
 
     campaign.save(function(err) {
         if (err) {

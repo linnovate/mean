@@ -269,20 +269,20 @@ exports.getGroupMessages = function(req, res) {
   var flag = 0;
   for(var i = 0; i < req.user.gid.length; i ++) {
      GroupMessage.find({'group.gid': {'$all': [req.user.gid[i]]} }, function(err, group_message) {
+      flag ++;
       if (group_message.length > 0) {
         if (err) {
           console.log(err);
           return;
         } else {
-          flag ++;
           var length = group_message.length;
           for(var j = 0; j < length; j ++) {
             group_messages.push(group_message[j]);
           }
-          if(flag === req.user.gid.length - 1) {
-            res.send(group_messages);
-          }
         }
+      }
+      if(flag === req.user.gid.length) {
+        res.send(group_messages);
       }
     });
   }
@@ -291,19 +291,18 @@ exports.getGroupMessages = function(req, res) {
 
 //列出该user加入的所有小组的活动
 exports.getCampaigns = function(req, res) {
+
   var campaigns = [];
   var join = false;
   var flag = 0;
   for(var i = 0; i < req.user.gid.length; i ++) {
-
      Campaign.find({ 'gid' : {'$all':[req.user.gid[i]]} }, function(err, campaign) {
-
+      flag ++;
       if(campaign.length > 0) {
         if (err) {
           console.log(err);
           return;
         } else {
-          flag ++;
           var length = campaign.length;
           for(var j = 0; j < length; j ++) {
             join = false;
@@ -328,12 +327,11 @@ exports.getCampaigns = function(req, res) {
               'end_time': campaign[j].end_time,
               'join':join
             });
-
-          }
-          if(flag === req.user.gid.length - 1) {
-            res.send(campaigns);
           }
         }
+      }
+      if(flag === req.user.gid.length) {
+        res.send(campaigns);
       }
     });
   }
