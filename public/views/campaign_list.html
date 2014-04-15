@@ -22,7 +22,7 @@
         <div ng-switch on="{{campaign_item.join}}">
           <input type = "button"  class="btn btn-primary btn-lg" value = "退出" ng-click="quit(campaign_item.id)" ng-switch-when="true"/>
           <input type = "button"  class="btn btn-primary btn-lg" value = "参加" ng-click="join(campaign_item.id)" ng-switch-default/>
-          <input type = "button"  class="btn btn-primary btn-lg" ng-if="campaign.show" value = "关闭" ng-click="cancel(campaign_item.id)" ng-show＝"{{ campaign_item.active}}"/>
+          <input type = "button"  class="btn btn-primary btn-lg" ng-if="campaign.show" value = "{{ campaign_item.active_value}}" ng-click="cancel(campaign_item.id)" ng-show＝"{{ campaign_item.active}}"/>
       </div>
       </li>
     </div>

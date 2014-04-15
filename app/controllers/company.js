@@ -378,6 +378,7 @@ exports.getCompanyCampaign = function(req, res) {
                 }
                 campaigns.push({
                     'active':campaign[i].active,
+                    'active_value':campaign[i].active ? '关闭' : '打开',
                     'id': campaign[i].id,
                     'gid': campaign[i].gid,
                     'group_type': campaign[i].group_type,
