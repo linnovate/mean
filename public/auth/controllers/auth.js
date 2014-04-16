@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mean.controllers.login', [])
-    .controller('LoginCtrl', ['$scope','$rootScope','$http','$location', function($scope, $rootScope, $http, $location) {
+    .controller('LoginCtrl', ['$scope','$http','$location','Global', function($scope, $http, $location, Global) {
         // This object will be filled by the form
         $scope.user = {};
 
@@ -14,8 +14,7 @@ angular.module('mean.controllers.login', [])
                 .success(function(user){
                     // authentication OK
                     $scope.loginError = 0;
-                    $rootScope.user = user;
-                    $rootScope.$emit('loggedin');
+                    Global.setUser(user);
                     $location.url('/');
                 })
                 .error(function() {
@@ -23,7 +22,7 @@ angular.module('mean.controllers.login', [])
                 });
         };
     }])
-    .controller('RegisterCtrl', ['$scope','$rootScope','$http','$location', function($scope, $rootScope, $http, $location) {
+    .controller('RegisterCtrl', ['$scope','$http','$location','Global', function($scope, $http, $location, Global) {
         $scope.user = {};
 
         $scope.register = function(){
@@ -39,10 +38,8 @@ angular.module('mean.controllers.login', [])
                 .success(function(){
                     // authentication OK
                     $scope.registerError = 0;
-                    $rootScope.user = $scope.user.fullname;
-                    $rootScope.$emit('loggedin');
+                    Global.setUser($scope.user.fullname);
                     $location.url('/');
-
                 })
                 .error(function(error){
                     // Error: authentication failed

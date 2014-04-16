@@ -15,19 +15,20 @@
             beforeEach(module('mean'));
 
             var LoginCtrl,
+                Global,
                 scope,
-                $rootScope,
                 $httpBackend,
                 $location;
 
-            beforeEach(inject(function($controller, _$rootScope_, _$location_, _$httpBackend_) {
+            beforeEach(inject(function($controller, $rootScope, _$location_, _$httpBackend_, _Global_) {
 
-                scope = _$rootScope_.$new();
-                $rootScope = _$rootScope_;
+                scope = $rootScope.$new();
+
+                Global = _Global_;
 
                 LoginCtrl = $controller('LoginCtrl', {
                     $scope: scope,
-                    $rootScope: _$rootScope_
+                    Global: Global
                 });
 
                 $httpBackend = _$httpBackend_;
@@ -42,20 +43,15 @@
             });
 
             it('should login with a correct user and password', function() {
-
-                spyOn($rootScope, '$emit');
                 // test expected GET request
                 $httpBackend.when('POST','/login').respond(200, 'Fred');
+                expect(Global.user).toBe(undefined);
                 scope.login();
                 $httpBackend.flush();
                 // test scope value
-                expect($rootScope.user).toEqual('Fred');
-
-                expect($rootScope.$emit).toHaveBeenCalledWith('loggedin');
+                expect(Global.user).toEqual('Fred');
                 expect($location.url()).toEqual('/');
             });
-
-
 
             it('should fail to log in ', function() {
                 $httpBackend.expectPOST('/login').respond(400, 'Authentication failed');
@@ -79,19 +75,19 @@
             beforeEach(module('mean'));
 
             var RegisterCtrl,
+                Global,
                 scope,
-                $rootScope,
                 $httpBackend,
                 $location;
 
-            beforeEach(inject(function($controller, _$rootScope_, _$location_, _$httpBackend_) {
+            beforeEach(inject(function($controller, $rootScope, _$location_, _$httpBackend_, _Global_) {
 
-                scope = _$rootScope_.$new();
-                $rootScope = _$rootScope_;
+                scope = $rootScope.$new();
+                Global = _Global_;
 
                 RegisterCtrl = $controller('RegisterCtrl', {
                     $scope: scope,
-                    $rootScope: _$rootScope_
+                    Global: Global
                 });
 
                 $httpBackend = _$httpBackend_;
@@ -107,16 +103,15 @@
 
             it('should register with correct data', function() {
 
-                spyOn($rootScope, '$emit');
                 // test expected GET request
                 scope.user.fullname = 'Fred';
                 $httpBackend.when('POST','/register').respond(200, 'Fred');
+                expect(Global.user).toBe(undefined);
                 scope.register();
                 $httpBackend.flush();
                 // test scope value
-                expect($rootScope.user).toBe('Fred');
+                expect(Global.user).toBe('Fred');
                 expect(scope.registerError).toEqual(0);
-                expect($rootScope.$emit).toHaveBeenCalledWith('loggedin');
                 expect($location.url()).toBe('/');
             });
 
