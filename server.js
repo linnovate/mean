@@ -1,9 +1,4 @@
 'use strict';
-/**
- *  Mean container for dependency injection
- */
-var mean = require('meanio');
-mean.app('Mean Demo App',{});
 
 /**
  * Module dependencies.
@@ -26,7 +21,7 @@ var app = require('./server/config/system/bootstrap')(passport, db);
 
 // Start the app by listening on <port>
 app.listen(config.port);
-console.log('Express app started on port ' + config.port);
+console.log('Mean app started on port ' + config.port + ' (' + process.env.NODE_ENV + ')');
 
 // Initializing logger
 logger.init(app, passport, mongoose);

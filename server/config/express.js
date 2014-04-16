@@ -12,7 +12,7 @@ var express = require('express'),
     config = require('./config'),
     expressValidator = require('express-validator'),
     appPath = process.cwd(),
-    fs = require('fs'),
+    util = require('./util'),
     assetmanager = require('assetmanager');
 
 module.exports = function(app, passport, db) {
@@ -112,7 +112,6 @@ module.exports = function(app, passport, db) {
             res.send(mean.aggregated.js);
         });
 
-
         app.get('/modules/aggregated.css', function(req, res) {
             res.setHeader('content-type', 'text/css');
             res.send(mean.aggregated.css);
@@ -121,7 +120,16 @@ module.exports = function(app, passport, db) {
         mean.events.on('modulesFound', function() {
 
             for (var name in mean.modules) {
-                app.use('/' + name, express.static(config.root + '/'+mean.modules[name].source+'/' + name + '/public'));
+                app.use('/' + name, express.static(config.root + '/' + mean.modules[name].source + '/' + name + '/public'));
+            }
+
+            function bootstrapRoutes() {
+                // Skip the app/routes/middlewares directory as it is meant to be
+                // used and shared by routes as further middlewares and is not a
+                // route by itself
+                util.walk(appPath + '/server/routes', 'middlewares', function(path) {
+                    require(path)(app, passport);
+                });
             }
 
             bootstrapRoutes();
@@ -152,30 +160,6 @@ module.exports = function(app, passport, db) {
                     error: 'Not found'
                 });
             });
-
         });
-
-
     });
-
-    function bootstrapRoutes() {
-        var routes_path = appPath + '/server/routes';
-        var walk = function(path) {
-            fs.readdirSync(path).forEach(function(file) {
-                var newPath = path + '/' + file;
-                var stat = fs.statSync(newPath);
-                if (stat.isFile()) {
-                    if (/(.*)\.(js$|coffee$)/.test(file)) {
-                        require(newPath)(app, passport);
-                    }
-                    // We skip the app/routes/middlewares directory as it is meant to be
-                    // used and shared by routes as further middlewares and is not a
-                    // route by itself
-                } else if (stat.isDirectory() && file !== 'middlewares') {
-                    walk(newPath);
-                }
-            });
-        };
-        walk(routes_path);
-    }
 };
