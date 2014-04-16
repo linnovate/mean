@@ -12,6 +12,7 @@ var mongoose = require('mongoose'),
  */
 var GroupMessage = new Schema({
     id: String,
+    cid: Array,                      //如果是约战消息,要在两家公司的主页同时显示
     group: {
         gid: Array,
         group_type: Array
@@ -29,10 +30,16 @@ var GroupMessage = new Schema({
         username: String,
         role: {
             type: String,
-            enum: ['HR','LEADER']      //HR 组长
+            enum: ['HR','LEADER']     //HR 组长
         },
     },
-    content: String
+    content: String,
+
+    provoke: {                        //约战动态
+        active: false,                //如果是true就显示为约战动态,否则为普通动态
+        team_a: String,               //约战方队名
+        team_b: String,               //被约方队名
+    }
 });
 
 

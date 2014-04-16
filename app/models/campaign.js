@@ -11,7 +11,18 @@ var mongoose = require('mongoose'),
  */
 var _member = new Schema({
     cid: String,
-    uid: String
+    uid: String,
+    username: String,
+    realname: String,
+    email: String,
+    phong: String,
+    qq: String,
+    department: String,
+    position: String,
+    sex: {
+        type: String,
+        enum: ['男', '女']
+    }
 });
 
 /**
@@ -43,7 +54,12 @@ var Campaign = new Schema({
         default: Date.now()
     },
     start_time: Date,
-    end_time: Date
+    end_time: Date,
+    provoke: {                        //约战活动
+        active: false,                //如果是true就显示为约战活动,否则为普通活动
+        team_a: String,               //约战方队名
+        team_b: String                //被约方队名
+    }
 });
 
 

@@ -11,6 +11,7 @@ var mongoose = require('mongoose'),
   CompanyGroup = mongoose.model('CompanyGroup'),
   GroupMessage = mongoose.model('GroupMessage'),
   Campaign = mongoose.model('Campaign'),
+  Provoke = mongoose.model('Provoke'),
   config = require('../config/config'),
   message = require('../language/zh-cn/message');
 
@@ -268,7 +269,7 @@ exports.getGroupMessages = function(req, res) {
   var group_messages = [];
   var flag = 0;
   for(var i = 0; i < req.user.gid.length; i ++) {
-     GroupMessage.find({'group.gid': {'$all': [req.user.gid[i]]} }, function(err, group_message) {
+     GroupMessage.find({'cid' : {'$all':[req.user.cid]} , 'group.gid': {'$all': [req.user.gid[i]]} }, function(err, group_message) {
       flag ++;
       if (group_message.length > 0) {
         if (err) {
@@ -296,7 +297,7 @@ exports.getCampaigns = function(req, res) {
   var join = false;
   var flag = 0;
   for(var i = 0; i < req.user.gid.length; i ++) {
-     Campaign.find({ 'gid' : {'$all':[req.user.gid[i]]} }, function(err, campaign) {
+     Campaign.find({'cid' : {'$all':[req.user.cid]} , 'gid' : {'$all':[req.user.gid[i]]} }, function(err, campaign) {
       flag ++;
       if(campaign.length > 0) {
         if (err) {
@@ -374,6 +375,34 @@ exports.editInfo = function(req, res) {
 };
 
 
+//员工投票是否参加约战
+exports.vote = function (req, res) {
+  var cid = req.session.cid;
+  var uid = req.session.uid;
+  var aOr = req.body.aOr;
+  var provoke_message_id = req.body.provoke_message_id;
+  Provoke.findOne({
+    'provoke_message_id' : provoke_message_id
+  },
+  function (err, provoke) {
+    if (provoke) {
+      if (aOr) {
+        provoke.vote.positive ++;
+        provoke.vote.positive_member.push({'cid':cid,'uid':uid});
+      } else {
+        provoke.vote.negative ++;
+        provoke.vote.negative_member.push({'cid':cid,'uid':uid});
+      }
+      provoke.save(function (err) {
+        console.log(err);
+      });
+    } else {
+      console.log('没有此约战!');
+    }
+  });
+  res.send("ok");
+};
+
 //员工参加活动
 exports.joinCampaign = function (req, res) {
   var cid = req.session.cid;
@@ -384,9 +413,20 @@ exports.joinCampaign = function (req, res) {
   },
   function (err, campaign) {
     if (campaign) {
-      campaign.member.push({'cid':cid,'uid':uid});
+      campaign.member.push({
+        'cid':cid,
+        'uid':uid,
+        'username':req.user.username,
+        'realname':req.user.username,
+        'email':req.user.email,
+        'phone':req.user.phone,
+        'qq':req.user.qq,
+        'department':req.user.department,
+        'position':req.user.position,
+        'sex':req.user.sex
+      });
       campaign.save(function (err) {
-      console.log(err);
+        console.log(err);
     });
     } else {
       console.log('没有此活动!');

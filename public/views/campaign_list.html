@@ -19,11 +19,11 @@
         <p>结束时间: {{ campaign_item.end_time }}</p>
         <p>是否参加: {{ campaign_item.join}}</p>
         <p>活动是否关闭: {{ campaign_item.active}} </p>
-        <div ng-switch on="{{campaign_item.join}}">
+        <div ng-switch on="{{campaign_item.join}}" ng-if="campaign_item.active">
           <input type = "button"  class="btn btn-primary btn-lg" value = "退出" ng-click="quit(campaign_item.id)" ng-switch-when="true"/>
           <input type = "button"  class="btn btn-primary btn-lg" value = "参加" ng-click="join(campaign_item.id)" ng-switch-default/>
-          <input type = "button"  class="btn btn-primary btn-lg" ng-if="campaign.show" value = "{{ campaign_item.active_value}}" ng-click="cancel(campaign_item.id)" ng-show＝"{{ campaign_item.active}}"/>
       </div>
+      <input type = "button"  class="btn btn-primary btn-lg" ng-if="campaign.show" value = "{{ campaign_item.active_value}}" ng-click="cancel(campaign_item.id)" />
       </li>
     </div>
   </ul>
