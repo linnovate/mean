@@ -1,0 +1,16 @@
+{
+  "name": "articles",
+  "version": "0.0.0",
+  "description": "Some description of articles",
+  "author": {
+    "name": "mean scaffold"
+  },
+  "mean" : true,
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.4.x"
+  },
+  "dependencies": {
+  },
+  "license": "GPL"
+}
