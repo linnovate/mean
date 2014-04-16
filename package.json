@@ -55,7 +55,8 @@
     "grunt-contrib-uglify": "^0.4.0",
     "grunt-contrib-watch": "latest",
     "grunt-env": "^0.4.1",
-    "grunt-nodemon": "0.2.0"
+    "grunt-nodemon": "0.2.0",
+    "load-grunt-tasks": "^0.4.0"
   },
   "devDependencies": {
     "assetmanager": "^0.1.1",
@@ -63,7 +64,6 @@
     "grunt-mocha-test": "latest",
     "karma": "^0.10.4",
     "karma-coverage": "^0.1.0",
-    "load-grunt-tasks": "^0.4.0",
     "should": "2.1.1",
     "supertest": "0.8.2",
     "time-grunt": "^0.3.1"
