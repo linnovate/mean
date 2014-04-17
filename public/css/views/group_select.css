@@ -3,25 +3,85 @@
   margin-bottom: 50px;
 }
 .group {
-  height: 200px;
   padding: 0;
 }
 .group input {
   display: none;
 }
 .group label {
-  width: 100%;
-  background-image: url("/img/icons/groups.jpg");
-  background-position: -225px 0;
+  height: 210px;
+  width: 210px;
+  backgroud-size: 210px;
 }
-.group span {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 50px;
-  height: 50px;
+.group.inactive .group_1 {
+  background-image: url("/img/icons/group/badminton_off.png");
 }
-.group.active span {
-  background-image: url("/img/icons/select.jpg");
-  background-repeat: no-repeat;
+.group.inactive .group_2 {
+  background-image: url("/img/icons/group/basketball_off.png");
+}
+.group.inactive .group_3 {
+  background-image: url("/img/icons/group/bible_off.png");
+}
+.group.inactive .group_4 {
+  background-image: url("/img/icons/group/bike_off.png");
+}
+.group.inactive .group_5 {
+  background-image: url("/img/icons/group/billiards_off.png");
+}
+.group.inactive .group_6 {
+  background-image: url("/img/icons/group/fish_off.png");
+}
+.group.inactive .group_7 {
+  background-image: url("/img/icons/group/football_off.png");
+}
+.group.inactive .group_8 {
+  background-image: url("/img/icons/group/k_off.png");
+}
+.group.inactive .group_9 {
+  background-image: url("/img/icons/group/outdoor_off.png");
+}
+.group.inactive .group_10 {
+  background-image: url("/img/icons/group/pingpang_off.png");
+}
+.group.inactive .group_11 {
+  background-image: url("/img/icons/group/running_off.png");
+}
+.group.inactive .group_12 {
+  background-image: url("/img/icons/group/swimming_off.png");
+}
+.group.active .group_1 {
+  background-image: url("/img/icons/group/badminton_on.png");
+}
+.group.active .group_2 {
+  background-image: url("/img/icons/group/basketball_on.png");
+}
+.group.active .group_3 {
+  background-image: url("/img/icons/group/bible_on.png");
+}
+.group.active .group_4 {
+  background-image: url("/img/icons/group/bike_on.png");
+}
+.group.active .group_5 {
+  background-image: url("/img/icons/group/billiards_on.png");
+}
+.group.active .group_6 {
+  background-image: url("/img/icons/group/fish_on.png");
+}
+.group.active .group_7 {
+  background-image: url("/img/icons/group/football_on.png");
+}
+.group.active .group_8 {
+  background-image: url("/img/icons/group/k_on.png");
+}
+.group.active .group_9 {
+  background-image: url("/img/icons/group/outdoor_on.png");
+}
+.group.active .group_10 {
+  background-image: url("/img/icons/group/pingpang_on.png");
+}
+.group.active .group_11 {
+  background-image: url("/img/icons/group/running_on.png");
+}
+.group.active .group_12 {
+  background-image: url("/img/icons/group/swimming_on.png");
 }

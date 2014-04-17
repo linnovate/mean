@@ -10,77 +10,84 @@ var _group =[
             },
             {
                 'gid':1,
-                'group_type':'足球',
+                'group_type':'羽毛球',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
             },
             {
                 'gid':2,
-                'group_type':'排球',
+                'group_type':'蓝球',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
             },
             {
                 'gid':3,
-                'group_type':'桌球',
-                'icon':'default',
-                'active':true,
-                'group_rule':'default'
-            },
-            {
-                'gid':4,
-                'group_type':'游泳',
-                'icon':'default',
-                'active':true,
-                'group_rule':'default'
-            },
-            {
-                'gid':5,
-                'group_type':'桌游',
-                'icon':'default',
-                'active':true,
-                'group_rule':'default'
-            },
-            {
-                'gid':6,
                 'group_type':'阅读',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
             },
             {
+                'gid':4,
+                'group_type':'自行车',
+                'icon':'default',
+                'active':true,
+                'group_rule':'default'
+            },
+            {
+                'gid':5,
+                'group_type':'台球',
+                'icon':'default',
+                'active':true,
+                'group_rule':'default'
+            },
+            {
+                'gid':6,
+                'group_type':'钓鱼',
+                'icon':'default',
+                'active':true,
+                'group_rule':'default'
+            },
+            {
                 'gid':7,
-                'group_type':'唱歌',
+                'group_type':'足球',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
             },
             {
                 'gid':8,
-                'group_type':'写生',
+                'group_type':'k歌',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
             },
             {
                 'gid':9,
-                'group_type':'桑拿',
+                'group_type':'户外',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
             },
             {
                 'gid':10,
-                'group_type':'跳舞',
+                'group_type':'乒乓球',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
             },
             {
                 'gid':11,
-                'group_type':'约炮',
+                'group_type':'跑步',
+                'icon':'default',
+                'active':true,
+                'group_rule':'default'
+            },
+            {
+                'gid':12,
+                'group_type':'游泳',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
