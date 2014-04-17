@@ -9,24 +9,25 @@
       </button>
     </div>
   </div>
-  <ul>
+  <ol>
     <div>
       <li ng-repeat="campaign_item in campaign.campaigns" >
         <h2>{{ campaign_item.content }}</h2>
+        <p>小组: {{ campaign_item.gid}}</p>
         <p>参加活动人数：{{ campaign_item.member.length }}</p>
-        <p class="col-md-4">创建时间: {{ campaign_item.create_time}}</p>
-        <p class="col-md-4">开始时间: {{ campaign_item.start_time }}</p>
-        <p class="col-md-4">结束时间: {{ campaign_item.end_time }}</p>
-        <p class="col-md-6">是否参加: {{ campaign_item.join}}</p>
-        <p class="col-md-6">活动是否关闭: {{ campaign_item.active}} </p>
+        <p>创建时间: {{ campaign_item.create_time}}</p>
+        <p>开始时间: {{ campaign_item.start_time }}</p>
+        <p>结束时间: {{ campaign_item.end_time }}</p>
+        <p>是否参加: {{ campaign_item.join}}</p>
+        <p>活动是否关闭: {{ campaign_item.active}} </p>
         <div ng-switch on="{{campaign_item.join}}" ng-if="campaign_item.active">
           <input type = "button"  class="btn btn-primary btn-lg" value = "退出" ng-click="quit(campaign_item.id)" ng-switch-when="true"/>
           <input type = "button"  class="btn btn-primary btn-lg" value = "参加" ng-click="join(campaign_item.id)" ng-switch-default/>
+          <input type = "button"  class="btn btn-primary btn-lg" ng-if="campaign.show" value = "{{ campaign_item.active_value}}" ng-click="cancel(campaign_item.id)" />
         </div>
-        <input type = "button"  class="btn btn-primary btn-lg" ng-if="campaign.show" value = "{{ campaign_item.active_value}}" ng-click="cancel(campaign_item.id)" />
       </li>
     </div>
-  </ul>
+  </ol>
 </div>
 
 
