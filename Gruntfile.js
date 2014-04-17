@@ -34,7 +34,7 @@ module.exports = function(grunt) {
         },
         jshint: {
             all: {
-                src: ['*.js', 'server/**/*.js', 'public/**/*.js', 'test/**/*.js', '!test/coverage/**/*.js'],
+                src: ['*.js', 'server/**/*.js', 'public/**/*.js', 'test/**/*.js', '!test/coverage/**/*.js', '!public/system/lib/**'],
                 options: {
                     jshintrc: true
                 }
@@ -53,7 +53,7 @@ module.exports = function(grunt) {
                 csslintrc: '.csslintrc'
             },
             all: {
-                src: ['public/**/css/**/*', '!public/system/**']
+                src: ['public/**/css/**/*', '!public/system/lib/**']
             }
         },
         cssmin: {
