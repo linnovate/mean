@@ -167,7 +167,6 @@ tabViewCompany.controller('AccountFormController',['$scope','$http',function($sc
     $http.get('/company/getAccount').success(function(data,status){
         $scope.company = data.company;
         $scope.info = data.info;
-        console.log($scope.company);
     }).error(function(data,status) {
         //TODO:更改对话框
         alert('企业账号信息获取失败！');

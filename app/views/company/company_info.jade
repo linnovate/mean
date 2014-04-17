@@ -9,10 +9,6 @@ div
       label.col-xs-5.control-label(ng-bind="company.login_email")
       a.col-xs-5(href="#/changePassword") 修改密码
     .row
-      label.col-xs-2.control-label 用户名
-      .col-xs-5
-        input.form-control(type="text" name ="username" ng-model="company.username" ng-disabled="accountUnEdit")
-    .row
       label.col-xs-2.control-label 注册时间
       label.col-xs-5.control-label(ng-bind="company.register_date")
   form.form-horizontal(name="infoForm")
