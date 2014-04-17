@@ -5,66 +5,59 @@ block headExt
 
 block content
   .row(ng-app="company" ng-controller="RegisterController")
-    .col-xs-5.text-right.col-left
-      h1.text-right
-        small 加入
-        | 动梨
-      p 为了保证您在动梨遇到的小伙伴们都是真实可靠的
-      p 我们会对每家申请加入的团体当然也包括您在内
-      p 认真的核实资料，感谢您的配合
-    .col-xs-2
-    form.col-xs-5.signin.form-horizontal(action="/company" method="post" name="signup_form")
-      .form-group
-        label.col-xs-3.control-label(for="name") *公司全称
-        .col-xs-9.input-module.input-module-left
-          input#name.form-control(type="text" name="name" placeholder="请与贵公司营业执照注册名保持一致" required)
-      .form-group#city(data-role="linkage-selector" data-src="/lib/linkage-selector/provinces.json" data-select="province city")
-        label.col-xs-3.control-label(for="city-province") *城市
-        .col-xs-5.input-module.input-module-left.pc-selector
-          select#city-province.form-control.prov(type="text" name="province" required)
-        .col-xs-4.input-module.pc-selector
-          select#city-city.form-control.city(type="text" name="city" required)
-      .form-group
-        label.col-xs-3.control-label(for="address") *地址
-        .col-xs-9.input-module.input-module-left
-          input#address.form-control(type="text" name="address" required)
-      .form-group
-        label.col-xs-3.control-label(for="contacts") *联系人
-        .col-xs-9.input-module.input-module-left
-          input#contacts.form-control(type="text" name="contacts" required)
-      .form-group
-        label.col-xs-3.control-label(for="lindline") *公司电话
-        .col-xs-2.input-module.input-module-left.lindline-left
-          input#lindline-areacode.form-control(type="number" name="areacode" placeholder="区号" required)
-        .col-xs-1.input-module.input-separator
-          label.control-label -
-        .col-xs-3.input-module.lindline-middle
-          input#lindline-number.form-control(type="number" name="number" placeholder="电话号码" required)
-        .col-xs-1.input-module.input-separator
-          label.control-label -
-        .col-xs-2.input-module.lindline-right
-          input#lindline-extension.form-control(type="number" name="extension" placeholder="分机" required)
-      .form-group
-        label.col-xs-3.control-label(for="phone") 手机号码
-        .col-xs-9.input-module.input-module-left
-          input#phone.form-control(type="number" name="phone")
-      .form-group
-        label.col-xs-3.control-label(for="email-host") *电子邮箱
-        .col-xs-5.input-module.input-module-left
-          input#email-host.form-control(type="text" name="host" required)
-        .col-xs-1.input-module.text-center
-          label.control-label.label-at @
-        .col-xs-3.input-module
-          input#email-domain.form-control(type="text" name="domain" required)
-      .form-group
-        .col-xs-offset-3.col-xs-9.input-module.input-module-left
-          .checkbox
-            label
+    .col-xs-5.text-right
+      .block-left
+        h1.text-right
+          small 加入
+          | 动梨
+        p 为了保证您在动梨遇到的小伙伴们都是真实可靠的
+        p 我们会对每家申请加入的团体当然也包括您在内
+        p 认真的核实资料，感谢您的配合
+    .col-xs-7
+      form.block-right.form-horizontal.center-block(action="/company" method="post" name="signup_form")
+        .form-group.dl_sm_group
+          label.col-xs-3.control-label(for="name") *公司全称
+          .col-xs-9
+            input#name.form-control.dl_full_control(type="text" name="name" placeholder="请与贵公司营业执照注册名保持一致" required)
+        .form-group.dl_sm_group(data-role="linkage-selector" data-src="/lib/linkage-selector/provinces.json" data-select="province city")
+          label.col-xs-3.control-label(for="province") *城市
+          .col-xs-9
+            select#province.form-control.dl_form_control(type="text" name="province" required)
+            select#city.form-control.dl_form_control(type="text" name="city" required)
+        .form-group.dl_sm_group
+          label.col-xs-3.control-label(for="address") *地址
+          .col-xs-9
+            input#address.form-control.dl_full_control(type="text" name="address" required)
+        .form-group.dl_sm_group
+          label.col-xs-3.control-label(for="contacts") *联系人
+          .col-xs-9
+            input#contacts.form-control.dl_full_control(type="text" name="contacts" required)
+        .form-group.dl_sm_group
+          label.col-xs-3.control-label(for="lindline_areacode") *公司电话
+          .col-xs-9
+            input#lindline_areacode.form-control.dl_form_control(type="number" name="areacode" placeholder="区号" required)
+            label.control-label -
+            input#lindline_number.form-control.dl_form_control(type="number" name="number" placeholder="电话号码" required)
+            label.control-label -
+            input#lindline_extension.form-control.dl_form_control(type="number" name="extension" placeholder="分机" required)
+        .form-group.dl_sm_group
+          label.col-xs-3.control-label(for="phone") 手机号码
+          .col-xs-9
+            input#phone.form-control.dl_full_control(type="number" name="phone")
+        .form-group.dl_sm_group
+          label.col-xs-3.control-label(for="email_host") *电子邮箱
+          .col-xs-9
+            input#email_host.form-control.dl_form_control(type="text" name="host" required)
+            label.control-label @
+            input#email_domain.form-control.dl_form_control(type="text" name="domain" required)
+        .form-group.dl_sm_group
+          .col-xs-offset-3.col-xs-9
+            label.dl_checkbox
               input(type="checkbox" required)
               | 我已阅读并同意<a href="#">服务条款</a>
-      .form-group
-        .col-xs-offset-3.col-xs-9.input-module.input-module-left
-          button.btn.btn-primary.btn-submit(ng-disabled="signup_form.$invalid") 提交申请
+        .form-group.dl_sm_group
+          .col-xs-offset-3.col-xs-9
+            button.btn.btn-primary.dl_btn.btn_submit.dl_full_control(ng-disabled="signup_form.$invalid") 提交申请
 
 append footExt
   script(src='/lib/linkage-selector/linkage-selector.js')
