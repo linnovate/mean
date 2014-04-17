@@ -1,7 +1,7 @@
 # [![MEAN Logo](http://www.mean.io/img/logos/meanlogo.png)](http://mean.io/) MEAN Command Line
 
 [![NPM version](https://badge.fury.io/js/meanio.svg)](http://badge.fury.io/js/meanio)
-[![Dependencies Status](https://david-dm.org/linnovate/mean.png)](https://david-dm.org/linnovate/mean-cli)
+[![Dependency Status](https://david-dm.org/linnovate/mean-cli.svg)](https://david-dm.org/linnovate/mean-cli)
 
 Source for npm package meanio. mean-cli is a core package of the mean.io project and is used primarily to manage packages for extending functionality, for example adding a package to enable inline editable tokens. 
 
