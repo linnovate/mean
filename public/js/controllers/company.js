@@ -65,7 +65,7 @@ companyApp.controller('DetailController', ['$http', function($http) {
 
             }).error(function(data, status) {
                 //TODO:更改对话框
-                alert("数据发生错误！");
+                alert('数据发生错误！');
             });
         }
         catch(e){
@@ -103,12 +103,12 @@ companyApp.controller('GroupsController',['$http',function($http) {
                 }
             }).success(function(data, status) {
                 //TODO:更改对话框
-                alert("选择组件成功！");
+                alert('选择组件成功！');
                 window.location.href='#/invite';
 
             }).error(function(data, status) {
                 //TODO:更改对话框
-                alert("数据发生错误！");
+                alert('数据发生错误！');
             });
         }
         catch(e) {

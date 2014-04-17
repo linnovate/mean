@@ -5,25 +5,25 @@
     </div>
     <div class="col-md-6">
       <!-- Button trigger modal -->
-      <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">发起活动
+      <button ng-if="campaign.show" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">发起活动
       </button>
     </div>
   </div>
   <ul>
     <div>
-      <li ng-repeat="campaign in campaign.campaigns" >
-        <h2>{{ campaign.content }}</h2>
-        <p>参加活动人数：{{ campaign.member.length }}</p>
-        <p>创建时间: {{ campaign.create_time}}</p>
-        <p>开始时间: {{ campaign.start_time }}</p>
-        <p>结束时间: {{ campaign.end_time }}</p>
-        <p>是否参加: {{ campaign.join}}</p>
-        <p>活动是否关闭: {{ campaign.active}} </p>
-        <div ng-switch on="{{campaign.join}}">
-          <input type = "button"  class="btn btn-primary btn-lg" value = "退出" ng-click="quit(campaign.id)" ng-switch-when="true"/>
-          <input type = "button"  class="btn btn-primary btn-lg" value = "参加" ng-click="join(campaign.id)" ng-switch-default/>
-          <input type = "button"  class="btn btn-primary btn-lg" value = "关闭" ng-click="cancel(campaign.id)" ng-show＝"{{ campaign.active}}"/>
-      </div>
+      <li ng-repeat="campaign_item in campaign.campaigns" >
+        <h2>{{ campaign_item.content }}</h2>
+        <p>参加活动人数：{{ campaign_item.member.length }}</p>
+        <p>创建时间: {{ campaign_item.create_time}}</p>
+        <p>开始时间: {{ campaign_item.start_time }}</p>
+        <p>结束时间: {{ campaign_item.end_time }}</p>
+        <p>是否参加: {{ campaign_item.join}}</p>
+        <p>活动是否关闭: {{ campaign_item.active}} </p>
+        <div ng-switch on="{{campaign_item.join}}" ng-if="campaign_item.active">
+          <input type = "button"  class="btn btn-primary btn-lg" value = "退出" ng-click="quit(campaign_item.id)" ng-switch-when="true"/>
+          <input type = "button"  class="btn btn-primary btn-lg" value = "参加" ng-click="join(campaign_item.id)" ng-switch-default/>
+        </div>
+        <input type = "button"  class="btn btn-primary btn-lg" ng-if="campaign.show" value = "{{ campaign_item.active_value}}" ng-click="cancel(campaign_item.id)" />
       </li>
     </div>
   </ul>
@@ -37,7 +37,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">发起活动</h4>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -51,11 +51,10 @@
             <input type="text" class="form-control" name="end_time" ng-model="end_time">
           </label>
         </div>
-        <button calss="btn btn-primary btn-lg" ng-click='sponsor()' data-dismiss="modal">发起活动</button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" ng-click='sponsor()' data-dismiss="modal">确定</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

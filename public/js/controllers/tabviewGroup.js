@@ -43,6 +43,7 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
     var that = this;
     $http.get('/group/getCampaigns?' + Math.round(Math.random()*100)).success(function(data, status) {
       that.campaigns = data;
+      that.show = true;
     });
 
     $scope.join = function(campaign_id) {
@@ -55,9 +56,9 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
                 }
             }).success(function(data, status) {
                 window.location.reload();
-                alert("成功加入该活动!");
+                alert('成功加入该活动!');
             }).error(function(data, status) {
-                alert("数据发生错误！");
+                alert('数据发生错误！');
             });
         }
         catch(e) {
@@ -75,9 +76,9 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
                 }
             }).success(function(data, status) {
                 window.location.reload();
-                alert("您已退出该活动!");
+                alert('您已退出该活动!');
             }).error(function(data, status) {
-                alert("数据发生错误！");
+                alert('数据发生错误！');
             });
         }
         catch(e) {
@@ -101,7 +102,7 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
 
             }).error(function(data, status) {
                 //TODO:更改对话框
-                alert("数据发生错误！");
+                alert('数据发生错误！');
             });
         }
         catch(e){
@@ -120,7 +121,7 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
             }).success(function(data, status) {
                 window.location.reload();
             }).error(function(data, status) {
-                alert("数据发生错误！");
+                alert('数据发生错误！');
             });
         }
         catch(e) {
@@ -139,7 +140,7 @@ tabViewGroup.controller('MemberListController', ['$http', function($http) {
 
 tabViewGroup.controller('infoController', ['$http', '$scope',function($http, $scope) {
     $scope.unEdit = true;
-    $scope.buttonStatus = "编辑>";
+    $scope.buttonStatus = '编辑>';
     $scope.editToggle = function() {
         $scope.unEdit = !$scope.unEdit;
         if($scope.unEdit) {
@@ -153,21 +154,21 @@ tabViewGroup.controller('infoController', ['$http', '$scope',function($http, $sc
                 }).success(function(data, status) {
                     //TODO:更改对话框
                     if(data.result === 1)
-                        alert("信息修改成功！");
+                        alert('信息修改成功！');
                     else
                         alert(data.msg);
                 }).error(function(data, status) {
                     //TODO:更改对话框
-                    alert("数据发生错误！");
+                    alert('数据发生错误！');
                 });
             }
             catch(e) {
                 console.log(e);
             }
-            $scope.buttonStatus = "编辑>";
+            $scope.buttonStatus = '编辑>';
         }
         else {
-            $scope.buttonStatus = "保存";
+            $scope.buttonStatus = '保存';
         }
   };
 }]);

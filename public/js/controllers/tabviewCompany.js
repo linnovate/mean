@@ -67,6 +67,7 @@ tabViewCompany.controller('GroupMessageController', ['$http',
     var that = this;
     $http.get('/company/getCompanyMessages').success(function(data, status) {
       that.group_messages = data;
+
     });
 }]);
 
@@ -75,6 +76,7 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
     var that = this;
     $http.get('/company/getCampaigns').success(function(data, status) {
       that.campaigns = data;
+      that.show = true;
     });
 
     $scope.join = function(campaign_id) {
@@ -88,9 +90,9 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
                 }
             }).success(function(data, status) {
                 window.location.reload();
-                alert("成功加入该活动!");
+                alert('成功加入该活动!');
             }).error(function(data, status) {
-                alert("数据发生错误！");
+                alert('数据发生错误！');
             });
         }
         catch(e) {
@@ -108,9 +110,9 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
                 }
             }).success(function(data, status) {
                 window.location.reload();
-                alert("您已退出该活动!");
+                alert('您已退出该活动!');
             }).error(function(data, status) {
-                alert("数据发生错误！");
+                alert('数据发生错误！');
             });
         }
         catch(e) {
@@ -134,7 +136,7 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
 
             }).error(function(data, status) {
                 //TODO:更改对话框
-                alert("数据发生错误！");
+                alert('数据发生错误！');
             });
         }
         catch(e){
@@ -153,7 +155,7 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
             }).success(function(data, status) {
                 window.location.reload();
             }).error(function(data, status) {
-                alert("数据发生错误！");
+                alert('数据发生错误！');
             });
         }
         catch(e) {
@@ -171,9 +173,9 @@ tabViewCompany.controller('AccountFormController',['$scope','$http',function($sc
         alert('企业账号信息获取失败！');
     });
     $scope.accountUnEdit = true;
-    $scope.accountButtonStatus = "编辑>";
+    $scope.accountButtonStatus = '编辑>';
     $scope.infoUnEdit = true;
-    $scope.infoButtonStatus = "编辑>"
+    $scope.infoButtonStatus = '编辑>';
     $scope.accountEditToggle = function() {
         $scope.accountUnEdit = !$scope.accountUnEdit;
         if($scope.accountUnEdit) {
@@ -193,16 +195,16 @@ tabViewCompany.controller('AccountFormController',['$scope','$http',function($sc
                         alert(data.msg);
                 }).error(function(data, status) {
                     //TODO:更改对话框
-                    alert("数据发生错误！");
+                    alert('数据发生错误！');
                 });
             }
             catch(e) {
                 console.log(e);
             }
-            $scope.accountButtonStatus = "编辑>";
+            $scope.accountButtonStatus = '编辑>';
         }
         else {
-            $scope.accountButtonStatus = "保存";
+            $scope.accountButtonStatus = '保存';
         }
     };
     $scope.infoEditToggle = function() {
@@ -224,24 +226,24 @@ tabViewCompany.controller('AccountFormController',['$scope','$http',function($sc
                         alert(data.msg);
                 }).error(function(data, status) {
                     //TODO:更改对话框
-                    alert("数据发生错误！");
+                    alert('数据发生错误！');
                 });
             }
             catch(e) {
                 console.log(e);
             }
-            $scope.infoButtonStatus = "编辑>";
+            $scope.infoButtonStatus = '编辑>';
         }
         else {
-            $scope.infoButtonStatus = "保存";
+            $scope.infoButtonStatus = '保存';
         }
     };
 }]);
 tabViewCompany.controller('PasswordFormController', ['$http', function($http) {
     var that = this;
-    this.nowpassword = "";
-    this.newpassword = "";
-    this.confirmpassword = "";
+    this.nowpassword = '';
+    this.newpassword = '';
+    this.confirmpassword = '';
     this.change_password = function(){
         $http({
             method : 'post',
@@ -255,13 +257,13 @@ tabViewCompany.controller('PasswordFormController', ['$http', function($http) {
             //TODO:更改对话框
             if(data.result === 1){
                 alert(data.msg);
-                window.location.href = "#/company_info";
+                window.location.href = '#/company_info';
             }
             else
                 alert(data.msg);
         }).error(function(data, status) {
             //TODO:更改对话框
-            alert("数据发生错误！");
+            alert('数据发生错误！');
         });
     };
 }]);

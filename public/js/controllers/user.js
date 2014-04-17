@@ -40,10 +40,10 @@ userApp.controller('GroupsController', ['$scope','$http', function($scope, $http
                     selected : $scope.selected
                 }
             }).success(function(data, status) {
-                alert("选择组件成功！");
+                alert('选择组件成功！');
                 window.location.href = "/users/finishRegister";
             }).error(function(data, status) {
-                alert("数据发生错误！");
+                alert('数据发生错误！');
             });
         }
         catch(e) {

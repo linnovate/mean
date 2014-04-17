@@ -10,7 +10,8 @@ var mongoose = require('mongoose'),
     User = mongoose.model('User'),
     Company = mongoose.model('Company'),
     Group = mongoose.model('Group'),
-    CompanyGroup = mongoose.model('CompanyGroup');
+    CompanyGroup = mongoose.model('CompanyGroup'),
+    Provoke = mongoose.model('Provoke');
 
 exports.saveGroups = function(req,res) {
     res.send('save');
@@ -202,10 +203,10 @@ exports.group = function(req, res, next, id) {
 exports.getGroupMessage = function(req, res) {
 
   var cid = req.session.cid;
-  var gid = req.session.gid;//必须是数字类型哦,必要的时候要用parseInt()转换
+  var gid = req.session.gid;
 
   //有包含gid的消息都列出来
-  GroupMessage.find({'poster.cid' : cid , 'group.gid' : {'$all':[gid]}}, function(err, group_messages) {
+  GroupMessage.find({'cid' : {'$all':[cid]}, 'group.gid' : {'$all':[gid]}}, function(err, group_messages) {
     if (err) {
       console.log(err);
       return res.status(404).send([]);
@@ -224,7 +225,7 @@ exports.getGroupCampaign = function(req, res) {
   var uid = req.session.uid;
 
   //有包含gid的活动都列出来
-  Campaign.find({'poster.cid' : cid, 'gid' : {'$all':[gid]}}, function(err, campaign) {
+  Campaign.find({'cid' : {'$all':[cid]}, 'gid' : {'$all':[gid]}}, function(err, campaign) {
     if (err) {
       console.log(err);
       return res.status(404).send([]);
@@ -242,6 +243,7 @@ exports.getGroupCampaign = function(req, res) {
         }
         campaigns.push({
           'active':campaign[i].active,
+          'active_value':campaign[i].active ? '关闭' : '打开',
           'id': campaign[i].id,
           'gid': campaign[i].gid,
           'group_type': campaign[i].group_type,
@@ -282,6 +284,98 @@ exports.campaignCancel = function (req, res) {
     });
 };
 
+
+//约战
+exports.provoke = function (req, res) {
+  var lid = req.session.uid;
+  var lname = req.session.username;
+  var provoke_model = req.body.provoke_model;
+  var cid_a = req.session.cid;    //约战方公司id
+  var cid_b = req.body.cid;       //被约方公司id(如果是同一家公司那么cid_b = cid_a)
+  var gid = req.body.gid;         //约战小组id
+  var group_type = req.body.group_type;
+  var content = req.body.content;
+  var provoke = new Provoke();
+  var team_a = req.body.team_a;   //约战方队名
+  var team_b = req.body.team_b;   //被约方队名
+  provoke.id = Date.now().toString(32) + Math.random().toString(32);
+  provoke.gid = gid;
+  provoke.group_type = group_type;
+  provoke.group_a.cid = cid_a;
+  provoke.group_a.lid = lid;
+  provoke.group_a.start_confirm = true;
+  provoke.group_a.lname = lname;
+  provoke.poster.cid = cid_a;
+  provoke.poster.uid = lid;
+  provoke.poster.username = lname;
+  provoke.poster.role = "LEADER";
+  provoke.content = req.body.content;
+
+  var provoke_message_id = Date.now().toString(32) + Math.random().toString(32);
+  provoke.provoke_message_id = provoke_message_id;
+
+
+  provoke.save(function(err) {
+    if (err) {
+      console.log(err);
+      //检查信息是否重复
+      switch (err.code) {
+        case 11000:
+            break;
+        case 11001:
+            res.status(400).send('该约战已经存在!');
+            break;
+        default:
+            break;
+      }
+        return;
+    }
+
+    //生成动态消息
+    var groupMessage = new GroupMessage();
+
+    groupMessage.id = provoke_message_id;
+    groupMessage.group.gid.push(gid);
+    groupMessage.provoke.active = true,
+    groupMessage.provoke.team_a = team_a;
+    groupMessage.provoke.team_b = team_b;
+
+    groupMessage.poster.cname = cname;
+    groupMessage.poster.cid = cid;
+    groupMessage.poster.uid = uid;
+    groupMessage.poster.role = 'LEADER';
+    groupMessage.poster.username = username;
+    groupMessage.cid.push(cid_a);
+    groupMessage.cid.push(cid_b);
+
+    groupMessage.content = content;
+
+    groupMessage.save(function (err) {
+      if (err) {
+        res.send(err);
+        return;
+      }
+
+      //这里要注意一下,生成动态消息后还要向被约队长发一封私信
+    });
+  });
+};
+
+
+//应约
+exports.responseProvoke = function (req, res) {
+  var provoke_message_id = req.body.provoke_message_id;
+  /*
+  Provoke.findOne({
+      'provoke_message_id' : provoke_message_id
+    },
+    function (err, provoke) {
+
+  });
+  */
+};
+
+
 //组长发布一个活动(只能是一个企业)
 exports.sponsor = function (req, res) {
 
@@ -313,7 +407,6 @@ exports.sponsor = function (req, res) {
   campaign.content = content;
   campaign.active = true;
 
-  campaign.create_time = req.body.create_time;
   campaign.start_time = req.body.start_time;
   campaign.end_time = req.body.end_time;
   campaign.save(function(err) {
@@ -337,8 +430,9 @@ exports.sponsor = function (req, res) {
 
     groupMessage.id = Date.now().toString(32) + Math.random().toString(32) + '1';
     groupMessage.group.gid.push(gid);
-    groupMessage.group.active = true,
-    groupMessage.group.date = req.body.create_time,
+    //groupMessage.group.group_type.push(group_type);
+    groupMessage.active = true;
+    groupMessage.cid.push(cid);
 
     groupMessage.poster.cname = cname;
     groupMessage.poster.cid = cid;

@@ -271,7 +271,7 @@ exports.Info = function(req, res) {
 
 exports.getAccount = function(req, res) {
     if(req.session.cid != null) {
-        Company.findOne({'id': req.session.cid}, {"_id":0,"username": 1,"login_email":1, "register_date":1,"info":1},function(err, _company) {
+        Company.findOne({'id': req.session.cid}, {'_id':0,'username': 1,'login_email':1, 'register_date':1,'info':1},function(err, _company) {
             if (err) {
 
             }
@@ -280,7 +280,7 @@ exports.getAccount = function(req, res) {
                     'username': _company.username,
                     'login_email': _company.login_email,
                     'register_date': _company.register_date
-                }
+                };
                 return res.send({
                     'result': 1,
                     'company': _account,
@@ -307,7 +307,7 @@ exports.saveAccount = function(req, res) {
                 console.log('数据错误');
                 res.send({'result':0,'msg':'数据查询错误'});
                 return;
-            };
+            }
             if(company) {
                 res.send({'result':1,'msg':'更新成功'});
             } else {
@@ -342,7 +342,7 @@ exports.getCompanyMessage = function(req, res) {
   var cid = req.session.cid;
 
   //公司的动态消息都归在虚拟组里
-  GroupMessage.find({'poster.cid' : cid , 'group.gid' : {'$all':[0]}}, function(err, group_messages) {
+  GroupMessage.find({'cid' : {'$all':[cid]} , 'group.gid' : {'$all':[0]}}, function(err, group_messages) {
     if (err) {
       console.log(err);
       return res.status(404).send([]);
@@ -357,11 +357,11 @@ exports.getCompanyMessage = function(req, res) {
 //返回公司发布的所有活动,待前台调用
 exports.getCompanyCampaign = function(req, res) {
 
-    var cid = req.session.cid;//根据公司id取出该公司的所有活动(公司id是参数传进来的)
+    var cid = req.session.cid;//根据公司id取出该公司的所有活动
     var uid = req.session.uid;
 
     //公司发布的活动都归在虚拟组 gid = 0 里
-    Campaign.find({'poster.cid' : cid, 'gid' : {'$all':[0]}}, function(err, campaign) {
+    Campaign.find({'cid' : {'$all':[cid]}, 'gid' : {'$all':[0]}}, function(err, campaign) {
         if (err) {
             console.log(err);
             return res.status(404).send([]);
@@ -378,6 +378,7 @@ exports.getCompanyCampaign = function(req, res) {
                 }
                 campaigns.push({
                     'active':campaign[i].active,
+                    'active_value':campaign[i].active ? '关闭' : '打开',
                     'id': campaign[i].id,
                     'gid': campaign[i].gid,
                     'group_type': campaign[i].group_type,
@@ -386,7 +387,7 @@ exports.getCompanyCampaign = function(req, res) {
                     'poster': campaign[i].poster,
                     'content': campaign[i].content,
                     'member': campaign[i].member,
-                    'create_time': campaign[i].create_time,
+                    'create_time': campaign[i].create_time.toLocaleDateString(),
                     'start_time': campaign[i].start_time,
                     'end_time': campaign[i].end_time,
                     'join':join
@@ -468,7 +469,7 @@ exports.sponsor = function (req, res) {
     var group_type = '虚拟组';
     var company_in_campaign = req.body.company_in_campaign;//公司id数组,HR可以发布多个公司一起的的联谊或者约战活动,注意:第一个公司默认就是次hr所在的公司!
 
-    if(company_in_campaign == undefined) {
+    if(company_in_campaign == undefined || company_in_campaign == null) {
         company_in_campaign = [cid];
     }
     var content = req.body.content;//活动内容
@@ -487,7 +488,7 @@ exports.sponsor = function (req, res) {
     campaign.gid.push(gid);
     campaign.group_type.push(group_type);
 
-    campaign.cid = company_in_campaign; //一定要和cid区分开啊,这是参加活动的所有公司的id
+    campaign.cid = company_in_campaign; //参加活动的所有公司的id
 
     campaign.id = Date.now().toString(32) + Math.random().toString(32) + '0';
     campaign.poster.cname = cname;
@@ -500,7 +501,6 @@ exports.sponsor = function (req, res) {
 
     campaign.content = content;
 
-    campaign.create_time = req.body.create_time;
     campaign.start_time = req.body.start_time;
     campaign.end_time = req.body.end_time;
 
@@ -527,8 +527,8 @@ exports.sponsor = function (req, res) {
         groupMessage.id = Date.now().toString(32) + Math.random().toString(32) + '1';
         groupMessage.group.gid.push(gid);
         groupMessage.group.group_type.push(group_type);
-        groupMessage.group.active = true,
-        groupMessage.group.date = req.body.create_time,
+        groupMessage.active = true;
+        groupMessage.cid.push(cid);
 
         groupMessage.poster.cname = cname;
         groupMessage.poster.cid = cid;
@@ -545,7 +545,7 @@ exports.sponsor = function (req, res) {
             }
         });
     });
-    res.send("ok");
+    res.send('ok');
 };
 
 exports.changePassword = function(req, res){
