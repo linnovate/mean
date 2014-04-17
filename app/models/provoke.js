@@ -45,9 +45,9 @@ var Provoke = new Schema({
         tname: String,                       //队名
         cid: String,
         cname: String,
-        lid: String,
-        lname: String,
-        lrealname: String,
+        uid: String,
+        username: String,
+        realname: String,
         score: Number,
         start_confirm: false,                //双方组长都确认后才能开战
         update_rst_confirm: false            //双方组长都确认后才能上传积分
@@ -56,9 +56,9 @@ var Provoke = new Schema({
         tname: String,
         cid: String,
         cname: String,
-        lid: String,
-        lname: String,
-        lrealname: String,
+        uid: String,
+        username: String,
+        realname: String,
         score: Number,
         start_confirm: false,
         update_rst_confirm: false

@@ -3,4 +3,5 @@ mixin group_list(gids)
   ul
     each gid in gids
       li
+        label(class='group_'+gid for=gid)
         a(href="/group/home/#{gid}")= gid

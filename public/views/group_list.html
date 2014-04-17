@@ -3,6 +3,7 @@
   	<ul>
   		<div>
     		<li ng-repeat="group in group.group_lists" >
+            <label class="group_{{ group.gid }}"></label>
             <p>id：{{ group.gid }}</p>
       			<h2>{{ group.name }}</h2>
       			<p>组件类型：{{ group.group_type }}</p>
