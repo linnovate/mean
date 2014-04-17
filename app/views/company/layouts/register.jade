@@ -1,0 +1,34 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+    meta(name="viewport" content="width=device-width,initial-scale=1")
+    meta(http-equiv="Content-type" content="text/html;charset=UTF-8")
+    title= title
+
+    link(rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet" href="/css/donler.css")
+    block headExt
+  body
+    .wrap
+      include ../../partials/register_nav
+      .container
+        block content
+    footer.dl_footer
+      hr
+      .container
+        .row
+          .col-xs-12.col-sm-6
+            p.pull-left &copy; 8 Inc.2013 沪 ICP 2893750275
+          .col-xs-12.col-sm-6
+            p.pull-right 隐私政策
+            p.pull-right 服务条款
+            p.pull-right 鸭梨助手
+            p.pull-right 关于我们
+
+    script(src="/lib/angular/angular.min.js")
+    script(src="/lib/jquery/dist/jquery.min.js")
+    script(src="/lib/bootstrap/dist/js/bootstrap.min.js")
+
+    block footExt
