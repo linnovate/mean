@@ -18,12 +18,12 @@ block content
         label.col-xs-3.control-label(for="name") *公司全称
         .col-xs-9.input-module.input-module-left
           input#name.form-control(type="text" name="name" placeholder="请与贵公司营业执照注册名保持一致" required)
-      .form-group#city
+      .form-group#city(data-role="linkage-selector" data-src="/lib/linkage-selector/provinces.json" data-select="province city")
         label.col-xs-3.control-label(for="city-province") *城市
         .col-xs-5.input-module.input-module-left.pc-selector
-          select#city-province.form-control.prov(type="text" name="province" ng-model="pcSelector.province" ng-options="prov.name for prov in pcSelector.provinces" ng-change="pcSelector.change()" required)
+          select#city-province.form-control.prov(type="text" name="province" required)
         .col-xs-4.input-module.pc-selector
-          select#city-city.form-control.city(type="text" name="city" ng-model="pcSelector.city" ng-options="city.name for city in pcSelector.cities" required)
+          select#city-city.form-control.city(type="text" name="city" required)
       .form-group
         label.col-xs-3.control-label(for="address") *地址
         .col-xs-9.input-module.input-module-left
@@ -36,14 +36,14 @@ block content
         label.col-xs-3.control-label(for="lindline") *公司电话
         .col-xs-2.input-module.input-module-left.lindline-left
           input#lindline-areacode.form-control(type="number" name="areacode" placeholder="区号" required)
-        .col-xs-1.input-module.input-separator 
+        .col-xs-1.input-module.input-separator
           label.control-label -
         .col-xs-3.input-module.lindline-middle
           input#lindline-number.form-control(type="number" name="number" placeholder="电话号码" required)
-        .col-xs-1.input-module.input-separator 
+        .col-xs-1.input-module.input-separator
           label.control-label -
         .col-xs-2.input-module.lindline-right
-          input#lindline-extension.form-control(type="number" name="extension" placeholder="分机" required)  
+          input#lindline-extension.form-control(type="number" name="extension" placeholder="分机" required)
       .form-group
         label.col-xs-3.control-label(for="phone") 手机号码
         .col-xs-9.input-module.input-module-left
@@ -65,3 +65,6 @@ block content
       .form-group
         .col-xs-offset-3.col-xs-9.input-module.input-module-left
           button.btn.btn-primary.btn-submit(ng-disabled="signup_form.$invalid") 提交申请
+
+append footExt
+  script(src='/lib/linkage-selector/linkage-selector.js')
