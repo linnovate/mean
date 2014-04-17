@@ -5,45 +5,45 @@ block headExt
 
 block content
   .row.wrap
-    .col-xs-12.col-sm-5.register-text
-      h1.text-right
-        small 加入
-        | 动梨
+    .col-xs-12.col-sm-5
+      .block_left
+        h1.text-right
+          small 加入
+          | 动梨
     .col-xs-12.col-sm-7
-      form.form-horizontal.center-block.register-form(action="/users/dealSetProfile?key=#{key}&uid=#{uid}" method="post")
+      form.form-horizontal.center-block.block_right(action="/users/dealSetProfile?key=#{key}&uid=#{uid}" method="post")
         .col-xs-offset-3.col-xs-9
           h2 激活成功！
           p 现在可以完成注册，加入动梨啦！
-        .form-group
+        .form-group.dl_sm_group
           label.col-xs-3.control-label(for="nickname") ＊昵称
           .col-xs-9
-            input#nickname.form-control(type="text" name="nickname" required)
-        .form-group
+            input#nickname.form-control.dl_full_control(type="text" name="nickname" required)
+        .form-group.dl_sm_group
           label.col-xs-3.control-label(for="password") ＊密码
           .col-xs-9
-            input#password.form-control(type="password" name="password" required)
-        .form-group
+            input#password.form-control.dl_full_control(type="password" name="password" required)
+        .form-group.dl_sm_group
           label.col-xs-3.control-label(for="passconf") ＊密码确认
           .col-xs-9
-            input#passconf.form-control(type="password" name="passconf" required)
-        .form-group
+            input#passconf.form-control.dl_full_control(type="password" name="passconf" required)
+        .form-group.dl_sm_group
           label.col-xs-3.control-label(for="realName") ＊真实姓名
           .col-xs-9
-            input#realName.form-control(type="text" placeholder="仅公司成员可见" name="realName" required)
-        .form-group
+            input#realName.form-control.dl_full_control(type="text" placeholder="仅公司成员可见" name="realName" required)
+        .form-group.dl_sm_group
           label.col-xs-3.control-label(for="department") 部门
           .col-xs-9
-            input#department.form-control(type="text" name="department")
-        .form-group
+            input#department.form-control.dl_full_control(type="text" name="department")
+        .form-group.dl_sm_group
           label.col-xs-3.control-label(for="phone") 手机
           .col-xs-9
-            input#phone.form-control(type="text" name="phone")
-        .form-group
+            input#phone.form-control.dl_full_control(type="text" name="phone")
+        .form-group.dl_sm_group
           .col-xs-offset-3.col-xs-9
-            .checkbox
-              label
-                input(type="checkbox" required)
-                | 我已阅读并同意<a href="#">服务条款</a>
-        .form-group
+            label.dl_checkbox
+              input(type="checkbox" required)
+              | 我已阅读并同意<a href="#">服务条款</a>
+        .form-group.dl_sm_group
           .col-xs-offset-3.col-xs-9
-            button.btn.btn-primary.btn-theme(type="submit") 下一步
+            button.btn.btn-primary.dl_btn.btn_submit(type="submit") 下一步

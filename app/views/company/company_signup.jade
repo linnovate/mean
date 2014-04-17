@@ -6,7 +6,7 @@ block headExt
 block content
   .row(ng-app="company" ng-controller="RegisterController")
     .col-xs-5.text-right
-      .block-left
+      .block_left
         h1.text-right
           small 加入
           | 动梨
@@ -14,7 +14,7 @@ block content
         p 我们会对每家申请加入的团体当然也包括您在内
         p 认真的核实资料，感谢您的配合
     .col-xs-7
-      form.block-right.form-horizontal.center-block(action="/company" method="post" name="signup_form")
+      form.block_right.form-horizontal.center-block(action="/company" method="post" name="signup_form")
         .form-group.dl_sm_group
           label.col-xs-3.control-label(for="name") *公司全称
           .col-xs-9

@@ -41,7 +41,8 @@ body {
 .dl_sm_group select,
 .dl_sm_group input[type="text"],
 .dl_sm_group input[type="password"],
-.dl_sm_group input[type="number"] {
+.dl_sm_group input[type="number"],
+.dl_sm_group input[type="email"] {
   height: 30px;
 }
 .dl_lg_group .control-label {
@@ -52,7 +53,8 @@ body {
 .dl_lg_group select,
 .dl_lg_group input[type="text"],
 .dl_lg_group input[type="password"],
-.dl_lg_group input[type="number"] {
+.dl_lg_group input[type="number"],
+.dl_lg_group input[type="email"] {
   height: 35px;
 }
 input[type="number"] {
@@ -77,15 +79,15 @@ input[type="number"] {
 .content .container {
   padding-top: 120px;
 }
-.block-left {
+.block_left {
   margin-top: 50px;
 }
-.block-left h1 {
+.block_left h1 {
   font-family: "KaiTi", "STKaiti", "BiauKai";
   font-size: 50px;
   margin-bottom: 40px;
 }
-.block-right {
+.block_right {
   width: 360px;
 }
 .btn_submit {

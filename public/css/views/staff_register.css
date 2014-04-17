@@ -1,30 +1,96 @@
+html,
+body {
+  height: 100%;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 14px;
+  line-height: 1;
+  color: #666;
+}
+.dl_sm_group .control-label,
+.dl_lg_group .control-label {
+  padding-top: 0 !important;
+  padding-right: 0;
+  font-weight: normal;
+}
+.dl_sm_group .dl_checkbox,
+.dl_lg_group .dl_checkbox,
+.dl_sm_group .dl_radio,
+.dl_lg_group .dl_radio {
+  font-weight: normal;
+  color: #b3b2af;
+}
+.dl_sm_group .dl_checkbox input,
+.dl_lg_group .dl_checkbox input,
+.dl_sm_group .dl_radio input,
+.dl_lg_group .dl_radio input {
+  height: 14px;
+  margin-right: 3px;
+}
+.dl_sm_group {
+  margin-bottom: 5px;
+}
+.dl_sm_group .control-label {
+  line-height: 30px;
+  font-size: 15px;
+}
+.dl_sm_group button,
+.dl_sm_group select,
+.dl_sm_group input[type="text"],
+.dl_sm_group input[type="password"],
+.dl_sm_group input[type="number"],
+.dl_sm_group input[type="email"] {
+  height: 30px;
+}
+.dl_lg_group .control-label {
+  line-height: 35px;
+  font-size: 17px;
+}
+.dl_lg_group button,
+.dl_lg_group select,
+.dl_lg_group input[type="text"],
+.dl_lg_group input[type="password"],
+.dl_lg_group input[type="number"],
+.dl_lg_group input[type="email"] {
+  height: 35px;
+}
+input[type="number"] {
+  padding-right: 0;
+}
+.dl_form_control,
+.dl_full_control {
+  display: inline-block;
+  background-color: #fafafa;
+}
+.dl_form_control {
+  width: auto;
+}
+.dl_full_control {
+  width: 100%;
+}
+.dl_btn {
+  line-height: 1;
+  background-color: #32afe0;
+  border: none;
+}
 .wrap {
   margin-top: 100px;
 }
-.register-text {
+.block_left {
   margin-top: 100px;
 }
-h1 {
+.block_left h1 {
   font-family: "KaiTi", "STKaiti", "BiauKai";
   font-size: 50px;
   margin-bottom: 40px;
 }
-.register-form {
+.block_right {
   width: 340px;
 }
-.register-form .control-label {
-  padding-left: 0;
-}
-.register-form .col-xs-9 {
-  padding-left: 0;
-  padding-right: 0;
-}
-.register-form .form-group {
-  margin-bottom: 5px;
-}
-.btn-theme {
+.btn_submit {
   width: 100%;
-  height: 40px;
-  background-color: #32afe0;
-  border: none;
+  height: 40px !important;
 }
