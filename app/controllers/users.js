@@ -323,9 +323,9 @@ exports.getCampaigns = function(req, res) {
               'poster': campaign[j].poster,
               'content': campaign[j].content,
               'member': campaign[j].member,
-              'create_time': campaign[j].create_time,
-              'start_time': campaign[j].start_time,
-              'end_time': campaign[j].end_time,
+              'create_time': campaign[j].create_time.toLocaleDateString(),
+              'start_time': campaign[j].start_time.toLocaleDateString(),
+              'end_time': campaign[j].end_time.toLocaleDateString(),
               'join':join
             });
           }

@@ -388,8 +388,8 @@ exports.getCompanyCampaign = function(req, res) {
                     'content': campaign[i].content,
                     'member': campaign[i].member,
                     'create_time': campaign[i].create_time.toLocaleDateString(),
-                    'start_time': campaign[i].start_time,
-                    'end_time': campaign[i].end_time,
+                    'start_time': campaign[i].start_time.toLocaleDateString(),
+                    'end_time': campaign[i].end_time.toLocaleDateString(),
                     'join':join
                 });
             }
