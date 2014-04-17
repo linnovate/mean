@@ -1,10 +1,10 @@
-extends ../layouts/company
+extends layouts/register
 
-block headExt
+append headExt
   link(rel="stylesheet" href="/css/views/company_signup.css")
 
 block content
-  .row(ng-app="company" ng-controller="RegisterController")
+  .row.signup_row(ng-app="company" ng-controller="RegisterController")
     .col-xs-5.text-right
       .block_left
         h1.text-right
@@ -61,3 +61,4 @@ block content
 
 append footExt
   script(src='/lib/linkage-selector/linkage-selector.js')
+  script(src="/js/controllers/company.js")

@@ -1,0 +1,113 @@
+html,
+body {
+  height: 100%;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 14px;
+  line-height: 1;
+  color: #666;
+}
+a {
+  color: #28689b;
+}
+.dl_sm_group .control-label,
+.dl_lg_group .control-label {
+  padding-top: 0 !important;
+  padding-right: 0;
+  font-weight: normal;
+}
+.dl_sm_group .dl_checkbox,
+.dl_lg_group .dl_checkbox,
+.dl_sm_group .dl_radio,
+.dl_lg_group .dl_radio {
+  font-weight: normal;
+  color: #b3b2af;
+}
+.dl_sm_group .dl_checkbox input,
+.dl_lg_group .dl_checkbox input,
+.dl_sm_group .dl_radio input,
+.dl_lg_group .dl_radio input {
+  height: 14px;
+  margin-right: 3px;
+}
+.dl_sm_group {
+  margin-bottom: 5px;
+}
+.dl_sm_group .control-label {
+  line-height: 30px;
+  font-size: 15px;
+}
+.dl_sm_group button,
+.dl_sm_group select,
+.dl_sm_group input[type="text"],
+.dl_sm_group input[type="password"],
+.dl_sm_group input[type="number"],
+.dl_sm_group input[type="email"] {
+  height: 30px;
+}
+.dl_lg_group .control-label {
+  line-height: 35px;
+  font-size: 17px;
+}
+.dl_lg_group button,
+.dl_lg_group select,
+.dl_lg_group input[type="text"],
+.dl_lg_group input[type="password"],
+.dl_lg_group input[type="number"],
+.dl_lg_group input[type="email"] {
+  height: 35px;
+}
+input[type="number"] {
+  padding-right: 0;
+}
+.dl_form_control,
+.dl_full_control {
+  display: inline-block;
+  background-color: #fafafa;
+}
+.dl_form_control {
+  width: auto;
+}
+.dl_full_control {
+  width: 100%;
+}
+.dl_btn {
+  line-height: 1;
+  background-color: #32afe0;
+  border: none;
+}
+.dl_register_nav {
+  height: 70px;
+  background-color: #32afe0;
+  background: -ms-linear-gradient(top, #32afe0, #33b0e3);
+  background: -moz-linear-gradient(top, #32afe0, #33b0e3);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#32afe0), to(#33b0e3));
+  background: -webkit-linear-gradient(top, #32afe0, #33b0e3);
+  background: -o-linear-gradient(top, #32afe0, #33b0e3);
+  border-color: #fff;
+  color: #fff;
+}
+.dl_register_nav .logo {
+  margin-top: 5px;
+}
+.wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -60px;
+  padding-bottom: 60px;
+}
+.dl_footer {
+  height: 60px;
+  width: 100%;
+  color: #999;
+}
+.dl_footer hr {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+.dl_footer p {
+  padding: 5px 0 12px 10px;
+}

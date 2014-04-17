@@ -1,17 +1,4 @@
-
-
-themeColor = rgb(50, 175, 224)
-navbarLinearColor = rgb(51, 176, 227)
-navbarFontColor = #fff
-footerFontColor = #999
-
-titleColor = #5c6174
-fontColor = #666
-backgroundColor = #f9f9f9
-linkColor = #28689b
-
-inputBlackgroundColor = rgb(250, 250, 250)
-inputPlaceholderColor = rgb(177, 177, 177)
+@require('variables')
 
 html, body
   height 100%
@@ -23,6 +10,9 @@ body
   font-size 14px
   line-height 1
   color fontColor
+
+a
+  color linkColor
 
 .dl_sm_group, .dl_lg_group
   .control-label
@@ -77,3 +67,34 @@ input[type="number"]
   background-color themeColor
   border none
 
+.dl_register_nav
+  height 70px
+  background-color themeColor
+  background -ms-linear-gradient(top, themeColor, navbarLinearColor)
+  background -moz-linear-gradient(top, themeColor, navbarLinearColor)
+  background -webkit-gradient(linear, 0% 0%, 0% 100%, from(themeColor), to(navbarLinearColor))
+  background -webkit-linear-gradient(top, themeColor, navbarLinearColor)
+  background -o-linear-gradient(top, themeColor, navbarLinearColor)
+  border-color #fff
+  color navbarFontColor
+
+  .logo
+    margin-top 5px
+
+.wrap
+  min-height: 100%
+  height auto
+  margin 0 auto -(footerHeight)
+  padding-bottom footerHeight
+
+.dl_footer
+  height footerHeight
+  width 100%
+  color footerFontColor
+
+  hr
+    margin-top 0
+    margin-bottom 15px
+
+  p
+    padding 5px 0 12px 10px
