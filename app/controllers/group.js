@@ -20,7 +20,6 @@ exports.saveGroups = function(req,res) {
 
 //返回组件模型里的所有组件(除了虚拟组),待HR选择
 exports.getGroups = function(req,res) {
-  console.log('ok');
   Group.find(null,function(err,group){
       if (err) {
           console.log(err);
@@ -30,10 +29,13 @@ exports.getGroups = function(req,res) {
       var _length = group.length;
       var groups = [];
 
-      for(var i = 1; i < _length; i++ ){
-        groups.push({'id':group[i].gid,'type':group[i].group_type,'select':'0'});
+
+      for(var i = 0; i < _length; i++ ){
+        if(group[i].gid!=0){
+          groups.push({'id':group[i].gid,'type':group[i].group_type,'select':'0'});
+        }
       }
-      console.log(groups);
+      
       res.send(groups);
   });
 };

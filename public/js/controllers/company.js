@@ -1,6 +1,6 @@
 'use strict';
 
-var companyApp = angular.module('company', ['pcselector','ngRoute']);
+var companyApp = angular.module('company', ['ngRoute']);
 
 //路由管理
 companyApp.config(['$routeProvider',function ($routeProvider) {
@@ -40,13 +40,6 @@ companyApp.controller('AppointLeaderController', ['$scope', '$http', function($s
     }
 }]);
 
-
-//企业提交申请信息,这里也要改成ajax的
-companyApp.controller('RegisterController', ['$scope', 'PCSelector',
-    function($scope, PCSelector) {
-        $scope.pcSelector = new PCSelector.PCSelector();
-    }
-]);
 
 //企业激活后注册企业用户名和密码
 companyApp.controller('DetailController', ['$http', function($http) {
