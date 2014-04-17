@@ -366,6 +366,7 @@ exports.getCompanyCampaign = function(req, res) {
             console.log(err);
             return res.status(404).send([]);
         } else {
+            console.log(campaign);
             var campaigns = [];
             var join = false;
             for(var i = 0;i < campaign.length; i ++) {
@@ -387,9 +388,9 @@ exports.getCompanyCampaign = function(req, res) {
                     'poster': campaign[i].poster,
                     'content': campaign[i].content,
                     'member': campaign[i].member,
-                    'create_time': campaign[i].create_time.toLocaleDateString(),
-                    'start_time': campaign[i].start_time,
-                    'end_time': campaign[i].end_time,
+                    'create_time': campaign[i].create_time?campaign[i].create_time.toLocaleDateString():"",
+                    'start_time': campaign[i].start_time?campaign[i].start_time.toLocaleDateString():"",
+                    'end_time': campaign[i].end_time?campaign[i].end_time.toLocaleDateString():"",
                     'join':join
                 });
             }

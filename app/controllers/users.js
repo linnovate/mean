@@ -268,6 +268,7 @@ exports.finishRegister = function(req, res) {
 exports.getGroupMessages = function(req, res) {
   var group_messages = [];
   var flag = 0;
+
   for(var i = 0; i < req.user.gid.length; i ++) {
      GroupMessage.find({'cid' : {'$all':[req.user.cid]} , 'group.gid': {'$all': [req.user.gid[i]]} }, function(err, group_message) {
       flag ++;
@@ -276,6 +277,7 @@ exports.getGroupMessages = function(req, res) {
           console.log(err);
           return;
         } else {
+
           var length = group_message.length;
           for(var j = 0; j < length; j ++) {
             group_messages.push(group_message[j]);
@@ -323,9 +325,9 @@ exports.getCampaigns = function(req, res) {
               'poster': campaign[j].poster,
               'content': campaign[j].content,
               'member': campaign[j].member,
-              'create_time': campaign[j].create_time,
-              'start_time': campaign[j].start_time,
-              'end_time': campaign[j].end_time,
+              'create_time': campaign[j].create_time.toLocaleDateString(),
+              'start_time': campaign[j].start_time.toLocaleDateString(),
+              'end_time': campaign[j].end_time.toLocaleDateString(),
               'join':join
             });
           }
@@ -376,11 +378,28 @@ exports.editInfo = function(req, res) {
 
 
 //员工投票是否参加约战
+//记得要做重复投票检查
 exports.vote = function (req, res) {
+
   var cid = req.session.cid;
   var uid = req.session.uid;
   var aOr = req.body.aOr;
   var provoke_message_id = req.body.provoke_message_id;
+
+  //由于异步方式下的多表操作有问题,所以只能在groupmessage里多添加positive和negative字段了
+  GroupMessage.findOne({'id' : provoke_message_id}, function (err, group_message) {
+    if (err) {
+      console.log(err);
+    } else {
+      if (aOr) {
+        group_message.provoke.vote.positive ++;
+      } else {
+        group_message.provoke.vote.negative ++;
+      }
+      group_message.save();
+    }
+  });
+
   Provoke.findOne({
     'provoke_message_id' : provoke_message_id
   },

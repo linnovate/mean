@@ -8,7 +8,7 @@ block content
   .groups.row(ng-app='user' ng-controller='GroupsController')
     .group.col-xs-3(ng-repeat='group in groups' ng-class="{'1': 'active', '0': 'inactive'}[group.select]")
       input(type='checkbox' name='group' id='{{group.gid}}' value='{{group.group_type}}' ng-model='group.select' ng-true-value='1' ng-false-value='0')
-      label.group(for='{{group.gid}}') {{group.group_type}}
+      label(class='group_'+'{{group.gid}}' for='{{group.gid}}') {{group.group_type}}
       span
     button.next.btn.btn-primary.btn-lg.center-block(ng-click='group_next()') 下一步
 
