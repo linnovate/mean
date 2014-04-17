@@ -16,7 +16,7 @@ module.exports = function(app, passport) {
 
     // AngularJS route to check for authentication
     app.get('/loggedin', function(req, res) {
-        res.send(req.isAuthenticated() ? req.user.name : '0');
+        res.send(req.isAuthenticated() ? req.user : '0');
     });
 
     // Setting the local strategy route
