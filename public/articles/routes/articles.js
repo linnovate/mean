@@ -1,8 +1,8 @@
 'use strict';
 
 //Setting up route
-angular.module('mean.articles').config(['$stateProvider', '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider) {
+angular.module('mean.articles').config(['$stateProvider',
+    function($stateProvider) {
 
         //================================================
         // Check if the user is connected
@@ -28,35 +28,6 @@ angular.module('mean.articles').config(['$stateProvider', '$urlRouterProvider',
 
             return deferred.promise;
         };
-        //================================================
-        // Check if the user is not conntect
-        //================================================
-        var checkLoggedOut = function($q, $timeout, $http, $location) {
-            // Initialize a new promise
-            var deferred = $q.defer();
-
-            // Make an AJAX call to check if the user is logged in
-            $http.get('/loggedin').success(function(user) {
-                // Authenticated
-                if (user !== '0') {
-                    $timeout(function() {
-                        deferred.reject();
-                    }, 0);
-                    $location.url('/login');
-
-                }
-
-                // Not Authenticated
-                else {
-                    $timeout(deferred.resolve, 0);
-
-                }
-            });
-
-            return deferred.promise;
-        };
-        //================================================
-
 
         // states for my app
         $stateProvider
@@ -87,6 +58,6 @@ angular.module('mean.articles').config(['$stateProvider', '$urlRouterProvider',
                 resolve: {
                     loggedin: checkLoggedin
                 }
-            })
+            });
     }
-])
+]);
