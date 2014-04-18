@@ -12,7 +12,7 @@ exports.walk = function(path, excludeDir, callback) {
 		callback(newPath);
 	    }
 	} else if (stat.isDirectory() && file !== excludeDir) {
-	    exports.walk(newPath);
+	    exports.walk(newPath, excludeDir, callback);
 	}
     });
 };
