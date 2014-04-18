@@ -1,8 +1,8 @@
 'use strict';
 
 //Setting up route
-angular.module('mean.articles').config(['$stateProvider', '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider) {
+angular.module('mean.articles').config(['$stateProvider',
+    function($stateProvider) {
 
         //================================================
         // Check if the user is connected

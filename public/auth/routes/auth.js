@@ -1,8 +1,8 @@
 'use strict';
 
 //Setting up route
-angular.module('mean.auth').config(['$stateProvider', '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider) {
+angular.module('mean.auth').config(['$stateProvider',
+    function($stateProvider) {
         //================================================
         // Check if the user is not conntect
         //================================================
