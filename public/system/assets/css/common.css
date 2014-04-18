@@ -7,8 +7,8 @@
 .page-header>div>div, .page-header>div>ul {
   display:inline-block;
 }
-#text-edit{
-  padding: 13px 0 0px 0;
+.text-edit{
+  padding: 13px 0 0 0;
 }
 .account {
   text-align:right;
