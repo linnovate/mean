@@ -12,20 +12,20 @@ module.exports = function(grunt) {
         assets: grunt.file.readJSON('server/config/assets.json'),
         watch: {
             js: {
-                files: ['*.js', 'server/**/*.js', 'public/js/**', 'test/**/*.js'],
+                files: ['*.js', 'server/**/*.js', 'public/**/*.js', 'test/**/*.js'],
                 tasks: ['jshint'],
                 options: {
                     livereload: true
                 }
             },
             html: {
-                files: ['public/views/**', 'server/views/**'],
+                files: ['public/**/views/**', 'server/views/**'],
                 options: {
                     livereload: true
                 }
             },
             css: {
-                files: ['public/css/**'],
+                files: ['public/**/css/**'],
                 tasks: ['csslint'],
                 options: {
                     livereload: true
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
         },
         jshint: {
             all: {
-                src: ['*.js', 'server/**/*.js', 'public/js/**', 'test/**/*.js', '!test/coverage/**/*.js'],
+                src: ['*.js', 'server/**/*.js', 'public/**/*.js', 'test/**/*.js', '!test/coverage/**/*.js', '!public/system/lib/**'],
                 options: {
                     jshintrc: true
                 }
@@ -53,7 +53,7 @@ module.exports = function(grunt) {
                 csslintrc: '.csslintrc'
             },
             all: {
-                src: ['public/css/**/*.css']
+                src: ['public/**/css/**/*', '!public/system/lib/**']
             }
         },
         cssmin: {
