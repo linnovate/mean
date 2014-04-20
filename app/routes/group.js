@@ -31,4 +31,9 @@ module.exports = function(app) {
   //小组发布活动
   app.post('/group/campaignSponsor', group.sponsor);
   app.param('groupId',group.group);
+
+
+  //约战、应战
+  app.post('/group/provoke', group.provoke);
+  app.post('/group/responseProvoke', group.responseProvoke);
 };

@@ -35,7 +35,6 @@ exports.getGroups = function(req,res) {
           groups.push({'id':group[i].gid,'type':group[i].group_type,'select':'0'});
         }
       }
-      
       res.send(groups);
   });
 };
@@ -166,11 +165,26 @@ exports.getGroupMessage = function(req, res) {
   var gid = req.session.gid;
 
   //有包含gid的消息都列出来
-  GroupMessage.find({'cid' : {'$all':[cid]}, 'group.gid' : {'$all':[gid]}}, function(err, group_messages) {
+  GroupMessage.find({'cid' : {'$all':[cid]}, 'group.gid' : {'$all':[gid]}}, function(err, group_message) {
     if (err) {
       console.log(err);
       return res.status(404).send([]);
     } else {
+      var group_messages = [];
+      var length = group_message.length;
+      for(var i = 0; i < length; i ++) {
+        group_messages.push({
+          'id': group_message[i].id,
+          'cid': group_message[i].cid,
+          'group': group_message[i].group,
+          'active': group_message[i].active,
+          'date': group_message[i].date,
+          'poster': group_message[i].poster,
+          'content': group_message[i].content,
+          'provoke': group_message[i].provoke,
+          'provoke_accept': group_message[i].provoke.active && (group_message[i].provoke.uid_opposite === req.session.uid) && (!group_message[i].provoke.start_confirm) ? true : false
+        });
+      }
       return res.send(group_messages);
     }
   });
@@ -212,9 +226,9 @@ exports.getGroupCampaign = function(req, res) {
           'poster': campaign[i].poster,
           'content': campaign[i].content,
           'member': campaign[i].member,
-          'create_time': campaign[i].create_time.toLocaleDateString(),
-          'start_time': campaign[i].start_time.toLocaleDateString(),
-          'end_time': campaign[i].end_time.toLocaleDateString(),
+          'create_time': campaign[i].create_time ? campaign[i].create_time.toLocaleDateString() : '',
+          'start_time': campaign[i].start_time ? campaign[i].start_time.toLocaleDateString() : '',
+          'end_time': campaign[i].end_time ? campaign[i].end_time.toLocaleDateString() : '',
           'join':join
         });
       }
@@ -252,8 +266,8 @@ exports.provoke = function (req, res) {
   var provoke_model = req.body.provoke_model;
   var cid = req.session.cid;    //约战方公司id
   var cid_opposite = req.body.cid_opposite;       //被约方公司id(如果是同一家公司那么cid_b = cid_a)
-  var gid = req.body.gid;         //约战小组id
-  var group_type = req.body.group_type;
+  var gid = req.session.gid;         //约战小组id
+
   var content = req.body.content;
   var provoke = new Provoke();
 
@@ -266,7 +280,7 @@ exports.provoke = function (req, res) {
 
   provoke.id = Date.now().toString(32) + Math.random().toString(32) + 'a';
   provoke.gid = gid;
-  provoke.group_type = group_type;
+  //provoke.group_type = group_type;
 
   provoke.group_a.cid = cid;
   provoke.group_a.uid = uid;
@@ -288,51 +302,56 @@ exports.provoke = function (req, res) {
   var provoke_message_id = Date.now().toString(32) + Math.random().toString(32) + 'b';
   provoke.provoke_message_id = provoke_message_id;
 
-  provoke.save(function(err) {
-    if (err) {
-      console.log(err);
-      //检查信息是否重复
-      switch (err.code) {
-        case 11000:
+  var _callback = function(provoke_message_id) {
+    return function(err) {
+      if (err) {
+        console.log('保存约战时出错' + err);
+        //检查信息是否重复
+        switch (err.code) {
+          case 11000:
             break;
-        case 11001:
+          case 11001:
             res.status(400).send('该约战已经存在!');
             break;
-        default:
+          default:
             break;
-      }
-        return;
-    }
-
-    //生成动态消息
-    var groupMessage = new GroupMessage();
-
-    groupMessage.id = provoke_message_id;
-    groupMessage.group.gid.push(gid);
-    groupMessage.provoke.active = true,
-    groupMessage.provoke.team_a = team_a;
-    groupMessage.provoke.team_b = team_b;
-    groupMessage.provoke.uid_opposite = uid_opposite;
-
-    groupMessage.poster.cname = cname;
-    groupMessage.poster.cid = cid;
-    groupMessage.poster.uid = uid;
-    groupMessage.poster.role = 'LEADER';
-    groupMessage.poster.username = username;
-    groupMessage.cid.push(cid);
-    if(cid !== cid_opposite) {
-      groupMessage.cid.push(cid_opposite);
-    }
-    groupMessage.content = content;
-    groupMessage.save(function (err) {
-      if (err) {
+        }
         res.send(err);
         return;
       }
 
-      //这里要注意一下,生成动态消息后还要向被约队长发一封私信
-    });
-  });
+      //生成动态消息
+      var groupMessage = new GroupMessage();
+
+      groupMessage.id = provoke_message_id;
+      groupMessage.group.gid.push(gid);
+      groupMessage.provoke.active = true,
+      groupMessage.provoke.team_a = team_a;
+      groupMessage.provoke.team_b = team_b;
+      groupMessage.provoke.uid_opposite = uid_opposite;
+
+      //groupMessage.poster.cname = cname;
+      groupMessage.poster.cid = cid;
+      groupMessage.poster.uid = uid;
+      groupMessage.poster.role = 'LEADER';
+      groupMessage.poster.username = username;
+      groupMessage.cid.push(cid);
+      if(cid !== cid_opposite) {
+        groupMessage.cid.push(cid_opposite);
+      }
+      groupMessage.content = content;
+      groupMessage.save(function (err) {
+        if (err) {
+          console.log('保存约战动态时出错' + err);
+          res.send(err);
+          return;
+        }
+        return res.send('ok');
+        //这里要注意一下,生成动态消息后还要向被约队长发一封私信
+      });
+    };
+  };
+  provoke.save(_callback(provoke_message_id));
 };
 
 
@@ -353,7 +372,7 @@ exports.responseProvoke = function (req, res) {
         //双方都确认后就可以将约战变为活动啦
         var campaign = new Campaign();
         campaign.gid.push(provoke.gid);
-        campaign.push(provoke.group_type);
+        campaign.group_type.push(provoke.group_type);
 
         if(provoke.group_a.cid !== provoke.group_b.cid){
           campaign.cid.push(provoke.group_b.cid);
@@ -366,7 +385,7 @@ exports.responseProvoke = function (req, res) {
         campaign.poster.uid = provoke.group_a.uid;
         campaign.poster.role = 'LEADER';
         campaign.poster.username = provoke.group_a.username;
-        campaign.content = provoke.content;
+        campaign.content = provoke.content + ' ' + provoke.group_a.tname;
         campaign.active = true;
 
         campaign.save(function(err) {

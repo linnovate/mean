@@ -236,9 +236,13 @@ exports.dealSelectGroup = function(req, res) {
               res.render('users/message', message.dbError);
             }
             for( var i = 0; i < user.gid.length; i ++) {
-              CompanyGroup.findOne({'cid':user.cid,'gid':user.gid[i]}, function(err, company) {
-                company.member.push(user.id);
-                company.save(function(err){
+              CompanyGroup.findOne({'cid':user.cid,'gid':user.gid[i]}, function(err, company_group) {
+                company_group.member.push({
+                  'uid':user.id,
+                  'username':user.username,
+                  'number':0                     //个人队号暂定为0,到时由队长统一修改
+                });
+                company_group.save(function(err){
                   if(err){
                     console.log(err);
                   }
@@ -281,7 +285,17 @@ exports.getGroupMessages = function(req, res) {
 
           var length = group_message.length;
           for(var j = 0; j < length; j ++) {
-            group_messages.push(group_message[j]);
+            group_messages.push({
+              'id': group_message[j].id,
+              'cid': group_message[j].cid,
+              'group': group_message[j].group,
+              'active': group_message[j].active,
+              'date': group_message[j].date,
+              'poster': group_message[j].poster,
+              'content': group_message[j].content,
+              'provoke': group_message[j].provoke,
+              'provoke_accept': group_message[j].provoke.active && (group_message[j].provoke.uid_opposite === req.session.uid) && (!group_message[j].provoke.start_confirm) ? true : false
+            });
           }
         }
       }
@@ -326,9 +340,9 @@ exports.getCampaigns = function(req, res) {
               'poster': campaign[j].poster,
               'content': campaign[j].content,
               'member': campaign[j].member,
-              'create_time': campaign[j].create_time.toLocaleDateString(),
-              'start_time': campaign[j].start_time.toLocaleDateString(),
-              'end_time': campaign[j].end_time.toLocaleDateString(),
+              'create_time': campaign[j].create_time ? campaign[j].create_time.toLocaleDateString() : '',
+              'start_time': campaign[j].start_time ? campaign[j].start_time.toLocaleDateString() : '',
+              'end_time': campaign[j].end_time ? campaign[j].end_time.toLocaleDateString() : '',
               'join':join
             });
           }

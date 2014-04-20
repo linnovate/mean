@@ -30,12 +30,63 @@ tabViewGroup.config(['$routeProvider', '$locationProvider',
       });
   }]);
 
-tabViewGroup.controller('GroupMessageController', ['$http',
-  function($http) {
+tabViewGroup.controller('GroupMessageController', ['$http','$scope',
+  function ($http, $scope) {
     var that = this;
+    //消除ajax缓存
     $http.get('/group/getGroupMessages?' + Math.round(Math.random()*100)).success(function(data, status) {
       that.group_messages = data;
+      that.show = true;
+      that.vote = false;
     });
+
+    //约战
+    $scope.provoke = function() {
+        
+         try {
+            $http({
+                method: 'post',
+                url: '/group/provoke',
+                data:{
+                    provoke_model : 'against',
+                    cid_opposite : that.group_messages[0].poster.cid,
+                    content : $scope.content,
+                    team_a : $scope.team_a,
+                    team_b : $scope.team_b,
+                    uid_opposite : that.group_messages[0].poster.uid
+                }
+            }).success(function(data, status) {
+                window.location.reload();
+            }).error(function(data, status) {
+                alert('数据发生错误！');
+            });
+        }
+        catch(e) {
+            console.log(e);
+        }
+        
+        //alert(that.group_messages[0].poster.cid + ' ' + that.group_messages[0].poster.uid);
+    };
+
+    //应战
+    $scope.responseProvoke = function(provoke_message_id) {
+         try {
+            $http({
+                method: 'post',
+                url: '/group/responseProvoke',
+                data:{
+                    provoke_message_id : provoke_message_id
+                }
+            }).success(function(data, status) {
+                window.location.reload();
+            }).error(function(data, status) {
+                alert('数据发生错误！');
+            });
+        }
+        catch(e) {
+            console.log(e);
+        }
+    };
 }]);
 
 tabViewGroup.controller('CampaignListController', ['$http', '$scope',

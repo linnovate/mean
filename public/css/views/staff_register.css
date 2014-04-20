@@ -10,6 +10,9 @@ body {
   line-height: 1;
   color: #666;
 }
+a {
+  color: #28689b;
+}
 .dl_sm_group .control-label,
 .dl_lg_group .control-label {
   padding-top: 0 !important;
@@ -75,6 +78,38 @@ input[type="number"] {
   line-height: 1;
   background-color: #32afe0;
   border: none;
+}
+.dl_register_nav {
+  height: 70px;
+  background-color: #32afe0;
+  background: -ms-linear-gradient(top, #32afe0, #33b0e3);
+  background: -moz-linear-gradient(top, #32afe0, #33b0e3);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#32afe0), to(#33b0e3));
+  background: -webkit-linear-gradient(top, #32afe0, #33b0e3);
+  background: -o-linear-gradient(top, #32afe0, #33b0e3);
+  border-color: #fff;
+  color: #fff;
+}
+.dl_register_nav .logo {
+  margin-top: 5px;
+}
+.wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -60px;
+  padding-bottom: 60px;
+}
+.dl_footer {
+  height: 60px;
+  width: 100%;
+  color: #999;
+}
+.dl_footer hr {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+.dl_footer p {
+  padding: 5px 0 12px 10px;
 }
 .wrap {
   margin-top: 100px;

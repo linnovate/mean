@@ -15,14 +15,7 @@ var _member = new Schema({
     username: String,
     realname: String,
     email: String,
-    phong: String,
-    qq: String,
-    department: String,
-    position: String,
-    sex: {
-        type: String,
-        enum: ['男', '女']
-    }
+    phone: String
 });
 
 /**

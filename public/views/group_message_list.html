@@ -1,9 +1,56 @@
-<h1>动态列表</h1>
-<ul>
-  	<li ng-repeat="group_message in messages.group_messages">
-    	<h2>{{ group_message.content }}</h2>
-    	<p>小组类型：{{ group_message.group.group_type }}</p>
-    	<p>发起人：{{ group_message.poster.username }}</p>
-      <p>时间: {{ group_message.date}}</p>
-	</li>
-</ul>
+<div>
+  <div class="row">
+    <div class="col-md-6">
+      <h1>动态列表</h1>
+    </div>
+    <div class="col-md-6">
+      <!-- Button trigger modal -->
+      <button ng-if="messages.show" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">发起挑战
+      </button>
+    </div>
+  </div>
+  <ol>
+    <div>
+    	<li ng-repeat="group_message in messages.group_messages">
+    		<h2>{{ group_message.content }}</h2>
+    		<p>小组类型：{{ group_message.group.group_type }}</p>
+    		<p>发起人：{{ group_message.poster.username }}</p>
+      		<p>时间: {{ group_message.date}}</p>
+      		<div ng-if="group_message.provoke.active">
+          		<input type = "button"  class="btn btn-primary btn-lg" ng-if = "!group_message.provoke.start_confirm && messages.vote" value = "赞成{{group_message.provoke.vote.positive}}" ng-click="vote(group_message.id,true)" />
+          		<input type = "button"  class="btn btn-primary btn-lg" ng-if = "!group_message.provoke.start_confirm && messages.vote" value = "反对{{group_message.provoke.vote.negative}}" ng-click="vote(group_message.id,false)" />
+          		<input type = "button"  class="btn btn-primary btn-lg" ng-if="group_message.provoke_accept && !messages.vote" value = "应战" ng-click="responseProvoke(group_message.id)" />
+        	</div>
+		</li>
+    </div>
+  </ol>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">发起挑战</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <label>挑战内容
+            <input type="text" class="form-control" name="content" ng-model="content">
+          </label>
+          <label>本队队名
+            <input type="text" class="form-control" name="team_a" ng-model="team_a">
+          </label>
+          <label>对方队名
+            <input type="text" class="form-control" name="team_b" ng-model="team_b">
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" ng-click='provoke()' data-dismiss="modal">确定</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

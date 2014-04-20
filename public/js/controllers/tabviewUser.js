@@ -43,12 +43,34 @@ tabViewUser.config(['$routeProvider', '$locationProvider',
       });
   }]);
 
-tabViewUser.controller('GroupMessageController', ['$http',
-  function($http) {
+tabViewUser.controller('GroupMessageController', ['$http','$scope',
+  function ($http, $scope) {
     var that = this;
     $http.get('/users/getGroupMessages').success(function(data, status) {
       that.group_messages = data;
+      that.show = false;
+      that.vote = true;
     });
+
+    $scope.vote = function(provoke_message_id, status) {
+         try {
+            $http({
+                method: 'post',
+                url: '/users/vote',
+                data:{
+                    provoke_message_id : provoke_message_id,
+                    aOr : status
+                }
+            }).success(function(data, status) {
+                window.location.reload();
+            }).error(function(data, status) {
+                alert('数据发生错误！');
+            });
+        }
+        catch(e) {
+            console.log(e);
+        }
+    };
 }]);
 
 tabViewUser.controller('CampaignListController', ['$http','$scope',
@@ -58,6 +80,8 @@ tabViewUser.controller('CampaignListController', ['$http','$scope',
       that.campaigns = data;
       that.show = false;
     });
+
+
     $scope.join = function(campaign_id) {
         try {
             $http({
