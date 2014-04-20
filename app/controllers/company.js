@@ -266,7 +266,7 @@ exports.Info = function(req, res) {
         });
     }
     else
-        res.redirect('/company/signin');
+        res.status(403).send([]);
 };
 
 exports.getAccount = function(req, res) {
@@ -277,9 +277,8 @@ exports.getAccount = function(req, res) {
             }
             if(_company) {
                 var _account = {
-                    'username': _company.username,
                     'login_email': _company.login_email,
-                    'register_date': _company.register_date
+                    'register_date': _company.register_date.toLocaleDateString()
                 };
                 return res.send({
                     'result': 1,
@@ -366,7 +365,6 @@ exports.getCompanyCampaign = function(req, res) {
             console.log(err);
             return res.status(404).send([]);
         } else {
-            console.log(campaign);
             var campaigns = [];
             var join = false;
             for(var i = 0;i < campaign.length; i ++) {

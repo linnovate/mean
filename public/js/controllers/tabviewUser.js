@@ -68,6 +68,7 @@ tabViewUser.controller('CampaignListController', ['$http','$scope',
                 }
             }).success(function(data, status) {
                 window.location.reload();
+                //TODO:更改对话框
                 alert('成功加入该活动!');
             }).error(function(data, status) {
                 alert('数据发生错误！');
@@ -137,7 +138,6 @@ tabViewUser.controller('AccountFormController',['$scope','$http',function($scope
                         user : _info
                     }
                 }).success(function(data, status) {
-                    console.log(data);
                     //TODO:更改对话框
                     if(data.result === 1)
                         alert('信息修改成功！');
@@ -210,7 +210,6 @@ tabViewUser.controller('PasswordFormController', ['$http', function($http) {
                 'newpassword' : that.newpassword
             }
         }).success(function(data, status) {
-            console.log(data);
             //TODO:更改对话框
             if(data.result === 1){
                 alert(data.msg);

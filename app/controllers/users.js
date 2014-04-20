@@ -20,6 +20,7 @@ var mongoose = require('mongoose'),
  * Show login form
  */
 exports.signin = function(req, res) {
+  console.log(req.user);
   if(req.user) {
     res.redirect('/users/home');
   } else {
@@ -365,10 +366,12 @@ exports.editInfo = function(req, res) {
         if(err) {
           console.log(err);
         } else if(company) {
+          user.register_date = user.register_date.toLocaleString();
+          console.log(user.register_date.toLocaleString());
           return res.render('users/editInfo',
-            {title: '编辑个人资料',
-            user: user,
-            company: company
+            {'title': '编辑个人资料',
+            'user': user,
+            'company': company
           });
         }
       });
