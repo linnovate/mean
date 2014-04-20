@@ -1,5 +1,4 @@
-
-.group_select(ng-app='company')
+.group_select
   .text-center.h3.group_head='请选择' + group_head + '兴趣小组组件'
   .groups.row
     .group.col-xs-3(ng-repeat='group in groupModel.groups' ng-class="{'1': 'active', '0': 'inactive'}[group.select]")
