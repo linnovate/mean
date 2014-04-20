@@ -122,13 +122,16 @@ If you are using node instead of grunt, it is very similar:
 
 ## Heroku Quick Deployment
 Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed and an accessible mongo db instance - you can try <a href="http://www.mongohq.com/">mongohq</a> which has an easy setup.
+Add the db string to the production env in server/config/env/production.js.
 
 ```bash
 git init
 git add .
 git commit -m "initial version"
 heroku apps:create
+heroku config:add BUILDPACK_URL=https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git
 git push heroku master
+heroku config:set NODE_ENV=production
 ```
 
 ## More Information
