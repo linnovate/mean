@@ -35,3 +35,14 @@
 #email_domain {
   width: 100px;
 }
+.apply_info h2 {
+  font-weight: normal;
+}
+.apply_info p {
+  color: #808080;
+}
+.btn_return {
+  margin-top: 30px;
+  width: 140px;
+  border: none;
+}
