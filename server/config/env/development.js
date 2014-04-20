@@ -5,6 +5,7 @@ module.exports = {
     app: {
         name: 'MEAN - FullStack JS - Development'
     },
+    gruntTasks: ['jshint', 'csslint', 'concurrent'],
     facebook: {
         clientID: 'APP_ID',
         clientSecret: 'APP_SECRET',

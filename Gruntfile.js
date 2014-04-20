@@ -2,11 +2,14 @@
 
 module.exports = function(grunt) {
 
+    //Environment specific configuration
+    var config = require('./server/config/config');
+
     if (process.env.NODE_ENV !== 'production') {
         require('time-grunt')(grunt);
     }
 
-    // Project Configuration
+    //Project Configuration
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         assets: grunt.file.readJSON('server/config/assets.json'),
@@ -71,7 +74,7 @@ module.exports = function(grunt) {
                     nodeArgs: ['--debug'],
                     delayTime: 1,
                     env: {
-                        PORT: require('./server/config/config').port
+                        PORT: config.port
                     },
                     cwd: __dirname
                 }
@@ -109,17 +112,8 @@ module.exports = function(grunt) {
     grunt.option('force', true);
 
     //Default task(s).
-    if (process.env.NODE_ENV === 'production') {
-        grunt.registerTask('default', ['jshint', 'csslint', 'cssmin', 'uglify', 'concurrent']);
-    } else {
-        grunt.registerTask('default', ['jshint', 'csslint', 'concurrent']);
-    }
+    grunt.registerTask('default', config.gruntTasks || []);
 
     //Test task.
-    grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
-    
-    // For Heroku users only.
-    // Docs: https://github.com/linnovate/mean/wiki/Deploying-on-Heroku
-    grunt.registerTask('heroku:production', ['jshint', 'csslint', 'cssmin', 'uglify']);
-    
+    grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);    
 };
