@@ -112,7 +112,7 @@ module.exports = function(grunt) {
     grunt.option('force', true);
 
     //Default task(s).
-    grunt.registerTask('default', config.gruntTasks || [])
+    grunt.registerTask('default', config.gruntTasks || []);
 
     //Test task.
     grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);    
