@@ -1,7 +1,7 @@
 mixin group_list(gids)
   h3 显示在组件页面的该企业所有小组
   ul
-    each gid in gids
+    each group in groups
       li
-        label(class='group_'+gid for=gid)
-        a(href="/group/home/#{gid}")= gid
+        label(class='group_'+group.gid for=group.gid)
+        a(href="/group/home/#{group.gid}")= group.group_type

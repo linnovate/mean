@@ -56,13 +56,9 @@ var Campaign = new Schema({
 });
 
 
-/**
- * Pre-save hook
- */
- /*
-Campaign.pre('save', function(next) {
-    if (!this.isNew) return next();
+Campaign.virtual('active_value').set(function(password) {
+    ;
+}).get(function() {
+    return this.active ? '关闭' : '开启';
 });
-*/
-
 mongoose.model('Campaign', Campaign);

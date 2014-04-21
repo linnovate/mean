@@ -228,15 +228,17 @@ exports.dealSelectGroup = function(req, res) {
         return;
       } else if(user) {
         if(user.active === false) {
-          user.gid = req.body.selected;
+
+          user.group = req.body.selected;
+
           user.active = true;
           user.save(function(err){
             if(err){
               console.log(err);
               res.render('users/message', message.dbError);
             }
-            for( var i = 0; i < user.gid.length; i ++) {
-              CompanyGroup.findOne({'cid':user.cid,'gid':user.gid[i]}, function(err, company_group) {
+            for( var i = 0; i < user.group.length; i ++) {
+              CompanyGroup.findOne({'cid':user.cid,'gid':user.group[i].gid}, function(err, company_group) {
                 company_group.member.push({
                   'uid':user.id,
                   'username':user.username,
@@ -361,7 +363,8 @@ exports.home = function(req, res) {
     return res.redirect('/users/signin');
   }
   else{
-    return res.render('users/home', {gids: req.user.gid});
+
+    return res.render('users/home', {groups: req.user.group});
   }
 };
 

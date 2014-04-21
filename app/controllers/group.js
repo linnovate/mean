@@ -104,7 +104,7 @@ exports.home = function(req, res) {
       console.log(err);
       return;
     } else {
-      return res.render('group/home', {gids: company.gid});
+      return res.render('group/home', {groups: company.group});
     }
   });
 };
@@ -118,13 +118,13 @@ exports.getCompanyGroups = function(req, res) {
     company_id = param_id;
   }
   //console.log(company_id);
-  CompanyGroup.find({cid: company_id}, function(err, company_groups) {
+  Company.findOne({id: company_id}, function(err, company) {
     if (err) {
       //console.log(err);
       return res.status(404).send([]);
     } else {
       //console.log(company_groups);
-      return res.send(company_groups);
+      return res.send(company.group);
     }
   });
 };

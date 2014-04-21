@@ -7,6 +7,12 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     crypto = require('crypto');
 
+
+var _group = new Schema({
+    gid: String,
+    group_type: String,
+    entity_type: String           //对应的增强组件名字
+});
 /**
  * Company Schema
  */
@@ -65,8 +71,7 @@ var CompanySchema = new Schema({
         default: Date.now()
     },
     //公司内部组件
-    gid: Array,                       //存放组的id
-    group_type: Array,
+    group: [_group],
     provider: {
         type: String,
         default: 'company'

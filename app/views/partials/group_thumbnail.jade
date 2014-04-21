@@ -1,6 +1,6 @@
 mixin group_thumbnail(gids)
   h3 我的兴趣小组
   ul
-    each gid in gids
+    each group in groups
       li
-        a(href="/group/home/#{gid}")= gid
+        a(href="/group/home/#{group.gid}")= group.group_type

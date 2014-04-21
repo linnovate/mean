@@ -112,8 +112,12 @@ exports.groupSelect = function(req, res) {
 
             for (var i = 0, length = selected_groups.length; i < length; i++) {
 
-                company.gid.push(selected_groups[i].gid);
-                company.group_type.push(selected_groups[i].group_type);
+                company.group.push({
+                    'gid' : selected_groups[i].gid,
+                    'group_type' : selected_groups[i].group_type,
+                    'entity_type' : selected_groups[i].entity_type
+                });
+
                 var companyGroup = new CompanyGroup();
                 companyGroup.cid = req.session.company_id;
                 companyGroup.gid = selected_groups[i].gid;
@@ -387,9 +391,9 @@ exports.getCompanyCampaign = function(req, res) {
                     'poster': campaign[i].poster,
                     'content': campaign[i].content,
                     'member': campaign[i].member,
-                    'create_time': campaign[i].create_time?campaign[i].create_time.toLocaleDateString():"",
-                    'start_time': campaign[i].start_time?campaign[i].start_time.toLocaleDateString():"",
-                    'end_time': campaign[i].end_time?campaign[i].end_time.toLocaleDateString():"",
+                    'create_time': campaign[i].create_time ? campaign[i].create_time.toLocaleDateString() : '',
+                    'start_time': campaign[i].start_time ? campaign[i].start_time.toLocaleDateString() : '',
+                    'end_time': campaign[i].end_time ? campaign[i].end_time.toLocaleDateString() : '',
                     'join':join
                 });
             }
