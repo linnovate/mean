@@ -1,6 +1,9 @@
-mixin group_thumbnail(gids)
-  h3 我的兴趣小组
-  ul
+
+mixin group_thumbnail(groups,group_class,group_head)
+  h3= group_head
+  .groups.row
     each group in groups
-      li
-        a(href="/group/home/#{group.gid}")= group.group_type
+      div(class='group col-xs-3 '+group_class)
+        a(href="/group/home/#{(group_class == 'inactive' ? group : group.gid)}")
+         label(class='width_80 group_'+ (group_class == 'inactive' ? group : group.gid) )
+

@@ -102,9 +102,26 @@ exports.home = function(req, res) {
   Company.findOne({'id': req.session.cid}, function(err, company) {
     if (err) {
       console.log(err);
-      return;
+      return res.status(404).send();
     } else {
-      return res.render('group/home', {groups: company.group});
+      Group.find(null,function(err,group){
+        if (err) {
+          console.log(err);
+          return res.status(404).send();;
+        };
+        var _ugids = [];
+        var tmp_gid = [];
+        var _glength = group.length;
+        for(var j=0;j<company.group.length;j++){
+          tmp_gid.push(company.group[j].gid);
+        }
+        for(var i=0;i<_glength;i++){
+          if(group[i].gid != 0 && tmp_gid.indexOf(group[i].gid) == -1){
+            _ugids.push(group[i].gid);
+          }
+        };
+          return res.render('group/home', {'groups': company.group,'ugids':_ugids});
+      });
     }
   });
 };
@@ -410,8 +427,6 @@ exports.responseProvoke = function (req, res) {
   });
 };
 
-
-
 //组长发布一个活动(只能是一个企业)
 exports.sponsor = function (req, res) {
 
@@ -513,7 +528,7 @@ exports.getGroupMember = function(req,res){
     });
 
 };
-
+//比赛
 exports.competition = function(req, res){
   res.render('competition/football', {
           title: '发起足球比赛'

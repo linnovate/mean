@@ -16,8 +16,9 @@ block panel
         div(ng-view)
 
 block aside
-  include ../partials/group_list
-  +group_list(groups)
+  include ../partials/group_thumbnail
+  +group_thumbnail(groups,'active','我的兴趣小组')
+  +group_thumbnail(ugids,'inactive','未添加兴趣小组')
 append footExt
   script(src="/lib/angular-route/angular-route.min.js")
   script(src="/lib/jquery/dist/jquery.min.js")
