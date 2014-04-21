@@ -11,8 +11,7 @@ var mongoose = require('mongoose'),
     Company = mongoose.model('Company'),
     Group = mongoose.model('Group'),
     CompanyGroup = mongoose.model('CompanyGroup'),
-    Competition = mongoose.model('Competition'),
-    Provoke = mongoose.model('Provoke');
+    Competition = mongoose.model('Competition');
 
 
 //返回组件模型里的所有组件(除了虚拟组),待HR选择
@@ -256,6 +255,9 @@ exports.provoke = function (req, res) {
 
   var content = req.body.content;
   var competition_format = req.body.competition_format;
+  var location = req.body.location;
+  var competition_date = req.body.competition_date;
+  var deadline = req.body.deadline;
   var remark = req.body.remark;
   var competition = new Competition();
 
@@ -283,6 +285,10 @@ exports.provoke = function (req, res) {
 
   competition.content = req.body.content;
   competition.brief.remark = req.body.remark;
+  competition.brief.location = location;
+  competition.brief.competition_date = competition_date;
+  competition.brief.deadline = deadline;
+  competition.brief.competition_format = competition_format;
 
   var provoke_message_id = Date.now().toString(32) + Math.random().toString(32) + 'b';
   competition.provoke_message_id = provoke_message_id;
@@ -336,41 +342,43 @@ exports.provoke = function (req, res) {
       });
     };
   };
-  provoke.save(_callback(provoke_message_id));
+  competition.save(_callback(provoke_message_id));
 };
 
 
 //应约
 exports.responseProvoke = function (req, res) {
+  var username = req.session.username;
   var provoke_message_id = req.body.provoke_message_id;
-  Provoke.findOne({
+  Competition.findOne({
       'provoke_message_id' : provoke_message_id
     },
-    function (err, provoke) {
-      provoke.group_b.start_confirm = true;
+    function (err, competition) {
+      competition.camp_b.start_confirm = true;
+      competition.camp_a.username = username;
       //还要存入应约方的公司名、队长用户名、真实姓名等
-      provoke.save(function (err) {
+      competition.save(function (err) {
         if (err) {
           res.send(err);
           return;
         }
         //双方都确认后就可以将约战变为活动啦
         var campaign = new Campaign();
-        campaign.gid.push(provoke.gid);
-        campaign.group_type.push(provoke.group_type);
+        campaign.gid.push(competition.gid);
+        campaign.group_type.push(competition.group_type);
 
-        if(provoke.group_a.cid !== provoke.group_b.cid){
-          campaign.cid.push(provoke.group_b.cid);
+        if(competition.camp_a.cid !== competition.camp_b.cid){
+          campaign.cid.push(competition.camp_b.cid);
         }
-        campaign.cid.push(provoke.group_a.cid);   //两家公司同时显示这一条活动
+        campaign.cid.push(competition.camp_a.cid);   //两家公司同时显示这一条活动
         campaign.id = Date.now().toString(32) + Math.random().toString(32);
 
-        campaign.poster.cname = provoke.group_a.cname;
-        campaign.poster.cid = provoke.group_a.cid;
-        campaign.poster.uid = provoke.group_a.uid;
+        campaign.poster.cname = competition.camp_a.cname;
+        campaign.poster.cid = competition.camp_a.cid;
+        campaign.poster.uid = competition.camp_a.uid;
         campaign.poster.role = 'LEADER';
-        campaign.poster.username = provoke.group_a.username;
-        campaign.content = provoke.content + ' ' + provoke.group_a.tname;
+        campaign.poster.username = competition.camp_a.username;
+        campaign.content = competition.content + '  来来来,现在是 ' + competition.camp_a.tname + ' VS ' + competition.camp_b.tname;
         campaign.active = true;
 
         campaign.save(function(err) {

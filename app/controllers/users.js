@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
   CompanyGroup = mongoose.model('CompanyGroup'),
   GroupMessage = mongoose.model('GroupMessage'),
   Campaign = mongoose.model('Campaign'),
-  Provoke = mongoose.model('Provoke'),
+  Competition = mongoose.model('Competition'),
   config = require('../config/config'),
   message = require('../language/zh-cn/message');
 
@@ -417,19 +417,19 @@ exports.vote = function (req, res) {
     }
   });
 
-  Provoke.findOne({
+  Competition.findOne({
     'provoke_message_id' : provoke_message_id
   },
-  function (err, provoke) {
-    if (provoke) {
+  function (err, competition) {
+    if (competition) {
       if (aOr) {
-        provoke.vote.positive ++;
-        provoke.vote.positive_member.push({'cid':cid,'uid':uid});
+        competition.vote.positive ++;
+        competition.vote.positive_member.push({'cid':cid,'uid':uid});
       } else {
-        provoke.vote.negative ++;
-        provoke.vote.negative_member.push({'cid':cid,'uid':uid});
+        competition.vote.negative ++;
+        competition.vote.negative_member.push({'cid':cid,'uid':uid});
       }
-      provoke.save(function (err) {
+      competition.save(function (err) {
         console.log(err);
       });
     } else {

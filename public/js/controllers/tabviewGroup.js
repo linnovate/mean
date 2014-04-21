@@ -53,7 +53,14 @@ tabViewGroup.controller('GroupMessageController', ['$http','$scope',
                     content : $scope.content,
                     team_a : $scope.team_a,
                     team_b : $scope.team_b,
-                    uid_opposite : that.group_messages[0].poster.uid
+                    uid_opposite : that.group_messages[0].poster.uid,
+
+                    location: $scope.location,
+                    remark: $scope.remark,
+                    competition_date: $scope.competition_date,
+                    deadline: $scope.deadline,
+                    competition_format: $scope.competition_format
+
                 }
             }).success(function(data, status) {
                 window.location.reload();
