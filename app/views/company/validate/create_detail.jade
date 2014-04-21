@@ -6,18 +6,22 @@
         | 动梨
   .col-xs-12.col-sm-7
     form.block_right.center-block.form-horizontal(ng-app="company" name="createForm")
+      h3.text-center 恭喜！您已经成功通过验证！
       .form-group.dl_sm_group
-        label.col-xs-3.control-label(for="username" ) *企业官方用户名：
-        .col-xs-9
-          input#username.form-control(type="text" name="username" ng-model="detail.username" placeholder="Username" required)
+        .col-xs-offset-4.col-xs-8
+          p 现在可以完成注册，加入动梨啦！
       .form-group.dl_sm_group
-        label.col-xs-3.control-label(for="password") *密码：
-        .col-xs-9
-          input#password.form-control(type="password" name="password" ng-model="detail.password" placeholder="Password" required)
+        label.col-xs-4.control-label(for="username" ) *企业官方用户名：
+        .col-xs-8
+          input#username.form-control.dl_full_control(type="text" name="username" ng-model="detail.username" placeholder="请参考企业名称/品牌名称" required)
       .form-group.dl_sm_group
-        label.col-xs-3.control-label(for="password") *密码确认：
-        .col-xs-9
-          input#password.form-control(type="password" name="confirmPassword" ng-model="detail.confirmPassword" placeholder="confirmPassword" match="detail.password" required)
+        label.col-xs-4.control-label(for="password") *密码：
+        .col-xs-8
+          input#password.form-control.dl_full_control(type="password" name="password" ng-model="detail.password" required)
       .form-group.dl_sm_group
-        .col-xs-offset-3.col-xs-9
-          button.btn.btn-primary.btn-lg.dl_btn.center-block(ng-disabled="createForm.$invalid" ng-click="detail.create_detail()") 创建
+        label.col-xs-4.control-label(for="password") *密码确认：
+        .col-xs-8
+          input#password.form-control.dl_full_control(type="password" name="confirmPassword" ng-model="detail.confirmPassword" match="detail.password" required)
+      .form-group.dl_sm_group
+        .col-xs-offset-4.col-xs-8
+          button.btn.btn-primary.dl_btn.dl_full_control(ng-disabled="createForm.$invalid" ng-click="detail.create_detail()") 创建
