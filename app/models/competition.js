@@ -33,7 +33,12 @@ var _formation = new Schema({
  * 比赛数据结构
  */
 var Competition = new Schema({
-    
+
+    map: {
+      location: String,     //地图地点
+      longitude: Number,    //经度
+      latitude: Number      //纬度
+    },
     brief: {
       group_type: String,
       location: String,
@@ -46,7 +51,8 @@ var Competition = new Schema({
       remark: String               //备注
     },
 
-    camp_a:{                  //A方阵营
+    camp_a:{                   //A方阵营
+      logo: String,          //队徽路径
       tname: String,
       member:[_member],
       cid: String,
@@ -55,6 +61,7 @@ var Competition = new Schema({
       score: Number
     },
     camp_b:{                  //B方阵营
+      logo: String,            //队徽路径
       tname: String,
       member:[_member],
       cid: String,
