@@ -83,7 +83,8 @@ companyApp.controller('GroupsController',['$http',function($http) {
             if(value.select === '1') {
                 _this.selected_groups.push({
                     'gid': parseInt(value.id),
-                    'group_type': value.type
+                    'group_type': value.type,
+                    'entity_type': value.entity_type
                 });
             }
         });

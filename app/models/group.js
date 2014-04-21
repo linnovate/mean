@@ -12,6 +12,7 @@ var mongoose = require('mongoose'),
 var GroupModel = new Schema({
     gid: String,
     group_type: String,
+    entity_type: String,
     icon: String,
     active: false,
     group_rule: String,
