@@ -15,6 +15,7 @@ a {
 }
 .dl_sm_group .control-label,
 .dl_lg_group .control-label {
+  padding-left: 0;
   padding-top: 0 !important;
   padding-right: 0;
   font-weight: normal;
