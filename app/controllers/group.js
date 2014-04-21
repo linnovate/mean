@@ -146,19 +146,7 @@ exports.getCompanyGroups = function(req, res) {
   });
 };
 
-exports.group = function(req, res, next, id) {
-  CompanyGroup
-    .findOne({
-        cid: req.session.cid,
-        gid: id
-    })
-    .exec(function(err, companyGroup) {
-        if (err) return next(err);
-        if (!companyGroup) return next(new Error(req.session.cid+' Failed to load companyGroup ' + id));
-        req.companyGroup = companyGroup;
-        next();
-    });
-};
+
 
 //返回小组动态消息
 exports.getGroupMessage = function(req, res) {
@@ -269,6 +257,8 @@ exports.provoke = function (req, res) {
   var cid = req.session.cid;    //约战方公司id
   var cid_opposite = req.body.cid_opposite;       //被约方公司id(如果是同一家公司那么cid_b = cid_a)
   var gid = req.session.gid;         //约战小组id
+
+  console.log(req.session.companyGroup);
 
   var content = req.body.content;
   var competition_format = req.body.competition_format;
@@ -535,3 +525,18 @@ exports.competition = function(req, res){
   });
 };
 
+
+exports.group = function(req, res, next, id) {
+  CompanyGroup
+    .findOne({
+        cid: req.session.cid,
+        gid: id
+    })
+    .exec(function(err, companyGroup) {
+        if (err) return next(err);
+        if (!companyGroup) return next(new Error(req.session.cid+' Failed to load companyGroup ' + id));
+        req.companyGroup = companyGroup;
+        req.session.companyGroup = companyGroup;
+        next();
+    });
+};

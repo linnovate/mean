@@ -12,9 +12,9 @@ var _member = new Schema({
     cid: String,
     uid: String,
     username: String,
-    realname: String,
     email: String,
-    phone: String
+    phone: String,
+    number: Number
 });
 
 
@@ -32,7 +32,8 @@ var CompanyGroup = new Schema({
         uid: Array,
         username: Array
     },
-    entity_type: String
+    entity_type: String,
+    brief: String
 });
 
 mongoose.model('CompanyGroup', CompanyGroup);

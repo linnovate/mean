@@ -241,8 +241,11 @@ exports.dealSelectGroup = function(req, res) {
             for( var i = 0; i < user.group.length; i ++) {
               CompanyGroup.findOne({'cid':user.cid,'gid':user.group[i].gid}, function(err, company_group) {
                 company_group.member.push({
+                  'cid':user.cid,
                   'uid':user.id,
                   'username':user.username,
+                  'email':user.email,
+                  'phone':user.phone,
                   'number':0                     //个人队号暂定为0,到时由队长统一修改
                 });
                 company_group.save(function(err){

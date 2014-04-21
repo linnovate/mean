@@ -1,4 +1,4 @@
-//足球实体组件
+//足球增强组件
 'use strict';
 
 var mongoose = require('mongoose'),
@@ -23,7 +23,8 @@ var _formation = new Schema({
  * 足球实体组件
  */
 var footBall = new Schema({
-
+    cid: String,
+    gid: String,
     main_force: [_member],   //主力
     alternate: [_member],    //替补
     formation: [_formation], //阵型图
@@ -32,8 +33,7 @@ var footBall = new Schema({
     sponsor: String,         //赞助商
     score: Number,           //该小组分数
     rank: Number,            //该小组排名
-    create_date: Date,
-    brief: String
+    create_date: Date
 });
 
 mongoose.model('FootBall', footBall);

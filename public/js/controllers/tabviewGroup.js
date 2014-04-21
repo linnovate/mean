@@ -42,7 +42,6 @@ tabViewGroup.controller('GroupMessageController', ['$http','$scope',
 
     //约战
     $scope.provoke = function() {
-        
          try {
             $http({
                 method: 'post',
@@ -71,7 +70,6 @@ tabViewGroup.controller('GroupMessageController', ['$http','$scope',
         catch(e) {
             console.log(e);
         }
-        
         //alert(that.group_messages[0].poster.cid + ' ' + that.group_messages[0].poster.uid);
     };
 

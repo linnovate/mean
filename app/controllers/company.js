@@ -97,6 +97,9 @@ exports.groupList = function(req, res) {
     });
 };
 
+
+//注意,company,companyGroup,entity这三个模型的数据不一定要同时保存,异步进行也可以,只要最终确保
+//数据都存入三个模型即可
 exports.groupSelect = function(req, res) {
     var selected_groups = req.body.selected_groups;
     if(selected_groups == undefined){
@@ -124,7 +127,21 @@ exports.groupSelect = function(req, res) {
                 companyGroup.group_type = selected_groups[i].group_type;
                 companyGroup.entity_type = selected_groups[i].entity_type;
 
+
                 companyGroup.save(function (err){
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+
+                var Entity = mongoose.model(companyGroup.entity_type);//将增强组件模型引进来
+                var entity = new Entity();
+
+                //增强组件目前只能存放这两个字段
+                entity.cid = req.session.company_id;
+                entity.gid = selected_groups[i].gid;
+
+                entity.save(function (err){
                     if (err) {
                         console.log(err);
                     }
