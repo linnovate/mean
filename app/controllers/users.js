@@ -591,3 +591,7 @@ exports.changePassword = function (req, res) {
       }
     });
 };
+
+exports.editPhoto = function(req, res) {
+  
+}

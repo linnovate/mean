@@ -65,6 +65,9 @@ module.exports = function(app, passport, db) {
             })
         }));
 
+        // 上传设置，必须在app.router和static middleware之前
+        app.use(express.bodyParser());
+
         //app.use(middleware.auth_user);
 
         // Dynamic helpers

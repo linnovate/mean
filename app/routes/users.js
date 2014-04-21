@@ -37,6 +37,7 @@ module.exports = function(app, passport) {
     app.post('/users/quitCampaign', users.quitCampaign);
 
     app.post('/users/vote', users.vote);
-    
+
+    app.post('/users/editPhoto', users.editPhoto);
 
 };
