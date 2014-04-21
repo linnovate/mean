@@ -16,6 +16,7 @@ var _member = new Schema({
     },
     cid: String,
     uid: String,
+    photo: String,         //队员头像路径
     username: String,
     number: Number         //球队分配的个人号码
 });
@@ -32,13 +33,21 @@ var _formation = new Schema({
  * 比赛数据结构
  */
 var Competition = new Schema({
-    date:{
-      type: Date,
-      default: Date.now()
+    
+    brief: {
+      group_type: String,
+      location: String,
+      date:{
+        type: Date,
+        default: Date.now()
+      },
+      deadline: Date,
+      competition_format: String,  //赛制
+      remark: String               //备注
     },
-    location: String,
-    content: String,
+
     camp_a:{                  //A方阵营
+      tname: String,
       member:[_member],
       cid: String,
       gid: String,
@@ -46,6 +55,7 @@ var Competition = new Schema({
       score: Number
     },
     camp_b:{                  //B方阵营
+      tname: String,
       member:[_member],
       cid: String,
       gid: String,
