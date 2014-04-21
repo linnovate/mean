@@ -403,6 +403,11 @@ exports.responseProvoke = function (req, res) {
 };
 
 
+//比赛
+exports.competition = function (req, res) {
+
+};
+
 //组长发布一个活动(只能是一个企业)
 exports.sponsor = function (req, res) {
 
