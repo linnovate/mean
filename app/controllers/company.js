@@ -118,6 +118,7 @@ exports.groupSelect = function(req, res) {
                 companyGroup.cid = req.session.company_id;
                 companyGroup.gid = selected_groups[i].gid;
                 companyGroup.group_type = selected_groups[i].group_type;
+                companyGroup.entity_type = selected_groups[i].entity_type;
 
                 companyGroup.save(function (err){
                     if (err) {

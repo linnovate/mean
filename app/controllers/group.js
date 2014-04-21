@@ -11,6 +11,7 @@ var mongoose = require('mongoose'),
     Company = mongoose.model('Company'),
     Group = mongoose.model('Group'),
     CompanyGroup = mongoose.model('CompanyGroup'),
+    Competition = mongoose.model('Competition'),
     Provoke = mongoose.model('Provoke');
 
 
@@ -28,7 +29,7 @@ exports.getGroups = function(req,res) {
 
       for(var i = 0; i < _length; i++ ){
         if(group[i].gid!=0){
-          groups.push({'id':group[i].gid,'type':group[i].group_type,'select':'0'});
+          groups.push({'id':group[i].gid,'type':group[i].group_type,'select':'0', 'entity_type':group[i].entity_type});
         }
       }
       res.send(groups);
@@ -248,13 +249,15 @@ exports.campaignCancel = function (req, res) {
 exports.provoke = function (req, res) {
   var uid = req.session.uid;
   var username = req.session.username;
-  var provoke_model = req.body.provoke_model;
+
   var cid = req.session.cid;    //约战方公司id
   var cid_opposite = req.body.cid_opposite;       //被约方公司id(如果是同一家公司那么cid_b = cid_a)
   var gid = req.session.gid;         //约战小组id
 
   var content = req.body.content;
-  var provoke = new Provoke();
+  var competition_format = req.body.competition_format;
+  var remark = req.body.remark;
+  var competition = new Competition();
 
 
   var team_a = req.body.team_a;   //约战方队名
@@ -263,29 +266,26 @@ exports.provoke = function (req, res) {
   var uid_opposite = req.body.uid_opposite;    //被约方队长id
 
 
-  provoke.id = Date.now().toString(32) + Math.random().toString(32) + 'a';
-  provoke.gid = gid;
+  competition.id = Date.now().toString(32) + Math.random().toString(32) + 'a';
+  competition.gid = gid;
   //provoke.group_type = group_type;
 
-  provoke.group_a.cid = cid;
-  provoke.group_a.uid = uid;
-  provoke.group_a.start_confirm = true;
-  provoke.group_a.username = username;
-  provoke.group_a.tname = team_a;
+  competition.camp_a.cid = cid;
+  competition.camp_a.uid = uid;
+  competition.camp_a.start_confirm = true;
+  competition.camp_a.username = username;
+  competition.camp_a.tname = team_a;
 
 
-  provoke.group_b.cid = cid_opposite;               //被约方的公司id和队长id先存进去,到时候显示动态时将据此决定是否显示"应约"按钮
-  provoke.group_b.uid = uid_opposite;
-  provoke.group_b.tname = team_b;
+  competition.camp_b.cid = cid_opposite;               //被约方的公司id和队长id先存进去,到时候显示动态时将据此决定是否显示"应约"按钮
+  competition.camp_b.uid = uid_opposite;
+  competition.camp_b.tname = team_b;
 
-  provoke.poster.cid = cid;
-  provoke.poster.uid = uid;
-  provoke.poster.username = username;
-  provoke.poster.role = "LEADER";
-  provoke.content = req.body.content;
+  competition.content = req.body.content;
+  competition.brief.remark = req.body.remark;
 
   var provoke_message_id = Date.now().toString(32) + Math.random().toString(32) + 'b';
-  provoke.provoke_message_id = provoke_message_id;
+  competition.provoke_message_id = provoke_message_id;
 
   var _callback = function(provoke_message_id) {
     return function(err) {
@@ -403,10 +403,6 @@ exports.responseProvoke = function (req, res) {
 };
 
 
-//比赛
-exports.competition = function (req, res) {
-
-};
 
 //组长发布一个活动(只能是一个企业)
 exports.sponsor = function (req, res) {

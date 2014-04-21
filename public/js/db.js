@@ -4,6 +4,7 @@ var _group =[
             {
                 'gid':0,
                 'group_type':'虚拟组',
+                'entity_type':'virtual',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
@@ -11,6 +12,7 @@ var _group =[
             {
                 'gid':1,
                 'group_type':'羽毛球',
+                'entity_type':'Badminton',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
@@ -18,6 +20,7 @@ var _group =[
             {
                 'gid':2,
                 'group_type':'蓝球',
+                'entity_type':'BasketBall',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
@@ -25,6 +28,7 @@ var _group =[
             {
                 'gid':3,
                 'group_type':'阅读',
+                'entity_type':'Reading',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
@@ -32,6 +36,7 @@ var _group =[
             {
                 'gid':4,
                 'group_type':'自行车',
+                'entity_type':'Bicycle',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
@@ -39,6 +44,7 @@ var _group =[
             {
                 'gid':5,
                 'group_type':'台球',
+                'entity_type':'TableTennis',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
@@ -46,6 +52,7 @@ var _group =[
             {
                 'gid':6,
                 'group_type':'钓鱼',
+                'entity_type':'Fishing',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
@@ -53,6 +60,7 @@ var _group =[
             {
                 'gid':7,
                 'group_type':'足球',
+                'entity_type':'FootBall',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
@@ -60,6 +68,7 @@ var _group =[
             {
                 'gid':8,
                 'group_type':'k歌',
+                'entity_type':'KTV',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
@@ -67,6 +76,7 @@ var _group =[
             {
                 'gid':9,
                 'group_type':'户外',
+                'entity_type':'OutDoor',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
@@ -74,6 +84,7 @@ var _group =[
             {
                 'gid':10,
                 'group_type':'乒乓球',
+                'entity_type':'PingPong',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
@@ -81,6 +92,7 @@ var _group =[
             {
                 'gid':11,
                 'group_type':'跑步',
+                'entity_type':'Running',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
@@ -88,6 +100,7 @@ var _group =[
             {
                 'gid':12,
                 'group_type':'游泳',
+                'entity_type':'Swimming',
                 'icon':'default',
                 'active':true,
                 'group_rule':'default'
