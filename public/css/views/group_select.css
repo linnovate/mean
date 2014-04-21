@@ -8,10 +8,14 @@
 .group input {
   display: none;
 }
-.group label {
+.width_210 {
   height: 210px;
   width: 210px;
-  backgroud-size: 210px;
+}
+.width_80 {
+  height: 80px;
+  width: 80px;
+  background-size: contain;
 }
 .group.inactive .group_1 {
   background-image: url("/img/icons/group/badminton_off.png");

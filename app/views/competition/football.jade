@@ -1,8 +1,19 @@
 extends ../layouts/manager
 
 block panel
-  p vs
-
+  .row
+    .teamInfo.col-xs-4
+      img.teamLogo
+      a.teamName
+      each teamAMember in teamAMembers
+        a.teamMember
+    .vs.col-xs-4
+      p
+    .teamInfo.col-xs-4
+      img.teamLogo
+      a.teamName
+      each teamBMember in teamBMembers
+        a.teamMember
 
 block aside
   .infoHead.row

@@ -1,6 +1,7 @@
-mixin group_thumbnail(gids)
-  h3 我的兴趣小组
-  ul
+mixin group_thumbnail(gids,group_class,group_head)
+  h3= group_head
+  .groups.row
     each gid in gids
-      li
-        a(href="/group/home/#{gid}")= gid
+      div(class='group col-xs-3 '+group_class)
+        a(href="/group/home/#{gid}")
+         label(class='width_80 group_'+gid )

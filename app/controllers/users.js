@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
   Company = mongoose.model('Company'),
   encrypt = require('../middlewares/encrypt'),
   mail = require('../services/mail'),
+  Group = mongoose.model('Group'),
   CompanyGroup = mongoose.model('CompanyGroup'),
   GroupMessage = mongoose.model('GroupMessage'),
   Campaign = mongoose.model('Campaign'),
@@ -361,7 +362,20 @@ exports.home = function(req, res) {
     return res.redirect('/users/signin');
   }
   else{
-    return res.render('users/home', {gids: req.user.gid});
+      Group.find(null,function(err,group){
+        if (err) {
+          console.log(err);
+          return res.status(404).send();;
+        };
+        var _ugids = [];
+        var _glength = group.length;
+        for(var i=0;i<_glength;i++){
+          if(group[i].gid != 0 && req.user.gid.indexOf(group[i].gid) == -1){
+            _ugids.push(group[i].gid);
+          }
+        };
+          return res.render('users/home', {'gids': req.user.gid,'ugids':_ugids});
+      });
   }
 };
 
