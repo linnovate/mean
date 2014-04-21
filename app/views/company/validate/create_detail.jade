@@ -1,17 +1,23 @@
-div(ng-app='company')
-  form.form-horizontal(name="createForm")
-    .form-group
-      label.col-md-2.control-label(for="username" ) *企业官方用户名：
-      .col-md-4
-        input#username.form-control(type="text" name="username" ng-model="detail.username" placeholder="Username" required)
-    .form-group
-      label.col-md-2.control-label(for="password") *密码：
-      .col-md-4
-        input#password.form-control(type="password" name="password" ng-model="detail.password" placeholder="Password" required)
-    .form-group
-      label.col-md-2.control-label(for="password") *密码确认：
-      .col-md-4
-        input#password.form-control(type="password" name="confirmPassword" ng-model="detail.confirmPassword" placeholder="confirmPassword" match="detail.password" required)
-    .form-group
-      .col-md-4
-        button.btn.btn-primary.btn-lg.center-block(ng-disabled="createForm.$invalid" ng-click="detail.create_detail()") 创建
+.row.signup_row
+  .col-xs-12.col-sm-5.text-right
+    .block_left
+      h1.text-right
+        small 加入
+        | 动梨
+  .col-xs-12.col-sm-7
+    form.block_right.center-block.form-horizontal(ng-app="company" name="createForm")
+      .form-group.dl_sm_group
+        label.col-xs-3.control-label(for="username" ) *企业官方用户名：
+        .col-xs-9
+          input#username.form-control(type="text" name="username" ng-model="detail.username" placeholder="Username" required)
+      .form-group.dl_sm_group
+        label.col-xs-3.control-label(for="password") *密码：
+        .col-xs-9
+          input#password.form-control(type="password" name="password" ng-model="detail.password" placeholder="Password" required)
+      .form-group.dl_sm_group
+        label.col-xs-3.control-label(for="password") *密码确认：
+        .col-xs-9
+          input#password.form-control(type="password" name="confirmPassword" ng-model="detail.confirmPassword" placeholder="confirmPassword" match="detail.password" required)
+      .form-group.dl_sm_group
+        .col-xs-offset-3.col-xs-9
+          button.btn.btn-primary.btn-lg.dl_btn.center-block(ng-disabled="createForm.$invalid" ng-click="detail.create_detail()") 创建

@@ -2,8 +2,17 @@
 //也就是说,confirm.jade是上面三个页面的父页面, create_detail.jade group_select.jade invite.jade
 //都将在 confirm.jade 里加载出来,从而实现无刷新切换
 
-extends ../../layouts/company
-block headExt
+extends ../layouts/register
+append headExt
   link(rel="stylesheet" href="/css/views/group_select.css")
+  link(rel="stylesheet" href="/css/views/company_signup.css")
+
 block content
-  div(ng-app='company' id='confirm' ng-view )
+  div(ng-app='company' id='confirm' ng-view)
+
+append footExt
+  script(type="text/javascript" src="/lib/angular-cookies/angular-cookies.min.js")
+  script(type="text/javascript" src="/lib/angular-resource/angular-resource.min.js")
+  script(type="text/javascript" src="/lib/angular-ui-router/release/angular-ui-router.js")
+  script(type="text/javascript" src="/lib/angular-route/angular-route.min.js")
+  script(src="/js/controllers/company.js")
