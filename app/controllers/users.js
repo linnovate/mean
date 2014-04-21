@@ -14,6 +14,7 @@ var mongoose = require('mongoose'),
   Campaign = mongoose.model('Campaign'),
   Competition = mongoose.model('Competition'),
   config = require('../config/config'),
+  meanConfig = require('../../config/config'),
   message = require('../language/zh-cn/message');
 
 
@@ -363,28 +364,35 @@ exports.getCampaigns = function(req, res) {
 
 
 exports.home = function(req, res) {
-  if(req.user==null){
+  if(req.user === null){
     return res.redirect('/users/signin');
   }
   else{
-      Group.find(null,function(err,group){
-        if (err) {
-          console.log(err);
-          return res.status(404).send();;
-        };
-        var _ugids = [];
-        var _glength = group.length;
-        var tmp_gid = [];
-        for(var j=0;j<req.user.group.length;j++){
-          tmp_gid.push(req.user.group[j].gid);
+    Group.find(null,function(err,group){
+      if (err) {
+        console.log(err);
+        return res.status(404).send();;
+      };
+      var _ugids = [];
+      var _glength = group.length;
+      var tmp_gid = [];
+      for(var j=0;j<req.user.group.length;j++){
+        tmp_gid.push(req.user.group[j].gid);
+      }
+      for(var i=0;i<_glength;i++){
+        if(group[i].gid != 0 && tmp_gid.indexOf(group[i].gid) == -1){
+          _ugids.push(group[i].gid);
         }
-        for(var i=0;i<_glength;i++){
-          if(group[i].gid != 0 && tmp_gid.indexOf(group[i].gid) == -1){
-            _ugids.push(group[i].gid);
-          }
-        };
-          return res.render('users/home', {'groups': req.user.group,'ugids':_ugids});
-      });
+      };
+      var fs = require('fs');
+      var user_photo_path = meanConfig.root + '/public/img/user/photo/' + req.user._id + '.png';
+      var photo = 'default.png';
+      if (fs.existsSync(user_photo_path)) {
+        photo = req.user._id + '.png';
+      }
+      return res.render('users/home', {'groups': req.user.group, 'ugids':_ugids, photo: photo});
+    });
+
   }
 };
 
@@ -600,3 +608,17 @@ exports.changePassword = function (req, res) {
       }
     });
 };
+
+exports.editPhoto = function(req, res) {
+  var fs = require('fs');
+  var temp_path = req.files.photo.path;
+  // 临时处理，以后会将图片格式统一转换成png
+  var target_path = meanConfig.root + '/public/img/user/photo/' + req.user._id + '.png';
+  fs.rename(temp_path, target_path, function(err) {
+    if (err) throw err;
+    fs.unlink(temp_path, function() {
+      if (err) throw err;
+      res.redirect('/users/home');
+    });
+  });
+}

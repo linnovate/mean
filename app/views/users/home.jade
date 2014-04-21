@@ -1,6 +1,13 @@
 
 extends ../layouts/manager
 
+block baseInfo
+  form(action="/users/editPhoto" method="post" enctype="multipart/form-data")
+    img.img-responsive.img-thumbnail(src="/img/user/photo/#{photo}" width="128px")
+    label.btn.btn-primary 选择头像
+      input.hidden(type="file" name="photo")
+    button.btn.btn-primary(type="submit") 保存修改
+
 block panel
   div(ng-app="tabViewUser")
     ul.nav.nav-tabs
