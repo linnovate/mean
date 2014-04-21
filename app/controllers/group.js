@@ -13,10 +13,6 @@ var mongoose = require('mongoose'),
     CompanyGroup = mongoose.model('CompanyGroup'),
     Provoke = mongoose.model('Provoke');
 
-exports.saveGroups = function(req,res) {
-    res.send('save');
-};
-
 
 //返回组件模型里的所有组件(除了虚拟组),待HR选择
 exports.getGroups = function(req,res) {
@@ -39,18 +35,7 @@ exports.getGroups = function(req,res) {
   });
 };
 
-
-exports.getAccount =function(req,res) {
-
-};
-
-exports.getInfo =function(req,res) {
-
-};
-
-
-
-exports.Info =function(req,res) {
+exports.info =function(req,res) {
   if(req.params.groupId == null && req.session.gid!=null) {
     CompanyGroup.findOne({
         cid: req.session.cid,
@@ -519,3 +504,5 @@ exports.getGroupMember = function(req,res){
     });
 
 };
+
+

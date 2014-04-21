@@ -140,7 +140,7 @@ tabViewUser.controller('AccountFormController',['$scope','$http',function($scope
     $scope.baseUnEdit = true;
     $scope.baseButtonStatus = '编辑>';
     $scope.linkUnEdit = true;
-    $scope.linkButtonStatus = '编辑>'
+    $scope.linkButtonStatus = '编辑>';
     $scope.baseEditToggle = function() {
         $scope.baseUnEdit = !$scope.baseUnEdit;
         if($scope.baseUnEdit) {
