@@ -600,8 +600,32 @@ exports.changePassword = function(req, res){
                   }
 
                 } else {
-                    res.send({'result':0,'msg':'您没有登录'});
-                }
+                res.send({'result':0,'msg':'您没有登录'});
             }
-        });
-}
+        }
+    });
+};
+
+
+//TODO
+//列出所有公司
+exports.getCompany = function (req, res) {
+    var companies_rst = [];
+    Company.find(null, function (err, companies) {
+        if(err) {
+            return res.send([]);
+        } else {
+            if(companies) {
+                for(var i = 0; i < companies.length; i ++) {
+                    companies_rst.push({
+                        'cid' : companies[i].id,
+                        'cpname' : companies[i].info.official_name
+                    });
+                }
+                return res.send(companies_rst);
+            } else {
+                return res.send([]);
+            }
+        }
+    });
+};

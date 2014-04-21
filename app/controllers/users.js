@@ -612,7 +612,7 @@ exports.changePassword = function (req, res) {
 exports.editPhoto = function(req, res) {
   var fs = require('fs');
   var temp_path = req.files.photo.path;
-  // 临时处理，以后会将图片格式统一转换成png
+  //TODO 临时处理，以后会将图片格式统一转换成png
   var target_path = meanConfig.root + '/public/img/user/photo/' + req.user._id + '.png';
   fs.rename(temp_path, target_path, function(err) {
     if (err) throw err;
@@ -621,4 +621,23 @@ exports.editPhoto = function(req, res) {
       res.redirect('/users/home');
     });
   });
-}
+};
+
+//搜索成员
+//目前只是将所有记录都列出来
+//TODO
+exports.searchUser = function(req, res) {
+  var cid = req.body.cid;   //根据公司名找它的员工
+  User.find({'cid': cid}, function (err, users){
+    if(err){
+      return res.send([]);
+    }else{
+      if(users){
+        //数据量会不会太大?
+        return res.send(users);
+      } else {
+        return res.send([]);
+      }
+    }
+  });
+};

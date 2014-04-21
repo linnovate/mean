@@ -539,3 +539,23 @@ exports.group = function(req, res, next, id) {
         next();
     });
 };
+
+
+//搜索小组
+//目前只是将所有记录都列出来
+//TODO
+exports.searchGroup = function(req, res) {
+  var cid = req.body.cid;   //根据公司名找它的组件
+  CompanyGroup.find({'cid': cid}, function (err, company_groups){
+    if(err){
+      return res.send([]);
+    }else{
+      if(company_groups){
+        //数据量会不会太大?
+        return res.send(company_groups);
+      } else {
+        return res.send([]);
+      }
+    }
+  });
+};
