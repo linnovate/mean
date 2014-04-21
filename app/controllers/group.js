@@ -110,15 +110,17 @@ exports.home = function(req, res) {
           return res.status(404).send();;
         };
         var _ugids = [];
+        var tmp_gid = [];
         var _glength = group.length;
+        for(var j=0;j<company.group.length;j++){
+          tmp_gid.push(company.group[j].gid);
+        }
         for(var i=0;i<_glength;i++){
-          if(group[i].gid != 0 && company.gid.indexOf(group[i].gid) == -1){
+          if(group[i].gid != 0 && tmp_gid.indexOf(group[i].gid) == -1){
             _ugids.push(group[i].gid);
           }
         };
-        var _index =company.gid.indexOf('0');
-        company.gid.splice(_index,1);
-          return res.render('group/home', {'gids': company.gid,'ugids':_ugids});
+          return res.render('group/home', {'groups': company.group,'ugids':_ugids});
       });
     }
   });
@@ -133,13 +135,13 @@ exports.getCompanyGroups = function(req, res) {
     company_id = param_id;
   }
   //console.log(company_id);
-  CompanyGroup.find({cid: company_id}, function(err, company_groups) {
+  Company.findOne({id: company_id}, function(err, company) {
     if (err) {
       //console.log(err);
       return res.status(404).send([]);
     } else {
       //console.log(company_groups);
-      return res.send(company_groups);
+      return res.send(company.group);
     }
   });
 };

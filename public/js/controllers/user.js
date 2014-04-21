@@ -29,7 +29,12 @@ userApp.controller('GroupsController', ['$scope','$http', function($scope, $http
         $scope.selected.length = 0;
         angular.forEach($scope.groups, function(value, key) {
             if(value.select === '1') {
-                $scope.selected.push(value.gid);
+                $scope.selected.push({
+                    'gid': value.gid,
+                    'group_type': value.group_type,
+                    'entity_type': value.entity_type,
+                    'leader' : false
+                });
             }
         });
         try {

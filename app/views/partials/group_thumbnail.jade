@@ -1,7 +1,9 @@
-mixin group_thumbnail(gids,group_class,group_head)
+
+mixin group_thumbnail(groups,group_class,group_head)
   h3= group_head
   .groups.row
-    each gid in gids
+    each group in groups
       div(class='group col-xs-3 '+group_class)
-        a(href="/group/home/#{gid}")
-         label(class='width_80 group_'+gid )
+        a(href="/group/home/#{(group_class == 'inactive' ? group : group.gid)}")
+         label(class='width_80 group_'+ (group_class == 'inactive' ? group : group.gid) )
+

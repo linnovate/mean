@@ -230,15 +230,17 @@ exports.dealSelectGroup = function(req, res) {
         return;
       } else if(user) {
         if(user.active === false) {
-          user.gid = req.body.selected;
+
+          user.group = req.body.selected;
+
           user.active = true;
           user.save(function(err){
             if(err){
               console.log(err);
               res.render('users/message', message.dbError);
             }
-            for( var i = 0; i < user.gid.length; i ++) {
-              CompanyGroup.findOne({'cid':user.cid,'gid':user.gid[i]}, function(err, company_group) {
+            for( var i = 0; i < user.group.length; i ++) {
+              CompanyGroup.findOne({'cid':user.cid,'gid':user.group[i].gid}, function(err, company_group) {
                 company_group.member.push({
                   'uid':user.id,
                   'username':user.username,
@@ -276,8 +278,8 @@ exports.getGroupMessages = function(req, res) {
   var group_messages = [];
   var flag = 0;
 
-  for(var i = 0; i < req.user.gid.length; i ++) {
-     GroupMessage.find({'cid' : {'$all':[req.user.cid]} , 'group.gid': {'$all': [req.user.gid[i]]} }, function(err, group_message) {
+  for(var i = 0; i < req.user.group.length; i ++) {
+     GroupMessage.find({'cid' : {'$all':[req.user.cid]} , 'group.gid': {'$all': [req.user.group[i].gid]} }, function(err, group_message) {
       flag ++;
       if (group_message.length > 0) {
         if (err) {
@@ -301,7 +303,7 @@ exports.getGroupMessages = function(req, res) {
           }
         }
       }
-      if(flag === req.user.gid.length) {
+      if(flag === req.user.group.length) {
         res.send(group_messages);
       }
     });
@@ -315,8 +317,8 @@ exports.getCampaigns = function(req, res) {
   var campaigns = [];
   var join = false;
   var flag = 0;
-  for(var i = 0; i < req.user.gid.length; i ++) {
-     Campaign.find({'cid' : {'$all':[req.user.cid]} , 'gid' : {'$all':[req.user.gid[i]]} }, function(err, campaign) {
+  for(var i = 0; i < req.user.group.length; i ++) {
+     Campaign.find({'cid' : {'$all':[req.user.cid]} , 'gid' : {'$all':[req.user.group[i].gid]} }, function(err, campaign) {
       flag ++;
       if(campaign.length > 0) {
         if (err) {
@@ -350,7 +352,7 @@ exports.getCampaigns = function(req, res) {
           }
         }
       }
-      if(flag === req.user.gid.length) {
+      if(flag === req.user.group.length) {
         res.send(campaigns);
       }
     });
@@ -370,8 +372,12 @@ exports.home = function(req, res) {
       };
       var _ugids = [];
       var _glength = group.length;
+      var tmp_gid = [];
+      for(var j=0;j<req.user.group.length;j++){
+        tmp_gid.push(req.user.group[j].gid);
+      }
       for(var i=0;i<_glength;i++){
-        if(group[i].gid != 0 && req.user.gid.indexOf(group[i].gid) == -1){
+        if(group[i].gid != 0 && tmp_gid.indexOf(group[i].gid) == -1){
           _ugids.push(group[i].gid);
         }
       };
@@ -381,8 +387,9 @@ exports.home = function(req, res) {
       if (fs.existsSync(user_photo_path)) {
         photo = req.user._id + '.png';
       }
-      return res.render('users/home', {'gids': req.user.gid, 'ugids':_ugids, photo: photo});
+      return res.render('users/home', {'groups': req.user.group, 'ugids':_ugids, photo: photo});
     });
+
   }
 };
 

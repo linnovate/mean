@@ -8,6 +8,13 @@ var mongoose = require('mongoose'),
     validate = require('mongoose-validate'),
     crypto = require('crypto');
 
+
+var _group = new Schema({
+    gid: String,
+    group_type: String,
+    entity_type: String,           //对应的增强组件名字
+    leader: false                  //是否是这个组件的队长
+});
 /**
  * User Schema
  */
@@ -67,12 +74,7 @@ var UserSchema = new Schema({
         enum: ['HR','LEADER','EMPLOYEE']      //HR 组长 普通员工
     },
     cid: String,
-    leader_group: {
-        gid: Array,
-        group_type: Array
-    },
-    gid: Array                   //作为组员,可以加入多个组
-
+    group: [_group]
 });
 
 /**
