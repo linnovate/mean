@@ -1,6 +1,9 @@
 
 extends ../layouts/manager
 
+append headExt
+  link(rel="stylesheet" href="/css/jquery.Jcrop.min.css")
+
 block baseInfo
   img.img-responsive.img-thumbnail(src="/img/user/photo/#{photo}" width="128px")
   button.btn.btn-primary(data-toggle="modal" data-target="#edit_photo") 修改头像
@@ -13,6 +16,8 @@ block baseInfo
           h4#edit_photo_label.modal-title 编辑我的头像
         .modal-body
           img#edit_img.img-responsive.img-thumbnail(src="/img/user/photo/#{photo}")
+          div(style="width:128px; height:128px; overflow:hidden")
+            img#preview(src="/img/user/photo/#{photo}")
           form#temp_photo_form(action="/users/tempPhoto" method="post" enctype="multipart/form-data")
             label.btn.btn-primary 选择头像
                 input#temp_photo.hidden(type="file" name="temp_photo")
