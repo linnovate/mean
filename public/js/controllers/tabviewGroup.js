@@ -57,7 +57,8 @@ tabViewGroup.controller('GroupMessageController', ['$http','$scope',
                     remark: $scope.remark,
                     competition_date: $scope.competition_date,
                     deadline: $scope.deadline,
-                    competition_format: $scope.competition_format
+                    competition_format: $scope.competition_format,
+                    number: $scope.number
 
                 }
             }).success(function(data, status) {

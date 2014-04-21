@@ -265,6 +265,7 @@ exports.provoke = function (req, res) {
   var deadline = req.body.deadline;
   var remark = req.body.remark;
   var competition = new Competition();
+  var number = req.body.number;
 
 
   var team_a = req.session.companyGroup.name;   //约战方队名
@@ -275,6 +276,7 @@ exports.provoke = function (req, res) {
 
   competition.id = Date.now().toString(32) + Math.random().toString(32) + 'a';
   competition.gid = gid;
+  
   //provoke.group_type = group_type;
 
   competition.camp_a.cid = cid;
@@ -294,6 +296,7 @@ exports.provoke = function (req, res) {
   competition.brief.competition_date = competition_date;
   competition.brief.deadline = deadline;
   competition.brief.competition_format = competition_format;
+  competition.brief.number = number;
 
   var provoke_message_id = Date.now().toString(32) + Math.random().toString(32) + 'b';
   competition.provoke_message_id = provoke_message_id;

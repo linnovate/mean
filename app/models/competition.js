@@ -47,7 +47,8 @@ var Competition = new Schema({
       competition_date: Date,
       deadline: Date,
       competition_format: String,              //赛制
-      remark: String                           //备注
+      remark: String,                          //备注
+      number: Number                           //人数
     },
 
     camp_a:{                                   //A方阵营
