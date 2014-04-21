@@ -609,10 +609,24 @@ exports.changePassword = function (req, res) {
     });
 };
 
+exports.tempPhoto = function(req, res) {
+  var fs = require('fs');
+  var temp_path = req.files.temp_photo.path;
+  // 临时处理，以后会将图片格式统一转换成png
+  var target_path = meanConfig.root + '/public/img/user/photo/temp/' + req.user._id + '.png';
+  fs.rename(temp_path, target_path, function(err) {
+    if (err) throw err;
+    fs.unlink(temp_path, function() {
+      if (err) throw err;
+      res.send({ img: req.user._id + '.png' });
+    });
+  });
+};
+
 exports.editPhoto = function(req, res) {
   var fs = require('fs');
-  var temp_path = req.files.photo.path;
-  //TODO 临时处理，以后会将图片格式统一转换成png
+  var temp_path = meanConfig.root + '/public/img/user/photo/temp/' + req.user._id + '.png';
+  // 临时处理，以后会将图片格式统一转换成png
   var target_path = meanConfig.root + '/public/img/user/photo/' + req.user._id + '.png';
   fs.rename(temp_path, target_path, function(err) {
     if (err) throw err;
@@ -622,6 +636,7 @@ exports.editPhoto = function(req, res) {
     });
   });
 };
+
 
 //搜索成员
 //目前只是将所有记录都列出来
@@ -641,3 +656,4 @@ exports.searchUser = function(req, res) {
     }
   });
 };
+
