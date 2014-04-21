@@ -505,4 +505,9 @@ exports.getGroupMember = function(req,res){
 
 };
 
+exports.competition = function(req, res){
+  res.render('competition/football', {
+          title: '发起足球比赛'
+  });
+};
 
