@@ -41,13 +41,15 @@ var Competition = new Schema({
       member:[_member],
       cid: String,
       gid: String,
-      rst_confirm: false
+      rst_confirm: false,
+      score: Number
     },
     camp_b:{                  //B方阵营
       member:[_member],
       cid: String,
       gid: String,
-      rst_confirm: false
+      rst_confirm: false,
+      score: Number
     },
     formation:[_formation],   //阵型图
     photo: Array
