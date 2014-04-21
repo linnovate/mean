@@ -50,7 +50,6 @@ tabViewGroup.controller('GroupMessageController', ['$http','$scope',
                     provoke_model : 'against',
                     cid_opposite : that.group_messages[0].poster.cid,
                     content : $scope.content,
-                    team_a : $scope.team_a,
                     team_b : $scope.team_b,
                     uid_opposite : that.group_messages[0].poster.uid,
 

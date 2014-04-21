@@ -258,8 +258,6 @@ exports.provoke = function (req, res) {
   var cid_opposite = req.body.cid_opposite;       //被约方公司id(如果是同一家公司那么cid_b = cid_a)
   var gid = req.session.gid;         //约战小组id
 
-  console.log(req.session.companyGroup);
-
   var content = req.body.content;
   var competition_format = req.body.competition_format;
   var location = req.body.location;
@@ -269,7 +267,7 @@ exports.provoke = function (req, res) {
   var competition = new Competition();
 
 
-  var team_a = req.body.team_a;   //约战方队名
+  var team_a = req.session.companyGroup.name;   //约战方队名
   var team_b = req.body.team_b;   //被约方队名
 
   var uid_opposite = req.body.uid_opposite;    //被约方队长id
@@ -536,6 +534,7 @@ exports.group = function(req, res, next, id) {
         if (err) return next(err);
         if (!companyGroup) return next(new Error(req.session.cid+' Failed to load companyGroup ' + id));
         req.companyGroup = companyGroup;
+        //TODO session不能存太多东西
         req.session.companyGroup = companyGroup;
         next();
     });
