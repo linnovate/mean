@@ -1,0 +1,15 @@
+{
+    "name": "__name__",
+    "version": "0.0.0",
+    "description": "Some description of __name__",
+    "author": {
+	"name": "__author__"
+    },
+    "mean": true,
+    "engines": {
+	"node": "0.10.x",
+	"npm": "1.4.x"
+    },
+    "dependencies": {},
+    "license": "MIT"
+}
