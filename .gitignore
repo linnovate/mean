@@ -7,6 +7,5 @@ node_modules/
 public/lib
 test/coverage
 mean.iml
-public/img/user
-public/temp
+public/img/user/
 !public/img/user/photo/default.png
