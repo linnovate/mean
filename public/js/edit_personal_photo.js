@@ -24,12 +24,15 @@
 
     function showPreview(coords)
     {
-      var rx = 100 / coords.w;
-      var ry = 100 / coords.h;
+      var rx = 128 / coords.w;
+      var ry = 128 / coords.h;
+      var img = $('#edit_img');
+      var imgx = img.width();
+      var imgy = img.height();
 
       $('#preview').css({
-        width: Math.round(rx * 500) + 'px',
-        height: Math.round(ry * 370) + 'px',
+        width: Math.round(rx * imgx) + 'px',
+        height: Math.round(ry * imgy) + 'px',
         marginLeft: '-' + Math.round(rx * coords.x) + 'px',
         marginTop: '-' + Math.round(ry * coords.y) + 'px'
       });
