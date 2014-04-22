@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
     Company = mongoose.model('Company'),
     CompanyGroup = mongoose.model('CompanyGroup'),
     User = mongoose.model('User'),
+    UUID = require('../middlewares/uuid'),
     GroupMessage = mongoose.model('GroupMessage'),
     Campaign = mongoose.model('Campaign'),
     config = require('../config/config');
@@ -202,8 +203,8 @@ exports.create = function(req, res, next) {
     var company = new Company();
     var message = null;
 
-    company.password = Date.now().toString(32) + Math.random().toString(32);
-    company.username = Date.now().toString(32) + Math.random().toString(32);
+    company.password = UUID.id();
+    company.username = UUID.id();
     company.info.name = req.body.name;
     company.info.city.province = req.body.province;
     company.info.city.city = req.body.city;
@@ -213,7 +214,7 @@ exports.create = function(req, res, next) {
     company.info.lindline.number = req.body.number;
     company.info.lindline.extension = req.body.extension;
     company.info.phone = req.body.phone;
-    company.id = Date.now().toString(32) + Math.random().toString(32);//公司的id
+    company.id = UUID.id();//公司的id
     company.email.domain.push(req.body.domain);
     company.provider = 'company';
     company.login_email = req.body.host+'@'+req.body.domain;
@@ -278,7 +279,10 @@ exports.createDetail = function(req, res, next) {
 
 
 exports.home = function(req, res) {
-    return res.render('company/home', {title : '公司组件和活动'});
+    return res.render('company/home', {
+        title : '公司组件和活动',
+        role : req.session.role === 'EMPLOYEE'  //等加入权限功能后再修改  TODO
+    });
 };
 
 exports.Info = function(req, res) {
@@ -380,6 +384,7 @@ exports.getCompanyCampaign = function(req, res) {
 
     var cid = req.session.cid;//根据公司id取出该公司的所有活动
     var uid = req.session.uid;
+    var role = req.session.role;
 
     //公司发布的活动都归在虚拟组 gid = 0 里
     Campaign.find({'cid' : {'$all':[cid]}, 'gid' : {'$all':[0]}}, function(err, campaign) {
@@ -414,7 +419,7 @@ exports.getCompanyCampaign = function(req, res) {
                     'join':join
                 });
             }
-            return res.send(campaigns);
+            return res.send({'data':campaigns,'role':role});
         }
     });
 };
@@ -511,7 +516,7 @@ exports.sponsor = function (req, res) {
 
     campaign.cid = company_in_campaign; //参加活动的所有公司的id
 
-    campaign.id = Date.now().toString(32) + Math.random().toString(32) + '0';
+    campaign.id = UUID.id();
     campaign.poster.cname = cname;
     campaign.poster.cid = cid;
     campaign.poster.uid = uid;
@@ -545,7 +550,7 @@ exports.sponsor = function (req, res) {
 
         var groupMessage = new GroupMessage();
 
-        groupMessage.id = Date.now().toString(32) + Math.random().toString(32) + '1';
+        groupMessage.id = UUID.id();
         groupMessage.group.gid.push(gid);
         groupMessage.group.group_type.push(group_type);
         groupMessage.active = true;

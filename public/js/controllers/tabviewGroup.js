@@ -98,8 +98,8 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
   function($http, $scope) {
     var that = this;
     $http.get('/group/getCampaigns?' + Math.round(Math.random()*100)).success(function(data, status) {
-      that.campaigns = data;
-      that.show = true;
+      that.campaigns = data.data;
+      that.show = data.role === 'EMPLOYEE';    //由于还未设置权限,目前普通员工也可以关闭活动  TODO
     });
 
     $scope.join = function(campaign_id) {

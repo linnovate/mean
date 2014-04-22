@@ -4,9 +4,6 @@
       <h1>活动列表</h1>
     </div>
     <div class="col-md-6">
-      <!-- Button trigger modal -->
-      <button ng-if="campaign.show" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">发起活动
-      </button>
     </div>
   </div>
   <ol>
@@ -20,11 +17,13 @@
         <p>结束时间: {{ campaign_item.end_time }}</p>
         <p>是否参加: {{ campaign_item.join}}</p>
         <p>活动是否关闭: {{ campaign_item.active}} </p>
-        <div ng-switch on="{{campaign_item.join}}" ng-if="campaign_item.active">
-          <input type = "button"  class="btn btn-primary btn-lg" value = "退出" ng-click="quit(campaign_item.id)" ng-switch-when="true"/>
-          <input type = "button"  class="btn btn-primary btn-lg" value = "参加" ng-click="join(campaign_item.id)" ng-switch-default/>
-          <input type = "button"  class="btn btn-primary btn-lg" ng-if="campaign.show" value = "{{ campaign_item.active_value}}" ng-click="cancel(campaign_item.id)" />
-        </div>
+
+          <div ng-switch on="{{campaign_item.join}}" ng-if="campaign_item.active" class="col-md-2">
+            <input type = "button"  class="btn btn-primary btn-lg" value = "退出" ng-click="quit(campaign_item.id)" ng-switch-when="true"/>
+            <input type = "button"  class="btn btn-primary btn-lg" value = "参加" ng-click="join(campaign_item.id)" ng-switch-default/>
+          </div>
+
+            <input type = "button"  class="btn btn-primary btn-lg" ng-if="campaign.show" value = "{{ campaign_item.active_value}}" ng-click="cancel(campaign_item.id)" class="col-md-2"/>
       </li>
     </div>
   </ol>
@@ -33,7 +32,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="sponsorModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

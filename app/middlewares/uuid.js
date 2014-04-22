@@ -46,8 +46,16 @@ KNOWN ISSUES:
 
 */
 
-
 // On creation of a UUID object, set it's initial value
+
+
+
+
+exports.id = function() {
+  var uuid = new UUID();
+  return uuid.id;
+}
+
 function UUID(){
   this.id = this.createUUID();
 }

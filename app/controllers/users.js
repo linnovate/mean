@@ -12,6 +12,7 @@ var mongoose = require('mongoose'),
   CompanyGroup = mongoose.model('CompanyGroup'),
   GroupMessage = mongoose.model('GroupMessage'),
   Campaign = mongoose.model('Campaign'),
+  UUID = require('../middlewares/uuid'),
   Competition = mongoose.model('Competition'),
   config = require('../config/config'),
   meanConfig = require('../../config/config'),
@@ -99,7 +100,7 @@ exports.dealActive = function(req, res) {
                 user.email = req.body.host + '@' + req.body.domain;
                 user.username = user.email;
                 user.cid = company.id;
-                user.id = company.id + Date.now().toString(32) + Math.random().toString(32);
+                user.id = UUID.id();
                 user.save(function(err) {
                   if (err) {
                     console.log(err);
@@ -610,11 +611,13 @@ exports.changePassword = function (req, res) {
 };
 
 exports.tempPhoto = function(req, res) {
+
   var fs = require('fs');
   var temp_path = req.files.temp_photo.path;
 
   var target_dir = meanConfig.root + '/public/img/user/photo/temp/';
   if (!fs.existsSync(target_dir)) {
+
     fs.mkdirSync(target_dir, '0755');
   }
 

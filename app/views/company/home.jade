@@ -1,5 +1,9 @@
 extends ../layouts/manager
 
+block baseInfo
+
+  button.btn-primary.btn-lg(ng-if="role" data-toggle="modal" data-target="#sponsorModel") 活动／挑战
+
 block panel
 
   div(ng-app="tabViewCompany")

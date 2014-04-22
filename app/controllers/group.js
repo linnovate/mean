@@ -10,6 +10,7 @@ var mongoose = require('mongoose'),
     User = mongoose.model('User'),
     Company = mongoose.model('Company'),
     Group = mongoose.model('Group'),
+    UUID = require('../middlewares/uuid'),
     CompanyGroup = mongoose.model('CompanyGroup'),
     Competition = mongoose.model('Competition');
 
@@ -120,7 +121,14 @@ exports.home = function(req, res) {
             _ugids.push(group[i].gid);
           }
         };
-          return res.render('group/home', {'groups': company.group,'ugids':_ugids});
+          return res.render('group/home', {
+            'groups': company.group,
+            'ugids':_ugids,
+            'tname': (req.companyGroup.name !== undefined && req.companyGroup.name !== null) ? req.companyGroup.name : '未命名',
+            'number': (req.companyGroup.member !== undefined && req.companyGroup.member !== null) ? req.companyGroup.member.length : 0,
+            'score': (req.companyGroup.score !== undefined && req.companyGroup.score !== null) ? req.companyGroup.score : 0,
+            'role': req.session.role === 'EMPLOYEE'  //等加入权限功能后再修改  TODO
+          });
       });
     }
   });
@@ -187,6 +195,7 @@ exports.getGroupCampaign = function(req, res) {
   var cid = req.session.cid;
   var gid = req.session.gid;
   var uid = req.session.uid;
+  var role = req.session.role;
 
   //有包含gid的活动都列出来
   Campaign.find({'cid' : {'$all':[cid]}, 'gid' : {'$all':[gid]}}, function(err, campaign) {
@@ -222,7 +231,7 @@ exports.getGroupCampaign = function(req, res) {
           'join':join
         });
       }
-      return res.send(campaigns);
+      return res.send({'data':campaigns,'role':role});
     }
   });
 };
@@ -274,7 +283,7 @@ exports.provoke = function (req, res) {
   var uid_opposite = req.body.uid_opposite;    //被约方队长id
 
 
-  competition.id = Date.now().toString(32) + Math.random().toString(32) + 'a';
+  competition.id = UUID.id();
   competition.gid = gid;
 
   //provoke.group_type = group_type;
@@ -298,59 +307,36 @@ exports.provoke = function (req, res) {
   competition.brief.competition_format = competition_format;
   competition.brief.number = number;
 
-  var provoke_message_id = Date.now().toString(32) + Math.random().toString(32) + 'b';
-  competition.provoke_message_id = provoke_message_id;
 
-  var _callback = function(provoke_message_id) {
-    return function(err) {
-      if (err) {
-        console.log('保存约战时出错' + err);
-        //检查信息是否重复
-        switch (err.code) {
-          case 11000:
-            break;
-          case 11001:
-            res.status(400).send('该约战已经存在!');
-            break;
-          default:
-            break;
-        }
-        res.send(err);
-        return;
-      }
+  var groupMessage = new GroupMessage();
+  groupMessage.id = UUID.id();
+  groupMessage.group.gid.push(gid);
+  groupMessage.provoke.active = true,
+  groupMessage.provoke.team_a = team_a;
+  groupMessage.provoke.team_b = team_b;
+  groupMessage.provoke.uid_opposite = uid_opposite;
 
-      //生成动态消息
-      var groupMessage = new GroupMessage();
-
-      groupMessage.id = provoke_message_id;
-      groupMessage.group.gid.push(gid);
-      groupMessage.provoke.active = true,
-      groupMessage.provoke.team_a = team_a;
-      groupMessage.provoke.team_b = team_b;
-      groupMessage.provoke.uid_opposite = uid_opposite;
-
-      //groupMessage.poster.cname = cname;
-      groupMessage.poster.cid = cid;
-      groupMessage.poster.uid = uid;
-      groupMessage.poster.role = 'LEADER';
-      groupMessage.poster.username = username;
-      groupMessage.cid.push(cid);
-      if(cid !== cid_opposite) {
-        groupMessage.cid.push(cid_opposite);
-      }
-      groupMessage.content = content;
-      groupMessage.save(function (err) {
-        if (err) {
-          console.log('保存约战动态时出错' + err);
-          res.send(err);
-          return;
-        }
-        return res.send('ok');
-        //这里要注意一下,生成动态消息后还要向被约队长发一封私信
-      });
-    };
-  };
-  competition.save(_callback(provoke_message_id));
+  //groupMessage.poster.cname = cname;
+  groupMessage.poster.cid = cid;
+  groupMessage.poster.uid = uid;
+  groupMessage.poster.role = 'LEADER';
+  groupMessage.poster.username = username;
+  groupMessage.cid.push(cid);
+  if(cid !== cid_opposite) {
+    groupMessage.cid.push(cid_opposite);
+  }
+  groupMessage.content = content;
+  groupMessage.save(function (err) {
+    if (err) {
+      console.log('保存约战动态时出错' + err);
+      return res.send(err);
+    } else {
+      competition.provoke_message_id = groupMessage.id;
+      competition.save();
+    }
+    return res.send('ok');
+    //这里要注意一下,生成动态消息后还要向被约队长发一封私信
+  });
 };
 
 
@@ -379,7 +365,7 @@ exports.responseProvoke = function (req, res) {
           campaign.cid.push(competition.camp_b.cid);
         }
         campaign.cid.push(competition.camp_a.cid);   //两家公司同时显示这一条活动
-        campaign.id = Date.now().toString(32) + Math.random().toString(32);
+        campaign.id = UUID.id();
 
         campaign.poster.cname = competition.camp_a.cname;
         campaign.poster.cid = competition.camp_a.cid;
@@ -422,6 +408,7 @@ exports.responseProvoke = function (req, res) {
 exports.sponsor = function (req, res) {
 
   var username = req.session.username;
+  var group_type = req.session.companyGroup.group_type;
   var cid = req.session.cid;  //公司id
   var uid = req.session.uid;  //用户id
   var gid = req.session.gid;     //组件id,组长一次对一个组发布活动
@@ -431,6 +418,7 @@ exports.sponsor = function (req, res) {
   //生成活动
   var campaign = new Campaign();
   campaign.gid.push(gid);
+  campaign.group_type.push(group_type);
   campaign.cid.push(cid);//其实只有一个公司
 
   Company.findOne({
@@ -440,7 +428,7 @@ exports.sponsor = function (req, res) {
       cname = company.info.name;
   });
 
-  campaign.id = Date.now().toString(32) + Math.random().toString(32) + '0';
+  campaign.id = UUID.id();
   campaign.poster.cname = cname;
   campaign.poster.cid = cid;
   campaign.poster.uid = uid;
@@ -470,9 +458,9 @@ exports.sponsor = function (req, res) {
     //生成动态消息
     var groupMessage = new GroupMessage();
 
-    groupMessage.id = Date.now().toString(32) + Math.random().toString(32) + '1';
+    groupMessage.id = UUID.id();
     groupMessage.group.gid.push(gid);
-    //groupMessage.group.group_type.push(group_type);
+    groupMessage.group.group_type.push(group_type);
     groupMessage.active = true;
     groupMessage.cid.push(cid);
 

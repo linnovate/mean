@@ -3,14 +3,16 @@ extends ../layouts/manager
 block baseInfo
   .row
     .col-md-2
-      img.img-responsive.img-thumbnail(src="/img/user/photo/#{photo}" width="128px")
-    .col-md-10(height='128px')
+      img.img-responsive.img-thumbnail(src="/img/user/photo/#{photo}" width="96px")
+    .col-md-10(style="height:96px")
       .row
-        .col-md-4 队名
-        .col-md-4 相册
+        .col-md-4(style="height:48px") 队名 #{tname}
+        .col-md-4(style="height:48px") 相册 #{ds}
       .row
-        .col-md-4 成绩
-        .col-md-4 人数
+        .col-md-4(style="height:48px") 成绩 #{score}
+        .col-md-4(style="height:48px") 人数 #{number}
+        .col-md-2(style="height:48px")
+          button.btn-primary.btn-lg(data-toggle="modal" data-target="#sponsorModel") 活动／挑战
 
 block panel
   div(ng-app="tabViewGroup")
