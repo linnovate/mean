@@ -276,7 +276,7 @@ exports.provoke = function (req, res) {
 
   competition.id = Date.now().toString(32) + Math.random().toString(32) + 'a';
   competition.gid = gid;
-  
+
   //provoke.group_type = group_type;
 
   competition.camp_a.cid = cid;
