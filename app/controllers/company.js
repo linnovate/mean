@@ -485,6 +485,42 @@ exports.campaignCancel = function (req, res) {
     });
     */
 };
+
+
+exports.campaignEdit = function (req, res) {
+  var campaign_id = req.body.campaign_id;
+  var content = req.body.content;
+  var start_time = req.body.start_time;
+  var end_time = req.body.end_time;
+
+  Campaign.findOne({'id':campaign_id}, function (err, campaign) {
+    if(err) {
+      return res.send(err);
+    } else {
+       GroupMessage.findOne({'content':campaign.content}, function (err, group_message) {
+        if(err) {
+          return res.send(err);
+        } else {
+          group_message.content = content;
+          campaign.content = content;
+          campaign.start_time = start_time;
+          campaign.end_time = end_time;
+          group_message.save(function (err) {
+            if(err) {
+              return res.send(err);
+            } else {
+              campaign.save();
+              return res.send('ok');
+            }
+          })
+        }
+      });
+      //console.log(campaign_id);
+      //return res.send('ok');
+    }
+  });
+};
+
 //HR发布一个活动(可能是多个企业)
 exports.sponsor = function (req, res) {
 

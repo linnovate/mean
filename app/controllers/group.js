@@ -36,26 +36,35 @@ exports.getGroups = function(req,res) {
   });
 };
 
+
+
+
+
+
+//小队信息维护
 exports.info =function(req,res) {
+
+  var entity_type = req.session.companyGroup.entity_type;
+  var Entity = mongoose.model(entity_type);//将对应的增强组件模型引进来
+
   if(req.params.groupId == null && req.session.gid!=null) {
-    CompanyGroup.findOne({
+    Entity.findOne({
         cid: req.session.cid,
         gid: req.session.gid
-      },function(err, companyGroup) {
+      },function(err, entity) {
           if (err) {
               console.log(err);
-              return;
+              return res.send(err);
           }
           else {
               res.render('group/group_info', {
-                  'companyGroup': companyGroup,
-                  'companyname': req.session.cpname
+                  'companyGroup': req.session.companyGroup,  //父小组信息
+                  'entity': entity                           //实体小组信息
               });
           }
       });
   }
   else if(req.session.cpname != null || req.session.username != null ) {
-      console.log(req.companyGroup);
       res.render('group/group_info', {
           title: '小组信息管理',
           companyGroup: req.companyGroup,
@@ -65,7 +74,6 @@ exports.info =function(req,res) {
   else
       res.redirect('/users/signin');
 };
-
 exports.saveInfo =function(req,res) {
     if(req.session.cid != null) {
       console.log(req.body);
@@ -94,6 +102,13 @@ exports.saveInfo =function(req,res) {
     else
         res.send({'result':0,'msg':'未登录'});
 };
+//小队信息维护
+
+
+
+
+
+
 
 //返回组件页面
 exports.home = function(req, res) {
@@ -374,6 +389,7 @@ exports.responseProvoke = function (req, res) {
         campaign.poster.username = competition.camp_a.username;
         campaign.content = competition.content + '  来来来,现在是 ' + competition.camp_a.tname + ' VS ' + competition.camp_b.tname;
         campaign.active = true;
+        campaign.provoke.competition_id = competition.id;
 
         campaign.save(function(err) {
           if (err) {
@@ -401,6 +417,44 @@ exports.responseProvoke = function (req, res) {
           res.send('ok');
         });
     });
+  });
+};
+
+
+
+exports.campaignEdit = function (req, res) {
+  var campaign_id = req.body.campaign_id;
+  var content = req.body.content;
+  var start_time = req.body.start_time;
+  var end_time = req.body.end_time;
+
+  Campaign.findOne({'id':campaign_id}, function (err, campaign) {
+    if(err) {
+      return res.send(err);
+    } else {
+      
+       GroupMessage.findOne({'content':campaign.content}, function (err, group_message) {
+        if(err) {
+          return res.send(err);
+        } else {
+          group_message.content = content;
+          campaign.content = content;
+          campaign.start_time = start_time;
+          campaign.end_time = end_time;
+          group_message.save(function (err) {
+            if(err) {
+              return res.send(err);
+            } else {
+              campaign.save();
+              return res.send('ok');
+            }
+          })
+        }
+      });
+      
+      //console.log(campaign_id);
+      //return res.send('ok');
+    }
   });
 };
 

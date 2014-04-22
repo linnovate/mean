@@ -17,13 +17,16 @@
         <p>结束时间: {{ campaign_item.end_time }}</p>
         <p>是否参加: {{ campaign_item.join}}</p>
         <p>活动是否关闭: {{ campaign_item.active}} </p>
-
+        <div class="row">
           <div ng-switch on="{{campaign_item.join}}" ng-if="campaign_item.active" class="col-md-2">
             <input type = "button"  class="btn btn-primary btn-lg" value = "退出" ng-click="quit(campaign_item.id)" ng-switch-when="true"/>
             <input type = "button"  class="btn btn-primary btn-lg" value = "参加" ng-click="join(campaign_item.id)" ng-switch-default/>
           </div>
 
-            <input type = "button"  class="btn btn-primary btn-lg" ng-if="campaign.show" value = "{{ campaign_item.active_value}}" ng-click="cancel(campaign_item.id)" class="col-md-2"/>
+          <input type = "button"  class="btn btn-primary btn-lg col-md-1" ng-if="campaign.show" value = "{{ campaign_item.active_value}}" ng-click="cancel(campaign_item.id)" />
+
+          <input type = "button"  class="btn btn-primary btn-lg col-md-1" ng-if="campaign.show" value = "编辑" ng-click="getId(campaign_item.id)" data-toggle="modal" data-target="#editModel"/>
+        </div>
       </li>
     </div>
   </ol>
@@ -55,6 +58,35 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
         <button type="button" class="btn btn-primary" ng-click='sponsor()' data-dismiss="modal">确定</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="editModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">编辑活动</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <label>活动内容
+            <input type="text" class="form-control" name="content" ng-model="content">
+          </label>
+          <label>开始时间
+            <input type="text" class="form-control" name="start_time" ng-model="start_time">
+          </label>
+          <label>结束时间
+            <input type="text" class="form-control" name="end_time" ng-model="end_time">
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" ng-click='editCampaign()' data-dismiss="modal">确定</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

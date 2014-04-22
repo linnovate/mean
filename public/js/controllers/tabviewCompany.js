@@ -80,6 +80,35 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
       that.show = data.role === 'EMPLOYEE';  //由于还未设置权限,目前普通员工也可以关闭活动  TODO
     });
 
+
+    $scope.getId = function(cid) {
+        that.campaign_id = cid;
+    };
+    $scope.editCampaign = function() {
+        try{
+            $http({
+                method: 'post',
+                url: '/company/campaignEdit',
+                data:{
+                    campaign_id : that.campaign_id,
+                    content : $scope.content,
+                    start_time : $scope.start_time,
+                    end_time : $scope.end_time
+                }
+            }).success(function(data, status) {
+                //发布活动后跳转到显示活动列表页面
+                window.location.reload();
+
+            }).error(function(data, status) {
+                //TODO:更改对话框
+                alert('数据发生错误！');
+            });
+        }
+        catch(e){
+            console.log(e);
+        }
+    };
+
     $scope.join = function(campaign_id) {
       alert(campaign_id);
         try {

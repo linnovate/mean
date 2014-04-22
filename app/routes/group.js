@@ -30,6 +30,8 @@ module.exports = function(app) {
   app.post('/group/campaignSponsor', group.sponsor);
   app.param('groupId',group.group);
 
+  //编辑活动
+  app.post('/group/campaignEdit', group.campaignEdit);
 
   //约战、应战
   app.post('/group/provoke', group.provoke);

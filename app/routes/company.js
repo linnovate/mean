@@ -38,6 +38,10 @@ module.exports = function(app, passport) {
     //企业发布活动
     app.post('/company/campaignSponsor', company.sponsor);
 
+
+    //编辑活动
+    app.post('/company/campaignEdit', company.campaignEdit);
+
     app.get('/company/getCompanyMessages', company.getCompanyMessage);
     app.get('/company/getCampaigns', company.getCompanyCampaign);
 

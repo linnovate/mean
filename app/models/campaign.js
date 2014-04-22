@@ -51,7 +51,8 @@ var Campaign = new Schema({
     provoke: {                        //约战活动
         active: false,                //如果是true就显示为约战活动,否则为普通活动
         team_a: String,               //约战方队名
-        team_b: String                //被约方队名
+        team_b: String,               //被约方队名
+        competition_id: String        //对应的比赛的id
     }
 });
 
