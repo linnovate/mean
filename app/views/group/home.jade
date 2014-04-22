@@ -1,5 +1,17 @@
 extends ../layouts/manager
 
+block baseInfo
+  .row
+    .col-md-2
+      img.img-responsive.img-thumbnail(src="/img/user/photo/#{photo}" width="128px")
+    .col-md-10(height='128px')
+      .row
+        .col-md-4 队名
+        .col-md-4 相册
+      .row
+        .col-md-4 成绩
+        .col-md-4 人数
+
 block panel
   div(ng-app="tabViewGroup")
     ul.nav.nav-tabs
