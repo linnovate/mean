@@ -6,8 +6,10 @@
     temp_photo_form.submit(function() {
       var options = {
         success: function(data, status) {
-          $('#edit_img').attr('src', '/img/user/photo/temp/' + data.img);
-          $('#preview').attr('src', '/img/user/photo/temp/' + data.img);
+          var temp_src = '/img/user/photo/temp/' + data.img;
+          $('#edit_img').attr('src', temp_src);
+          $('#edit_photo').find('.jcrop-holder img').attr('src', temp_src);
+          $('#preview').attr('src', temp_src);
         }
       };
 
