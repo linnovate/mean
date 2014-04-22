@@ -1,19 +1,26 @@
 extends ../layouts/manager
 
 block panel
-  .row
-    .teamInfo.col-xs-4
-      img.teamLogo
-      a.teamName
-      each teamAMember in teamAMembers
-        a.teamMember
-    .vs.col-xs-4
-      p
-    .teamInfo.col-xs-4
-      img.teamLogo
-      a.teamName
-      each teamBMember in teamBMembers
-        a.teamMember
+  .competition_content(ng-app='group' ng-controller='footballCometition')
+    .row
+      .teamInfo.col-xs-4
+        img.teamLogo(src='/img/icons/facebook.png')
+        div
+          a.teamName= competition.camp_b.tname
+        div
+          each teamAMember in competition.camp_a.member
+            img.size_50.teamMember(draggable="true" ondragstart="drag(event)" src='/img/icons/facebook.png' id='#{teamAMember.username}')
+      .vs.col-xs-4
+        p.text-center VS
+      .teamInfo.col-xs-4
+        img.teamLogo(src='/img/icons/google.png')
+        div
+          a.teamName= competition.camp_b.tname
+        div
+          each teamBMember in competition.camp_b.member
+            img.size_50.teamMember(draggable="true" ondragstart="drag(event)" src='/img/icons/google.png' id='#{teamBMember.username}')
+    .row
+      img.col-xs-12.img_contain.field(src='/img/field.png' ondrop="drop(event)" ondragover="allowDrop(event)")
 
 block aside
   .infoHead.row
@@ -21,34 +28,30 @@ block aside
   hr
   .row
     label.col-xs-4.control-label 类型：
-    label.col-xs-8.control-label
+    label.col-xs-8.control-label= competition.group_type
   .row
     label.col-xs-4.control-label 赛制：
-    label.col-xs-8.control-label
+    label.col-xs-8.control-label= competition.brief.competition_format
   .row
     label.col-xs-4.control-label 人数：
     label.col-xs-8.control-label
   .row
-    label.col-xs-4.control-label 简介
-    label.col-xs-8.control-label
-  .row
     label.col-xs-4.control-label 场地：
-    label.col-xs-8.control-label
+    label.col-xs-8.control-label= competition.brief.location
   .row
     label.col-xs-4.control-label 应战截止时间：
-    label.col-xs-8.control-label
+    label.col-xs-8.control-label= competition.brief.deadline
   .row
     label.col-xs-4.control-label 活动时间：
-    label.col-xs-8.control-label
+    label.col-xs-8.control-label= competition.brief.competition_date
   .row
     label.col-xs-4.control-label 备注：
-    label.col-xs-8.control-label
-  .row
-    label.col-xs-4.control-label 排名
-    label.col-xs-8.control-label
+    label.col-xs-8.control-label= competition.brief.remark
   hr
   .infoHead.row
     h4.pull-left 活动地点
   hr
   .infoHead.row
     h4.pull-left 活动精彩照片
+append footExt
+    script(src="/js/controllers/group.js")

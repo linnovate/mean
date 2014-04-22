@@ -8,14 +8,31 @@
 .group input {
   display: none;
 }
-.width_210 {
+.size_210 {
   height: 210px;
   width: 210px;
 }
-.width_80 {
+.size_80 {
   height: 80px;
   width: 80px;
+}
+.size_50 {
+  height: 50px;
+  width: 50px;
+}
+.height_400 {
+  height: 400px;
+}
+.img_contain {
   background-size: contain;
+}
+.full_parent {
+  height: 100%;
+  width: 100%;
+}
+.field {
+  padding: 0;
+  margin: 0;
 }
 .group.inactive .group_1 {
   background-image: url("/img/icons/group/badminton_off.png");

@@ -521,8 +521,48 @@ exports.getGroupMember = function(req,res){
 };
 //比赛
 exports.competition = function(req, res){
+  var competition ={
+    'camp_a':{
+      'tname': '鸭梨冲锋霹雳队',
+      'member':[
+        {
+          'username':'a1'
+        },
+        {
+          'username':'a2'
+        },
+        {
+          'username':'a3'
+        }
+      ]
+    },
+    'camp_b':{
+      'tname': '3M冲锋霹雳队',
+      'member': [
+        {
+          'username': 'b1'
+        },
+        {
+          'username': 'b2'
+        },
+        {
+          'username': 'b3'
+        }
+      ]
+    },
+    'group_type': '足球',
+    'brief': {
+      'competition_format': '友谊赛',
+      'location': '上海体育馆',
+      'deadline': '14-04-04',
+      'competition_date': '14-05-01',
+      'remark': '大家一起来'
+    }
+
+  };
   res.render('competition/football', {
-          title: '发起足球比赛'
+          'title': '发起足球比赛',
+          'competition' : competition
   });
 };
 

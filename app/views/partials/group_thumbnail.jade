@@ -6,4 +6,3 @@ mixin group_thumbnail(groups,group_class,group_head)
       div(class='group col-xs-3 '+group_class)
         a(href="/group/home/#{(group_class == 'inactive' ? group : group.gid)}")
          label(class='width_80 group_'+ (group_class == 'inactive' ? group : group.gid) )
-
