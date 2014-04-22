@@ -612,8 +612,14 @@ exports.changePassword = function (req, res) {
 exports.tempPhoto = function(req, res) {
   var fs = require('fs');
   var temp_path = req.files.temp_photo.path;
+
+  var target_dir = meanConfig.root + '/public/img/user/photo/temp/';
+  if (!fs.existsSync(target_dir)) {
+    fs.mkdirSync(target_dir, '0755');
+  }
+
   // 临时处理，以后会将图片格式统一转换成png
-  var target_path = meanConfig.root + '/public/img/user/photo/temp/' + req.user._id + '.png';
+  var target_path = target_dir + req.user._id + '.png';
   fs.rename(temp_path, target_path, function(err) {
     if (err) throw err;
     fs.unlink(temp_path, function() {
@@ -626,6 +632,7 @@ exports.tempPhoto = function(req, res) {
 exports.editPhoto = function(req, res) {
   var fs = require('fs');
   var temp_path = meanConfig.root + '/public/img/user/photo/temp/' + req.user._id + '.png';
+
   // 临时处理，以后会将图片格式统一转换成png
   var target_path = meanConfig.root + '/public/img/user/photo/' + req.user._id + '.png';
   fs.rename(temp_path, target_path, function(err) {
