@@ -618,27 +618,30 @@ exports.tempPhoto = function(req, res) {
 
   var target_dir = meanConfig.root + '/public/img/user/photo/temp/';
   if (!fs.existsSync(target_dir)) {
-
-    fs.mkdirSync(target_dir, '0755');
+    fs.mkdirSync(target_dir);
   }
 
-  // 临时处理，以后会将图片格式统一转换成png
-  var target_path = target_dir + req.user._id + '.png';
-  fs.rename(temp_path, target_path, function(err) {
-    if (err) throw err;
+  var target_img = req.user._id + '.png';
+  var target_path = target_dir + target_img;
+
+  var gm = require('gm').subClass({ imageMagick: true });
+  gm(temp_path)
+  .write(target_path, function(err) {
+    if (err) console.log(err);
     fs.unlink(temp_path, function() {
       if (err) throw err;
-      res.send({ img: req.user._id + '.png' });
+      res.send({ img: target_img });
     });
   });
+
 };
 
 exports.editPhoto = function(req, res) {
   var fs = require('fs');
-  var temp_path = meanConfig.root + '/public/img/user/photo/temp/' + req.user._id + '.png';
 
-  // 临时处理，以后会将图片格式统一转换成png
-  var target_path = meanConfig.root + '/public/img/user/photo/' + req.user._id + '.png';
+  var img = req.user._id + '.png';
+  var temp_path = meanConfig.root + '/public/img/user/photo/temp/' + img;
+  var target_path = meanConfig.root + '/public/img/user/photo/' + img;
   fs.rename(temp_path, target_path, function(err) {
     if (err) throw err;
     fs.unlink(temp_path, function() {

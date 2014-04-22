@@ -9,7 +9,8 @@ var express = require('express'),
     flash = require('connect-flash'),   //session operate
     helpers = require('view-helpers'),
     config = require('./config'),
-    middleware = require('./middleware');
+    middleware = require('./middleware'),
+    fs = require('fs');
     
 module.exports = function(app, passport, db) {
     app.set('showStackError', true);
@@ -65,8 +66,13 @@ module.exports = function(app, passport, db) {
             })
         }));
 
+        var uploadDir = config.root + '/temp_uploads/';
+        if (!fs.existsSync(uploadDir)) {
+            fs.mkdirSync(uploadDir);
+        }
+
         // 上传设置，必须在app.router和static middleware之前
-        app.use(express.bodyParser());
+        app.use(express.bodyParser({ uploadDir: uploadDir }));
 
         //app.use(middleware.auth_user);
 
