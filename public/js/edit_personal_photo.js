@@ -37,10 +37,10 @@
       var imgx = img.width();
       var imgy = img.height();
 
-      $('#w').val(coords.w);
-      $('#h').val(coords.h);
-      $('#x').val(coords.x);
-      $('#y').val(coords.y);
+      $('#w').val(coords.w / imgx);
+      $('#h').val(coords.h / imgy);
+      $('#x').val(coords.x / imgx);
+      $('#y').val(coords.y / imgy);
 
       $('#preview').css({
         width: Math.round(rx * imgx) + 'px',
