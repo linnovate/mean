@@ -626,6 +626,7 @@ exports.tempPhoto = function(req, res) {
 
   var gm = require('gm').subClass({ imageMagick: true });
   gm(temp_path)
+  .resize(480)
   .write(target_path, function(err) {
     if (err) console.log(err);
     fs.unlink(temp_path, function() {
@@ -642,7 +643,12 @@ exports.editPhoto = function(req, res) {
   var img = req.user._id + '.png';
   var temp_path = meanConfig.root + '/public/img/user/photo/temp/' + img;
   var target_path = meanConfig.root + '/public/img/user/photo/' + img;
-  fs.rename(temp_path, target_path, function(err) {
+
+  var gm = require('gm').subClass({ imageMagick: true });
+  gm(temp_path)
+  .crop(req.body.width, req.body.height, req.body.x, req.body.y)
+  .resize(128, 128)
+  .write(target_path, function(err) {
     if (err) throw err;
     fs.unlink(temp_path, function() {
       if (err) throw err;

@@ -7,9 +7,16 @@
       var options = {
         success: function(data, status) {
           var temp_src = '/img/user/photo/temp/' + data.img;
-          $('#edit_img').attr('src', temp_src);
-          $('#edit_photo').find('.jcrop-holder img').attr('src', temp_src);
+          var jcrop_img = $('#edit_img');
+          jcrop_img.attr('src', temp_src);
           $('#preview').attr('src', temp_src);
+
+          jcrop_img.Jcrop({
+            setSelect: [0, 0, 128, 128],
+            aspectRatio: 1,
+            onChange: showPreview
+
+          });
         }
       };
 
@@ -30,6 +37,11 @@
       var imgx = img.width();
       var imgy = img.height();
 
+      $('#w').val(coords.w);
+      $('#h').val(coords.h);
+      $('#x').val(coords.x);
+      $('#y').val(coords.y);
+
       $('#preview').css({
         width: Math.round(rx * imgx) + 'px',
         height: Math.round(ry * imgy) + 'px',
@@ -38,10 +50,6 @@
       });
     }
 
-    $('#edit_img').Jcrop({
-      onChange: showPreview,
-      aspectRatio: 1
-    });
 
   });
 

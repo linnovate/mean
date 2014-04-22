@@ -22,6 +22,10 @@ block baseInfo
             label.btn.btn-primary 选择头像
                 input#temp_photo.hidden(type="file" name="temp_photo")
           form(action="/users/editPhoto" method="post")
+            input#w(type="hidden" name="width" value="128")
+            input#h(type="hidden" name="height" value="128")
+            input#x(type="hidden" name="x" value="0")
+            input#y(type="hidden" name="y" value="0")
             button.btn.btn-primary(type="submit") 保存修改
 
 
