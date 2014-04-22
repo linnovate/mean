@@ -10,6 +10,7 @@
         "bootstrap": "3.0.3",
         "angular-bootstrap": "0.10.0",
         "angular-ui-router": "#master",
-        "linkage-selector": "latest"
+        "linkage-selector": "latest",
+        "jquery-form": "3.46.0"
     }
 }
