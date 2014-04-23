@@ -10,23 +10,7 @@ html
     link(rel="stylesheet" href="/css/views/group_select.css")
     block headExt
   body
-    nav.navbar.navbar-inverse(rolo="navigation")
-      .navbar-header
-        button.navbar-toggle(type="button" data-toggle="collapse" data-target="#personal_nav")
-          span.sr-only 切换导航栏
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        a.navbar-brand(href="/") donler
-      .collapse.navbar-collapse#personal_nav
-        ul.nav.navbar-nav
-          li
-            a(href="/company/home") 公司主页
-          li
-            a(href="/users/home") 个人主页
-        ul.nav.navbar-nav.pull-right
-          li
-            a(href="/users/signout") 注销
+    include ../partials/user_nav
 
     .container
       .row

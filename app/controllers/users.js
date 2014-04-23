@@ -388,11 +388,11 @@ exports.home = function(req, res) {
       };
       var fs = require('fs');
       var user_photo_path = meanConfig.root + '/public/img/user/photo/' + req.user._id + '.png';
-      var photo = 'default.png';
+      var big_photo = 'default.png';
       if (fs.existsSync(user_photo_path)) {
-        photo = req.user._id + '.png';
+        big_photo = req.user._id + '.big.png';
       }
-      return res.render('users/home', {'groups': req.user.group, 'ugids':_ugids, photo: photo});
+      return res.render('users/home', {'groups': req.user.group, 'ugids':_ugids, big_photo: big_photo});
     });
 
   }
@@ -628,7 +628,7 @@ exports.tempPhoto = function(req, res) {
   gm(temp_path)
   .write(target_path, function(err) {
     if (err) console.log(err);
-    fs.unlink(temp_path, function() {
+    fs.unlink(temp_path, function(err) {
       if (err) throw err;
       res.send({ img: target_img });
     });
@@ -636,31 +636,61 @@ exports.tempPhoto = function(req, res) {
 
 };
 
-exports.editPhoto = function(req, res) {
+exports.savePhoto = function(req, res) {
   var fs = require('fs');
 
-  var img = req.user._id + '.png';
-  var temp_path = meanConfig.root + '/public/img/user/photo/temp/' + img;
-  var target_path = meanConfig.root + '/public/img/user/photo/' + img;
+  var temp_img = req.user._id + '.png';
+  var big_img = req.user._id + '.big.png';
+  var middle_img = req.user._id + '.middle.png';
+  var small_img = req.user._id + '.small.png';
+  var temp_path = meanConfig.root + '/public/img/user/photo/temp/' + temp_img;
+  var target_dir = meanConfig.root + '/public/img/user/photo/';
 
   var gm = require('gm').subClass({ imageMagick: true });
-  gm(temp_path).size(function(err, value) {
-    var w = req.body.width * value.width;
-    var h = req.body.height * value.height;
-    var x = req.body.x * value.width;
-    var y = req.body.y * value.height;
-
-    gm(temp_path)
-    .crop(w, h, x, y)
-    .resize(128, 128)
-    .write(target_path, function(err) {
+  try {
+    gm(temp_path).size(function(err, value) {
       if (err) throw err;
-      fs.unlink(temp_path, function() {
+
+      var w = req.body.width * value.width;
+      var h = req.body.height * value.height;
+      var x = req.body.x * value.width;
+      var y = req.body.y * value.height;
+
+      gm(temp_path)
+      .crop(w, h, x, y)
+      .resize(150, 150)
+      .write(target_dir + big_img, function(err) {
         if (err) throw err;
-        res.redirect('/users/home');
+
+        gm(temp_path)
+        .crop(w, h, x, y)
+        .resize(50, 50)
+        .write(target_dir + middle_img, function(err) {
+          if (err) throw err;
+
+          gm(temp_path)
+          .crop(w, h, x, y)
+          .resize(27, 27)
+          .write(target_dir + small_img, function(err) {
+            if (err) throw err;
+
+            fs.unlink(temp_path, function(err) {
+              if (err) console(err);
+              res.redirect('/users/editPhoto');
+            });
+          });
+        });
       });
+
     });
-  });
+  } catch(e) {
+    console.log(e);
+    res.redirect('/users/editPhoto');
+  }
+};
+
+exports.editPhoto = function(req, res) {
+  res.render('users/editPhoto', { uid: req.user._id });
 };
 
 

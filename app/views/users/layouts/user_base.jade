@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title= title
+    meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+    meta(name="viewport" content="width=device-width,initial-scale=1")
+    link(href="/img/icons/favicon.ico" rel="shortcut icon" type="image/x-icon")
+    link(rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css")
+    block headExt
+  body
+    include ../partials/user_nav
+
+    block content
+
+    include ../../partials/footer
+
+    script(src="/lib/angular/angular.min.js")
+    script(src="/lib/jquery/dist/jquery.min.js")
+    script(src="/lib/bootstrap/dist/js/bootstrap.min.js")
+    block footExt

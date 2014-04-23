@@ -9,7 +9,9 @@
           var temp_src = '/img/user/photo/temp/' + data.img;
           var jcrop_img = $('#edit_img');
           jcrop_img.attr('src', temp_src);
-          $('#preview').attr('src', temp_src);
+          $('#preview_big').attr('src', temp_src);
+          $('#preview_middle').attr('src', temp_src);
+          $('#preview_small').attr('src', temp_src);
 
           jcrop_img.Jcrop({
             setSelect: [0, 0, 128, 128],
@@ -31,23 +33,31 @@
 
     function showPreview(coords)
     {
-      var rx = 128 / coords.w;
-      var ry = 128 / coords.h;
       var img = $('#edit_img');
       var imgx = img.width();
       var imgy = img.height();
 
+      // 裁剪参数，单位为百分比
       $('#w').val(coords.w / imgx);
       $('#h').val(coords.h / imgy);
       $('#x').val(coords.x / imgx);
       $('#y').val(coords.y / imgy);
 
-      $('#preview').css({
-        width: Math.round(rx * imgx) + 'px',
-        height: Math.round(ry * imgy) + 'px',
-        marginLeft: '-' + Math.round(rx * coords.x) + 'px',
-        marginTop: '-' + Math.round(ry * coords.y) + 'px'
-      });
+      var thumbnails = [$('#preview_big'), $('#preview_middle'), $('#preview_small')];
+      var sizes = [150, 50, 27]; // size.x = size.y
+
+      for(var i = 0; i < thumbnails.length; i++) {
+
+        var rx = sizes[i] / coords.w;
+        var ry = sizes[i] / coords.h;
+        thumbnails[i].css({
+          width: Math.round(rx * imgx) + 'px',
+          height: Math.round(ry * imgy) + 'px',
+          marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+          marginTop: '-' + Math.round(ry * coords.y) + 'px'
+        });
+      }
+
     }
 
 

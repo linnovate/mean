@@ -1,0 +1,53 @@
+extends layouts/user_base
+
+append headExt
+  link(rel="stylesheet" href="/css/jquery.Jcrop.min.css")
+
+block content
+  .container
+    .row
+      .col-xs-12.col-sm-7
+        h2 添加或更改你的大头像
+        .row
+          .col-xs-4.col-sm-4
+            .img_frame
+              img#edit_img.img-responsive.img-thumbnail(src="/img/user/photo/#{uid}.big.png")
+          .col-xs-8.col-sm-8
+            h3 从电脑中选择你喜欢的照片
+            p 你可以上传JPG、JPEG、GIF、PNG或BMP文件
+            form#temp_photo_form(action="/users/tempPhoto" method="post" enctype="multipart/form-data")
+              label.btn.btn-default 选择头像
+                input#temp_photo.hidden(type="file" name="temp_photo")
+              label.photo_path 未选择文件
+        .row
+          .col-xs-12.col-sm-12
+            h3 这是你在动梨上的小头像图标
+            p 随意拖拽或缩放大图中的方格，预览的小图即为保存后的小头像图标。
+        .row
+          .col-xs-4.col-sm-4
+            div(style="width:150px; height:150px; overflow:hidden")
+              img#preview_big(src="/img/user/photo/#{uid}.big.png")
+          .col-xs-2.col-sm-2
+            div(style="width:50px; height:50px; overflow:hidden")
+              img#preview_middle(src="/img/user/photo/#{uid}.middle.png")
+          .col-xs-2.col-sm-2
+            div(style="width:27px; height:27px; overflow:hidden")
+              img#preview_small(src="/img/user/photo/#{uid}.small.png")
+          .col-xs-4.col-sm-4
+        .row
+          form(action="/users/savePhoto" method="post")
+            input#w(type="hidden" name="width" value="128")
+            input#h(type="hidden" name="height" value="128")
+            input#x(type="hidden" name="x" value="0")
+            input#y(type="hidden" name="y" value="0")
+            button.btn.btn-primary(type="submit") 保存头像设置
+      .col-xs-12.col-sm-5
+        h3 给你自己扮酷
+        p 照片尺寸需要大于150x150像素
+        p 建议上传近距离的照片（比如大头照、特写），这样经过编辑后的头像会很清楚。
+        p 保存成功后如果图标不更新，你可以用浏览器刷新几次。
+
+append footExt
+  script(src="/js/jquery.Jcrop.min.js")
+  script(src="/lib/jquery-form/jquery.form.js")
+  script(src="/js/edit_personal_photo.js")
