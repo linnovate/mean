@@ -41,4 +41,10 @@ module.exports = function(app) {
   //约战、应战
   app.post('/group/provoke', group.provoke);
   app.post('/group/responseProvoke', group.responseProvoke);
+
+  app.post('/group/tempLogo', group.tempLogo);
+  app.post('/group/saveLogo', group.saveLogo);
+
+  app.get('/group/editLogo', group.editLogo);
+
 };

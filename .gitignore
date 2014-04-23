@@ -8,5 +8,8 @@ public/lib
 test/coverage
 mean.iml
 public/img/user/
+public/img/group/
 temp_uploads/
+
 !public/img/user/photo/default.png
+!public/img/group/logo/default.png

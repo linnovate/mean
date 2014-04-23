@@ -5,6 +5,8 @@
  */
 var mongoose = require('mongoose'),
     encrypt = require('../middlewares/encrypt'),
+    crypto = require('crypto'),
+    meanConfig = require('../../config/config'),
     GroupMessage = mongoose.model('GroupMessage'),
     Campaign = mongoose.model('Campaign'),
     User = mongoose.model('User'),
@@ -132,14 +134,17 @@ exports.home = function(req, res) {
             _ugids.push(group[i].gid);
           }
         };
+        CompanyGroup.findOne({ gid: req.session.gid }).exec(function(err, company_group) {
           return res.render('group/home', {
             'groups': company.group,
             'ugids':_ugids,
             'tname': (req.companyGroup.name !== undefined && req.companyGroup.name !== null) ? req.companyGroup.name : '未命名',
             'number': (req.companyGroup.member !== undefined && req.companyGroup.member !== null) ? req.companyGroup.member.length : 0,
             'score': (req.companyGroup.score !== undefined && req.companyGroup.score !== null) ? req.companyGroup.score : 0,
-            'role': req.session.role === 'EMPLOYEE'  //等加入权限功能后再修改  TODO
+            'role': req.session.role === 'EMPLOYEE',  //等加入权限功能后再修改  TODO
+            'big_logo': company_group.logo.big || '/img/group/logo/default.png'
           });
+        });
       });
     }
   });
@@ -680,6 +685,134 @@ exports.searchGroup = function(req, res) {
   });
 };
 
+
 exports.updateFormation = function(req, res){
   res.send("dd");
 }
+
+exports.tempLogo = function(req, res) {
+
+  var fs = require('fs');
+  var temp_path = req.files.temp_photo.path;
+
+  var target_dir = meanConfig.root + '/public/img/group/logo/temp/';
+  if (!fs.existsSync(target_dir)) {
+    fs.mkdirSync(target_dir);
+  }
+
+  var shasum = crypto.createHash('sha1');
+
+  shasum.update(req.session.gid);
+  var target_img = shasum.digest('hex') + '.png';
+  var target_path = target_dir + target_img;
+
+  var gm = require('gm').subClass({ imageMagick: true });
+  gm(temp_path)
+  .write(target_path, function(err) {
+    if (err) console.log(err);
+    fs.unlink(temp_path, function(err) {
+      if (err) throw err;
+      res.send({ img: target_img });
+    });
+  });
+
+};
+
+exports.saveLogo = function(req, res) {
+  var fs = require('fs');
+  var user = req.user;
+
+  var shasum = crypto.createHash('sha1');
+
+  shasum.update(req.session.gid);
+  var temp_img = shasum.digest('hex') + '.png';
+
+  var photos = ['', '', ''];
+  for (var i = 0; i < photos.length; i++) {
+    var shasum = crypto.createHash('sha1');
+    shasum.update( Date.now().toString() + Math.random().toString() );
+    photos[i] = shasum.digest('hex') + '.png';
+  }
+
+  // 文件系统路径，供fs使用
+  var temp_path = meanConfig.root + '/public/img/group/logo/temp/' + temp_img;
+  var target_dir = meanConfig.root + '/public/img/group/logo/';
+
+  // uri目录，存入数据库的路径，供前端访问
+  var uri_dir = '/img/group/logo/';
+
+  var gm = require('gm').subClass({ imageMagick: true });
+  try {
+    gm(temp_path).size(function(err, value) {
+      if (err) throw err;
+
+      var w = req.body.width * value.width;
+      var h = req.body.height * value.height;
+      var x = req.body.x * value.width;
+      var y = req.body.y * value.height;
+
+      CompanyGroup.findOne({ gid: req.session.gid }).exec(function(err, company_group) {
+        var ori_logos = [company_group.logo.big, company_group.logo.middle, company_group.logo.small];
+
+        gm(temp_path)
+        .crop(w, h, x, y)
+        .resize(150, 150)
+        .write(target_dir + photos[0], function(err) {
+          if (err) throw err;
+
+          gm(temp_path)
+          .crop(w, h, x, y)
+          .resize(50, 50)
+          .write(target_dir + photos[1], function(err) {
+            if (err) throw err;
+
+            gm(temp_path)
+            .crop(w, h, x, y)
+            .resize(27, 27)
+            .write(target_dir + photos[2], function(err) {
+              if (err) throw err;
+              company_group.logo.big = uri_dir + photos[0];
+              company_group.logo.middle = uri_dir + photos[1];
+              company_group.logo.small = uri_dir + photos[2];
+              company_group.save(function(err) {
+                if (err) throw err;
+              });
+
+              fs.unlink(temp_path, function(err) {
+                if (err) console(err);
+                var unlink_dir = meanConfig.root + '/public';
+                for (var i = 0; i < ori_logos.length; i++) {
+                  if (ori_logos[i]) {
+                    if (fs.existsSync(unlink_dir + ori_logos[i])) {
+                      fs.unlinkSync(unlink_dir + ori_logos[i]);
+                    }
+                  }
+                }
+                res.redirect('/group/editLogo');
+              });
+            });
+          });
+        });
+
+      });
+
+    });
+  } catch(e) {
+    console.log(e);
+    res.redirect('/group/editLogo');
+  }
+};
+
+exports.editLogo = function(req, res) {
+  var default_img_uri = '/img/group/logo/default.png';
+  CompanyGroup.findOne({ gid: req.session.gid }).exec(function(err, company_group) {
+    res.render('group/editLogo', {
+      big_photo: company_group.logo.big || default_img_uri,
+      middle_photo: company_group.logo.middle || default_img_uri,
+      small_photo: company_group.logo.small || default_img_uri
+    });
+  });
+
+};
+
+
