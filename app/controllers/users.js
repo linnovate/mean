@@ -50,10 +50,17 @@ exports.loginSuccess = function(req, res) {
   req.session.cid = req.user.cid;
   req.session.uid = req.user.id;
   req.session.role = req.user.role;
-  
+
   res.redirect('/users/home');
 };
 
+exports.authorize = function(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    res.redirect('/users/signin');
+  }
+};
 
 
 /**

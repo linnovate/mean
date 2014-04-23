@@ -5,15 +5,17 @@ var users = require('../controllers/users');
 
 module.exports = function(app, passport) {
 
+    var authorize = users.authorize;
+
     app.get('/users/signin', users.signin);
-    app.get('/users/signout', users.signout);
+    app.get('/users/signout', authorize, users.signout);
     // Setting the local strategy route
     app.post('/users/session', passport.authenticate('user', {
         failureRedirect: '/users/signin',
         failureFlash: true
     }), users.loginSuccess);
 
-    app.get('/users/home', users.home);
+    app.get('/users/home', authorize, users.home);
 
     // Active produce
     app.get('/users/invite', users.invite);
@@ -25,22 +27,22 @@ module.exports = function(app, passport) {
     app.get('/users/finishRegister', users.finishRegister);
 
 
-    app.get('/users/getGroupMessages', users.getGroupMessages);
-    app.get('/users/getCampaigns', users.getCampaigns);
+    app.get('/users/getGroupMessages', authorize, users.getGroupMessages);
+    app.get('/users/getCampaigns', authorize, users.getCampaigns);
 
-    app.get('/users/getAccount', users.getAccount);
-    app.post('/users/saveAccount', users.saveAccount);
-    app.post('/users/changePassword',users.changePassword);
-    app.get('/users/editInfo', users.editInfo);
+    app.get('/users/getAccount', authorize, users.getAccount);
+    app.post('/users/saveAccount', authorize, users.saveAccount);
+    app.post('/users/changePassword', authorize, users.changePassword);
+    app.get('/users/editInfo', authorize, users.editInfo);
 
-    app.post('/users/joinCampaign', users.joinCampaign);
-    app.post('/users/quitCampaign', users.quitCampaign);
+    app.post('/users/joinCampaign', authorize, users.joinCampaign);
+    app.post('/users/quitCampaign', authorize, users.quitCampaign);
 
-    app.post('/users/vote', users.vote);
+    app.post('/users/vote', authorize, users.vote);
 
-    app.post('/users/tempPhoto', users.tempPhoto);
-    app.post('/users/savePhoto', users.savePhoto);
+    app.post('/users/tempPhoto', authorize, users.tempPhoto);
+    app.post('/users/savePhoto', authorize, users.savePhoto);
 
-    app.get('/users/editPhoto', users.editPhoto);
+    app.get('/users/editPhoto', authorize, users.editPhoto);
 
 };
