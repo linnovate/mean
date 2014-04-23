@@ -18,7 +18,7 @@ block content
             form#temp_photo_form(action="/users/tempPhoto" method="post" enctype="multipart/form-data")
               label.btn.btn-default 选择头像
                 input#temp_photo.hidden(type="file" name="temp_photo")
-              label.photo_path 未选择文件
+              label#photo_path 未选择文件
         .row
           .col-xs-12.col-sm-12
             h3 这是你在动梨上的小头像图标
@@ -40,7 +40,7 @@ block content
             input#h(type="hidden" name="height" value="128")
             input#x(type="hidden" name="x" value="0")
             input#y(type="hidden" name="y" value="0")
-            button.btn.btn-primary(type="submit") 保存头像设置
+            button#save_button.btn.btn-primary(type="submit" disabled) 保存头像设置
       .col-xs-12.col-sm-5
         h3 给你自己扮酷
         p 照片尺寸需要大于150x150像素

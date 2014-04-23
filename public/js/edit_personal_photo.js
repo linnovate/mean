@@ -28,6 +28,13 @@
 
     var temp_photo = $('#temp_photo');
     temp_photo.change(function() {
+      var save_button = $('#save_button');
+      if (temp_photo.val() === null) {
+        save_button[0].disabled = true;
+      } else {
+        save_button[0].disabled = false;
+      }
+      $('#photo_path').text(temp_photo.val());
       temp_photo_form.submit();
     });
 
