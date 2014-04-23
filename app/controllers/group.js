@@ -727,7 +727,7 @@ exports.saveLogo = function(req, res) {
   shasum.update(req.session.gid);
   var temp_img = shasum.digest('hex') + '.png';
 
-  var photos = ['', '', ''];
+  var photos = new Array(3);
   for (var i = 0; i < photos.length; i++) {
     var shasum = crypto.createHash('sha1');
     shasum.update( Date.now().toString() + Math.random().toString() );
@@ -738,7 +738,7 @@ exports.saveLogo = function(req, res) {
   var temp_path = meanConfig.root + '/public/img/group/logo/temp/' + temp_img;
   var target_dir = meanConfig.root + '/public/img/group/logo/';
 
-  // uri目录，存入数据库的路径，供前端访问
+  // uri路径，存入数据库的路径，供前端访问
   var uri_dir = '/img/group/logo/';
 
   var gm = require('gm').subClass({ imageMagick: true });

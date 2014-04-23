@@ -643,7 +643,7 @@ exports.savePhoto = function(req, res) {
   var temp_img = shasum.digest('hex') + '.png';
 
   // 存入数据库的文件名，以当前时间的加密值命名
-  var photos = ['', '', ''];
+  var photos = new Array(3);
   for (var i = 0; i < photos.length; i++) {
     var shasum = crypto.createHash('sha1');
     shasum.update( Date.now().toString() + Math.random().toString() );
@@ -654,7 +654,7 @@ exports.savePhoto = function(req, res) {
   var temp_path = meanConfig.root + '/public/img/user/photo/temp/' + temp_img;
   var target_dir = meanConfig.root + '/public/img/user/photo/';
 
-  // uri目录，存入数据库的路径，供前端访问
+  // uri路径，存入数据库的路径，供前端访问
   var uri_dir = '/img/user/photo/';
 
   var gm = require('gm').subClass({ imageMagick: true });
@@ -662,11 +662,13 @@ exports.savePhoto = function(req, res) {
     gm(temp_path).size(function(err, value) {
       if (err) throw err;
 
+      // req.body参数均为百分比
       var w = req.body.width * value.width;
       var h = req.body.height * value.height;
       var x = req.body.x * value.width;
       var y = req.body.y * value.height;
 
+      // 在保存新路径前，将原路径取出，以便删除旧文件
       var ori_photos = [user.photo.big, user.photo.middle, user.photo.small];
 
       gm(temp_path)
