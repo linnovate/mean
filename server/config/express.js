@@ -27,9 +27,6 @@ module.exports = function(app, passport, db) {
     // Should be placed before express.static
     // To ensure that all assets and data are compressed (utilize bandwidth)
     app.use(express.compress({
-        filter: function(req, res) {
-            return (/^text\//).test(res.getHeader('Content-Type'));
-        },
         // Levels are specified in a range of 0 to 9, where-as 0 is
         // no compression and 9 is best compression, but slowest
         level: 9
