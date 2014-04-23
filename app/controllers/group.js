@@ -239,7 +239,8 @@ exports.getGroupCampaign = function(req, res) {
           'create_time': campaign[i].create_time ? campaign[i].create_time.toLocaleDateString() : '',
           'start_time': campaign[i].start_time ? campaign[i].start_time.toLocaleDateString() : '',
           'end_time': campaign[i].end_time ? campaign[i].end_time.toLocaleDateString() : '',
-          'join':join
+          'join':join,
+          'provoke':campaign[i].provoke
         });
       }
       return res.send({'data':campaigns,'role':role});
@@ -386,6 +387,7 @@ exports.responseProvoke = function (req, res) {
         campaign.poster.username = competition.camp_a.username;
         campaign.content = competition.content + '  来来来,现在是 ' + competition.camp_a.tname + ' VS ' + competition.camp_b.tname;
         campaign.active = true;
+        campaign.provoke.active = true;
         campaign.provoke.competition_id = competition.id;
         campaign.provoke.active = true;
 
@@ -560,7 +562,7 @@ exports.getGroupMember = function(req,res){
 
 };
 //比赛
-exports.competition = function(req, res){
+exports.getCompetition = function(req, res){
   var competition ={
     'camp_a':{
       'tname': '鸭梨冲锋霹雳队',
@@ -574,6 +576,12 @@ exports.competition = function(req, res){
         {
           'username':'a3'
         }
+      ],
+      'formation':[{
+        'username':'a1',
+        'x':44,
+        'y':59
+      }
       ]
     },
     'camp_b':{
@@ -588,24 +596,53 @@ exports.competition = function(req, res){
         {
           'username': 'b3'
         }
+      ],
+      'formation':[{
+        'username':'b1',
+        'x':64,
+        'y':29
+      }
       ]
     },
     'group_type': '足球',
     'brief': {
       'competition_format': '友谊赛',
       'location': '上海体育馆',
-      'deadline': '14-04-04',
-      'competition_date': '14-05-01',
+      'deadline': new Date(3600*24),
+      'competition_date': new Date(),
       'remark': '大家一起来'
     }
 
   };
+  console.log(req.competition);
   res.render('competition/football', {
           'title': '发起足球比赛',
-          'competition' : competition
+          'competition' : competition,
+          //'team': req.competition_team
   });
 };
 
+exports.competition = function(req, res, next, id){
+  Competition.findOne({
+    'id':id
+  }).exec(function(err, competition){
+    if (err) return next(err);
+    if(req.session.cid ===competition.camp_a.cid){
+      req.competition = competition;
+      req.competition_team = 'a';
+      next();
+    }
+    else if(req.session.cid ===competition.camp_a.cid){
+      req.competition = competition;
+      req.competition_team = 'b';
+      next();
+    }
+    else
+    {
+      return next(new Error('Failed to load competition ' + id));
+    }
+  });
+};
 
 exports.group = function(req, res, next, id) {
   CompanyGroup
@@ -642,3 +679,7 @@ exports.searchGroup = function(req, res) {
     }
   });
 };
+
+exports.updateFormation = function(req, res){
+  res.send("dd");
+}

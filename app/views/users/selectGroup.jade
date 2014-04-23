@@ -10,7 +10,8 @@ block content
       input(type='checkbox' name='group' id='{{group.gid}}' value='{{group.group_type}}' ng-model='group.select' ng-true-value='1' ng-false-value='0')
       label(class='size_210 group_'+'{{group.gid}}' for='{{group.gid}}') {{group.group_type}}
       span
-    button.next.btn.btn-primary.btn-lg.center-block(ng-click='group_next()') 下一步
+    .group_next.row
+      button.next.btn.btn-primary.btn-lg.center-block(ng-click='group_next()') 下一步
 
 block footExt
   script(src="/js/controllers/user.js")

@@ -26,11 +26,12 @@ module.exports = function(app) {
 
   app.post('/group/campaignCancel', group.campaignCancel);
 
-  app.get('/group/competition', group.competition);
+  app.get('/group/competition/:competitionId', group.getCompetition);
+  app.post('/group/updateFormation', group.updateFormation);
   //小组发布活动
   app.post('/group/campaignSponsor', group.sponsor);
   app.param('groupId',group.group);
-
+  app.param('competitionId',group.competition);
   //编辑活动
   app.post('/group/campaignEdit', group.campaignEdit);
 

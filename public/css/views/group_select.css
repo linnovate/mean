@@ -34,6 +34,13 @@
   padding: 0;
   margin: 0;
 }
+.formatField {
+  position: relative;
+}
+.formatField .teamMember {
+  position: absolute;
+  z-index: 100;
+}
 .group.inactive .group_1 {
   background-image: url("/img/icons/group/badminton_off.png");
 }

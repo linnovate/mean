@@ -69,6 +69,7 @@ var Competition = new Schema({
         default: false
       },
       score: Number
+      formation:[_formation]
     },
     camp_b:{                                    //B方阵营
       logo: String,                             //队徽路径
@@ -88,8 +89,9 @@ var Competition = new Schema({
         default: false
       },
       score: Number
+      formation:[_formation]
+
     },
-    formation:[_formation],                     //阵型图
     photo: Array,
 
     vote: {

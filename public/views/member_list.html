@@ -3,8 +3,8 @@
     <ul>
       <div>
         <h1>{{member.group_members.length}}</h1>
-        <li ng-repeat="memberid in member.group_members">
-            <h2>{{ memberid }}</h2>
+        <li ng-repeat="member in member.group_members">
+            <p ng-repeat="detail in member">{{$index}}:{{ detail }}</p>
         </li>
       </div>
     </ul>

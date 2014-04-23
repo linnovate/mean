@@ -1,7 +1,7 @@
 extends ../layouts/manager
 
 block panel
-  .competition_content(ng-app='group' ng-controller='footballCometition')
+  #competition_content
     .row
       .teamInfo.col-xs-4
         img.teamLogo(src='/img/icons/facebook.png')
@@ -9,19 +9,22 @@ block panel
           a.teamName= competition.camp_b.tname
         div
           each teamAMember in competition.camp_a.member
-            img.size_50.teamMember(draggable="true" ondragstart="drag(event)" src='/img/icons/facebook.png' id='#{teamAMember.username}')
+            img.size_50.teamMember(draggable="true" ondragstart='drag(event)' ondragend='dragend(event)' src='/img/icons/facebook.png' id='#{teamAMember.username}')
       .vs.col-xs-4
-        p.text-center VS
+        h1.text-center VS
       .teamInfo.col-xs-4
         img.teamLogo(src='/img/icons/google.png')
         div
           a.teamName= competition.camp_b.tname
         div
           each teamBMember in competition.camp_b.member
-            img.size_50.teamMember(draggable="true" ondragstart="drag(event)" src='/img/icons/google.png' id='#{teamBMember.username}')
-    .row
-      img.col-xs-12.img_contain.field(src='/img/field.png' ondrop="drop(event)" ondragover="allowDrop(event)")
-
+            img.size_50.teamMember(draggable="false" src='/img/icons/google.png' id='#{teamBMember.username}')
+    .row.formatField.field
+      img#formatField.col-xs-12.img_contain.field(draggable="false" ondrop='drop(event)' ondragover='allowDrop(event)' src='/img/field.png')
+      each teamAMember in competition.camp_a.formation
+        img.size_50.teamMember.onemberA(draggable="true" ondragstart='drag(event)' ondragend='dragend(event)' src='/img/icons/facebook.png' id='on_#{teamAMember.username}' style='top:#{teamAMember.y}%;left:#{teamAMember.x}%')
+      each teamBMember in competition.camp_b.formation
+        img.size_50.teamMember.onemberB(draggable="false" ondragstart='drag(event)' ondragend='dragend(event)' src='/img/icons/google.png' id='on_#{teamBMember.username}' style='top:#{teamBMember.y}%;left:#{teamBMember.x}%')
 block aside
   .infoHead.row
     h4.pull-left 活动简介
@@ -31,19 +34,19 @@ block aside
     label.col-xs-8.control-label= competition.group_type
   .row
     label.col-xs-4.control-label 赛制：
-    label.col-xs-8.control-label= competition.brief.competition_format
+    label.col-xs-8.control-label= competition.brief.number
   .row
     label.col-xs-4.control-label 人数：
-    label.col-xs-8.control-label
+    label.col-xs-8.control-label= competition.brief.competition_format
   .row
     label.col-xs-4.control-label 场地：
     label.col-xs-8.control-label= competition.brief.location
   .row
     label.col-xs-4.control-label 应战截止时间：
-    label.col-xs-8.control-label= competition.brief.deadline
+    label.col-xs-8.control-label= competition.brief.deadline.toLocaleDateString()
   .row
     label.col-xs-4.control-label 活动时间：
-    label.col-xs-8.control-label= competition.brief.competition_date
+    label.col-xs-8.control-label= competition.brief.competition_date.toLocaleDateString()
   .row
     label.col-xs-4.control-label 备注：
     label.col-xs-8.control-label= competition.brief.remark
