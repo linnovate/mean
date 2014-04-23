@@ -667,6 +667,8 @@ exports.savePhoto = function(req, res) {
       var x = req.body.x * value.width;
       var y = req.body.y * value.height;
 
+      var ori_photos = [user.photo.big, user.photo.middle, user.photo.small];
+
       gm(temp_path)
       .crop(w, h, x, y)
       .resize(150, 150)
@@ -693,6 +695,14 @@ exports.savePhoto = function(req, res) {
 
             fs.unlink(temp_path, function(err) {
               if (err) console(err);
+              var unlink_dir = meanConfig.root + '/public';
+              for (var i = 0; i < ori_photos.length; i++) {
+                if (ori_photos[i]) {
+                  if (fs.existsSync(unlink_dir + ori_photos[i])) {
+                    fs.unlinkSync(unlink_dir + ori_photos[i]);
+                  }
+                }
+              }
               res.redirect('/users/editPhoto');
             });
           });
