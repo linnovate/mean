@@ -68,7 +68,7 @@ var Competition = new Schema({
         type: Boolean,
         default: false
       },
-      score: Number
+      score: Number,
       formation:[_formation]
     },
     camp_b:{                                    //B方阵营
@@ -88,7 +88,7 @@ var Competition = new Schema({
         type: Boolean,
         default: false
       },
-      score: Number
+      score: Number,
       formation:[_formation]
 
     },
