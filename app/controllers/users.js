@@ -482,18 +482,14 @@ exports.joinCampaign = function (req, res) {
       campaign.member.push({
         'cid':cid,
         'uid':uid,
-        'username':req.user.username,
-        'realname':req.user.username,
-        'email':req.user.email,
-        'phone':req.user.phone,
-        'qq':req.user.qq,
-        'department':req.user.department,
-        'position':req.user.position,
-        'sex':req.user.sex
+        'username':req.user.username
       });
       campaign.save(function (err) {
-        console.log(err);
-    });
+        if(err) {
+          console.log(err);
+          res.send(err);
+        }
+      });
     } else {
       console.log('没有此活动!');
     }

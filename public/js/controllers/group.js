@@ -43,6 +43,8 @@ groupApp.controller('InfoFormController',['$scope','$http',function ($scope, $ht
       }
   };
 }]);
+
+
 //比赛
 groupApp.controller('footballCometition',['$scope','$http',function ($scope, $http) {
   $scope.unEdit = true;

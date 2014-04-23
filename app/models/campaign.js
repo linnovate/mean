@@ -12,10 +12,7 @@ var mongoose = require('mongoose'),
 var _member = new Schema({
     cid: String,
     uid: String,
-    username: String,
-    realname: String,
-    email: String,
-    phone: String
+    username: String
 });
 
 /**
@@ -23,13 +20,16 @@ var _member = new Schema({
  */
 var Campaign = new Schema({
     id: String,
-    active: false,
+    active: {
+        type: Boolean,
+        default: false
+    },
     gid: Array,
     group_type: Array,
-    cid: Array,           //参加该活动的所有公司
+    cid: Array,                        //参加该活动的所有公司
     cname: Array,
     poster: {
-        cid: String,      //活动发起者所属的公司
+        cid: String,                   //活动发起者所属的公司
         cname: String,
         uid: String,
         realname: String,
@@ -49,7 +49,10 @@ var Campaign = new Schema({
     start_time: Date,
     end_time: Date,
     provoke: {                        //约战活动
-        active: false,                //如果是true就显示为约战活动,否则为普通活动
+        active: {
+            type: Boolean,
+            default: false
+        },                            //如果是true就显示为约战活动,否则为普通活动
         team_a: String,               //约战方队名
         team_b: String,               //被约方队名
         competition_id: String        //对应的比赛的id

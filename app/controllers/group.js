@@ -38,7 +38,9 @@ exports.getGroups = function(req,res) {
 
 
 
-
+exports.renderInfo = function (req, res) {
+  res.render('group/group_info');
+};
 
 
 //小队信息维护
@@ -47,45 +49,39 @@ exports.info =function(req,res) {
   var entity_type = req.session.companyGroup.entity_type;
   var Entity = mongoose.model(entity_type);//将对应的增强组件模型引进来
 
-  if(req.params.groupId == null && req.session.gid!=null) {
+  if(req.session.cpname != null || req.session.username != null ) {
+    var gid = req.params.groupId != null ? req.params.groupId : req.session.gid;
     Entity.findOne({
-        cid: req.session.cid,
-        gid: req.session.gid
+        'cid': req.session.cid,
+        'gid': gid
       },function(err, entity) {
           if (err) {
               console.log(err);
               return res.send(err);
-          }
-          else {
-              res.render('group/group_info', {
+          } else {
+              console.log('ok');
+              return res.send({
                   'companyGroup': req.session.companyGroup,  //父小组信息
                   'entity': entity                           //实体小组信息
               });
           }
       });
-  }
-  else if(req.session.cpname != null || req.session.username != null ) {
-      res.render('group/group_info', {
-          title: '小组信息管理',
-          companyGroup: req.companyGroup,
-          companyname: req.session.cpname
-      });
-  }
-  else
+  } else
       res.redirect('/users/signin');
 };
+
 exports.saveInfo =function(req,res) {
     if(req.session.cid != null) {
       console.log(req.body);
-        CompanyGroup.findOne({cid : req.session.cid, gid : req.body.companyGroup.gid}, function(err, companyGroup) {
+        CompanyGroup.findOne({cid : req.session.cid, gid : req.session.gid}, function(err, companyGroup) {
             if (err) {
                 console.log('数据错误');
                 res.send({'result':0,'msg':'数据查询错误'});
                 return;
             };
             if(companyGroup) {
-                companyGroup.name = req.body.companyGroup.name;
-                companyGroup.brief = req.body.companyGroup.brief;
+                companyGroup.name = req.body.name;
+                companyGroup.brief = req.body.brief;
                 companyGroup.save(function (s_err){
                     if(s_err){
                         console.log(s_err);
@@ -300,6 +296,7 @@ exports.provoke = function (req, res) {
 
   competition.id = UUID.id();
   competition.gid = gid;
+  competition.group_type = req.session.companyGroup.group_type;
 
   //provoke.group_type = group_type;
 
@@ -390,6 +387,7 @@ exports.responseProvoke = function (req, res) {
         campaign.content = competition.content + '  来来来,现在是 ' + competition.camp_a.tname + ' VS ' + competition.camp_b.tname;
         campaign.active = true;
         campaign.provoke.competition_id = competition.id;
+        campaign.provoke.active = true;
 
         campaign.save(function(err) {
           if (err) {

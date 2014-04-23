@@ -60,8 +60,14 @@ var Competition = new Schema({
       member:[_member],
       cid: String,
       gid: String,
-      start_confirm: false,                     //双方组长都确认后才能开战
-      rst_confirm: false,
+      start_confirm: {
+        type: Boolean,
+        default: false
+      },                                        //双方组长都确认后才能开战
+      rst_confirm: {
+        type: Boolean,
+        default: false
+      },
       score: Number
     },
     camp_b:{                                    //B方阵营
@@ -73,8 +79,14 @@ var Competition = new Schema({
       member:[_member],
       cid: String,
       gid: String,
-      start_confirm: false,                     //双方组长都确认后才能开战
-      rst_confirm: false,
+      start_confirm: {
+        type: Boolean,
+        default: false
+      },                                        //双方组长都确认后才能开战
+      rst_confirm: {
+        type: Boolean,
+        default: false
+      },
       score: Number
     },
     formation:[_formation],                     //阵型图
@@ -93,7 +105,10 @@ var Competition = new Schema({
         negative_member: [_member]              //反对员工id,cid
     },
     content: String,
-    convert_to_campaign: false,
+    convert_to_campaign: {
+        type: Boolean,
+        default: false
+    },
     provoke_message_id: String
 });
 

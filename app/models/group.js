@@ -14,7 +14,10 @@ var GroupModel = new Schema({
     group_type: String,
     entity_type: String,
     icon: String,
-    active: false,
+    active: {
+        type: Boolean,
+        default: false
+    },
     group_rule: String,
 });
 

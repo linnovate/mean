@@ -16,6 +16,7 @@ module.exports = function(app) {
 
   app.get('/group/info/:groupId', group.info);
   app.get('/group/info', group.info);
+  app.get('/group/renderInfo', group.renderInfo);
 
   app.post('/group/saveInfo', group.saveInfo);
 
@@ -32,6 +33,9 @@ module.exports = function(app) {
 
   //编辑活动
   app.post('/group/campaignEdit', group.campaignEdit);
+
+
+
 
   //约战、应战
   app.post('/group/provoke', group.provoke);

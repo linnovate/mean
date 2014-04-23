@@ -1,38 +1,38 @@
-div
-  form.form-horizontal(name="infoForm" ng-init="companyGroup={'gid':'#{companyGroup.gid}','name':'#{companyGroup.name}','brief':'#{companyGroup.brief}'}")
+div(ng-app="tabViewGroup" ng-controller="infoController")
+  form.form-horizontal(name="infoForm")
     .infoHead.row
       h4.pull-left 基本信息
       a.pull-right(ng-click="editToggle()" ng-bind="buttonStatus")
     hr
     .row
-      label.col-xs-2.control-label 小队名称
+      label.col-xs-2.control-label 队名
       .col-xs-5
-          input.form-control(type="text" name ="username" ng-model="companyGroup.name"  ng-disabled="unEdit")
-    .row
-      label.col-xs-2.control-label 所属公司
-      label.col-xs-5.control-label= companyname
-    .row
-      label.col-xs-2.control-label 队员
-      label.col-xs-5.control-label= companyGroup.member.length
+          input.form-control(type="text" name ="name" ng-model="name"  ng-disabled="unEdit")
     .row
       label.col-xs-2.control-label 简介
       .col-xs-5
-          input.form-control(type="text" name ="brief" ng-model="companyGroup.brief" ng-disabled="unEdit")
-    .row
-      label.col-xs-2.control-label 成立时间
-      label.col-xs-5.control-label= companyGroup.create_date
+          input.form-control(type="text" name ="brief" ng-model="brief" ng-disabled="unEdit")
     .infoHead.row
-      h4.pull-left 比赛信息
+      h4.pull-left 阵容
     hr
     .row
-      label.col-xs-2.control-label 比赛场数
-      label.col-xs-2.control-label
+      label.col-xs-2.control-label 队长
+        li(ng-repeat="leader_name in leader_names")
+          p{{leader_name}}
     .row
-      label.col-xs-2.control-label 胜率
-      label.col-xs-2.control-label
+      label.col-xs-2.control-label 主力
+        li(ng-repeat="main_force in main_forces")
+          p{{main_force.username}}
     .row
-      label.col-xs-2.control-label 积分
-      label.col-xs-2.control-label= companyGroup.score
+      label.col-xs-2.control-label 替补
+        li(ng-repeat="alternate in alternates")
+          p{{alternate.username}}
     .row
-      label.col-xs-2.control-label 排名
-      label.col-xs-2.control-label= companyGroup.rank
+      label.col-xs-2.control-label 主场
+         li(ng-repeat="home_court in home_courts")
+          p{{home_court}}
+    .row
+      label.col-xs-2.control-label 全家福
+    .infoHead.row
+      h4.pull-left 其它
+    hr

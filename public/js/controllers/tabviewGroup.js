@@ -21,7 +21,7 @@ tabViewGroup.config(['$routeProvider', '$locationProvider',
         controllerAs: 'member'
       })
       .when('/group_info', {
-        templateUrl: '/group/info',
+        templateUrl: '/group/renderInfo',
         controller: 'infoController',
         controllerAs: 'account'
       }).
@@ -226,6 +226,18 @@ tabViewGroup.controller('MemberListController', ['$http', function($http) {
 tabViewGroup.controller('infoController', ['$http', '$scope',function($http, $scope) {
     $scope.unEdit = true;
     $scope.buttonStatus = '编辑>';
+
+    var that = this;
+    $http.get('/group/info').success(function(data, status) {
+      that.group_info = data;
+      $scope.name = that.group_info.companyGroup.name != undefined ? that.group_info.companyGroup.name : '无';
+      $scope.brief = that.group_info.companyGroup.brief != undefined ? that.group_info.companyGroup.brief : '无';
+      $scope.leader_names = that.group_info.companyGroup.leader.username.length > 0 ? that.group_info.companyGroup.leader.username : ['无'];
+      $scope.main_forces = that.group_info.entity.main_force != undefined ? that.group_info.entity.main_force : [{'username':'无'}];
+      $scope.alternates = that.group_info.entity.alternate != undefined ? that.group_info.entity.alternate : [{'username':'无'}];
+      $scope.home_courts = that.group_info.entity.homecourt != undefined ? that.group_info.entity.homecourt : ['无'];
+    });
+
     $scope.editToggle = function() {
         $scope.unEdit = !$scope.unEdit;
         if($scope.unEdit) {
@@ -234,12 +246,15 @@ tabViewGroup.controller('infoController', ['$http', '$scope',function($http, $sc
                     method : 'post',
                     url : '/group/saveInfo',
                     data : {
-                        'companyGroup' : $scope.companyGroup
+                        'name' : $scope.name,
+                        'brief' : $scope.brief
                     }
                 }).success(function(data, status) {
                     //TODO:更改对话框
-                    if(data.result === 1)
+                    if(data.result === 1) {
                         alert('信息修改成功！');
+                        window.location.reload();
+                    }
                     else
                         alert(data.msg);
                 }).error(function(data, status) {
