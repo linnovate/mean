@@ -6,7 +6,8 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     validate = require('mongoose-validate'),
-    crypto = require('crypto');
+    crypto = require('crypto'),
+    config = require('../../config/config');
 
 
 var _group = new Schema({
@@ -39,6 +40,12 @@ var UserSchema = new Schema({
         default: 'user'
     },
     salt: String,
+
+    photo: {
+        big: String,
+        middle: String,
+        small: String
+    },
 
     nickname: String,
     realname: String,

@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
   User = mongoose.model('User'),
   Company = mongoose.model('Company'),
   encrypt = require('../middlewares/encrypt'),
+  crypto = require('crypto'),
   mail = require('../services/mail'),
   Group = mongoose.model('Group'),
   CompanyGroup = mongoose.model('CompanyGroup'),
@@ -386,12 +387,8 @@ exports.home = function(req, res) {
           _ugids.push(group[i].gid);
         }
       };
-      var fs = require('fs');
-      var user_photo_path = meanConfig.root + '/public/img/user/photo/' + req.user._id + '.png';
-      var big_photo = 'default.png';
-      if (fs.existsSync(user_photo_path)) {
-        big_photo = req.user._id + '.big.png';
-      }
+
+      var big_photo = req.user.photo.big || '/img/user/photo/default.png';
       return res.render('users/home', {'groups': req.user.group, 'ugids':_ugids, big_photo: big_photo});
     });
 
@@ -621,7 +618,11 @@ exports.tempPhoto = function(req, res) {
     fs.mkdirSync(target_dir);
   }
 
-  var target_img = req.user._id + '.png';
+  var shasum = crypto.createHash('sha1');
+
+  // 临时图片，以加密的用户名命名，以避免将临时路径存入数据库。
+  shasum.update(req.user.username);
+  var target_img = shasum.digest('hex') + '.png';
   var target_path = target_dir + target_img;
 
   var gm = require('gm').subClass({ imageMagick: true });
@@ -638,13 +639,27 @@ exports.tempPhoto = function(req, res) {
 
 exports.savePhoto = function(req, res) {
   var fs = require('fs');
+  var user = req.user;
 
-  var temp_img = req.user._id + '.png';
-  var big_img = req.user._id + '.big.png';
-  var middle_img = req.user._id + '.middle.png';
-  var small_img = req.user._id + '.small.png';
+  var shasum = crypto.createHash('sha1');
+
+  shasum.update(req.user.username);
+  var temp_img = shasum.digest('hex') + '.png';
+
+  // 存入数据库的文件名，以当前时间的加密值命名
+  var photos = ['', '', ''];
+  for (var i = 0; i < photos.length; i++) {
+    var shasum = crypto.createHash('sha1');
+    shasum.update( Date.now().toString() + Math.random().toString() );
+    photos[i] = shasum.digest('hex') + '.png';
+  }
+
+  // 文件系统路径，供fs使用
   var temp_path = meanConfig.root + '/public/img/user/photo/temp/' + temp_img;
   var target_dir = meanConfig.root + '/public/img/user/photo/';
+
+  // uri目录，存入数据库的路径，供前端访问
+  var uri_dir = '/img/user/photo/';
 
   var gm = require('gm').subClass({ imageMagick: true });
   try {
@@ -659,20 +674,26 @@ exports.savePhoto = function(req, res) {
       gm(temp_path)
       .crop(w, h, x, y)
       .resize(150, 150)
-      .write(target_dir + big_img, function(err) {
+      .write(target_dir + photos[0], function(err) {
         if (err) throw err;
 
         gm(temp_path)
         .crop(w, h, x, y)
         .resize(50, 50)
-        .write(target_dir + middle_img, function(err) {
+        .write(target_dir + photos[1], function(err) {
           if (err) throw err;
 
           gm(temp_path)
           .crop(w, h, x, y)
           .resize(27, 27)
-          .write(target_dir + small_img, function(err) {
+          .write(target_dir + photos[2], function(err) {
             if (err) throw err;
+            user.photo.big = uri_dir + photos[0];
+            user.photo.middle = uri_dir + photos[1];
+            user.photo.small = uri_dir + photos[2];
+            user.save(function(err) {
+              if (err) throw err;
+            });
 
             fs.unlink(temp_path, function(err) {
               if (err) console(err);
@@ -690,7 +711,12 @@ exports.savePhoto = function(req, res) {
 };
 
 exports.editPhoto = function(req, res) {
-  res.render('users/editPhoto', { uid: req.user._id });
+  var default_img_uri = '/img/user/photo/default.png';
+  res.render('users/editPhoto', {
+    big_photo: req.user.photo.big || default_img_uri,
+    middle_photo: req.user.photo.middle || default_img_uri,
+    small_photo: req.user.photo.small || default_img_uri
+  });
 };
 
 
