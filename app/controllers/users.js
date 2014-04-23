@@ -24,7 +24,6 @@ var mongoose = require('mongoose'),
  * Show login form
  */
 exports.signin = function(req, res) {
-  console.log(req.user);
   if(req.user) {
     res.redirect('/users/home');
   } else {
