@@ -40,39 +40,6 @@ tabViewGroup.controller('GroupMessageController', ['$http','$scope',
       that.vote = false;
     });
 
-    //约战
-    $scope.provoke = function() {
-         try {
-            $http({
-                method: 'post',
-                url: '/group/provoke',
-                data:{
-                    provoke_model : 'against',
-                    cid_opposite : that.group_messages[0].poster.cid,
-                    content : $scope.content,
-                    team_b : $scope.team_b,
-                    uid_opposite : that.group_messages[0].poster.uid,
-
-                    location: $scope.location,
-                    remark: $scope.remark,
-                    competition_date: $scope.competition_date,
-                    deadline: $scope.deadline,
-                    competition_format: $scope.competition_format,
-                    number: $scope.number
-
-                }
-            }).success(function(data, status) {
-                window.location.reload();
-            }).error(function(data, status) {
-                alert('数据发生错误！');
-            });
-        }
-        catch(e) {
-            console.log(e);
-        }
-        //alert(that.group_messages[0].poster.cid + ' ' + that.group_messages[0].poster.uid);
-    };
-
     //应战
     $scope.responseProvoke = function(provoke_message_id) {
          try {
@@ -94,6 +61,8 @@ tabViewGroup.controller('GroupMessageController', ['$http','$scope',
     };
 }]);
 
+
+
 tabViewGroup.controller('CampaignListController', ['$http', '$scope',
   function($http, $scope) {
     var that = this;
@@ -101,6 +70,70 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
       that.campaigns = data.data;
       that.show = data.role === 'EMPLOYEE';    //由于还未设置权限,目前普通员工也可以关闭活动  TODO
     });
+
+    //TODO 发起活动或者挑战时搜索应约对象 暂时先放在这里
+    $http.get('/search/company').success(function(data, status) {
+      that.companies = data;
+    });
+
+
+    $scope.provoke_select = function( uid) {
+        that.uid_opposite = uid;
+        alert(uid);
+    };
+    $scope.getUser = function( cid) {
+        that.cid_opposite = cid;
+        try {
+            $http({
+                method: 'post',
+                url: '/search/user',
+                data:{
+                    cid : cid
+                }
+            }).success(function(data, status) {
+                that.users = data;
+            }).error(function(data, status) {
+                alert('数据发生错误！');
+            });
+        }
+        catch(e) {
+            console.log(e);
+        }
+    };
+
+    //约战
+    $scope.provoke = function() {
+        
+         try {
+            $http({
+                method: 'post',
+                url: '/group/provoke',
+                data:{
+                    provoke_model : 'against',
+                    cid_opposite : that.cid_opposite,
+                    content : $scope.content,
+                    team_b : $scope.team_b,
+                    uid_opposite : that.uid_opposite,
+
+                    location: $scope.location,
+                    remark: $scope.remark,
+                    competition_date: $scope.competition_date,
+                    deadline: $scope.deadline,
+                    competition_format: $scope.competition_format,
+                    number: $scope.number
+
+                }
+            }).success(function(data, status) {
+                window.location.reload();
+            }).error(function(data, status) {
+                alert('数据发生错误！');
+            });
+        }
+        catch(e) {
+            console.log(e);
+        }
+        
+    };
 
     $scope.getId = function(cid) {
         that.campaign_id = cid;

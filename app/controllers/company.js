@@ -281,6 +281,7 @@ exports.createDetail = function(req, res, next) {
 exports.home = function(req, res) {
     return res.render('company/home', {
         title : '公司组件和活动',
+        cid : req.session.cid,
         role : req.session.role === 'EMPLOYEE'  //等加入权限功能后再修改  TODO
     });
 };
@@ -427,8 +428,9 @@ exports.getCompanyCampaign = function(req, res) {
 
 //任命组长
 exports.appointLeader = function (req, res) {
-  var leader_id = req.body.lid;
+  var uid = req.body.uid;
   var gid = req.body.gid;
+  var cid = req.body.cid;
   User
     .findOne({
         id : lid
@@ -450,6 +452,7 @@ exports.appointLeader = function (req, res) {
       }
     });
 };
+
 
 //关闭企业活动
 exports.campaignCancel = function (req, res) {
@@ -654,18 +657,20 @@ exports.getCompany = function (req, res) {
     var companies_rst = [];
     Company.find(null, function (err, companies) {
         if(err) {
-            return res.send([]);
+            return [];
         } else {
             if(companies) {
+
                 for(var i = 0; i < companies.length; i ++) {
                     companies_rst.push({
-                        'cid' : companies[i].id,
-                        'cpname' : companies[i].info.official_name
+                        'id' : companies[i].id,
+                        'name' : companies[i].info.official_name
                     });
                 }
-                return res.send(companies_rst);
+                console.log(companies_rst);
+                return companies_rst;
             } else {
-                return res.send([]);
+                return [];
             }
         }
     });

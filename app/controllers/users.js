@@ -476,6 +476,7 @@ exports.vote = function (req, res) {
 };
 
 //员工参加活动
+//TODO 加入competition
 exports.joinCampaign = function (req, res) {
   var cid = req.session.cid;
   var uid = req.session.uid;
@@ -737,17 +738,17 @@ exports.editPhoto = function(req, res) {
 //搜索成员
 //目前只是将所有记录都列出来
 //TODO
-exports.searchUser = function(req, res) {
-  var cid = req.body.cid;   //根据公司名找它的员工
+exports.getUser = function(req, res, cid) {
+  var cid = cid;   //根据公司名找它的员工
   User.find({'cid': cid}, function (err, users){
     if(err){
-      return res.send([]);
+      return [];
     }else{
       if(users){
-        //数据量会不会太大?
-        return res.send(users);
+        //数据量会不会太大?或许只需要员工的部分信息?
+        return users;
       } else {
-        return res.send([]);
+        return [];
       }
     }
   });

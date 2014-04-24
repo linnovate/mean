@@ -26,6 +26,7 @@ var drag =function(e){
   e.dataTransfer.setData("nowy",e.pageY);
 };
 
+
 var drop =function(e){
   e.preventDefault();
   var data=e.dataTransfer.getData("member_id");
@@ -59,6 +60,7 @@ var drop =function(e){
     var _newY = _top +e.pageY - datay;
     _newEle.css('top',_newY > 0 ? _newY : 0);
     _newEle.css('left',_newX > 0 ? _newX : 0);
+
   };
 };
 var dragend = function(e){

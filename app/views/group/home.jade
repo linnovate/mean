@@ -12,8 +12,9 @@ block baseInfo
       .row
         .col-md-4(style="height:48px") 成绩 #{score}
         .col-md-4(style="height:48px") 人数 #{number}
-        .col-md-2(style="height:48px")
-          button.btn-primary.btn-lg(data-toggle="modal" data-target="#sponsorModel") 活动／挑战
+        .col-md-4(style="height:48px")
+          button.btn-primary.btn-lg(data-toggle="modal" data-target="#sponsorCampaignModel") 活动
+          button.btn-primary.btn-lg(data-toggle="modal" data-target="#sponsorProvokeModel") 挑战
 
 block panel
   div(ng-app="tabViewGroup")

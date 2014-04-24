@@ -60,16 +60,20 @@ var Competition = new Schema({
       member:[_member],
       cid: String,
       gid: String,
-      start_confirm: {
-        type: Boolean,
-        default: false
-      },                                        //双方组长都确认后才能开战
-      rst_confirm: {
+      start_confirm: {                         //双方组长都确认后才能开战
         type: Boolean,
         default: false
       },
+      formation:[_formation],
+      result: {                                //比赛结果确认
+        confirm: {
+          type: Boolean,
+          default: false
+        },
+        content: String,
+        start_date: Date
+      },
       score: Number,
-      formation:[_formation]
     },
     camp_b:{                                    //B方阵营
       logo: String,                             //队徽路径
@@ -80,17 +84,20 @@ var Competition = new Schema({
       member:[_member],
       cid: String,
       gid: String,
-      start_confirm: {
-        type: Boolean,
-        default: false
-      },                                        //双方组长都确认后才能开战
-      rst_confirm: {
+      start_confirm: {                          //双方组长都确认后才能开战
         type: Boolean,
         default: false
       },
-      score: Number,
-      formation:[_formation]
-
+      formation:[_formation],
+      result: {
+        confirm: {
+          type: Boolean,
+          default: false
+        },
+        content: String,
+        start_date: Date
+      },
+      score: Number
     },
     photo: Array,
 

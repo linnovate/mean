@@ -33,10 +33,67 @@
   </ol>
 </div>
 
-
+<!-- Modal -->
+<div class="modal fade" id="sponsorProvokeModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">发起挑战</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <label>挑战内容
+            <input type="text" class="form-control" name="content" ng-model="content">
+          </label>
+          <label>对方队名
+            <input type="text" class="form-control" name="team_b" ng-model="team_b">
+          </label>
+          <label>赛制
+            <input type="text" class="form-control" name="competition_format" ng-model="competition_format">
+          </label>
+          <label>备注
+            <input type="text" class="form-control" name="remark" ng-model="remark">
+          </label>
+          <label>地点
+            <input type="text" class="form-control" name="location" ng-model="location">
+          </label>
+          <label>人数
+            <input type="text" class="form-control" name="number" ng-model="number">
+          </label>
+          <label>比赛时间
+            <input type="text" class="form-control" name="competition_date" ng-model="competition_date">
+          </label>
+          <label>截止时间
+            <input type="text" class="form-control" name="deadline" ng-model="deadline">
+          </label>
+        </div>
+        <div class="row">
+            <li ng-repeat="company in campaign.companies">
+              <hr/>
+              <p>公司id: {{company.id}}</p>
+              <p>公司名:{{company.name}}</p>
+              <button ng-click="getUser(company.id)">列出成员</button>
+              <hr/>
+            </li>
+        </div>
+        <div class="row">
+          <p>该公司的成员</p>
+          <li ng-repeat="user in campaign.users">
+            <a ng-click="provoke_select(user.id)">{{user.nickname}}</a>
+          </li>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" ng-click='provoke()' data-dismiss="modal">确定</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <!-- Modal -->
-<div class="modal fade" id="sponsorModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="sponsorCampaignModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

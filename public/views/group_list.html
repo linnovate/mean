@@ -12,9 +12,33 @@
       			<p>分数：{{ group.score }}</p>
       			<p>排名：{{ group.rank }}</p>
       			<p>简介：{{ group.brief }}</p>
-            <input type = "button" value = "任命组长" ng-click="appointLeader(group.gid)" />
+            <input type = "button" value = "任命组长" ng-click="setGroupId(group.gid)"  data-toggle="modal" data-target="#appointLeaderModel"/>
     		</li>
     	</div>
   	</ul>
 </div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="appointLeaderModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">搜索成员</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <p>该公司的成员</p>
+          <li ng-repeat="user in group.users">
+            <a ng-click="appointLeader(user.id)" data-dismiss="modal">{{user.nickname}}</a>
+          </li>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
