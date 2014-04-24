@@ -12,9 +12,7 @@ var _member = new Schema({
     cid: String,
     uid: String,
     username: String,
-    email: String,
-    phone: String,
-    number: Number
+    logo: String
 });
 
 

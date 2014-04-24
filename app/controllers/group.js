@@ -50,7 +50,6 @@ exports.info =function(req,res) {
 
   var entity_type = req.session.companyGroup.entity_type;
   var Entity = mongoose.model(entity_type);//将对应的增强组件模型引进来
-
   if(req.session.cpname != null || req.session.username != null ) {
     var gid = req.params.groupId != null ? req.params.groupId : req.session.gid;
     Entity.findOne({
@@ -61,10 +60,10 @@ exports.info =function(req,res) {
               console.log(err);
               return res.send(err);
           } else {
-              console.log('ok');
               return res.send({
                   'companyGroup': req.session.companyGroup,  //父小组信息
-                  'entity': entity                           //实体小组信息
+                  'entity': entity,                           //实体小组信息
+                  'companyname':req.session.cpname
               });
           }
       });
@@ -74,7 +73,6 @@ exports.info =function(req,res) {
 
 exports.saveInfo =function(req,res) {
     if(req.session.cid != null) {
-      console.log(req.body);
         CompanyGroup.findOne({cid : req.session.cid, gid : req.session.gid}, function(err, companyGroup) {
             if (err) {
                 console.log('数据错误');
@@ -90,8 +88,29 @@ exports.saveInfo =function(req,res) {
                         res.send({'result':0,'msg':'数据保存错误'});
                         return;
                     }
+                    var entity_type = req.session.companyGroup.entity_type;
+                    var Entity = mongoose.model(entity_type);//将对应的增强组件模型引进来
+                    var gid = req.params.groupId != null ? req.params.groupId : req.session.gid;
+                    Entity.findOne({
+                        'cid': req.session.cid,
+                        'gid': gid
+                      },function(err, entity) {
+                          if (err) {
+                              console.log(err);
+                              return res.send(err);
+                          } else if(entity){
+                            console.log(res.body);
+                            entity.home_court = req.body.homecourt;
+                            entity.save(function(err){
+                              if(err){
+                                console.log(err);
+                                return;
+                              }
+                              res.send({'result':1,'msg':'更新成功'});
+                            })
+                          }
+                      });
                 });
-                res.send({'result':1,'msg':'更新成功'});
             } else {
                 res.send({'result':0,'msg':'不存在组件！'});
             }

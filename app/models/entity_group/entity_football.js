@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
 var _member = new Schema({
     uid: String,
     username: String,
+    logo: String,
     number: Number         //球队分配的个人号码
 });
 
@@ -33,7 +34,10 @@ var footBall = new Schema({
     sponsor: String,         //赞助商
     score: Number,           //该小组分数
     rank: Number,            //该小组排名
-    create_date: Date
+    create_date: {
+        type:Date,
+        default:Date.now()
+    }
 });
 
 mongoose.model('FootBall', footBall);

@@ -259,16 +259,35 @@ tabViewGroup.controller('MemberListController', ['$http', function($http) {
 tabViewGroup.controller('infoController', ['$http', '$scope',function($http, $scope) {
     $scope.unEdit = true;
     $scope.buttonStatus = '编辑>';
-
-    var that = this;
     $http.get('/group/info').success(function(data, status) {
-      that.group_info = data;
-      $scope.name = that.group_info.companyGroup.name != undefined ? that.group_info.companyGroup.name : '无';
-      $scope.brief = that.group_info.companyGroup.brief != undefined ? that.group_info.companyGroup.brief : '无';
-      $scope.leader_names = that.group_info.companyGroup.leader.username.length > 0 ? that.group_info.companyGroup.leader.username : ['无'];
-      $scope.main_forces = that.group_info.entity.main_force != undefined ? that.group_info.entity.main_force : [{'username':'无'}];
-      $scope.alternates = that.group_info.entity.alternate != undefined ? that.group_info.entity.alternate : [{'username':'无'}];
-      $scope.home_courts = that.group_info.entity.homecourt != undefined ? that.group_info.entity.homecourt : ['无'];
+        $scope.companyname = data.companyname;
+        $scope.create_time = data.entity.create_date ? data.entity.create_date :'';
+        $scope.name = data.companyGroup.name ? data.companyGroup.name : '';
+        $scope.brief = data.companyGroup.brief ? data.companyGroup.brief : '';
+        $scope.leaders = data.companyGroup.leader.length > 0 ? data.companyGroup.leader : '';
+        $scope.main_forces = data.entity.main_force.length > 0 ? data.entity.main_force : '';
+        $scope.alternates = data.entity.alternate.length > 0 ? data.entity.alternate : '';
+        $scope.home_court_1 = data.entity.home_court[0] ? data.entity.home_court[0] : '';
+        $scope.home_court_2 = data.entity.home_court[1] ? data.entity.home_court[1] : '';
+        $scope.family = data.entity.family;
+        //TOTO:测试数据
+        var _member = [{'username':'阿飞','logo':'/img/user/photo/0901f57984b059a034c544281e29027dea546e26.png'},
+                        {'username':'大天','logo':'/img/user/photo/0901f57984b059a034c544281e29027dea546e26.png'},
+                        {'username':'小良','logo':'/img/user/photo/0901f57984b059a034c544281e29027dea546e26.png'},
+                        {'username':'lee','logo':'/img/user/photo/0901f57984b059a034c544281e29027dea546e26.png'},
+                        {'username':'阿飞','logo':'/img/user/photo/0901f57984b059a034c544281e29027dea546e26.png'},
+                        {'username':'大天','logo':'/img/user/photo/0901f57984b059a034c544281e29027dea546e26.png'},
+                        {'username':'小良','logo':'/img/user/photo/0901f57984b059a034c544281e29027dea546e26.png'},
+                        {'username':'lee','logo':'/img/user/photo/0901f57984b059a034c544281e29027dea546e26.png'},
+                        {'username':'阿飞','logo':'/img/user/photo/0901f57984b059a034c544281e29027dea546e26.png'},
+                        {'username':'大天','logo':'/img/user/photo/0901f57984b059a034c544281e29027dea546e26.png'},
+                        {'username':'小良','logo':'/img/user/photo/0901f57984b059a034c544281e29027dea546e26.png'},
+                        {'username':'lee','logo':'/img/user/photo/0901f57984b059a034c544281e29027dea546e26.png'}];
+        var _leaders = [{'username':'阿飞','logo':'/img/user/photo/0901f57984b059a034c544281e29027dea546e26.png'},
+                        {'username':'大天','logo':'/img/user/photo/0901f57984b059a034c544281e29027dea546e26.png'}];
+                    
+        $scope.leaders = _leaders;
+        $scope.main_forces = _member;
     });
 
     $scope.editToggle = function() {
@@ -280,7 +299,8 @@ tabViewGroup.controller('infoController', ['$http', '$scope',function($http, $sc
                     url : '/group/saveInfo',
                     data : {
                         'name' : $scope.name,
-                        'brief' : $scope.brief
+                        'brief' : $scope.brief,
+                        'homecourt': [$scope.home_court_1,$scope.home_court_2]
                     }
                 }).success(function(data, status) {
                     //TODO:更改对话框
