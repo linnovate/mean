@@ -284,7 +284,34 @@ exports.deletePhoto = function(req, res) {
 
 
 exports.readPhotos = function(req, res) {
+  var _id = req.params.photoAlbumId;
 
+  if (validator.isAlphanumeric(_id)) {
+    try {
+      PhotoAlbum.findOne({ _id: _id }).exec(function(err, photo_album) {
+        if (err) {
+          throw err;
+        } else {
+          if (photo_album) {
+            var photos = [];
+            photo_album.photos.forEach(function(photo) {
+              var temp_photo = {};
+              temp_photo.uri = photo.uri;
+              temp_photo.comment = photo.comment;
+              photos.push(temp_photo);
+            });
+            res.send({ result: 1, msg: '获取相册照片成功', data: photos });
+          } else {
+            res.send({ result: 0, msg: '相册不存在' });
+          }
+        }
+      });
+    } catch (e) {
+      res.send({ result: 0, msg: '获取相册照片失败' });
+    }
+  } else {
+    res.send({ result: 0, msg: '请求错误' });
+  }
 };
 
 exports.test = function(req, res) {
