@@ -628,22 +628,31 @@ exports.getGroupMember = function(req,res){
 //比赛
 exports.getCompetition = function(req, res){
   var competition ={
-    'id': 'sadssdafsdfg',     //测试用
+    'id': 'C61F5D77-9110-0001-33CB-BF001ED010CF',     //测试用
     'camp_a':{
       'tname': '鸭梨冲锋霹雳队',
+      'logo':'/img/user/photo/default.png',
       'member':[
         {
-          'username':'a1'
+          'username':'a1',
+          'uid':'a1',
+          'photo':'/img/user/photo/default.png'
         },
         {
-          'username':'a2'
+          'username':'a2',
+          'uid':'a2',
+          'photo':'/img/user/photo/default.png'
         },
         {
-          'username':'a3'
+          'username':'a3',
+          'uid':'a3',
+          'photo':'/img/user/photo/default.png'
         }
       ],
       'formation':[{
+        'uid':'a1',
         'username':'a1',
+        'photo':'/img/user/photo/default.png',
         'x':44,
         'y':59
       }
@@ -651,18 +660,27 @@ exports.getCompetition = function(req, res){
     },
     'camp_b':{
       'tname': '3M冲锋霹雳队',
+      'logo':'/img/user/photo/default.png',
       'member': [
         {
-          'username': 'b1'
+          'username': 'b1',
+           'uid':'b1',
+          'photo':'/img/user/photo/default.png'
         },
         {
-          'username': 'b2'
+          'username': 'b2',
+          'uid':'b2',
+          'photo':'/img/user/photo/default.png'
         },
         {
-          'username': 'b3'
+          'username': 'b3',
+          'uid':'b3',
+          'photo':'/img/user/photo/default.png'
         }
       ],
       'formation':[{
+        'uid':'b1',
+        'photo':'/img/user/photo/default.png',
         'username':'b1',
         'x':64,
         'y':29
@@ -682,23 +700,51 @@ exports.getCompetition = function(req, res){
   res.render('competition/football', {
           'title': '发起足球比赛',
           'competition' : competition,
-          //'team': req.competition_team
+          'team': req.competition_team
   });
 };
+exports.updateFormation = function(req, res){
+  Competition.findOne({
+    'id':req.params.competitionId
+  }).exec(function(err, competition){
+    console.log(competition);
+    if(req.competition_team === req.body.competition_team){
+      var _formation = [];
+      var _tempFormation = req.body.formation;
+      for (var member in _tempFormation){
+        _formation.push({'username':member,
+                          'x':_tempFormation[member].x,
+                          'y':_tempFormation[member].y
 
+        });
+      }
+      if(req.competition_team ==='A'){
+        competition.camp_a.formation = _formation;
+      }
+      else{
+        competition.camp_b.formation = _formation;
+      }
+      competition.save(function(err){
+        if(err){
+          console.log(err);
+        }
+        return res.send({'result':1,'msg':'更新成功！'});
+      });
+      
+    }
+    else{
+      return res.send({'result':0,'msg':'您没有权限修改阵形图'});
+    }
+  });
+}
 exports.competition = function(req, res, next, id){
   Competition.findOne({
     'id':id
   }).exec(function(err, competition){
     if (err) return next(err);
-    if(req.session.cid ===competition.camp_a.cid){
+if(req.session.cid ===competition.camp_a.cid){
       req.competition = competition;
-      req.competition_team = 'a';
-      next();
-    }
-    else if(req.session.cid ===competition.camp_a.cid){
-      req.competition = competition;
-      req.competition_team = 'b';
+      req.competition_team = 'B';
       next();
     }
     else
@@ -813,10 +859,6 @@ exports.searchGroup = function(req, res) {
   });
 };
 
-
-exports.updateFormation = function(req, res){
-  res.send("dd");
-}
 
 exports.tempLogo = function(req, res) {
 

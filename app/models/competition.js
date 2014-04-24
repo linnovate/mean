@@ -26,6 +26,7 @@ var _formation = new Schema({
     cid: String,
     uid: String,
     username: String,
+    photo:String,
     x: Number,
     y: Number
 });

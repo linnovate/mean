@@ -27,7 +27,7 @@ module.exports = function(app) {
   app.post('/group/campaignCancel', group.campaignCancel);
 
   app.get('/group/competition/:competitionId', group.getCompetition);
-  app.post('/group/updateFormation', group.updateFormation);
+  app.post('/group/updateFormation/:competitionId', group.updateFormation);
   //小组发布活动
   app.post('/group/campaignSponsor', group.sponsor);
   app.param('groupId',group.group);

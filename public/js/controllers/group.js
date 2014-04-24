@@ -37,9 +37,8 @@ var drop =function(e){
   var _height = $(e.target).height();
   var _offsetX = e.pageX - _x - 10;
   var _offsetY = e.pageY - _y -10;
-  var _percentX = _offsetX / _width;
-  var _percentY = _offsetY / _height;
-  if(_offsetX > _width / 2){
+  if(window['competition_team']=='A'&&_offsetX > _width / 2||window['competition_team']=='B'&&_offsetX < _width / 2){
+    console.log('error');
     return false;
   };
   if(data.indexOf('on_')!=0){
@@ -56,12 +55,14 @@ var drop =function(e){
     var _left= _newEle.position().left;
     var datax=e.dataTransfer.getData("nowx");
     var datay=e.dataTransfer.getData("nowy");
-    var _newX = _left + e.pageX - datax;
-    var _newY = _top +e.pageY - datay;
-    _newEle.css('top',_newY > 0 ? _newY : 0);
-    _newEle.css('left',_newX > 0 ? _newX : 0);
-
+    _offsetX = _left + e.pageX - datax;
+    _offsetY = _top +e.pageY - datay;
+    _newEle.css('top',_offsetY > 0 ? _offsetY : 0);
+    _newEle.css('left',_offsetX > 0 ? _offsetX : 0);
   };
+  var _percentX = 100 * _offsetX / _width;
+  var _percentY = 100 * _offsetY / _height;
+  updateFormatData(data,_percentX.toFixed(2),_percentY.toFixed(2));
 };
 var dragend = function(e){
   var _id = e.target.id;
@@ -75,21 +76,59 @@ var dragend = function(e){
     var _nowy = e.pageY;
     if (_nowx < _left || _nowx > _right || _nowy > _bottom || _nowy < _top) {
       $(e.target).remove();
-      var _newid = _id.substr(3);
-      $('#'+_newid).attr('draggable',true);
+      _id = getMemberId(_id);
+      $('#'+_id).attr('draggable',true);
     };
   }
 };
-var updateFormatData = function(e){
-
+var updateFormatData = function(id,percentX,percentY){
+  id = getMemberId(id);
+  window['competition_format'][id] ={
+    'x':percentX,
+    'y':percentY
+  };
+  var competition_id = $('#competition_id').val();
+  $.post('/group/updateFormation/'+competition_id,{'formation':window['competition_format'],'competition_team':window['competition_team']},function(data,status){
+    if(data.result===0){
+      //TODO
+      alert(data.msg);
+    }
+  });
+};
+var getMemberId = function(id){
+  return (id.indexOf('on_')==0) ? id.substr(3) : id;
 };
 (function(window){
   $(function(){
+    window['competition_format'] ={};
+    window['competition_team'] = $('.onemberA').attr('draggable')=='true'?'A':'B';
     var _conetent = $('#competition_content');
-_conetent.find('.onemberA').each(function(){
-  var _id = $(this).attr('id');
-  var _newid = _id.substr(3);
-  $('#'+_newid).attr('draggable',false);
-});
-  })
+    _conetent.find('.onmemberA').each(function(){
+      var _id = $(this).attr('id');
+      var _x = $(this).attr('data-left');
+      var _y = $(this).attr('data-top');
+      _id = getMemberId(_id);
+      window['competition_format'][_id] ={
+        'x':_x,
+        'y':_y
+      };
+      $(this).css('left',_x+'%');
+      $(this).css('top',_y+'%');
+      _id = getMemberId(_id);
+      $('#'+_id).attr('draggable',false);
+    });
+    _conetent.find('.onmemberB').each(function(){
+      var _id = $(this).attr('id');
+      var _x = $(this).attr('data-left');
+      var _y = $(this).attr('data-top');
+      $(this).css('left',_x+'%');
+      $(this).css('top',_y+'%');
+      _id = getMemberId(_id);
+      window['competition_format'][_id] ={
+        'x':_x,
+        'y':_y
+      };
+      $('#'+_id).attr('draggable',false);
+    });
+  });
 }(window));

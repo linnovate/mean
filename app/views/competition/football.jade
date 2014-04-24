@@ -4,32 +4,33 @@ block panel
   #competition_content
     .row
       .teamInfo.col-xs-4
-        img.teamLogo(src='/img/icons/facebook.png')
+        img.size_210.teamLogo(src='#{competition.camp_a.logo}')
         div
           a.teamName= competition.camp_b.tname
         div
           each teamAMember in competition.camp_a.member
-            img.size_50.teamMember(draggable="true" ondragstart='drag(event)' ondragend='dragend(event)' src='/img/icons/facebook.png' id='#{teamAMember.username}')
+            img.size_50.teamMember(draggable="#{team=='A'}" ondragstart='drag(event)' ondragend='dragend(event)' src='#{teamAMember.photo}' id='#{teamAMember.uid}')
       .vs.col-xs-4
         h1.text-center VS
       .teamInfo.col-xs-4
-        img.teamLogo(src='/img/icons/google.png')
+        img.size_210.teamLogo(src='#{competition.camp_b.logo}')
         div
           a.teamName= competition.camp_b.tname
         div
           each teamBMember in competition.camp_b.member
-            img.size_50.teamMember(draggable="false" src='/img/icons/google.png' id='#{teamBMember.username}')
+            img.size_50.teamMember(draggable="#{team=='B'}" ondragstart='drag(event)' ondragend='dragend(event)' src='#{teamBMember.photo}' id='#{teamBMember.uid}')
     .row.formatField.field
       img#formatField.col-xs-12.img_contain.field(draggable="false" ondrop='drop(event)' ondragover='allowDrop(event)' src='/img/field.png')
       each teamAMember in competition.camp_a.formation
-        img.size_50.teamMember.onemberA(draggable="true" ondragstart='drag(event)' ondragend='dragend(event)' src='/img/icons/facebook.png' id='on_#{teamAMember.username}' style='top:#{teamAMember.y}%;left:#{teamAMember.x}%')
+        img.size_50.teamMember.onmemberA(draggable="#{team=='A'}" ondragstart='drag(event)' ondragend='dragend(event)' src='#{teamAMember.photo}' id='on_#{teamAMember.uid}' data-top='#{teamAMember.y}' data-left='#{teamAMember.x}')
       each teamBMember in competition.camp_b.formation
-        img.size_50.teamMember.onemberB(draggable="false" ondragstart='drag(event)' ondragend='dragend(event)' src='/img/icons/google.png' id='on_#{teamBMember.username}' style='top:#{teamBMember.y}%;left:#{teamBMember.x}%')
+        img.size_50.teamMember.onmemberB(draggable="#{team=='B'}" ondragstart='drag(event)' ondragend='dragend(event)' src='#{teamBMember.photo}' id='on_#{teamBMember.uid}' data-top='#{teamBMember.y}' data-left='#{teamBMember.x}')
 block aside
   .infoHead.row
     h4.pull-left 活动简介
   hr
   .row
+    input#competition_id(type='hidden' value='#{competition.id}')
     label.col-xs-4.control-label 类型：
     label.col-xs-8.control-label= competition.group_type
   .row
