@@ -24,3 +24,12 @@ html
     form(action="/photoAlbum/5358c13700e092f30720bd3c/photo" method="post" enctype="multipart/form-data")
       input(type="file" name="photos" multiple="multiple")
       button(type="submit") 上传照片
+
+    form(action="/photoAlbum/5358c13700e092f30720bd3c/photo/5358e810be7827a00bc81781" method="post")
+      input(type="hidden" name="_method" value="put")
+      input(type="text" name="comment")
+      button(type="submit") 添加注释
+
+    form(action="/photoAlbum/5358c13700e092f30720bd3c/photo/5358f374119935cd0c78a084" method="post")
+      input(type="hidden" name="_method" value="delete")
+      button(type="submit") 删除照片

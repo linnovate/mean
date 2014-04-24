@@ -187,7 +187,7 @@ exports.readPhoto = function(req, res) {
           }
 
           // 没找到照片
-          return res.send({ result: 0, msg: '获取照片失败' });
+          res.send({ result: 0, msg: '获取照片失败' });
         }
       });
     } catch (e) {
@@ -202,11 +202,84 @@ exports.readPhoto = function(req, res) {
 };
 
 exports.updatePhoto = function(req, res) {
+  var pa_id = req.params.photoAlbumId;
+  var p_id = req.params.photoId;
+
+  if (validator.isAlphanumeric(pa_id) && validator.isAlphanumeric(p_id)) {
+    try {
+      PhotoAlbum.findOne({ _id: pa_id }).exec(function(err, photo_album) {
+        if (err) {
+          throw err;
+        } else {
+          var photos = photo_album.photos;
+          for (var i = 0; i < photos.length; i++) {
+            // 此处需要类型转换后再比较, p_id:String, photos[i]._id:Object
+            if (p_id == photos[i]._id) {
+              photos[i].comment = req.body.comment;
+              photo_album.save(function(err) {
+                if (err) {
+                  throw err;
+                } else {
+                  res.send({ result: 1, msg: '修改照片成功' });
+                }
+              });
+              return;
+            }
+          }
+
+          res.send({ result: 0, msg: '没有找到对应的照片' });
+        }
+      });
+    } catch (e) {
+      return res.send({ result: 0, msg: '修改照片失败' });
+    }
+
+  } else {
+    return res.send({ result: 0, msg: '请求错误' });
+  }
 
 };
 
 exports.deletePhoto = function(req, res) {
+  var pa_id = req.params.photoAlbumId;
+  var p_id = req.params.photoId;
 
+  if (validator.isAlphanumeric(pa_id) && validator.isAlphanumeric(p_id)) {
+    try {
+      PhotoAlbum.findOne({ _id: pa_id }).exec(function(err, photo_album) {
+        if (err) {
+          throw err;
+        } else {
+          var photos = photo_album.photos;
+          for (var i = 0; i < photos.length; i++) {
+            // 此处需要类型转换后再比较, p_id:String, photos[i]._id:Object
+            if (p_id == photos[i]._id) {
+              var photo_path = config.root + '/public' + photos[i].uri;
+              if (fs.existsSync(photo_path)) {
+                fs.unlinkSync(photo_path);
+              }
+              photos.splice(i, 1);
+              photo_album.save(function(err) {
+                if (err) {
+                  throw err;
+                } else {
+                  res.send({ result: 1, msg: '删除照片成功' });
+                }
+              });
+              return;
+            }
+          }
+
+          res.send({ result: 0, msg: '没有找到对应的照片' });
+        }
+      });
+    } catch (e) {
+      return res.send({ result: 0, msg: '删除照片失败' });
+    }
+
+  } else {
+    return res.send({ result: 0, msg: '请求错误' });
+  }
 };
 
 
