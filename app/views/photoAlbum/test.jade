@@ -3,8 +3,9 @@ html
   head
     meta(charset="utf-8")
     title api test
+    script(src="/lib/jquery/dist/jquery.min.js")
   body
     h1 api test
-    form(action="/photoAlbum" method="post" enctype="multipart/form-data")
+    form(action="/photoAlbum" method="post")
       input(type="text" name="name")
       button(type="submit") 创建相册
