@@ -109,18 +109,19 @@ exports.deletePhotoAlbum = function(req, res) {
 };
 
 exports.createPhoto = function(req, res) {
-  var _id = req.params.photoAlbumId;
-  if (validator.isAlphanumeric(_id) && req.files.photos.length > 0) {
+  var pa_id = req.params.photoAlbumId;
+  if (validator.isAlphanumeric(pa_id) && req.files.photos.length > 0) {
     try {
-      var uri_dir = '/img/photo_album/' + _id + '/';
+      var uri_dir = '/img/photo_album/' + pa_id + '/';
       var photos = req.files.photos;
 
-      PhotoAlbum.findOne({ _id: _id }).exec(function(err, photo_album) {
+      PhotoAlbum.findOne({ _id: pa_id }).exec(function(err, photo_album) {
 
         var i = 0;
 
         async.whilst(
           function() { return i < photos.length; },
+
           function(callback) {
             var photo_name = Date.now().toString() + '.png';
             gm(photos[i].path)
@@ -141,6 +142,7 @@ exports.createPhoto = function(req, res) {
             i++;
             callback();
           },
+
           function(err) {
             if (err) {
               throw err;
@@ -150,6 +152,7 @@ exports.createPhoto = function(req, res) {
             }
           }
         );
+
       });
 
     } catch (e) {
@@ -161,6 +164,40 @@ exports.createPhoto = function(req, res) {
 };
 
 exports.readPhoto = function(req, res) {
+  var pa_id = req.params.photoAlbumId;
+  var p_id = req.params.photoId;
+
+  if (validator.isAlphanumeric(pa_id) && validator.isAlphanumeric(p_id)) {
+    try {
+      PhotoAlbum.findOne({ _id: pa_id }).exec(function(err, photo_album) {
+        if (err) {
+          throw err;
+        } else {
+          var photos = photo_album.photos;
+          for (var i = 0; i < photos.length; i++) {
+            // 此处需要类型转换后再比较, p_id:String, photos[i]._id:Object
+            if (p_id == photos[i]._id) {
+              return res.send({ result: 1, msg: '获取照片成功',
+                data: {
+                  uri: photos[i].uri,
+                  comment: photos[i].comment
+                }
+              });
+            }
+          }
+
+          // 没找到照片
+          return res.send({ result: 0, msg: '获取照片失败' });
+        }
+      });
+    } catch (e) {
+      return res.send({ result: 0, msg: '获取照片失败' });
+    }
+
+  } else {
+    return res.send({ result: 0, msg: '获取照片失败' });
+  }
+
 
 };
 

@@ -20,10 +20,6 @@ var PhotoAlbum = new Schema({
     default: Date.now
   },
   photos: [{
-    id: {
-      type: Schema.Types.ObjectId,
-      default: new mongoose.Types.ObjectId
-    },
     uri: String,
     publish_date: {
       type: Date,
