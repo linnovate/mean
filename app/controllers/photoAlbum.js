@@ -14,11 +14,18 @@ exports.authorize = function(req, res, next) {
 };
 
 exports.createPhotoAlbum = function(req, res) {
-
+  var photo_album = new PhotoAlbum({ name: req.body.name });
+  photo_album.save(function(err) {
+    if (err) {
+      throw err;
+    } else {
+      res.send({ result: 1, msg: '创建相册成功' });
+    }
+  });
 };
 
 exports.readPhotoAlbum = function(req, res) {
-
+  
 };
 
 exports.updatePhotoAlbum = function(req, res) {
