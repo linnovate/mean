@@ -1,7 +1,7 @@
 extends ../layouts/manager
 
 block panel
-  #competition_content
+  #competition_content(data-nowteam="#{team}")
     .row
       .teamInfo.col-xs-4
         img.size_210.teamLogo(src='#{competition.camp_a.logo}')

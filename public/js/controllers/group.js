@@ -29,6 +29,7 @@ var drag =function(e){
 
 var drop =function(e){
   e.preventDefault();
+  var competition_team = $('#competition_content').attr('data-nowteam');
   var data=e.dataTransfer.getData("member_id");
   var _newEle ={};
   var _x = $(e.target).offset().left;
@@ -37,8 +38,7 @@ var drop =function(e){
   var _height = $(e.target).height();
   var _offsetX = e.pageX - _x - 10;
   var _offsetY = e.pageY - _y -10;
-  if(window['competition_team']=='A'&&_offsetX > _width / 2||window['competition_team']=='B'&&_offsetX < _width / 2){
-    console.log('error');
+  if(competition_team=='A'&&_offsetX > _width / 2||competition_team=='B'&&_offsetX < _width / 2){
     return false;
   };
   if(data.indexOf('on_')!=0){
@@ -87,8 +87,9 @@ var updateFormatData = function(id,percentX,percentY){
     'x':percentX,
     'y':percentY
   };
+  var competition_team = $('#competition_content').attr('data-nowteam');
   var competition_id = $('#competition_id').val();
-  $.post('/group/updateFormation/'+competition_id,{'formation':window['competition_format'],'competition_team':window['competition_team']},function(data,status){
+  $.post('/group/updateFormation/'+competition_id,{'formation':window['competition_format'],'competition_team':competition_team},function(data,status){
     if(data.result===0){
       //TODO
       alert(data.msg);
@@ -101,7 +102,6 @@ var getMemberId = function(id){
 (function(window){
   $(function(){
     window['competition_format'] ={};
-    window['competition_team'] = $('.onemberA').attr('draggable')=='true'?'A':'B';
     var _conetent = $('#competition_content');
     _conetent.find('.onmemberA').each(function(){
       var _id = $(this).attr('id');

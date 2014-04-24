@@ -707,7 +707,6 @@ exports.updateFormation = function(req, res){
   Competition.findOne({
     'id':req.params.competitionId
   }).exec(function(err, competition){
-    console.log(competition);
     if(req.competition_team === req.body.competition_team){
       var _formation = [];
       var _tempFormation = req.body.formation;
@@ -730,27 +729,29 @@ exports.updateFormation = function(req, res){
         }
         return res.send({'result':1,'msg':'更新成功！'});
       });
-      
     }
     else{
       return res.send({'result':0,'msg':'您没有权限修改阵形图'});
     }
   });
-}
+};
 exports.competition = function(req, res, next, id){
   Competition.findOne({
     'id':id
   }).exec(function(err, competition){
     if (err) return next(err);
-if(req.session.cid ===competition.camp_a.cid){
-      req.competition = competition;
+    req.competition = competition;
+    if(req.session.cid ===competition.camp_a.cid){
+      req.competition_team = 'A';
+    }
+    else if(req.session.cid ===competition.camp_a.cid){
       req.competition_team = 'B';
-      next();
     }
     else
     {
       return next(new Error('Failed to load competition ' + id));
     }
+    next();
   });
 };
 
