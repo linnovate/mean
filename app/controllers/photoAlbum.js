@@ -33,8 +33,8 @@ exports.createPhotoAlbum = function(req, res) {
   }
 };
 
-exports.readPhotoAlbum = function(req, res) {
-  var _id = req.params.photoAlbumId;
+
+function photoAlbumProcess(res, _id, process) {
   if (validator.isAlphanumeric(_id)) {
     try {
       PhotoAlbum.findOne({ _id: _id }).exec(function(err, photo_album) {
@@ -42,12 +42,9 @@ exports.readPhotoAlbum = function(req, res) {
           throw err;
         } else {
           if (photo_album) {
-            var data = {
-              name: photo_album.name,
-              update_date: photo_album.update_date,
-              update_user: photo_album.update_user
-            };
-            res.send({ result: 1, msg: '获取相册信息成功', data: data });
+            process(photo_album);
+          } else {
+            res.send({ result: 0, msg: '没有找到对应的相册' });
           }
         }
       });
@@ -56,37 +53,38 @@ exports.readPhotoAlbum = function(req, res) {
     }
 
   } else {
-    res.send({ result: 0, msg: '获取相册信息失败' });
+    res.send({ result: 0, msg: '请求错误' });
   }
+}
+
+
+exports.readPhotoAlbum = function(req, res) {
+  var _id = req.params.photoAlbumId;
+
+  photoAlbumProcess(res, _id, function(photo_album) {
+    var data = {
+      name: photo_album.name,
+      update_date: photo_album.update_date,
+      update_user: photo_album.update_user
+    };
+    res.send({ result: 1, msg: '获取相册信息成功', data: data });
+  });
 };
 
 exports.updatePhotoAlbum = function(req, res) {
   var _id = req.params.photoAlbumId;
   var new_name = req.body.name;
-  if (validator.isAlphanumeric(_id)) {
-    try {
-      PhotoAlbum.findOne({ _id: _id }).exec(function(err, photo_album) {
-        if (err) {
-          throw err;
-        } else {
-          if (photo_album) {
-            photo_album.name = new_name;
-            photo_album.save(function(err) {
-              if (err) {
-                throw err;
-              } else {
-                res.send({ result: 1, msg: '更新相册成功' });
-              }
-            });
-          }
-        }
-      });
-    } catch (e) {
-      res.send({ result: 0, msg: '更新相册失败' });
-    }
-  } else {
-    res.send({ result: 0, msg: '更新相册失败' });
-  }
+
+  photoAlbumProcess(res, _id, function(photo_album) {
+    photo_album.name = new_name;
+    photo_album.save(function(err) {
+      if (err) {
+        throw err;
+      } else {
+        res.send({ result: 1, msg: '更新相册成功' });
+      }
+    });
+  });
 };
 
 exports.deletePhotoAlbum = function(req, res) {
@@ -104,7 +102,7 @@ exports.deletePhotoAlbum = function(req, res) {
       res.send({ result: 0, msg: '删除相册失败' });
     }
   } else {
-    res.send({ result: 0, msg: '删除相册失败' });
+    res.send({ result: 0, msg: '请求错误' });
   }
 };
 
@@ -159,14 +157,12 @@ exports.createPhoto = function(req, res) {
       res.send({ result: 0, msg: '添加照片失败' });
     }
   } else {
-    res.send({ result: 0, msg: '添加照片失败' });
+    res.send({ result: 0, msg: '请求错误' });
   }
 };
 
-exports.readPhoto = function(req, res) {
-  var pa_id = req.params.photoAlbumId;
-  var p_id = req.params.photoId;
 
+function photoProcess(res, pa_id, p_id, process) {
   if (validator.isAlphanumeric(pa_id) && validator.isAlphanumeric(p_id)) {
     try {
       PhotoAlbum.findOne({ _id: pa_id }).exec(function(err, photo_album) {
@@ -177,26 +173,34 @@ exports.readPhoto = function(req, res) {
           for (var i = 0; i < photos.length; i++) {
             // 此处需要类型转换后再比较, p_id:String, photos[i]._id:Object
             if (p_id == photos[i]._id) {
-              return res.send({ result: 1, msg: '获取照片成功',
-                data: {
-                  uri: photos[i].uri,
-                  comment: photos[i].comment
-                }
-              });
+              return process(photo_album, photos[i]);
             }
           }
 
-          // 没找到照片
-          res.send({ result: 0, msg: '获取照片失败' });
+          res.send({ result: 0, msg: '没有找到对应的照片' });
         }
       });
     } catch (e) {
-      return res.send({ result: 0, msg: '获取照片失败' });
+      res.send({ result: 0, msg: '获取照片失败' });
     }
 
   } else {
-    return res.send({ result: 0, msg: '获取照片失败' });
+    res.send({ result: 0, msg: '请求错误' });
   }
+}
+
+exports.readPhoto = function(req, res) {
+  var pa_id = req.params.photoAlbumId;
+  var p_id = req.params.photoId;
+
+  photoProcess(res, pa_id, p_id, function(photo_album, photo) {
+    res.send({ result: 1, msg: '获取照片成功',
+      data: {
+        uri: photo.uri,
+        comment: photo.comment
+      }
+    });
+  });
 
 
 };
@@ -205,38 +209,16 @@ exports.updatePhoto = function(req, res) {
   var pa_id = req.params.photoAlbumId;
   var p_id = req.params.photoId;
 
-  if (validator.isAlphanumeric(pa_id) && validator.isAlphanumeric(p_id)) {
-    try {
-      PhotoAlbum.findOne({ _id: pa_id }).exec(function(err, photo_album) {
-        if (err) {
-          throw err;
-        } else {
-          var photos = photo_album.photos;
-          for (var i = 0; i < photos.length; i++) {
-            // 此处需要类型转换后再比较, p_id:String, photos[i]._id:Object
-            if (p_id == photos[i]._id) {
-              photos[i].comment = req.body.comment;
-              photo_album.save(function(err) {
-                if (err) {
-                  throw err;
-                } else {
-                  res.send({ result: 1, msg: '修改照片成功' });
-                }
-              });
-              return;
-            }
-          }
-
-          res.send({ result: 0, msg: '没有找到对应的照片' });
-        }
-      });
-    } catch (e) {
-      return res.send({ result: 0, msg: '修改照片失败' });
-    }
-
-  } else {
-    return res.send({ result: 0, msg: '请求错误' });
-  }
+  photoProcess(res, pa_id, p_id, function(photo_album, photo) {
+    photo.comment = req.body.comment;
+    photo_album.save(function(err) {
+      if (err) {
+        throw err;
+      } else {
+        res.send({ result: 1, msg: '修改照片成功' });
+      }
+    });
+  });
 
 };
 
@@ -274,11 +256,11 @@ exports.deletePhoto = function(req, res) {
         }
       });
     } catch (e) {
-      return res.send({ result: 0, msg: '删除照片失败' });
+      res.send({ result: 0, msg: '删除照片失败' });
     }
 
   } else {
-    return res.send({ result: 0, msg: '请求错误' });
+    res.send({ result: 0, msg: '请求错误' });
   }
 };
 
@@ -314,6 +296,4 @@ exports.readPhotos = function(req, res) {
   }
 };
 
-exports.test = function(req, res) {
-  res.render('photoAlbum/test');
-}
+

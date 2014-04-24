@@ -18,6 +18,5 @@ module.exports = function(app) {
 
   app.get('/photoAlbum/:photoAlbumId/photos', authorize, photoAlbum.readPhotos);
 
-  app.get('/pa/test', authorize, photoAlbum.test);
 
 };
