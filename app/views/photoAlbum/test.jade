@@ -6,6 +6,21 @@ html
     script(src="/lib/jquery/dist/jquery.min.js")
   body
     h1 api test
+    p 该页面仅为测试页，测试成功后删除
     form(action="/photoAlbum" method="post")
       input(type="text" name="name")
       button(type="submit") 创建相册
+
+    // uri仅用于测试某一个相册，下同，如果需要测试，请将uri中的id改成合适的相册id，下同
+    form(action="/photoAlbum/5358a6f3cdc2b7d204b5c917" method="post")
+      input(type="hidden" name="_method" value="put")
+      input(type="text" name="name")
+      button(type="submit") 更新相册
+
+    form(action="/photoAlbum/5358a6f3cdc2b7d204b5c917" method="post")
+      input(type="hidden" name="_method" value="delete")
+      button(type="submit") 删除相册
+
+    form(action="/photoAlbum/5358c13700e092f30720bd3c/photo" method="post" enctype="multipart/form-data")
+      input(type="file" name="photos" multiple="multiple")
+      button(type="submit") 上传照片

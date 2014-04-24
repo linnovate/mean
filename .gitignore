@@ -9,6 +9,7 @@ test/coverage
 mean.iml
 public/img/user/
 public/img/group/
+public/img/photo_album/
 temp_uploads/
 
 !public/img/user/photo/default.png

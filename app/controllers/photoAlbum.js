@@ -3,8 +3,11 @@
 var mongoose = require('mongoose');
 var PhotoAlbum = mongoose.model('PhotoAlbum');
 var validator = require('validator');
+var crypto = require('crypto');
 var fs = require('fs');
 var gm = require('gm').subClass({ imageMagick: true });
+var config = require('../../config/config');
+var async = require('async');
 
 exports.authorize = function(req, res, next) {
   if (req.user) {
@@ -21,6 +24,7 @@ exports.createPhotoAlbum = function(req, res) {
       if (err) {
         throw err;
       } else {
+        fs.mkdirSync(config.root + '/public/img/photo_album/' + photo_album._id);
         res.send({ result: 1, msg: '创建相册成功' });
       }
     });
@@ -99,11 +103,61 @@ exports.deletePhotoAlbum = function(req, res) {
     } catch (e) {
       res.send({ result: 0, msg: '删除相册失败' });
     }
+  } else {
+    res.send({ result: 0, msg: '删除相册失败' });
   }
 };
 
 exports.createPhoto = function(req, res) {
+  var _id = req.params.photoAlbumId;
+  if (validator.isAlphanumeric(_id) && req.files.photos.length > 0) {
+    try {
+      var uri_dir = '/img/photo_album/' + _id + '/';
+      var photos = req.files.photos;
 
+      PhotoAlbum.findOne({ _id: _id }).exec(function(err, photo_album) {
+
+        var i = 0;
+
+        async.whilst(
+          function() { return i < photos.length; },
+          function(callback) {
+            var photo_name = Date.now().toString() + '.png';
+            gm(photos[i].path)
+            .write(config.root + '/public' + uri_dir + photo_name,
+              function(err) {
+                if (err) {
+                  throw err;
+                } else {
+                  var photo = {
+                    uri: uri_dir + photo_name
+                  };
+                  photo_album.photos.push(photo);
+                  photo_album.save(function(err) {
+                    if (err) throw err;
+                  });
+                }
+            });
+            i++;
+            callback();
+          },
+          function(err) {
+            if (err) {
+              throw err;
+              res.send({ result: 0, msg: '添加照片失败' });
+            } else {
+              res.send({ result: 1, msg: '添加照片成功' });
+            }
+          }
+        );
+      });
+
+    } catch (e) {
+      res.send({ result: 0, msg: '添加照片失败' });
+    }
+  } else {
+    res.send({ result: 0, msg: '添加照片失败' });
+  }
 };
 
 exports.readPhoto = function(req, res) {
