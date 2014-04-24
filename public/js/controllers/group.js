@@ -83,7 +83,7 @@ var dragend = function(e){
 var updateFormatData = function(e){
 
 };
-(function(){
+(function(window){
   $(function(){
     var _conetent = $('#competition_content');
 _conetent.find('.onemberA').each(function(){
@@ -92,4 +92,4 @@ _conetent.find('.onemberA').each(function(){
   $('#'+_newid).attr('draggable',false);
 });
   })
-}());
+}(window));

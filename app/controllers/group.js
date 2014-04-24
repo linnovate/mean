@@ -132,41 +132,75 @@ exports.home = function(req, res) {
   if (req.params.groupId != null) {
     req.session.gid = req.params.groupId;
   }
-  Company.findOne({'id': req.session.cid}, function(err, company) {
-    if (err) {
-      console.log(err);
-      return res.status(404).send();
-    } else {
-      Group.find(null,function(err,group){
-        if (err) {
-          console.log(err);
-          return res.status(404).send();;
-        };
-        var _ugids = [];
-        var tmp_gid = [];
-        var _glength = group.length;
-        for(var j=0;j<company.group.length;j++){
-          tmp_gid.push(company.group[j].gid);
-        }
-        for(var i=0;i<_glength;i++){
-          if(group[i].gid != 0 && tmp_gid.indexOf(group[i].gid) == -1){
-            _ugids.push(group[i].gid);
+  if(req.session.role=='HR'){
+    Company.findOne({'id': req.session.cid}, function(err, company) {
+      if (err) {
+        console.log(err);
+        return res.status(404).send();
+      } else {
+        Group.find(null,function(err,group){
+          if (err) {
+            console.log(err);
+            return res.status(404).send();;
+          };
+          var _ugids = [];
+          var tmp_gid = [];
+          var _glength = group.length;
+          for(var j=0;j<company.group.length;j++){
+            tmp_gid.push(company.group[j].gid);
           }
-        };
-        CompanyGroup.findOne({ gid: req.session.gid }).exec(function(err, company_group) {
-          return res.render('group/home', {
-            'groups': company.group,
-            'ugids':_ugids,
-            'tname': (req.companyGroup.name !== undefined && req.companyGroup.name !== null) ? req.companyGroup.name : '未命名',
-            'number': (req.companyGroup.member !== undefined && req.companyGroup.member !== null) ? req.companyGroup.member.length : 0,
-            'score': (req.companyGroup.score !== undefined && req.companyGroup.score !== null) ? req.companyGroup.score : 0,
-            'role': req.session.role === 'EMPLOYEE',  //等加入权限功能后再修改  TODO
-            'big_logo': company_group.logo.big || '/img/group/logo/default.png'
+          for(var i=0;i<_glength;i++){
+            if(group[i].gid != 0 && tmp_gid.indexOf(group[i].gid) == -1){
+              _ugids.push(group[i].gid);
+            }
+          };
+          CompanyGroup.findOne({ gid: req.session.gid }).exec(function(err, company_group) {
+            return res.render('group/home', {
+              'groups': company.group,
+              'ugids':_ugids,
+              'tname': (req.companyGroup.name !== undefined && req.companyGroup.name !== null) ? req.companyGroup.name : '未命名',
+              'number': (req.companyGroup.member !== undefined && req.companyGroup.member !== null) ? req.companyGroup.member.length : 0,
+              'score': (req.companyGroup.score !== undefined && req.companyGroup.score !== null) ? req.companyGroup.score : 0,
+              'role': req.session.role === 'EMPLOYEE',  //等加入权限功能后再修改  TODO
+              'big_logo': company_group.logo.big || '/img/group/logo/default.png'
+            });
           });
         });
-      });
-    }
-  });
+      }
+    });
+  }
+  else{
+        Group.find(null,function(err,group){
+          if (err) {
+            console.log(err);
+            return res.status(404).send();;
+          };
+          var _ugids = [];
+          var tmp_gid = [];
+          var _glength = group.length;
+          var _uglenth = req.user.group.length;
+          for(var j=0;j<_uglenth;j++){
+            tmp_gid.push(req.user.group[j].gid);
+          }
+          for(var i=0;i<_glength;i++){
+            if(group[i].gid != 0 && tmp_gid.indexOf(group[i].gid) == -1){
+              _ugids.push(group[i].gid);
+            }
+          };
+          CompanyGroup.findOne({ gid: req.session.gid }).exec(function(err, company_group) {
+            return res.render('group/home', {
+              'groups': req.user.group,
+              'ugids':_ugids,
+              'tname': (req.companyGroup.name !== undefined && req.companyGroup.name !== null) ? req.companyGroup.name : '未命名',
+              'number': (req.companyGroup.member !== undefined && req.companyGroup.member !== null) ? req.companyGroup.member.length : 0,
+              'score': (req.companyGroup.score !== undefined && req.companyGroup.score !== null) ? req.companyGroup.score : 0,
+              'role': req.session.role === 'EMPLOYEE',  //等加入权限功能后再修改  TODO
+              'big_logo': company_group.logo.big || '/img/group/logo/default.png'
+            });
+          });
+        });
+  }
+
 };
 
 //返回公司组件的所有数据,待前台调用

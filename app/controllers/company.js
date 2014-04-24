@@ -29,6 +29,7 @@ exports.signin = function(req, res) {
 exports.loginSuccess = function(req, res) {
     req.session.cpname = req.body.username;
     req.session.cid = req.user.id;
+    req.session.role = 'HR';
     res.redirect('/company/home');
 };
 
