@@ -3,7 +3,7 @@
 var paths = {
     js: ['*.js', 'server/**/*.js', 'public/**/*.js', 'test/**/*.js', '!test/coverage/**', '!public/system/lib/**'],
     html: ['public/**/views/**', 'server/views/**'],
-    css: ['public/**/css/**', '!public/system/lib/**']
+    css: ['public/**/css/*.css', '!public/system/lib/**']
 };
 
 module.exports = function(grunt) {
@@ -58,9 +58,7 @@ module.exports = function(grunt) {
             options: {
                 csslintrc: '.csslintrc'
             },
-            all: {
-                src: paths.css
-            }
+            src: paths.css
         },
         cssmin: {
             combine: {
