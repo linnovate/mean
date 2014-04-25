@@ -18,5 +18,15 @@
 			"public/*/*/*.js",
 			"!public/build/**"
 		]
-	}
+	},
+	"fonts": [
+		{
+	        "expand": "true",
+	        "flattern": "true",
+	        "filter": "isFile",
+	        "cwd": "public/system/lib/bootstrap/dist/fonts/",
+	        "src": "**",
+	        "dest": "public/build/fonts/"
+       	}
+	]
 }
