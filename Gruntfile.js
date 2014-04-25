@@ -2,8 +2,8 @@
 
 var paths = {
     js: ['*.js', 'server/**/*.js', 'public/**/*.js', 'test/**/*.js', '!test/coverage/**', '!public/system/lib/**'],
-    html: ['public/**/views/**', 'server/views/**'],
-    css: ['public/**/css/**', '!public/system/lib/**']
+    html: ['public/**/views/**/*.html', 'server/views/**/*.html'],
+    css: ['public/**/css/**/*.css', '!public/system/lib/**']
 };
 
 module.exports = function(grunt) {
