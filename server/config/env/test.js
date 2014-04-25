@@ -6,7 +6,6 @@ module.exports = {
     app: {
         name: 'MEAN - A Modern Stack - Test'
     },
-    gruntTasks: ['jshint', 'csslint', 'concurrent'],
     facebook: {
         clientID: 'APP_ID',
         clientSecret: 'APP_SECRET',

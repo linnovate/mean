@@ -7,6 +7,7 @@ module.exports = {
 	root: rootPath,
 	port: process.env.PORT || 3000,
 	db: process.env.MONGOHQ_URL,
+    gruntTasks: ['jshint', 'csslint', 'concurrent'],
 	templateEngine: 'swig',
 
 	// The secret should be set to a non-guessable string that
