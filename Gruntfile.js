@@ -111,12 +111,9 @@ module.exports = function(grunt) {
     //Load NPM tasks
     require('load-grunt-tasks')(grunt);
 
-    //Making grunt default to force in order not to break the project.
-    grunt.option('force', true);
-
     //Default task(s).
     if (process.env.NODE_ENV === 'production') {
-        grunt.registerTask('default', ['jshint', 'csslint', 'cssmin', 'uglify', 'concurrent']);
+        grunt.registerTask('default', ['cssmin', 'uglify', 'concurrent']);
     } else {
         grunt.registerTask('default', ['jshint', 'csslint', 'concurrent']);
     }
@@ -126,5 +123,5 @@ module.exports = function(grunt) {
 
     // For Heroku users only.
     // Docs: https://github.com/linnovate/mean/wiki/Deploying-on-Heroku
-    grunt.registerTask('heroku:production', ['jshint', 'csslint', 'cssmin', 'uglify']);
+    grunt.registerTask('heroku:production', ['cssmin', 'uglify']);
 };
