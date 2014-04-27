@@ -28,7 +28,7 @@
     "assetmanager": "^0.1.2",
     "bower": "^1.3.3",
     "connect-flash": "^0.1.1",
-    "connect-mongo": "mrzepinski/connect-mongo#2135988",
+    "connect-mongo": "0.4.0",
     "consolidate": "^0.10.0",
     "dependable": "0.2.5",
     "express": "^4.1.0",
