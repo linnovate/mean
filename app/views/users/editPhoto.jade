@@ -11,7 +11,7 @@ block content
         .row
           .col-xs-4.col-sm-4
             .img_frame
-              img#edit_img.img-responsive.img-thumbnail(src="#{big_photo}")
+              img#edit_img.img-responsive.img-thumbnail(src="#{photo}")
           .col-xs-8.col-sm-8
             h3 从电脑中选择你喜欢的照片
             p 你可以上传JPG、JPEG、GIF、PNG或BMP文件
@@ -26,13 +26,13 @@ block content
         .row
           .col-xs-4.col-sm-4
             div(style="width:150px; height:150px; overflow:hidden")
-              img#preview_big(src="#{big_photo}")
+              img#preview_big(src="#{'/userPhoto/' + uid + '/150/150'}")
           .col-xs-2.col-sm-2
             div(style="width:50px; height:50px; overflow:hidden")
-              img#preview_middle(src="#{middle_photo}")
+              img#preview_middle(src="#{'/userPhoto/' + uid + '/50/50'}")
           .col-xs-2.col-sm-2
             div(style="width:27px; height:27px; overflow:hidden")
-              img#preview_small(src="#{small_photo}")
+              img#preview_small(src="#{'/userPhoto/' + uid + '/27/27'}")
           .col-xs-4.col-sm-4
         .row
           form(action="/users/savePhoto" method="post")

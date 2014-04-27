@@ -43,9 +43,8 @@ var UserSchema = new Schema({
     salt: String,
 
     photo: {
-        big: String,
-        middle: String,
-        small: String
+        type: String,
+        default: '/img/user/photo/default.png'
     },
 
     nickname: String,

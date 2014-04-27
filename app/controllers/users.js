@@ -710,12 +710,11 @@ exports.savePhoto = function(req, res) {
   var temp_img = shasum.digest('hex') + '.png';
 
   // 存入数据库的文件名，以当前时间的加密值命名
-  var photos = new Array(3);
-  for (var i = 0; i < photos.length; i++) {
-    var shasum = crypto.createHash('sha1');
-    shasum.update( Date.now().toString() + Math.random().toString() );
-    photos[i] = shasum.digest('hex') + '.png';
-  }
+
+  var shasum = crypto.createHash('sha1');
+  shasum.update( Date.now().toString() + Math.random().toString() );
+  var photo = shasum.digest('hex') + '.png';
+
 
   // 文件系统路径，供fs使用
   var temp_path = meanConfig.root + '/public/img/user/photo/temp/' + temp_img;
@@ -736,46 +735,30 @@ exports.savePhoto = function(req, res) {
       var y = req.body.y * value.height;
 
       // 在保存新路径前，将原路径取出，以便删除旧文件
-      var ori_photos = [user.photo.big, user.photo.middle, user.photo.small];
+      var ori_photo = user.photo;
 
       gm(temp_path)
       .crop(w, h, x, y)
       .resize(150, 150)
-      .write(target_dir + photos[0], function(err) {
+      .write(target_dir + photo, function(err) {
         if (err) throw err;
-
-        gm(temp_path)
-        .crop(w, h, x, y)
-        .resize(50, 50)
-        .write(target_dir + photos[1], function(err) {
-          if (err) throw err;
-
-          gm(temp_path)
-          .crop(w, h, x, y)
-          .resize(27, 27)
-          .write(target_dir + photos[2], function(err) {
+        else {
+          user.photo = uri_dir + photo;
+          user.save(function(err) {
             if (err) throw err;
-            user.photo.big = uri_dir + photos[0];
-            user.photo.middle = uri_dir + photos[1];
-            user.photo.small = uri_dir + photos[2];
-            user.save(function(err) {
-              if (err) throw err;
-            });
-
-            fs.unlink(temp_path, function(err) {
-              if (err) console(err);
-              var unlink_dir = meanConfig.root + '/public';
-              for (var i = 0; i < ori_photos.length; i++) {
-                if (ori_photos[i]) {
-                  if (fs.existsSync(unlink_dir + ori_photos[i])) {
-                    fs.unlinkSync(unlink_dir + ori_photos[i]);
-                  }
-                }
-              }
-              res.redirect('/users/editPhoto');
-            });
           });
-        });
+
+          fs.unlink(temp_path, function(err) {
+            if (err) console(err);
+            var unlink_dir = meanConfig.root + '/public';
+            if (ori_photo !== '/img/user/photo/default.png') {
+              if (fs.existsSync(unlink_dir + ori_photo)) {
+                fs.unlinkSync(unlink_dir + ori_photo);
+              }
+            }
+            res.redirect('/users/editPhoto');
+          });
+        }
       });
 
     });
@@ -786,11 +769,9 @@ exports.savePhoto = function(req, res) {
 };
 
 exports.editPhoto = function(req, res) {
-  var default_img_uri = '/img/user/photo/default.png';
   res.render('users/editPhoto', {
-    big_photo: req.user.photo.big || default_img_uri,
-    middle_photo: req.user.photo.middle || default_img_uri,
-    small_photo: req.user.photo.small || default_img_uri
+    photo: req.user.photo,
+    uid: req.user.id
   });
 };
 
@@ -805,7 +786,7 @@ exports.getPhoto = function(req, res) {
         User.findOne({ id: uid })
         .exec(function(err, user) {
           if (err) callback(err);
-          else callback(null, user.photo.big);
+          else callback(null, user.photo);
         });
       },
       function(photo, callback) {
