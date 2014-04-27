@@ -38,7 +38,7 @@ var Competition = new Schema({
     group_type: String,
     gid: String,
     map: {
-      location: String,                       //地图地点
+      address: String,                       //地图地点
       longitude: Number,                      //经度
       latitude: Number                        //纬度
     },

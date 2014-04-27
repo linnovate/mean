@@ -130,5 +130,31 @@ var getMemberId = function(id){
       };
       $('#'+_id).attr('draggable',false);
     });
+    // 百度地图API功能
+    var map = new BMap.Map("location");            // 创建Map实例
+    var _location = $('#location').attr('data-location');
+    var _address = $('#location').attr('data-address');
+    var _longitude = $('#location').attr('data-longitude');
+    var _latitude = $('#location').attr('data-latitude');
+    var point = new BMap.Point(_longitude, _latitude);    // 创建点坐标
+    map.centerAndZoom(point,15);                     // 初始化地图,设置中心点坐标和地图级别。
+    map.enableScrollWheelZoom();
+    map.addOverlay(new BMap.Marker(point));
+    function showInfo(e){
+      var opts = {
+        width : 200,     // 信息窗口宽度
+        height: 60,     // 信息窗口高度
+        title : _location, // 信息窗口标题
+        enableMessage:false,//设置允许信息窗发送短息
+        message:"亲耐滴，准时参加喔~"
+      };
+      var infoWindow = new BMap.InfoWindow(_address, opts);  // 创建信息窗口对象
+      map.openInfoWindow(infoWindow,point); //开启信息窗口
+      }
+      map.addEventListener("click", showInfo);
   });
 }(window));
+
+
+                           //启用滚轮放大缩小
+

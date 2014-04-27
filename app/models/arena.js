@@ -6,15 +6,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-/**
- * 擂台模型
- */
-var ArenaModel = new Schema({
-    id: String,
-    gid: String,
-    group_type: String,
-    area: String,
-    champion:{
+ var _champion = new Schema({
       logo: String,                            //队徽路径
       cname: String,                           //本方公司名
       uid: String,                             //队长id
@@ -22,15 +14,50 @@ var ArenaModel = new Schema({
       tname: String,
       cid: String,
       gid: String,
+      champion_type: {
+        type: String,
+        enum: ['rob', 'challenge']
+      },
       active:{
         type: Boolean,
         default: false
-      }
-    },
-    start_time:{
+      },
+      start_time:{
         type: Date,
         default: Date.now()
-    }
+      },
+      end_time: {
+        type: Date
+      },
+      score: Number,
+      win_time: Number,
+      campaign_id :Array
+    });
+/**
+ * 擂台模型
+ */
+var ArenaModel = new Schema({
+    id: String,
+    gid: String,
+    group_type: String,
+    city: {
+            province: String,
+            city: String
+    },
+    campaign_info:{
+      location: String,
+      campaign_date: Date,
+      deadline: Date,
+      competition_format: String,              //赛制
+      remark: String,                          //备注
+      number: Number                           //人数
+    },
+    address: String,
+    champion: {
+        type: Schema.ObjectId,
+        ref: '_champion'
+    },
+    history: [_champion]
 
 });
 

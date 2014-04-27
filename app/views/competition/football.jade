@@ -54,8 +54,10 @@ block aside
   hr
   .infoHead.row
     h4.pull-left 活动地点
+  #location.size_210(data-location=competition.brief.location data-address=competition.map.address data-longitude=competition.map.longitude data-latitude=competition.map.latitude)
   hr
   .infoHead.row
     h4.pull-left 活动精彩照片
 append footExt
-    script(src="/js/controllers/group.js")
+  script(src="http://api.map.baidu.com/api?v=2.0&ak=bXB8FnPKWMDfTYOtIbGXGHNx")
+  script(src="/js/controllers/group.js")

@@ -708,6 +708,11 @@ exports.getCompetition = function(req, res){
       ]
     },
     'group_type': '足球',
+    'map':{
+      'address':'上海市徐汇区点点滴滴',
+      'longitude': 121.443819,
+      'latitude': 31.191653,
+    },
     'brief': {
       'competition_format': '友谊赛',
       'number':11,
