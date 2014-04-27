@@ -690,6 +690,7 @@ exports.getCompetition = function(req, res){
     'group_type': '足球',
     'brief': {
       'competition_format': '友谊赛',
+      'number':11,
       'location': '上海体育馆',
       'deadline': new Date(3600*24),
       'competition_date': new Date(),
@@ -699,8 +700,8 @@ exports.getCompetition = function(req, res){
   };
   res.render('competition/football', {
           'title': '发起足球比赛',
-          'competition' : competition,
-          'team': req.competition_team
+          'competition' : req.competition,
+          'team': competition_team
   });
 };
 exports.updateFormation = function(req, res){
