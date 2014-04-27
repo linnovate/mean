@@ -291,10 +291,19 @@ exports.getGroupCampaign = function(req, res) {
           }
         }
 
-
+        //判断这个组是不是员工所属的组,否则不能参加
+        var stop = false;
+        for(var j = 0; j < campaign[i].gid.length && !stop; j ++) {
+          for(var k = 0; k < req.user.group.length; k ++) {
+            if(req.user.group[k].gid === campaign[i].gid[j]) {
+              stop = true;
+              break;
+            }
+          }
+        }
 
         campaigns.push({
-          'active':campaign[i].active,
+          'active':campaign[i].active && stop,              //如果该活动没有关闭并且该员工有这个活动的组,就显示参加按钮
           'active_value':campaign[i].active ? '关闭' : '打开',
           'id': campaign[i].id,
           'gid': campaign[i].gid,
