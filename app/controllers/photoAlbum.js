@@ -108,7 +108,8 @@ exports.deletePhotoAlbum = function(req, res) {
 
 exports.createPhoto = function(req, res) {
   var pa_id = req.params.photoAlbumId;
-  if (validator.isAlphanumeric(pa_id) && req.files.photos.length > 0) {
+  var photos = req.files.photos;
+  if (validator.isAlphanumeric(pa_id) && (photos.size > 0 || photos.length > 0)) {
     try {
       var uri_dir = '/img/photo_album/' + pa_id + '/';
       var photos = req.files.photos;

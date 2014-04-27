@@ -5,6 +5,23 @@ var validator = require('validator');
 
 var Schema = mongoose.Schema;
 
+
+
+var Photo = new Schema({
+  uri: String,
+  publish_date: {
+    type: Date,
+    default: Date.now
+  },
+  comment: String
+});
+
+Photo.pre('save', function(next) {
+  this.comment = validator.escape(this.comment);
+  return next();
+});
+
+
 var PhotoAlbum = new Schema({
   name: {
     type: String,
@@ -19,25 +36,12 @@ var PhotoAlbum = new Schema({
     type: Date,
     default: Date.now
   },
-  photos: [{
-    uri: String,
-    publish_date: {
-      type: Date,
-      default: Date.now
-    },
-    comment: String
-  }]
+  photos: [Photo]
 });
 
 PhotoAlbum.pre('save', function(next) {
   this.name = validator.escape(this.name);
   this.update_date = Date.now();
-  for (var i = 0; i < this.photos.length; i++) {
-    var photo = this.photos[i];
-    if (photo) {
-      photo.comment = validator.escape(photo.comment);
-    }
-  }
   return next();
 });
 

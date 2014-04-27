@@ -2,6 +2,10 @@
 
 var photoAlbum = require('../controllers/photoAlbum');
 
+var express = require('express');
+var config = require('../../config/config');
+var photoBodyParser = express.bodyParser({ uploadDir: config.root + '/temp_uploads/' });
+
 module.exports = function(app) {
 
   var authorize = photoAlbum.authorize;
@@ -11,12 +15,11 @@ module.exports = function(app) {
   app.put('/photoAlbum/:photoAlbumId', authorize, photoAlbum.updatePhotoAlbum)
   app.delete('/photoAlbum/:photoAlbumId', authorize, photoAlbum.deletePhotoAlbum);
 
-  app.post('/photoAlbum/:photoAlbumId/photo', authorize, photoAlbum.createPhoto);
+  app.post('/photoAlbum/:photoAlbumId/photo', authorize, photoBodyParser, photoAlbum.createPhoto);
   app.get('/photoAlbum/:photoAlbumId/photo/:photoId', authorize, photoAlbum.readPhoto);
   app.put('/photoAlbum/:photoAlbumId/photo/:photoId', authorize, photoAlbum.updatePhoto);
   app.delete('/photoAlbum/:photoAlbumId/photo/:photoId', authorize, photoAlbum.deletePhoto);
 
   app.get('/photoAlbum/:photoAlbumId/photos', authorize, photoAlbum.readPhotos);
-
 
 };
