@@ -3,6 +3,10 @@
 // User routes use users controller
 var users = require('../controllers/users');
 
+var express = require('express');
+var config = require('../../config/config');
+var photoBodyParser = express.bodyParser({ uploadDir: config.root + '/temp_uploads/' });
+
 module.exports = function(app, passport) {
 
     var authorize = users.authorize;
@@ -40,7 +44,7 @@ module.exports = function(app, passport) {
 
     app.post('/users/vote', authorize, users.vote);
 
-    app.post('/users/tempPhoto', authorize, users.tempPhoto);
+    app.post('/users/tempPhoto', authorize, photoBodyParser, users.tempPhoto);
     app.post('/users/savePhoto', authorize, users.savePhoto);
 
     app.get('/users/editPhoto', authorize, users.editPhoto);

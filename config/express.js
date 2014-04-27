@@ -66,13 +66,12 @@ module.exports = function(app, passport, db) {
             })
         }));
 
+        // 创建上传文件临时目录
         var uploadDir = config.root + '/temp_uploads/';
         if (!fs.existsSync(uploadDir)) {
             fs.mkdirSync(uploadDir);
         }
 
-        // 上传设置，必须在app.router和static middleware之前
-        app.use(express.bodyParser({ uploadDir: uploadDir }));
 
         //app.use(middleware.auth_user);
 

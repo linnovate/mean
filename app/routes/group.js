@@ -3,6 +3,10 @@
 // group routes use group controller
 var group = require('../controllers/group');
 
+var express = require('express');
+var config = require('../../config/config');
+var photoBodyParser = express.bodyParser({ uploadDir: config.root + '/temp_uploads/' });
+
 
 module.exports = function(app) {
   app.get('/group/getgroups',group.getGroups);
@@ -42,7 +46,7 @@ module.exports = function(app) {
   app.post('/group/provoke', group.provoke);
   app.post('/group/responseProvoke', group.responseProvoke);
 
-  app.post('/group/tempLogo', group.tempLogo);
+  app.post('/group/tempLogo', photoBodyParser, group.tempLogo);
   app.post('/group/saveLogo', group.saveLogo);
 
   app.get('/group/editLogo', group.editLogo);
