@@ -35,10 +35,21 @@ exports.getCompany = function (req, res) {
 
 
 //TODO
-//根据公司id搜索成员
+//根据公司id搜索成员(该成员不是该组的组长)
 exports.getUser = function(req, res) {
   var cid = req.body.cid;   //根据公司名找它的员工
-  User.find({'cid': cid}, function (err, users){
+  var gid = req.body.gid;   //找选择了该组的员工
+  console.log('GID:' + gid);
+  User.find({'cid': cid , 'group.gid' : {'$all':[gid]},
+    '$where':function(){
+      for(var i = 0; i < this.group.length; i ++) {
+        if(this.group[i].leader === true && this.group[i].gid === gid){
+          return false;
+        }
+      }
+      return true;
+    }
+  }, function (err, users){
     if(err){
       return res.send([]);
     }else{
@@ -51,3 +62,4 @@ exports.getUser = function(req, res) {
     }
   });
 };
+

@@ -8,10 +8,16 @@ var mongoose = require('mongoose'),
     crypto = require('crypto');
 
 
+var _leader = new Schema({
+    uid : String,
+    nickname : String
+});
+
 var _group = new Schema({
     gid: String,
     group_type: String,
-    entity_type: String           //对应的增强组件名字
+    entity_type: String,           //对应的增强组件名字
+    leader:[_leader]
 });
 /**
  * Company Schema

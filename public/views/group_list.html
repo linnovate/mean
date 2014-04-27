@@ -1,21 +1,21 @@
 <div>
-	<h1>企业组件列表</h1>
-  	<ul>
-  		<div>
-    		<li ng-repeat="group in group.group_lists" >
+  <h1>企业组件列表</h1>
+    <ul>
+      <div>
+        <li ng-repeat="group in group.group_lists" >
             <label class="group_{{ group.gid }}"></label>
             <p>id：{{ group.gid }}</p>
-      			<h2>{{ group.name }}</h2>
-      			<p>组件类型：{{ group.group_type }}</p>
-      			<p>组件组长：{{ group.leader.username}}</p>
-      			<p>队员数：{{ group.member.length }}</p>
-      			<p>分数：{{ group.score }}</p>
-      			<p>排名：{{ group.rank }}</p>
-      			<p>简介：{{ group.brief }}</p>
+            <h2>{{ group.name }}</h2>
+            <p>组件类型：{{ group.group_type }}</p>
+            <p>组件组长：{{ group.leader[0].nickname}}   等</p>
+            <p>队员数：{{ group.member.length }}</p>
+            <p>分数：{{ group.score }}</p>
+            <p>排名：{{ group.rank }}</p>
+            <p>简介：{{ group.brief }}</p>
             <input type = "button" value = "任命组长" ng-click="setGroupId(group.gid)"  data-toggle="modal" data-target="#appointLeaderModel"/>
-    		</li>
-    	</div>
-  	</ul>
+        </li>
+      </div>
+    </ul>
 </div>
 
 
@@ -29,7 +29,7 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <p>该公司的成员</p>
+          <p>该小组的成员</p>
           <li ng-repeat="user in group.users">
             <a ng-click="appointLeader(user.id)" data-dismiss="modal">{{user.nickname}}</a>
           </li>

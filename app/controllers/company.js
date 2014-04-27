@@ -432,25 +432,71 @@ exports.appointLeader = function (req, res) {
   var uid = req.body.uid;
   var gid = req.body.gid;
   var cid = req.body.cid;
-  User
-    .findOne({
-        id : lid
+
+  console.log(uid);
+  User.findOne({
+        id : uid
     },function (err, user) {
-      if (err) {
-
-      } else {
-        user.leader_group.gid.push(gid);
-      }
-    });
-  CompanyGroup
-  .findOne({
-        gid : gid
-    },function (err, company_group) {
-      if (err) {
-
-      } else {
-        company_group.leader.uid.push(lid);
-      }
+        if (err) {
+            return res.send(err);
+        } else {
+            for(var i =0; i< user.group.length; i ++) {
+                if(user.group[i].gid === gid) {
+                    user.group[i].leader = true;
+                }
+            }
+            user.role = 'LEADER';
+            user.save(function(err) {
+                if(err) {
+                    return res.send(err);
+                } else {
+                    CompanyGroup.findOne({gid : gid, cid : cid},function (err, company_group) {
+                        if (err) {
+                            return res.send(err);
+                        } else {
+                            company_group.leader.push({
+                                'cid' : cid,
+                                'uid' : uid,
+                                'username' : user.username,
+                                'nickname' : user.nickname
+                            });
+                            company_group.save(function(err){
+                                if(err){
+                                    return res.send(err);
+                                } else {
+                                    Company.findOne({'id':cid}, function (err, company) {
+                                        if(err) {
+                                            return res.send(err);
+                                        } else {
+                                            if(company) {
+                                                for(var i = 0; i < company.group.length; i ++) {
+                                                    if(company.group[i].gid === gid) {
+                                                        company.group[i].leader.push({
+                                                            'uid':uid,
+                                                            'nickname':user.nickname
+                                                        });
+                                                        company.save(function (err) {
+                                                            if(err) {
+                                                                return res.send(err);
+                                                            } else {
+                                                                return res.send('ok');
+                                                            }
+                                                        });
+                                                    }
+                                                }
+                                                return res.send('ok');
+                                            } else {
+                                                return res.send('no');
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
     });
 };
 
