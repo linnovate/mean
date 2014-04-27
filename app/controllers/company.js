@@ -116,11 +116,13 @@ exports.groupSelect = function(req, res) {
             }
 
             for (var i = 0, length = selected_groups.length; i < length; i++) {
+                var tname = company.info.name + '-'+ selected_groups[i].group_type + '队'; //默认的小队名
 
                 company.group.push({
                     'gid' : selected_groups[i].gid,
                     'group_type' : selected_groups[i].group_type,
-                    'entity_type' : selected_groups[i].entity_type
+                    'entity_type' : selected_groups[i].entity_type,
+                    'tname' : tname
                 });
 
                 var companyGroup = new CompanyGroup();
@@ -128,7 +130,7 @@ exports.groupSelect = function(req, res) {
                 companyGroup.gid = selected_groups[i].gid;
                 companyGroup.group_type = selected_groups[i].group_type;
                 companyGroup.entity_type = selected_groups[i].entity_type;
-
+                companyGroup.name = tname;
 
                 companyGroup.save(function (err){
                     if (err) {

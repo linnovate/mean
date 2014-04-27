@@ -346,6 +346,7 @@ exports.getCampaigns = function(req, res) {
                 break;
               }
             }
+
             campaigns.push({
               'active':campaign[j].active,
               'id': campaign[j].id,
@@ -495,6 +496,10 @@ exports.joinCampaign = function (req, res) {
           if(err) {
             console.log(err);
             res.send(err);
+          } else {
+            if(campaign.provoke.active === true) {
+              ;
+            }
           }
         });
     } else {

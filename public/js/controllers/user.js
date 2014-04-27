@@ -33,6 +33,7 @@ userApp.controller('GroupsController', ['$scope','$http', function($scope, $http
                     'gid': value.gid,
                     'group_type': value.group_type,
                     'entity_type': value.entity_type,
+                    'tname': value.tname,
                     'leader' : false
                 });
             }

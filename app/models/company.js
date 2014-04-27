@@ -17,6 +17,7 @@ var _group = new Schema({
     gid: String,
     group_type: String,
     entity_type: String,           //对应的增强组件名字
+    tname: String,                 //小队名称,这是很关键的关键字!
     leader:[_leader]
 });
 /**
