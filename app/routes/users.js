@@ -49,4 +49,6 @@ module.exports = function(app, passport) {
 
     app.get('/users/editPhoto', authorize, users.editPhoto);
 
+    app.get('/userPhoto/:id/:width/:height', users.getPhoto);
+
 };

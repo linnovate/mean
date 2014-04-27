@@ -3,18 +3,31 @@
 /**
  * Module dependencies.
  */
+
+// node system
+var crypto = require('crypto');
+var fs = require('fs');
+var path = require('path');
+
+// mongoose and models
 var mongoose = require('mongoose'),
   User = mongoose.model('User'),
   Company = mongoose.model('Company'),
-  encrypt = require('../middlewares/encrypt'),
-  crypto = require('crypto'),
-  mail = require('../services/mail'),
   Group = mongoose.model('Group'),
   CompanyGroup = mongoose.model('CompanyGroup'),
   GroupMessage = mongoose.model('GroupMessage'),
   Campaign = mongoose.model('Campaign'),
+  Competition = mongoose.model('Competition');
+
+// 3rd
+var validator = require('validator'),
+  async = require('async'),
+  gm = require('gm').subClass({ imageMagick: true });
+
+// custom
+var encrypt = require('../middlewares/encrypt'),
+  mail = require('../services/mail'),
   UUID = require('../middlewares/uuid'),
-  Competition = mongoose.model('Competition'),
   config = require('../config/config'),
   meanConfig = require('../../config/config'),
   message = require('../language/zh-cn/message');
@@ -661,7 +674,6 @@ exports.changePassword = function (req, res) {
 
 exports.tempPhoto = function(req, res) {
 
-  var fs = require('fs');
   var temp_path = req.files.temp_photo.path;
 
   var target_dir = meanConfig.root + '/public/img/user/photo/temp/';
@@ -782,6 +794,40 @@ exports.editPhoto = function(req, res) {
   });
 };
 
+
+exports.getPhoto = function(req, res) {
+  var uid = req.params.id;
+  var width = req.params.width;
+  var height = req.params.height;
+  if (validator.isNumeric(width + height)) {
+    async.waterfall([
+      function(callback) {
+        User.findOne({ id: uid })
+        .exec(function(err, user) {
+          if (err) callback(err);
+          else callback(null, user.photo.big);
+        });
+      },
+      function(photo, callback) {
+        res.set('Content-Type', 'image/png');
+        gm(meanConfig.root + '/public' + photo)
+        .resize(width, height, '!')
+        .stream(function(err, stdout, stderr) {
+          if (err) callback(err);
+          else {
+            stdout.pipe(res);
+            callback(null);
+          }
+        });
+      }
+    ], function(err, result) {
+      if (err) res.send({ result: 0, msg: '获取用户头像失败' });
+    });
+
+  } else {
+    res.send({ result: 0, msg: '请求错误' });
+  }
+}
 
 //搜索成员
 //目前只是将所有记录都列出来
