@@ -290,17 +290,8 @@ exports.getGroupCampaign = function(req, res) {
             break;
           }
         }
-        //判断这个组是不是员工所属的组,否则不能参加
-        var stop = false;
-        for(var j = 0; j < campaign[i].gid.length && !stop; j ++) {
-          for(var k = 0; k < req.user.group.length; k ++) {
-            if(req.user.group[k].gid === campaign.gid[j]) {
-              stop = true;
-              break;
-            }
-          }
-        }
-        join = stop;
+
+
 
         campaigns.push({
           'active':campaign[i].active,

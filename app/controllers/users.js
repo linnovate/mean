@@ -487,18 +487,61 @@ exports.joinCampaign = function (req, res) {
   },
   function (err, campaign) {
     if (campaign) {
+
         campaign.member.push({
           'cid':cid,
           'uid':uid,
           'username':req.user.username
         });
+
         campaign.save(function (err) {
           if(err) {
             console.log(err);
             res.send(err);
           } else {
             if(campaign.provoke.active === true) {
-              ;
+              //将员工信息存入competition,要根据他的队名判断属于哪一方
+              Competition.findOne({'id':campaign.provoke.competition_id}, function (err, competition) {
+                if(err){
+                  return res.send(err);
+                } else {
+                  if(competition) {
+                    for(var i = 0;i < req.user.group.length; i ++) {
+                      if(competition.camp_a.tname === req.user.group[i].tname) {
+                          competition.camp_a.member.push({
+                             camp:'A',
+                             cid: cid,
+                             uid: uid,
+                             photo: req.user.photo.middle,         //队员头像路径
+                             username: req.user.username,
+                             number: 0                             //球队分配的个人号码
+                          });
+                        break;
+                      }
+                      if(competition.camp_b.tname === req.user.group[i].tname) {
+                          competition.camp_b.member.push({
+                              camp:'B',
+                              cid: cid,
+                              uid: uid,
+                              photo: req.user.photo.middle,         //队员头像路径
+                              username: req.user.username,
+                              number: 0                             //球队分配的个人号码
+                          });
+                        break;
+                      }
+                    }
+                    competition.save(function (err) {
+                      if(err) {
+                        return res.send(err);
+                      } else {
+                        return res.send('ok');
+                      }
+                    });
+                  } else {
+                    return res.send('null');
+                  }
+                }
+              });
             }
           }
         });
