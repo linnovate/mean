@@ -65,7 +65,8 @@ tabViewCompany.controller('GroupListController', ['$http', '$scope',
                 method: 'post',
                 url: '/search/user',
                 data:{
-                    cid: that.cid
+                    cid: that.cid,
+                    gid: that.gid
                 }
             }).success(function(data, status) {
                 //发布活动后跳转到显示活动列表页面
@@ -87,7 +88,7 @@ tabViewCompany.controller('GroupListController', ['$http', '$scope',
                 data:{
                     cid: that.cid,
                     gid: that.gid,
-                    uid: that.uid
+                    uid: uid
                 }
             }).success(function(data, status) {
                 //发布活动后跳转到显示活动列表页面

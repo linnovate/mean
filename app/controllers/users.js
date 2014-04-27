@@ -302,7 +302,7 @@ exports.finishRegister = function(req, res) {
 exports.getGroupMessages = function(req, res) {
   var group_messages = [];
   var flag = 0;
-
+  console.log(req.session.role);
   for(var i = 0; i < req.user.group.length; i ++) {
      GroupMessage.find({'cid' : {'$all':[req.user.cid]} , 'group.gid': {'$all': [req.user.group[i].gid]} }, function(err, group_message) {
       flag ++;
@@ -314,6 +314,7 @@ exports.getGroupMessages = function(req, res) {
 
           var length = group_message.length;
           for(var j = 0; j < length; j ++) {
+            console.log(group_message[j].provoke.active + '---' + (group_message[j].group.gid[0] === req.user.group[flag-1].gid) +'---'+ (!group_message[j].provoke.start_confirm) +'---'+ req.user.group[flag-1].leader + '---' + (group_message[j].cid[1] === req.session.cid));
             group_messages.push({
               'id': group_message[j].id,
               'cid': group_message[j].cid,
@@ -322,8 +323,8 @@ exports.getGroupMessages = function(req, res) {
               'date': group_message[j].date,
               'poster': group_message[j].poster,
               'content': group_message[j].content,
-              'provoke': group_message[j].provoke,
-              'provoke_accept': group_message[j].provoke.active && (group_message[j].provoke.uid_opposite === req.session.uid) && (!group_message[j].provoke.start_confirm) ? true : false
+              'provoke': group_message[j].provoke,                  //应约按钮显示要有四个条件:1.该约战没有关闭 2.当前员工公司id和被约公司id一致 3.约战没有确认 4.当前员工是该小队的队长
+              'provoke_accept': group_message[j].provoke.active && (group_message[j].group.gid[0] === req.user.group[flag-1].gid) && (!group_message[j].provoke.start_confirm) && req.user.group[flag-1].leader && (group_message[j].cid[1] === req.session.cid) ? true : false
             });
           }
         }
@@ -577,7 +578,7 @@ exports.quitCampaign = function (req, res) {
     function (err, campaign) {
       if (campaign) {
 
-        //删除该员工信息
+        //从campaign里删除该员工信息
         for( var i = 0; i < campaign.member.length; i ++) {
           if (campaign.member[i].uid === uid) {
             campaign.member.splice(i,1);
@@ -586,7 +587,50 @@ exports.quitCampaign = function (req, res) {
         }
 
         campaign.save(function (err) {
-          console.log(err);
+          if(err){
+            return res.send(err);
+          } else {
+            if(campaign.provoke.active === true) {
+              //将员工信息从competition里删除
+              Competition.findOne({'id':campaign.provoke.competition_id}, function (err, competition) {
+                if(err){
+                  return res.send(err);
+                } else {
+                  if(competition) {
+                    var find = false;
+
+                    //看该员工是不是在camp_a里面
+                    for(var i = 0; i < competition.camp_a.member.length; i++) {
+                      if (competition.camp_a.member[i].uid === uid) {
+                        competition.camp_a.member.splice(i,1);
+                        find = true;
+                        break;
+                      }
+                    }
+                    //如果不在a里面就一定在b里面
+                    if(!find) {
+                      for(var i = 0; i < competition.camp_b.member.length; i++) {
+                        if (competition.camp_b.member[i].uid === uid) {
+                          competition.camp_b.member.splice(i,1);
+                          find = true;
+                          break;
+                        }
+                      }
+                    }
+                    competition.save(function (err) {
+                      if(err) {
+                        return res.send(err);
+                      } else {
+                        return res.send('ok');
+                      }
+                    });
+                  } else {
+                    return res.send('null');
+                  }
+                }
+              });
+            }
+          }
         });
       } else {
           console.log('没有此活动!');

@@ -33,6 +33,37 @@ exports.getCompany = function (req, res) {
     });
 };
 
+//TODO
+//根据公司和组件类型搜索小队
+//返回该组件的队名和组长
+exports.getTeam = function(req, res) {
+  var cid = req.body.cid;
+  var gid = req.session.gid;
+  Company.findOne({'id':cid}, function (err, company) {
+    if(err) {
+      return res.send(err);
+    } else {
+      if(company) {
+        var leader = [];
+        var tname = '';
+        for(var i = 0; i < company.group.length; i ++) {
+          if(company.group[i].gid === gid) {
+            leader = company.group[i].leader !== null && company.group[i].leader !== undefined ? company.group[i].leader : [];
+            tname = company.group[i].tname;
+          }
+        }
+        console.log(leader + '---' + tname);
+        return res.send({
+          'tname' : tname,
+          'leader' : leader
+        });
+      } else {
+        return res.send('null');
+      }
+    }
+  });
+}
+
 
 //TODO
 //根据公司id搜索成员(该成员不是该组的组长)

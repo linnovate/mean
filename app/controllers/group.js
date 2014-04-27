@@ -243,6 +243,14 @@ exports.getGroupMessage = function(req, res) {
       var group_messages = [];
       var length = group_message.length;
       for(var i = 0; i < length; i ++) {
+
+        var leader = false;
+        for(var j = 0; j < req.user.group.length; j ++) {
+          if(req.user.group[j].gid === gid) {
+            leader = req.user.group[j].leader;
+          }
+        }
+
         group_messages.push({
           'id': group_message[i].id,
           'cid': group_message[i].cid,
@@ -251,8 +259,8 @@ exports.getGroupMessage = function(req, res) {
           'date': group_message[i].date,
           'poster': group_message[i].poster,
           'content': group_message[i].content,
-          'provoke': group_message[i].provoke,
-          'provoke_accept': group_message[i].provoke.active && (group_message[i].provoke.uid_opposite === req.session.uid) && (!group_message[i].provoke.start_confirm) ? true : false
+          'provoke': group_message[i].provoke,                   //应约按钮显示要有四个条件:1.该约战没有关闭 2.当前员工所属组件id和被约组件id一致 3.约战没有确认 4.当前员工是该小队的队长
+          'provoke_accept': group_message[i].provoke.active && (group_message[i].group.gid[0] === gid) && leader && (!group_message[i].provoke.start_confirm) ? true : false
         });
       }
       return res.send(group_messages);
@@ -371,9 +379,8 @@ exports.provoke = function (req, res) {
 
 
   var team_a = req.session.companyGroup.name;   //约战方队名
-  var team_b = req.body.team_b;   //被约方队名
+  var team_opposite = req.body.team_opposite;   //被约方队名
 
-  var uid_opposite = req.body.uid_opposite;    //被约方队长id
 
 
   competition.id = UUID.id();
@@ -390,8 +397,7 @@ exports.provoke = function (req, res) {
 
 
   competition.camp_b.cid = cid_opposite;               //被约方的公司id和队长id先存进去,到时候显示动态时将据此决定是否显示"应约"按钮
-  competition.camp_b.uid = uid_opposite;
-  competition.camp_b.tname = team_b;
+  competition.camp_b.tname = team_opposite;
 
   competition.content = req.body.content;
   competition.brief.remark = req.body.remark;
@@ -405,10 +411,10 @@ exports.provoke = function (req, res) {
   var groupMessage = new GroupMessage();
   groupMessage.id = UUID.id();
   groupMessage.group.gid.push(gid);
+  groupMessage.group.group_type.push(competition.group_type);
   groupMessage.provoke.active = true,
   groupMessage.provoke.team_a = team_a;
-  groupMessage.provoke.team_b = team_b;
-  groupMessage.provoke.uid_opposite = uid_opposite;
+  groupMessage.provoke.team_b = team_opposite;
 
   //groupMessage.poster.cname = cname;
   groupMessage.poster.cid = cid;

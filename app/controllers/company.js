@@ -435,10 +435,12 @@ exports.appointLeader = function (req, res) {
   var gid = req.body.gid;
   var cid = req.body.cid;
 
+
   console.log(uid);
   User.findOne({
         id : uid
     },function (err, user) {
+
         if (err) {
             return res.send(err);
         } else {

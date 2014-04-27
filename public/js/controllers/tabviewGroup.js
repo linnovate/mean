@@ -77,21 +77,20 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
     });
 
 
-    $scope.provoke_select = function( uid) {
-        that.uid_opposite = uid;
-        alert(uid);
+    $scope.provoke_select = function( tname) {
+        that.team_opposite = tname;
     };
-    $scope.getUser = function( cid) {
+    $scope.getTeam = function (cid) {
         that.cid_opposite = cid;
         try {
             $http({
                 method: 'post',
-                url: '/search/user',
+                url: '/search/team',
                 data:{
                     cid : cid
                 }
             }).success(function(data, status) {
-                that.users = data;
+                that.teams = data;
             }).error(function(data, status) {
                 alert('数据发生错误！');
             });
@@ -103,7 +102,6 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
 
     //约战
     $scope.provoke = function() {
-        
          try {
             $http({
                 method: 'post',
@@ -112,8 +110,7 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
                     provoke_model : 'against',
                     cid_opposite : that.cid_opposite,
                     content : $scope.content,
-                    team_b : $scope.team_b,
-                    uid_opposite : that.uid_opposite,
+                    team_opposite : that.team_opposite,
 
                     location: $scope.location,
                     remark: $scope.remark,

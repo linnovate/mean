@@ -46,9 +46,6 @@
           <label>挑战内容
             <input type="text" class="form-control" name="content" ng-model="content">
           </label>
-          <label>对方队名
-            <input type="text" class="form-control" name="team_b" ng-model="team_b">
-          </label>
           <label>赛制
             <input type="text" class="form-control" name="competition_format" ng-model="competition_format">
           </label>
@@ -73,16 +70,13 @@
               <hr/>
               <p>公司id: {{company.id}}</p>
               <p>公司名:{{company.name}}</p>
-              <button ng-click="getUser(company.id)">列出成员</button>
+              <button ng-click="getTeam(company.id)">列出小组</button>
+
               <hr/>
             </li>
         </div>
-        <div class="row">
-          <p>该公司的成员</p>
-          <li ng-repeat="user in campaign.users">
-            <a ng-click="provoke_select(user.id)">{{user.nickname}}</a>
-          </li>
-        </div>
+
+        <a ng-click="provoke_select(campaign.teams.tname)">{{campaign.teams.tname}}</a>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

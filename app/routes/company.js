@@ -47,8 +47,12 @@ module.exports = function(app, passport) {
 
     app.post('/company/campaignCancel', company.campaignCancel);
 
+    app.post('/company/appointLeader', company.appointLeader);
+
     app.get('/company/home', company.home);
 
     // Setting up the companyId param
     app.param('companyId', company.company);
+
+
 };
