@@ -432,7 +432,7 @@ exports.editInfo = function(req, res) {
 
 
 //员工投票是否参加约战
-//记得要做重复投票检查
+//记得要做重复投票检查 TODO
 exports.vote = function (req, res) {
 
   var cid = req.session.cid;
