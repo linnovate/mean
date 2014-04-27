@@ -409,8 +409,7 @@ exports.home = function(req, res) {
         }
       };
 
-      var big_photo = req.user.photo.big || '/img/user/photo/default.png';
-      return res.render('users/home', {'groups': req.user.group, 'ugids':_ugids, big_photo: big_photo});
+      return res.render('users/home', {'groups': req.user.group, 'ugids':_ugids, photo: req.user.photo});
     });
 
   }

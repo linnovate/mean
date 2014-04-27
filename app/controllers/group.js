@@ -14,7 +14,11 @@ var mongoose = require('mongoose'),
     Group = mongoose.model('Group'),
     UUID = require('../middlewares/uuid'),
     CompanyGroup = mongoose.model('CompanyGroup'),
-    Competition = mongoose.model('Competition');
+    Competition = mongoose.model('Competition'),
+    validator = require('validator'),
+    async = require('async'),
+    fs = require('fs'),
+    gm = require('gm').subClass({ imageMagick: true });
 
 
 //返回组件模型里的所有组件(除了虚拟组),待HR选择
@@ -162,7 +166,7 @@ exports.home = function(req, res) {
               'number': (req.companyGroup.member !== undefined && req.companyGroup.member !== null) ? req.companyGroup.member.length : 0,
               'score': (req.companyGroup.score !== undefined && req.companyGroup.score !== null) ? req.companyGroup.score : 0,
               'role': req.session.role === 'EMPLOYEE',  //等加入权限功能后再修改  TODO
-              'big_logo': company_group.logo.big || '/img/group/logo/default.png'
+              'logo': company_group.logo
             });
           });
         });
@@ -195,7 +199,7 @@ exports.home = function(req, res) {
               'number': (req.companyGroup.member !== undefined && req.companyGroup.member !== null) ? req.companyGroup.member.length : 0,
               'score': (req.companyGroup.score !== undefined && req.companyGroup.score !== null) ? req.companyGroup.score : 0,
               'role': req.session.role === 'EMPLOYEE',  //等加入权限功能后再修改  TODO
-              'big_logo': company_group.logo.big || '/img/group/logo/default.png'
+              'logo': company_group.logo
             });
           });
         });
@@ -930,12 +934,10 @@ exports.saveLogo = function(req, res) {
   shasum.update(req.session.gid);
   var temp_img = shasum.digest('hex') + '.png';
 
-  var photos = new Array(3);
-  for (var i = 0; i < photos.length; i++) {
-    var shasum = crypto.createHash('sha1');
-    shasum.update( Date.now().toString() + Math.random().toString() );
-    photos[i] = shasum.digest('hex') + '.png';
-  }
+  var shasum = crypto.createHash('sha1');
+  shasum.update( Date.now().toString() + Math.random().toString() );
+  var logo = shasum.digest('hex') + '.png';
+
 
   // 文件系统路径，供fs使用
   var temp_path = meanConfig.root + '/public/img/group/logo/temp/' + temp_img;
@@ -955,50 +957,34 @@ exports.saveLogo = function(req, res) {
       var y = req.body.y * value.height;
 
       CompanyGroup.findOne({ gid: req.session.gid }).exec(function(err, company_group) {
-        var ori_logos = [company_group.logo.big, company_group.logo.middle, company_group.logo.small];
+        var ori_logo = company_group.logo;
 
         gm(temp_path)
         .crop(w, h, x, y)
         .resize(150, 150)
-        .write(target_dir + photos[0], function(err) {
+        .write(target_dir + logo, function(err) {
           if (err) throw err;
 
-          gm(temp_path)
-          .crop(w, h, x, y)
-          .resize(50, 50)
-          .write(target_dir + photos[1], function(err) {
-            if (err) throw err;
-
-            gm(temp_path)
-            .crop(w, h, x, y)
-            .resize(27, 27)
-            .write(target_dir + photos[2], function(err) {
+          else {
+            company_group.logo = uri_dir + logo;
+            company_group.save(function(err) {
               if (err) throw err;
-              company_group.logo.big = uri_dir + photos[0];
-              company_group.logo.middle = uri_dir + photos[1];
-              company_group.logo.small = uri_dir + photos[2];
-              company_group.save(function(err) {
-                if (err) throw err;
-              });
-
-              fs.unlink(temp_path, function(err) {
-                if (err) console(err);
-                var unlink_dir = meanConfig.root + '/public';
-                for (var i = 0; i < ori_logos.length; i++) {
-                  if (ori_logos[i]) {
-                    if (fs.existsSync(unlink_dir + ori_logos[i])) {
-                      fs.unlinkSync(unlink_dir + ori_logos[i]);
-                    }
-                  }
-                }
-                res.redirect('/group/editLogo');
-              });
             });
-          });
+
+            fs.unlink(temp_path, function(err) {
+              if (err) console(err);
+              var unlink_dir = meanConfig.root + '/public';
+              if (ori_logo) {
+                if (fs.existsSync(unlink_dir + ori_logo)) {
+                  fs.unlinkSync(unlink_dir + ori_logo);
+                }
+              }
+              res.redirect('/group/editLogo');
+            });
+          }
+
         });
-
       });
-
     });
   } catch(e) {
     console.log(e);
@@ -1007,14 +993,46 @@ exports.saveLogo = function(req, res) {
 };
 
 exports.editLogo = function(req, res) {
-  var default_img_uri = '/img/group/logo/default.png';
   CompanyGroup.findOne({ gid: req.session.gid }).exec(function(err, company_group) {
     res.render('group/editLogo', {
-      big_photo: company_group.logo.big || default_img_uri,
-      middle_photo: company_group.logo.middle || default_img_uri,
-      small_photo: company_group.logo.small || default_img_uri
+      logo: company_group.logo,
+      id: company_group._id
     });
   });
 
+};
+
+exports.getLogo = function(req, res) {
+  var id = req.params.id;
+  var width = req.params.width;
+  var height = req.params.height;
+  if (validator.isNumeric(width + height)) {
+    async.waterfall([
+      function(callback) {
+        CompanyGroup.findOne({ _id: id })
+        .exec(function(err, company_group) {
+          if (err) callback(err);
+          else callback(null, company_group.logo);
+        });
+      },
+      function(logo, callback) {
+        res.set('Content-Type', 'image/png');
+        gm(meanConfig.root + '/public' + logo)
+        .resize(width, height, '!')
+        .stream(function(err, stdout, stderr) {
+          if (err) callback(err);
+          else {
+            stdout.pipe(res);
+            callback(null);
+          }
+        });
+      }
+    ], function(err, result) {
+      if (err) res.send({ result: 0, msg: '获取小组logo失败' });
+    });
+
+  } else {
+    res.send({ result: 0, msg: '请求错误' });
+  }
 };
 

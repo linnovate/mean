@@ -51,4 +51,6 @@ module.exports = function(app) {
 
   app.get('/group/editLogo', group.editLogo);
 
+  app.get('/groupLogo/:id/:width/:height', group.getLogo);
+
 };
