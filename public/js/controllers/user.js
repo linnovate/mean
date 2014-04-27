@@ -17,7 +17,7 @@ userApp.directive('match', function($parse) {
 //员工注册后在公司组件列表里选择组件
 userApp.controller('GroupsController', ['$scope','$http', function($scope, $http) {
     $http.get('/group/getCompanyGroups').success(function(data, status) {
-        $scope.groups = data;
+        $scope.groups = data.group;
         for(var i = 0, length = $scope.groups.length; i < length; i++) {
             $scope.groups[i].select = '0';
         }

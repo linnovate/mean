@@ -285,7 +285,6 @@ tabViewGroup.controller('infoController', ['$http', '$scope',function($http, $sc
                         {'username':'lee','logo':'/img/user/photo/0901f57984b059a034c544281e29027dea546e26.png'}];
         var _leaders = [{'username':'阿飞','logo':'/img/user/photo/0901f57984b059a034c544281e29027dea546e26.png'},
                         {'username':'大天','logo':'/img/user/photo/0901f57984b059a034c544281e29027dea546e26.png'}];
-                    
         $scope.leaders = _leaders;
         $scope.main_forces = _member;
     });

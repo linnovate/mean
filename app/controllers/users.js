@@ -486,17 +486,17 @@ exports.joinCampaign = function (req, res) {
   },
   function (err, campaign) {
     if (campaign) {
-      campaign.member.push({
-        'cid':cid,
-        'uid':uid,
-        'username':req.user.username
-      });
-      campaign.save(function (err) {
-        if(err) {
-          console.log(err);
-          res.send(err);
-        }
-      });
+        campaign.member.push({
+          'cid':cid,
+          'uid':uid,
+          'username':req.user.username
+        });
+        campaign.save(function (err) {
+          if(err) {
+            console.log(err);
+            res.send(err);
+          }
+        });
     } else {
       console.log('没有此活动!');
     }

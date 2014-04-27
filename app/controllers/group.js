@@ -280,12 +280,28 @@ exports.getGroupCampaign = function(req, res) {
       var length = campaign.length;
       for(var i = 0;i < length; i ++) {
         join = false;
+
+
+
+        //参加过的也不能参加
         for(var j = 0;j < campaign[i].member.length; j ++) {
           if(uid === campaign[i].member[j].uid) {
             join = true;
             break;
           }
         }
+        //判断这个组是不是员工所属的组,否则不能参加
+        var stop = false;
+        for(var j = 0; j < campaign[i].gid.length && !stop; j ++) {
+          for(var k = 0; k < req.user.group.length; k ++) {
+            if(req.user.group[k].gid === campaign.gid[j]) {
+              stop = true;
+              break;
+            }
+          }
+        }
+        join = stop;
+
         campaigns.push({
           'active':campaign[i].active,
           'active_value':campaign[i].active ? '关闭' : '打开',
@@ -304,7 +320,11 @@ exports.getGroupCampaign = function(req, res) {
           'provoke':campaign[i].provoke
         });
       }
-      return res.send({'data':campaigns,'role':role});
+
+      return res.send({
+        'data':campaigns,
+        'role':role
+      });
     }
   });
 };
@@ -986,5 +1006,4 @@ exports.editLogo = function(req, res) {
   });
 
 };
-
 
