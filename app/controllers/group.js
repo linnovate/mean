@@ -700,8 +700,8 @@ exports.getCompetition = function(req, res){
   };
   res.render('competition/football', {
           'title': '发起足球比赛',
-          'competition' : req.competition,
-          'team': competition_team
+          'competition' : competition,
+          'team': req.competition_team
   });
 };
 exports.updateFormation = function(req, res){
