@@ -6,7 +6,7 @@ block panel
       .teamInfo.col-xs-4
         img.size_210.teamLogo(src='#{competition.camp_a.logo}')
         div
-          a.teamName= competition.camp_b.tname
+          a.teamName= competition.camp_a.tname
         div
           each teamAMember in competition.camp_a.member
             img.size_50.teamMember(draggable="#{team=='A'}" ondragstart='drag(event)' ondragend='dragend(event)' src='#{teamAMember.photo}' id='#{teamAMember.uid}')
@@ -28,6 +28,7 @@ block panel
 block aside
   .infoHead.row
     h4.pull-left 活动简介
+    button 结果确认
   hr
   .row
     input#competition_id(type='hidden' value='#{competition.id}')

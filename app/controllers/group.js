@@ -780,7 +780,7 @@ exports.competition = function(req, res, next, id){
     if(req.session.cid ===competition.camp_a.cid){
       req.competition_team = 'A';
     }
-    else if(req.session.cid ===competition.camp_a.cid){
+    else if(req.session.cid ===competition.camp_b.cid){
       req.competition_team = 'B';
     }
     else
