@@ -1,0 +1,20 @@
+<div class="admin-menu" data-ng-controller="AdminController">
+    <!--  <section class="container"> -->
+    <div id="wrapper" class="row-fluid">
+        <div class="col-md-2">
+            <nav class="nav-docs" role="complementary">
+                <div class="span3 " style="width: auto;">
+                    <ul class="nav">
+                        <li data-ng-repeat="item in menus.admin" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
+                            <a mean-token="item.title" ui-sref='{{item.link}}'>{{item.title}}</a>
+                            <ul class="nav">
+                                <li class="" data-ng-repeat='subItem in item.subItems'>{{subItem}}</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!--  </section> -->
+</div>
