@@ -1,0 +1,9 @@
+extends ../layouts/default
+
+block content
+  input(type="hidden" name="photo_album_id" value="#{photo_album_id}")
+  h1 上传照片
+  form(action="/photoAlbum/#{photo_album_id}/photo" method="post" enctype="multipart/form-data")
+    input(type="file" name="photos" multiple="multiple")
+    button(type="submit") 上传照片
+

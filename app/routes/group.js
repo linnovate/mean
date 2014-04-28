@@ -59,4 +59,6 @@ module.exports = function(app) {
 
   app.get('/group/competition/:competitionId/managePhotoAlbum', group.managePhotoAlbum);
 
+  app.get('/group/competition/:competitionId/photoAlbum/:photoAlbumId', group.photoAlbumDetail);
+
 };
