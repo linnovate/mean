@@ -200,6 +200,3 @@ var getMemberId = function(id){
   });
 }(window));
 
-
-                           //启用滚轮放大缩小
-
