@@ -1,13 +1,20 @@
 'use strict';
 
+// node system
+var fs = require('fs');
+var crypto = require('crypto');
+
+// mongoose and models
 var mongoose = require('mongoose');
 var PhotoAlbum = mongoose.model('PhotoAlbum');
+
+// 3rd
 var validator = require('validator');
-var crypto = require('crypto');
-var fs = require('fs');
 var gm = require('gm').subClass({ imageMagick: true });
-var config = require('../../config/config');
 var async = require('async');
+
+// custom
+var config = require('../../config/config');
 
 exports.authorize = function(req, res, next) {
   if (req.user) {
@@ -17,6 +24,23 @@ exports.authorize = function(req, res, next) {
   }
 };
 
+exports.ownerFilter = function(req, res, next) {
+  switch (req.body.owner) {
+    case 'competition':
+      mongoose.model('Competition')
+      .findOne({ id: req.body.owner_id })
+      .exec(function(err, competition) {
+        req.model = competition;
+        next();
+      });
+      break;
+    default:
+      next();
+      break;
+  }
+}
+
+
 exports.createPhotoAlbum = function(req, res) {
   var photo_album = new PhotoAlbum({ name: req.body.name, update_user: req.user.nickname });
   try {
@@ -24,8 +48,32 @@ exports.createPhotoAlbum = function(req, res) {
       if (err) {
         throw err;
       } else {
-        fs.mkdirSync(config.root + '/public/img/photo_album/' + photo_album._id);
-        res.send({ result: 1, msg: '创建相册成功' });
+
+        async.waterfall([
+          function(callback) {
+            var pushObj = { pid: photo_album._id, name: photo_album.name };
+            req.model.photo.push(pushObj);
+            req.model.save(function(err) {
+              if (err) callback(err);
+              else {
+                delete req.model;
+                callback(null);
+              }
+            });
+          },
+          function(callback) {
+            fs.mkdir(config.root + '/public/img/photo_album/' + photo_album._id, function(err) {
+              if (err) callback(err);
+              else {
+                res.send({ result: 1, msg: '创建相册成功' });
+                callback(null);
+              }
+            });
+          }
+        ], function(err, result) {
+          if (err) throw err;
+        });
+
       }
     });
   } catch(e) {
@@ -127,25 +175,26 @@ exports.createPhoto = function(req, res) {
             .write(config.root + '/public' + uri_dir + photo_name,
               function(err) {
                 if (err) {
-                  throw err;
+                  callback(err);
                 } else {
                   var photo = {
                     uri: uri_dir + photo_name
                   };
                   photo_album.photos.push(photo);
                   photo_album.save(function(err) {
-                    if (err) throw err;
+                    if (err) callback(err);
+                    else {
+                      i++;
+                      callback();
+                    }
                   });
                 }
             });
-            i++;
-            callback();
           },
 
           function(err) {
             if (err) {
               throw err;
-              res.send({ result: 0, msg: '添加照片失败' });
             } else {
               res.send({ result: 1, msg: '添加照片成功' });
             }
@@ -296,5 +345,6 @@ exports.readPhotos = function(req, res) {
     res.send({ result: 0, msg: '请求错误' });
   }
 };
+
 
 

@@ -737,6 +737,7 @@ exports.getCompetition = function(req, res){
           'competition' : competition,
           'team': req.competition_team,
           'leader' : req.leader
+          'competition_id': req.params.competitionId
   });
 };
 
@@ -1100,4 +1101,19 @@ exports.getLogo = function(req, res) {
     res.send({ result: 0, msg: '请求错误' });
   }
 };
+
+exports.managePhotoAlbum = function(req, res) {
+  Competition.findOne({ id: req.params.competitionId })
+  .exec(function(err, competition) {
+    if (err) throw err;
+    else if (competition) {
+      res.render('group/manage_photo_album',
+        { owner_id : req.params.competitionId,
+          photo_albums: competition.photo
+      });
+    }
+  });
+}
+
+
 

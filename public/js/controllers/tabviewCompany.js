@@ -59,6 +59,7 @@ tabViewCompany.controller('GroupListController', ['$http', '$scope',
     });
 
     $scope.setGroupId = function (gid) {
+        alert('ok');
         that.gid = gid;
         try{
             $http({
