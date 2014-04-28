@@ -120,8 +120,8 @@ var _company = [
         'id': '0001-0001-0001-0001-000100010001',
         'username': 'donler',
         'login_email': 'hr@55yali.com',
-        'hashed_password': 'vZRsWfoPblxHVF0lXGAjS8nX2dpPuZuo7CM3OWjWpVVX9xUCeNcI29LinkN5sUyQAOWI36JJZga8IJT3uWpL4w==',
-        'salt': 'wFcQpGsWKS0wgA4y09zkSg==',
+        'hashed_password': 'AMQEr5SljqggnlY9LTJR8ZrHMAnYRRNJLnbNU/PriiZNiTkk9hPqPHc3T21mPcNVUqUL7xX1bJJ8axkoyK0cXQ==',
+        'salt': 'oGn/YzIa2UdFMCyju42JWA==',
         'email':{ "domain" : [  "55yali.com" ] },
         'status': {
             'active': true,
@@ -153,65 +153,90 @@ var _company = [
             {
                 "gid" : "1",
                 "group_type" : "羽毛球",
-                "entity_type" : "Badminton"
+                "entity_type" : "Badminton",
+                "tname":"上海动梨信息技术有限公司-羽毛球队",
+                "leader":[]
             },
             {
                 "gid" : "2",
                 "group_type" : "蓝球",
-                "entity_type" : "BasketBall"
+                "entity_type" : "BasketBall",
+                "tname":"上海动梨信息技术有限公司-蓝球队",
+                "leader":[]
             },
             {
                 "gid" : "3",
                 "group_type" : "阅读",
-                "entity_type" : "Reading"
+                "entity_type" : "Reading",
+                "tname":"上海动梨信息技术有限公司-阅读队",
+                "leader":[]
             },
             {
                 "gid" : "4",
                 "group_type" : "自行车",
                 "entity_type" : "Bicycle",
+                "tname":"上海动梨信息技术有限公司-自行车队",
+                "leader":[]
             },
             {
                 "gid" : "6",
                 "group_type" : "钓鱼",
-                "entity_type" : "Fishing"
+                "entity_type" : "Fishing",
+                "tname":"上海动梨信息技术有限公司-钓鱼队",
+                "leader":[]
             },
             {
                 "gid" : "7",
                 "group_type" : "足球",
-                "entity_type" : "FootBall"
+                "entity_type" : "FootBall",
+                "tname":"上海动梨信息技术有限公司-足球队",
+                "leader":[{
+                    "uid":"0001-0001-0001-0001-000100010002",
+                    "nickname":"eric"
+                }]
             },
             {
                 "gid" : "8",
                 "group_type" : "k歌",
-                "entity_type" : "KTV"
+                "entity_type" : "KTV",
+                "tname":"上海动梨信息技术有限公司-k歌队",
+                "leader":[]
             },
             {
                 "gid" : "9",
                 "group_type" : "户外",
-                "entity_type" : "OutDoor"
+                "entity_type" : "OutDoor",
+                "tname":"上海动梨信息技术有限公司-户外队",
+                "leader":[]
             },
             {
                 "gid" : "10",
                 "group_type" : "乒乓球",
-                "entity_type" : "PingPong"
+                "entity_type" : "PingPong",
+                "tname":"上海动梨信息技术有限公司-乒乓球队",
+                "leader":[]
             },
             {
                 'gid':'11',
                 'group_type':'跑步',
-                'entity_type':'Running'
+                'entity_type':'Running',
+                "tname":"上海动梨信息技术有限公司-跑步队",
+                "leader":[]
             },
             {
                 'gid':'12',
                 'group_type':'游泳',
-                'entity_type':'Swimming'
+                'entity_type':'Swimming',
+                "tname":"上海动梨信息技术有限公司-游泳队",
+                "leader":[]
             }]
     },
     {
         'id': '0002-0002-0002-0002-000200020002',
         'username': 'yali',
         'login_email': 'yali_hr@163.com',
-        'hashed_password': 'uyHqfnGw7B4Mrz0adXtZ47CVmi2YujUou/Pq6ijQkqgytN47FE6ft5vplCgRgdi05qHxR4sCS1bySCn/6b/wrQ==',
-        'salt': 'kbFXuKyh79K9sn9hfPVKRA==',
+        'hashed_password': 'AMQEr5SljqggnlY9LTJR8ZrHMAnYRRNJLnbNU/PriiZNiTkk9hPqPHc3T21mPcNVUqUL7xX1bJJ8axkoyK0cXQ==',
+        'salt': 'oGn/YzIa2UdFMCyju42JWA==',
         'email':{ "domain" : [  "163.com" ] },
         'status': {
             'active': true,
@@ -243,50 +268,69 @@ var _company = [
             {
                 "gid" : "1",
                 "group_type" : "羽毛球",
-                "entity_type" : "Badminton"
+                "entity_type" : "Badminton",
+                "tname":"上海鸭梨信息技术有限公司-羽毛球队",
+                "leader":[]
             },
             {
                 "gid" : "2",
                 "group_type" : "蓝球",
-                "entity_type" : "BasketBall"
+                "entity_type" : "BasketBall",
+                "tname":"上海鸭梨信息技术有限公司-蓝球队",
+                "leader":[]
             },
             {
                 "gid" : "3",
                 "group_type" : "阅读",
-                "entity_type" : "Reading"
+                "entity_type" : "Reading",
+                "tname":"上海鸭梨信息技术有限公司-阅读队",
+                "leader":[]
             },
             {
                 "gid" : "4",
                 "group_type" : "自行车",
                 "entity_type" : "Bicycle",
+                "tname":"上海鸭梨信息技术有限公司-自行车队",
+                "leader":[]
             },
             {
                 "gid" : "6",
                 "group_type" : "钓鱼",
-                "entity_type" : "Fishing"
+                "entity_type" : "Fishing",
+                "tname":"上海鸭梨信息技术有限公司-钓鱼队",
+                "leader":[]
             },
             {
                 "gid" : "7",
                 "group_type" : "足球",
-                "entity_type" : "FootBall"
+                "entity_type" : "FootBall",
+                "tname":"上海鸭梨信息技术有限公司-足球队",
+                "leader":[{
+                    "uid":"0002-0002-0002-0002-000200020003",
+                    "nickname":"yali_yg1"
+                }]
             },
             {
                 'gid':'11',
                 'group_type':'跑步',
-                'entity_type':'Running'
+                'entity_type':'Running',
+                "tname":"上海鸭梨信息技术有限公司-跑步队",
+                "leader":[]
             },
             {
                 'gid':'12',
                 'group_type':'游泳',
-                'entity_type':'Swimming'
+                'entity_type':'Swimming',
+                "tname":"上海鸭梨信息技术有限公司-游泳队",
+                "leader":[]
             }]
     },
     {
-        'id': '0003-0001-0003-0003-000300030003',
+        'id': '0003-0003-0003-0003-000300030003',
         'username': 'apple',
         'login_email': 'pingguo_hr@sina.com',
-        'hashed_password': 'MSOs/uNdWcrG17ft2mD8tf4npF21uSFxkNUBglBz24ApO5ZNcozjvRPHBWQt2oToMVEZnkW/wys0RCD51B3Llg==',
-        'salt': 'JmQmYa6E/GGqVkNB834Fzw==',
+        'hashed_password': 'AMQEr5SljqggnlY9LTJR8ZrHMAnYRRNJLnbNU/PriiZNiTkk9hPqPHc3T21mPcNVUqUL7xX1bJJ8axkoyK0cXQ==',
+        'salt': 'oGn/YzIa2UdFMCyju42JWA==',
         'email':{ "domain" : [  "sina.com" ] },
         'status': {
             'active': true,
@@ -318,45 +362,62 @@ var _company = [
             {
                 "gid" : "2",
                 "group_type" : "蓝球",
-                "entity_type" : "BasketBall"
+                "entity_type" : "BasketBall",
+                "tname":"上海苹果信息技术有限公司-蓝球队",
+                "leader":[]
             },
             {
                 "gid" : "4",
                 "group_type" : "自行车",
                 "entity_type" : "Bicycle",
+                "tname":"上海苹果信息技术有限公司-自行车队",
+                "leader":[]
             },
             {
                 "gid" : "6",
                 "group_type" : "钓鱼",
-                "entity_type" : "Fishing"
+                "entity_type" : "Fishing",
+                "tname":"上海苹果信息技术有限公司-钓鱼队",
+                "leader":[]
             },
             {
                 "gid" : "7",
                 "group_type" : "足球",
-                "entity_type" : "FootBall"
+                "entity_type" : "FootBall",
+                "tname":"上海苹果信息技术有限公司-足球队",
+                "leader":[{
+                    "uid":"0003-0003-0003-0003-000300030004",
+                    "nickname":"apple1"
+                }]
             },
             {
                 "gid" : "9",
                 "group_type" : "户外",
-                "entity_type" : "OutDoor"
+                "entity_type" : "OutDoor",
+                "tname":"上海苹果信息技术有限公司-户外队",
+                "leader":[]
             },
             {
                 "gid" : "10",
                 "group_type" : "乒乓球",
-                "entity_type" : "PingPong"
+                "entity_type" : "PingPong",
+                "tname":"上海苹果信息技术有限公司-乒乓球队",
+                "leader":[]
             },
             {
                 'gid':'11',
                 'group_type':'跑步',
-                'entity_type':'Running'
+                'entity_type':'Running',
+                "tname":"上海鸭梨信息技术有限公司-游泳队",
+                "leader":[]
             }]
     },
     {
         'id': '0004-0004-0004-0004-000400040004',
         'username': 'banana',
         'login_email': 'xiangjiao_hr@sohu.com',
-        'hashed_password': 'IGY1Vu9Hh5+83bQXI2WkzKX1dBx5YPYzbVdzZU8iyEMSd1W4/6VtSvdSN6gmKLnyanSg1l8mS9DNMXXYqaV8cg==',
-        'salt': 'HArJWxTy/vdIQPpwprcOGw==',
+        'hashed_password': 'AMQEr5SljqggnlY9LTJR8ZrHMAnYRRNJLnbNU/PriiZNiTkk9hPqPHc3T21mPcNVUqUL7xX1bJJ8axkoyK0cXQ==',
+        'salt': 'oGn/YzIa2UdFMCyju42JWA==',
         'email':{ "domain" : [  "sohu.com" ] },
         'status': {
             'active': true,
@@ -388,42 +449,64 @@ var _company = [
             {
                 "gid" : "1",
                 "group_type" : "羽毛球",
-                "entity_type" : "Badminton"
+                "entity_type" : "Badminton",
+                "tname":"上海香蕉信息技术有限公司-羽毛球队",
+                "leader":[]
             },
             {
                 "gid" : "2",
                 "group_type" : "蓝球",
-                "entity_type" : "BasketBall"
+                "entity_type" : "BasketBall",
+                "tname":"上海香蕉信息技术有限公司-蓝球队",
+                "leader":[]
             },
             {
                 "gid" : "3",
                 "group_type" : "阅读",
-                "entity_type" : "Reading"
+                "entity_type" : "Reading",
+                "tname":"上海香蕉信息技术有限公司-阅读队",
+                "leader":[{
+                    "uid":"0003-0003-0003-0003-000300030004",
+                    "nickname":"apple1"
+                }]
             },
             {
                 "gid" : "7",
                 "group_type" : "足球",
-                "entity_type" : "FootBall"
+                "entity_type" : "FootBall",
+                "tname":"上海香蕉信息技术有限公司-足球队",
+                "leader":[{
+                    "uid":"0004-0004-0004-0004-000400040006",
+                    "nickname":"xiangjiao_yg2"
+                }]
             },
             {
                 "gid" : "8",
                 "group_type" : "k歌",
-                "entity_type" : "KTV"
+                "entity_type" : "KTV",
+                "tname":"上海香蕉信息技术有限公司-k歌队",
+                "leader":[]
             },
             {
                 "gid" : "9",
                 "group_type" : "户外",
-                "entity_type" : "OutDoor"
+                "entity_type" : "OutDoor",
+                "tname":"上海香蕉信息技术有限公司-户外队",
+                "leader":[]
             },
             {
                 'gid':'11',
                 'group_type':'跑步',
-                'entity_type':'Running'
+                'entity_type':'Running',
+                "tname":"上海香蕉信息技术有限公司-跑步队",
+                "leader":[]
             },
             {
                 'gid':'12',
                 'group_type':'游泳',
-                'entity_type':'Swimming'
+                'entity_type':'Swimming',
+                "tname":"上海香蕉信息技术有限公司-游泳队",
+                "leader":[]
             }
         ]
     }
@@ -447,36 +530,42 @@ var _users =[
         "gid" : "1",
         "group_type" : "羽毛球",
         "entity_type" : "Badminton",
+        "tname":"上海动梨信息技术有限公司-羽毛球队",
         "leader" : false
     },
     {
         "gid" : "2",
         "group_type" : "蓝球",
         "entity_type" : "BasketBall",
+        "tname":"上海动梨信息技术有限公司-蓝球队",
         "leader" : false
     },
     {
         "gid" : "3",
         "group_type" : "阅读",
         "entity_type" : "Reading",
+        "tname":"上海动梨信息技术有限公司-阅读队",
         "leader" : false
     },
     {
         "gid" : "7",
         "group_type" : "足球",
         "entity_type" : "FootBall",
+        "tname":"上海动梨信息技术有限公司-足球队",
         "leader" : true
     },
     {
         "gid" : "8",
         "group_type" : "k歌",
         "entity_type" : "KTV",
+        "tname":"上海动梨信息技术有限公司-k歌队",
         "leader" : false
     }
 ],
 "hashed_password" : "IGY1Vu9Hh5+83bQXI2WkzKX1dBx5YPYzbVdzZU8iyEMSd1W4/6VtSvdSN6gmKLnyanSg1l8mS9DNMXXYqaV8cg==",
 "id" : "0001-0001-0001-0001-000100010002",
 "nickname" : "eric",
+"realname":"张三",
 "phone" : "18801910251",
 "photo" : "/img/user/photo/default.png",
 "provider" : "user",
@@ -487,7 +576,7 @@ var _users =[
 },
 {
 "active" : true,
-"cid" : "0002-0002-0002-0002-000100010002",
+"cid" : "0002-0002-0002-0002-000200020002",
 "department" : "hr",
 "email" : "yali_yg1@163.com",
 "group" : [
@@ -495,36 +584,42 @@ var _users =[
         "gid" : "1",
         "group_type" : "羽毛球",
         "entity_type" : "Badminton",
+        "tname":"上海鸭梨信息技术有限公司-羽毛球队",
         "leader" : false
     },
     {
         "gid" : "2",
         "group_type" : "蓝球",
         "entity_type" : "BasketBall",
+        "tname":"上海鸭梨信息技术有限公司-蓝球队",
         "leader" : false
     },
     {
         "gid" : "3",
         "group_type" : "阅读",
         "entity_type" : "Reading",
+        "tname":"上海鸭梨信息技术有限公司-阅读队",
         "leader" : false
     },
     {
         "gid" : "7",
         "group_type" : "足球",
         "entity_type" : "FootBall",
+        "tname":"上海鸭梨信息技术有限公司-足球队",
         "leader" : true
     },
     {
         "gid" : "8",
         "group_type" : "k歌",
         "entity_type" : "KTV",
+        "tname":"上海鸭梨信息技术有限公司-k歌队",
         "leader" : false
     }
 ],
 "hashed_password" : "IGY1Vu9Hh5+83bQXI2WkzKX1dBx5YPYzbVdzZU8iyEMSd1W4/6VtSvdSN6gmKLnyanSg1l8mS9DNMXXYqaV8cg==",
 "id" : "0002-0002-0002-0002-000200020003",
 "nickname" : "yali_yg1",
+"realname":"李三",
 "phone" : "18801910251",
 "photo" : "/img/user/photo/default.png",
 "provider" : "user",
@@ -535,198 +630,221 @@ var _users =[
 },
 {
 "active" : true,
-"cid" : "0001-0001-0001-0001-000100010001",
-"department" : "hr",
-"email" : "eric@55yali.com",
+"cid" : "0002-0002-0002-0002-000200020002",
+"department" : "IT",
+"email" : "yali_yg2@163.com",
 "group" : [
     {
         "gid" : "1",
         "group_type" : "羽毛球",
         "entity_type" : "Badminton",
+        "tname":"上海鸭梨信息技术有限公司-羽毛球队",
         "leader" : false
     },
     {
         "gid" : "2",
         "group_type" : "蓝球",
         "entity_type" : "BasketBall",
+        "tname":"上海鸭梨信息技术有限公司-蓝球队",
         "leader" : false
     },
     {
         "gid" : "3",
         "group_type" : "阅读",
         "entity_type" : "Reading",
+        "tname":"上海鸭梨信息技术有限公司-阅读队",
         "leader" : false
     },
     {
         "gid" : "7",
         "group_type" : "足球",
         "entity_type" : "FootBall",
-        "leader" : true
+        "tname":"上海鸭梨信息技术有限公司-足球队",
+        "leader" : false
     },
     {
-        "gid" : "8",
-        "group_type" : "k歌",
-        "entity_type" : "KTV",
+        "gid":"12",
+        "group_type":"游泳",
+        'entity_type':'Swimming',
+        "tname":"上海鸭梨信息技术有限公司-游泳队",
         "leader" : false
     }
 ],
 "hashed_password" : "IGY1Vu9Hh5+83bQXI2WkzKX1dBx5YPYzbVdzZU8iyEMSd1W4/6VtSvdSN6gmKLnyanSg1l8mS9DNMXXYqaV8cg==",
-"id" : "0001-0001-0001-0001-000100010002",
-"nickname" : "eric",
+"id" : "0002-0002-0002-0002-000200020004",
+"nickname" : "yali_yg2",
+"realname":"李四",
 "phone" : "18801910251",
 "photo" : "/img/user/photo/default.png",
 "provider" : "user",
 "register_date" : new Date(),
 "role" : "EMPLOYEE",
 "salt" : "HArJWxTy/vdIQPpwprcOGw==",
-"username" : "eric@55yali.com"
+"username" : "yali_yg2@163.com"
 },
 {
 "active" : true,
-"cid" : "0001-0001-0001-0001-000100010001",
+"cid" : "0003-0003-0003-0003-000300030003",
 "department" : "hr",
-"email" : "eric@55yali.com",
+"email" : "pingguo_yg1@sina.com",
 "group" : [
-    {
-        "gid" : "1",
-        "group_type" : "羽毛球",
-        "entity_type" : "Badminton",
-        "leader" : false
-    },
     {
         "gid" : "2",
         "group_type" : "蓝球",
         "entity_type" : "BasketBall",
+        "tname":"上海苹果信息技术有限公司-蓝球队",
         "leader" : false
     },
     {
-        "gid" : "3",
-        "group_type" : "阅读",
-        "entity_type" : "Reading",
+        "gid" : "4",
+        "group_type" : "自行车",
+        "entity_type" : "Bicycle",
+        "tname":"上海苹果信息技术有限公司-自行车队",
         "leader" : false
     },
     {
         "gid" : "7",
         "group_type" : "足球",
         "entity_type" : "FootBall",
+        "tname":"上海苹果信息技术有限公司-足球队",
         "leader" : true
     },
     {
-        "gid" : "8",
-        "group_type" : "k歌",
-        "entity_type" : "KTV",
+        "gid" : "9",
+        "group_type" : "户外",
+        "entity_type" : "OutDoor",
+        "tname":"上海苹果信息技术有限公司-户外队",
         "leader" : false
     }
 ],
 "hashed_password" : "IGY1Vu9Hh5+83bQXI2WkzKX1dBx5YPYzbVdzZU8iyEMSd1W4/6VtSvdSN6gmKLnyanSg1l8mS9DNMXXYqaV8cg==",
-"id" : "0001-0001-0001-0001-000100010002",
-"nickname" : "eric",
+"id" : "0003-0003-0003-0003-000300030004",
+"nickname" : "apple1",
+"realname":"王三",
 "phone" : "18801910251",
 "photo" : "/img/user/photo/default.png",
 "provider" : "user",
 "register_date" : new Date(),
 "role" : "EMPLOYEE",
 "salt" : "HArJWxTy/vdIQPpwprcOGw==",
-"username" : "eric@55yali.com"
+"username" : "pingguo_yg1@sina.com"
 },
 {
 "active" : true,
-"cid" : "0001-0001-0001-0001-000100010001",
+"cid" : "0004-0004-0004-0004-000400040004",
 "department" : "hr",
-"email" : "eric@55yali.com",
+"email" : "xiangjiao_yg1@sohu.com",
 "group" : [
     {
         "gid" : "1",
         "group_type" : "羽毛球",
         "entity_type" : "Badminton",
+        "tname":"上海香蕉信息技术有限公司-羽毛球队",
         "leader" : false
     },
     {
         "gid" : "2",
         "group_type" : "蓝球",
         "entity_type" : "BasketBall",
+        "tname":"上海香蕉信息技术有限公司-蓝球队",
         "leader" : false
     },
     {
         "gid" : "3",
         "group_type" : "阅读",
         "entity_type" : "Reading",
+        "tname":"上海香蕉信息技术有限公司-阅读队",
         "leader" : false
     },
     {
         "gid" : "7",
         "group_type" : "足球",
         "entity_type" : "FootBall",
-        "leader" : true
+        "tname":"上海香蕉信息技术有限公司-足球队",
+        "leader" : false
     },
     {
-        "gid" : "8",
-        "group_type" : "k歌",
-        "entity_type" : "KTV",
+        "gid":"12",
+        "group_type":"游泳",
+        'entity_type':'Swimming',
+        "tname":"上海香蕉信息技术有限公司-游泳队",
         "leader" : false
     }
 ],
 "hashed_password" : "IGY1Vu9Hh5+83bQXI2WkzKX1dBx5YPYzbVdzZU8iyEMSd1W4/6VtSvdSN6gmKLnyanSg1l8mS9DNMXXYqaV8cg==",
-"id" : "0001-0001-0001-0001-000100010002",
+"id" : "0004-0004-0004-0004-000400040005",
 "nickname" : "eric",
+"realname":"赵四",
 "phone" : "18801910251",
 "photo" : "/img/user/photo/default.png",
 "provider" : "user",
 "register_date" : new Date(),
 "role" : "EMPLOYEE",
 "salt" : "HArJWxTy/vdIQPpwprcOGw==",
-"username" : "eric@55yali.com"
+"username" : "xiangjiao_yg1@sohu.com"
 },
 {
 "active" : true,
-"cid" : "0001-0001-0001-0001-000100010001",
-"department" : "hr",
-"email" : "eric@55yali.com",
+"cid" : "0004-0004-0004-0004-000400040004",
+"department" : "IT",
+"email" : "xiangjiao_yg2@sohu.com",
 "group" : [
     {
         "gid" : "1",
         "group_type" : "羽毛球",
         "entity_type" : "Badminton",
+        "tname":"上海香蕉信息技术有限公司-羽毛球队",
         "leader" : false
     },
     {
         "gid" : "2",
         "group_type" : "蓝球",
         "entity_type" : "BasketBall",
+        "tname":"上海香蕉信息技术有限公司-蓝球队",
         "leader" : false
     },
     {
         "gid" : "3",
         "group_type" : "阅读",
         "entity_type" : "Reading",
+        "tname":"上海香蕉信息技术有限公司-阅读队",
         "leader" : false
     },
     {
         "gid" : "7",
         "group_type" : "足球",
         "entity_type" : "FootBall",
+        "tname":"上海香蕉信息技术有限公司-足球队",
         "leader" : true
     },
     {
         "gid" : "8",
         "group_type" : "k歌",
         "entity_type" : "KTV",
+        "tname":"上海香蕉信息技术有限公司-k歌队",
         "leader" : false
     }
 ],
 "hashed_password" : "IGY1Vu9Hh5+83bQXI2WkzKX1dBx5YPYzbVdzZU8iyEMSd1W4/6VtSvdSN6gmKLnyanSg1l8mS9DNMXXYqaV8cg==",
-"id" : "0001-0001-0001-0001-000100010002",
-"nickname" : "eric",
+"id" : "0004-0004-0004-0004-000400040006",
+"nickname" : "xiangjiao_yg2",
+"realname":"赵五",
 "phone" : "18801910251",
 "photo" : "/img/user/photo/default.png",
 "provider" : "user",
 "register_date" : new Date(),
 "role" : "EMPLOYEE",
 "salt" : "HArJWxTy/vdIQPpwprcOGw==",
-"username" : "eric@55yali.com"
+"username" : "xiangjiao_yg2@sohu.com"
 }
 ];
-
+try{
+    _users.forEach(function (value) {
+        db.users.insert(value);
+    });
+} catch (e){
+    print(e);
+};
 // insert to companygroups for test
 /*
 var user = db.users.findOne();
