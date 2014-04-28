@@ -1,0 +1,40 @@
+extends ../layouts/manager
+
+block panel
+  h1 擂台详情
+  .row
+    .col-xs-8
+      .row
+        label 类型:
+        label= arena.group_type
+      .row
+        label 地区:
+        label=  arena.city.province + arena.city.city
+      .row
+        label 地点：
+        label= arena.address
+      .row
+        label 擂主：
+        label= arena.champion ? arena.champion.tname :'无'
+      .row
+        button= arena.champion ? "攻擂" : "我要抢擂"
+  if(arena.champion)
+    .row
+      h1 擂主信息
+    .row
+        img.size_80(src='#{arena.champion ? arena.champion.logo:"/img/group/logo/default.png"}')
+        .row
+          label 公司名称：
+          label= arena.champion.cname
+        .row
+          label 队伍名称：
+          label= arena.champion.cname
+        .row
+          label 队长名称：
+          label= arena.champion.username
+        .row
+          label 上擂时间：
+          label＝  arena.champion.start_time
+        .row
+          label 获胜次数：
+          label＝  arena.champion.start_time

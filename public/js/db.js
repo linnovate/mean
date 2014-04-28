@@ -1,4 +1,5 @@
 'use strict';
+/*
 //组件脚本
 var _group =[
             {
@@ -114,6 +115,8 @@ var _group =[
         } catch (e){
             print(e);
         };
+*/
+/*
 //公司脚本
 var _company = [
     {
@@ -308,6 +311,8 @@ try{
 } catch (e){
     print(e);
 };
+*/
+/*
 //员工脚本
 var _users =[
 {
@@ -474,8 +479,9 @@ try{
 } catch (e){
     print(e);
 };
+*/
 
-
+/*
 // insert to companygroups for test
 var _company_groups =[
 {
@@ -575,7 +581,8 @@ try{
 } catch (e){
     print(e);
 };
-
+*/
+/*
 //足球组件
 var _football = [
     {
@@ -626,3 +633,66 @@ try{
 } catch (e){
     print(e);
 };
+*/
+//@arema /*
+//擂台数据
+var _arena = [
+{
+"id":"0006-0001-0001-0001-000100010001",
+"gid":"7",
+"group_type":"足球",
+"city":{
+    "province":"上海",
+    "city":"上海"
+},
+"address":"上海体育场"
+},
+{
+"id":"0006-0001-0001-0001-000100010002",
+"gid":"7",
+"group_type":"足球",
+"city":{
+    "province":"北京",
+    "city":"北京"
+},
+"address":"五棵松体育场"
+},
+{
+"id":"0006-0001-0001-0001-000100010003",
+"gid":"7",
+"group_type":"足球",
+"city":{
+    "province":"河北",
+    "city":"石家庄"
+},
+"address":"石家庄体育场"
+},
+{
+"id":"0006-0001-0001-0001-000100010004",
+"gid":"7",
+"group_type":"足球",
+"city":{
+    "province":"浙江",
+    "city":"杭州"
+},
+"address":"杭州体育场"
+},
+{
+"id":"0006-0001-0001-0001-000100010005",
+"gid":"7",
+"group_type":"足球",
+"city":{
+    "province":"上海",
+    "city":"上海"
+},
+"address":"万达体育场"
+}
+];
+try{
+    _arena.forEach(function (value) {
+        db.arenas.insert(value);
+    });
+} catch (e){
+    print(e);
+};
+//@arena*/

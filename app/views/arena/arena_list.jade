@@ -1,0 +1,28 @@
+extends ../layouts/manager
+
+block panel
+  h1 擂台列表
+  each arena in arenas
+    hr
+    .row
+      .col-xs-4
+        img.size_80(src='#{arena.champion ? arena.champion.logo:"/img/group/logo/default.png"}')
+        label= arena.champion ? arena.champion.tname :'无'
+        label= arena.champion ? arena.champion.cname :'无'
+      .col-xs-8
+        .row
+          label 类型:
+          label= arena.group_type
+        .row
+          label 地区:
+          label=  arena.city.province + arena.city.city
+        .row
+          label 地点：
+          label= arena.address
+        .row
+          label 擂主：
+          label= arena.champion ? arena.champion.tname :'无'
+        .row
+          a(href='/arena/#{arena.id}') 详情
+        .row
+          button= arena.champion ? "攻擂" : "我要抢擂"
