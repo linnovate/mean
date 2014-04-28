@@ -1,22 +1,23 @@
 {
-	"css": {
-		"public/build/css/dist.min.css": [
-			"public/system/lib/bootstrap/dist/css/bootstrap.css",
-			"public/**/assets/css/*.css"
-		]
-	},
-	"js": {
-		"public/build/js/dist.min.js": [
-			"public/system/lib/angular/angular.js",
-			"public/system/lib/angular-cookies/angular-cookies.js",
-			"public/system/lib/angular-resource/angular-resource.js",
-			"public/system/lib/angular-ui-router/release/angular-ui-router.js",
-			"public/system/lib/angular-bootstrap/ui-bootstrap.js",
-			"public/system/lib/angular-bootstrap/ui-bootstrap-tpls.js",
-			"public/init.js",
-			"public/*/*.js",
-			"public/*/*/*.js",
-			"!public/build/**"
-		]
-	}
+    "css": {
+        "public/build/css/dist.min.css": [
+            "public/system/lib/bootstrap/dist/css/bootstrap.css",
+            "public/**/assets/css/*.css"
+        ]
+    },
+    "js": {
+        "public/build/js/dist.min.js": [
+            "public/system/lib/angular/angular.js",
+            "public/system/lib/angular-cookies/angular-cookies.js",
+            "public/system/lib/angular-resource/angular-resource.js",
+            "public/system/lib/angular-ui-router/release/angular-ui-router.js",
+            "public/system/lib/angular-bootstrap/ui-bootstrap.js",
+            "public/system/lib/angular-bootstrap/ui-bootstrap-tpls.js",
+            "public/system/lib/jquery/dist/jquery.min.js",
+            "public/init.js",
+            "public/*/*.js",
+            "public/*/*/*.js",
+            "!public/build/**"
+        ]
+    }
 }

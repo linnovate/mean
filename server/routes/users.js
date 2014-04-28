@@ -27,8 +27,11 @@ module.exports = function(app, passport) {
     app.route('/login')
         .post(passport.authenticate('local', {
             failureFlash: true
-        }), function (req,res) {
-            res.send(req.user);
+        }), function(req, res) {
+            res.send({
+                user: req.user,
+                redirect: (req.user.roles.indexOf('admin') !== -1) ? req.get('referer') : false
+            });
         });
 
     // Setting the facebook oauth routes
@@ -84,7 +87,7 @@ module.exports = function(app, passport) {
     app.route('/auth/linkedin')
         .get(passport.authenticate('linkedin', {
             failureRedirect: '#!/login',
-            scope: [ 'r_emailaddress' ]
+            scope: ['r_emailaddress']
         }), users.signin);
 
     app.route('/auth/linkedin/callback')
