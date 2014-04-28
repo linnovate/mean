@@ -562,7 +562,7 @@ var _users =[
         "leader" : false
     }
 ],
-"hashed_password" : "IGY1Vu9Hh5+83bQXI2WkzKX1dBx5YPYzbVdzZU8iyEMSd1W4/6VtSvdSN6gmKLnyanSg1l8mS9DNMXXYqaV8cg==",
+"hashed_password" : "AMQEr5SljqggnlY9LTJR8ZrHMAnYRRNJLnbNU/PriiZNiTkk9hPqPHc3T21mPcNVUqUL7xX1bJJ8axkoyK0cXQ==",
 "id" : "0001-0001-0001-0001-000100010002",
 "nickname" : "eric",
 "realname":"张三",
@@ -571,7 +571,7 @@ var _users =[
 "provider" : "user",
 "register_date" : new Date(),
 "role" : "EMPLOYEE",
-"salt" : "HArJWxTy/vdIQPpwprcOGw==",
+"salt" : "oGn/YzIa2UdFMCyju42JWA==",
 "username" : "eric@55yali.com"
 },
 {
@@ -616,7 +616,7 @@ var _users =[
         "leader" : false
     }
 ],
-"hashed_password" : "IGY1Vu9Hh5+83bQXI2WkzKX1dBx5YPYzbVdzZU8iyEMSd1W4/6VtSvdSN6gmKLnyanSg1l8mS9DNMXXYqaV8cg==",
+"hashed_password" : "AMQEr5SljqggnlY9LTJR8ZrHMAnYRRNJLnbNU/PriiZNiTkk9hPqPHc3T21mPcNVUqUL7xX1bJJ8axkoyK0cXQ==",
 "id" : "0002-0002-0002-0002-000200020003",
 "nickname" : "yali_yg1",
 "realname":"李三",
@@ -625,7 +625,7 @@ var _users =[
 "provider" : "user",
 "register_date" : new Date(),
 "role" : "EMPLOYEE",
-"salt" : "HArJWxTy/vdIQPpwprcOGw==",
+"salt" : "oGn/YzIa2UdFMCyju42JWA==",
 "username" : "yali_yg1@163.com"
 },
 {
@@ -670,7 +670,7 @@ var _users =[
         "leader" : false
     }
 ],
-"hashed_password" : "IGY1Vu9Hh5+83bQXI2WkzKX1dBx5YPYzbVdzZU8iyEMSd1W4/6VtSvdSN6gmKLnyanSg1l8mS9DNMXXYqaV8cg==",
+"hashed_password" : "AMQEr5SljqggnlY9LTJR8ZrHMAnYRRNJLnbNU/PriiZNiTkk9hPqPHc3T21mPcNVUqUL7xX1bJJ8axkoyK0cXQ==",
 "id" : "0002-0002-0002-0002-000200020004",
 "nickname" : "yali_yg2",
 "realname":"李四",
@@ -679,7 +679,7 @@ var _users =[
 "provider" : "user",
 "register_date" : new Date(),
 "role" : "EMPLOYEE",
-"salt" : "HArJWxTy/vdIQPpwprcOGw==",
+"salt" : "oGn/YzIa2UdFMCyju42JWA==",
 "username" : "yali_yg2@163.com"
 },
 {
@@ -717,7 +717,7 @@ var _users =[
         "leader" : false
     }
 ],
-"hashed_password" : "IGY1Vu9Hh5+83bQXI2WkzKX1dBx5YPYzbVdzZU8iyEMSd1W4/6VtSvdSN6gmKLnyanSg1l8mS9DNMXXYqaV8cg==",
+"hashed_password" : "AMQEr5SljqggnlY9LTJR8ZrHMAnYRRNJLnbNU/PriiZNiTkk9hPqPHc3T21mPcNVUqUL7xX1bJJ8axkoyK0cXQ==",
 "id" : "0003-0003-0003-0003-000300030004",
 "nickname" : "apple1",
 "realname":"王三",
@@ -726,7 +726,7 @@ var _users =[
 "provider" : "user",
 "register_date" : new Date(),
 "role" : "EMPLOYEE",
-"salt" : "HArJWxTy/vdIQPpwprcOGw==",
+"salt" : "oGn/YzIa2UdFMCyju42JWA==",
 "username" : "pingguo_yg1@sina.com"
 },
 {
@@ -771,7 +771,7 @@ var _users =[
         "leader" : false
     }
 ],
-"hashed_password" : "IGY1Vu9Hh5+83bQXI2WkzKX1dBx5YPYzbVdzZU8iyEMSd1W4/6VtSvdSN6gmKLnyanSg1l8mS9DNMXXYqaV8cg==",
+"hashed_password" : "AMQEr5SljqggnlY9LTJR8ZrHMAnYRRNJLnbNU/PriiZNiTkk9hPqPHc3T21mPcNVUqUL7xX1bJJ8axkoyK0cXQ==",
 "id" : "0004-0004-0004-0004-000400040005",
 "nickname" : "eric",
 "realname":"赵四",
@@ -780,7 +780,7 @@ var _users =[
 "provider" : "user",
 "register_date" : new Date(),
 "role" : "EMPLOYEE",
-"salt" : "HArJWxTy/vdIQPpwprcOGw==",
+"salt" : "oGn/YzIa2UdFMCyju42JWA==",
 "username" : "xiangjiao_yg1@sohu.com"
 },
 {
@@ -825,7 +825,7 @@ var _users =[
         "leader" : false
     }
 ],
-"hashed_password" : "IGY1Vu9Hh5+83bQXI2WkzKX1dBx5YPYzbVdzZU8iyEMSd1W4/6VtSvdSN6gmKLnyanSg1l8mS9DNMXXYqaV8cg==",
+"hashed_password" : "AMQEr5SljqggnlY9LTJR8ZrHMAnYRRNJLnbNU/PriiZNiTkk9hPqPHc3T21mPcNVUqUL7xX1bJJ8axkoyK0cXQ==",
 "id" : "0004-0004-0004-0004-000400040006",
 "nickname" : "xiangjiao_yg2",
 "realname":"赵五",
@@ -834,7 +834,7 @@ var _users =[
 "provider" : "user",
 "register_date" : new Date(),
 "role" : "EMPLOYEE",
-"salt" : "HArJWxTy/vdIQPpwprcOGw==",
+"salt" : "oGn/YzIa2UdFMCyju42JWA==",
 "username" : "xiangjiao_yg2@sohu.com"
 }
 ];
