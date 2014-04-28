@@ -4,11 +4,47 @@
 
 var groupApp = angular.module('group', []);
 
-groupApp.controller('resultController',['$scope','$http',function ($http, $scope) {
+
+
+
+
+
+groupApp.controller('resultController', ['$http', '$scope',function ($http, $scope) {
     $http.get('/group/hasConfirmMsg').success(function(data, status) {
-      alert('ok');
+      $scope.msg_show = data.msg_show;
+      if(data.msg_show) {
+        $scope.score_a = data.score_a;
+        $scope.score_b = data.score_b;
+        $scope.rst_content = data.rst_content;
+        $('#resultModel').modal();
+      }
     });
+
+    $scope.confirm = function (confirm) {
+      try {
+        $http({
+          method: 'post',
+          url: '/group/resultConfirm',
+          data:{
+            score_a : $scope.score_a,
+            score_b : $scope.score_b,
+            rst_content: $scope.rst_content,
+            rst_accept : confirm
+          }
+        }).success(function(data, status) {
+          window.location.reload();
+        }).error(function(data, status) {
+            alert('数据发生错误！');
+        });
+      }
+      catch(e) {
+        console.log(e);
+      }
+    };
 }]);
+
+
+
 
 var _addListener = function(target,type,func){
   if(target.addEventListener){

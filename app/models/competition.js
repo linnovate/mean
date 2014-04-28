@@ -55,8 +55,6 @@ var Competition = new Schema({
     camp_a:{                                   //A方阵营
       logo: String,                            //队徽路径
       cname: String,                           //本方公司名
-      uid: String,                             //队长id
-      username: String,                        //队长用户名
       tname: String,
       member:[_member],
       cid: String,
@@ -79,8 +77,6 @@ var Competition = new Schema({
     camp_b:{                                    //B方阵营
       logo: String,                             //队徽路径
       cname: String,                            //本方公司名
-      uid: String,                              //队长id
-      username: String,                         //队长用户名
       tname: String,
       member:[_member],
       cid: String,

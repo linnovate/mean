@@ -50,8 +50,9 @@ block aside
                 label 对方比分
                   input(type="text" class="form-control" name="score_b" ng-model="score_b")
             .modal-footer
-              button(type="button" class="btn btn-default" data-dismiss="modal") 取消
-              button(type="button" class="btn btn-primary" ng-click='sponsor()' data-dismiss="modal") 确定
+              button(ng-if="!msg_show" type="button" class="btn btn-primary" ng-click='confirm(false)' data-dismiss="modal") 确定
+              button(ng-if="msg_show" type="button" class="btn btn-primary" ng-click='confirm(true)' data-dismiss="modal") 接受对方确认
+              button(ng-if="msg_show" type="button" class="btn btn-primary" ng-click='confirm(false)' data-dismiss="modal") 发出异议
   hr
   .row
     input#competition_id(type='hidden' value='#{competition.id}')

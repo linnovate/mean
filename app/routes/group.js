@@ -48,6 +48,8 @@ module.exports = function(app) {
 
   app.get('/group/hasConfirmMsg', group.hasConfirmMsg);
 
+  app.post('/group/resultConfirm', group.resultConfirm);
+
   app.post('/group/tempLogo', photoBodyParser, group.tempLogo);
   app.post('/group/saveLogo', group.saveLogo);
 
