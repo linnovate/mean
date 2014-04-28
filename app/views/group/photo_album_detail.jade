@@ -1,9 +1,24 @@
-extends ../layouts/default
+extends ../layouts/photo
 
 block content
-  input(type="hidden" name="photo_album_id" value="#{photo_album_id}")
+  input#photo_album_id(type="hidden" name="photo_album_id" value="#{photo_album_id}")
   h1 上传照片
   form(action="/photoAlbum/#{photo_album_id}/photo" method="post" enctype="multipart/form-data")
     input(type="file" name="photos" multiple="multiple")
     button(type="submit") 上传照片
 
+  div#img_list(ng-app="img_list" ng-controller="ImgCtrl")
+    div(ng-repeat="photo in photos")
+      img(src="{{ photo.uri }}")
+      p {{ photo.comment }}
+
+append footExt
+  script.
+    var app = angular.module('img_list', []);
+    app.controller('ImgCtrl', ['$scope', '$http', function($scope, $http) {
+      var photo_album_id = $('#photo_album_id').val();
+      $http.get('/photoAlbum/' + photo_album_id + '/photolist')
+      .success(function(data, status) {
+        $scope.photos = data.data;
+      });
+    }]);

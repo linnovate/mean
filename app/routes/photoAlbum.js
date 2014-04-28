@@ -20,6 +20,6 @@ module.exports = function(app) {
   app.put('/photoAlbum/:photoAlbumId/photo/:photoId', authorize, photoAlbum.updatePhoto);
   app.delete('/photoAlbum/:photoAlbumId/photo/:photoId', authorize, photoAlbum.deletePhoto);
 
-  app.get('/photoAlbum/:photoAlbumId/photos', authorize, photoAlbum.readPhotos);
+  app.get('/photoAlbum/:photoAlbumId/photolist', authorize, photoAlbum.readPhotos);
 
 };
