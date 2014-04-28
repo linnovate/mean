@@ -7,8 +7,8 @@ var mongoose = require('mongoose'),
 
 var _member = new Schema({
     uid: String,
-    username: String,
-    logo: String,
+    nickname: String,
+    photo: String,
     number: Number         //球队分配的个人号码
 });
 

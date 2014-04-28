@@ -9,10 +9,9 @@ var mongoose = require('mongoose'),
 
 
 var _member = new Schema({
-    cid: String,
     uid: String,
-    username: String,
-    logo: String
+    nickname: String,
+    photo: String
 });
 
 
