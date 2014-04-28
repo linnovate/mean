@@ -10,14 +10,14 @@ program
   .option('-b, --branch <branch>', 'git branch')
   .option('-g, --git', 'clone using git:// instead of https://')
   .option('--repo <repo>', 'Specify repository to install')
-  .option('-f, --force', 'force')
+  .option('-q, --quick', 'Automatically go into the directory, run npm install and grunt')
   .parse(process.argv);
 
 var options = {
   branch: program.branch || 'master',
   git: program.git,
   repo: program.repo,
-  force: program.force
+  quick: program.quick
 };
 
 cli.init(program.args.length ? program.args[0] : 'mean', options);
