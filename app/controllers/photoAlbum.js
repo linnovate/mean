@@ -160,7 +160,9 @@ exports.createPhoto = function(req, res) {
   if (validator.isAlphanumeric(pa_id) && (photos.size > 0 || photos.length > 0)) {
     try {
       var uri_dir = '/img/photo_album/' + pa_id + '/';
-      var photos = req.files.photos;
+      if (photos.size) {
+        photos = [photos];
+      }
 
       PhotoAlbum.findOne({ _id: pa_id }).exec(function(err, photo_album) {
 
@@ -171,6 +173,7 @@ exports.createPhoto = function(req, res) {
 
           function(callback) {
             var photo_name = Date.now().toString() + '.png';
+
             gm(photos[i].path)
             .write(config.root + '/public' + uri_dir + photo_name,
               function(err) {
@@ -184,8 +187,13 @@ exports.createPhoto = function(req, res) {
                   photo_album.save(function(err) {
                     if (err) callback(err);
                     else {
-                      i++;
-                      callback();
+                      fs.unlink(photos[i].path, function(err) {
+                        if (err) callback(err);
+                        else {
+                          i++;
+                          callback();
+                        }
+                      });
                     }
                   });
                 }

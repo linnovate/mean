@@ -2,10 +2,18 @@ extends ../layouts/photo
 
 block content
   input#photo_album_id(type="hidden" name="photo_album_id" value="#{photo_album_id}")
-  h1 上传照片
+  h1= photo_album_name
+  hr
+  h2 上传照片
   form(action="/photoAlbum/#{photo_album_id}/photo" method="post" enctype="multipart/form-data")
     input(type="file" name="photos" multiple="multiple")
     button(type="submit") 上传照片
+
+  h2 修改相册名字
+  form(action="/photoAlbum/#{photo_album_id}" method="post")
+    input(type="hidden" name="_method" value="put")
+    input(type="text" name="name" value="#{photo_album_name}")
+    button(type="submit") 修改相册名字
 
   div#img_list(ng-app="img_list" ng-controller="ImgCtrl")
     div(ng-repeat="photo in photos")

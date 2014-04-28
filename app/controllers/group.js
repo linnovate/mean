@@ -15,6 +15,7 @@ var mongoose = require('mongoose'),
     UUID = require('../middlewares/uuid'),
     CompanyGroup = mongoose.model('CompanyGroup'),
     Competition = mongoose.model('Competition'),
+    PhotoAlbum = mongoose.model('PhotoAlbum'),
     validator = require('validator'),
     async = require('async'),
     fs = require('fs'),
@@ -1116,7 +1117,16 @@ exports.managePhotoAlbum = function(req, res) {
 }
 
 exports.photoAlbumDetail = function(req, res) {
-  res.render('group/photo_album_detail', { photo_album_id: req.params.photoAlbumId });
+  PhotoAlbum.findOne({ _id: req.params.photoAlbumId })
+  .exec(function(err, photo_album) {
+    if (err) throw err;
+    else {
+      res.render('group/photo_album_detail', {
+        photo_album_id: photo_album._id,
+        photo_album_name: photo_album.name
+      });
+    }
+  });
 };
 
 
