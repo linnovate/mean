@@ -314,7 +314,6 @@ exports.getGroupMessages = function(req, res) {
 
           var length = group_message.length;
           for(var j = 0; j < length; j ++) {
-            console.log(group_message[j].provoke.active + '---' + (group_message[j].group.gid[0] === req.user.group[flag-1].gid) +'---'+ (!group_message[j].provoke.start_confirm) +'---'+ req.user.group[flag-1].leader + '---' + (group_message[j].cid[1] === req.session.cid));
             group_messages.push({
               'id': group_message[j].id,
               'cid': group_message[j].cid,
@@ -324,7 +323,7 @@ exports.getGroupMessages = function(req, res) {
               'poster': group_message[j].poster,
               'content': group_message[j].content,
               'provoke': group_message[j].provoke,                  //应约按钮显示要有四个条件:1.该约战没有关闭 2.当前员工公司id和被约公司id一致 3.约战没有确认 4.当前员工是该小队的队长
-              'provoke_accept': group_message[j].provoke.active && (group_message[j].group.gid[0] === req.user.group[flag-1].gid) && (!group_message[j].provoke.start_confirm) && req.user.group[flag-1].leader && (group_message[j].cid[1] === req.session.cid) ? true : false
+              'provoke_accept': group_message[j].provoke.active && (group_message[j].group.gid[0] === req.user.group[flag-1].gid) && (!group_message[j].provoke.start_confirm) && req.user.group[flag-1].leader && (group_message[j].cid[1] === req.session.cid)
             });
           }
         }
@@ -523,7 +522,7 @@ exports.joinCampaign = function (req, res) {
                              camp:'A',
                              cid: cid,
                              uid: uid,
-                             photo: req.user.photo.middle,         //队员头像路径
+                             photo: req.user.photo,                 //队员头像路径
                              username: req.user.username,
                              number: 0                             //球队分配的个人号码
                           });
@@ -534,7 +533,7 @@ exports.joinCampaign = function (req, res) {
                               camp:'B',
                               cid: cid,
                               uid: uid,
-                              photo: req.user.photo.middle,         //队员头像路径
+                              photo: req.user.photo,                //队员头像路径
                               username: req.user.username,
                               number: 0                             //球队分配的个人号码
                           });

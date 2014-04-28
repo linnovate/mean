@@ -254,7 +254,6 @@ exports.getGroupMessage = function(req, res) {
             leader = req.user.group[j].leader;
           }
         }
-
         group_messages.push({
           'id': group_message[i].id,
           'cid': group_message[i].cid,
@@ -264,7 +263,7 @@ exports.getGroupMessage = function(req, res) {
           'poster': group_message[i].poster,
           'content': group_message[i].content,
           'provoke': group_message[i].provoke,                   //应约按钮显示要有四个条件:1.该约战没有关闭 2.当前员工所属组件id和被约组件id一致 3.约战没有确认 4.当前员工是该小队的队长
-          'provoke_accept': group_message[i].provoke.active && (group_message[i].group.gid[0] === gid) && leader && (!group_message[i].provoke.start_confirm) ? true : false
+          'provoke_accept': group_message[i].provoke.active && (group_message[i].group.gid[0] === gid) && leader && (!group_message[i].provoke.start_confirm) && (group_message[i].cid[1] === req.session.cid)
         });
       }
       return res.send(group_messages);
@@ -657,6 +656,7 @@ exports.getGroupMember = function(req,res){
 
 //比赛
 exports.getCompetition = function(req, res){
+
   var competition ={
     'id': 'C61F5D77-9110-0001-33CB-BF001ED010CF',     //测试用
     'camp_a':{
@@ -736,9 +736,11 @@ exports.getCompetition = function(req, res){
   res.render('competition/football', {
           'title': '发起足球比赛',
           'competition' : competition,
-          'team': req.competition_team
+          'team': req.competition_team,
+          'leader' : req.leader
   });
 };
+
 exports.updateFormation = function(req, res){
   Competition.findOne({
     'id':req.params.competitionId
@@ -771,7 +773,9 @@ exports.updateFormation = function(req, res){
     }
   });
 };
+
 exports.competition = function(req, res, next, id){
+  console.log(req.session.gid);
   Competition.findOne({
     'id':id
   }).exec(function(err, competition){
@@ -779,9 +783,23 @@ exports.competition = function(req, res, next, id){
     req.competition = competition;
     if(req.session.cid ===competition.camp_a.cid){
       req.competition_team = 'A';
+      req.leader = false;
+      for(var i = 0; i <req.user.group.length; i ++) {
+        if(req.user.group[i].gid === req.session.gid && req.user.group[i].leader) {
+          req.leader = true;
+          break;
+        }
+      }
     }
     else if(req.session.cid ===competition.camp_b.cid){
       req.competition_team = 'B';
+      req.leader = false;
+      for(var i = 0; i <req.user.group.length; i ++) {
+        if(req.user.group[i].gid === req.session.gid && req.user.group[i].leader) {
+          req.leader = true;
+          break;
+        }
+      }
     }
     else
     {
@@ -793,40 +811,56 @@ exports.competition = function(req, res, next, id){
 
 //进入比赛页面先判断是否有对方发来的成绩确认信息
 exports.hasConfirmMsg = function (req, res) {
-  Competition.findOne({
+  Competition.findOne({'gid':req.session.gid,
     '$or':[{
-      'camp_a.uid':req.session.uid,
-      'camp_a.cid':req.session.cid,
-      'camp_a.gid':req.session.gid
+      'camp_a.cid':req.session.cid
     },{
-      'camp_b.uid':req.session.uid,
-      'camp_b.cid':req.session.cid,
-      'camp_b.gid':req.session.gid
+      'camp_b.cid':req.session.cid
     }]
   }, function (err, competition) {
-    if(competition.camp_a.uid === req.session.uid) {
-      //发赛方
+    if(competition.camp_a.cid === req.session.cid) {
+      //发赛方接收应赛方的确认消息
       if(competition.camp_b.result.confirm === true && competition.camp_a.result.confirm === false) {
-        res.send({
+        return res.send({
+          'msg_show':true,
           'score_a':competition.camp_a.score,
           'score_b':competition.camp_b.score,
-          'content':competition.camp_b.result.content,
+          'rst_content':'应赛方发来的消息',
           'date':competition.camp_b.result.start_date
+        });
+      } else {
+        return res.send({
+          'msg_show':false,
+          'score_a':0,
+          'score_b':0,
+          'rst_content':'应赛方发来的消息',
+          'date':0
         });
       }
     } else {
-      //应赛方
+      //应赛方接收发赛方的确认消息
       if(competition.camp_a.result.confirm === true && competition.camp_b.result.confirm === false) {
-        res.send({
+        return res.send({
+          'msg_show':true,
           'score_a':competition.camp_a.score,
           'score_b':competition.camp_b.score,
-          'content':competition.camp_a.result.content,
+          'rst_content':'发赛方发来的消息',
           'date':competition.camp_a.result.start_date
+        });
+      } else {
+        return res.send({
+          'msg_show':false,
+          'score_a':0,
+          'score_b':0,
+          'rst_content':'发赛方发来的消息',
+          'date':0
         });
       }
     }
   });
 };
+
+
 //某一方发送或者修改比赛成绩确认消息
 exports.resultConfirm = function (req, res) {
   var competition_id = req.body.competition_id;

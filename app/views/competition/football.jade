@@ -25,10 +25,33 @@ block panel
         img.size_50.teamMember.onmemberA(draggable="#{team=='A'}" ondragstart='drag(event)' ondragend='dragend(event)' src='#{teamAMember.photo}' id='on_#{teamAMember.uid}' data-top='#{teamAMember.y}' data-left='#{teamAMember.x}')
       each teamBMember in competition.camp_b.formation
         img.size_50.teamMember.onmemberB(draggable="#{team=='B'}" ondragstart='drag(event)' ondragend='dragend(event)' src='#{teamBMember.photo}' id='on_#{teamBMember.uid}' data-top='#{teamBMember.y}' data-left='#{teamBMember.x}')
+
+
+
+
+
 block aside
   .infoHead.row
     h4.pull-left 活动简介
-    button 结果确认
+    div(ng-app="group" ng-controller="resultController")
+      button(ng-if="#{leader}" data-toggle="modal" data-target="#resultModel") 结果确认
+      div(class="modal fade" id="resultModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button(class="close" data-dismiss="modal" aria-hidden="true") x
+              h4(class="modal-title" id="myModalLabel") 比赛确认
+            .modal-body
+              .row
+                label 确认内容
+                  input(type="text" class="form-control" name="content" ng-model="rst_content")
+                label 我方比分
+                  input(type="text" class="form-control" name="score_a" ng-model="score_a")
+                label 对方比分
+                  input(type="text" class="form-control" name="score_b" ng-model="score_b")
+            .modal-footer
+              button(type="button" class="btn btn-default" data-dismiss="modal") 取消
+              button(type="button" class="btn btn-primary" ng-click='sponsor()' data-dismiss="modal") 确定
   hr
   .row
     input#competition_id(type='hidden' value='#{competition.id}')
@@ -59,6 +82,8 @@ block aside
   hr
   .infoHead.row
     h4.pull-left 活动精彩照片
+
 append footExt
   script(src="http://api.map.baidu.com/api?v=2.0&ak=bXB8FnPKWMDfTYOtIbGXGHNx")
   script(src="/js/controllers/group.js")
+

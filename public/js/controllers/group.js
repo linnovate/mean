@@ -4,6 +4,12 @@
 
 var groupApp = angular.module('group', []);
 
+groupApp.controller('resultController',['$scope','$http',function ($http, $scope) {
+    $http.get('/group/hasConfirmMsg').success(function(data, status) {
+      alert('ok');
+    });
+}]);
+
 var _addListener = function(target,type,func){
   if(target.addEventListener){
       console.log('listenner');
@@ -16,6 +22,9 @@ var _addListener = function(target,type,func){
       target["on" + type] = func;
   }
 };
+
+
+
 var allowDrop =function(e){
   e.preventDefault();
 };
