@@ -1,12 +1,12 @@
 {
   "name": "meanio",
-  "version": "0.4.11",
+  "version": "0.4.12",
   "preferGlobal": true,
   "description": "Simple command line interface for installing and managing MEAN apps",
   "author": {
     "name": "linnovate"
   },
-  "license": "ISC",
+  "license": "MIT",
   "main": "index",
   "bin": {
     "mean": "./bin/mean",
