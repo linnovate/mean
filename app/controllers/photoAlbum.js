@@ -336,6 +336,7 @@ exports.readPhotos = function(req, res) {
             var photos = [];
             photo_album.photos.forEach(function(photo) {
               var temp_photo = {};
+              temp_photo.pid = photo._id;
               temp_photo.uri = photo.uri;
               temp_photo.comment = photo.comment;
               photos.push(temp_photo);

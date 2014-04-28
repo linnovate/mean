@@ -1122,8 +1122,7 @@ exports.photoAlbumDetail = function(req, res) {
     if (err) throw err;
     else {
       res.render('group/photo_album_detail', {
-        photo_album_id: photo_album._id,
-        photo_album_name: photo_album.name
+        photo_album: photo_album
       });
     }
   });
