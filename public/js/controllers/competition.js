@@ -133,7 +133,7 @@ var updateFormatData = function(id,percentX,percentY){
     'y':percentY
   };
   var competition_team = $('#competition_content').attr('data-nowteam');
-  var competition_id = $('#competition_id').val();
+  var competition_id = $('#competition_content').attr('data-id');
   $.post('/group/updateFormation/'+competition_id,{'formation':window['competition_format'],'competition_team':competition_team},function(data,status){
     if(data.result===0){
       //TODO
@@ -177,10 +177,10 @@ var getMemberId = function(id){
     });
     // 百度地图API功能
     var map = new BMap.Map("location");            // 创建Map实例
-    var _location = $('#location').attr('data-location');
-    var _address = $('#location').attr('data-address');
-    var _longitude = $('#location').attr('data-longitude');
-    var _latitude = $('#location').attr('data-latitude');
+    var _address = competition_location['address'];
+    var _locationName = competition_location['name'];
+    var _longitude = competition_location['coordinates'][0];
+    var _latitude = competition_location['coordinates'][1];
     var point = new BMap.Point(_longitude, _latitude);    // 创建点坐标
     map.centerAndZoom(point,15);                     // 初始化地图,设置中心点坐标和地图级别。
     map.enableScrollWheelZoom();
@@ -189,7 +189,7 @@ var getMemberId = function(id){
       var opts = {
         width : 200,     // 信息窗口宽度
         height: 60,     // 信息窗口高度
-        title : _location, // 信息窗口标题
+        title : _locationName, // 信息窗口标题
         enableMessage:false,//设置允许信息窗发送短息
         message:"亲耐滴，准时参加喔~"
       };

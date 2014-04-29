@@ -37,14 +37,14 @@ var Competition = new Schema({
     id: String,
     group_type: String,
     gid: String,
-    map: {
-      address: String,                       //地图地点
-      longitude: Number,                      //经度
-      latitude: Number                        //纬度
-    },
-
     brief: {
-      location: String,
+      location: {
+        type: {
+          type:String
+        },
+        coordinates: [],
+        address : String
+      },
       competition_date: Date,
       deadline: Date,
       competition_format: String,              //赛制

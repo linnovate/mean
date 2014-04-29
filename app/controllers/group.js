@@ -718,15 +718,15 @@ exports.getCompetition = function(req, res){
       ]
     },
     'group_type': '足球',
-    'map':{
-      'address':'上海市徐汇区点点滴滴',
-      'longitude': 121.443819,
-      'latitude': 31.191653,
-    },
     'brief': {
+      'location':{
+        'type':'Point',
+        'coordinates':[121.443819,31.191653],
+        'name':'上海体育馆',
+        'address':'上海市徐汇区点点滴滴'
+      },
       'competition_format': '友谊赛',
       'number':11,
-      'location': '上海体育馆',
       'deadline': new Date(3600*24),
       'competition_date': new Date(),
       'remark': '大家一起来'

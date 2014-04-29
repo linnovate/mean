@@ -1,5 +1,5 @@
 'use strict';
-/*
+
 //组件脚本
 var _group =[
             {
@@ -115,8 +115,8 @@ var _group =[
         } catch (e){
             print(e);
         };
-*/
-/*
+
+
 //公司脚本
 var _company = [
     {
@@ -311,8 +311,7 @@ try{
 } catch (e){
     print(e);
 };
-*/
-/*
+
 //员工脚本
 var _users =[
 {
@@ -479,10 +478,8 @@ try{
 } catch (e){
     print(e);
 };
-*/
 
-/*
-// insert to companygroups for test
+// 公司组件
 var _company_groups =[
 {
     "cid" : "0001-0001-0001-0001-000100010001",
@@ -581,8 +578,7 @@ try{
 } catch (e){
     print(e);
 };
-*/
-/*
+
 //足球组件
 var _football = [
     {
@@ -633,7 +629,7 @@ try{
 } catch (e){
     print(e);
 };
-*/
+
 //@arema /*
 //擂台数据
 var _arena = [
