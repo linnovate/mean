@@ -304,9 +304,9 @@ exports.getGroupCampaign = function(req, res) {
           }
         }
 
-        //判断这个组是不是员工所属的组,否则不能参加
         var permission = false;
         var stop = false;
+        //判断这个组是不是员工所属的组,否则不能参加,顺便看看他是不是这个组的组长
         for(var j = 0; j < campaign[i].gid.length && !stop; j ++) {
           for(var k = 0; k < req.user.group.length; k ++) {
             if(req.user.group[k].gid === campaign[i].gid[j]) {
@@ -668,85 +668,7 @@ exports.getGroupMember = function(req,res){
 
 //比赛
 exports.getCompetition = function(req, res){
-/*
-  var competition ={
-    'id': 'C61F5D77-9110-0001-33CB-BF001ED010CF',     //测试用
-    'camp_a':{
-      'tname': '鸭梨冲锋霹雳队',
-      'logo':'/img/user/photo/default.png',
-      'member':[
-        {
-          'username':'a1',
-          'uid':'a1',
-          'photo':'/img/user/photo/default.png'
-        },
-        {
-          'username':'a2',
-          'uid':'a2',
-          'photo':'/img/user/photo/default.png'
-        },
-        {
-          'username':'a3',
-          'uid':'a3',
-          'photo':'/img/user/photo/default.png'
-        }
-      ],
-      'formation':[{
-        'uid':'a1',
-        'username':'a1',
-        'photo':'/img/user/photo/default.png',
-        'x':44,
-        'y':59
-      }
-      ]
-    },
-    'camp_b':{
-      'tname': '3M冲锋霹雳队',
-      'logo':'/img/user/photo/default.png',
-      'member': [
-        {
-          'username': 'b1',
-           'uid':'b1',
-          'photo':'/img/user/photo/default.png'
-        },
-        {
-          'username': 'b2',
-          'uid':'b2',
-          'photo':'/img/user/photo/default.png'
-        },
-        {
-          'username': 'b3',
-          'uid':'b3',
-          'photo':'/img/user/photo/default.png'
-        }
-      ],
-      'formation':[{
-        'uid':'b1',
-        'photo':'/img/user/photo/default.png',
-        'username':'b1',
-        'x':64,
-        'y':29
-      }
-      ]
-    },
-    'group_type': '足球',
-    'brief': {
-      'location':{
-        'type':'Point',
-        'coordinates':[121.443819,31.191653],
-        'name':'上海体育馆',
-        'address':'上海市徐汇区点点滴滴'
-      },
-      'competition_format': '友谊赛',
-      'number':11,
-      'deadline': new Date(3600*24),
-      'competition_date': new Date(),
-      'remark': '大家一起来'
-    }
 
-  };
-  */
-    console.log(req.competition);
   res.render('competition/football', {
           'title': '发起足球比赛',
           'competition' : req.competition,
@@ -791,41 +713,37 @@ exports.updateFormation = function(req, res){
 };
 
 exports.competition = function(req, res, next, id){
-  req.session.competition_id = id;
+  var first = false;
+
   Competition.findOne({
-    'id':id
-  }).exec(function(err, competition){
-    if (err) return next(err);
-    req.competition = competition;
-    if(req.session.cid ===req.competition.camp_a.cid){
-      req.competition_team = 'A';
-      req.leader = false;
-      req.session.leader = false;
-      for(var i = 0; i <req.user.group.length; i ++) {
-        if(req.user.group[i].gid === req.session.gid && req.user.group[i].leader) {
-          req.leader = true;
-          req.session.leader = true;
-          break;
+      'id':id
+    }).exec(function(err, competition){
+      if (err) return next(err);
+      req.competition = competition;
+
+      if(!first) {
+        first = true;
+        req.session.leader = false;
+        var leader = req.session.companyGroup.leader;
+        for(var i = 0; i < leader.length; i ++) {
+          if(leader[i].uid = req.session.uid) {
+            req.session.leader = true;
+            break;
+          }
         }
       }
-    }
-    else if(req.session.cid ===req.competition.camp_b.cid){
-      req.competition_team = 'B';
-      req.leader = false;
-      req.session.leader = false;
-      for(var i = 0; i <req.user.group.length; i ++) {
-        if(req.user.group[i].gid === req.session.gid && req.user.group[i].leader) {
-          req.leader = true;
-          req.session.leader = true;
-          break;
-        }
+
+      if(req.session.cid ===competition.camp_a.cid){
+        req.competition_team = 'A';
       }
-    }
-    else
-    {
-      return new Error('Failed to load competition ' + id);
-    }
-    next();
+      else if(req.session.cid ===competition.camp_b.cid){
+        req.competition_team = 'B';
+      }
+      else
+      {
+        return new next(Error('Failed to load competition ' + id));
+      }
+      next();
   });
 };
 
@@ -885,7 +803,7 @@ exports.hasConfirmMsg = function (req, res) {
 
 //某一方发送或者修改比赛成绩确认消息
 exports.resultConfirm = function (req, res) {
-  var competition_id = req.session.competition_id;
+  var competition_id = req.params.competitionId;
 
   var rst_accept = req.body.rst_accept;
 

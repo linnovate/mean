@@ -19,12 +19,12 @@ groupApp.controller('resultController', ['$http', '$scope',function ($http, $sco
         $('#resultModel').modal();
       }
     });
-
+    var competition_id = $('#competition_content').attr('data-id');
     $scope.confirm = function (confirm) {
       try {
         $http({
           method: 'post',
-          url: '/group/resultConfirm',
+          url: '/group/resultConfirm/'+competition_id,
           data:{
             score_a : $scope.score_a,
             score_b : $scope.score_b,

@@ -153,7 +153,6 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
     };
 
     $scope.join = function(campaign_id) {
-      alert(campaign_id);
         try {
             $http({
                 method: 'post',
