@@ -110,12 +110,17 @@ exports.readPhotoAlbum = function(req, res) {
   var _id = req.params.photoAlbumId;
 
   photoAlbumProcess(res, _id, function(photo_album) {
-    var data = {
-      name: photo_album.name,
-      update_date: photo_album.update_date,
-      update_user: photo_album.update_user
-    };
-    res.send({ result: 1, msg: '获取相册信息成功', data: data });
+    if (photo_album.hidden === false) {
+      var data = {
+        name: photo_album.name,
+        update_date: photo_album.update_date,
+        update_user: photo_album.update_user
+      };
+      res.send({ result: 1, msg: '获取相册信息成功', data: data });
+    } else {
+      res.send({ result: 0, msg: '该相册不存在' });
+    }
+
   });
 };
 
@@ -124,31 +129,39 @@ exports.updatePhotoAlbum = function(req, res) {
   var new_name = req.body.name;
 
   photoAlbumProcess(res, _id, function(photo_album) {
-    photo_album.name = new_name;
-    photo_album.save(function(err) {
-      if (err) {
-        throw err;
-      } else {
-        res.send({ result: 1, msg: '更新相册成功' });
-      }
-    });
+    if (photo_album.hidden === false) {
+      photo_album.name = new_name;
+      photo_album.save(function(err) {
+        if (err) {
+          throw err;
+        } else {
+          res.send({ result: 1, msg: '更新相册成功' });
+        }
+      });
+    } else {
+      res.send({ result: 0, msg: '该相册不存在' });
+    }
   });
 };
 
 exports.deletePhotoAlbum = function(req, res) {
   var _id = req.params.photoAlbumId;
   if (validator.isAlphanumeric(_id)) {
-    try {
-      PhotoAlbum.remove({ _id: _id }).exec(function(err) {
-        if (err) {
-          throw err;
-        } else {
-          res.send({ result: 1, msg: '删除相册成功' });
-        }
-      });
-    } catch (e) {
-      res.send({ result: 0, msg: '删除相册失败' });
-    }
+    PhotoAlbum.findOne({ _id: _id }).exec(function(err, photo_album) {
+      if (err) {
+        console.log(err);
+      } else if(photo_album) {
+        photo_album.hidden = true;
+        photo_album.save(function(err) {
+          if (err) { console.log(err); }
+          else {
+            res.send({ result: 1, msg: '删除相册成功' });
+          }
+        });
+      } else {
+        res.send({ result: 0, msg: '删除相册失败' });
+      }
+    });
   } else {
     res.send({ result: 0, msg: '请求错误' });
   }
@@ -252,12 +265,16 @@ exports.readPhoto = function(req, res) {
   var p_id = req.params.photoId;
 
   photoProcess(res, pa_id, p_id, function(photo_album, photo) {
-    res.send({ result: 1, msg: '获取照片成功',
-      data: {
-        uri: photo.uri,
-        comment: photo.comment
-      }
-    });
+    if (photo.hidden === false) {
+      res.send({ result: 1, msg: '获取照片成功',
+        data: {
+          uri: photo.uri,
+          comment: photo.comment
+        }
+      });
+    } else {
+      res.send({ result: 0, msg: '该照片不存在' });
+    }
   });
 
 
@@ -268,14 +285,18 @@ exports.updatePhoto = function(req, res) {
   var p_id = req.params.photoId;
 
   photoProcess(res, pa_id, p_id, function(photo_album, photo) {
-    photo.comment = req.body.comment;
-    photo_album.save(function(err) {
-      if (err) {
-        throw err;
-      } else {
-        res.send({ result: 1, msg: '修改照片成功' });
-      }
-    });
+    if (photo.hidden === false) {
+      photo.comment = req.body.comment;
+      photo_album.save(function(err) {
+        if (err) {
+          throw err;
+        } else {
+          res.send({ result: 1, msg: '修改照片成功' });
+        }
+      });
+    } else {
+      res.send({ result: 0, msg: '该照片不存在' });
+    }
   });
 
 };
@@ -294,11 +315,7 @@ exports.deletePhoto = function(req, res) {
           for (var i = 0; i < photos.length; i++) {
             // 此处需要类型转换后再比较, p_id:String, photos[i]._id:Object
             if (p_id == photos[i]._id) {
-              var photo_path = config.root + '/public' + photos[i].uri;
-              if (fs.existsSync(photo_path)) {
-                fs.unlinkSync(photo_path);
-              }
-              photos.splice(i, 1);
+              photos[i].hidden = true;
               photo_album.save(function(err) {
                 if (err) {
                   throw err;
@@ -335,11 +352,13 @@ exports.readPhotos = function(req, res) {
           if (photo_album) {
             var photos = [];
             photo_album.photos.forEach(function(photo) {
-              var temp_photo = {};
-              temp_photo.pid = photo._id;
-              temp_photo.uri = photo.uri;
-              temp_photo.comment = photo.comment;
-              photos.push(temp_photo);
+              if (photo.hidden === false) {
+                var temp_photo = {};
+                temp_photo.pid = photo._id;
+                temp_photo.uri = photo.uri;
+                temp_photo.comment = photo.comment;
+                photos.push(temp_photo);
+              }
             });
             res.send({ result: 1, msg: '获取相册照片成功', data: photos });
           } else {

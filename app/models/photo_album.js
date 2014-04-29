@@ -13,6 +13,10 @@ var Photo = new Schema({
     type: Date,
     default: Date.now
   },
+  hidden: {
+    type: Boolean,
+    default: false
+  },
   comment: String
 });
 
@@ -35,6 +39,10 @@ var PhotoAlbum = new Schema({
   update_date: {
     type: Date,
     default: Date.now
+  },
+  hidden: {
+    type: Boolean,
+    default: false
   },
   photos: [Photo]
 });
