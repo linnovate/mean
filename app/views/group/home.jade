@@ -106,6 +106,10 @@ block aside
   +group_thumbnail(ugids,'inactive','未添加兴趣小组')
   h4 小组相册
   a(href="/group/#{group_id}/managePhotoAlbum") 管理相册
+  each photo_album in photo_albums
+    p
+      img(src="/photoAlbum/#{photo_album.id}/preview")
+      a(href="/group/#{group_id}/photoAlbum/#{photo_album.id}")= photo_album.name
 
 append footExt
   script(src="/lib/angular-route/angular-route.min.js")

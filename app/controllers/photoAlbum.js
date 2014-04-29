@@ -1,6 +1,7 @@
 'use strict';
 
 // node system
+var path = require('path');
 var fs = require('fs');
 var crypto = require('crypto');
 
@@ -370,5 +371,57 @@ exports.readPhotos = function(req, res) {
   }
 };
 
+
+exports.preview = function(req, res) {
+  var _id = req.params.photoAlbumId;
+
+  if (validator.isAlphanumeric(_id)) {
+    try {
+      PhotoAlbum.findOne({ _id: _id }).exec(function(err, photo_album) {
+        if (err) {
+          throw err;
+        } else {
+          if (photo_album) {
+            var first_photo;
+            for (var i = 0; i < photo_album.photos.length; i++) {
+              if (photo_album.photos[i].hidden === false) {
+                first_photo = photo_album.photos[i];
+                break;
+              }
+            }
+            if (first_photo) {
+              var img_path_for_fs = path.join(config.root, 'public', first_photo.uri);
+              res.set('Content-Type', 'image/png');
+              gm(img_path_for_fs)
+              .stream(function(err, stdout, stderr) {
+                if (err) callback(err);
+                else {
+                  stdout.pipe(res);
+                }
+              });
+            } else {
+              var default_path = path.join(config.root, 'public/img/icons/google.png');
+              res.set('Content-Type', 'image/png');
+              gm(default_path)
+              .stream(function(err, stdout, stderr) {
+                if (err) callback(err);
+                else {
+                  stdout.pipe(res);
+                }
+              });
+            }
+
+          } else {
+            res.send({ result: 0, msg: '相册不存在' });
+          }
+        }
+      });
+    } catch (e) {
+      res.send({ result: 0, msg: '获取相册照片失败' });
+    }
+  } else {
+    res.send({ result: 0, msg: '请求错误' });
+  }
+}
 
 

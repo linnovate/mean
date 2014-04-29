@@ -137,6 +137,9 @@ exports.home = function(req, res) {
   if (req.params.groupId != null) {
     req.session.gid = req.params.groupId;
   }
+
+
+
   if(req.session.role=='HR'){
     Company.findOne({'id': req.session.cid}, function(err, company) {
       if (err) {
@@ -160,16 +163,35 @@ exports.home = function(req, res) {
             }
           };
           CompanyGroup.findOne({ gid: req.session.gid, cid: req.user.cid }).exec(function(err, company_group) {
-            return res.render('group/home', {
-              'groups': company.group,
-              'ugids':_ugids,
-              'tname': (req.companyGroup.name !== undefined && req.companyGroup.name !== null) ? req.companyGroup.name : '未命名',
-              'number': (req.companyGroup.member !== undefined && req.companyGroup.member !== null) ? req.companyGroup.member.length : 0,
-              'score': (req.companyGroup.score !== undefined && req.companyGroup.score !== null) ? req.companyGroup.score : 0,
-              'role': req.session.role === 'EMPLOYEE',  //等加入权限功能后再修改  TODO
-              'logo': company_group.logo,
-              'group_id': company_group._id
+
+            var photo_album_ids = [];
+            company_group.photo.forEach(function(photo_album) {
+              photo_album_ids.push(photo_album.pid);
+            })
+            PhotoAlbum.where('_id').in(photo_album_ids)
+            .exec(function(err, photo_albums) {
+              if (err) { console.log(err); }
+              else if(photo_albums) {
+                var visible_photo_albums = [];
+                photo_albums.forEach(function(photo_album) {
+                  if (photo_album.hidden === false) {
+                    visible_photo_albums.push(photo_album);
+                  }
+                });
+                res.render('group/home', {
+                  'groups': company.group,
+                  'ugids':_ugids,
+                  'tname': (req.companyGroup.name !== undefined && req.companyGroup.name !== null) ? req.companyGroup.name : '未命名',
+                  'number': (req.companyGroup.member !== undefined && req.companyGroup.member !== null) ? req.companyGroup.member.length : 0,
+                  'score': (req.companyGroup.score !== undefined && req.companyGroup.score !== null) ? req.companyGroup.score : 0,
+                  'role': req.session.role === 'EMPLOYEE',  //等加入权限功能后再修改  TODO
+                  'logo': company_group.logo,
+                  'group_id': company_group._id,
+                  'photo_albums': visible_photo_albums
+                });
+              }
             });
+
           });
         });
       }
@@ -194,16 +216,35 @@ exports.home = function(req, res) {
             }
           };
           CompanyGroup.findOne({ gid: req.session.gid, cid: req.user.cid }).exec(function(err, company_group) {
-            return res.render('group/home', {
-              'groups': req.user.group,
-              'ugids':_ugids,
-              'tname': (req.companyGroup.name !== undefined && req.companyGroup.name !== null) ? req.companyGroup.name : '未命名',
-              'number': (req.companyGroup.member !== undefined && req.companyGroup.member !== null) ? req.companyGroup.member.length : 0,
-              'score': (req.companyGroup.score !== undefined && req.companyGroup.score !== null) ? req.companyGroup.score : 0,
-              'role': req.session.role === 'EMPLOYEE',  //等加入权限功能后再修改  TODO
-              'logo': company_group.logo,
-              'group_id': company_group._id
+
+            var photo_album_ids = [];
+            company_group.photo.forEach(function(photo_album) {
+              photo_album_ids.push(photo_album.pid);
+            })
+            PhotoAlbum.where('_id').in(photo_album_ids)
+            .exec(function(err, photo_albums) {
+              if (err) { console.log(err); }
+              else if(photo_albums) {
+                var visible_photo_albums = [];
+                photo_albums.forEach(function(photo_album) {
+                  if (photo_album.hidden === false) {
+                    visible_photo_albums.push(photo_album);
+                  }
+                });
+                res.render('group/home', {
+                  'groups': req.user.group,
+                  'ugids':_ugids,
+                  'tname': (req.companyGroup.name !== undefined && req.companyGroup.name !== null) ? req.companyGroup.name : '未命名',
+                  'number': (req.companyGroup.member !== undefined && req.companyGroup.member !== null) ? req.companyGroup.member.length : 0,
+                  'score': (req.companyGroup.score !== undefined && req.companyGroup.score !== null) ? req.companyGroup.score : 0,
+                  'role': req.session.role === 'EMPLOYEE',  //等加入权限功能后再修改  TODO
+                  'logo': company_group.logo,
+                  'group_id': company_group._id,
+                  'photo_albums': visible_photo_albums
+                });
+              }
             });
+
           });
         });
   }

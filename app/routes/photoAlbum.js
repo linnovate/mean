@@ -21,5 +21,6 @@ module.exports = function(app) {
   app.delete('/photoAlbum/:photoAlbumId/photo/:photoId', authorize, photoAlbum.deletePhoto);
 
   app.get('/photoAlbum/:photoAlbumId/photolist', authorize, photoAlbum.readPhotos);
+  app.get('/photoAlbum/:photoAlbumId/preview', authorize, photoAlbum.preview);
 
 };
