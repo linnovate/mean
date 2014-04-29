@@ -77,7 +77,7 @@ tabViewUser.controller('CampaignListController', ['$http','$scope',
   function ($http, $scope) {
     var that = this;
     $http.get('/users/getCampaigns').success(function(data, status) {
-      that.campaigns = data;
+      that.campaigns = data.data;
       that.show = false;
     });
 

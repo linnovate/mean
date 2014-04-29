@@ -294,8 +294,6 @@ exports.getGroupCampaign = function(req, res) {
       for(var i = 0;i < length; i ++) {
         join = false;
 
-
-
         //参加过的也不能参加
         for(var j = 0;j < campaign[i].member.length; j ++) {
           if(uid === campaign[i].member[j].uid) {
@@ -305,6 +303,8 @@ exports.getGroupCampaign = function(req, res) {
         }
 
         //判断这个组是不是员工所属的组,否则不能参加
+        //这个逻辑暂时用不到(因为员工只能进入自己加入的兴趣小组),以后员工可能
+        //可以进入他没有加入的兴趣小组,所以先把逻辑功能留在这里
         var permission = false;
         var stop = false;
         for(var j = 0; j < campaign[i].gid.length && !stop; j ++) {

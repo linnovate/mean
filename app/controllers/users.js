@@ -337,6 +337,8 @@ exports.getGroupMessages = function(req, res) {
 
 
 //列出该user加入的所有小组的活动
+//这是在员工日程里的,不用判断权限,因为关闭活动等操作
+//必须让队长进入小队页面去完成,不能在个人页面进行
 exports.getCampaigns = function(req, res) {
 
   var campaigns = [];
@@ -359,7 +361,6 @@ exports.getCampaigns = function(req, res) {
                 break;
               }
             }
-
             campaigns.push({
               'active':campaign[j].active,
               'id': campaign[j].id,
@@ -373,13 +374,16 @@ exports.getCampaigns = function(req, res) {
               'create_time': campaign[j].create_time ? campaign[j].create_time.toLocaleDateString() : '',
               'start_time': campaign[j].start_time ? campaign[j].start_time.toLocaleDateString() : '',
               'end_time': campaign[j].end_time ? campaign[j].end_time.toLocaleDateString() : '',
-              'join':join
+              'join':join,
+              'provoke':campaign[i].provoke
             });
           }
         }
       }
       if(flag === req.user.group.length) {
-        res.send(campaigns);
+        res.send({
+          'data':campaigns
+        });
       }
     });
   }
