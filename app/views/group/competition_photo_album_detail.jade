@@ -1,0 +1,31 @@
+extends ../layouts/photo
+
+block content
+  input#photo_album_id(type="hidden" name="photo_album_id" value="#{photo_album.id}")
+  h1= photo_album.name
+  p= '最后更新：' + photo_album.update_date
+  a(href="/group/competition/#{competition_id}") 返回比赛页面
+  hr
+  h2 上传照片
+  form.js_ajax_form(action="/photoAlbum/#{photo_album.id}/photo" method="post" enctype="multipart/form-data")
+    input(type="file" name="photos" multiple="multiple")
+    button(type="submit") 上传照片
+
+  h2 修改相册名字
+  form.js_ajax_form(action="/photoAlbum/#{photo_album.id}" method="post")
+    input(type="hidden" name="_method" value="put")
+    input(type="text" name="name" value="#{photo_album.name}")
+    button(type="submit") 修改相册名字
+
+  div#img_list(ng-app="img_list" ng-controller="ImgCtrl")
+    div(ng-repeat="photo in photos" finish-repeat-directive)
+      img(src="{{ photo.uri }}")
+      p {{ photo.comment }}
+      form.js_ajax_form(action="{{ photo.action }}" method="post")
+        input(type="hidden" name="_method" value="delete")
+        button(type="submit") 删除照片
+      hr
+
+append footExt
+  script(src="/lib/jquery-form/jquery.form.js")
+  script(src="/js/img_list.js")

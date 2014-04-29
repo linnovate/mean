@@ -94,7 +94,13 @@ var Competition = new Schema({
       },
       score: Number
     },
-    photo: Array,
+    photo: {
+      pid: String,
+      name: {
+        type: String,
+        default: '比赛相册'
+      }
+    },
 
     vote: {
         positive: {                             //赞成员工投票数

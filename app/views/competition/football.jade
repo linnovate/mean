@@ -83,10 +83,27 @@ block aside
   hr
   .infoHead.row
     h4.pull-left 活动精彩照片
-    a(href="#") 上传照片
+    a(href="/group/competition/#{competition.id}/photoAlbum/#{competition.photo.pid}") 上传照片
+    input#photo_album_id(type="hidden" name="photo_album_id" value="#{competition.photo.pid}")
+    div#img_list(ng-controller="PhotoListCtrl")
+      div(ng-repeat="photo in photos")
+        img(src="{{ photo.uri }}")
+
   script.
     var competition_location = !{JSON.stringify(competition.brief.location)}
 append footExt
   script(src="http://api.map.baidu.com/api?v=2.0&ak=krPnXlL3wNORRa1KYN1RAx3c")
   script(src="/js/controllers/competition.js")
+  script.
+    var app = angular.module('photo_list', []);
+    var photo_album_id = $('#photo_album_id').val();
+    app.controller('PhotoListCtrl', ['$scope', '$http', function($scope, $http) {
+      $scope.photos = [];
+      $http.get('/photoAlbum/' + photo_album_id + '/photolist')
+      .success(function(data, status) {
+        $scope.photos = data.data;
+      });
+
+    }]);
+
 

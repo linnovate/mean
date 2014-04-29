@@ -396,7 +396,13 @@ exports.provoke = function (req, res) {
   competition.camp_a.tname = team_a;
   competition.camp_a.logo = req.session.companyGroup.logo;
 
+  var photo_album = new PhotoAlbum();
+  photo_album.save();
 
+  competition.photo = { pid: photo_album._id, name: photo_album.name };
+  fs.mkdir(meanConfig.root + '/public/img/photo_album/' + photo_album._id, function(err) {
+    if (err) console.log(err);
+  });
 
   //这个查询就为了找对方小队的一个logo
   //速度换空间
@@ -669,12 +675,12 @@ exports.getGroupMember = function(req,res){
 //比赛
 exports.getCompetition = function(req, res){
   res.render('competition/football', {
-          'title': '发起足球比赛',
-          'competition' : req.competition,
-          'team': req.competition_team,
-          'leader' : req.session.leader,
-          'competition_id': req.params.competitionId
+    'title': '发起足球比赛',
+    'competition' : req.competition,
+    'team': req.competition_team,
+    'leader' : req.session.leader
   });
+
 };
 
 exports.updateFormation = function(req, res){
@@ -1078,3 +1084,19 @@ exports.groupPhotoAlbumDetail = function(req, res) {
     }
   });
 };
+
+exports.competitionPhotoAlbumDetail = function(req, res) {
+  PhotoAlbum.findOne({ _id: req.params.photoAlbumId })
+  .exec(function(err, photo_album) {
+    if (err) throw err;
+    else {
+      res.render('group/competition_photo_album_detail', {
+        competition_id: req.params.competitionId,
+        photo_album: photo_album
+      });
+    }
+  });
+};
+
+
+
