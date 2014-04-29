@@ -28,5 +28,15 @@ html
     script(src="/lib/bootstrap/dist/js/bootstrap.min.js")
     script(src="/lib/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" charset="UTF-8")
     script(src="/lib/smalot-bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8")
-
+    script.
+      $('.form_datetime').datetimepicker({
+        language: 'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 0
+      });
     block footExt
