@@ -647,7 +647,6 @@ exports.getGroupMember = function(req,res){
         if(companyGroup){
           _member_list = companyGroup.member;
         };
-        console.log(_member_list);
         return res.send(_member_list);
     });
 

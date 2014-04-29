@@ -268,20 +268,22 @@ tabViewGroup.controller('infoController', ['$http', '$scope',function($http, $sc
         $scope.home_court_2 = data.entity.home_court[1] ? data.entity.home_court[1] : '';
         $scope.family = data.entity.family;
         //TOTO:测试数据
-        var _member = [{'username':'阿飞','logo':'/img/user/photo/default.png'},
-                        {'username':'大天','logo':'/img/user/photo/default.png'},
-                        {'username':'小良','logo':'/img/user/photo/default.png'},
-                        {'username':'lee','logo':'/img/user/photo/default.png'},
-                        {'username':'阿飞','logo':'/img/user/photo/default.png'},
-                        {'username':'大天','logo':'/img/user/photo/default.png'},
-                        {'username':'小良','logo':'/img/user/photo/default.png'},
-                        {'username':'lee','logo':'/img/user/photo/default.png'},
-                        {'username':'阿飞','logo':'/img/user/photo/default.png'},
-                        {'username':'大天','logo':'/img/user/photo/default.png'},
-                        {'username':'小良','logo':'/img/user/photo/default.png'},
-                        {'username':'lee','logo':'/img/user/photo/default.png'}];
-        var _leaders = [{'username':'阿飞','logo':'/img/user/photo/default.png'},
-                        {'username':'大天','logo':'/img/user/photo/default.png'}];
+        /*
+        var _member = [{'username':'阿飞','photo':'/img/user/photo/default.png'},
+                        {'username':'大天','photo':'/img/user/photo/default.png'},
+                        {'username':'小良','photo':'/img/user/photo/default.png'},
+                        {'username':'lee','photo':'/img/user/photo/default.png'},
+                        {'username':'阿飞','photo':'/img/user/photo/default.png'},
+                        {'username':'大天','photo':'/img/user/photo/default.png'},
+                        {'username':'小良','photo':'/img/user/photo/default.png'},
+                        {'username':'lee','photo':'/img/user/photo/default.png'},
+                        {'username':'阿飞','photo':'/img/user/photo/default.png'},
+                        {'username':'大天','photo':'/img/user/photo/default.png'},
+                        {'username':'小良','photo':'/img/user/photo/default.png'},
+                        {'username':'lee','photo':'/img/user/photo/default.png'}];
+        var _leaders = [{'username':'阿飞','photo':'/img/user/photo/default.png'},
+                        {'username':'大天','photo':'/img/user/photo/default.png'}];
+        */
         $scope.leaders = _leaders;
         $scope.main_forces = _member;
     });
