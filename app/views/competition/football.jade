@@ -4,7 +4,7 @@ block panel
   #competition_content(data-nowteam="#{team}" data-id='#{competition.id}')
     .row
       .teamInfo.col-xs-4
-        img.size_210.teamLogo(src='#{competition.camp_a.logo}')
+        img.size_210.teamLogo(src='#{competition.camp_a.logo?competition.camp_a.logo:"/img/group/logo/default.png"}')
         div
           a.teamName= competition.camp_a.tname
         div
@@ -13,7 +13,7 @@ block panel
       .vs.col-xs-4
         h1.text-center VS
       .teamInfo.col-xs-4
-        img.size_210.teamLogo(src='#{competition.camp_b.logo}')
+        img.size_210.teamLogo(src='#{competition.camp_b.logo?competition.camp_b.logo:"/img/group/logo/default.png"}')
         div
           a.teamName= competition.camp_b.tname
         div
@@ -65,7 +65,7 @@ block aside
     label.col-xs-8.control-label= competition.brief.number
   .row
     label.col-xs-4.control-label 场地：
-    label.col-xs-8.control-label= competition.brief.location
+    label.col-xs-8.control-label= competition.brief.location.name
   .row
     label.col-xs-4.control-label 应战截止时间：
     label.col-xs-8.control-label= competition.brief.deadline.toLocaleDateString()
@@ -79,6 +79,7 @@ block aside
   .infoHead.row
     h4.pull-left 活动地点
   #location.size_210
+
   hr
   .infoHead.row
     h4.pull-left 活动精彩照片

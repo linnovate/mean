@@ -249,7 +249,6 @@ tabViewGroup.controller('MemberListController', ['$http', function($http) {
     var that = this;
     $http.get('/group/getGroupMembers?' + Math.round(Math.random()*100)).success(function(data, status) {
       that.group_members = data;
-      console.log(that.group_members);
     });
 }]);
 
@@ -283,9 +282,10 @@ tabViewGroup.controller('infoController', ['$http', '$scope',function($http, $sc
                         {'username':'lee','photo':'/img/user/photo/default.png'}];
         var _leaders = [{'username':'阿飞','photo':'/img/user/photo/default.png'},
                         {'username':'大天','photo':'/img/user/photo/default.png'}];
-        */
+        
         $scope.leaders = _leaders;
         $scope.main_forces = _member;
+        */
     });
 
     $scope.editToggle = function() {

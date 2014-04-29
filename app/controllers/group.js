@@ -745,9 +745,38 @@ exports.getCompetition = function(req, res){
     }
 
   };
+    if(req.session.cid ===req.competition.camp_a.cid){
+      req.competition_team = 'A';
+      req.leader = false;
+      req.session.leader = false;
+      for(var i = 0; i <req.user.group.length; i ++) {
+        if(req.user.group[i].gid === req.session.gid && req.user.group[i].leader) {
+          req.leader = true;
+          req.session.leader = true;
+          break;
+        }
+      }
+    }
+    else if(req.session.cid ===req.competition.camp_b.cid){
+      req.competition_team = 'B';
+      req.leader = false;
+      req.session.leader = false;
+      for(var i = 0; i <req.user.group.length; i ++) {
+        if(req.user.group[i].gid === req.session.gid && req.user.group[i].leader) {
+          req.leader = true;
+          req.session.leader = true;
+          break;
+        }
+      }
+    }
+    else
+    {
+      return new Error('Failed to load competition ' + id);
+    }
+    console.log(req.competition);
   res.render('competition/football', {
           'title': '发起足球比赛',
-          'competition' : competition,
+          'competition' : req.competition,
           'team': req.competition_team,
           'leader' : req.session.leader,
           'competition_id': req.params.competitionId
@@ -794,34 +823,6 @@ exports.competition = function(req, res, next, id){
   }).exec(function(err, competition){
     if (err) return next(err);
     req.competition = competition;
-    if(req.session.cid ===competition.camp_a.cid){
-      req.competition_team = 'A';
-      req.leader = false;
-      req.session.leader = false;
-      for(var i = 0; i <req.user.group.length; i ++) {
-        if(req.user.group[i].gid === req.session.gid && req.user.group[i].leader) {
-          req.leader = true;
-          req.session.leader = true;
-          break;
-        }
-      }
-    }
-    else if(req.session.cid ===competition.camp_b.cid){
-      req.competition_team = 'B';
-      req.leader = false;
-      req.session.leader = false;
-      for(var i = 0; i <req.user.group.length; i ++) {
-        if(req.user.group[i].gid === req.session.gid && req.user.group[i].leader) {
-          req.leader = true;
-          req.session.leader = true;
-          break;
-        }
-      }
-    }
-    else
-    {
-      return next(new Error('Failed to load competition ' + id));
-    }
     next();
   });
 };

@@ -33,23 +33,23 @@ div(ng-app="tabViewGroup" ng-controller="infoController")
       label.col-xs-2.control-label 队长
       div.col-xs-10
         div.col-xs-2(ng-repeat="leader in leaders")
-          img.center-block.size_50(src='{{leader.photo}}')
+          img.center-block.size_50(ng-src='{{leader.photo}}')
           p.text-center {{leader.nickname}}
     .row
       label.col-xs-2.control-label 主力
       div.col-xs-10
         div.col-xs-2(ng-repeat="main_force in main_forces")
-            img.center-block.size_50(src='{{main_force.photo}}')
+            img.center-block.size_50(ng-src='{{main_force.photo}}')
             p.text-center {{main_force.nickname}}
     .row
       label.col-xs-2.control-label 替补
       div.col-xs-10
         div.col-xs-2(ng-repeat="alternate in alternates")
-            img.center-block.size_50(src='{{alternate.photo}}')
+            img.center-block.size_50(ng-src='{{alternate.photo}}')
             p.text-center {{alternate.nickname}}
     .row
       label.col-xs-2.control-label 全家福
-      img(src='{{family}}')
+      img(ng-src='{{family}}')
     .infoHead.row
       h4.pull-left 其它
     hr

@@ -43,6 +43,7 @@ var Competition = new Schema({
           type:String
         },
         coordinates: [],
+        name: String,
         address : String
       },
       competition_date: Date,

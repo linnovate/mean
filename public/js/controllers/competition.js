@@ -179,8 +179,8 @@ var getMemberId = function(id){
     var map = new BMap.Map("location");            // 创建Map实例
     var _address = competition_location['address'];
     var _locationName = competition_location['name'];
-    var _longitude = competition_location['coordinates'][0];
-    var _latitude = competition_location['coordinates'][1];
+    var _longitude = competition_location['coordinates']?competition_location['coordinates'][0]:116.404 ;
+    var _latitude = competition_location['coordinates']?competition_location['coordinates'][1]:39.915;
     var point = new BMap.Point(_longitude, _latitude);    // 创建点坐标
     map.centerAndZoom(point,15);                     // 初始化地图,设置中心点坐标和地图级别。
     map.enableScrollWheelZoom();
