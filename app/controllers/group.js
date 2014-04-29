@@ -1108,9 +1108,25 @@ exports.managePhotoAlbum = function(req, res) {
   .exec(function(err, competition) {
     if (err) throw err;
     else if (competition) {
-      res.render('group/manage_photo_album',
-        { owner_id : req.params.competitionId,
-          photo_albums: competition.photo
+      var photo_album_ids = [];
+      competition.photo.forEach(function(photo_album) {
+        photo_album_ids.push(photo_album.pid);
+      })
+      PhotoAlbum.where('_id').in(photo_album_ids)
+      .exec(function(err, photo_albums) {
+        if (err) { console.log(err); }
+        else if(photo_albums) {
+          var visible_photo_albums = [];
+          photo_albums.forEach(function(photo_album) {
+            if (photo_album.hidden === false) {
+              visible_photo_albums.push(photo_album);
+            }
+          });
+          res.render('group/manage_photo_album',
+            { owner_id : req.params.competitionId,
+              photo_albums: visible_photo_albums
+          });
+        }
       });
     }
   });

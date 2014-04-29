@@ -6,35 +6,30 @@ block content
   p= '最后更新：' + photo_album.update_date
   hr
   h2 上传照片
-  form(action="/photoAlbum/#{photo_album.id}/photo" method="post" enctype="multipart/form-data")
+  form.js_ajax_form(action="/photoAlbum/#{photo_album.id}/photo" method="post" enctype="multipart/form-data")
     input(type="file" name="photos" multiple="multiple")
     button(type="submit") 上传照片
 
   h2 修改相册名字
-  form(action="/photoAlbum/#{photo_album.id}" method="post")
+  form.js_ajax_form(action="/photoAlbum/#{photo_album.id}" method="post")
     input(type="hidden" name="_method" value="put")
     input(type="text" name="name" value="#{photo_album.name}")
     button(type="submit") 修改相册名字
 
+  h2 删除该相册
+  form(action="/photoAlbum/#{photo_album.id}" method="post")
+    input(type="hidden" name="_method" value="delete")
+    button(type="submit") 删除相册
+
   div#img_list(ng-app="img_list" ng-controller="ImgCtrl")
-    div(ng-repeat="photo in photos")
+    div(ng-repeat="photo in photos" finish-repeat-directive)
       img(src="{{ photo.uri }}")
       p {{ photo.comment }}
-      form(action="{{ photo.action }}" method="post")
+      form.js_ajax_form(action="{{ photo.action }}" method="post")
         input(type="hidden" name="_method" value="delete")
         button(type="submit") 删除照片
       hr
 
 append footExt
-  script.
-    var app = angular.module('img_list', []);
-    app.controller('ImgCtrl', ['$scope', '$http', function($scope, $http) {
-      var photo_album_id = $('#photo_album_id').val();
-      $http.get('/photoAlbum/' + photo_album_id + '/photolist')
-      .success(function(data, status) {
-        $scope.photos = data.data;
-        for (var i = 0; i < $scope.photos.length; i++) {
-          $scope.photos[i].action = '/photoAlbum/' + photo_album_id + '/photo/' + $scope.photos[i].pid;
-        }
-      });
-    }]);
+  script(src="/lib/jquery-form/jquery.form.js")
+  script(src="/js/img_list.js")
