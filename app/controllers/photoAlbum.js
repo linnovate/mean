@@ -26,14 +26,6 @@ exports.authorize = function(req, res, next) {
 
 exports.ownerFilter = function(req, res, next) {
   switch (req.body.owner) {
-    case 'competition':
-      mongoose.model('Competition')
-      .findOne({ id: req.body.owner_id })
-      .exec(function(err, competition) {
-        req.model = competition;
-        next();
-      });
-      break;
     case 'company_group':
       mongoose.model('CompanyGroup')
       .findOne({ _id: req.body.owner_id })
