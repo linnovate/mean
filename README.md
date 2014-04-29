@@ -129,6 +129,7 @@ git init
 git add .
 git commit -m "initial version"
 heroku apps:create
+heroku config:add NODE_ENV=production
 heroku config:add BUILDPACK_URL=https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git
 git push heroku master
 heroku config:set NODE_ENV=production
