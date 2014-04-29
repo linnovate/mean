@@ -375,7 +375,7 @@ exports.getCampaigns = function(req, res) {
               'start_time': campaign[j].start_time ? campaign[j].start_time.toLocaleDateString() : '',
               'end_time': campaign[j].end_time ? campaign[j].end_time.toLocaleDateString() : '',
               'join':join,
-              'provoke':campaign[i].provoke
+              'provoke':campaign[j].provoke
             });
           }
         }
