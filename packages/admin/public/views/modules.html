@@ -1,0 +1,7 @@
+<section data-ng-controller="ModulesController">
+    <accordion close-others="oneAtATime">
+        <accordion-group data-ng-repeat="module in modules" heading="{{module}}" is-open="true">
+            This content is straight in the template.
+        </accordion-group>
+    </accordion>
+</section>
