@@ -8,13 +8,13 @@ block content
   hr
   h2 上传照片
   form.js_ajax_form(action="/photoAlbum/#{photo_album.id}/photo" method="post" enctype="multipart/form-data")
-    input(type="file" name="photos" multiple="multiple")
+    input(type="file" name="photos" multiple="multiple" required="required")
     button(type="submit") 上传照片
 
   h2 修改相册名字
   form.js_ajax_form(action="/photoAlbum/#{photo_album.id}" method="post")
     input(type="hidden" name="_method" value="put")
-    input(type="text" name="name" value="#{photo_album.name}")
+    input(type="text" name="name" value="#{photo_album.name}" required="required")
     button(type="submit") 修改相册名字
 
   h2 删除该相册

@@ -5,7 +5,7 @@ block content
   form(action="/photoAlbum" method="post")
     input(type="hidden" name="owner" value="company_group")
     input(type="hidden" name="owner_id" value="#{owner_id}")
-    input(type="text" name="name" placeholder="相册名")
+    input(type="text" name="name" placeholder="相册名" required="required")
     button(type="submit") 创建相册
 
   h1
