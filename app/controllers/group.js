@@ -159,7 +159,7 @@ exports.home = function(req, res) {
               _ugids.push(group[i].gid);
             }
           };
-          CompanyGroup.findOne({ gid: req.session.gid }).exec(function(err, company_group) {
+          CompanyGroup.findOne({ gid: req.session.gid, cid: req.user.cid }).exec(function(err, company_group) {
             return res.render('group/home', {
               'groups': company.group,
               'ugids':_ugids,
@@ -192,7 +192,7 @@ exports.home = function(req, res) {
               _ugids.push(group[i].gid);
             }
           };
-          CompanyGroup.findOne({ gid: req.session.gid }).exec(function(err, company_group) {
+          CompanyGroup.findOne({ gid: req.session.gid, cid: req.user.cid }).exec(function(err, company_group) {
             return res.render('group/home', {
               'groups': req.user.group,
               'ugids':_ugids,
@@ -976,7 +976,7 @@ exports.tempLogo = function(req, res) {
 
   var shasum = crypto.createHash('sha1');
 
-  shasum.update(req.session.gid);
+  shasum.update(req.session.gid + req.user.cid);
   var target_img = shasum.digest('hex') + '.png';
   var target_path = target_dir + target_img;
 
@@ -998,7 +998,7 @@ exports.saveLogo = function(req, res) {
 
   var shasum = crypto.createHash('sha1');
 
-  shasum.update(req.session.gid);
+  shasum.update(req.session.gid + req.user.cid);
   var temp_img = shasum.digest('hex') + '.png';
 
   var shasum = crypto.createHash('sha1');
@@ -1023,7 +1023,7 @@ exports.saveLogo = function(req, res) {
       var x = req.body.x * value.width;
       var y = req.body.y * value.height;
 
-      CompanyGroup.findOne({ gid: req.session.gid }).exec(function(err, company_group) {
+      CompanyGroup.findOne({ gid: req.session.gid, cid: req.user.cid }).exec(function(err, company_group) {
         var ori_logo = company_group.logo;
 
         gm(temp_path)
@@ -1041,7 +1041,7 @@ exports.saveLogo = function(req, res) {
             fs.unlink(temp_path, function(err) {
               if (err) console(err);
               var unlink_dir = meanConfig.root + '/public';
-              if (ori_logo) {
+              if (ori_logo && ori_logo !== '/img/group/logo/default.png') {
                 if (fs.existsSync(unlink_dir + ori_logo)) {
                   fs.unlinkSync(unlink_dir + ori_logo);
                 }
@@ -1060,7 +1060,7 @@ exports.saveLogo = function(req, res) {
 };
 
 exports.editLogo = function(req, res) {
-  CompanyGroup.findOne({ gid: req.session.gid }).exec(function(err, company_group) {
+  CompanyGroup.findOne({ gid: req.session.gid, cid: req.user.cid }).exec(function(err, company_group) {
     res.render('group/editLogo', {
       logo: company_group.logo,
       id: company_group._id

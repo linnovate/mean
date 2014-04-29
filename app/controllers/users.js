@@ -733,7 +733,7 @@ exports.tempPhoto = function(req, res) {
   .write(target_path, function(err) {
     if (err) console.log(err);
     fs.unlink(temp_path, function(err) {
-      if (err) throw err;
+      if (err) console.log(err);
       res.send({ img: target_img });
     });
   });
