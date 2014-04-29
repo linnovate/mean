@@ -737,7 +737,7 @@ exports.getCompetition = function(req, res){
           'title': '发起足球比赛',
           'competition' : competition,
           'team': req.competition_team,
-          'leader' : req.leader,
+          'leader' : req.session.leader,
           'competition_id': req.params.competitionId
   });
 };
@@ -1127,5 +1127,3 @@ exports.photoAlbumDetail = function(req, res) {
     }
   });
 };
-
-

@@ -33,6 +33,36 @@ exports.getCompany = function (req, res) {
     });
 };
 
+
+
+
+
+
+
+
+//TODO
+//根据队名在所有公司里搜索同类型小队
+//以后添加过滤规则
+exports.searchTeam = function(req, res) {
+  var tname_part = req.body.tname_part;
+  var gid = req.session.gid;
+
+  var tirm = '老虎-足球';
+
+  Company.find({'group.tname': {'$all':[/老虎-足球/]}}, function (err, companies) {
+    if(err) {
+      return res.send(err);
+    } else {
+      if(companies) {
+        return res.send(companies);
+      } else {
+        return res.send('none');
+      }
+    }
+  });
+};
+
+
 //TODO
 //根据公司和组件类型搜索小队
 //返回该组件的队名和组长

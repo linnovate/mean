@@ -1,0 +1,32 @@
+div(class="modal fade" id="sponsorProvokeModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button(class="close" data-dismiss="modal" aria-hidden="true") X
+        h4.modal-title#myModalLabel 发起挑战
+      .modal-body
+        .row
+          label 挑战内容
+            input(type="text" class="form-control" name="content" ng-model="content")
+          label 赛制
+            input(type="text" class="form-control" name="competition_format" ng-model="competition_format")
+          label 备注
+            input(type="text" class="form-control" name="remark" ng-model="remark")
+          label 地点
+            input(type="text" class="form-control" name="location" ng-model="location")
+          label 人数
+            input(type="text" class="form-control" name="number" ng-model="number")
+          label 比赛时间
+            input(type="text" class="form-control" name="competition_date" ng-model="competition_date")
+          label 截止时间
+            input(type="text" class="form-control" name="deadline" ng-model="deadline")
+        .row
+          li(ng-repeat="company in campaign.companies")
+            hr
+            p 公司id: {{company.id}}
+            p 公司名:{{company.name}}
+            button(ng-click="getTeam(company.id)") 列出小组
+         a(ng-click="provoke_select(campaign.teams.tname)") {{campaign.teams.tname}}
+      .modal-footer
+        button(class="btn btn-default" data-dismiss="modal") 取消
+        button(class="btn btn-primary" ng-click='provoke()' data-dismiss="modal") 确定

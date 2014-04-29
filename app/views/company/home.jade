@@ -3,7 +3,6 @@ extends ../layouts/manager
 block baseInfo
 
   button.btn-primary.btn-lg(data-toggle="modal" data-target="#sponsorCampaignModel") 活动
-          button.btn-primary.btn-lg(data-toggle="modal" data-target="#sponsorProvokeModel") 挑战
 
 block panel
 
@@ -20,7 +19,23 @@ block panel
     .tab-content
       .tab-pane.active
         div(ng-view)
-
+    div(ng-controller="CampaignListController" class="modal fade" id="sponsorCampaignModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button(type="button" class="close" data-dismiss="modal" aria-hidden="true") X
+            h4.modal-title#myModalLabel 发起活动
+          .modal-body
+            .row
+              label 活动内容
+                input(type="text" class="form-control" name="content" ng-model="content")
+              label 开始时间
+                input(type="text" class="form-control" name="start_time" ng-model="start_time")
+              label 结束时间
+                input(type="text" class="form-control" name="end_time" ng-model="end_time")
+          .modal-footer
+            button(class="btn btn-default" data-dismiss="modal") 取消
+            button(class="btn btn-primary" ng-click='sponsor()' data-dismiss="modal") 确定
 block aside
   待定区域
 append footExt

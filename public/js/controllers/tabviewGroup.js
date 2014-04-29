@@ -62,10 +62,10 @@ tabViewGroup.controller('GroupMessageController', ['$http','$scope',
 }]);
 
 
-
 tabViewGroup.controller('CampaignListController', ['$http', '$scope',
   function($http, $scope) {
     var that = this;
+    //消除ajax缓存
     $http.get('/group/getCampaigns?' + Math.round(Math.random()*100)).success(function(data, status) {
       that.campaigns = data.data;
       that.show = data.role === 'EMPLOYEE';    //由于还未设置权限,目前普通员工也可以关闭活动  TODO
@@ -73,12 +73,13 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
 
     //TODO 发起活动或者挑战时搜索应约对象 暂时先放在这里
     $http.get('/search/company').success(function(data, status) {
-      that.companies = data;
+      $scope.companies = data;
     });
 
 
     $scope.provoke_select = function( tname) {
         that.team_opposite = tname;
+        alert(that.team_opposite);
     };
     $scope.getTeam = function (cid) {
         that.cid_opposite = cid;
@@ -90,7 +91,7 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
                     cid : cid
                 }
             }).success(function(data, status) {
-                that.teams = data;
+                $scope.teams = data;
             }).error(function(data, status) {
                 alert('数据发生错误！');
             });
@@ -129,7 +130,6 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
         catch(e) {
             console.log(e);
         }
-        
     };
 
     $scope.getId = function(cid) {

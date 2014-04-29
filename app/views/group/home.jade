@@ -32,6 +32,58 @@ block panel
       .tab-pane.active
         div(ng-view)
 
+    div(ng-controller="CampaignListController" class="modal fade" id="sponsorCampaignModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button(type="button" class="close" data-dismiss="modal" aria-hidden="true") X
+            h4.modal-title#myModalLabel 发起活动
+          .modal-body
+            .row
+              label 活动内容
+                input(type="text" class="form-control" name="content" ng-model="content")
+              label 开始时间
+                input(type="text" class="form-control" name="start_time" ng-model="start_time")
+              label 结束时间
+                input(type="text" class="form-control" name="end_time" ng-model="end_time")
+          .modal-footer
+            button(class="btn btn-default" data-dismiss="modal") 取消
+            button(class="btn btn-primary" ng-click='sponsor()' data-dismiss="modal") 确定
+
+    div(ng-controller="CampaignListController" class="modal fade" id="sponsorProvokeModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button(class="close" data-dismiss="modal" aria-hidden="true") X
+            h4.modal-title#myModalLabel 发起挑战
+          .modal-body
+            .row
+              label {{test}}
+                input(type="text" class="form-control" name="content" ng-model="content")
+              label 赛制
+                input(type="text" class="form-control" name="competition_format" ng-model="competition_format")
+              label 备注
+                input(type="text" class="form-control" name="remark" ng-model="remark")
+              label 地点
+                input(type="text" class="form-control" name="location" ng-model="location")
+              label 人数
+                input(type="text" class="form-control" name="number" ng-model="number")
+              label 比赛时间
+                input(type="text" class="form-control" name="competition_date" ng-model="competition_date")
+              label 截止时间
+                input(type="text" class="form-control" name="deadline" ng-model="deadline")
+            .row
+              li(ng-repeat="company in companies")
+                hr
+                p 公司id: {{company.id}}
+                p 公司名: {{company.name}}
+                button(ng-click="getTeam(company.id)") 列出小组
+            a(ng-click="provoke_select(teams.tname)") {{teams.tname}}
+          .modal-footer
+            button(class="btn btn-default" data-dismiss="modal") 取消
+            button(class="btn btn-primary" ng-click='provoke()' data-dismiss="modal") 确定
+
+
 block aside
   include ../partials/group_thumbnail
   +group_thumbnail(groups,'active',role?'我的兴趣小组':'公司的兴趣小组')
