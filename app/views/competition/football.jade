@@ -85,7 +85,7 @@ block aside
     h4.pull-left 活动精彩照片
     a(href="/group/competition/#{competition.id}/photoAlbum/#{competition.photo.pid}") 上传照片
     input#photo_album_id(type="hidden" name="photo_album_id" value="#{competition.photo.pid}")
-    div#img_list(ng-controller="PhotoListCtrl")
+    div#photo_list(ng-controller="PhotoListCtrl")
       div(ng-repeat="photo in photos")
         img(ng-src="{{ photo.uri }}")
 
@@ -106,5 +106,7 @@ append footExt
       });
 
     }]);
+
+    angular.bootstrap($('#photo_list'), ['photo_list']);
 
 
