@@ -68,7 +68,7 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
     //消除ajax缓存
     $http.get('/group/getCampaigns?' + Math.round(Math.random()*100)).success(function(data, status) {
       that.campaigns = data.data;
-      that.show = data.role === 'EMPLOYEE';    //由于还未设置权限,目前普通员工也可以关闭活动  TODO
+      that.show = data.permission;    //只有改组的组长才可以操作活动(关闭、编辑等)
     });
 
     //TODO 发起活动或者挑战时搜索应约对象 暂时先放在这里
@@ -208,8 +208,8 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
                 url: '/group/campaignSponsor',
                 data:{
                     content : $scope.content,
-                    start_time : $scope.start_time,
-                    end_time : $scope.end_time
+                    start_time : document.getElementById('dtp_input_start_time').value,
+                    end_time : document.getElementById('dtp_input_end_time').value
                 }
             }).success(function(data, status) {
                 //发布活动后跳转到显示活动列表页面

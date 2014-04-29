@@ -43,9 +43,22 @@ block panel
               label 活动内容
                 input(type="text" class="form-control" name="content" ng-model="content")
               label 开始时间
-                input(type="text" class="form-control" name="start_time" ng-model="start_time")
+
+                .input-group.date.form_datetime.col-md-5(data-date="2014-04-29T05:25:07Z" data-date-format="yyyy MM dd - HH:ii p" data-link-field="dtp_input_start_time")
+                  input.form-control(size="16" type="text" value="" readonly)
+                  span.input-group-addon
+                    span.glyphicon.glyphicon-remove
+                  span.input-group-addon
+                    span.glyphicon.glyphicon-th
+                input(id="dtp_input_start_time" type="hidden" name="start_time" ng-model="start_time")
               label 结束时间
-                input(type="text" class="form-control" name="end_time" ng-model="end_time")
+                .input-group.date.form_datetime.col-md-5(data-date="2014-04-29T05:25:07Z" data-date-format="yyyy MM dd - HH:ii p" data-link-field="dtp_input_end_time")
+                  input.form-control(size="16" type="text" value="" readonly)
+                  span.input-group-addon
+                    span.glyphicon.glyphicon-remove
+                  span.input-group-addon
+                    span.glyphicon.glyphicon-th
+                input(id="dtp_input_end_time" type="hidden" name="end_time" ng-model="end_time")
           .modal-footer
             button(class="btn btn-default" data-dismiss="modal") 取消
             button(class="btn btn-primary" ng-click='sponsor()' data-dismiss="modal") 确定
@@ -91,3 +104,14 @@ block aside
 append footExt
   script(src="/lib/angular-route/angular-route.min.js")
   script(src="/js/controllers/tabviewGroup.js")
+  script.
+    $('.form_datetime').datetimepicker({
+      language: 'zh-CN',
+      weekStart: 1,
+      todayBtn:  1,
+      autoclose: 1,
+      todayHighlight: 1,
+      startView: 2,
+      forceParse: 0,
+      showMeridian: 1
+    });

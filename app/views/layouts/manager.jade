@@ -7,6 +7,7 @@ html
     meta(name="viewport" content="width=device-width,initial-scale=1")
     link(href="/img/icons/favicon.ico" rel="shortcut icon" type="image/x-icon")
     link(rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet" href="/lib/smalot-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" media="screen")
     link(rel="stylesheet" href="/css/views/group_select.css")
     block headExt
   body
@@ -22,8 +23,10 @@ html
           block aside
 
     include ../partials/footer
-
     script(src="/lib/angular/angular.min.js")
     script(src="/lib/jquery/dist/jquery.min.js")
     script(src="/lib/bootstrap/dist/js/bootstrap.min.js")
+    script(src="/lib/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" charset="UTF-8")
+    script(src="/lib/smalot-bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8")
+
     block footExt

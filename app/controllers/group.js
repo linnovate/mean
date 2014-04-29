@@ -279,7 +279,6 @@ exports.getGroupCampaign = function(req, res) {
   var cid = req.session.cid;
   var gid = req.session.gid;
   var uid = req.session.uid;
-  var role = req.session.role;
 
   //有包含gid的活动都列出来
   Campaign.find({'cid' : {'$all':[cid]}, 'gid' : {'$all':[gid]}}, function(err, campaign) {
@@ -304,10 +303,12 @@ exports.getGroupCampaign = function(req, res) {
         }
 
         //判断这个组是不是员工所属的组,否则不能参加
+        var permission = false;
         var stop = false;
         for(var j = 0; j < campaign[i].gid.length && !stop; j ++) {
           for(var k = 0; k < req.user.group.length; k ++) {
             if(req.user.group[k].gid === campaign[i].gid[j]) {
+              permission = (req.user.group[k].leader === true);     //只有这个组的组长才可以操作活动
               stop = true;
               break;
             }
@@ -335,7 +336,7 @@ exports.getGroupCampaign = function(req, res) {
 
       return res.send({
         'data':campaigns,
-        'role':role
+        'permission':permission
       });
     }
   });
