@@ -23,7 +23,7 @@ exports.render = function(req, res) {
             name: req.user.name,
             _id: req.user._id,
             username: req.user.username,
-            roles: (req.user ? req.user.roles : ['annonymous'])
+            roles: (req.user ? req.user.roles : ['anonymous'])
         }) : 'null',
         modules: JSON.stringify(modules),
         roles: (req.user ? JSON.stringify(req.user.roles) : ['annonymous']),
