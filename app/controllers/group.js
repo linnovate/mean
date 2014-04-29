@@ -382,65 +382,75 @@ exports.provoke = function (req, res) {
   var competition = new Competition();
   var number = req.body.number;
 
-
   var team_a = req.session.companyGroup.name;   //约战方队名
   var team_opposite = req.body.team_opposite;   //被约方队名
-
-
 
   competition.id = UUID.id();
   competition.gid = gid;
   competition.group_type = req.session.companyGroup.group_type;
 
-  //provoke.group_type = group_type;
-
   competition.camp_a.cid = cid;
   competition.camp_a.start_confirm = true;
-  competition.camp_a.username = username;
   competition.camp_a.tname = team_a;
+  competition.camp_a.logo = req.session.companyGroup.logo;
 
 
-  competition.camp_b.cid = cid_opposite;               //被约方的公司id和队长id先存进去,到时候显示动态时将据此决定是否显示"应约"按钮
-  competition.camp_b.tname = team_opposite;
 
-  competition.content = req.body.content;
-  competition.brief.remark = req.body.remark;
-  competition.brief.location = location;
-  competition.brief.competition_date = competition_date;
-  competition.brief.deadline = deadline;
-  competition.brief.competition_format = competition_format;
-  competition.brief.number = number;
-
-
-  var groupMessage = new GroupMessage();
-  groupMessage.id = UUID.id();
-  groupMessage.group.gid.push(gid);
-  groupMessage.group.group_type.push(competition.group_type);
-  groupMessage.provoke.active = true,
-  groupMessage.provoke.team_a = team_a;
-  groupMessage.provoke.team_b = team_opposite;
-
-  //groupMessage.poster.cname = cname;
-  groupMessage.poster.cid = cid;
-  groupMessage.poster.uid = uid;
-  groupMessage.poster.role = 'LEADER';
-  groupMessage.poster.username = username;
-  groupMessage.cid.push(cid);
-  if(cid !== cid_opposite) {
-    groupMessage.cid.push(cid_opposite);
-  }
-  groupMessage.content = content;
-  groupMessage.save(function (err) {
-    if (err) {
-      console.log('保存约战动态时出错' + err);
+  //这个查询就为了找对方小队的一个logo
+  //速度换空间
+  CompanyGroup.findOne({'cid':cid_opposite,'gid':gid},function(err, company_group){
+    if(err) {
       return res.send(err);
     } else {
-      competition.provoke_message_id = groupMessage.id;
-      competition.save();
+      if(company_group) {
+        competition.camp_b.logo = company_group.logo;
+        competition.camp_b.cid = cid_opposite;               //被约方的公司id
+        competition.camp_b.tname = team_opposite;
+
+        competition.content = req.body.content;
+        competition.brief.remark = req.body.remark;
+        competition.brief.location = location;
+        competition.brief.competition_date = competition_date;
+        competition.brief.deadline = deadline;
+        competition.brief.competition_format = competition_format;
+        competition.brief.number = number;
+
+
+        var groupMessage = new GroupMessage();
+        groupMessage.id = UUID.id();
+        groupMessage.group.gid.push(gid);
+        groupMessage.group.group_type.push(competition.group_type);
+        groupMessage.provoke.active = true,
+        groupMessage.provoke.team_a = team_a;
+        groupMessage.provoke.team_b = team_opposite;
+
+        //groupMessage.poster.cname = cname;
+        groupMessage.poster.cid = cid;
+        groupMessage.poster.uid = uid;
+        groupMessage.poster.role = 'LEADER';
+        groupMessage.poster.username = username;
+        groupMessage.cid.push(cid);
+        if(cid !== cid_opposite) {
+          groupMessage.cid.push(cid_opposite);
+        }
+        groupMessage.content = content;
+        groupMessage.save(function (err) {
+          if (err) {
+            console.log('保存约战动态时出错' + err);
+            return res.send(err);
+          } else {
+            competition.provoke_message_id = groupMessage.id;
+            competition.save();
+          }
+          return res.send('ok');
+          //这里要注意一下,生成动态消息后还要向被约队长发一封私信
+        });
+      } else {
+        return res.send('null');
+      }
     }
-    return res.send('ok');
-    //这里要注意一下,生成动态消息后还要向被约队长发一封私信
   });
+
 };
 
 
