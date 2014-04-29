@@ -8,6 +8,10 @@
 .group input {
   display: none;
 }
+.size_400 {
+  height: 210px;
+  width: 210px;
+}
 .size_210 {
   height: 210px;
   width: 210px;

@@ -23,10 +23,7 @@ var _member = new Schema({
 
 //阵形图子文档
 var _formation = new Schema({
-    cid: String,
     uid: String,
-    username: String,
-    photo:String,
     x: Number,
     y: Number
 });

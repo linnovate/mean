@@ -161,6 +161,7 @@ var getMemberId = function(id){
       $(this).css('top',_y+'%');
       _id = getMemberId(_id);
       $('#'+_id).attr('draggable',false);
+      $(this).attr('src',$('#'+_id).attr('src'));
     });
     _conetent.find('.onmemberB').each(function(){
       var _id = $(this).attr('id');
@@ -174,24 +175,25 @@ var getMemberId = function(id){
         'y':_y
       };
       $('#'+_id).attr('draggable',false);
+      $(this).attr('src',$('#'+_id).attr('src'));
     });
     // 百度地图API功能
     var map = new BMap.Map("location");            // 创建Map实例
-    var _address = competition_location['address'];
+    var _address = competition_location['address']?competition_location['address'] :'';
     var _locationName = competition_location['name'];
-    var _longitude = competition_location['coordinates']?competition_location['coordinates'][0]:116.404 ;
-    var _latitude = competition_location['coordinates']?competition_location['coordinates'][1]:39.915;
+    var _longitude = competition_location['coordinates'][0]?competition_location['coordinates'][0]:116.404 ;
+    var _latitude = competition_location['coordinates'][1]?competition_location['coordinates'][1]:39.915;
     var point = new BMap.Point(_longitude, _latitude);    // 创建点坐标
     map.centerAndZoom(point,15);                     // 初始化地图,设置中心点坐标和地图级别。
     map.enableScrollWheelZoom();
-    map.addOverlay(new BMap.Marker(point));
+    map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_BOTTOM_RIGHT, type: BMAP_NAVIGATION_CONTROL_ZOOM}));
+    var marker = new BMap.Marker(point);  // 创建标注
+    map.addOverlay(marker);              // 将标注添加到地图中
     function showInfo(e){
       var opts = {
         width : 200,     // 信息窗口宽度
         height: 60,     // 信息窗口高度
         title : _locationName, // 信息窗口标题
-        enableMessage:false,//设置允许信息窗发送短息
-        message:"亲耐滴，准时参加喔~"
       };
       var infoWindow = new BMap.InfoWindow(_address, opts);  // 创建信息窗口对象
       map.openInfoWindow(infoWindow,point); //开启信息窗口

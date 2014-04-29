@@ -411,7 +411,7 @@ exports.provoke = function (req, res) {
 
         competition.content = req.body.content;
         competition.brief.remark = req.body.remark;
-        competition.brief.location = location;
+        competition.brief.location.name = location;
         competition.brief.competition_date = competition_date;
         competition.brief.deadline = deadline;
         competition.brief.competition_format = competition_format;
@@ -668,7 +668,7 @@ exports.getGroupMember = function(req,res){
 
 //比赛
 exports.getCompetition = function(req, res){
-
+/*
   var competition ={
     'id': 'C61F5D77-9110-0001-33CB-BF001ED010CF',     //测试用
     'camp_a':{
@@ -745,34 +745,7 @@ exports.getCompetition = function(req, res){
     }
 
   };
-    if(req.session.cid ===req.competition.camp_a.cid){
-      req.competition_team = 'A';
-      req.leader = false;
-      req.session.leader = false;
-      for(var i = 0; i <req.user.group.length; i ++) {
-        if(req.user.group[i].gid === req.session.gid && req.user.group[i].leader) {
-          req.leader = true;
-          req.session.leader = true;
-          break;
-        }
-      }
-    }
-    else if(req.session.cid ===req.competition.camp_b.cid){
-      req.competition_team = 'B';
-      req.leader = false;
-      req.session.leader = false;
-      for(var i = 0; i <req.user.group.length; i ++) {
-        if(req.user.group[i].gid === req.session.gid && req.user.group[i].leader) {
-          req.leader = true;
-          req.session.leader = true;
-          break;
-        }
-      }
-    }
-    else
-    {
-      return new Error('Failed to load competition ' + id);
-    }
+  */
     console.log(req.competition);
   res.render('competition/football', {
           'title': '发起足球比赛',
@@ -787,11 +760,12 @@ exports.updateFormation = function(req, res){
   Competition.findOne({
     'id':req.params.competitionId
   }).exec(function(err, competition){
+    console.log(req.competition_team ,req.body.competition_team);
     if(req.competition_team === req.body.competition_team){
       var _formation = [];
       var _tempFormation = req.body.formation;
       for (var member in _tempFormation){
-        _formation.push({'username':member,
+        _formation.push({'uid':member,
                           'x':_tempFormation[member].x,
                           'y':_tempFormation[member].y
 
@@ -823,6 +797,34 @@ exports.competition = function(req, res, next, id){
   }).exec(function(err, competition){
     if (err) return next(err);
     req.competition = competition;
+    if(req.session.cid ===req.competition.camp_a.cid){
+      req.competition_team = 'A';
+      req.leader = false;
+      req.session.leader = false;
+      for(var i = 0; i <req.user.group.length; i ++) {
+        if(req.user.group[i].gid === req.session.gid && req.user.group[i].leader) {
+          req.leader = true;
+          req.session.leader = true;
+          break;
+        }
+      }
+    }
+    else if(req.session.cid ===req.competition.camp_b.cid){
+      req.competition_team = 'B';
+      req.leader = false;
+      req.session.leader = false;
+      for(var i = 0; i <req.user.group.length; i ++) {
+        if(req.user.group[i].gid === req.session.gid && req.user.group[i].leader) {
+          req.leader = true;
+          req.session.leader = true;
+          break;
+        }
+      }
+    }
+    else
+    {
+      return new Error('Failed to load competition ' + id);
+    }
     next();
   });
 };
