@@ -167,7 +167,8 @@ exports.home = function(req, res) {
               'number': (req.companyGroup.member !== undefined && req.companyGroup.member !== null) ? req.companyGroup.member.length : 0,
               'score': (req.companyGroup.score !== undefined && req.companyGroup.score !== null) ? req.companyGroup.score : 0,
               'role': req.session.role === 'EMPLOYEE',  //等加入权限功能后再修改  TODO
-              'logo': company_group.logo
+              'logo': company_group.logo,
+              'group_id': company_group._id
             });
           });
         });
@@ -200,7 +201,8 @@ exports.home = function(req, res) {
               'number': (req.companyGroup.member !== undefined && req.companyGroup.member !== null) ? req.companyGroup.member.length : 0,
               'score': (req.companyGroup.score !== undefined && req.companyGroup.score !== null) ? req.companyGroup.score : 0,
               'role': req.session.role === 'EMPLOYEE',  //等加入权限功能后再修改  TODO
-              'logo': company_group.logo
+              'logo': company_group.logo,
+              'group_id': company_group._id
             });
           });
         });
@@ -1116,12 +1118,12 @@ exports.getLogo = function(req, res) {
 };
 
 exports.managePhotoAlbum = function(req, res) {
-  Competition.findOne({ id: req.params.competitionId })
-  .exec(function(err, competition) {
+  CompanyGroup.findOne({ _id: req.params.gid })
+  .exec(function(err, company_group) {
     if (err) throw err;
-    else if (competition) {
+    else if (company_group) {
       var photo_album_ids = [];
-      competition.photo.forEach(function(photo_album) {
+      company_group.photo.forEach(function(photo_album) {
         photo_album_ids.push(photo_album.pid);
       })
       PhotoAlbum.where('_id').in(photo_album_ids)
@@ -1135,7 +1137,7 @@ exports.managePhotoAlbum = function(req, res) {
             }
           });
           res.render('group/manage_photo_album',
-            { owner_id : req.params.competitionId,
+            { owner_id : req.params.gid,
               photo_albums: visible_photo_albums
           });
         }
@@ -1144,12 +1146,13 @@ exports.managePhotoAlbum = function(req, res) {
   });
 }
 
-exports.photoAlbumDetail = function(req, res) {
+exports.groupPhotoAlbumDetail = function(req, res) {
   PhotoAlbum.findOne({ _id: req.params.photoAlbumId })
   .exec(function(err, photo_album) {
     if (err) throw err;
     else {
       res.render('group/photo_album_detail', {
+        gid: req.params.gid,
         photo_album: photo_album
       });
     }

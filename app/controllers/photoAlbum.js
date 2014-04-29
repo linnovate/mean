@@ -34,8 +34,16 @@ exports.ownerFilter = function(req, res, next) {
         next();
       });
       break;
+    case 'company_group':
+      mongoose.model('CompanyGroup')
+      .findOne({ _id: req.body.owner_id })
+      .exec(function(err, company_group) {
+        req.model = company_group;
+        next();
+      });
+      break;
     default:
-      next();
+      res.send({ result: 0, msg: 'failed' });
       break;
   }
 }
@@ -43,42 +51,38 @@ exports.ownerFilter = function(req, res, next) {
 
 exports.createPhotoAlbum = function(req, res) {
   var photo_album = new PhotoAlbum({ name: req.body.name, update_user: req.user.nickname });
-  try {
-    photo_album.save(function(err) {
-      if (err) {
-        throw err;
-      } else {
+  photo_album.save(function(err) {
+    if (err) {
+      console.log(err);
+    } else {
 
-        async.waterfall([
-          function(callback) {
-            var pushObj = { pid: photo_album._id, name: photo_album.name };
-            req.model.photo.push(pushObj);
-            req.model.save(function(err) {
-              if (err) callback(err);
-              else {
-                delete req.model;
-                callback(null);
-              }
-            });
-          },
-          function(callback) {
-            fs.mkdir(config.root + '/public/img/photo_album/' + photo_album._id, function(err) {
-              if (err) callback(err);
-              else {
-                res.send({ result: 1, msg: '创建相册成功' });
-                callback(null);
-              }
-            });
-          }
-        ], function(err, result) {
-          if (err) throw err;
-        });
+      async.waterfall([
+        function(callback) {
+          var pushObj = { pid: photo_album._id, name: photo_album.name };
+          req.model.photo.push(pushObj);
+          req.model.save(function(err) {
+            if (err) callback(err);
+            else {
+              delete req.model;
+              callback(null);
+            }
+          });
+        },
+        function(callback) {
+          fs.mkdir(config.root + '/public/img/photo_album/' + photo_album._id, function(err) {
+            if (err) callback(err);
+            else {
+              return res.send({ result: 1, msg: '创建相册成功' });
+            }
+          });
+        }
+      ], function(err, result) {
+        if (err) console.log(err);
+      });
 
-      }
-    });
-  } catch(e) {
-    res.send({ result: 0, msg: '创建相册失败' });
-  }
+    }
+  });
+
 };
 
 

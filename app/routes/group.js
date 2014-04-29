@@ -57,6 +57,6 @@ module.exports = function(app) {
 
   app.get('/groupLogo/:id/:width/:height', group.getLogo);
 
-  app.get('/group/competition/:competitionId/managePhotoAlbum', group.managePhotoAlbum);
-  app.get('/group/competition/:competitionId/photoAlbum/:photoAlbumId', group.photoAlbumDetail);
+  app.get('/group/:gid/managePhotoAlbum', group.managePhotoAlbum);
+  app.get('/group/:gid/photoAlbum/:photoAlbumId', group.groupPhotoAlbumDetail);
 };

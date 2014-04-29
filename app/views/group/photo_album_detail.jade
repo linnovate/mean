@@ -4,6 +4,7 @@ block content
   input#photo_album_id(type="hidden" name="photo_album_id" value="#{photo_album.id}")
   h1= photo_album.name
   p= '最后更新：' + photo_album.update_date
+  a(href="/group/#{gid}/managePhotoAlbum") 返回小组相册列表
   hr
   h2 上传照片
   form.js_ajax_form(action="/photoAlbum/#{photo_album.id}/photo" method="post" enctype="multipart/form-data")

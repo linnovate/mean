@@ -3,12 +3,13 @@ extends ../layouts/photo
 block content
   h1 创建相册
   form(action="/photoAlbum" method="post")
-    input(type="hidden" name="owner" value="competition")
+    input(type="hidden" name="owner" value="company_group")
     input(type="hidden" name="owner_id" value="#{owner_id}")
     input(type="text" name="name" placeholder="相册名")
     button(type="submit") 创建相册
 
   h1
   each photo_album in photo_albums
-    a(href="/group/competition/#{owner_id}/photoAlbum/#{photo_album.id}")= photo_album.name
+    p
+      a(href="/group/#{owner_id}/photoAlbum/#{photo_album.id}")= photo_album.name
 

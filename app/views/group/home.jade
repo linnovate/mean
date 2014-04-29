@@ -104,6 +104,9 @@ block aside
   include ../partials/group_thumbnail
   +group_thumbnail(groups,'active',role?'我的兴趣小组':'公司的兴趣小组')
   +group_thumbnail(ugids,'inactive','未添加兴趣小组')
+  h4 小组相册
+  a(href="/group/#{group_id}/managePhotoAlbum") 管理相册
+
 append footExt
   script(src="/lib/angular-route/angular-route.min.js")
   script(src="/js/controllers/tabviewGroup.js")
