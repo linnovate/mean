@@ -24,7 +24,7 @@ block content
 
   div#img_list(ng-app="img_list" ng-controller="ImgCtrl")
     div(ng-repeat="photo in photos" finish-repeat-directive)
-      img(src="{{ photo.uri }}")
+      img(ng-src="{{ photo.uri }}")
       p {{ photo.comment }}
       form.js_ajax_form(action="{{ photo.action }}" method="post")
         input(type="hidden" name="_method" value="delete")

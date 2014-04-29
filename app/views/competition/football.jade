@@ -87,7 +87,7 @@ block aside
     input#photo_album_id(type="hidden" name="photo_album_id" value="#{competition.photo.pid}")
     div#img_list(ng-controller="PhotoListCtrl")
       div(ng-repeat="photo in photos")
-        img(src="{{ photo.uri }}")
+        img(ng-src="{{ photo.uri }}")
 
   script.
     var competition_location = !{JSON.stringify(competition.brief.location)}
