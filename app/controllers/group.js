@@ -304,9 +304,9 @@ exports.getGroupCampaign = function(req, res) {
           }
         }
 
+        //判断这个组是不是员工所属的组,否则不能参加
         var permission = false;
         var stop = false;
-        //判断这个组是不是员工所属的组,否则不能参加,顺便看看他是不是这个组的组长
         for(var j = 0; j < campaign[i].gid.length && !stop; j ++) {
           for(var k = 0; k < req.user.group.length; k ++) {
             if(req.user.group[k].gid === campaign[i].gid[j]) {
@@ -668,7 +668,6 @@ exports.getGroupMember = function(req,res){
 
 //比赛
 exports.getCompetition = function(req, res){
-
   res.render('competition/football', {
           'title': '发起足球比赛',
           'competition' : req.competition,
