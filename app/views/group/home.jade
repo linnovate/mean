@@ -58,7 +58,7 @@ block panel
             h4.modal-title#myModalLabel 发起挑战
           .modal-body
             .row
-              label {{test}}
+              label 内容
                 input(type="text" class="form-control" name="content" ng-model="content")
               label 赛制
                 input(type="text" class="form-control" name="competition_format" ng-model="competition_format")
@@ -90,6 +90,4 @@ block aside
   +group_thumbnail(ugids,'inactive','未添加兴趣小组')
 append footExt
   script(src="/lib/angular-route/angular-route.min.js")
-  script(src="/lib/jquery/dist/jquery.min.js")
-  script(src="/lib/bootstrap/dist/js/bootstrap.min.js")
   script(src="/js/controllers/tabviewGroup.js")

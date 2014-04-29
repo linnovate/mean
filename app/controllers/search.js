@@ -82,7 +82,6 @@ exports.getTeam = function(req, res) {
             tname = company.group[i].tname;
           }
         }
-        console.log(leader + '---' + tname);
         return res.send({
           'tname' : tname,
           'leader' : leader
