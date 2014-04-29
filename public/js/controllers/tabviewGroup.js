@@ -115,8 +115,8 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
 
                     location: $scope.location,
                     remark: $scope.remark,
-                    competition_date: $scope.competition_date,
-                    deadline: $scope.deadline,
+                    competition_date: document.getElementById('dtp_input_competition_date').value,
+                    deadline: document.getElementById('dtp_input_deadline').value,
                     competition_format: $scope.competition_format,
                     number: $scope.number
 

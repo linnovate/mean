@@ -59,7 +59,6 @@ tabViewCompany.controller('GroupListController', ['$http', '$scope',
     });
 
     $scope.setGroupId = function (gid) {
-        alert('ok');
         that.gid = gid;
         try{
             $http({
@@ -136,8 +135,8 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
                 data:{
                     campaign_id : that.campaign_id,
                     content : $scope.content,
-                    start_time : $scope.start_time,
-                    end_time : $scope.end_time
+                    start_time : document.getElementById('dtp_input_start_time').value,
+                    end_time : document.getElementById('dtp_input_end_time').value
                 }
             }).success(function(data, status) {
                 //发布活动后跳转到显示活动列表页面

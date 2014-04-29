@@ -928,6 +928,8 @@ exports.resultConfirm = function (req, res) {
 
 
 exports.group = function(req, res, next, id) {
+
+  console.log(req.session.gid);
   CompanyGroup
     .findOne({
         cid: req.session.cid,
