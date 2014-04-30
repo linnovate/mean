@@ -5,7 +5,9 @@ var group = require('../controllers/group');
 
 var express = require('express');
 var config = require('../../config/config');
-var photoBodyParser = express.bodyParser({ uploadDir: config.root + '/temp_uploads/' });
+var photoBodyParser = express.bodyParser({
+  uploadDir: config.root + '/temp_uploads/',
+  limit: 1024 * 500 });
 
 
 module.exports = function(app) {
