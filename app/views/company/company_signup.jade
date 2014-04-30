@@ -50,6 +50,11 @@ block content
             input#email_host.form-control.dl_form_control(type="text" name="host" required)
             label.control-label @
             input#email_domain.form-control.dl_form_control(type="text" name="domain" required)
+        if is_need_invite
+          .form-group.dl_sm_group
+            label.col-xs-3.control-label(for="invite_code") *邀请码
+            .col-xs-9
+              input#invite_code.form-control.dl_full_control(type="text" name="invite_code" placeholder="请输入邀请码" required)
         .form-group.dl_sm_group
           .col-xs-offset-3.col-xs-9
             label.dl_checkbox

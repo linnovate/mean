@@ -13,3 +13,5 @@ exports.MAIL_OPTION = {
 exports.BASE_URL = 'http://127.0.0.1:3000';
 
 exports.SECRET = '18801912891';
+
+exports.CONFIG_NAME = 'donler';

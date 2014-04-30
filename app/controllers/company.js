@@ -10,6 +10,7 @@ var mongoose = require('mongoose'),
     User = mongoose.model('User'),
     UUID = require('../middlewares/uuid'),
     GroupMessage = mongoose.model('GroupMessage'),
+    Config = mongoose.model('Config'),
     Campaign = mongoose.model('Campaign'),
     config = require('../config/config');
 
@@ -37,9 +38,20 @@ exports.loginSuccess = function(req, res) {
  * Show sign up form
  */
 exports.signup = function(req, res) {
-    res.render('company/company_signup', {
-        title: '注册',
-        company: new Company()
+    Config.findOne({ name: config.CONFIG_NAME })
+    .exec(function(err, config) {
+        if (err) {
+            console.log(err);
+        } else {
+            var is_need_invite = true;
+            if (config) {
+                is_need_invite = config.company_register_need_invite;
+            }
+            res.render('company/company_signup', {
+                title: '注册',
+                is_need_invite: is_need_invite
+            });
+        }
     });
 };
 
