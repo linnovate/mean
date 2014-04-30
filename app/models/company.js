@@ -83,7 +83,10 @@ var CompanySchema = new Schema({
         type: String,
         default: 'company'
     },
-    salt: String
+    salt: String,
+
+    // 企业注册用的邀请码
+    register_invite_code: [String]
 });
 
 /**
