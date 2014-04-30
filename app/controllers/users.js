@@ -129,7 +129,7 @@ exports.dealActive = function(req, res) {
                   }
                 });
                 //系统再给员工发一封激活邮件
-                mail.sendStaffActiveMail(user.email, user.id, company.id);
+                mail.sendStaffActiveMail(user.email, user.id, company.id, req.headers.host);
                 res.render('users/message', message.wait);
                 return;
               }

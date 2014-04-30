@@ -257,7 +257,7 @@ exports.create = function(req, res, next) {
 
         //发送邮件
         //注意,这里只是测试发送邮件,正常流程是应该在平台的后台管理中向hr发送确认邮件
-        mail.sendCompanyActiveMail(req.body.host+'@'+req.body.domain,req.body.name,company.id);
+        mail.sendCompanyActiveMail(req.body.host+'@'+req.body.domain, req.body.name, company.id, req.headers.host);
         res.redirect('/company/wait');
     });
 };
