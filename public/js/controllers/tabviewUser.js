@@ -132,7 +132,6 @@ tabViewUser.controller('AccountFormController',['$scope','$http',function($scope
         else{
              console.log(data.msg);
         }
-        console.log($scope.user);
     }).error(function(data,status) {
         //TODO:更改对话框
         console.log('个人账号信息获取失败！');

@@ -644,7 +644,7 @@ exports.quitCampaign = function (req, res) {
 exports.getAccount = function (req, res) {
     User.findOne({
             id : req.session.uid
-        }, function(err, user) {
+        },{'_id':0,'hashed_password':0,'salt':0}, function(err, user) {
             if(err) {
                 console.log(err);
                 res.send({'result':0,'msg':'数据错误'});

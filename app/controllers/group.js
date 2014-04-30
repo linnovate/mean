@@ -491,7 +491,7 @@ exports.provoke = function (req, res) {
             competition.provoke_message_id = groupMessage.id;
             competition.save();
           }
-          return res.send('ok');
+          return res.send({'result':1,'msg':'挑战成功！'});
           //这里要注意一下,生成动态消息后还要向被约队长发一封私信
         });
       } else {
