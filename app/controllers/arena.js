@@ -21,7 +21,7 @@ exports.home = function(req, res) {
   });
 };
 exports.detail = function(req, res){
-          console.log(req.arena);
+  console.log(req.arena);
   res.render('arena/arena_detail', {'title': '擂台详情','arena': req.arena,'champion_flag': req.arena.champion.uid===req.session.uid,'alert_flag':req.arena.champion.cid!==null&&req.arena.champion.active===false && req.arena.champion.uid===req.session.uid});
 };
 exports.rob = function(req, res){
@@ -80,7 +80,7 @@ exports.rob = function(req, res){
 
 exports.addCampaignInfo = function(req, res){
   if(req.arena.champion.uid===req.session.uid){
-    if(req.body.campaign_info.number===null || req.body.campaign_info.campaign_date===null){
+    if(req.body.campaign_info.number===null || req.body.campaign_info.competition_date===null){
       return res.send({'result':0,'msg':'挑战信息不完整'});
     }
     console.log(req.body.campaign_info);
