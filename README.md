@@ -41,10 +41,14 @@ $ npm install -g bower
 
     $ grunt
 
-  When not using grunt you can use:
+  If grunt aborts because of JSHINT errors, these can be overridden with the `force` flag:
+
+    $ grunt -f
+
+  Alternatively, when not using `grunt` you can run:
 
     $ node server
-    
+
   Then, open a browser and go to:
 
     http://localhost:3000
