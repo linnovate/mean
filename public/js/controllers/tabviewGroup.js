@@ -77,6 +77,37 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
     });
 
 
+    /*
+    $scope.judgeNow = function() {
+        alert('sdsd');
+    };
+    */
+    $scope.campaign_ok = false;
+
+    /*
+    var campaign_start_value,provoke_start_value;
+    var first=false,
+        campaign_ok=true;
+    $('#campaign_start')
+    .datetimepicker()
+    .on('changeDate', function(ev){
+        campaign_start_value = ev.date.valueOf();
+    });
+    $('#campaign_end')
+    .datetimepicker()
+    .on('changeDate', function(ev){
+        if(ev.date.valueOf() <= campaign_start_value) {
+            if(!first){
+                alert('结束时间不能早于开始时间!');
+                first = true;
+                $scope.campaign_ok = true;
+            }
+        } else {
+            $scope.campaign_ok = false;
+        }
+    });
+    */
+
     $scope.provoke_select = function( tname) {
         that.team_opposite = tname;
         alert(that.team_opposite);
@@ -219,6 +250,7 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
                 //TODO:更改对话框
                 alert('数据发生错误！');
             });
+
         }
         catch(e){
             console.log(e);

@@ -1,0 +1,24 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      button(type="button" class="close" data-dismiss="modal" aria-hidden="true") X
+      h4.modal-title#myModalLabel 发起活动
+    .modal-body
+      .row
+        label 活动内容
+          input(type="text" class="form-control" name="content" ng-model="content")
+        label 开始时间
+          .input-group.date.form_datetime.col-md-5(data-date="2014-04-29T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii p" data-link-field="dtp_input_start_time" id="campaign_start")
+            input.form-control(size="16" type="text" value="" readonly)
+            span.input-group-addon
+              span.glyphicon.glyphicon-th
+          input(id="dtp_input_start_time" type="hidden" name="start_time" ng-model="start_time")
+        label 结束时间
+          .input-group.date.form_datetime.col-md-5(data-date="2014-04-29T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii p" data-link-field="dtp_input_end_time" id="campaign_end")
+            input.form-control(size="16" type="text" value="" readonly)
+            span.input-group-addon
+              span.glyphicon.glyphicon-th
+          input(id="dtp_input_end_time" type="hidden" name="end_time" ng-model="end_time")
+    .modal-footer
+      button(class="btn btn-default" data-dismiss="modal") 取消
+      button(class="btn btn-primary" ng-click='sponsor()' data-dismiss="modal" ng-disabled="campaign_ok") 确定

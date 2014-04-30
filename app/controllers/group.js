@@ -1138,6 +1138,3 @@ exports.competitionPhotoAlbumDetail = function(req, res) {
     }
   });
 };
-
-
-
