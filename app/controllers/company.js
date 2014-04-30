@@ -84,7 +84,7 @@ exports.select = function(req, res) {
 //配合路由渲染邀请链接页面
 exports.invite = function(req, res) {
     var name = req.session.cpname;
-    var inviteUrl = config.BASE_URL + '/users/invite?key=' + encrypt.encrypt(name, config.SECRET) + '&name=' + name;
+    var inviteUrl = 'http://' + req.headers.host + '/users/invite?key=' + encrypt.encrypt(name, config.SECRET) + '&name=' + name;
     req.session.company_id = null;
     res.render('company/validate/invite', {
         title: '邀请链接',
