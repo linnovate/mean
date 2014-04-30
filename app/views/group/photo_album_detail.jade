@@ -1,7 +1,8 @@
 extends ../layouts/photo
 
 block content
-  input#photo_album_id(type="hidden" name="photo_album_id" value="#{photo_album.id}")
+  input#photo_album_id(type="hidden" value="#{photo_album.id}")
+  input#group_id(type="hidden" value="#{gid}")
   h1= photo_album.name
   p= '最后更新：' + photo_album.update_date
   a(href="/group/#{gid}/managePhotoAlbum") 返回小组相册列表
@@ -12,13 +13,13 @@ block content
     button(type="submit") 上传照片
 
   h2 修改相册名字
-  form.js_ajax_form(action="/photoAlbum/#{photo_album.id}" method="post")
+  form#edit_name(action="/photoAlbum/#{photo_album.id}" method="post")
     input(type="hidden" name="_method" value="put")
     input(type="text" name="name" value="#{photo_album.name}" required="required")
     button(type="submit") 修改相册名字
 
   h2 删除该相册
-  form(action="/photoAlbum/#{photo_album.id}" method="post")
+  form#delete(action="/photoAlbum/#{photo_album.id}" method="post")
     input(type="hidden" name="_method" value="delete")
     button(type="submit") 删除相册
 
@@ -34,3 +35,19 @@ block content
 append footExt
   script(src="/lib/jquery-form/jquery.form.js")
   script(src="/js/img_list.js")
+  script.
+    $('#edit_name').ajaxForm(function(data, status) {
+      if (data.result === 1) {
+        location.reload();
+      } else {
+        alert(data.msg);
+      }
+    });
+    $('#delete').ajaxForm(function(data, status) {
+      if (data.result === 1) {
+        var group_id = $('#group_id').val();
+        window.location.href = 'http://' + window.location.host + '/group/' + group_id + '/managePhotoAlbum';
+      } else {
+        alert(data.msg);
+      }
+    });

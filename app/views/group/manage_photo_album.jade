@@ -2,7 +2,7 @@ extends ../layouts/photo
 
 block content
   h1 创建相册
-  form(action="/photoAlbum" method="post")
+  form#create_form(action="/photoAlbum" method="post")
     input(type="hidden" name="owner" value="company_group")
     input(type="hidden" name="owner_id" value="#{owner_id}")
     input(type="text" name="name" placeholder="相册名" required="required")
@@ -13,3 +13,13 @@ block content
     p
       a(href="/group/#{owner_id}/photoAlbum/#{photo_album.id}")= photo_album.name
 
+append footExt
+  script(src="/lib/jquery-form/jquery.form.js")
+  script.
+    $('#create_form').ajaxForm(function(data, status) {
+      if (data.result === 1) {
+        location.reload();
+      } else {
+        alert(data.msg);
+      }
+    });
