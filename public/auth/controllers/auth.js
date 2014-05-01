@@ -19,6 +19,7 @@ angular.module('mean.controllers.login', [])
                         $rootScope.$emit('loggedin');
                         if (response.redirect) {
                             if (window.location.href === response.redirect) {
+                                //This is so an admin user will get full admin page
                                 window.location.reload();
                             } else {
                                 window.location = response.redirect;

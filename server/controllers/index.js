@@ -3,11 +3,8 @@
 var mean = require('meanio');
 
 exports.render = function(req, res) {
-
     var modules = [];
-    var fs = require('fs');
-    var themeFilePath = __dirname + '/../../packages/admin/theme.css';
-
+    
     // Preparing angular modules list with dependencies
     for (var name in mean.modules) {
         modules.push({
@@ -25,8 +22,6 @@ exports.render = function(req, res) {
             username: req.user.username,
             roles: (req.user ? req.user.roles : ['anonymous'])
         }) : 'null',
-        modules: JSON.stringify(modules),
-        roles: (req.user ? JSON.stringify(req.user.roles) : ['annonymous']),
-        theme: fs.existsSync(themeFilePath)
+        modules: JSON.stringify(modules)
     });
 };
