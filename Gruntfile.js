@@ -1,9 +1,9 @@
 'use strict';
 
 var paths = {
-    js: ['*.js', 'server/**/*.js', 'public/**/*.js', 'test/**/*.js', '!test/coverage/**', '!public/system/lib/**'],
-    html: ['public/**/views/**', 'server/views/**'],
-    css: ['public/**/css/*.css', '!public/system/lib/**']
+    js: ['*.js', 'server/**/*.js', 'public/**/*.js', 'test/**/*.js', '!test/coverage/**', '!public/system/lib/**', 'packages/**/*.js'],
+    html: ['public/**/views/**', 'server/views/**', 'packages/**/public/**/views/**', 'packages/**/server/views/**'],
+    css: ['public/**/css/*.css', '!public/system/lib/**', 'packages/**/public/**/css/*.css']
 };
 
 module.exports = function(grunt) {

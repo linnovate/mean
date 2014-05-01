@@ -3,15 +3,15 @@
 [![Build Status](https://travis-ci.org/linnovate/mean.png?branch=master)](https://travis-ci.org/linnovate/mean)
 [![Dependencies Status](https://david-dm.org/linnovate/mean.png)](https://david-dm.org/linnovate/mean)
 
-MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. It is designed to give you quick and organized way to start developing of MEAN based web apps with useful modules like mongoose and passport pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.  
+MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. It is designed to give you a quick and organized way to start developing MEAN based web apps with useful modules like Mongoose and Passport pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.  
 
 ## Prerequisites
 * Node.js - Download and Install [Node.js](http://www.nodejs.org/download/). You can also follow [this gist](https://gist.github.com/isaacs/579814) for a quick and easy way to install Node.js and npm
-* MongoDB - Download and Install [MongoDB](http://www.mongodb.org/downloads) - Make sure it's running on the default port (27017).
+* MongoDB - Download and Install [MongoDB](http://docs.mongodb.org/manual/installation/) - Make sure `mongod` is running on the default port (27017).
 
 ### Tools Prerequisites
-* NPM - Node.js package manager, should be installed when you install node.js.
-* Bower - Web package manager, installing [Bower](http://bower.io/) is simple when you have npm:
+* NPM - Node.js package manage; should be installed when you install node.js.
+* Bower - Web package manager. Installing [Bower](http://bower.io/) is simple when you have `npm`:
 
 ```
 $ npm install -g bower
@@ -41,33 +41,38 @@ $ npm install -g bower
 
     $ grunt
 
-  When not using grunt you can use:
+  If grunt aborts because of JSHINT errors, these can be overridden with the `force` flag:
+
+    $ grunt -f
+
+  Alternatively, when not using `grunt` you can run:
 
     $ node server
 
-  Then open a browser and go to:
+  Then, open a browser and go to:
 
     http://localhost:3000
 
 
 ## Troubleshooting
-During install some of you may encounter some issues, most of this issues can be solved by one of the following tips.
-If you went through all this and still can't solve the issue, feel free to contact us via the repository issue tracker or the links provided below.
+During install some of you may encounter some issues.
+
+Most issues can be solved by one of the following tips, but if are unable to find a solution feel free to contact us via the repository issue tracker or the links provided below.
 
 #### Update NPM, Bower or Grunt
-Sometimes you may find there is a weird error during install like npm's *Error: ENOENT*, usually updating those tools to the latest version solves the issue.
+Sometimes you may find there is a weird error during install like npm's *Error: ENOENT*. Usually updating those tools to the latest version solves the issue.
 
-Updating NPM:
+* Updating NPM:
 ```
 $ npm update -g npm
 ```
 
-Updating Grunt:
+* Updating Grunt:
 ```
 $ npm update -g grunt-cli
 ```
 
-Updating Bower:
+* Updating Bower:
 ```
 $ npm update -g bower
 ```
@@ -76,24 +81,27 @@ $ npm update -g bower
 NPM and Bower has a caching system for holding packages that you already installed.
 We found that often cleaning the cache solves some troubles this system creates.
 
-NPM Clean Cache:
+* NPM Clean Cache:
 ```
 $ npm cache clean
 ```
 
-Bower Clean Cache:
+* Bower Clean Cache:
 ```
 $ bower cache clean
 ```
 
  
 ## Configuration
-All configuration is specified in the [server/config](server/config/) folder, particularly the [config.js](server/config/config.js) file and the [env](server/config/env/) files. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, GitHub or Google.
+All configuration is specified in the [server/config](server/config/) folder, particularly the [config.js](server/config/config.js) file and the [env](server/config/env/) files. Here you will need to specify your application name, database name, and hook up any social app keys if you want integration with Twitter, Facebook, GitHub, or Google.
 
 ### Environmental Settings
 
-There are three environments provided by default, __development__, __test__, and __production__. Each of these environments has the following configuration options:
-* __db__ - This is the name of the MongoDB database to use, and is set by default to __mean-dev__ for the development environment.
+There are three environments provided by default: __development__, __test__, and __production__.
+
+Each of these environments has the following configuration options:
+
+ * __db__ - This is the name of the MongoDB database to use, and is set by default to __mean-dev__ for the development environment.
 * __app.name__ - This is the name of your app or website, and can be different for each environment. You can tell which environment you are running by looking at the TITLE attribute that your app generates.
 * __Social OAuth Keys__ - Facebook, GitHub, Google, Twitter. You can specify your own social application keys here for each platform:
   * __clientID__
@@ -102,7 +110,7 @@ There are three environments provided by default, __development__, __test__, and
 
 To run with a different environment, just specify NODE_ENV as you call grunt:
 
-  $ NODE_ENV=test grunt
+    $ NODE_ENV=test grunt
 
 If you are using node instead of grunt, it is very similar:
 
@@ -111,7 +119,8 @@ If you are using node instead of grunt, it is very similar:
 > NOTE: Running Node.js applications in the __production__ environment enables caching, which is disabled by default in all other environments.
 
 ## Getting Started
-  We pre-included an article example, check it out:
+We pre-included an article example. Check out:
+  
   * [The Model](server/models/article.js) - Where we define our object schema.
   * [The Controller](server/controllers/articles.js) - Where we take care of our backend logic.
   * [NodeJS Routes](server/routes) - Where we define our REST service routes.
@@ -121,14 +130,15 @@ If you are using node instead of grunt, it is very similar:
   * [The AngularJs Views Folder](public/articles/views) - Where we keep our CRUD views.
 
 ## Heroku Quick Deployment
-Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed and an accessible mongo db instance - you can try <a href="http://www.mongohq.com/">mongohq</a> which has an easy setup.
+Before you start make sure you have the <a href="https://toolbelt.heroku.com/">Heroku toolbelt</a> installed and an accessible MongoDB instance - you can try <a href="http://www.mongohq.com/">MongoHQ</a> which has an easy setup).
 Add the db string to the production env in server/config/env/production.js.
 
-```bash
+```
 git init
 git add .
 git commit -m "initial version"
 heroku apps:create
+heroku config:add NODE_ENV=production
 heroku config:add BUILDPACK_URL=https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git
 git push heroku master
 heroku config:set NODE_ENV=production
