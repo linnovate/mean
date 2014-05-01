@@ -1,7 +1,7 @@
 {
   "name": "mean",
   "description": "MEAN.io: A fullstack javascript platformed powerd by MongoDB, ExpressJS, AngularJS, NodeJS.",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "private": false,
   "author": "Linnovate <mean@linnovate.net>",
   "contributors": [
@@ -50,6 +50,7 @@
     "load-grunt-tasks": "^0.4.0",
     "lodash": "^2.4.1",
     "mean-connect-mongo": "0.4.3",
+    "gridfs-stream": "0.4.1",
     "mean-logger": "0.0.1",
     "meanio": "0.4.x",
     "method-override": "~1.0.0",
