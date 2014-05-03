@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
     encrypt = require('../middlewares/encrypt'),
     Company = mongoose.model('Company'),
     CompanyGroup = mongoose.model('CompanyGroup'),
+    CompanyRegisterInviteCode = mongoose.model('CompanyRegisterInviteCode'),
     User = mongoose.model('User'),
     UUID = require('../middlewares/uuid'),
     GroupMessage = mongoose.model('GroupMessage'),
@@ -43,7 +44,7 @@ exports.signup = function(req, res) {
         if (err) {
             console.log(err);
         } else {
-            var is_need_invite = true;
+            var is_need_invite = false;
             if (config) {
                 is_need_invite = config.company_register_need_invite;
             }
@@ -215,51 +216,102 @@ exports.validate = function(req, res) {
  * 创建公司基本信息
  */
 exports.create = function(req, res, next) {
-    var company = new Company();
-    var message = null;
 
-    company.password = UUID.id();
-    company.username = UUID.id();
-    company.info.name = req.body.name;
-    company.info.city.province = req.body.province;
-    company.info.city.city = req.body.city;
-    company.info.address = req.body.address;
-    company.info.linkman = req.body.contacts;
-    company.info.lindline.areacode = req.body.areacode;
-    company.info.lindline.number = req.body.number;
-    company.info.lindline.extension = req.body.extension;
-    company.info.phone = req.body.phone;
-    company.id = UUID.id();//公司的id
-    company.email.domain.push(req.body.domain);
-    company.provider = 'company';
-    company.login_email = req.body.host+'@'+req.body.domain;
-
-    //注意,日期保存和发邮件是同步的,也要放到后台管理里去,这里只是测试需要
-    company.status.date = new Date().getTime();
-
-    company.save(function(err) {
-        if (err) {
-            console.log(err);
-            //检查信息是否重复
-            switch (err.code) {
-                case 11000:
-                    break;
-                case 11001:
-                    res.status(400).send({'result':0,'msg':'该公司已经存在!'});
-                    break;
-                default:
-                    break;
-            }
-            return res.render('company/company_signup', {
-                company: company
+    Config
+    .findOne({ name: config.CONFIG_NAME })
+    .exec()
+    .then(function(config) {
+        if (config.company_register_need_invite === true) {
+            return CompanyRegisterInviteCode
+            .findOne({ code: req.body.invite_code })
+            .exec()
+            .then(function(code) {
+                if (code) {
+                    code.remove(function(err) {
+                        if (err) {
+                            console.log(err);
+                            throw err;
+                        }
+                    });
+                    return Company.create({
+                        username: UUID.id(),
+                        password: UUID.id(),
+                        info: {
+                            name: req.body.name
+                        }
+                    });
+                } else {
+                    res.render('company/company_signup', {
+                        invite_code_err: '邀请码不正确'
+                    });
+                    throw new Error('邀请码不正确');
+                }
+            });
+        } else {
+            return Company.create({
+                username: UUID.id(),
+                password: UUID.id(),
+                info: {
+                    name: req.body.name
+                }
             });
         }
+    })
+    .then(function(company) {
 
-        //发送邮件
-        //注意,这里只是测试发送邮件,正常流程是应该在平台的后台管理中向hr发送确认邮件
-        mail.sendCompanyActiveMail(req.body.host+'@'+req.body.domain, req.body.name, company.id, req.headers.host);
-        res.redirect('/company/wait');
+        //var company = new Company();
+        var message = null;
+
+        //company.password = UUID.id();
+        //company.username = UUID.id();
+        //company.info.name = req.body.name;
+        company.info.city.province = req.body.province;
+        company.info.city.city = req.body.city;
+        company.info.address = req.body.address;
+        company.info.linkman = req.body.contacts;
+        company.info.lindline.areacode = req.body.areacode;
+        company.info.lindline.number = req.body.number;
+        company.info.lindline.extension = req.body.extension;
+        company.info.phone = req.body.phone;
+        company.id = UUID.id();//公司的id
+        company.email.domain.push(req.body.domain);
+        company.provider = 'company';
+        company.login_email = req.body.host+'@'+req.body.domain;
+
+
+
+        //注意,日期保存和发邮件是同步的,也要放到后台管理里去,这里只是测试需要
+        company.status.date = new Date().getTime();
+
+        company.save(function(err) {
+            if (err) {
+                console.log(err);
+                //检查信息是否重复
+                switch (err.code) {
+                    case 11000:
+                        break;
+                    case 11001:
+                        res.status(400).send({'result':0,'msg':'该公司已经存在!'});
+                        break;
+                    default:
+                        break;
+                }
+                return res.render('company/company_signup', {
+                    company: company
+                });
+            }
+
+            //发送邮件
+            //注意,这里只是测试发送邮件,正常流程是应该在平台的后台管理中向hr发送确认邮件
+            mail.sendCompanyActiveMail(req.body.host+'@'+req.body.domain, req.body.name, company.id, req.headers.host);
+            res.redirect('/company/wait');
+        });
+    })
+    .then(null, function(err) {
+        console.log(err);
+        res.redirect('/company/signup');
     });
+
 };
 
 /**
