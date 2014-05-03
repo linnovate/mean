@@ -81,21 +81,19 @@ exports.createPhotoAlbum = function(req, res) {
 
 function photoAlbumProcess(res, _id, process) {
   if (validator.isAlphanumeric(_id)) {
-    try {
-      PhotoAlbum.findOne({ _id: _id }).exec(function(err, photo_album) {
-        if (err) {
-          throw err;
+
+    PhotoAlbum.findOne({ _id: _id }).exec(function(err, photo_album) {
+      if (err) {
+        console.log(err);
+        res.send({ result: 0, msg: '获取相册信息失败' });
+      } else {
+        if (photo_album) {
+          process(photo_album);
         } else {
-          if (photo_album) {
-            process(photo_album);
-          } else {
-            res.send({ result: 0, msg: '没有找到对应的相册' });
-          }
+          res.send({ result: 0, msg: '没有找到对应的相册' });
         }
-      });
-    } catch(e) {
-      res.send({ result: 0, msg: '获取相册信息失败' });
-    }
+      }
+    });
 
   } else {
     res.send({ result: 0, msg: '请求错误' });
@@ -130,7 +128,7 @@ exports.updatePhotoAlbum = function(req, res) {
       photo_album.name = new_name;
       photo_album.save(function(err) {
         if (err) {
-          throw err;
+          console.log(err);
         } else {
           res.send({ result: 1, msg: '更新相册成功' });
         }
@@ -168,62 +166,60 @@ exports.createPhoto = function(req, res) {
   var pa_id = req.params.photoAlbumId;
   var photos = req.files.photos;
   if (validator.isAlphanumeric(pa_id) && (photos.size > 0 || photos.length > 0)) {
-    try {
-      var uri_dir = '/img/photo_album/' + pa_id + '/';
-      if (photos.size) {
-        photos = [photos];
-      }
 
-      PhotoAlbum.findOne({ _id: pa_id }).exec(function(err, photo_album) {
-
-        var i = 0;
-
-        async.whilst(
-          function() { return i < photos.length; },
-
-          function(callback) {
-            var photo_name = Date.now().toString() + '.png';
-
-            gm(photos[i].path)
-            .write(config.root + '/public' + uri_dir + photo_name,
-              function(err) {
-                if (err) {
-                  callback(err);
-                } else {
-                  var photo = {
-                    uri: uri_dir + photo_name
-                  };
-                  photo_album.photos.push(photo);
-                  photo_album.save(function(err) {
-                    if (err) callback(err);
-                    else {
-                      fs.unlink(photos[i].path, function(err) {
-                        if (err) callback(err);
-                        else {
-                          i++;
-                          callback();
-                        }
-                      });
-                    }
-                  });
-                }
-            });
-          },
-
-          function(err) {
-            if (err) {
-              throw err;
-            } else {
-              res.send({ result: 1, msg: '添加照片成功' });
-            }
-          }
-        );
-
-      });
-
-    } catch (e) {
-      res.send({ result: 0, msg: '添加照片失败' });
+    var uri_dir = '/img/photo_album/' + pa_id + '/';
+    if (photos.size) {
+      photos = [photos];
     }
+
+    PhotoAlbum.findOne({ _id: pa_id }).exec(function(err, photo_album) {
+
+      var i = 0;
+
+      async.whilst(
+        function() { return i < photos.length; },
+
+        function(callback) {
+          var photo_name = Date.now().toString() + '.png';
+
+          gm(photos[i].path)
+          .write(config.root + '/public' + uri_dir + photo_name,
+            function(err) {
+              if (err) {
+                callback(err);
+              } else {
+                var photo = {
+                  uri: uri_dir + photo_name
+                };
+                photo_album.photos.push(photo);
+                photo_album.save(function(err) {
+                  if (err) callback(err);
+                  else {
+                    fs.unlink(photos[i].path, function(err) {
+                      if (err) callback(err);
+                      else {
+                        i++;
+                        callback();
+                      }
+                    });
+                  }
+                });
+              }
+          });
+        },
+
+        function(err) {
+          if (err) {
+            console.log(err);
+            res.send({ result: 0, msg: '添加照片失败' });
+          } else {
+            res.send({ result: 1, msg: '添加照片成功' });
+          }
+        }
+      );
+
+    });
+
   } else {
     res.send({ result: 0, msg: '请求错误' });
   }
@@ -232,25 +228,23 @@ exports.createPhoto = function(req, res) {
 
 function photoProcess(res, pa_id, p_id, process) {
   if (validator.isAlphanumeric(pa_id) && validator.isAlphanumeric(p_id)) {
-    try {
-      PhotoAlbum.findOne({ _id: pa_id }).exec(function(err, photo_album) {
-        if (err) {
-          throw err;
-        } else {
-          var photos = photo_album.photos;
-          for (var i = 0; i < photos.length; i++) {
-            // 此处需要类型转换后再比较, p_id:String, photos[i]._id:Object
-            if (p_id == photos[i]._id) {
-              return process(photo_album, photos[i]);
-            }
-          }
 
-          res.send({ result: 0, msg: '没有找到对应的照片' });
+    PhotoAlbum.findOne({ _id: pa_id }).exec(function(err, photo_album) {
+      if (err) {
+        console.log(err);
+        res.send({ result: 0, msg: '获取照片失败' });
+      } else {
+        var photos = photo_album.photos;
+        for (var i = 0; i < photos.length; i++) {
+          // 此处需要类型转换后再比较, p_id:String, photos[i]._id:Object
+          if (p_id == photos[i]._id) {
+            return process(photo_album, photos[i]);
+          }
         }
-      });
-    } catch (e) {
-      res.send({ result: 0, msg: '获取照片失败' });
-    }
+
+        res.send({ result: 0, msg: '没有找到对应的照片' });
+      }
+    });
 
   } else {
     res.send({ result: 0, msg: '请求错误' });
@@ -286,7 +280,7 @@ exports.updatePhoto = function(req, res) {
       photo.comment = req.body.comment;
       photo_album.save(function(err) {
         if (err) {
-          throw err;
+          console.log(err);
         } else {
           res.send({ result: 1, msg: '修改照片成功' });
         }
@@ -303,33 +297,33 @@ exports.deletePhoto = function(req, res) {
   var p_id = req.params.photoId;
 
   if (validator.isAlphanumeric(pa_id) && validator.isAlphanumeric(p_id)) {
-    try {
-      PhotoAlbum.findOne({ _id: pa_id }).exec(function(err, photo_album) {
-        if (err) {
-          throw err;
-        } else {
-          var photos = photo_album.photos;
-          for (var i = 0; i < photos.length; i++) {
-            // 此处需要类型转换后再比较, p_id:String, photos[i]._id:Object
-            if (p_id == photos[i]._id) {
-              photos[i].hidden = true;
-              photo_album.save(function(err) {
-                if (err) {
-                  throw err;
-                } else {
-                  res.send({ result: 1, msg: '删除照片成功' });
-                }
-              });
-              return;
-            }
-          }
 
-          res.send({ result: 0, msg: '没有找到对应的照片' });
+    PhotoAlbum.findOne({ _id: pa_id }).exec(function(err, photo_album) {
+      if (err) {
+        console.log(err);
+        res.send({ result: 0, msg: '删除照片失败' });
+      } else {
+        var photos = photo_album.photos;
+        for (var i = 0; i < photos.length; i++) {
+          // 此处需要类型转换后再比较, p_id:String, photos[i]._id:Object
+          if (p_id == photos[i]._id) {
+            photos[i].hidden = true;
+            photo_album.save(function(err) {
+              if (err) {
+                console.log(err);
+                res.send({ result: 0, msg: '删除照片失败' });
+              } else {
+                res.send({ result: 1, msg: '删除照片成功' });
+              }
+            });
+            return;
+          }
         }
-      });
-    } catch (e) {
-      res.send({ result: 0, msg: '删除照片失败' });
-    }
+
+        res.send({ result: 0, msg: '没有找到对应的照片' });
+      }
+    });
+
 
   } else {
     res.send({ result: 0, msg: '请求错误' });
@@ -341,31 +335,30 @@ exports.readPhotos = function(req, res) {
   var _id = req.params.photoAlbumId;
 
   if (validator.isAlphanumeric(_id)) {
-    try {
-      PhotoAlbum.findOne({ _id: _id }).exec(function(err, photo_album) {
-        if (err) {
-          throw err;
+
+    PhotoAlbum.findOne({ _id: _id }).exec(function(err, photo_album) {
+      if (err) {
+        console.log(err);
+        res.send({ result: 0, msg: '获取相册照片失败' });
+      } else {
+        if (photo_album) {
+          var photos = [];
+          photo_album.photos.forEach(function(photo) {
+            if (photo.hidden === false) {
+              var temp_photo = {};
+              temp_photo.pid = photo._id;
+              temp_photo.uri = photo.uri;
+              temp_photo.comment = photo.comment;
+              photos.push(temp_photo);
+            }
+          });
+          res.send({ result: 1, msg: '获取相册照片成功', data: photos });
         } else {
-          if (photo_album) {
-            var photos = [];
-            photo_album.photos.forEach(function(photo) {
-              if (photo.hidden === false) {
-                var temp_photo = {};
-                temp_photo.pid = photo._id;
-                temp_photo.uri = photo.uri;
-                temp_photo.comment = photo.comment;
-                photos.push(temp_photo);
-              }
-            });
-            res.send({ result: 1, msg: '获取相册照片成功', data: photos });
-          } else {
-            res.send({ result: 0, msg: '相册不存在' });
-          }
+          res.send({ result: 0, msg: '相册不存在' });
         }
-      });
-    } catch (e) {
-      res.send({ result: 0, msg: '获取相册照片失败' });
-    }
+      }
+    });
+
   } else {
     res.send({ result: 0, msg: '请求错误' });
   }
@@ -376,49 +369,48 @@ exports.preview = function(req, res) {
   var _id = req.params.photoAlbumId;
 
   if (validator.isAlphanumeric(_id)) {
-    try {
-      PhotoAlbum.findOne({ _id: _id }).exec(function(err, photo_album) {
-        if (err) {
-          throw err;
-        } else {
-          if (photo_album) {
-            var first_photo;
-            for (var i = 0; i < photo_album.photos.length; i++) {
-              if (photo_album.photos[i].hidden === false) {
-                first_photo = photo_album.photos[i];
-                break;
-              }
-            }
-            if (first_photo) {
-              var img_path_for_fs = path.join(config.root, 'public', first_photo.uri);
-              res.set('Content-Type', 'image/png');
-              gm(img_path_for_fs)
-              .stream(function(err, stdout, stderr) {
-                if (err) callback(err);
-                else {
-                  stdout.pipe(res);
-                }
-              });
-            } else {
-              var default_path = path.join(config.root, 'public/img/icons/google.png');
-              res.set('Content-Type', 'image/png');
-              gm(default_path)
-              .stream(function(err, stdout, stderr) {
-                if (err) callback(err);
-                else {
-                  stdout.pipe(res);
-                }
-              });
-            }
 
-          } else {
-            res.send({ result: 0, msg: '相册不存在' });
+    PhotoAlbum.findOne({ _id: _id }).exec(function(err, photo_album) {
+      if (err) {
+        console.log(err);
+        res.send({ result: 0, msg: '获取相册照片失败' });
+      } else {
+        if (photo_album) {
+          var first_photo;
+          for (var i = 0; i < photo_album.photos.length; i++) {
+            if (photo_album.photos[i].hidden === false) {
+              first_photo = photo_album.photos[i];
+              break;
+            }
           }
+          if (first_photo) {
+            var img_path_for_fs = path.join(config.root, 'public', first_photo.uri);
+            res.set('Content-Type', 'image/png');
+            gm(img_path_for_fs)
+            .stream(function(err, stdout, stderr) {
+              if (err) console.log(err);
+              else {
+                stdout.pipe(res);
+              }
+            });
+          } else {
+            var default_path = path.join(config.root, 'public/img/icons/google.png');
+            res.set('Content-Type', 'image/png');
+            gm(default_path)
+            .stream(function(err, stdout, stderr) {
+              if (err) console.log(err);
+              else {
+                stdout.pipe(res);
+              }
+            });
+          }
+
+        } else {
+          res.send({ result: 0, msg: '相册不存在' });
         }
-      });
-    } catch (e) {
-      res.send({ result: 0, msg: '获取相册照片失败' });
-    }
+      }
+    });
+
   } else {
     res.send({ result: 0, msg: '请求错误' });
   }
