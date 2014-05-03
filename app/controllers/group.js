@@ -966,7 +966,7 @@ exports.tempLogo = function(req, res) {
   .write(target_path, function(err) {
     if (err) console.log(err);
     fs.unlink(temp_path, function(err) {
-      if (err) throw err;
+      if (err) console.log(err);
       res.send({ img: target_img });
     });
   });
@@ -995,49 +995,56 @@ exports.saveLogo = function(req, res) {
   var uri_dir = '/img/group/logo/';
 
   var gm = require('gm').subClass({ imageMagick: true });
-  try {
-    gm(temp_path).size(function(err, value) {
-      if (err) throw err;
 
-      var w = req.body.width * value.width;
-      var h = req.body.height * value.height;
-      var x = req.body.x * value.width;
-      var y = req.body.y * value.height;
+  gm(temp_path).size(function(err, value) {
+    if (err) {
+      console.log(err);
+      res.redirect('/group/editLogo');
+    }
 
-      CompanyGroup.findOne({ gid: req.session.gid, cid: req.user.cid }).exec(function(err, company_group) {
-        var ori_logo = company_group.logo;
+    var w = req.body.width * value.width;
+    var h = req.body.height * value.height;
+    var x = req.body.x * value.width;
+    var y = req.body.y * value.height;
 
-        gm(temp_path)
-        .crop(w, h, x, y)
-        .resize(150, 150)
-        .write(target_dir + logo, function(err) {
-          if (err) throw err;
+    CompanyGroup.findOne({ gid: req.session.gid, cid: req.user.cid }).exec(function(err, company_group) {
+      var ori_logo = company_group.logo;
 
-          else {
-            company_group.logo = uri_dir + logo;
-            company_group.save(function(err) {
-              if (err) throw err;
-            });
-
-            fs.unlink(temp_path, function(err) {
-              if (err) console(err);
-              var unlink_dir = meanConfig.root + '/public';
-              if (ori_logo && ori_logo !== '/img/group/logo/default.png') {
-                if (fs.existsSync(unlink_dir + ori_logo)) {
-                  fs.unlinkSync(unlink_dir + ori_logo);
-                }
-              }
+      gm(temp_path)
+      .crop(w, h, x, y)
+      .resize(150, 150)
+      .write(target_dir + logo, function(err) {
+        if (err) {
+          console.log(err);
+          res.redirect('/group/editLogo');
+        } else {
+          company_group.logo = uri_dir + logo;
+          company_group.save(function(err) {
+            if (err) {
+              console.log(err);
               res.redirect('/group/editLogo');
-            });
-          }
+            }
+          });
 
-        });
+          fs.unlink(temp_path, function(err) {
+            if (err) {
+              console(err);
+              res.redirect('/group/editLogo');
+            }
+            var unlink_dir = meanConfig.root + '/public';
+            if (ori_logo && ori_logo !== '/img/group/logo/default.png') {
+              if (fs.existsSync(unlink_dir + ori_logo)) {
+                fs.unlinkSync(unlink_dir + ori_logo);
+              }
+            }
+            res.redirect('/group/editLogo');
+          });
+        }
+
       });
     });
-  } catch(e) {
-    console.log(e);
-    res.redirect('/group/editLogo');
-  }
+  });
+
 };
 
 exports.editLogo = function(req, res) {
@@ -1087,7 +1094,7 @@ exports.getLogo = function(req, res) {
 exports.managePhotoAlbum = function(req, res) {
   CompanyGroup.findOne({ _id: req.params.gid })
   .exec(function(err, company_group) {
-    if (err) throw err;
+    if (err) console.log(err);
     else if (company_group) {
       var photo_album_ids = [];
       company_group.photo.forEach(function(photo_album) {
@@ -1116,7 +1123,7 @@ exports.managePhotoAlbum = function(req, res) {
 exports.groupPhotoAlbumDetail = function(req, res) {
   PhotoAlbum.findOne({ _id: req.params.photoAlbumId })
   .exec(function(err, photo_album) {
-    if (err) throw err;
+    if (err) console.log(err);
     else {
       res.render('group/photo_album_detail', {
         gid: req.params.gid,
@@ -1129,7 +1136,7 @@ exports.groupPhotoAlbumDetail = function(req, res) {
 exports.competitionPhotoAlbumDetail = function(req, res) {
   PhotoAlbum.findOne({ _id: req.params.photoAlbumId })
   .exec(function(err, photo_album) {
-    if (err) throw err;
+    if (err) console.log(err);
     else {
       res.render('group/competition_photo_album_detail', {
         competition_id: req.params.competitionId,

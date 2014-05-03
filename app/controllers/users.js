@@ -768,48 +768,54 @@ exports.savePhoto = function(req, res) {
   var uri_dir = '/img/user/photo/';
 
   var gm = require('gm').subClass({ imageMagick: true });
-  try {
-    gm(temp_path).size(function(err, value) {
-      if (err) throw err;
 
-      // req.body参数均为百分比
-      var w = req.body.width * value.width;
-      var h = req.body.height * value.height;
-      var x = req.body.x * value.width;
-      var y = req.body.y * value.height;
+  gm(temp_path).size(function(err, value) {
+    if (err) console.log(err);
 
-      // 在保存新路径前，将原路径取出，以便删除旧文件
-      var ori_photo = user.photo;
+    // req.body参数均为百分比
+    var w = req.body.width * value.width;
+    var h = req.body.height * value.height;
+    var x = req.body.x * value.width;
+    var y = req.body.y * value.height;
 
-      gm(temp_path)
-      .crop(w, h, x, y)
-      .resize(150, 150)
-      .write(target_dir + photo, function(err) {
-        if (err) throw err;
-        else {
-          user.photo = uri_dir + photo;
-          user.save(function(err) {
-            if (err) throw err;
-          });
+    // 在保存新路径前，将原路径取出，以便删除旧文件
+    var ori_photo = user.photo;
 
-          fs.unlink(temp_path, function(err) {
-            if (err) console(err);
-            var unlink_dir = meanConfig.root + '/public';
-            if (ori_photo !== '/img/user/photo/default.png') {
-              if (fs.existsSync(unlink_dir + ori_photo)) {
-                fs.unlinkSync(unlink_dir + ori_photo);
-              }
-            }
+    gm(temp_path)
+    .crop(w, h, x, y)
+    .resize(150, 150)
+    .write(target_dir + photo, function(err) {
+      if (err) {
+        console.log(err);
+        res.redirect('/users/editPhoto');
+      }
+      else {
+        user.photo = uri_dir + photo;
+        user.save(function(err) {
+          if (err) {
+            console.log(err);
             res.redirect('/users/editPhoto');
-          });
-        }
-      });
+          }
+        });
 
+        fs.unlink(temp_path, function(err) {
+          if (err) {
+            console(err);
+            res.redirect('/users/editPhoto');
+          }
+          var unlink_dir = meanConfig.root + '/public';
+          if (ori_photo !== '/img/user/photo/default.png') {
+            if (fs.existsSync(unlink_dir + ori_photo)) {
+              fs.unlinkSync(unlink_dir + ori_photo);
+            }
+          }
+          res.redirect('/users/editPhoto');
+        });
+      }
     });
-  } catch(e) {
-    console.log(e);
-    res.redirect('/users/editPhoto');
-  }
+
+  });
+
 };
 
 exports.editPhoto = function(req, res) {

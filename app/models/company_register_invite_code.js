@@ -6,7 +6,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var crypto = require(crypto);
+var crypto = require('crypto');
 
 
 var CompanyRegisterInivteCode = new Schema({
