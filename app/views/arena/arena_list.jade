@@ -31,10 +31,10 @@ block panel
                 label= arena.campaign_info.location.name ? arena.campaign_info.location.name : ''
               .row
                 label 挑战时间：
-                label= arena.campaign_info.campaign_date ? arena.campaign_info.campaign_date : ''
+                label= arena.campaign_info.competition_date ? arena.campaign_info.competition_date.toLocaleDateString() : ''
               .row
                 label 挑战截止时间：
-                label= arena.campaign_info.deadline ? arena.campaign_info.deadline : ''
+                label= arena.campaign_info.deadline ? arena.campaign_info.deadline.toLocaleDateString() : ''
               .row
                 label 挑战赛制：
                 label= arena.campaign_info.competition_format ? arena.campaign_info.competition_format : ''

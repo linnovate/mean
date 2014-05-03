@@ -6,7 +6,6 @@ var mongoose = require('mongoose'),
     UUID = require('../middlewares/uuid'),
     Competition = mongoose.model('Competition'),
     GroupMessage = mongoose.model('GroupMessage'),
-    Campaign = mongoose.model('Campaign'),
     Company = mongoose.model('Company'),
     CompanyGroup = mongoose.model('CompanyGroup'),
     Arena = mongoose.model('Arena');
@@ -15,7 +14,7 @@ exports.home = function(req, res) {
       if (err) {
           console.log(err);
           return res.status(400).send([]);
-      };
+      }
       console.log(arenas);
       res.render('arena/arena_list', {'title': '擂台列表','arenas': arenas});
   });
@@ -38,7 +37,7 @@ exports.rob = function(req, res){
           if (err) {
             console.log(err);
             return res.send({'result':0,'msg':'您没有权限抢擂'});
-          };
+          }
           if (company) {
             var _end_time = new Date();
             _end_time.setMinutes(new Date().getMinutes()+30);
@@ -65,7 +64,7 @@ exports.rob = function(req, res){
           }
           else{
             return res.send({'result':0,'msg':'您没有权限抢擂'});
-          };
+          }
         });
       }
       else{
@@ -99,9 +98,9 @@ exports.addCampaignInfo = function(req, res){
           }
           else{
             res.send({'result':1,'msg':'挑战信息已提交成功！'});
-          };
+          }
         });
-      };
+      }
     });
   }
   else{
@@ -166,7 +165,7 @@ exports.challenge = function(req, res){
           groupMessage.id = UUID.id();
           groupMessage.group.gid.push(gid);
           groupMessage.group.group_type.push(competition.group_type);
-          groupMessage.provoke.active = true,
+          groupMessage.provoke.active = true;
           groupMessage.provoke.team_a = team_a;
           groupMessage.provoke.team_b = team_opposite;
 

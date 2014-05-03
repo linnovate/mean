@@ -116,7 +116,7 @@ exports.groupList = function(req, res) {
 //数据都存入三个模型即可
 exports.groupSelect = function(req, res) {
     var selected_groups = req.body.selected_groups;
-    if(selected_groups == undefined){
+    if(selected_groups === undefined){
         return  res.redirect('/company/signup');
     }
 
