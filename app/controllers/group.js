@@ -766,7 +766,6 @@ exports.updateFormation = function(req, res){
   Competition.findOne({
     'id':req.params.competitionId
   }).exec(function(err, competition){
-    console.log(req.competition_team ,req.body.competition_team);
     if(req.competition_team === req.body.competition_team){
       var _formation = [];
       var _tempFormation = req.body.formation;
