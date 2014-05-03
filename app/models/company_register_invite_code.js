@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
 var crypto = require('crypto');
 
 
-var CompanyRegisterInivteCode = new Schema({
+var CompanyRegisterInviteCode = new Schema({
 
     code: {
         type: String,
@@ -18,12 +18,12 @@ var CompanyRegisterInivteCode = new Schema({
 
 });
 
-CompanyRegisterInivteCode.pre('save', function(next) {
+CompanyRegisterInviteCode.pre('save', function(next) {
     if (!this.code) {
         var salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
         this.code = crypto.pbkdf2Sync(Date.now().toString(), salt, 10000, 64).toString('base64');
     }
-
+    next();
 });
 
-mongoose.model('CompanyRegisterInivteCode', CompanyRegisterInivteCode);
+mongoose.model('CompanyRegisterInviteCode', CompanyRegisterInviteCode);
