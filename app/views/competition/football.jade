@@ -1,7 +1,7 @@
 extends ../layouts/manager
 
 block panel
-  #competition_content(data-nowteam="#{team}" data-id='#{competition.id}')
+  #competition_content(data-nowteam="#{team}" data-id='#{competition.id}' data-msg='#{msg_show}' data-rc='#{rst_content}' data-sa='#{score_a}' data-sb='#{score_b}')
     .row
       .teamInfo.col-xs-4
         img.size_210.teamLogo(src='#{competition.camp_a.logo?competition.camp_a.logo:"/img/group/logo/default.png"}')
@@ -34,7 +34,7 @@ block aside
   .infoHead.row
     h4.pull-left 活动简介
     div(ng-app="group" ng-controller="resultController")
-      button(ng-if="#{rst_confirm}" data-toggle="modal" data-target="#resultModel") 结果确认
+      button(ng-if="#{leader}" data-toggle="modal" data-target="#resultModel") 结果确认
       div(class="modal fade" id="resultModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
         .modal-dialog
           .modal-content

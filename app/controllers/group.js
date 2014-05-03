@@ -715,14 +715,52 @@ exports.getGroupMember = function(req,res){
 
 //比赛
 exports.getCompetition = function(req, res){
+  var msg_show,score_a,score_b,rst_content,date;
+  if(req.competition.camp_a.cid === req.session.cid) {
+    //发赛方收到应赛方的成绩确认消息
+    if(req.competition.camp_b.result.confirm === true && req.competition.camp_a.result.confirm === false) {
+      msg_show = req.session.leader;
+      score_a = req.competition.camp_a.score;
+      score_b = req.competition.camp_b.score;
+      rst_content = req.competition.camp_b.result.content;
+      date = req.competition.camp_b.result.start_date;
+    } else {
+      msg_show = false;
+      score_a = 0;
+      score_b = 0;
+      rst_content = '应赛方发来的消息';
+      date = 0;
+    }
+  } else {
+    //应赛方收到发赛方的成绩确认消息
+    if(req.competition.camp_a.result.confirm === true && req.competition.camp_b.result.confirm === false) {
+      msg_show = req.session.leader;
+      score_a = req.competition.camp_b.score;
+      score_b = req.competition.camp_a.score;
+      rst_content = req.competition.camp_a.result.content;
+      date = req.competition.camp_a.result.start_date;
+    } else {
+      msg_show = false;
+      score_a = 0;
+      score_b = 0;
+      rst_content = '发赛方发来的消息';
+      date = 0;
+    }
+  }
   res.render('competition/football', {
     'title': '发起足球比赛',
     'competition' : req.competition,
     'team': req.competition_team,
-    'leader' : req.session.leader
+    'leader' : req.session.leader,
+    'msg_show' : msg_show,
+    'score_a' : score_a,
+    'score_b' : score_b,
+    'rst_content' : rst_content,
+    'date' : date
   });
-
 };
+
+
 
 exports.updateFormation = function(req, res){
   Competition.findOne({

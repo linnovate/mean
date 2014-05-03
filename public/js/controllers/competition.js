@@ -10,15 +10,13 @@ var groupApp = angular.module('group', []);
 
 
 groupApp.controller('resultController', ['$http', '$scope',function ($http, $scope) {
-    $http.get('/group/hasConfirmMsg').success(function(data, status) {
-      $scope.msg_show = data.msg_show;
-      if(data.msg_show) {
-        $scope.score_a = data.score_a;
-        $scope.score_b = data.score_b;
-        $scope.rst_content = data.rst_content;
-        $('#resultModel').modal();
-      }
-    });
+    $scope.msg_show = $('#competition_content').attr('data-msg');
+    if($scope.msg_show == 'true'){
+      $scope.score_a = $('#competition_content').attr('data-sa');
+      $scope.score_b = $('#competition_content').attr('data-sb');
+      $scope.rst_content = $('#competition_content').attr('data-rc');
+      $('#resultModel').modal();
+    }
     var competition_id = $('#competition_content').attr('data-id');
     $scope.confirm = function (confirm) {
       try {
