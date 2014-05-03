@@ -84,7 +84,7 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
         }
     };
 
-    $scope.campaign_ok = true;
+    $scope.campaign_ok = false;
 
     var campaign_start_value,provoke_start_value;
     var first=false;
