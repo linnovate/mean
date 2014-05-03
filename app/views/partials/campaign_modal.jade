@@ -6,7 +6,7 @@
     .modal-body
       .row
         label 活动内容
-          input(type="text" class="form-control" name="content" ng-model="content")
+          input(type="text" class="form-control" name="content" ng-model="content" ng-change="judge()")
         label 开始时间
           .input-group.date.form_datetime.col-md-5(data-date="2014-04-29T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii p" data-link-field="dtp_input_start_time" id="campaign_start")
             input.form-control(size="16" type="text" value="" readonly)
@@ -21,4 +21,4 @@
           input(id="dtp_input_end_time" type="hidden" name="end_time" ng-model="end_time")
     .modal-footer
       button(class="btn btn-default" data-dismiss="modal") 取消
-      button(class="btn btn-primary" ng-click='sponsor()' data-dismiss="modal" ng-disabled="campaign_ok") 确定
+      button(class="btn btn-primary" ng-click='sponsor()' data-dismiss="modal" ng-disabled="{{campaign_ok}}") 确定

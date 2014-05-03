@@ -13,7 +13,10 @@ div(ng-app="tabViewGroup" ng-controller="infoController")
       label.col-xs-5.control-label {{companyname}}
     .row
       label.col-xs-2.control-label 队员
-      label.col-xs-5.control-label {{member.length}}
+      div.col-xs-10
+        div.col-xs-2(ng-repeat="member in members")
+          img.center-block.size_50(ng-src='{{member.photo}}')
+          p.text-center {{member.nickname}}
     .row
       label.col-xs-2.control-label 简介
       .col-xs-5

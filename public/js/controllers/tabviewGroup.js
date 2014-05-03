@@ -76,23 +76,25 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
       $scope.companies = data;
     });
 
-
-    /*
-    $scope.judgeNow = function() {
-        alert('sdsd');
+    $scope.judge = function() {
+        if($scope.content!="") {
+            $scope.campaign_ok = false;
+        } else {
+            $scope.campaign_ok = true;
+        }
     };
-    */
-    $scope.campaign_ok = false;
 
-    /*
+    $scope.campaign_ok = true;
+
     var campaign_start_value,provoke_start_value;
-    var first=false,
-        campaign_ok=true;
+    var first=false;
+
     $('#campaign_start')
     .datetimepicker()
     .on('changeDate', function(ev){
         campaign_start_value = ev.date.valueOf();
     });
+
     $('#campaign_end')
     .datetimepicker()
     .on('changeDate', function(ev){
@@ -106,7 +108,6 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
             $scope.campaign_ok = false;
         }
     });
-    */
 
     $scope.provoke_select = function( tname) {
         that.team_opposite = tname;
@@ -298,6 +299,7 @@ tabViewGroup.controller('infoController', ['$http', '$scope',function($http, $sc
         $scope.home_court_1 = data.entity.home_court[0] ? data.entity.home_court[0] : '';
         $scope.home_court_2 = data.entity.home_court[1] ? data.entity.home_court[1] : '';
         $scope.family = data.entity.family;
+        $scope.members = data.companyGroup.member;
         //TOTO:测试数据
         /*
         var _member = [{'username':'阿飞','photo':'/img/user/photo/default.png'},
