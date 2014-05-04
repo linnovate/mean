@@ -4,9 +4,9 @@
 
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/public/system/views/header.html'" data-role="navigation"></div>
-    {% if user.roles.indexOf('admin') != -1 && modules.indexOf('admin') != -1 %}
+    {% if user.roles.indexOf('admin') != -1 && modules.indexOf('mean-admin') != -1 %}
     <section class="admin-menu">
-        <div data-ng-include="'/admin/views/index.html'"></div>
+        <div data-ng-include="'/mean-admin/views/index.html'"></div>
     </section>
     {% endif %}
     <section class="content">

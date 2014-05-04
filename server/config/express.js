@@ -27,7 +27,7 @@ var express = require('express'),
 
 module.exports = function(app, passport, db) {
 
-    var gfs = Grid(db.connections[0].db, db.mongo);
+    var gfs = new Grid(db.connections[0].db, db.mongo);
 
     app.set('showStackError', true);
 
@@ -142,7 +142,7 @@ module.exports = function(app, passport, db) {
                 readstream.pipe(res);
             }
 
-        })
+        });
     });
 
 
