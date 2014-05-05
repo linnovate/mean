@@ -60,7 +60,6 @@ var ArenaModel = new Schema({
       remark: String,                          //备注
       number: Number                           //人数
     },
-    address: String,
     champion: {
       logo: String,                            //队徽路径
       cname: String,                           //本方公司名

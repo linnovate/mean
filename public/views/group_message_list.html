@@ -25,7 +25,7 @@
             <span>地点：上海体育馆</span>
             <span>比赛时间: 2014-05-05 14：00</span>
           </div>
-          <span>{{ group_message.content }}</span>
+          <span class="text-center">{{ group_message.content }}</span>
           <div class="pull-right" ng-if="group_message.provoke.active">
             <input type = "button"  class="btn" ng-if = "!group_message.provoke.start_confirm && voteFlag" value = "赞成{{group_message.provoke.vote.positive}}" ng-click="vote(group_message.id,true)" />
             <input type = "button"  class="btn" ng-if = "!group_message.provoke.start_confirm && voteFlag" value = "反对{{group_message.provoke.vote.negative}}" ng-click="vote(group_message.id,false)" />
