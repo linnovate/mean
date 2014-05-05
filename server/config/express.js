@@ -116,6 +116,33 @@ module.exports = function(app, passport, db) {
         res.send(mean.aggregated.js);
     });
 
+    function themeHandler(req, res) {
+
+        res.setHeader('content-type', 'text/css');
+
+        gfs.files.findOne({
+            filename: 'theme.css'
+        }, function(err, file) {
+
+            if (!file) {
+                fs.createReadStream(process.cwd() + '/public/system/lib/bootstrap/dist/css/bootstrap.css').pipe(res);
+            } else {
+                // streaming to gridfs
+                var readstream = gfs.createReadStream({
+                    filename: 'theme.css'
+                });
+
+                //error handling, e.g. file does not exist
+                readstream.on('error', function(err) {
+                    console.log('An error occurred!', err.message);
+                    throw err;
+                });
+
+                readstream.pipe(res);
+            }
+        });
+    }
+
     // We override this file to allow us to swap themes
     // We keep the same public path so we can make use of the bootstrap assets
     app.get('/public/system/lib/bootstrap/dist/css/bootstrap.css', themeHandler);
@@ -176,32 +203,4 @@ module.exports = function(app, passport, db) {
             app.use(errorHandler());
         }
     });
-
-    function themeHandler(req, res) {
-
-        res.setHeader('content-type', 'text/css');
-
-        gfs.files.findOne({
-            filename: 'theme.css'
-        }, function(err, file) {
-
-            if (!file) {
-                fs.createReadStream(process.cwd() + '/public/system/lib/bootstrap/dist/css/bootstrap.css').pipe(res);
-            } else {
-                // streaming to gridfs
-                var readstream = gfs.createReadStream({
-                    filename: 'theme.css'
-                });
-
-                //error handling, e.g. file does not exist
-                readstream.on('error', function(err) {
-                    console.log('An error occurred!', err.message);
-                    throw err;
-                });
-
-                readstream.pipe(res);
-            }
-        });
-    }
-
 };
