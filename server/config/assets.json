@@ -1,7 +1,6 @@
 {
     "css": {
         "public/build/css/dist.min.css": [
-            "public/system/lib/bootstrap/dist/css/bootstrap.css",
             "public/**/assets/css/*.css"
         ]
     },
