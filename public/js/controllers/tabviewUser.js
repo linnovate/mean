@@ -49,7 +49,7 @@ tabViewUser.controller('GroupMessageController', ['$http','$scope',
     $http.get('/users/getGroupMessages').success(function(data, status) {
       $scope.group_messages = data;
       $scope.show = false;
-      $scope.vote = true;
+      $scope.voteFlag = true;
     });
 
     $scope.vote = function(provoke_message_id, status) {
