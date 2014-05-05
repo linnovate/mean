@@ -62,6 +62,9 @@ tabViewUser.controller('GroupMessageController', ['$http','$scope',
                     aOr : status
                 }
             }).success(function(data, status) {
+                if(data.msg != undefined && data.msg != null) {
+                    alert(data.msg);
+                }
                 window.location.reload();
             }).error(function(data, status) {
                 alert('数据发生错误！');

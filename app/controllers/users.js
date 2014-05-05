@@ -464,8 +464,9 @@ exports.vote = function (req, res) {
 
       for(var i = 0; i < competition.vote.positive_member.length; i ++) {
         if(competition.vote.positive_member[i].uid === uid) {
+          console.log('positive');
           return res.send({
-            'msg':'已经投过赞成票!',
+            'msg':'已经投过票!',
             'value':'positive_re'
           });
         }
@@ -473,8 +474,9 @@ exports.vote = function (req, res) {
 
       for(var i = 0; i < competition.vote.negative_member.length; i ++) {
         if(competition.vote.negative_member[i].uid === uid) {
+          console.log('negative');
           return res.send({
-            'msg':'已经投过反对票!',
+            'msg':'已经投过票!',
             'value':'negative_re'
           });
         }
@@ -495,22 +497,29 @@ exports.vote = function (req, res) {
           GroupMessage.findOne({'id' : provoke_message_id}, function (err, group_message) {
             if (err || !group_message) {
               console.log(err);
+              return res.send('ERROR');
             } else {
               if (aOr) {
                 group_message.provoke.vote.positive ++;
               } else {
                 group_message.provoke.vote.negative ++;
               }
-              group_message.save();
+              group_message.save(function (err){
+                if(err) {
+                  return res.send('ERROR');
+                } else {
+                  return res.send('ok');
+                }
+              });
             }
           });
         }
       });
     } else {
       console.log('没有此约战!');
+      return res.send('NULL');
     }
   });
-  res.send("ok");
 };
 
 //员工参加活动

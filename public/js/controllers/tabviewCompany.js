@@ -111,8 +111,31 @@ tabViewCompany.controller('GroupMessageController', ['$http',
     $http.get('/company/getCompanyMessages').success(function(data, status) {
       that.group_messages = data;
       that.show = false;
-      that.vote = false;
+      that.vote = true;
     });
+
+    $scope.vote = function(provoke_message_id, status) {
+         try {
+            $http({
+                method: 'post',
+                url: '/users/vote',
+                data:{
+                    provoke_message_id : provoke_message_id,
+                    aOr : status
+                }
+            }).success(function(data, status) {
+                if(data.msg != undefined && data.msg != null) {
+                    alert(data.msg);
+                }
+                window.location.reload();
+            }).error(function(data, status) {
+                alert('数据发生错误！');
+            });
+        }
+        catch(e) {
+            console.log(e);
+        }
+    };
 }]);
 
 tabViewCompany.controller('CampaignListController', ['$http','$scope',

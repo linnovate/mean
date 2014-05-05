@@ -41,8 +41,32 @@ tabViewGroup.controller('GroupMessageController', ['$http','$scope',
     $http.get('/group/getGroupMessages?' + Math.round(Math.random()*100)).success(function(data, status) {
       $scope.group_messages = data;
       $scope.show = true;
-      $scope.vote = false;
+      $scope.vote = true;
     });
+
+
+    $scope.vote = function(provoke_message_id, status) {
+         try {
+            $http({
+                method: 'post',
+                url: '/users/vote',
+                data:{
+                    provoke_message_id : provoke_message_id,
+                    aOr : status
+                }
+            }).success(function(data, status) {
+                if(data.msg != undefined && data.msg != null) {
+                    alert(data.msg);
+                }
+                window.location.reload();
+            }).error(function(data, status) {
+                alert('数据发生错误！');
+            });
+        }
+        catch(e) {
+            console.log(e);
+        }
+    };
 
     //应战
     $scope.responseProvoke = function(provoke_message_id) {
