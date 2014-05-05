@@ -93,7 +93,7 @@ exports.getUser = function(req, res) {
   var cid = req.body.cid;   //根据公司名找它的员工
   var gid = req.body.gid;   //找选择了该组的员工
   console.log('GID:' + gid);
-  User.find({'cid': cid , 'group.gid' : {'$all':[gid]},
+  User.find({'cid': cid , 'group':{'$elemMatch':{'gid':gid}},
     '$where':function(){
       for(var i = 0; i < this.group.length; i ++) {
         if(this.group[i].leader === true && this.group[i].gid === gid){
