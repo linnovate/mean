@@ -45,12 +45,11 @@
 
                 spyOn($rootScope, '$emit');
                 // test expected GET request
-                $httpBackend.when('POST','/login').respond(200, 'Fred');
+                $httpBackend.when('POST','/login').respond(200, {user: 'Fred'});
                 scope.login();
                 $httpBackend.flush();
                 // test scope value
                 expect($rootScope.user).toEqual('Fred');
-
                 expect($rootScope.$emit).toHaveBeenCalledWith('loggedin');
                 expect($location.url()).toEqual('/');
             });
