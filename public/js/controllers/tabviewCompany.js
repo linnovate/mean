@@ -111,7 +111,7 @@ tabViewCompany.controller('GroupMessageController', ['$http',
     $http.get('/company/getCompanyMessages').success(function(data, status) {
       that.group_messages = data;
       that.show = false;
-      that.vote = true;
+      that.voteFlag = true;
     });
 
     $scope.vote = function(provoke_message_id, status) {

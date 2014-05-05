@@ -41,7 +41,7 @@ tabViewGroup.controller('GroupMessageController', ['$http','$scope',
     $http.get('/group/getGroupMessages?' + Math.round(Math.random()*100)).success(function(data, status) {
       $scope.group_messages = data;
       $scope.show = true;
-      $scope.vote = true;
+      $scope.voteFlag = true;
     });
 
 

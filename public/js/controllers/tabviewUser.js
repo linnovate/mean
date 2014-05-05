@@ -45,11 +45,11 @@ tabViewUser.config(['$routeProvider', '$locationProvider',
 
 tabViewUser.controller('GroupMessageController', ['$http','$scope',
   function ($http, $scope) {
-    var that = this;
+
     $http.get('/users/getGroupMessages').success(function(data, status) {
-      that.group_messages = data;
-      that.show = false;
-      that.vote = true;
+      $scope.group_messages = data;
+      $scope.show = false;
+      $scope.vote = true;
     });
 
     $scope.vote = function(provoke_message_id, status) {
@@ -78,10 +78,9 @@ tabViewUser.controller('GroupMessageController', ['$http','$scope',
 
 tabViewUser.controller('CampaignListController', ['$http','$scope',
   function ($http, $scope) {
-    var that = this;
     $http.get('/users/getCampaigns').success(function(data, status) {
-      that.campaigns = data.data;
-      that.show = false;
+      $scope.campaigns = data.data;
+      $scope.show = false;
     });
 
 
