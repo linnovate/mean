@@ -45,7 +45,6 @@ tabViewUser.config(['$routeProvider', '$locationProvider',
 
 tabViewUser.controller('GroupMessageController', ['$http','$scope',
   function ($http, $scope) {
-
     $http.get('/users/getGroupMessages').success(function(data, status) {
       $scope.group_messages = data;
       $scope.show = false;
@@ -221,18 +220,17 @@ tabViewUser.controller('AccountFormController',['$scope','$http',function($scope
 
 }]);
 
-tabViewUser.controller('PasswordFormController', ['$http', function($http) {
-    var that = this;
-    this.nowpassword = '';
-    this.newpassword = '';
-    this.confirmpassword = '';
+tabViewUser.controller('PasswordFormController', ['$http','$scope', function($http, $scope) {
+    $scope.nowpassword = '';
+    $scope.newpassword = '';
+    $scope.confirmpassword = '';
     this.change_password = function(){
         $http({
             method : 'post',
             url : '/users/changePassword',
             data : {
-                'nowpassword' : that.nowpassword,
-                'newpassword' : that.newpassword
+                'nowpassword' : $scope.nowpassword,
+                'newpassword' : $scope.newpassword
             }
         }).success(function(data, status) {
             //TODO:更改对话框

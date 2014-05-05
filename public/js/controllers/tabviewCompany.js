@@ -51,26 +51,24 @@ tabViewCompany.config(['$routeProvider', '$locationProvider',
 
 tabViewCompany.controller('GroupListController', ['$http', '$scope',
  function ($http, $scope) {
-
-    var that = this;
     $http.get('/group/getCompanyGroups').success(function(data, status) {
-      that.group_lists = data.group;
-      that.cid = data.cid;
+      $scope.group_lists = data.group;
+      $scope.cid = data.cid;
     });
 
     $scope.setGroupId = function (gid) {
-        that.gid = gid;
+        $scope.gid = gid;
         try{
             $http({
                 method: 'post',
                 url: '/search/user',
                 data:{
-                    cid: that.cid,
-                    gid: that.gid
+                    cid: $scope.cid,
+                    gid: $scope.gid
                 }
             }).success(function(data, status) {
                 //发布活动后跳转到显示活动列表页面
-                that.users = data;
+                $scope.users = data;
             }).error(function(data, status) {
                 //TODO:更改对话框
                 alert('数据发生错误！');
@@ -86,8 +84,8 @@ tabViewCompany.controller('GroupListController', ['$http', '$scope',
                 method: 'post',
                 url: '/company/appointLeader',
                 data:{
-                    cid: that.cid,
-                    gid: that.gid,
+                    cid: $scope.cid,
+                    gid: $scope.gid,
                     uid: uid
                 }
             }).success(function(data, status) {
@@ -105,13 +103,12 @@ tabViewCompany.controller('GroupListController', ['$http', '$scope',
 }]);
 
 
-tabViewCompany.controller('GroupMessageController', ['$http',
-  function($http) {
-    var that = this;
+tabViewCompany.controller('GroupMessageController', ['$http','$scope',
+  function($http,$scope) {
     $http.get('/company/getCompanyMessages').success(function(data, status) {
-      that.group_messages = data;
-      that.show = false;
-      that.voteFlag = true;
+      $scope.group_messages = data;
+      $scope.show = false;
+      $scope.voteFlag = false;
     });
 
     $scope.vote = function(provoke_message_id, status) {
@@ -140,15 +137,14 @@ tabViewCompany.controller('GroupMessageController', ['$http',
 
 tabViewCompany.controller('CampaignListController', ['$http','$scope',
   function($http,$scope) {
-    var that = this;
     $http.get('/company/getCampaigns').success(function(data, status) {
-      that.campaigns = data.data;
-      that.show = data.role === 'EMPLOYEE';  //由于还未设置权限,目前普通员工也可以关闭活动  TODO
+      $scope.campaigns = data.data;
+      $scope.show = data.role === 'EMPLOYEE';  //由于还未设置权限,目前普通员工也可以关闭活动  TODO
     });
 
 
     $scope.getId = function(cid) {
-        that.campaign_id = cid;
+        $scope.campaign_id = cid;
     };
     $scope.editCampaign = function() {
         try{
@@ -156,7 +152,7 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
                 method: 'post',
                 url: '/company/campaignEdit',
                 data:{
-                    campaign_id : that.campaign_id,
+                    campaign_id : $scope.campaign_id,
                     content : $scope.content,
                     start_time : document.getElementById('dtp_input_start_time').value,
                     end_time : document.getElementById('dtp_input_end_time').value
@@ -334,18 +330,17 @@ tabViewCompany.controller('AccountFormController',['$scope','$http',function($sc
         }
     };
 }]);
-tabViewCompany.controller('PasswordFormController', ['$http', function($http) {
-    var that = this;
-    this.nowpassword = '';
-    this.newpassword = '';
-    this.confirmpassword = '';
-    this.change_password = function(){
+tabViewCompany.controller('PasswordFormController', ['$http','$scope', function($http,$scope) {
+    $scope.nowpassword = '';
+    $scope.newpassword = '';
+    $scope.confirmpassword = '';
+    $scope.change_password = function(){
         $http({
             method : 'post',
             url : '/company/changePassword',
             data : {
-                'nowpassword' : that.nowpassword,
-                'newpassword' : that.newpassword
+                'nowpassword' : $scope.nowpassword,
+                'newpassword' : $scope.newpassword
             }
         }).success(function(data, status) {
             console.log(data);

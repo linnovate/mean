@@ -19,6 +19,9 @@
   position: absolute;
   z-index: 100;
 }
+.message_content {
+  background-color: #e0e0e0;
+}
 .group.inactive .group_1 {
   background-image: url("/img/icons/group/badminton_off.png");
 }
