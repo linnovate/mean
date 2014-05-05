@@ -8,7 +8,7 @@
   </div>
   <ol>
     <div>
-      <li ng-repeat="campaign_item in campaign.campaigns" >
+      <li ng-repeat="campaign_item in campaigns" >
         <h2>{{ campaign_item.content }}</h2>
         <p>小组: {{ campaign_item.gid}}</p>
         <p>参加活动人数：{{ campaign_item.member.length }}</p>
@@ -23,10 +23,12 @@
             <input type = "button"  class="btn btn-primary btn-lg" value = "退出" ng-click="quit(campaign_item.id)" ng-switch-when="true"/>
             <input type = "button"  class="btn btn-primary btn-lg" value = "参加" ng-click="join(campaign_item.id)" ng-switch-default/>
           </div>
-
-          <input type = "button"  class="btn btn-primary btn-lg col-md-1" ng-if="campaign.show" value = "{{ campaign_item.active_value}}" ng-click="cancel(campaign_item.id)" />
-
-          <input type = "button"  class="btn btn-primary btn-lg col-md-1" ng-if="campaign.show" value = "编辑" ng-click="getId(campaign_item.id)" data-toggle="modal" data-target="#editModel"/>
+          <div class="col-md-2">
+            <input type = "button"  class="btn btn-primary btn-lg" ng-if="show" value = "{{ campaign_item.active_value}}" ng-click="cancel(campaign_item.id)" />
+          </div>
+          <div class="col-md-2">
+            <input type = "button"  class="btn btn-primary btn-lg" ng-if="show" value = "编辑" ng-click="getId(campaign_item.id)" data-toggle="modal" data-target="#editModel"/>
+          </div>
         </div>
       </li>
     </div>

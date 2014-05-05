@@ -1,8 +1,8 @@
 <div>
   <h1>成员列表</h1>
-  <h2>人数：{{member.group_members.length}}</h1>
+  <h2>人数：{{group_members.length}}</h1>
   <div class=".row">
-    <div class="col-xs-2" ng-repeat="member in member.group_members">
+    <div class="col-xs-2" ng-repeat="member in group_members">
       <p class="text-center">{{member.nickname}}</p>
       <img class="center-block size_50" ng-src='{{member.photo}}'></img>
     </div>

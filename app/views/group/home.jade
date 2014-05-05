@@ -3,31 +3,41 @@ extends ../layouts/manager
 block baseInfo
   .row
     .col-md-2
-      img.img-responsive.img-thumbnail(src="#{logo}" width="96px")
+      img.img-responsive.img-thumbnail.full_parent.img_contain(src="#{logo}")
       a.btn.btn-primary(href="/group/editLogo") 修改Logo
-    .col-md-10(style="height:96px")
+    .col-md-10
       .row
-        .col-md-4(style="height:48px") 队名 #{tname}
-        .col-md-4(style="height:48px") 相册 #{ds}
+        h1= tname
       .row
-        .col-md-4(style="height:48px") 成绩 #{score}
-        .col-md-4(style="height:48px") 人数 #{number}
-        .col-md-4(style="height:48px")
-          button.btn-primary.btn-lg(data-toggle="modal" data-target="#sponsorCampaignModel") 活动
-          button.btn-primary.btn-lg(data-toggle="modal" data-target="#sponsorProvokeModel") 挑战
-          button.btn-primary.btn-lg(onclick="{location.href='/arena/home'}") 擂台
+        label= cname
+      .row
+        label= brief
+      .row
+        .col-md-2
+          label.info_border 队员
+          label.info_border  #{number} 人
+        .col-md-2
+          label.info_border  积分
+          label.info_border= score
+        .col-md-2
+          label.info_border  胜率
+          label.info_border  100%
+        .col-md-4.col-md-offset-2
+          button(data-toggle="modal" data-target="#sponsorCampaignModel") 活动
+          button(data-toggle="modal" data-target="#sponsorProvokeModel") 挑战
+          button(onclick="{location.href='/arena/home'}") 擂台
 
 block panel
   div(ng-app="tabViewGroup")
     ul.nav.nav-tabs
-      li
-        a(href="#/group_message") 小组动态
-      li
-        a(href="#/group_campaign") 小组活动
-      li
-        a(href="#/group_member") 小组成员
-      li
-        a(href="#/group_info") 小组资料
+      li(ng-class="{'active':nowTab=='group_message'}")
+        a(href="#/group_message" ng-click="addactive('group_message')") 小组动态
+      li(ng-class="{'active':nowTab=='group_campaign'}")
+        a(href="#/group_campaign" ng-click="addactive('group_campaign')") 小组活动
+      li(ng-class="{'active':nowTab=='group_member'}")
+        a(href="#/group_member" ng-click="addactive('group_member')") 小组成员
+      li(ng-class="{'active':nowTab=='group_info'}")
+        a(href="#/group_info" ng-click="addactive('group_info')") 小组资料
     .tab-content
       .tab-pane.active
         div(ng-view)

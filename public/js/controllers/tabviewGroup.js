@@ -2,8 +2,13 @@
 
 var tabViewGroup = angular.module('tabViewGroup', ['ngRoute']);
 
+tabViewGroup.run(['$rootScope', function( $rootScope) {
+    $rootScope.addactive = function(value) {
+        $rootScope.nowTab = value;
+    };
+}]);
 tabViewGroup.config(['$routeProvider', '$locationProvider',
-  function($routeProvider, $locationProvider) {
+  function($routeProvider, $locationProvider,$rootScope) {
     $routeProvider
       .when('/group_message', {
         templateUrl: '/views/group_message_list.html',
@@ -23,7 +28,7 @@ tabViewGroup.config(['$routeProvider', '$locationProvider',
       .when('/group_info', {
         templateUrl: '/group/renderInfo',
         controller: 'infoController',
-        controllerAs: 'account'
+        controllerAs: 'account',
       }).
       otherwise({
         redirectTo: '/group_message'
@@ -32,12 +37,11 @@ tabViewGroup.config(['$routeProvider', '$locationProvider',
 
 tabViewGroup.controller('GroupMessageController', ['$http','$scope',
   function ($http, $scope) {
-    var that = this;
     //消除ajax缓存
     $http.get('/group/getGroupMessages?' + Math.round(Math.random()*100)).success(function(data, status) {
-      that.group_messages = data;
-      that.show = true;
-      that.vote = false;
+      $scope.group_messages = data;
+      $scope.show = true;
+      $scope.vote = false;
     });
 
     //应战
@@ -64,11 +68,10 @@ tabViewGroup.controller('GroupMessageController', ['$http','$scope',
 
 tabViewGroup.controller('CampaignListController', ['$http', '$scope',
   function($http, $scope) {
-    var that = this;
     //消除ajax缓存
     $http.get('/group/getCampaigns?' + Math.round(Math.random()*100)).success(function(data, status) {
-      that.campaigns = data.data;
-      that.show = data.permission;    //只有改组的组长才可以操作活动(关闭、编辑等)
+      $scope.campaigns = data.data;
+      $scope.show = data.permission;    //只有改组的组长才可以操作活动(关闭、编辑等)
     });
 
     //TODO 发起活动或者挑战时搜索应约对象 暂时先放在这里
@@ -110,11 +113,11 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
     });
 
     $scope.provoke_select = function( tname) {
-        that.team_opposite = tname;
-        alert(that.team_opposite);
+        $scope.team_opposite = tname;
+        alert($scope.team_opposite);
     };
     $scope.getTeam = function (cid) {
-        that.cid_opposite = cid;
+        $scope.cid_opposite = cid;
         try {
             $http({
                 method: 'post',
@@ -141,9 +144,9 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
                 url: '/group/provoke',
                 data:{
                     provoke_model : 'against',
-                    cid_opposite : that.cid_opposite,
+                    cid_opposite : $scope.cid_opposite,
                     content : $scope.content,
-                    team_opposite : that.team_opposite,
+                    team_opposite : $scope.team_opposite,
 
                     location: $scope.location,
                     remark: $scope.remark,
@@ -165,7 +168,7 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
     };
 
     $scope.getId = function(cid) {
-        that.campaign_id = cid;
+        $scope.campaign_id = cid;
     };
     $scope.editCampaign = function() {
         try{
@@ -173,7 +176,7 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
                 method: 'post',
                 url: '/group/campaignEdit',
                 data:{
-                    campaign_id : that.campaign_id,
+                    campaign_id : $scope.campaign_id,
                     content : $scope.content,
                     start_time : $scope.start_time,
                     end_time : $scope.end_time
@@ -278,10 +281,9 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
     };
 }]);
 
-tabViewGroup.controller('MemberListController', ['$http', function($http) {
-    var that = this;
+tabViewGroup.controller('MemberListController', ['$http','$scope', function($http,$scope) {
     $http.get('/group/getGroupMembers?' + Math.round(Math.random()*100)).success(function(data, status) {
-      that.group_members = data;
+      $scope.group_members = data;
     });
 }]);
 
