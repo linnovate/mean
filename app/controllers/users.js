@@ -456,25 +456,30 @@ exports.vote = function (req, res) {
   var aOr = req.body.aOr;
   var provoke_message_id = req.body.provoke_message_id;
 
-  //由于异步方式下的多表操作有问题,所以只能在groupmessage里多添加positive和negative字段了
-  GroupMessage.findOne({'id' : provoke_message_id}, function (err, group_message) {
-    if (err) {
-      console.log(err);
-    } else {
-      if (aOr) {
-        group_message.provoke.vote.positive ++;
-      } else {
-        group_message.provoke.vote.negative ++;
-      }
-      group_message.save();
-    }
-  });
-
   Competition.findOne({
     'provoke_message_id' : provoke_message_id
   },
   function (err, competition) {
     if (competition) {
+
+      for(var i = 0; i < competition.vote.positive_member.length; i ++) {
+        if(competition.vote.positive_member[i].uid === uid) {
+          return res.send({
+            'msg':'已经投过赞成票!',
+            'value':'positive_re'
+          });
+        }
+      }
+
+      for(var i = 0; i < competition.vote.negative_member.length; i ++) {
+        if(competition.vote.negative_member[i].uid === uid) {
+          return res.send({
+            'msg':'已经投过反对票!',
+            'value':'negative_re'
+          });
+        }
+      }
+
       if (aOr) {
         competition.vote.positive ++;
         competition.vote.positive_member.push({'cid':cid,'uid':uid});
@@ -483,7 +488,23 @@ exports.vote = function (req, res) {
         competition.vote.negative_member.push({'cid':cid,'uid':uid});
       }
       competition.save(function (err) {
-        console.log(err);
+        if(err) {
+          return res.send('ERROR');
+        } else {
+          //由于异步方式下的多表操作有问题,所以只能在groupmessage里多添加positive和negative字段了
+          GroupMessage.findOne({'id' : provoke_message_id}, function (err, group_message) {
+            if (err || !group_message) {
+              console.log(err);
+            } else {
+              if (aOr) {
+                group_message.provoke.vote.positive ++;
+              } else {
+                group_message.provoke.vote.negative ++;
+              }
+              group_message.save();
+            }
+          });
+        }
       });
     } else {
       console.log('没有此约战!');
@@ -521,8 +542,8 @@ exports.joinCampaign = function (req, res) {
                 } else {
                   if(competition) {
                     for(var i = 0;i < req.user.group.length; i ++) {
-                      if(competition.camp_a.tname === req.user.group[i].tname) {
-                          competition.camp_a.member.push({
+                      if(competition.camp[0].tname === req.user.group[i].tname) {
+                          competition.camp[0].member.push({
                              camp:'A',
                              cid: cid,
                              uid: uid,
@@ -532,8 +553,8 @@ exports.joinCampaign = function (req, res) {
                           });
                         break;
                       }
-                      if(competition.camp_b.tname === req.user.group[i].tname) {
-                          competition.camp_b.member.push({
+                      if(competition.camp[1].tname === req.user.group[i].tname) {
+                          competition.camp[1].member.push({
                               camp:'B',
                               cid: cid,
                               uid: uid,
@@ -599,19 +620,19 @@ exports.quitCampaign = function (req, res) {
                   if(competition) {
                     var find = false;
 
-                    //看该员工是不是在camp_a里面
-                    for(var i = 0; i < competition.camp_a.member.length; i++) {
-                      if (competition.camp_a.member[i].uid === uid) {
-                        competition.camp_a.member.splice(i,1);
+                    //看该员工是不是在camp[0]里面
+                    for(var i = 0; i < competition.camp[0].member.length; i++) {
+                      if (competition.camp[0].member[i].uid === uid) {
+                        competition.camp[0].member.splice(i,1);
                         find = true;
                         break;
                       }
                     }
-                    //如果不在a里面就一定在b里面
+                    //如果不在camp[0]里面就一定在camp[1]里面
                     if(!find) {
-                      for(var i = 0; i < competition.camp_b.member.length; i++) {
-                        if (competition.camp_b.member[i].uid === uid) {
-                          competition.camp_b.member.splice(i,1);
+                      for(var i = 0; i < competition.camp[1].member.length; i++) {
+                        if (competition.camp[1].member[i].uid === uid) {
+                          competition.camp[1].member.splice(i,1);
                           find = true;
                           break;
                         }

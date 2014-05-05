@@ -10,13 +10,12 @@ var groupApp = angular.module('group', []);
 
 
 groupApp.controller('resultController', ['$http', '$scope',function ($http, $scope) {
-    $scope.msg_show = $('#competition_content').attr('data-msg');
-    if($scope.msg_show == 'true'){
-      $scope.score_a = $('#competition_content').attr('data-sa');
-      $scope.score_b = $('#competition_content').attr('data-sb');
-      $scope.rst_content = $('#competition_content').attr('data-rc');
-      $('#resultModel').modal();
-    }
+
+    $scope.$watch('msg_show',function(){
+      if($scope.msg_show){
+        $('#resultModel').modal();
+      }
+    });
     var competition_id = $('#competition_content').attr('data-id');
     $scope.confirm = function (confirm) {
       try {

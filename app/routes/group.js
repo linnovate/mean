@@ -48,8 +48,6 @@ module.exports = function(app) {
   app.post('/group/provoke', group.provoke);
   app.post('/group/responseProvoke', group.responseProvoke);
 
-  app.get('/group/hasConfirmMsg', group.hasConfirmMsg);
-
   app.post('/group/resultConfirm/:competitionId', group.resultConfirm);
 
   app.post('/group/tempLogo', photoBodyParser, group.tempLogo);

@@ -505,8 +505,8 @@ exports.appointLeader = function (req, res) {
         id : uid
     },function (err, user) {
 
-        if (err) {
-            return res.send(err);
+        if (err || !user) {
+            return res.send('ERROR');
         } else {
             for(var i =0; i< user.group.length; i ++) {
                 if(user.group[i].gid === gid) {
@@ -516,11 +516,12 @@ exports.appointLeader = function (req, res) {
             user.role = 'LEADER';
             user.save(function(err) {
                 if(err) {
-                    return res.send(err);
+                    return res.send('ERROR');
                 } else {
                     CompanyGroup.findOne({gid : gid, cid : cid},function (err, company_group) {
-                        if (err) {
-                            return res.send(err);
+                        if (err || !company_group) {
+                            //这里需要回滚User的操作
+                            return res.send('ERROR');
                         } else {
                             company_group.leader.push({
                                 'cid' : cid,
@@ -530,31 +531,29 @@ exports.appointLeader = function (req, res) {
                             });
                             company_group.save(function(err){
                                 if(err){
-                                    return res.send(err);
+                                    //这里需要回滚User的操作
+                                    return res.send('ERROR');
                                 } else {
                                     Company.findOne({'id':cid}, function (err, company) {
-                                        if(err) {
-                                            return res.send(err);
+                                        if(err || !company) {
+                                            //这里需要回滚User,CompanyGroup的操作
+                                            return res.send('ERROR');
                                         } else {
-                                            if(company) {
-                                                for(var i = 0; i < company.group.length; i ++) {
-                                                    if(company.group[i].gid === gid) {
-                                                        company.group[i].leader.push({
-                                                            'uid':uid,
-                                                            'nickname':user.nickname
-                                                        });
-                                                        company.save(function (err) {
-                                                            if(err) {
-                                                                return res.send(err);
-                                                            } else {
-                                                                return res.send('ok');
-                                                            }
-                                                        });
-                                                    }
+                                            for(var i = 0; i < company.group.length; i ++) {
+                                                if(company.group[i].gid === gid) {
+                                                    company.group[i].leader.push({
+                                                        'uid':uid,
+                                                        'nickname':user.nickname
+                                                    });
+                                                    company.save(function (err) {
+                                                        if(err) {
+                                                            //这里需要回滚User,CompanyGroup的操作
+                                                            return res.send('ERROR');
+                                                        } else {
+                                                            return res.send('ok');
+                                                        }
+                                                    });
                                                 }
-                                                return res.send('ok');
-                                            } else {
-                                                return res.send('no');
                                             }
                                         }
                                     });
@@ -760,32 +759,6 @@ exports.changePassword = function(req, res){
 
                 } else {
                 res.send({'result':0,'msg':'您没有登录'});
-            }
-        }
-    });
-};
-
-
-//TODO
-//列出所有公司
-exports.getCompany = function (req, res) {
-    var companies_rst = [];
-    Company.find(null, function (err, companies) {
-        if(err) {
-            return [];
-        } else {
-            if(companies) {
-
-                for(var i = 0; i < companies.length; i ++) {
-                    companies_rst.push({
-                        'id' : companies[i].id,
-                        'name' : companies[i].info.official_name
-                    });
-                }
-                console.log(companies_rst);
-                return companies_rst;
-            } else {
-                return [];
             }
         }
     });

@@ -134,12 +134,14 @@ exports.challenge = function(req, res){
     competition.gid = gid;
     competition.group_type = req.session.companyGroup.group_type;
 
-    competition.camp_a.cid = cid;
-    competition.camp_a.start_confirm = true;
-    competition.camp_a.tname = team_a;
-    competition.camp_a.logo = req.session.companyGroup.logo;
+    var camp_a = {
+      'cid' : cid,
+      'start_confirm' : true,
+      'tname' : team_a,
+      'logo' : req.session.companyGroup.logo
+    };
 
-
+    competition.camp.push(camp_a);
 
     //这个查询就为了找对方小队的一个logo
     //速度换空间
@@ -148,9 +150,14 @@ exports.challenge = function(req, res){
         return res.send(err);
       } else {
         if(company_group) {
-          competition.camp_b.logo = company_group.logo;
-          competition.camp_b.cid = cid_opposite;               //被约方的公司id
-          competition.camp_b.tname = team_opposite;
+
+          var camp_b = {
+            'cid' : cid_opposite,
+            'tname' : team_opposite,
+            'logo' : company_group.logo
+          };
+
+          competition.camp.push(camp_b);
 
           competition.content = content;
           competition.brief.remark = remark;
@@ -160,14 +167,14 @@ exports.challenge = function(req, res){
           competition.brief.competition_format = competition_format;
           competition.brief.number = number;
 
-
           var groupMessage = new GroupMessage();
           groupMessage.id = UUID.id();
           groupMessage.group.gid.push(gid);
           groupMessage.group.group_type.push(competition.group_type);
           groupMessage.provoke.active = true;
-          groupMessage.provoke.team_a = team_a;
-          groupMessage.provoke.team_b = team_opposite;
+
+          groupMessage.provoke.team.push(team_a);
+          groupMessage.provoke.team.push(team_opposite);
 
           //groupMessage.poster.cname = cname;
           groupMessage.poster.cid = cid;

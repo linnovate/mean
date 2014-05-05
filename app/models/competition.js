@@ -9,6 +9,8 @@ var mongoose = require('mongoose'),
 
 
 
+
+
 var _member = new Schema({
     camp: {                //阵营
       type: String,
@@ -27,6 +29,32 @@ var _formation = new Schema({
     x: Number,
     y: Number
 });
+
+
+var _camp = new Schema({
+  logo: String,                            //队徽路径
+  cname: String,                           //公司名
+  tname: String,
+  member:[_member],
+  cid: String,
+  gid: String,
+  start_confirm: {                         //双方组长都确认后才能开战
+    type: Boolean,
+    default: false
+  },
+  formation:[_formation],
+  result: {                                //比赛结果确认
+    confirm: {
+      type: Boolean,
+      default: false
+    },
+    content: String,
+    start_date: Date
+  },
+  score: Number,
+});
+
+
 /**
  * 比赛数据结构
  */
@@ -49,51 +77,7 @@ var Competition = new Schema({
       remark: String,                          //备注
       number: Number                           //人数
     },
-
-    camp_a:{                                   //A方阵营
-      logo: String,                            //队徽路径
-      cname: String,                           //本方公司名
-      tname: String,
-      member:[_member],
-      cid: String,
-      gid: String,
-      start_confirm: {                         //双方组长都确认后才能开战
-        type: Boolean,
-        default: false
-      },
-      formation:[_formation],
-      result: {                                //比赛结果确认
-        confirm: {
-          type: Boolean,
-          default: false
-        },
-        content: String,
-        start_date: Date
-      },
-      score: Number,
-    },
-    camp_b:{                                    //B方阵营
-      logo: String,                             //队徽路径
-      cname: String,                            //本方公司名
-      tname: String,
-      member:[_member],
-      cid: String,
-      gid: String,
-      start_confirm: {                          //双方组长都确认后才能开战
-        type: Boolean,
-        default: false
-      },
-      formation:[_formation],
-      result: {
-        confirm: {
-          type: Boolean,
-          default: false
-        },
-        content: String,
-        start_date: Date
-      },
-      score: Number
-    },
+    camp:[_camp],                              //阵营
     photo: {
       pid: String,
       name: {

@@ -1,29 +1,29 @@
 extends ../layouts/manager
 
 block panel
-  #competition_content(data-nowteam="#{team}" data-id='#{competition.id}' data-msg='#{msg_show}' data-rc='#{rst_content}' data-sa='#{score_a}' data-sb='#{score_b}')
+  #competition_content(data-nowteam="#{team}" data-id='#{competition.id}')
     .row
       .teamInfo.col-xs-4
-        img.size_210.teamLogo(src='#{competition.camp_a.logo?competition.camp_a.logo:"/img/group/logo/default.png"}')
+        img.size_210.teamLogo(src='#{competition.camp[0].logo?competition.camp[0].logo:"/img/group/logo/default.png"}')
         div
-          a.teamName= competition.camp_a.tname
+          a.teamName= competition.camp[0].tname
         div
-          each teamAMember in competition.camp_a.member
+          each teamAMember in competition.camp[0].member
             img.size_50.teamMember(draggable="#{team=='A'}" src='#{teamAMember.photo}' id='#{teamAMember.uid}')
       .vs.col-xs-4
         h1.text-center VS
       .teamInfo.col-xs-4
-        img.size_210.teamLogo(src='#{competition.camp_b.logo?competition.camp_b.logo:"/img/group/logo/default.png"}')
+        img.size_210.teamLogo(src='#{competition.camp[1].logo?competition.camp[1].logo:"/img/group/logo/default.png"}')
         div
-          a.teamName= competition.camp_b.tname
+          a.teamName= competition.camp[1].tname
         div
-          each teamBMember in competition.camp_b.member
+          each teamBMember in competition.camp[1].member
             img.size_50.teamMember(draggable="#{team=='B'}" src='#{teamBMember.photo}' id='#{teamBMember.uid}')
     .row.formatField.field
       img#formatField.col-xs-12.img_contain.field(draggable="false" src='/img/field.png')
-      each teamAMember in competition.camp_a.formation
+      each teamAMember in competition.camp[0].formation
         img.size_50.teamMember.onmemberA(draggable="#{team=='A'}" id='on_#{teamAMember.uid}' data-top='#{teamAMember.y}' data-left='#{teamAMember.x}')
-      each teamBMember in competition.camp_b.formation
+      each teamBMember in competition.camp[1].formation
         img.size_50.teamMember.onmemberB(draggable="#{team=='B'}" id='on_#{teamBMember.uid}' data-top='#{teamBMember.y}' data-left='#{teamBMember.x}')
 
 
@@ -33,7 +33,7 @@ block panel
 block aside
   .infoHead.row
     h4.pull-left 活动简介
-    div(ng-app="group" ng-controller="resultController")
+    div(ng-app="group" ng-controller="resultController" ng-init="msg_show=#{msg_show};rst_content='#{rst_content}';score_a=#{score_a};score_b=#{score_b}" )
       button(ng-if="#{leader}" data-toggle="modal" data-target="#resultModel") 结果确认
       div(class="modal fade" id="resultModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
         .modal-dialog
@@ -50,9 +50,9 @@ block aside
                 label 对方比分
                   input(type="text" class="form-control" name="score_b" ng-model="score_b")
             .modal-footer
-              button(ng-if="!msg_show" type="button" class="btn btn-primary" ng-click='confirm(false)' data-dismiss="modal") 确定
-              button(ng-if="msg_show" type="button" class="btn btn-primary" ng-click='confirm(true)' data-dismiss="modal") 接受对方确认
-              button(ng-if="msg_show" type="button" class="btn btn-primary" ng-click='confirm(false)' data-dismiss="modal") 发出异议
+              button(ng-if="!#{msg_show}" type="button" class="btn btn-primary" ng-click='confirm(false)' data-dismiss="modal") 确定
+              button(ng-if="#{msg_show}" type="button" class="btn btn-primary" ng-click='confirm(true)' data-dismiss="modal") 接受对方确认
+              button(ng-if="#{msg_show}" type="button" class="btn btn-primary" ng-click='confirm(false)' data-dismiss="modal") 发出异议
   hr
   .row
     label.col-xs-4.control-label 类型：

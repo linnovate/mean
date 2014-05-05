@@ -33,13 +33,6 @@ exports.getCompany = function (req, res) {
     });
 };
 
-
-
-
-
-
-
-
 //TODO
 //根据队名在所有公司里搜索同类型小队
 //以后添加过滤规则
@@ -109,12 +102,11 @@ exports.getUser = function(req, res) {
       }
       return true;
     }
-  }, function (err, users){
+  },{'id':1,'nickname':1,'username':1}, function (err, users){
     if(err){
       return res.send([]);
     }else{
       if(users){
-        //数据量会不会太大?或许只需要员工的部分信息?
         return res.send(users);
       } else {
         return res.send([]);

@@ -40,8 +40,7 @@ var GroupMessage = new Schema({
             type: Boolean,
             default: false            //如果是true就显示为约战动态,否则为普通动态
         },
-        team_a: String,               //约战方队名
-        team_b: String,               //被约方队名
+        team: Array,
         start_confirm: {
             type: Boolean,
             default: false
