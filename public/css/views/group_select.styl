@@ -1,3 +1,5 @@
+messageBackgroundColor = #E0E0E0
+
 .group_head
 	margin-top 50px
 	margin-bottom 50px
@@ -14,7 +16,16 @@
 		position absolute
 		z-index 100
 .message_content
-	background-color #E0E0E0
+	background-color messageBackgroundColor
+.triangle
+	position absolute
+	top 50%
+	height 0px
+	width 0px
+	margin-left -20px
+	border-width 10px
+	border-style solid
+	border-color transparent #E0E0E0 transparent transparent
 .message_label
 	margin 10px
 .group.inactive

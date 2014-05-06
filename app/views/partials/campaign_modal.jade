@@ -22,5 +22,5 @@
               span.glyphicon.glyphicon-th
           input(id="dtp_input_end_time" type="hidden" name="end_time" ng-model="end_time")
     .modal-footer
-      button(class="btn btn-default" data-dismiss="modal") 取消
-      button(class="btn btn-primary" ng-click='sponsor()' data-dismiss="modal" ng-disabled="{{campaign_ok}}") 确定
+      button(data-dismiss="modal") 取消
+      button(ng-click='sponsor()' data-dismiss="modal" ng-disabled="{{campaign_ok}}") 确定

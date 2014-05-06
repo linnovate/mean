@@ -28,7 +28,8 @@ body {
   padding-top: 70px;
   padding-bottom: 60px;
 }
-input,
+input[type='button'],
+input[type='submit'],
 button,
 .btn {
   border-radius: 0px !important;
@@ -46,6 +47,12 @@ button:hover,
 }
 a {
   color: #28689b;
+}
+input[disabled='disabled'].editToggle {
+  background-color: inherit;
+  border: 0px solid;
+  box-shadow: none;
+  cursor: default;
 }
 .info_border {
   padding: 5px;

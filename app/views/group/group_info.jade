@@ -1,21 +1,22 @@
 div(ng-app="tabViewGroup" ng-controller="infoController")
   form.form-horizontal(name="infoForm")
-    .row(style="height:25px;margin-top:40px")
-      h4.pull-left(style="margin-left:25px") 基本信息
+    .row
+      h4.pull-left 基本信息
       button.pull-right(ng-click="editToggle()" ng-bind="buttonStatus")
     hr
     .row
+
       label.col-md-2.control-label 队&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名
       .col-md-5
-        input.form-control(type="text" name ="name" ng-model="name"  ng-disabled="unEdit")
+        input.form-control.editToggle(type="text" name ="name" ng-model="name"  ng-disabled="unEdit")
     .row
       label.col-md-2.control-label 所属公司
       .col-md-5
-        label.col-md-5.control-label {{companyname}}
+        label.col-md-5 {{companyname}}
     .row
       label.col-md-2.control-label 队员人数
       .col-md-5
-        label.col-md-5.control-label(style="text-align:left") {{members.length}}
+        label.col-md-5 {{members.length}}
     .row
       label.col-md-2.control-label 小组队徽
       .col-md-5
@@ -23,39 +24,38 @@ div(ng-app="tabViewGroup" ng-controller="infoController")
     .row
       label.col-md-2.control-label 主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;场
       .col-md-3
-        input.form-control(type="text" name ="home_court_1" ng-model="home_court_1" ng-disabled="unEdit")
+        input.form-control.editToggle(type="text" name ="home_court_1" ng-model="home_court_1" ng-disabled="unEdit")
     .row
       label.col-md-2.control-label
       .col-md-3
-        input.form-control(type="text" name ="home_court_2" ng-model="home_court_2" ng-disabled="unEdit")
+        input.form-control.editToggle(type="text" name ="home_court_2" ng-model="home_court_2" ng-disabled="unEdit")
     .row
       label.col-md-2.control-label 简&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;介
       .col-md-5
-          input.form-control(type="textarea" rows="10" name ="brief" ng-model="brief" ng-disabled="unEdit")
+          input.form-control.editToggle(type="textarea" rows="10" name ="brief" ng-model="brief" ng-disabled="unEdit")
     .row
       label.col-md-2.control-label 成立时间
-      .col-md-5
-        label.col-md-10.control-label(style="text-align:left") {{create_time}}
-    .row(style="height:25px;margin-top:40px")
-      h4.pull-left(style="margin-left:25px") 比赛信息
+      label.col-md-5{{create_time}}
+    .row
+      h4.pull-left 比赛信息
     hr
     .row
       label.col-md-2.control-label 比赛场次
       .col-md-5
-        label.col-md-5.control-label(style="text-align:left") 0
+        label.col-md-5 0
     .row
       label.col-md-2.control-label 胜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;率
       .col-md-5
-        label.col-md-5.control-label(style="text-align:left") 0
+        label.col-md-5 0
     .row
       label.col-md-2.control-label 积&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分
       .col-md-5
-        label.col-md-5.control-label(style="text-align:left") 0
+        label.col-md-5 0
     .row
       label.col-md-2.control-label 排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名
       .col-md-5
-        label.col-md-5.control-label(style="text-align:left") 0
-    .row(style="height:25px;margin-top:40px")
-      h4.pull-left(style="margin-left:25px") 小组全家福
+        label.col-md-5 0
+    .row
+      h4.pull-left 小组全家福
     hr
     img.img-responsive.img-thumbnail.size_family.img_contain(src="")
