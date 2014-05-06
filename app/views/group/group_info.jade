@@ -1,58 +1,61 @@
 div(ng-app="tabViewGroup" ng-controller="infoController")
   form.form-horizontal(name="infoForm")
-    .infoHead.row
-      h4.pull-left(style="margin-left:20px") 基本信息
+    .row(style="height:25px;margin-top:40px")
+      h4.pull-left(style="margin-left:25px") 基本信息
       button.pull-right(ng-click="editToggle()" ng-bind="buttonStatus")
     hr
     .row
-      label.col-xs-2.control-label 队名
-      .col-xs-5
+      label.col-md-2.control-label 队&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名
+      .col-md-5
         input.form-control(type="text" name ="name" ng-model="name"  ng-disabled="unEdit")
     .row
-      label.col-xs-2.control-label 所属公司
-      label.col-xs-5.control-label {{companyname}}
+      label.col-md-2.control-label 所属公司
+      .col-md-5
+        label.col-md-5.control-label {{companyname}}
     .row
-      label.col-xs-2.control-label 队员
-      div.col-xs-10
-        div.col-xs-2(ng-repeat="member in members")
-          img.center-block.size_50(ng-src='{{member.photo}}')
-          p.text-center {{member.nickname}}
+      label.col-md-2.control-label 队员人数
+      .col-md-5
+        label.col-md-5.control-label(style="text-align:left") {{members.length}}
     .row
-      label.col-xs-2.control-label 简介
-      .col-xs-5
-          input.form-control(type="textarea" name ="brief" ng-model="brief" ng-disabled="unEdit")
+      label.col-md-2.control-label 小组队徽
+      .col-md-5
+        a.btn.btn-primary(href="/group/editLogo") 修改
     .row
-      label.col-xs-2.control-label 成立时间
-      label.col-xs-5.control-label {{create_time}}
+      label.col-md-2.control-label 主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;场
+      .col-md-3
+        input.form-control(type="text" name ="home_court_1" ng-model="home_court_1" ng-disabled="unEdit")
     .row
-      lrow
-      label.col-xs-2.control-label 主场
-      .col-xs-5
-        .row
-          input.form-control(type="text" name ="home_court_1" ng-model="home_court_1" ng-disabled="unEdit")
-        .row
-          input.form-control(type="text" name ="home_court_2" ng-model="home_court_2" ng-disabled="unEdit")
+      label.col-md-2.control-label 主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;场
+      .col-md-3
+        input.form-control(type="text" name ="home_court_2" ng-model="home_court_2" ng-disabled="unEdit")
     .row
-      label.col-xs-2.control-label 队长
-      div.col-xs-10
-        div.col-xs-2(ng-repeat="leader in leaders")
-          img.center-block.size_50(ng-src='{{leader.photo}}')
-          p.text-center {{leader.nickname}}
+      label.col-md-2.control-label 简&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;介
+      .col-md-5
+          input.form-control(type="textarea" rows="10" name ="brief" ng-model="brief" ng-disabled="unEdit")
     .row
-      label.col-xs-2.control-label 主力
-      div.col-xs-10
-        div.col-xs-2(ng-repeat="main_force in main_forces")
-            img.center-block.size_50(ng-src='{{main_force.photo}}')
-            p.text-center {{main_force.nickname}}
-    .row
-      label.col-xs-2.control-label 替补
-      div.col-xs-10
-        div.col-xs-2(ng-repeat="alternate in alternates")
-            img.center-block.size_50(ng-src='{{alternate.photo}}')
-            p.text-center {{alternate.nickname}}
-    .row
-      label.col-xs-2.control-label 全家福
-      img(ng-src='{{family}}')
-    .infoHead.row
-      h4.pull-left 其它
+      label.col-md-2.control-label 成立时间
+      .col-md-5
+        label.col-md-10.control-label(style="text-align:left") {{create_time}}
+    .row(style="height:25px;margin-top:40px")
+      h4.pull-left(style="margin-left:25px") 比赛信息
     hr
+    .row
+      label.col-md-2.control-label 比赛场次
+      .col-md-5
+        label.col-md-5.control-label(style="text-align:left") 0
+    .row
+      label.col-md-2.control-label 胜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;率
+      .col-md-5
+        label.col-md-5.control-label(style="text-align:left") 0
+    .row
+      label.col-md-2.control-label 积&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分
+      .col-md-5
+        label.col-md-5.control-label(style="text-align:left") 0
+    .row
+      label.col-md-2.control-label 排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名
+      .col-md-5
+        label.col-md-5.control-label(style="text-align:left") 0
+    .row(style="height:25px;margin-top:40px")
+      h4.pull-left(style="margin-left:25px") 小组全家福
+    hr
+    img.img-responsive.img-thumbnail.size_family.img_contain(src="")

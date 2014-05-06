@@ -54,6 +54,10 @@ a {
   border-width: 2px;
   border-color: #3bbee8;
 }
+.size_family {
+  height: 300px;
+  width: 800px;
+}
 .size_400 {
   height: 210px;
   width: 210px;
