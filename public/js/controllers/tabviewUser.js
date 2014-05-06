@@ -51,7 +51,7 @@ tabViewUser.controller('GroupMessageController', ['$http','$scope',
       $scope.voteFlag = true;
     });
 
-    $scope.vote = function(provoke_message_id, status) {
+    $scope.vote = function(provoke_message_id, status, index) {
          try {
             $http({
                 method: 'post',
@@ -63,8 +63,10 @@ tabViewUser.controller('GroupMessageController', ['$http','$scope',
             }).success(function(data, status) {
                 if(data.msg != undefined && data.msg != null) {
                     alert(data.msg);
+                } else {
+                    $scope.group_messages[index].provoke.vote.positive = data.positive;
+                    $scope.group_messages[index].provoke.vote.negative = data.negative;
                 }
-                window.location.reload();
             }).error(function(data, status) {
                 alert('数据发生错误！');
             });

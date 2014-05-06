@@ -513,7 +513,10 @@ exports.vote = function (req, res) {
                 if(err) {
                   return res.send('ERROR');
                 } else {
-                  return res.send('ok');
+                  return res.send({
+                    'positive' : group_message.provoke.vote.positive,
+                    'negative' : group_message.provoke.vote.negative
+                  });
                 }
               });
             }

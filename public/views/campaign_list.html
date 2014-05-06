@@ -20,8 +20,8 @@
           <div class="row">
             <span class="message_label">类型: {{ campaign_item.group_type}}</span>
             <span class="message_label">参加活动人数：{{ campaign_item.member.length }}</span>
-            <span class="message_label">赛制: 友谊赛</span>
-            <span class="message_label">地点: 上海体育馆</span>
+            <span class="message_label">赛制: {{ campaign_item.provoke.competition_format }}</span>
+            <span class="message_label">地点: {{ campaign_item.location }}</span>
             <span class="message_label">截止时间: {{ campaign_item.end_time }}</span>
             <a ng-if="campaign_item.provoke.active" ng-href="/group/competition/{{campaign_item.provoke.competition_id}}">详情</a>
           </div>
@@ -32,7 +32,7 @@
               <input type = "button" value = "参加" ng-click="join(campaign_item.id)" ng-switch-default/>
             </div>
             <div>
-              <input type = "button" ng-if="show" value = "编辑" ng-click="getId(campaign_item.id)" data-toggle="modal" data-target="#editModel"/>
+              <input type = "button" ng-if="(show && false)" value = "编辑" ng-click="getId(campaign_item.id)" data-toggle="modal" data-target="#editModel"/>
             </div>
         </div>
       </div>

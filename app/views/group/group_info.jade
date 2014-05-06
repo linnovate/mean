@@ -1,8 +1,8 @@
 div(ng-app="tabViewGroup" ng-controller="infoController")
   form.form-horizontal(name="infoForm")
     .infoHead.row
-      h4.pull-left 基本信息
-      a.pull-right(ng-click="editToggle()" ng-bind="buttonStatus")
+      h4.pull-left(style="margin-left:20px") 基本信息
+      button.pull-right(ng-click="editToggle()" ng-bind="buttonStatus")
     hr
     .row
       label.col-xs-2.control-label 队名

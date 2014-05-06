@@ -14,7 +14,7 @@
           <img  class="size_80" ng-src='/img/group/logo/default.png'>
       </div>
       <div class="col-md-10">
-        <div> 
+        <div>
 
           <label ng-if="!group_message.provoke.active">您的小组 <a>{{group_message.my_tname}}</a> 有了新动态</label>
           <label ng-if="(group_message.provoke.active && group_message.my_tname != group_message.provoke.team[0])"><a>{{group_message.provoke.team[0]}}</a> 对您的小组 <a>{{group_message.my_tname}}</a> 发起{{group_message.provoke.start_confirm ? '的挑战已经生效' : '了挑战'}}</label>
@@ -31,8 +31,8 @@
           </div>
           <span class="message_label text-center">{{ group_message.content }}</span>
           <div class="message_label pull-right" ng-if="group_message.provoke.active">
-            <input type = "button"  class="btn" ng-if = "!group_message.provoke.start_confirm && voteFlag" value = "赞成{{group_message.provoke.vote.positive}}" ng-click="vote(group_message.id,true)" />
-            <input type = "button"  class="btn" ng-if = "!group_message.provoke.start_confirm && voteFlag" value = "反对{{group_message.provoke.vote.negative}}" ng-click="vote(group_message.id,false)" />
+            <input type = "button"  class="btn" ng-if = "!group_message.provoke.start_confirm && voteFlag" value = "赞成{{group_message.provoke.vote.positive}}" ng-click="vote(group_message.id,true,$index)" />
+            <input type = "button"  class="btn" ng-if = "!group_message.provoke.start_confirm && voteFlag" value = "反对{{group_message.provoke.vote.negative}}" ng-click="vote(group_message.id,false,$index)" />
             <input type = "button"  class="btn" ng-if="group_message.provoke_accept && !voteFlag" value = "应战" ng-click="responseProvoke(group_message.id)" />
           </div>
         </div>
