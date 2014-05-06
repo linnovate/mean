@@ -1,10 +1,18 @@
 <div>
   <h1>成员列表</h1>
-  <h2>人数：{{group_members.length}}</h1>
-  <div class=".row">
+  <h3>人数：{{group_members.length}}</h3>
+  <h3>队长</h3>
+  <div class="row">
+    <div class="col-xs-2" ng-repeat="leader in group_leaders">
+      <img class="center-block size_50" ng-src='{{leader.photo}}'></img>
+      <p class="text-center">{{leader.nickname}}</p>
+    </div>
+  </div>
+  <h3>队员</h3>
+  <div class="row">
     <div class="col-xs-2" ng-repeat="member in group_members">
-      <p class="text-center">{{member.nickname}}</p>
       <img class="center-block size_50" ng-src='{{member.photo}}'></img>
+      <p class="text-center">{{member.nickname}}</p>
     </div>
   </div>
 </div>

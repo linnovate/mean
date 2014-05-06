@@ -23,14 +23,14 @@
 
         </div>
         <div class="row message_content ">
-          <div>
-            <span>类型：{{ group_message.group.group_type[0] }}</span>
-            <span>赛制：{{group_message.provoke.competition_format}}</span>
-            <span>地点：{{group_message.location}}</span>
-            <span>时间: {{group_message.start_time}}</span>
+          <div class="message_label">
+            <span class="message_label">类型：{{ group_message.group.group_type[0] }}</span>
+            <span class="message_label">赛制：{{group_message.provoke.competition_format}}</span>
+            <span class="message_label">地点：{{group_message.location}}</span>
+            <span class="message_label">时间: {{group_message.location}}</span>
           </div>
-          <span class="text-center">{{ group_message.content }}</span>
-          <div class="pull-right" ng-if="group_message.provoke.active">
+          <span class="message_label text-center">{{ group_message.content }}</span>
+          <div class="message_label pull-right" ng-if="group_message.provoke.active">
             <input type = "button"  class="btn" ng-if = "!group_message.provoke.start_confirm && voteFlag" value = "赞成{{group_message.provoke.vote.positive}}" ng-click="vote(group_message.id,true)" />
             <input type = "button"  class="btn" ng-if = "!group_message.provoke.start_confirm && voteFlag" value = "反对{{group_message.provoke.vote.negative}}" ng-click="vote(group_message.id,false)" />
             <input type = "button"  class="btn" ng-if="group_message.provoke_accept && !voteFlag" value = "应战" ng-click="responseProvoke(group_message.id)" />

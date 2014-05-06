@@ -6,33 +6,39 @@
     <div class="col-md-6">
     </div>
   </div>
-  <ol>
-    <div>
-      <li ng-repeat="campaign_item in campaigns" >
-        <h2>{{ campaign_item.content }}</h2>
-        <p>小组: {{ campaign_item.gid}}</p>
-        <p>参加活动人数：{{ campaign_item.member.length }}</p>
-        <p>创建时间: {{ campaign_item.create_time}}</p>
-        <p>开始时间: {{ campaign_item.start_time }}</p>
-        <p>结束时间: {{ campaign_item.end_time }}</p>
-        <p>是否参加: {{ campaign_item.join}}</p>
-        <p>活动是否关闭: {{ campaign_item.active}} </p>
-        <a ng-if="campaign_item.provoke.active" ng-href="/group/competition/{{campaign_item.provoke.competition_id}}">详情</a>
-        <div class="row">
-          <div ng-switch on="{{campaign_item.join}}" ng-if="campaign_item.active" class="col-md-2">
-            <input type = "button"  class="btn btn-primary btn-lg" value = "退出" ng-click="quit(campaign_item.id)" ng-switch-when="true"/>
-            <input type = "button"  class="btn btn-primary btn-lg" value = "参加" ng-click="join(campaign_item.id)" ng-switch-default/>
+  <div>
+    <div ng-repeat="campaign_item in campaigns" >
+      <div class="row">
+        <div class="col-md-2">
+          <span>{{ campaign_item.start_time }}</span>
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+              <span class="message_label">{{ campaign_item.content }}</span>
+              <input type = "button" ng-if="show" value = "{{ campaign_item.active_value}}" ng-click="cancel(campaign_item.id)" />
           </div>
-          <div class="col-md-2">
-            <input type = "button"  class="btn btn-primary btn-lg" ng-if="show" value = "{{ campaign_item.active_value}}" ng-click="cancel(campaign_item.id)" />
-          </div>
-          <div class="col-md-2">
-            <input type = "button"  class="btn btn-primary btn-lg" ng-if="show" value = "编辑" ng-click="getId(campaign_item.id)" data-toggle="modal" data-target="#editModel"/>
+          <div class="row">
+            <span class="message_label">类型: {{ campaign_item.group_type}}</span>
+            <span class="message_label">参加活动人数：{{ campaign_item.member.length }}</span>
+            <span class="message_label">赛制: 友谊赛</span>
+            <span class="message_label">地点: 上海体育馆</span>
+            <span class="message_label">截止时间: {{ campaign_item.end_time }}</span>
+            <a ng-if="campaign_item.provoke.active" ng-href="/group/competition/{{campaign_item.provoke.competition_id}}">详情</a>
           </div>
         </div>
-      </li>
+        <div class="col-md-2">
+            <div ng-switch on="{{campaign_item.join}}" ng-if="campaign_item.active">
+              <input type = "button" value = "退出" ng-click="quit(campaign_item.id)" ng-switch-when="true"/>
+              <input type = "button" value = "参加" ng-click="join(campaign_item.id)" ng-switch-default/>
+            </div>
+            <div>
+              <input type = "button" ng-if="show" value = "编辑" ng-click="getId(campaign_item.id)" data-toggle="modal" data-target="#editModel"/>
+            </div>
+        </div>
+      </div>
+      <hr>
     </div>
-  </ol>
+  </div>
 </div>
 
 
@@ -58,8 +64,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary" ng-click='editCampaign()' data-dismiss="modal">确定</button>
+        <button type="button" data-dismiss="modal">取消</button>
+        <button type="button" ng-click='editCampaign()' data-dismiss="modal">确定</button>
       </div>
     </div>
   </div>

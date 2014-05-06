@@ -3,12 +3,13 @@
 var tabViewGroup = angular.module('tabViewGroup', ['ngRoute']);
 
 tabViewGroup.run(['$rootScope', function( $rootScope) {
+
     $rootScope.addactive = function(value) {
         $rootScope.nowTab = value;
     };
 }]);
 tabViewGroup.config(['$routeProvider', '$locationProvider',
-  function($routeProvider, $locationProvider,$rootScope) {
+  function($routeProvider, $locationProvider) {
     $routeProvider
       .when('/group_message', {
         templateUrl: '/views/group_message_list.html',
@@ -35,8 +36,9 @@ tabViewGroup.config(['$routeProvider', '$locationProvider',
       });
   }]);
 
-tabViewGroup.controller('GroupMessageController', ['$http','$scope',
-  function ($http, $scope) {
+tabViewGroup.controller('GroupMessageController', ['$http','$scope','$rootScope',
+  function ($http, $scope,$rootScope) {
+    $rootScope.nowTab ='group_message';
     //消除ajax缓存
     $http.get('/group/getGroupMessages?' + Math.round(Math.random()*100)).success(function(data, status) {
       $scope.group_messages = data;
@@ -90,8 +92,9 @@ tabViewGroup.controller('GroupMessageController', ['$http','$scope',
 }]);
 
 
-tabViewGroup.controller('CampaignListController', ['$http', '$scope',
-  function($http, $scope) {
+tabViewGroup.controller('CampaignListController', ['$http', '$scope','$rootScope',
+  function($http, $scope,$rootScope) {
+    $rootScope.nowTab = 'group_campaign';
     //消除ajax缓存
     $http.get('/group/getCampaigns?' + Math.round(Math.random()*100)).success(function(data, status) {
       $scope.campaigns = data.data;
@@ -306,9 +309,14 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
     };
 }]);
 
-tabViewGroup.controller('MemberListController', ['$http','$scope', function($http,$scope) {
+tabViewGroup.controller('MemberListController', ['$http','$scope','$rootScope', function($http,$scope,$rootScope) {
+    $rootScope.nowTab = 'group_member';
     $http.get('/group/getGroupMembers?' + Math.round(Math.random()*100)).success(function(data, status) {
-      $scope.group_members = data;
+      if(data.result==1){
+        $scope.group_members = data.data.member;
+        $scope.group_leaders = data.data.leader;
+      }
+
     });
 }]);
 

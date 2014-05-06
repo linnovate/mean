@@ -662,10 +662,12 @@ exports.getGroupMember = function(req,res){
           return res.status(404).send(err);
         };
         var _member_list =[];
+        var _leader_list = [];
         if(companyGroup){
           _member_list = companyGroup.member;
+          _leader_list = companyGroup.leader;
         };
-        return res.send(_member_list);
+        return res.send({'result':1,data:{'member':_member_list,'leader':_leader_list}});
     });
 
 };
