@@ -12,6 +12,6 @@
         "angular-ui-router": "#master",
         "linkage-selector": "latest",
         "jquery-form": "3.46.0",
-        "smalot-bootstrap-datetimepicker": "2.2.0"
+        "angular-strap": "2.0.2"
     }
 }
