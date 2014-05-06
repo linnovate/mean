@@ -314,7 +314,19 @@ exports.getGroupMessages = function(req, res) {
 
           var length = group_message.length;
           for(var j = 0; j < length; j ++) {
+
+            var positive = 0;
+            var negative = 0;
+            for(var k = 0; k < group_message[j].provoke.camp.length; k ++) {
+              if(group_message[j].provoke.camp[k].tname === req.session.companyGroup.name){
+                positive = group_message[j].provoke.camp[k].vote.positive;
+                negative = group_message[j].provoke.camp[k].vote.negative;
+                break;
+              }
+            }
             group_messages.push({
+              'positive' : positive,
+              'negative' : negative,
               'my_tname': req.user.group[flag-1].tname,
               'id': group_message[j].id,
               'cid': group_message[j].cid,
@@ -323,9 +335,9 @@ exports.getGroupMessages = function(req, res) {
               'date': group_message[j].date,
               'poster': group_message[j].poster,
               'content': group_message[j].content,
-              'location' : group_message[i].location,
-              'start_time' : group_message[i].start_time ? group_message[i].start_time.toLocaleDateString() : '',
-              'end_time' : group_message[i].end_time ? group_message[i].end_time.toLocaleDateString() : '',
+              'location' : group_message[j].location,
+              'start_time' : group_message[j].start_time ? group_message[j].start_time.toLocaleDateString() : '',
+              'end_time' : group_message[j].end_time ? group_message[j].end_time.toLocaleDateString() : '',
               'provoke': group_message[j].provoke,                  //应约按钮显示要有四个条件:1.该约战没有关闭 2.当前员工公司id和被约公司id一致 3.约战没有确认 4.当前员工是该小队的队长
               'provoke_accept': group_message[j].provoke.active && (group_message[j].group.gid[0] === req.user.group[flag-1].gid) && (!group_message[j].provoke.start_confirm) && req.user.group[flag-1].leader && (group_message[j].cid[1] === req.session.cid)
             });
@@ -467,33 +479,38 @@ exports.vote = function (req, res) {
   function (err, competition) {
     if (competition) {
 
-      for(var i = 0; i < competition.vote.positive_member.length; i ++) {
-        if(competition.vote.positive_member[i].uid === uid) {
-          console.log('positive');
-          return res.send({
-            'msg':'已经投过票!',
-            'value':'positive_re'
-          });
+      for(var j = 0; j < competition.camp.length; j ++) {
+        if(competition.camp[j].cid === cid) {
+          for(var i = 0; i < competition.camp[j].vote.positive_member.length; i ++) {
+            if(competition.camp[j].vote.positive_member[i].uid === uid) {
+              console.log('positive');
+              return res.send({
+                'msg':'已经投过票!'
+              });
+            }
+          }
+
+          for(var i = 0; i < competition.camp[j].vote.negative_member.length; i ++) {
+            if(competition.camp[j].vote.negative_member[i].uid === uid) {
+              console.log('negative');
+              return res.send({
+                'msg':'已经投过票!'
+              });
+            }
+          }
+
+
+          if (aOr) {
+            competition.camp[j].vote.positive ++;
+            competition.camp[j].vote.positive_member.push({'cid':cid,'uid':uid});
+          } else {
+            competition.camp[j].vote.negative ++;
+            competition.camp[j].vote.negative_member.push({'cid':cid,'uid':uid});
+          }
+          break;
         }
       }
 
-      for(var i = 0; i < competition.vote.negative_member.length; i ++) {
-        if(competition.vote.negative_member[i].uid === uid) {
-          console.log('negative');
-          return res.send({
-            'msg':'已经投过票!',
-            'value':'negative_re'
-          });
-        }
-      }
-
-      if (aOr) {
-        competition.vote.positive ++;
-        competition.vote.positive_member.push({'cid':cid,'uid':uid});
-      } else {
-        competition.vote.negative ++;
-        competition.vote.negative_member.push({'cid':cid,'uid':uid});
-      }
       competition.save(function (err) {
         if(err) {
           return res.send('ERROR');
@@ -504,18 +521,27 @@ exports.vote = function (req, res) {
               console.log(err);
               return res.send('ERROR');
             } else {
-              if (aOr) {
-                group_message.provoke.vote.positive ++;
-              } else {
-                group_message.provoke.vote.negative ++;
+
+              var positive,negative;
+              for(var i = 0; i < group_message.provoke.camp.length; i ++) {
+                if(group_message.provoke.camp[i].cid === cid) {
+                  if (aOr) {
+                    group_message.provoke.camp[i].vote.positive ++;
+                    positive = group_message.provoke.camp[i].vote.positive;
+                  } else {
+                    group_message.provoke.camp[i].vote.negative ++;
+                    negative = group_message.provoke.camp[i].vote.negative;
+                  }
+                  break;
+                }
               }
               group_message.save(function (err){
                 if(err) {
                   return res.send('ERROR');
                 } else {
                   return res.send({
-                    'positive' : group_message.provoke.vote.positive,
-                    'negative' : group_message.provoke.vote.negative
+                    'positive' : positive,
+                    'negative' : negative
                   });
                 }
               });

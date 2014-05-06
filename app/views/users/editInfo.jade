@@ -26,11 +26,11 @@ div
       label.col-xs-2.control-label 所在地
     .form-group
       label.col-xs-2.control-label 性别
-      .col-xs-3.radio
+      .col-xs-1.radio
         label
           input(type="radio" name="sex" value="男" ng-model="user.sex" ng-disabled="baseUnEdit")
           | 男
-      .col-xs-3.radio
+      .col-xs-1.radio
         label
           input(type="radio" name="sex" value="女" ng-model="user.sex" ng-disabled="baseUnEdit")
           | 女
@@ -65,4 +65,3 @@ div
       label.col-xs-2.control-label QQ
       .col-xs-10
         input.form-control.editToggle(type="text" name="qq" ng-model="user.qq" ng-disabled="linkUnEdit")
-

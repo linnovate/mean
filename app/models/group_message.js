@@ -10,6 +10,26 @@ var mongoose = require('mongoose'),
 /**
  * 组件消息(如果是企业发布的活动消息则归为虚拟组)
  */
+
+
+var _camp = new Schema({
+    cid: String,
+    tname: {
+        type: String,
+        default: 'unknown'
+    },
+    vote: {                           //在投票按钮上显示票数,由于异步方式的多表查询有问题,所以这样定义也是无奈之举啊
+        positive: {
+            type: Number,
+            default: 0
+        },
+        negative: {
+            type: Number,
+            default: 0
+        }
+    }
+});
+
 var GroupMessage = new Schema({
     id: String,
     cid: Array,                      //如果是约战消息,要在两家公司的主页同时显示
@@ -43,26 +63,14 @@ var GroupMessage = new Schema({
             type: Boolean,
             default: false            //如果是true就显示为约战动态,否则为普通动态
         },
-        team: Array,                  //双方队名
+        camp: [_camp],                //双方队名、投票情况
         start_confirm: {
             type: Boolean,
             default: false
         },                            //双方确认后才能变为true,此时不再显示"投票"按钮
 
-        competition_format: String,   //赛制
-
-        vote: {                       //在投票按钮上显示票数,由于异步方式的多表查询有问题,所以这样定义也是无奈之举啊
-            positive: {
-                type: Number,
-                default: 0
-            },
-            negative: {
-                type: Number,
-                default: 0
-            }
-        }
+        competition_format: String    //赛制
     }
 });
-
 
 mongoose.model('GroupMessage', GroupMessage);

@@ -60,8 +60,8 @@ tabViewGroup.controller('GroupMessageController', ['$http','$scope','$rootScope'
                 if(data.msg != undefined && data.msg != null) {
                     alert(data.msg);
                 } else {
-                    $scope.group_messages[index].provoke.vote.positive = data.positive;
-                    $scope.group_messages[index].provoke.vote.negative = data.negative;
+                    $scope.group_messages[index].positive = data.positive;
+                    $scope.group_messages[index].negative = data.negative;
                 }
             }).error(function(data, status) {
                 alert('数据发生错误！');

@@ -52,6 +52,18 @@ var _camp = new Schema({
     start_date: Date
   },
   score: Number,
+  vote: {
+    positive: {                             //赞成员工投票数
+        type: Number,
+        default: 0
+    },
+    positive_member: [_member],             //赞成员工id,cid
+    negative: {                             //反对员工投票数
+        type: Number,
+        default: 0
+    },
+    negative_member: [_member]              //反对员工id,cid
+  }
 });
 
 
@@ -84,19 +96,6 @@ var Competition = new Schema({
         type: String,
         default: '比赛相册'
       }
-    },
-
-    vote: {
-        positive: {                             //赞成员工投票数
-            type: Number,
-            default: 0
-        },
-        positive_member: [_member],             //赞成员工id,cid
-        negative: {                             //反对员工投票数
-            type: Number,
-            default: 0
-        },
-        negative_member: [_member]              //反对员工id,cid
     },
     content: String,
     convert_to_campaign: {

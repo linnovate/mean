@@ -230,8 +230,19 @@ exports.getGroupMessage = function(req, res) {
             leader = req.user.group[j].leader;
           }
         }
-        
+
+        var positive = 0;
+        var negative = 0;
+        for(var k = 0; k < group_message[i].provoke.camp.length; k ++) {
+          if(group_message[i].provoke.camp[k].tname === req.session.companyGroup.name){
+            positive = group_message[i].provoke.camp[k].vote.positive;
+            negative = group_message[i].provoke.camp[k].vote.negative;
+            break;
+          }
+        }
         group_messages.push({
+          'positive' : positive,
+          'negative' : negative,
           'my_tname' : req.session.companyGroup.name,
           'id': group_message[i].id,
           'cid': group_message[i].cid,
@@ -414,8 +425,17 @@ exports.provoke = function (req, res) {
         groupMessage.provoke.active = true;
         groupMessage.provoke.competition_format = competition_format;
 
-        groupMessage.provoke.team.push(req.session.companyGroup.name);
-        groupMessage.provoke.team.push(req.body.team_opposite);
+        var a = {
+          'cid':req.session.cid,
+          'tname':req.session.companyGroup.name
+        };
+        var b = {
+          'cid':req.body.cid_opposite,
+          'tname':req.body.team_opposite
+        };
+
+        groupMessage.provoke.camp.push(a);
+        groupMessage.provoke.camp.push(b);
 
         groupMessage.poster.cid = req.session.cid;
         groupMessage.poster.uid = uid;

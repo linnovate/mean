@@ -111,6 +111,9 @@ tabViewCompany.controller('GroupMessageController', ['$http','$scope',
       $scope.voteFlag = false;
     });
 
+    //TODO
+    //公司动态也需要投票吗?
+    /*
     $scope.vote = function(provoke_message_id, status) {
          try {
             $http({
@@ -121,10 +124,6 @@ tabViewCompany.controller('GroupMessageController', ['$http','$scope',
                     aOr : status
                 }
             }).success(function(data, status) {
-                if(data.msg != undefined && data.msg != null) {
-                    alert(data.msg);
-                }
-                window.location.reload();
             }).error(function(data, status) {
                 alert('数据发生错误！');
             });
@@ -133,6 +132,7 @@ tabViewCompany.controller('GroupMessageController', ['$http','$scope',
             console.log(e);
         }
     };
+    */
 }]);
 
 tabViewCompany.controller('CampaignListController', ['$http','$scope',
