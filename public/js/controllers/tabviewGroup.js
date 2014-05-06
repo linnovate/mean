@@ -266,6 +266,7 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope',
                 method: 'post',
                 url: '/group/campaignSponsor',
                 data:{
+                    location: $scope.location,
                     content : $scope.content,
                     start_time : document.getElementById('dtp_input_start_time').value,
                     end_time : document.getElementById('dtp_input_end_time').value

@@ -480,6 +480,7 @@ exports.getCompanyCampaign = function(req, res) {
                     'cname': campaign[i].cname,
                     'poster': campaign[i].poster,
                     'content': campaign[i].content,
+                    'location': campaign[i].location,
                     'member': campaign[i].member,
                     'create_time': campaign[i].create_time ? campaign[i].create_time.toLocaleDateString() : '',
                     'start_time': campaign[i].start_time ? campaign[i].start_time.toLocaleDateString() : '',
@@ -652,6 +653,7 @@ exports.sponsor = function (req, res) {
         company_in_campaign = [cid];
     }
     var content = req.body.content;//活动内容
+    var location = req.body.location;//活动地点
 
     var cname = '';
 
@@ -679,6 +681,7 @@ exports.sponsor = function (req, res) {
     campaign.poster.username = username;
 
     campaign.content = content;
+    campaign.location = location;
 
     campaign.start_time = req.body.start_time;
     campaign.end_time = req.body.end_time;
@@ -716,6 +719,9 @@ exports.sponsor = function (req, res) {
         groupMessage.poster.username = username;
 
         groupMessage.content = content;
+        groupMessage.location = location;
+        groupMessage.start_time = req.body.start_time;
+        groupMessage.end_time = req.body.end_time;
 
         groupMessage.save(function(err) {
             if (err) {

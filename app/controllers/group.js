@@ -128,127 +128,59 @@ exports.saveInfo =function(req,res) {
 
 
 
-
-
-
-
 //返回组件页面
 exports.home = function(req, res) {
   if (req.params.groupId != null) {
     req.session.gid = req.params.groupId;
   }
-
-
-
-  if(req.session.role=='HR'){
-    Company.findOne({'id': req.session.cid}, function(err, company) {
-      if (err) {
-        console.log(err);
-        return res.status(404).send();
-      } else {
-        Group.find(null,function(err,group){
-          if (err) {
-            console.log(err);
-            return res.status(404).send();;
-          };
-          var _ugids = [];
-          var tmp_gid = [];
-          var _glength = group.length;
-          for(var j=0;j<company.group.length;j++){
-            tmp_gid.push(company.group[j].gid);
-          }
-          for(var i=0;i<_glength;i++){
-            if(group[i].gid != 0 && tmp_gid.indexOf(group[i].gid) == -1){
-              _ugids.push(group[i].gid);
-            }
-          };
-          CompanyGroup.findOne({ gid: req.session.gid, cid: req.user.cid }).exec(function(err, company_group) {
-
-            var photo_album_ids = [];
-            company_group.photo.forEach(function(photo_album) {
-              photo_album_ids.push(photo_album.pid);
-            })
-            PhotoAlbum.where('_id').in(photo_album_ids)
-            .exec(function(err, photo_albums) {
-              if (err) { console.log(err); }
-              else if(photo_albums) {
-                var visible_photo_albums = [];
-                photo_albums.forEach(function(photo_album) {
-                  if (photo_album.hidden === false) {
-                    visible_photo_albums.push(photo_album);
-                  }
-                });
-                res.render('group/home', {
-                  'groups': company.group,
-                  'ugids':_ugids,
-                  'tname': (req.companyGroup.name !== undefined && req.companyGroup.name !== null) ? req.companyGroup.name : '未命名',
-                  'number': (req.companyGroup.member !== undefined && req.companyGroup.member !== null) ? req.companyGroup.member.length : 0,
-                  'score': (req.companyGroup.score !== undefined && req.companyGroup.score !== null) ? req.companyGroup.score : 0,
-                  'role': req.session.role === 'EMPLOYEE',  //等加入权限功能后再修改  TODO
-                  'logo': company_group.logo,
-                  'group_id': company_group._id,
-                  'photo_albums': visible_photo_albums
-                });
-              }
-            });
-
-          });
-        });
+  Group.find(null,function(err,group){
+    if (err) {
+      console.log(err);
+      return res.status(404).send();;
+    };
+    var _ugids = [];
+    var tmp_gid = [];
+    var _glength = group.length;
+    var _uglenth = req.user.group.length;
+    for(var j=0;j<_uglenth;j++){
+      tmp_gid.push(req.user.group[j].gid);
+    }
+    for(var i=0;i<_glength;i++){
+      if(group[i].gid != 0 && tmp_gid.indexOf(group[i].gid) == -1){
+        _ugids.push(group[i].gid);
       }
-    });
-  }
-  else{
-        Group.find(null,function(err,group){
-          if (err) {
-            console.log(err);
-            return res.status(404).send();;
-          };
-          var _ugids = [];
-          var tmp_gid = [];
-          var _glength = group.length;
-          var _uglenth = req.user.group.length;
-          for(var j=0;j<_uglenth;j++){
-            tmp_gid.push(req.user.group[j].gid);
-          }
-          for(var i=0;i<_glength;i++){
-            if(group[i].gid != 0 && tmp_gid.indexOf(group[i].gid) == -1){
-              _ugids.push(group[i].gid);
-            }
-          };
-          CompanyGroup.findOne({ gid: req.session.gid, cid: req.user.cid }).exec(function(err, company_group) {
+    };
+    CompanyGroup.findOne({ gid: req.session.gid, cid: req.user.cid }).exec(function(err, company_group) {
 
-            var photo_album_ids = [];
-            company_group.photo.forEach(function(photo_album) {
-              photo_album_ids.push(photo_album.pid);
-            })
-            PhotoAlbum.where('_id').in(photo_album_ids)
-            .exec(function(err, photo_albums) {
-              if (err) { console.log(err); }
-              else if(photo_albums) {
-                var visible_photo_albums = [];
-                photo_albums.forEach(function(photo_album) {
-                  if (photo_album.hidden === false) {
-                    visible_photo_albums.push(photo_album);
-                  }
-                });
-                res.render('group/home', {
-                  'groups': req.user.group,
-                  'ugids':_ugids,
-                  'tname': (req.companyGroup.name !== undefined && req.companyGroup.name !== null) ? req.companyGroup.name : '未命名',
-                  'number': (req.companyGroup.member !== undefined && req.companyGroup.member !== null) ? req.companyGroup.member.length : 0,
-                  'score': (req.companyGroup.score !== undefined && req.companyGroup.score !== null) ? req.companyGroup.score : 0,
-                  'role': req.session.role === 'EMPLOYEE',  //等加入权限功能后再修改  TODO
-                  'logo': company_group.logo,
-                  'group_id': company_group._id,
-                  'photo_albums': visible_photo_albums
-                });
+    var photo_album_ids = [];
+    company_group.photo.forEach(function(photo_album) {
+      photo_album_ids.push(photo_album.pid);
+    });
+    PhotoAlbum.where('_id').in(photo_album_ids)
+      .exec(function(err, photo_albums) {
+        if (err) { console.log(err); }
+          else if(photo_albums) {
+            var visible_photo_albums = [];
+            photo_albums.forEach(function(photo_album) {
+              if (photo_album.hidden === false) {
+                visible_photo_albums.push(photo_album);
               }
             });
-
-          });
+            res.render('group/home', {
+              'groups': req.user.group,
+              'ugids':_ugids,
+              'tname': (req.companyGroup.name !== undefined && req.companyGroup.name !== null) ? req.companyGroup.name : '未命名',
+              'number': (req.companyGroup.member !== undefined && req.companyGroup.member !== null) ? req.companyGroup.member.length : 0,
+              'score': (req.companyGroup.score !== undefined && req.companyGroup.score !== null) ? req.companyGroup.score : 0,
+              'role': req.session.role === 'EMPLOYEE',  //等加入权限功能后再修改  TODO
+              'logo': company_group.logo,
+              'group_id': company_group._id,
+              'photo_albums': visible_photo_albums
+            });
+          }
         });
-  }
-
+      });
+  });
 };
 
 //返回公司组件的所有数据,待前台调用
@@ -284,7 +216,7 @@ exports.getGroupMessage = function(req, res) {
 
   //有包含gid的消息都列出来
   GroupMessage.find({'cid' : {'$all':[cid]}, 'group.gid' : {'$all':[gid]}}, function(err, group_message) {
-    if (err) {
+    if (err || !group_message) {
       console.log(err);
       return res.status(404).send([]);
     } else {
@@ -298,7 +230,9 @@ exports.getGroupMessage = function(req, res) {
             leader = req.user.group[j].leader;
           }
         }
+        
         group_messages.push({
+          'my_tname' : req.session.companyGroup.name,
           'id': group_message[i].id,
           'cid': group_message[i].cid,
           'group': group_message[i].group,
@@ -306,6 +240,9 @@ exports.getGroupMessage = function(req, res) {
           'date': group_message[i].date,
           'poster': group_message[i].poster,
           'content': group_message[i].content,
+          'location' : group_message[i].location,
+          'start_time' : group_message[i].start_time ? group_message[i].start_time.toLocaleDateString() : '',
+          'end_time' : group_message[i].end_time ? group_message[i].end_time.toLocaleDateString() : '',
           'provoke': group_message[i].provoke,                   //应约按钮显示要有四个条件:1.该约战没有关闭 2.当前员工所属组件id和被约组件id一致 3.约战没有确认 4.当前员工是该小队的队长
           'provoke_accept': group_message[i].provoke.active && (group_message[i].group.gid[0] === gid) && leader && (!group_message[i].provoke.start_confirm) && (group_message[i].cid[1] === req.session.cid)
         });
@@ -368,6 +305,7 @@ exports.getGroupCampaign = function(req, res) {
           'cname': campaign[i].cname,
           'poster': campaign[i].poster,
           'content': campaign[i].content,
+          'location': campaign[i].location,
           'member': campaign[i].member,
           'create_time': campaign[i].create_time ? campaign[i].create_time.toLocaleDateString() : '',
           'start_time': campaign[i].start_time ? campaign[i].start_time.toLocaleDateString() : '',
@@ -475,6 +413,7 @@ exports.provoke = function (req, res) {
         groupMessage.group.gid.push(gid);
         groupMessage.group.group_type.push(competition.group_type);
         groupMessage.provoke.active = true;
+        groupMessage.provoke.competition_format = competition_format;
 
         groupMessage.provoke.team.push(req.session.companyGroup.name);
         groupMessage.provoke.team.push(req.body.team_opposite);
@@ -488,6 +427,10 @@ exports.provoke = function (req, res) {
           groupMessage.cid.push(req.body.cid_opposite);
         }
         groupMessage.content = content;
+        groupMessage.location = location;
+        groupMessage.start_time = competition_date;
+        groupMessage.end_time = deadline;
+
         groupMessage.save(function (err) {
           if (err) {
             console.log('保存约战动态时出错' + err);
@@ -541,9 +484,14 @@ exports.responseProvoke = function (req, res) {
         campaign.poster.role = 'LEADER';
         campaign.poster.username = competition.camp[0].username;
         campaign.content = competition.camp[0].tname + ' VS ' + competition.camp[1].tname;
+        campaign.location = competition.brief.location.name;
+        campaign.start_time = competition.brief.competition_date;
+        campaign.end_time = competition.brief.deadline;
+
         campaign.active = true;
         campaign.provoke.active = true;
         campaign.provoke.competition_id = competition.id;
+        campaign.provoke.competition_format = competition.brief.competition_format;
         campaign.provoke.active = true;
 
         campaign.save(function(err) {
@@ -578,7 +526,8 @@ exports.responseProvoke = function (req, res) {
 
 
 
-
+//TODO
+//修改活动后的关闭逻辑?
 exports.campaignEdit = function (req, res) {
   var campaign_id = req.body.campaign_id;
   var content = req.body.content;
@@ -622,6 +571,7 @@ exports.sponsor = function (req, res) {
   var uid = req.session.uid;  //用户id
   var gid = req.session.gid;     //组件id,组长一次对一个组发布活动
   var content = req.body.content;//活动内容
+  var location = req.body.location;//活动地点
   var cname = '';
 
   //生成活动
@@ -644,6 +594,7 @@ exports.sponsor = function (req, res) {
   campaign.poster.role = 'LEADER';
   campaign.poster.username = username;
   campaign.content = content;
+  campaign.location = location;
   campaign.active = true;
 
   campaign.start_time = req.body.start_time;
@@ -680,6 +631,9 @@ exports.sponsor = function (req, res) {
     groupMessage.poster.username = username;
 
     groupMessage.content = content;
+    groupMessage.location = location;
+    groupMessage.start_time = req.body.start_time;
+    groupMessage.end_time = req.body.end_time;
 
     groupMessage.save(function (err) {
       if (err) {

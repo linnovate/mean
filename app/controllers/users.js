@@ -315,6 +315,7 @@ exports.getGroupMessages = function(req, res) {
           var length = group_message.length;
           for(var j = 0; j < length; j ++) {
             group_messages.push({
+              'my_tname': req.user.group[flag-1].tname,
               'id': group_message[j].id,
               'cid': group_message[j].cid,
               'group': group_message[j].group,
@@ -322,6 +323,9 @@ exports.getGroupMessages = function(req, res) {
               'date': group_message[j].date,
               'poster': group_message[j].poster,
               'content': group_message[j].content,
+              'location' : group_message[i].location,
+              'start_time' : group_message[i].start_time ? group_message[i].start_time.toLocaleDateString() : '',
+              'end_time' : group_message[i].end_time ? group_message[i].end_time.toLocaleDateString() : '',
               'provoke': group_message[j].provoke,                  //应约按钮显示要有四个条件:1.该约战没有关闭 2.当前员工公司id和被约公司id一致 3.约战没有确认 4.当前员工是该小队的队长
               'provoke_accept': group_message[j].provoke.active && (group_message[j].group.gid[0] === req.user.group[flag-1].gid) && (!group_message[j].provoke.start_confirm) && req.user.group[flag-1].leader && (group_message[j].cid[1] === req.session.cid)
             });
@@ -370,6 +374,7 @@ exports.getCampaigns = function(req, res) {
               'cname': campaign[j].cname,
               'poster': campaign[j].poster,
               'content': campaign[j].content,
+              'location': campaign[j].location,
               'member': campaign[j].member,
               'create_time': campaign[j].create_time ? campaign[j].create_time.toLocaleDateString() : '',
               'start_time': campaign[j].start_time ? campaign[j].start_time.toLocaleDateString() : '',

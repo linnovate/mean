@@ -40,6 +40,7 @@ var Campaign = new Schema({
         },
     },
     content: String,
+    location: String,                  //地点
     member: [_member],
 
     create_time: {
@@ -49,11 +50,12 @@ var Campaign = new Schema({
     start_time: Date,
     end_time: Date,
     provoke: {                        //约战活动
+        competition_format: String,   //赛制
         active: {
             type: Boolean,
             default: false
         },                            //如果是true就显示为约战活动,否则为普通活动
-        team: Array,
+        team: Array,                  //双方队名
         competition_id: String        //对应的比赛的id
     }
 });

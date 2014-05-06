@@ -218,9 +218,10 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
                 method: 'post',
                 url: '/company/campaignSponsor',
                 data:{
+                    location: $scope.location,
                     content : $scope.content,
-                    start_time : $scope.start_time,
-                    end_time : $scope.end_time
+                    start_time : document.getElementById('dtp_input_start_time').value,
+                    end_time : document.getElementById('dtp_input_end_time').value
                 }
             }).success(function(data, status) {
                 //发布活动后跳转到显示活动列表页面
