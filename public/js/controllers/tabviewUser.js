@@ -140,9 +140,9 @@ tabViewUser.controller('AccountFormController',['$scope','$http',function($scope
         console.log('个人账号信息获取失败！');
     });
     $scope.baseUnEdit = true;
-    $scope.baseButtonStatus = '编辑>';
+    $scope.baseButtonStatus = '编辑';
     $scope.linkUnEdit = true;
-    $scope.linkButtonStatus = '编辑>';
+    $scope.linkButtonStatus = '编辑';
     $scope.baseEditToggle = function() {
         $scope.baseUnEdit = !$scope.baseUnEdit;
         if($scope.baseUnEdit) {
@@ -177,7 +177,7 @@ tabViewUser.controller('AccountFormController',['$scope','$http',function($scope
             catch(e) {
                 console.log(e);
             }
-            $scope.baseButtonStatus = '编辑>';
+            $scope.baseButtonStatus = '编辑';
         }
         else {
             $scope.baseButtonStatus = '保存';
@@ -213,7 +213,7 @@ tabViewUser.controller('AccountFormController',['$scope','$http',function($scope
             catch(e) {
                 console.log(e);
             }
-            $scope.linkButtonStatus = '编辑>';
+            $scope.linkButtonStatus = '编辑';
         }
         else {
             $scope.linkButtonStatus = '保存';

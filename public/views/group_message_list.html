@@ -32,9 +32,9 @@
           </div>
           <span class="message_label text-center">{{ group_message.content }}</span>
           <div class="message_label pull-right" ng-if="group_message.provoke.active">
-            <input type = "button"  class="btn" ng-if = "!group_message.provoke.start_confirm && voteFlag" value = "赞成{{group_message.provoke.vote.positive}}" ng-click="vote(group_message.id,true,$index)" />
-            <input type = "button"  class="btn" ng-if = "!group_message.provoke.start_confirm && voteFlag" value = "反对{{group_message.provoke.vote.negative}}" ng-click="vote(group_message.id,false,$index)" />
-            <input type = "button"  class="btn" ng-if="group_message.provoke_accept && !voteFlag" value = "应战" ng-click="responseProvoke(group_message.id)" />
+            <input type = "button"  class="btn" ng-if = "!group_message.provoke.start_confirm"  value = "赞成{{group_message.provoke.vote.positive}}" ng-click="vote(group_message.id,true,$index)" />
+            <input type = "button"  class="btn" ng-if = "!group_message.provoke.start_confirm" value = "反对{{group_message.provoke.vote.negative}}" ng-click="vote(group_message.id,false,$index)" />
+            <input type = "button"  class="btn" ng-if="group_message.provoke_accept" value = "应战" ng-click="responseProvoke(group_message.id)" />
           </div>
         </div>
       </div>

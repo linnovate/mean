@@ -324,7 +324,7 @@ tabViewGroup.controller('MemberListController', ['$http','$scope','$rootScope', 
 
 tabViewGroup.controller('infoController', ['$http', '$scope',function($http, $scope) {
     $scope.unEdit = true;
-    $scope.buttonStatus = '编辑>';
+    $scope.buttonStatus = '编辑';
     $http.get('/group/info').success(function(data, status) {
         $scope.companyname = data.companyname;
         $scope.create_time = data.entity.create_date ? data.entity.create_date :'';
@@ -337,26 +337,6 @@ tabViewGroup.controller('infoController', ['$http', '$scope',function($http, $sc
         $scope.home_court_2 = data.entity.home_court[1] ? data.entity.home_court[1] : '';
         $scope.family = data.entity.family;
         $scope.members = data.companyGroup.member;
-        //TOTO:测试数据
-        /*
-        var _member = [{'username':'阿飞','photo':'/img/user/photo/default.png'},
-                        {'username':'大天','photo':'/img/user/photo/default.png'},
-                        {'username':'小良','photo':'/img/user/photo/default.png'},
-                        {'username':'lee','photo':'/img/user/photo/default.png'},
-                        {'username':'阿飞','photo':'/img/user/photo/default.png'},
-                        {'username':'大天','photo':'/img/user/photo/default.png'},
-                        {'username':'小良','photo':'/img/user/photo/default.png'},
-                        {'username':'lee','photo':'/img/user/photo/default.png'},
-                        {'username':'阿飞','photo':'/img/user/photo/default.png'},
-                        {'username':'大天','photo':'/img/user/photo/default.png'},
-                        {'username':'小良','photo':'/img/user/photo/default.png'},
-                        {'username':'lee','photo':'/img/user/photo/default.png'}];
-        var _leaders = [{'username':'阿飞','photo':'/img/user/photo/default.png'},
-                        {'username':'大天','photo':'/img/user/photo/default.png'}];
-        
-        $scope.leaders = _leaders;
-        $scope.main_forces = _member;
-        */
     });
 
     $scope.editToggle = function() {
@@ -386,7 +366,7 @@ tabViewGroup.controller('infoController', ['$http', '$scope',function($http, $sc
             catch(e) {
                 console.log(e);
             }
-            $scope.buttonStatus = '编辑>';
+            $scope.buttonStatus = '编辑';
         }
         else {
             $scope.buttonStatus = '保存';

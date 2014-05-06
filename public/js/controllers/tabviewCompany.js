@@ -265,9 +265,9 @@ tabViewCompany.controller('AccountFormController',['$scope','$http',function($sc
         alert('企业账号信息获取失败！');
     });
     $scope.accountUnEdit = true;
-    $scope.accountButtonStatus = '编辑>';
+    $scope.accountButtonStatus = '编辑';
     $scope.infoUnEdit = true;
-    $scope.infoButtonStatus = '编辑>';
+    $scope.infoButtonStatus = '编辑';
     $scope.accountEditToggle = function() {
         $scope.accountUnEdit = !$scope.accountUnEdit;
         if($scope.accountUnEdit) {
@@ -293,7 +293,7 @@ tabViewCompany.controller('AccountFormController',['$scope','$http',function($sc
             catch(e) {
                 console.log(e);
             }
-            $scope.accountButtonStatus = '编辑>';
+            $scope.accountButtonStatus = '编辑';
         }
         else {
             $scope.accountButtonStatus = '保存';
@@ -324,7 +324,7 @@ tabViewCompany.controller('AccountFormController',['$scope','$http',function($sc
             catch(e) {
                 console.log(e);
             }
-            $scope.infoButtonStatus = '编辑>';
+            $scope.infoButtonStatus = '编辑';
         }
         else {
             $scope.infoButtonStatus = '保存';

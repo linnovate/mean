@@ -29,13 +29,13 @@ exports.getGroups = function(req,res) {
           console.log(err);
           res.status(400).send([]);
           return;
-      };
+      }
       var _length = group.length;
       var groups = [];
 
 
       for(var i = 0; i < _length; i++ ){
-        if(group[i].gid!=0){
+        if(group[i].gid!==0){
           groups.push({'id':group[i].gid,'type':group[i].group_type,'select':'0', 'entity_type':group[i].entity_type});
         }
       }
@@ -55,8 +55,8 @@ exports.info =function(req,res) {
 
   var entity_type = req.session.companyGroup.entity_type;
   var Entity = mongoose.model(entity_type);//将对应的增强组件模型引进来
-  if(req.session.cpname != null || req.session.username != null ) {
-    var gid = req.params.groupId != null ? req.params.groupId : req.session.gid;
+  if(req.session.cpname !== null || req.session.username !== null ) {
+    var gid = req.params.groupId !== null ? req.params.groupId : req.session.gid;
     Entity.findOne({
         'cid': req.session.cid,
         'gid': gid
@@ -77,13 +77,13 @@ exports.info =function(req,res) {
 };
 
 exports.saveInfo =function(req,res) {
-    if(req.session.cid != null) {
+    if(req.session.cid !== null) {
         CompanyGroup.findOne({cid : req.session.cid, gid : req.session.gid}, function(err, companyGroup) {
             if (err) {
                 console.log('数据错误');
                 res.send({'result':0,'msg':'数据查询错误'});
                 return;
-            };
+            }
             if(companyGroup) {
                 companyGroup.name = req.body.name;
                 companyGroup.brief = req.body.brief;
@@ -95,7 +95,7 @@ exports.saveInfo =function(req,res) {
                     }
                     var entity_type = req.session.companyGroup.entity_type;
                     var Entity = mongoose.model(entity_type);//将对应的增强组件模型引进来
-                    var gid = req.params.groupId != null ? req.params.groupId : req.session.gid;
+                    var gid = req.params.groupId !== null ? req.params.groupId : req.session.gid;
                     Entity.findOne({
                         'cid': req.session.cid,
                         'gid': gid
@@ -112,7 +112,7 @@ exports.saveInfo =function(req,res) {
                                 return;
                               }
                               res.send({'result':1,'msg':'更新成功'});
-                            })
+                            });
                           }
                       });
                 });
@@ -130,14 +130,14 @@ exports.saveInfo =function(req,res) {
 
 //返回组件页面
 exports.home = function(req, res) {
-  if (req.params.groupId != null) {
+  if (req.params.groupId !== null) {
     req.session.gid = req.params.groupId;
   }
   Group.find(null,function(err,group){
     if (err) {
       console.log(err);
-      return res.status(404).send();;
-    };
+      return res.status(404).send();
+    }
     var _ugids = [];
     var tmp_gid = [];
     var _glength = group.length;
@@ -146,10 +146,10 @@ exports.home = function(req, res) {
       tmp_gid.push(req.user.group[j].gid);
     }
     for(var i=0;i<_glength;i++){
-      if(group[i].gid != 0 && tmp_gid.indexOf(group[i].gid) == -1){
+      if(group[i].gid !== 0 && tmp_gid.indexOf(group[i].gid) === -1){
         _ugids.push(group[i].gid);
       }
-    };
+    }
     CompanyGroup.findOne({ gid: req.session.gid, cid: req.user.cid }).exec(function(err, company_group) {
 
     var photo_album_ids = [];
@@ -269,6 +269,7 @@ exports.getGroupCampaign = function(req, res) {
       var campaigns = [];
       var join = false;
       var length = campaign.length;
+      var permission = false;
       for(var i = 0;i < length; i ++) {
         join = false;
 
@@ -283,9 +284,8 @@ exports.getGroupCampaign = function(req, res) {
         //判断这个组是不是员工所属的组,否则不能参加
         //这个逻辑暂时用不到(因为员工只能进入自己加入的兴趣小组),以后员工可能
         //可以进入他没有加入的兴趣小组,所以先把逻辑功能留在这里
-        var permission = false;
         var stop = false;
-        for(var j = 0; j < campaign[i].gid.length && !stop; j ++) {
+        for(j = 0; j < campaign[i].gid.length && !stop; j ++) {
           for(var k = 0; k < req.user.group.length; k ++) {
             if(req.user.group[k].gid === campaign[i].gid[j]) {
               permission = (req.user.group[k].leader === true);     //只有这个组的组长才可以操作活动
@@ -314,7 +314,6 @@ exports.getGroupCampaign = function(req, res) {
           'provoke':campaign[i].provoke
         });
       }
-
       return res.send({
         'data':campaigns,
         'permission':permission
@@ -511,7 +510,7 @@ exports.responseProvoke = function (req, res) {
           }
           GroupMessage.findOne({'id' : provoke_message_id}, function (err, group_message) {
             if (err) {
-
+              console.log(err);
             } else {
               group_message.provoke.start_confirm = true;
               group_message.save();

@@ -75,11 +75,8 @@ exports.validateConfirm = function(req, res) {
         res.render('company/validate/confirm', {
             title: '验证成功,可以进行下一步!'
         });
-    } else {
-        //非法进入!
     }
 };
-
 //配合路由渲染公司注册账户页面
 exports.create_company_account = function(req, res) {
     res.render('company/validate/create_detail', {
@@ -169,23 +166,16 @@ exports.groupSelect = function(req, res) {
                 if(s_err){
                     console.log(s_err);
                 }
-
-
             });
             res.send({'result':1,'msg':'组件选择成功！'});
-        } else {
-
         }
     });
 };
-
-
 
 exports.validate = function(req, res) {
 
     var key = req.query.key;
     var _id = req.query.id;
-
     Company.findOne({
         id : _id
     },
@@ -215,7 +205,7 @@ exports.validate = function(req, res) {
 /**
  * 创建公司基本信息
  */
-exports.create = function(req, res, next) {
+exports.create = function(req, res) {
 
     Config
     .findOne({ name: config.CONFIG_NAME })
@@ -258,13 +248,6 @@ exports.create = function(req, res, next) {
         }
     })
     .then(function(company) {
-
-        //var company = new Company();
-        var message = null;
-
-        //company.password = UUID.id();
-        //company.username = UUID.id();
-        //company.info.name = req.body.name;
         company.info.city.province = req.body.province;
         company.info.city.city = req.body.city;
         company.info.address = req.body.address;
@@ -317,7 +300,7 @@ exports.create = function(req, res, next) {
 /**
  * 验证通过后创建公司进一步的信息(用户名\密码等)
  */
-exports.createDetail = function(req, res, next) {
+exports.createDetail = function(req, res) {
 
     Company.findOne({id: req.session.company_id}, function(err, company) {
         if(company) {
@@ -354,7 +337,7 @@ exports.home = function(req, res) {
 };
 
 exports.Info = function(req, res) {
-    if(req.session.cpname != null) {
+    if(req.session.cpname !== null) {
         res.render('company/company_info', {
             title: '企业信息管理'
         });
@@ -364,10 +347,10 @@ exports.Info = function(req, res) {
 };
 
 exports.getAccount = function(req, res) {
-    if(req.session.cid != null) {
+    if(req.session.cid !== null) {
         Company.findOne({'id': req.session.cid}, {'_id':0,'username': 1,'login_email':1, 'register_date':1,'info':1},function(err, _company) {
             if (err) {
-
+                console.log(err);
             }
             if(_company) {
                 var _account = {
@@ -387,12 +370,12 @@ exports.getAccount = function(req, res) {
 };
 
 exports.saveAccount = function(req, res) {
-    if(req.session.cid != null) {
+    if(req.session.cid !== null) {
         var _company = {};
-        if(req.body.company!=null){
+        if(req.body.company!==null){
             _company = req.body.company;
         }
-        else if(req.body.info!=null){
+        else if(req.body.info!==null){
             _company.info = req.body.info;
         }
         Company.findOneAndUpdate({'id': req.session.cid}, _company,null, function(err, company) {
@@ -630,7 +613,7 @@ exports.campaignEdit = function (req, res) {
               campaign.save();
               return res.send('ok');
             }
-          })
+          });
         }
       });
       //console.log(campaign_id);
@@ -649,7 +632,7 @@ exports.sponsor = function (req, res) {
     var group_type = '虚拟组';
     var company_in_campaign = req.body.company_in_campaign;//公司id数组,HR可以发布多个公司一起的的联谊或者约战活动,注意:第一个公司默认就是次hr所在的公司!
 
-    if(company_in_campaign == undefined || company_in_campaign == null) {
+    if(company_in_campaign === undefined || company_in_campaign === null) {
         company_in_campaign = [cid];
     }
     var content = req.body.content;//活动内容
@@ -734,7 +717,7 @@ exports.sponsor = function (req, res) {
 };
 
 exports.changePassword = function(req, res){
-    if(req.session.cid==null){
+    if(req.session.cid===null){
         return res.send({'result':0,'msg':'您没有登录'});
     }
     Company.findOne({
@@ -746,7 +729,7 @@ exports.changePassword = function(req, res){
             }
             else {
                 if (company) {
-                  if(company.authenticate(req.body.nowpassword)==true){
+                  if(company.authenticate(req.body.nowpassword)===true){
                     company.password = req.body.newpassword;
                     company.save(function(err){
                       if(err){

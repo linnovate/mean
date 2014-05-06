@@ -2,7 +2,7 @@ div(ng-app="tabViewGroup" ng-controller="infoController")
   form.form-horizontal(name="infoForm")
     .row
       h4.pull-left 基本信息
-      button.pull-right(ng-click="editToggle()" ng-bind="buttonStatus")
+      a.btn.pull-right(ng-click="editToggle()" ng-bind="buttonStatus")
     hr
     .row
 
@@ -20,7 +20,7 @@ div(ng-app="tabViewGroup" ng-controller="infoController")
     .row
       label.col-md-2.control-label 小组队徽
       .col-md-5
-        a.btn.btn-primary(href="/group/editLogo") 修改
+        a.btn(href="/group/editLogo") 修改
     .row
       label.col-md-2.control-label 主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;场
       .col-md-3
