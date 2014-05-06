@@ -27,7 +27,9 @@ module.exports = function(config) {
             'public/{auth,articles}/*/*.js',
             'public/system/{controllers,routes,services}/*.js',
             'public/init.js',
-            'test/karma/unit/**/*.js'
+            'test/karma/unit/**/*.js',
+            'packages/*/public/**/*.js',
+            'packages/*/test/karma/**/*.js'
         ],
 
 
@@ -48,7 +50,9 @@ module.exports = function(config) {
             // do not include tests or libraries
             // (these files will be instrumented by Istanbul)
             'public/js/controllers/*.js': ['coverage'],
-            'public/js/services/*.js': ['coverage']
+            'public/js/services/*.js': ['coverage'],
+            'packages/*/public/*/controllers/*.js': ['coverage'],
+            'packages/*/public/*/services/*.js': ['coverage']
         },
 
         coverageReporter: {
