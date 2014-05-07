@@ -8,7 +8,7 @@ var should = require('should'),
     User = mongoose.model('User');
 
 //Globals
-var user, user2;
+var user, user2, user3;
 
 //The tests
 describe('<Unit Test>', function() {
@@ -22,7 +22,13 @@ describe('<Unit Test>', function() {
                 provider: 'local'
             });
             user2 = new User(user);
-
+            user3 = new User({
+                name: 'Full name',
+                email: 'test@test.com',
+                username: 'user',
+                password: 'password',
+                provider: 'local'
+            });
             done();
         });
 
@@ -44,6 +50,18 @@ describe('<Unit Test>', function() {
                     should.exist(err);
                     done();
                 });
+            });
+
+            it('should fail to save when username and provider are both duplicates', function(done) {
+                return user3.save(function(err) {
+                    should.exist(err);
+                    done();
+                });
+            });
+
+            it('should save when username is a duplicate', function(done) {
+                user3.provider = 'notlocal'
+                user3.save(done);
             });
 
             it('should show an error when try to save without name', function(done) {
