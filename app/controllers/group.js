@@ -56,7 +56,7 @@ exports.info =function(req,res) {
   var entity_type = req.session.companyGroup.entity_type;
   var Entity = mongoose.model(entity_type);//将对应的增强组件模型引进来
   if(req.session.cpname !== null || req.session.username !== null ) {
-    var gid = req.params.groupId !== null ? req.params.groupId : req.session.gid;
+    var gid = req.params.groupId !== undefined ? req.params.groupId : req.session.gid;
     Entity.findOne({
         'cid': req.session.cid,
         'gid': gid
@@ -78,6 +78,8 @@ exports.info =function(req,res) {
 
 exports.saveInfo =function(req,res) {
     if(req.session.cid !== null) {
+      console.log('-----',req.session.gid);
+
         CompanyGroup.findOne({cid : req.session.cid, gid : req.session.gid}, function(err, companyGroup) {
             if (err) {
                 console.log('数据错误');
@@ -95,7 +97,7 @@ exports.saveInfo =function(req,res) {
                     }
                     var entity_type = req.session.companyGroup.entity_type;
                     var Entity = mongoose.model(entity_type);//将对应的增强组件模型引进来
-                    var gid = req.params.groupId !== null ? req.params.groupId : req.session.gid;
+                    var gid = req.params.groupId !== undefined ? req.params.groupId : req.session.gid;
                     Entity.findOne({
                         'cid': req.session.cid,
                         'gid': gid
@@ -130,9 +132,11 @@ exports.saveInfo =function(req,res) {
 
 //返回组件页面
 exports.home = function(req, res) {
+
   if (req.params.groupId !== null) {
     req.session.gid = req.params.groupId;
   }
+
   Group.find(null,function(err,group){
     if (err) {
       console.log(err);
@@ -885,6 +889,8 @@ exports.group = function(req, res, next, id) {
         req.companyGroup = companyGroup;
         //TODO session不能存太多东西
         req.session.companyGroup = companyGroup;
+
+
         next();
     });
 };
