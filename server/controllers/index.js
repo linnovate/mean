@@ -14,7 +14,7 @@ exports.render = function(req, res) {
             angularDependencies: mean.modules[name].angularDependencies
         });
     }
-
+    
     // Send some basic starting info to the view
     res.render('index', {
         user: req.user ? {
@@ -24,8 +24,8 @@ exports.render = function(req, res) {
             roles: req.user.roles
         } : {},
         modules: modules,
-        enabledAdmin: function(name) {
-            return (req.user.roles && req.user.roles.indexOf('admin') && mean.enabled(name));
+        adminEnabled: function() {
+            return (req.user && (req.user.roles.indexOf('admin') != -1) && mean.enabled('mean-admin'));
         }
 
     });
