@@ -5,20 +5,33 @@
       h4.modal-title#myModalLabel 发起活动
     .modal-body
       .row
-        label 活动内容
+        .col-md-6
+          label 活动内容
           input(type="text" class="form-control" name="content" ng-model="content" ng-change="judge()")
-        label 活动地点
+        .col-md-6
+          label 活动地点
           input(type="text" class="form-control" name="location" ng-model="location")
-        label 开始时间
-          .form-group(ng-class="{'has-error': datepickerForm.date.$invalid}")
-            .control-label
-              i(class="fa fa-calendar")
-            input.form-control(type="text" ng-model="start_time" name="date" bs-datepicker)
-        label 结束时间
-          .form-group(ng-class="{'has-error': datepickerForm.date.$invalid}")
-            .control-label
-              i(class="fa fa-calendar")
-            input.form-control(type="text" ng-model="end_time" name="date" bs-datepicker)
+      .row
+        .col-md-6
+          label 开始时间
+            .form-group
+              .control-label
+                i(class="fa fa-calendar")
+              .row
+                .col-md-6
+                  input.form-control(type="text" ng-model="start_time" name="date" data-autoclose="1" placeholder="Date" bs-datepicker)
+                .col-md-6
+                  input.form-control(type="text" ng-model="start_time" name="time" data-autoclose="1" placeholder="Time" bs-timepicker)
+        .col-md-6
+          label 结束时间
+            .form-group
+              .control-label
+                i(class="fa fa-calendar")
+              .row
+                .col-md-6
+                  input.form-control(type="text" ng-model="end_time" name="date" data-autoclose="1" placeholder="Date" bs-datepicker)
+                .col-md-6
+                  input.form-control(type="text" ng-model="end_time" name="time" data-autoclose="1" placeholder="Time" bs-timepicker)
     .modal-footer
       button(data-dismiss="modal") 取消
       button(ng-click='sponsor()' data-dismiss="modal" ng-disabled="{{campaign_ok}}") 确定

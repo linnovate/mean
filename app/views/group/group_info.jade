@@ -35,7 +35,8 @@ div(ng-app="tabViewGroup" ng-controller="infoController")
           input.form-control.editToggle(type="textarea" rows="10" name ="brief" ng-model="brief" ng-disabled="unEdit")
     .row
       label.col-md-2.control-label 成立时间
-      label.col-md-5{{create_time}}
+      .col-md-5
+        label{{create_time}}
     .row
       h4.pull-left 比赛信息
     hr

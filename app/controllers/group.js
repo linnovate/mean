@@ -150,7 +150,7 @@ exports.home = function(req, res) {
       tmp_gid.push(req.user.group[j].gid);
     }
     for(var i=0;i<_glength;i++){
-      if(group[i].gid !== 0 && tmp_gid.indexOf(group[i].gid) === -1){
+      if(group[i].gid !== '0' && tmp_gid.indexOf(group[i].gid) === -1){
         _ugids.push(group[i].gid);
       }
     }

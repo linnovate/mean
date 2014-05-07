@@ -9,9 +9,76 @@ body {
   font-size: 14px;
   line-height: 1;
   color: #666;
+  background-color: #f9f9f9;
 }
 a {
   color: #28689b;
+}
+.content {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -60px;
+  padding-top: 70px;
+  padding-bottom: 60px;
+}
+input[type='button'],
+input[type='submit'],
+button {
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  color: #fff;
+  background-color: #3bbee8;
+  border-color: #3bbee8;
+  border-style: solid;
+}
+button:hover,
+.btn:hover {
+  background-color: #3abde7;
+  border-color: #3abde7;
+}
+input[disabled='disabled'].editToggle {
+  background-color: inherit;
+  border: 0px solid;
+  box-shadow: none;
+  cursor: default;
+}
+.info_border {
+  padding: 5px;
+  margin: -3px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #3bbee8;
+}
+.size_family {
+  height: 300px;
+  width: 800px;
+}
+.size_400 {
+  height: 210px;
+  width: 210px;
+}
+.size_210 {
+  height: 210px;
+  width: 210px;
+}
+.size_80 {
+  height: 80px;
+  width: 80px;
+}
+.size_50 {
+  height: 50px;
+  width: 50px;
+}
+.height_400 {
+  height: 400px;
+}
+.img_contain {
+  background-size: contain;
+}
+.full_parent {
+  height: 100%;
+  width: 100%;
 }
 .dl_sm_group .control-label,
 .dl_lg_group .control-label {

@@ -1,6 +1,6 @@
 'use strict';
 
-var tabViewGroup = angular.module('tabViewGroup', ['ngRoute']);
+var tabViewGroup = angular.module('tabViewGroup', ['ngRoute','ngAnimate','mgcrea.ngStrap.datepicker','mgcrea.ngStrap.timepicker']);
 
 tabViewGroup.run(['$rootScope', function( $rootScope) {
 
