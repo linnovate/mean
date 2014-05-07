@@ -15,6 +15,10 @@ var mongoose = require('mongoose'),
 // Initializing system variables
 var config = require('./server/config/config');
 var db = mongoose.connect(config.db);
+mongoose.connection.on('error', function (err) {
+    console.error('mongoose error: ' + err.message);
+    console.error(' is Mongo connected?');
+});
 
 // Bootstrap Models, Dependencies, Routes and the app as an express app
 var app = require('./server/config/system/bootstrap')(passport, db);
