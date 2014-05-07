@@ -52,21 +52,30 @@ block panel
                     input(type="text" class="form-control" name="location" ng-model="campaign_info.location.name" required)
                   label 人数
                     input(type="text" class="form-control" name="number" ng-model="campaign_info.number" required)
-                  label 比赛时间
-                    .input-group.date.form_datetime.col-md-5(data-date="2014-04-29T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii p" data-link-field="dtp_input_competition_date")
-                      input.form-control(size="16" type="text" value="" readonly)
-                      span.input-group-addon
-                        span.glyphicon.glyphicon-th
-                    input(id="dtp_input_competition_date" type="hidden" name="competition_date" required)
-                  label 截止时间
-                    .input-group.date.form_datetime.col-md-5(data-date="2014-04-29T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii p" data-link-field="dtp_input_deadline")
-                      input.form-control(size="16" type="text" value="" readonly)
-                      span.input-group-addon
-                        span.glyphicon.glyphicon-th
-                    input(id="dtp_input_deadline" type="hidden" name="deadline" required)
-              .modal-footer
-                button(class="btn btn-default" data-dismiss="modal") 取消
-                button(class="btn btn-primary" ng-disabled='campaignDisabled' ng-click='addCampaignInfo("#{arena.id}")' data-dismiss="modal") 确定
+                  .row
+                    .col-md-6
+                      label 开始时间
+                        .form-group
+                          .control-label
+                            i(class="fa fa-calendar")
+                          .row
+                            .col-md-6
+                              input.form-control(type="text" ng-model="campaign_info.competition_date" name="date" data-autoclose="1" placeholder="Date" bs-datepicker)
+                            .col-md-6
+                              input.form-control(type="text" ng-model="campaign_info.competition_date" name="time" data-autoclose="1" placeholder="Time" bs-timepicker)
+                    .col-md-6
+                      label 结束时间
+                        .form-group
+                          .control-label
+                            i(class="fa fa-calendar")
+                          .row
+                            .col-md-6
+                              input.form-control(type="text" ng-model="campaign_info.deadline" name="date" data-autoclose="1" placeholder="Date" bs-datepicker)
+                            .col-md-6
+                              input.form-control(type="text" ng-model="campaign_info.deadline" name="time" data-autoclose="1" placeholder="Time" bs-timepicker)
+                          .modal-footer
+                            button(class="btn btn-default" data-dismiss="modal") 取消
+                            button(class="btn btn-primary" ng-disabled='campaignDisabled' ng-click='addCampaignInfo("#{arena.id}")' data-dismiss="modal") 确定
     if(arena.champion.cid)
       .row
         h1 擂主信息

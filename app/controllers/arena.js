@@ -8,7 +8,10 @@ var mongoose = require('mongoose'),
     GroupMessage = mongoose.model('GroupMessage'),
     Company = mongoose.model('Company'),
     CompanyGroup = mongoose.model('CompanyGroup'),
-    Arena = mongoose.model('Arena');
+    PhotoAlbum = mongoose.model('PhotoAlbum'),
+    Arena = mongoose.model('Arena'),
+    fs = require('fs'),
+    meanConfig = require('../../config/config');
 exports.home = function(req, res) {
   Arena.find({'gid':req.session.gid},function(err,arenas){
       if (err) {
@@ -111,8 +114,7 @@ exports.challenge = function(req, res){
   if(req.arena.champion.uid!==req.session.uid){
     var uid = req.session.uid;
     var username = req.session.username;
-
-    var cid = req.session.cid;    //约战方公司id
+    var cid =req.session.cid;
     var cid_opposite = req.arena.champion.cid;       //被约方公司id(如果是同一家公司那么cid_b = cid_a)
     var gid = req.session.gid;         //约战小组id
 
@@ -134,15 +136,19 @@ exports.challenge = function(req, res){
     competition.gid = gid;
     competition.group_type = req.session.companyGroup.group_type;
 
-    var camp_a = {
+    competition.camp.push({
       'cid' : cid,
       'start_confirm' : true,
       'tname' : team_a,
       'logo' : req.session.companyGroup.logo
-    };
+    });
+    var photo_album = new PhotoAlbum();
+    photo_album.save();
 
-    competition.camp.push(camp_a);
-
+    competition.photo = { pid: photo_album._id, name: photo_album.name };
+    fs.mkdir(meanConfig.root + '/public/img/photo_album/' + photo_album._id, function(err) {
+      if (err) console.log(err);
+    });
     //这个查询就为了找对方小队的一个logo
     //速度换空间
     CompanyGroup.findOne({'cid':cid_opposite,'gid':gid},function(err, company_group){
@@ -151,13 +157,11 @@ exports.challenge = function(req, res){
       } else {
         if(company_group) {
 
-          var camp_b = {
+          competition.camp.push({
             'cid' : cid_opposite,
             'tname' : team_opposite,
             'logo' : company_group.logo
-          };
-
-          competition.camp.push(camp_b);
+          });
 
           competition.content = content;
           competition.brief.remark = remark;
@@ -172,9 +176,15 @@ exports.challenge = function(req, res){
           groupMessage.group.gid.push(gid);
           groupMessage.group.group_type.push(competition.group_type);
           groupMessage.provoke.active = true;
-
-          groupMessage.provoke.team.push(team_a);
-          groupMessage.provoke.team.push(team_opposite);
+          groupMessage.provoke.team =[];
+          groupMessage.provoke.team.push({
+          'cid':cid,
+          'tname':team_a
+        });
+          groupMessage.provoke.team.push({
+          'cid':cid_opposite,
+          'tname':team_opposite
+        });
 
           //groupMessage.poster.cname = cname;
           groupMessage.poster.cid = cid;
@@ -186,6 +196,10 @@ exports.challenge = function(req, res){
             groupMessage.cid.push(cid_opposite);
           }
           groupMessage.content = content;
+          groupMessage.location = location;
+          groupMessage.start_time = competition_date;
+          groupMessage.end_time = deadline;
+
           groupMessage.save(function (err) {
             if (err) {
               console.log('保存约战动态时出错' + err);

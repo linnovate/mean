@@ -1,6 +1,6 @@
 'use strict';
 
-var arenaApp = angular.module('arena', []);
+var arenaApp = angular.module('arena', ['ngAnimate','mgcrea.ngStrap.datepicker','mgcrea.ngStrap.timepicker']);
 
 arenaApp.controller('arenaListController', ['$http', '$scope',function ($http, $scope) {
   $scope.robArena = function(id){
@@ -66,8 +66,6 @@ arenaApp.controller('arenaDetailController', ['$http', '$scope',function ($http,
   };
   $scope.addCampaignInfo = function(id){
     try {
-      $scope.campaign_info.competition_date = $('#dtp_input_competition_date').val();
-      $scope.campaign_info.deadline = $('#dtp_input_deadline').val();
       $http({
         method: 'post',
         url: '/arena/addCampaignInfo/'+id,
