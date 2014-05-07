@@ -16,17 +16,15 @@
         label 人数
           input(type="text" class="form-control" name="number" ng-model="number")
         label 比赛时间
-          .input-group.date.form_datetime.col-md-5(data-date="2014-04-29T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii p" data-link-field="dtp_input_competition_date" id="competition_start")
-            input.form-control(size="16" type="text" value="" readonly)
-            span.input-group-addon
-              span.glyphicon.glyphicon-th
-          input(id="dtp_input_competition_date" type="hidden" name="competition_date" ng-model="competition_date")
+          .form-group(ng-class="{'has-error': datepickerForm.date.$invalid}")
+            .control-label
+              i(class="fa fa-calendar")
+            input.form-control(type="text" ng-model="competition_date" name="date" bs-datepicker)
         label 截止时间
-          .input-group.date.form_datetime.col-md-5(data-date="2014-04-29T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii p" data-link-field="dtp_input_deadline" id="competition_deadline")
-            input.form-control(size="16" type="text" value="" readonly)
-            span.input-group-addon
-              span.glyphicon.glyphicon-th
-          input(id="dtp_input_deadline" type="hidden" name="deadline" ng-model="deadline")
+          .form-group(ng-class="{'has-error': datepickerForm.date.$invalid}")
+            .control-label
+              i(class="fa fa-calendar")
+            input.form-control(type="text" ng-model="deadline" name="date" bs-datepicker)
       .row
         li(ng-repeat="company in companies")
           hr

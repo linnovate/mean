@@ -22,6 +22,7 @@ module.exports = function(app) {
 
   app.get('/group/info/:groupId', group.info);
   app.get('/group/info', group.info);
+  
   app.get('/group/renderInfo', group.renderInfo);
 
   app.post('/group/saveInfo', group.saveInfo);

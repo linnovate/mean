@@ -154,8 +154,8 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
                 data:{
                     campaign_id : $scope.campaign_id,
                     content : $scope.content,
-                    start_time : document.getElementById('dtp_input_start_time').value,
-                    end_time : document.getElementById('dtp_input_end_time').value
+                    start_time : $scope.start_time,
+                    end_time : $scope.end_time
                 }
             }).success(function(data, status) {
                 //发布活动后跳转到显示活动列表页面
@@ -220,8 +220,8 @@ tabViewCompany.controller('CampaignListController', ['$http','$scope',
                 data:{
                     location: $scope.location,
                     content : $scope.content,
-                    start_time : document.getElementById('dtp_input_start_time').value,
-                    end_time : document.getElementById('dtp_input_end_time').value
+                    start_time : $scope.start_time,
+                    end_time : $scope.end_time
                 }
             }).success(function(data, status) {
                 //发布活动后跳转到显示活动列表页面

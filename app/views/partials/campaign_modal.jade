@@ -10,17 +10,15 @@
         label 活动地点
           input(type="text" class="form-control" name="location" ng-model="location")
         label 开始时间
-          .input-group.date.form_datetime.col-md-5(data-date="2014-04-29T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii p" data-link-field="dtp_input_start_time" id="campaign_start")
-            input.form-control(size="16" type="text" value="" readonly)
-            span.input-group-addon
-              span.glyphicon.glyphicon-th
-          input(id="dtp_input_start_time" type="hidden" name="start_time" ng-model="start_time")
+          .form-group(ng-class="{'has-error': datepickerForm.date.$invalid}")
+            .control-label
+              i(class="fa fa-calendar")
+            input.form-control(type="text" ng-model="start_time" name="date" bs-datepicker)
         label 结束时间
-          .input-group.date.form_datetime.col-md-5(data-date="2014-04-29T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii p" data-link-field="dtp_input_end_time" id="campaign_end")
-            input.form-control(size="16" type="text" value="" readonly)
-            span.input-group-addon
-              span.glyphicon.glyphicon-th
-          input(id="dtp_input_end_time" type="hidden" name="end_time" ng-model="end_time")
+          .form-group(ng-class="{'has-error': datepickerForm.date.$invalid}")
+            .control-label
+              i(class="fa fa-calendar")
+            input.form-control(type="text" ng-model="end_time" name="date" bs-datepicker)
     .modal-footer
       button(data-dismiss="modal") 取消
       button(ng-click='sponsor()' data-dismiss="modal" ng-disabled="{{campaign_ok}}") 确定

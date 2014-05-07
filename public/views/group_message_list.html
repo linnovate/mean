@@ -28,7 +28,7 @@
             <span class="message_label">类型：{{ group_message.group.group_type[0] }}</span>
             <span class="message_label">赛制：{{group_message.provoke.competition_format}}</span>
             <span class="message_label">地点：{{group_message.location}}</span>
-            <span class="message_label">时间: {{group_message.location}}</span>
+            <span class="message_label">时间: {{group_message.start_time}}</span>
           </div>
           <span class="message_label text-center">{{ group_message.content }}</span>
           <div class="message_label pull-right" ng-if="group_message.provoke.active">

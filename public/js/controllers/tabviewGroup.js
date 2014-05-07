@@ -108,38 +108,6 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope','$rootScope
       $scope.companies = data;
     });
 
-    $scope.judge = function() {
-        if($scope.content!="") {
-            $scope.campaign_ok = false;
-        } else {
-            $scope.campaign_ok = true;
-        }
-    };
-
-    $scope.campaign_ok = false;
-
-    var campaign_start_value,provoke_start_value;
-    var first=false;
-
-    $('#campaign_start')
-    .datetimepicker()
-    .on('changeDate', function(ev){
-        campaign_start_value = ev.date.valueOf();
-    });
-
-    $('#campaign_end')
-    .datetimepicker()
-    .on('changeDate', function(ev){
-        if(ev.date.valueOf() <= campaign_start_value) {
-            if(!first){
-                alert('结束时间不能早于开始时间!');
-                first = true;
-                $scope.campaign_ok = true;
-            }
-        } else {
-            $scope.campaign_ok = false;
-        }
-    });
 
     $scope.provoke_select = function( tname) {
         $scope.team_opposite = tname;
@@ -179,8 +147,8 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope','$rootScope
 
                     location: $scope.location,
                     remark: $scope.remark,
-                    competition_date: document.getElementById('dtp_input_competition_date').value,
-                    deadline: document.getElementById('dtp_input_deadline').value,
+                    competition_date: $scope.competition_date,
+                    deadline: $scope.deadline,
                     competition_format: $scope.competition_format,
                     number: $scope.number
 
@@ -273,8 +241,8 @@ tabViewGroup.controller('CampaignListController', ['$http', '$scope','$rootScope
                 data:{
                     location: $scope.location,
                     content : $scope.content,
-                    start_time : document.getElementById('dtp_input_start_time').value,
-                    end_time : document.getElementById('dtp_input_end_time').value
+                    start_time : $scope.start_time,
+                    end_time : $scope.end_time
                 }
             }).success(function(data, status) {
                 //发布活动后跳转到显示活动列表页面
