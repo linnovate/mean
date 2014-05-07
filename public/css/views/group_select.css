@@ -35,6 +35,36 @@
 .message_label {
   margin: 10px;
 }
+.datepicker.dropdown-menu {
+  width: 250px;
+  height: 270px;
+}
+.datepicker.dropdown-menu button {
+  outline: 0;
+  border: 0;
+  border-radius: 4px !important;
+}
+.datepicker.dropdown-menu tbody {
+  height: 180px;
+}
+.datepicker.dropdown-menu tbody button {
+  padding: 6px;
+}
+.datepicker.dropdown-menu .datepicker-mode-1 tbody button,
+.datepicker.dropdown-menu .datepicker-mode-2 tbody button {
+  height: 65px;
+}
+.timepicker.dropdown-menu {
+  padding: 0 4px;
+}
+.timepicker.dropdown-menu button {
+  outline: 0;
+  border: 0;
+  border-radius: 4px !important;
+}
+.timepicker.dropdown-menu tbody button {
+  padding: 6px;
+}
 .group.inactive .group_1 {
   background-image: url("/img/icons/group/badminton_off.png");
 }
