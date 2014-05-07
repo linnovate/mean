@@ -25,7 +25,7 @@ exports.render = function(req, res) {
         } : {},
         modules: modules,
         adminEnabled: function() {
-            return (req.user && (req.user.roles.indexOf('admin') != -1) && mean.enabled('mean-admin'));
+            return (req.user && (req.user.roles.indexOf('admin') != -1) && mean.moduleEnabled('mean-admin'));
         }
 
     });
