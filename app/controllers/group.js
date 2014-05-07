@@ -35,7 +35,7 @@ exports.getGroups = function(req,res) {
 
 
       for(var i = 0; i < _length; i++ ){
-        if(group[i].gid!==0){
+        if(group[i].gid!=='0'){
           groups.push({'id':group[i].gid,'type':group[i].group_type,'select':'0', 'entity_type':group[i].entity_type});
         }
       }

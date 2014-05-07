@@ -211,7 +211,7 @@ exports.create = function(req, res) {
     .findOne({ name: config.CONFIG_NAME })
     .exec()
     .then(function(config) {
-        if (config.company_register_need_invite === true) {
+        if (config && config.company_register_need_invite === true) {
             return CompanyRegisterInviteCode
             .findOne({ code: req.body.invite_code })
             .exec()
