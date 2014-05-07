@@ -2,7 +2,8 @@
 {% block content %}
     <section data-ui-view />
     <script type="text/javascript">
-        window.user = {{user|safe}};        
-        window.modules = {{modules|safe}};      
+        window.user = {{user|json|safe}};        
+        window.modules = {{modules|json|safe}};      
+        window.authenticated = {{authenticated|json|safe}};      
     </script>
 {% endblock %}
