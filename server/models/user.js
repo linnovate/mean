@@ -7,6 +7,11 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     crypto = require('crypto');
 
+// Change these if needed
+var current_method = "pbkdf2";
+var current_rounds = 10000;
+var current_length = 64;
+
 /**
  * User Schema
  */
@@ -26,6 +31,18 @@ var UserSchema = new Schema({
     }],
     hashed_password: String,
     provider: String,
+    hash_method: {
+        type: String,
+        default: current_method
+    },
+    hash_rounds: {
+        type: Number,
+        default: current_rounds
+    },
+    hash_length: {
+        type: Number,
+        default: current_length
+    },
     salt: String,
     facebook: {},
     twitter: {},
@@ -114,7 +131,20 @@ UserSchema.methods = {
      * @api public
      */
     authenticate: function(plainText) {
-        return this.hashPassword(plainText) === this.hashed_password;
+        if (this.hashPassword(plainText) === this.hashed_password) {
+            if (this.hash_method !== current_method || this.hash_rounds !== current_rounds || this.hash_length !== current_length) {
+                this.hash_method = current_method;
+                this.hash_rounds = current_rounds;
+                this.hash_length = current_length;
+                // Password isn't using the latest settings, re-hash it.
+                this.hashed_password = this.hashPassword(plainText);
+                return true;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
     },
 
     /**
@@ -137,7 +167,13 @@ UserSchema.methods = {
     hashPassword: function(password) {
         if (!password || !this.salt) return '';
         var salt = new Buffer(this.salt, 'base64');
-        return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
+        // Add more cases here if the hash method changes
+        if (this.hash_method === "pbkdf2") {
+            return crypto.pbkdf2Sync(password, salt, this.rounds, current_length).toString('base64');
+        } else {
+            // Default to current
+            return crypto.pbkdf2Sync(password, salt, this.rounds, current_length).toString('base64');
+        }
     }
 };
 
