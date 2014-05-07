@@ -3,18 +3,11 @@
 var mean = require('meanio');
 
 exports.render = function(req, res) {
-    
-    var modules = [];
-    var roles = (req.user ? req.user.roles : []);
 
-    var enableAdmin = false;
+    var modules = [];
+
     // Preparing angular modules list with dependencies
     for (var name in mean.modules) {
-
-        if (name === 'mean-admin' && roles.indexOf('admin') != -1) {
-            enableAdmin = true;
-        }
-
         modules.push({
             name: name,
             module: 'mean.' + name,
@@ -28,10 +21,12 @@ exports.render = function(req, res) {
             name: req.user.name,
             _id: req.user._id,
             username: req.user.username,
-            roles: roles
-        } : 'null',
+            roles: req.user.roles
+        } : {},
         modules: modules,
-        enableAdmin:enableAdmin,
-        authenticated: roles
+        enabledAdmin: function(name) {
+            return (req.user.roles && req.user.roles.indexOf('admin') && mean.enabled(name));
+        }
+
     });
 };
