@@ -121,13 +121,13 @@ If you are using node instead of grunt, it is very similar:
 ## Getting Started
 We pre-included an article example. Check out:
   
-  * [The Model](server/models/article.js) - Where we define our object schema.
-  * [The Controller](server/controllers/articles.js) - Where we take care of our backend logic.
-  * [NodeJS Routes](server/routes) - Where we define our REST service routes.
-  * [AngularJs Routes](public/articles/routes/articles.js) - Where we define our CRUD routes.
-  * [The AngularJs Service](public/articles/services/articles.js) - Where we connect to our REST service.
-  * [The AngularJs Controller](public/articles/controllers/articles.js) - Where we take care of  our frontend logic.
-  * [The AngularJs Views Folder](public/articles/views) - Where we keep our CRUD views.
+  * [The Model](packages/articles/server/models/article.js) - Where we define our object schema.
+  * [The Controller](packages/articles/server/controllers/articles.js) - Where we take care of our backend logic.
+  * [NodeJS Routes](packages/articles/server/routes/articles.js) - Where we define our REST service routes.
+  * [AngularJs Routes](packages/articles/public/routes/articles.js) - Where we define our CRUD routes.
+  * [The AngularJs Service](packages/articles/public/services/articles.js) - Where we connect to our REST service.
+  * [The AngularJs Controller](packages/articles/public/controllers/articles.js) - Where we take care of  our frontend logic.
+  * [The AngularJs Views Folder](packages/articles/public/views) - Where we keep our CRUD views.
 
 ## Heroku Quick Deployment
 Before you start make sure you have the <a href="https://toolbelt.heroku.com/">Heroku toolbelt</a> installed and an accessible MongoDB instance - you can try <a href="http://www.mongohq.com/">MongoHQ</a> which has an easy setup).
