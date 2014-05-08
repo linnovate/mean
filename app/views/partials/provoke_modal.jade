@@ -5,26 +5,39 @@
       h4.modal-title#myModalLabel 发起挑战
     .modal-body
       .row
-        label 内容
+        .col-md-4
+          label 内容
           input(type="text" class="form-control" name="content" ng-model="content")
-        label 赛制
+        .col-md-4
+          label 赛制
           input(type="text" class="form-control" name="competition_format" ng-model="competition_format")
-        label 备注
+        .col-md-4
+          label 备注
           input(type="text" class="form-control" name="remark" ng-model="remark")
-        label 地点
+      .row
+        .col-md-4
+          label 地点
           input(type="text" class="form-control" name="location" ng-model="location")
-        label 人数
+        .col-md-4
+          label 人数
           input(type="text" class="form-control" name="number" ng-model="number")
-        label 比赛时间
-          .form-group(ng-class="{'has-error': datepickerForm.date.$invalid}")
-            .control-label
-              i(class="fa fa-calendar")
-            input.form-control(type="text" ng-model="competition_date" name="date" bs-datepicker)
-        label 截止时间
-          .form-group(ng-class="{'has-error': datepickerForm.date.$invalid}")
-            .control-label
-              i(class="fa fa-calendar")
-            input.form-control(type="text" ng-model="deadline" name="date" bs-datepicker)
+      .row
+        .col-md-6
+          label 开始时间
+            .form-group
+              .row
+                .col-md-6
+                  input.form-control(type="text" ng-model="competition_date" name="date" data-autoclose="1" data-min-date="today" placeholder="Date" bs-datepicker)
+                .col-md-6
+                  input.form-control(type="text" ng-model="competition_date" name="time" data-autoclose="1" placeholder="Time" bs-timepicker)
+        .col-md-6
+          label 结束时间
+            .form-group
+              .row
+                .col-md-6
+                  input.form-control(type="text" ng-model="deadline" name="date" data-autoclose="1" data-min-date="{{competition_date}}" placeholder="Date" bs-datepicker)
+                .col-md-6
+                  input.form-control(type="text" ng-model="deadline" name="time" data-autoclose="1" placeholder="Time" bs-timepicker)
       .row
         li(ng-repeat="company in companies")
           hr

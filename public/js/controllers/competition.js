@@ -4,11 +4,6 @@
 
 var groupApp = angular.module('group', []);
 
-
-
-
-
-
 groupApp.controller('resultController', ['$http', '$scope',function ($http, $scope) {
 
     $scope.$watch('msg_show',function(){

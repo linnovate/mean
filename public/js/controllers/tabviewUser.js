@@ -1,6 +1,6 @@
 'use strict';
 
-var tabViewUser = angular.module('tabViewUser', ['ngRoute']);
+var tabViewUser = angular.module('tabViewUser', ['ngRoute','ngAnimate','mgcrea.ngStrap.datepicker']);
 
 tabViewUser.directive('match', function($parse) {
   return {

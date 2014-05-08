@@ -80,6 +80,12 @@ input[disabled='disabled'].editToggle {
   height: 100%;
   width: 100%;
 }
+.info_label {
+  padding: 7px 12px;
+}
+.info_radio {
+  margin-left: 12px;
+}
 .dl_sm_group .control-label,
 .dl_lg_group .control-label {
   padding-left: 0;

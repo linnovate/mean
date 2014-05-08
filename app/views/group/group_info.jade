@@ -12,11 +12,11 @@ div(ng-app="tabViewGroup" ng-controller="infoController")
     .row
       label.col-md-2.control-label 所属公司
       .col-md-5
-        label.col-md-5 {{companyname}}
+        label.info_label {{companyname}}
     .row
       label.col-md-2.control-label 队员人数
       .col-md-5
-        label.col-md-5 {{members.length}}
+        label.info_label {{members.length}}
     .row
       label.col-md-2.control-label 小组队徽
       .col-md-5
@@ -36,26 +36,26 @@ div(ng-app="tabViewGroup" ng-controller="infoController")
     .row
       label.col-md-2.control-label 成立时间
       .col-md-5
-        label{{create_time}}
+        label.info_label{{create_time}}
     .row
       h4.pull-left 比赛信息
     hr
     .row
       label.col-md-2.control-label 比赛场次
       .col-md-5
-        label.col-md-5 0
+        label.info_label 0
     .row
       label.col-md-2.control-label 胜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;率
       .col-md-5
-        label.col-md-5 0
+        label.info_label 0
     .row
       label.col-md-2.control-label 积&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分
       .col-md-5
-        label.col-md-5 0
+        label.info_label 0
     .row
       label.col-md-2.control-label 排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名
       .col-md-5
-        label.col-md-5 0
+        label.info_label 0
     .row
       h4.pull-left 小组全家福
     hr

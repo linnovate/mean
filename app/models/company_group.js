@@ -32,7 +32,8 @@ var CompanyGroup = new Schema({
     entity_type: String,
     brief: String,
     score: Number,                //和增强组件里的score相同,避免多表查询,注意保持一致性!
-    photo: Array
+    photo: Array,
+    arena_id: String
 });
 
 mongoose.model('CompanyGroup', CompanyGroup);

@@ -15,21 +15,17 @@
         .col-md-6
           label 开始时间
             .form-group
-              .control-label
-                i(class="fa fa-calendar")
               .row
                 .col-md-6
-                  input.form-control(type="text" ng-model="start_time" name="date" data-autoclose="1" placeholder="Date" bs-datepicker)
+                  input.form-control(type="text" ng-model="start_time" name="date" data-autoclose="1" data-min-date="today" placeholder="Date" bs-datepicker)
                 .col-md-6
                   input.form-control(type="text" ng-model="start_time" name="time" data-autoclose="1" placeholder="Time" bs-timepicker)
         .col-md-6
           label 结束时间
             .form-group
-              .control-label
-                i(class="fa fa-calendar")
               .row
                 .col-md-6
-                  input.form-control(type="text" ng-model="end_time" name="date" data-autoclose="1" placeholder="Date" bs-datepicker)
+                  input.form-control(type="text" ng-model="end_time" name="date" data-autoclose="1" data-min-date="{{start_time}}" placeholder="Date" bs-datepicker)
                 .col-md-6
                   input.form-control(type="text" ng-model="end_time" name="time" data-autoclose="1" placeholder="Time" bs-timepicker)
     .modal-footer

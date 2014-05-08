@@ -15,6 +15,7 @@ var mongoose = require('mongoose'),
     UUID = require('../middlewares/uuid'),
     CompanyGroup = mongoose.model('CompanyGroup'),
     Competition = mongoose.model('Competition'),
+    Arena = mongoose.model('Arena'),
     PhotoAlbum = mongoose.model('PhotoAlbum'),
     validator = require('validator'),
     async = require('async'),
@@ -537,10 +538,32 @@ exports.responseProvoke = function (req, res) {
               console.log(err);
             } else {
               group_message.provoke.start_confirm = true;
-              group_message.save();
+              group_message.save(function(err){
+                if(!err){
+                  if(competition.arena_flag){
+                    Arena.findOne({
+                      id: competition.arena_id
+                      },
+                    function(err,arena){
+                      if(!err &&arena){
+                        arena.champion.provoke_status = true;
+                        if(!arena.champion.competition_id){
+                          arena.champion.competition_id =[];
+                        }
+                        arena.champion.competition_id.push(competition.id);
+                        arena.save(function(err){
+                          if(err){
+                            console.log(err);
+                          }
+                        });
+                      }
+                    });
+                  }
+                  res.send({'result':1,'msg':'应战成功'});
+                }
+              });
             }
           });
-          res.send('ok');
         });
     });
   });

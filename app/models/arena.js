@@ -31,6 +31,7 @@ var mongoose = require('mongoose'),
       },
       score: Number,
       win_time: Number,
+
       campaign_id :Array
     });
 /**
@@ -73,6 +74,10 @@ var ArenaModel = new Schema({
         enum: ['rob', 'challenge']
       },
       active:{
+        type: Boolean,
+        default: false
+      },
+      provoke_status:{
         type: Boolean,
         default: false
       },

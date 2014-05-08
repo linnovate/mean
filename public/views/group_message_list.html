@@ -15,7 +15,6 @@
       </div>
       <div class="col-md-10">
         <div>
-
           <label ng-if="!group_message.provoke.active">您的小组 <a>{{group_message.my_tname}}</a> 有了新动态</label>
           <label ng-if="(group_message.provoke.active && group_message.my_tname != group_message.provoke.camp[0].tname)"><a>{{group_message.provoke.camp[0].tname}}</a> 对您的小组 <a>{{group_message.my_tname}}</a> 发起{{group_message.provoke.start_confirm ? '的挑战已经生效' : '了挑战'}}</label>
 

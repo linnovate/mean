@@ -102,7 +102,12 @@ var Competition = new Schema({
         type: Boolean,
         default: false
     },
-    provoke_message_id: String
+    provoke_message_id: String,
+    arena_flag: {
+        type: Boolean,
+        default: false
+    },
+    arena_id: String
 });
 
 mongoose.model('Competition', Competition);

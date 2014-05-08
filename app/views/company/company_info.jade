@@ -2,59 +2,61 @@ div
   form.form-horizontal(name="accountForm")
     .infoHead.row
       h4.pull-left 账户信息
-      a.pull-right(ng-click="accountEditToggle()" ng-bind="accountButtonStatus")
+      button.pull-right(ng-click="accountEditToggle()" ng-bind="accountButtonStatus")
     hr
-    .row
-      label.col-xs-2.control-label 登录邮箱
-      label.col-xs-5.control-label(ng-bind="company.login_email")
-      a.col-xs-5(href="#/changePassword") 修改密码
-    .row
-      label.col-xs-2.control-label 注册时间
-      label.col-xs-5.control-label(ng-bind="company.register_date")
+    .form-group
+      label.col-md-2.control-label 登录邮箱
+      .col-md-4
+        label.info_label(ng-bind="company.login_email")
+      a.col-md-2(href="#/changePassword") 修改密码
+    .form-group
+      label.col-md-2.control-label 注册时间
+      .col-md-8
+        label.info_label(ng-bind="company.register_date")
   form.form-horizontal(name="infoForm")
     .infoHead.row
       h4.pull-left 企业信息
-      a.pull-right(ng-click="infoEditToggle()" ng-bind="infoButtonStatus")
+      button.pull-right(ng-click="infoEditToggle()" ng-disabled="infoForm.$invalid" ng-bind="infoButtonStatus")
     hr
-    .row
-      label.col-xs-2.control-label 官方用户名
-      .col-xs-5
+    .form-group
+      label.col-md-2.control-label 官方用户名
+      .col-md-5
         input.form-control.editToggle(type="text" name ="username" ng-model="info.official_name" ng-disabled="infoUnEdit")
-    .row
-      label.col-xs-2.control-label 企业全称
-      .col-xs-5
+    .form-group
+      label.col-md-2.control-label 企业全称
+      .col-md-5
         input.form-control.editToggle(type="text" name ="infoname" ng-model="info.name" ng-disabled="infoUnEdit")
-    .row
-      label.col-xs-2.control-label 所在地
-      .col-xs-5
+    .form-group
+      label.col-md-2.control-label 所在地
+      .col-md-5
         input.form-control.editToggle(type="text" name ="province" ng-model="info.city.province" ng-disabled="infoUnEdit")
-      .col-xs-5
+      .col-md-5
         input.form-control.editToggle(type="text" name ="city" ng-model="info.city.city" ng-disabled="infoUnEdit")
-    .row
-      label.col-xs-2.control-label 地址
-      .col-xs-5
+    .form-group
+      label.col-md-2.control-label 地址
+      .col-md-5
         input.form-control.editToggle(type="text" name ="address" ng-model="info.address" ng-disabled="infoUnEdit")
-    .row
-      label.col-xs-2.control-label 联系人
-      .col-xs-5
+    .form-group
+      label.col-md-2.control-label 联系人
+      .col-md-5
         input.form-control.editToggle(type="text" name ="linkman" ng-model="info.linkman" ng-disabled="infoUnEdit")
-    .row
-      label.col-xs-2.control-label 公司电话
-      .col-xs-2
+    .form-group
+      label.col-md-2.control-label 公司电话
+      .col-md-2
         input.form-control.editToggle(type="number" name ="areacode" ng-model="info.lindline.areacode" ng-disabled="infoUnEdit")
-      .col-xs-6
+      .col-md-6
         input.form-control.editToggle(type="number" name ="number" ng-model="info.lindline.number" ng-disabled="infoUnEdit")
-      .col-xs-2
+      .col-md-2
         input.form-control.editToggle(type="number" name ="extension" ng-model="info.lindline.extension" ng-disabled="infoUnEdit")
-    .row
-      label.col-xs-2.control-label 手机号码
-      .col-xs-2
+    .form-group
+      label.col-md-2.control-label 手机号码
+      .col-md-2
         input.form-control.editToggle(type="number" name ="phone" ng-model="info.phone" ng-disabled="infoUnEdit")
-    .row
-      label.col-xs-2.control-label 电子邮箱
-      .col-xs-2
+    .form-group
+      label.col-md-2.control-label 电子邮箱
+      .col-md-2
         input.form-control.editToggle(type="email" name ="email" ng-model="info.email" ng-disabled="infoUnEdit")
-    .row
-      label.col-xs-2.control-label 简介
-      .col-xs-5
+    .form-group
+      label.col-md-2.control-label 简介
+      .col-md-5
         input.form-control.editToggle(type="textarea" name ="brief" ng-model="info.brief" ng-disabled="infoUnEdit")

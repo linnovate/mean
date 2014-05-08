@@ -18,61 +18,108 @@ exports.home = function(req, res) {
           console.log(err);
           return res.status(400).send([]);
       }
-      console.log(arenas);
+      var _nowTime = new Date();
+      console.log(_nowTime);
+      arenas.forEach(function(arena){
+        console.log(arena.id,_nowTime>arena.champion.end_time,_nowTime>arena.champion.end_time);
+        if(!arena.champion.active && _nowTime>arena.champion.end_time){
+          if (!arena.history) {
+            arena.history = [];
+          }
+          arena.champion.provoke_status = null;
+          arena.history.push(arena.champion);
+          arena.champion = null;
+          arena.save(function(err){
+            if(err){
+              console.log(err);
+            }
+          });
+        }
+      });
       res.render('arena/arena_list', {'title': '擂台列表','arenas': arenas});
   });
 };
 exports.detail = function(req, res){
-  console.log(req.arena);
-  res.render('arena/arena_detail', {'title': '擂台详情','arena': req.arena,'champion_flag': req.arena.champion.uid===req.session.uid,'alert_flag':req.arena.champion.cid!==null&&req.arena.champion.active===false && req.arena.champion.uid===req.session.uid});
+  if(req.arena.champion.provoke_status){
+    Competition.findOne({'id':req.arena.champion.competition_id[req.arena.champion.competition_id.length()-1]},function(err,competition){
+      if(!err &&competition){
+        var challenger = {
+          'cname': competition.camp[0].cname,
+          'tname': competition.camp[0].tname
+        };
+        res.render('arena/arena_detail', {'title': '擂台详情','arena': req.arena,'challenger':challenger,'champion_flag': req.arena.champion.uid===req.session.uid,'alert_flag':req.arena.champion.cid!==null&&req.arena.champion.active===false && req.arena.champion.uid===req.session.uid});
+      }
+    });
+  }
+  else{
+    res.render('arena/arena_detail', {'title': '擂台详情','arena': req.arena,'champion_flag': req.arena.champion.uid===req.session.uid,'alert_flag':req.arena.champion.cid!==null&&req.arena.champion.active===false && req.arena.champion.uid===req.session.uid});
+  }
 };
 exports.rob = function(req, res){
   if(!req.arena.champion.cid){
-    Arena.findOne({
-        id: req.params.arenaId
-    },function(err,arena){
-      if(err){
-        console.log(err);
-        return res.send({'result':0,'msg':'擂台查询失败！'});
+    CompanyGroup.findOne({'cid':req.session.cid,'gid':req.session.gid},function(err,company_group){
+      console.log(company_group);
+      if (err || !company_group) {
+        return res.send({'result':0,'msg':'您没有权限抢擂'});
       }
-      if(arena){
-        Company.findOne({'id': req.session.cid},function(err, company){
-          if (err) {
+      else if(company_group.arena_id){
+        return res.send({'result':0,'msg':'您已经是其他擂台的擂主，无法继续抢擂！'});
+      }
+      else{
+        Arena.findOne({
+          id: req.params.arenaId
+          },
+        function(err,arena){
+          if(err){
             console.log(err);
-            return res.send({'result':0,'msg':'您没有权限抢擂'});
+            return res.send({'result':0,'msg':'擂台查询失败！'});
           }
-          if (company) {
-            var _end_time = new Date();
-            _end_time.setMinutes(new Date().getMinutes()+30);
-            arena.champion= {
-              'cid': req.session.cid,
-              'cname':company.username,
-              'gid': req.session.companyGroup.gid,
-              'uid': req.session.uid,
-              'username':req.user.username,
-              'tname':req.session.companyGroup.name,
-              'champion_type':'rob',
-              'active': false,
-              'start_time': new Date(),
-              'end_time': _end_time
-            };
-            arena.save(function(err){
-              if(!err){
-                return res.send({'result':1,'msg':'抢擂成功,请在半个小时内填写擂台信息，否则自动取消擂主资格！'});
+          if(arena){
+            Company.findOne({'id': req.session.cid},function(err, company){
+              if (err) {
+                console.log(err);
+                return res.send({'result':0,'msg':'您没有权限抢擂'});
+              }
+              if (company) {
+                var _end_time = new Date();
+                _end_time.setMinutes(new Date().getMinutes()+30);
+                arena.champion= {
+                  'cid': req.session.cid,
+                  'cname':company.username,
+                  'gid': req.session.companyGroup.gid,
+                  'uid': req.session.uid,
+                  'username':req.user.username,
+                  'tname':req.session.companyGroup.name,
+                  'champion_type':'rob',
+                  'active': false,
+                  'start_time': new Date(),
+                  'end_time': _end_time
+                };
+                arena.save(function(err){
+                  if(!err){
+                    company_group.arena_id = req.arena.id;
+                    company_group.save(function(err){
+                      if(!err){
+                        return res.send({'result':1,'msg':'抢擂成功,请在半个小时内填写擂台信息，否则自动取消擂主资格！'});
+                      }
+                    });
+                  }
+                  else{
+                    console.log(err);
+                  }
+                });
               }
               else{
-                console.log(err);
+                return res.send({'result':0,'msg':'您没有权限抢擂'});
               }
             });
           }
           else{
-            return res.send({'result':0,'msg':'您没有权限抢擂'});
+            res.send({'result':0,'msg':'抢擂失败'});
           }
         });
       }
-      else{
-        res.send({'result':0,'msg':'抢擂失败'});
-      }
+
     });
   }
   else{
@@ -170,6 +217,8 @@ exports.challenge = function(req, res){
           competition.brief.deadline = deadline;
           competition.brief.competition_format = competition_format;
           competition.brief.number = number;
+          competition.arena_flag = true;
+          competition.arena_id = req.params.arenaId;
 
           var groupMessage = new GroupMessage();
           groupMessage.id = UUID.id();
@@ -207,25 +256,9 @@ exports.challenge = function(req, res){
             } else {
               competition.provoke_message_id = groupMessage.id;
               competition.save(function(err){
-                if(err){
-                  console.log(err);
+                if(!err){
+                  return res.send({'result':1,'msg':'挑战成功！'});
                 }
-                Arena.findOne({
-                  id: req.params.arenaId
-                },function(err, arena) {
-                  if(arena){
-                    if(!arena.competition_id){
-                      arena.competition_id = [];
-                    }
-                    arena.competition_id.push(competition.id);
-                    arena.save(function(err){
-                      if(err){
-                        return res.send({'result':0,'msg':'保存失败！'});
-                      }
-                      return res.send({'result':1,'msg':'挑战成功！'});
-                    });
-                  }
-                });
               });
             }
             //这里要注意一下,生成动态消息后还要向被约队长发一封私信

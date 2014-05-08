@@ -93,7 +93,6 @@ block aside
     var competition_location = !{JSON.stringify(competition.brief.location)}
 
 append footExt
-  script(src="http://api.map.baidu.com/api?v=2.0&ak=krPnXlL3wNORRa1KYN1RAx3c")
   script(src="/js/controllers/competition.js")
   script.
     var app = angular.module('photo_list', []);
@@ -108,5 +107,6 @@ append footExt
     }]);
 
     angular.bootstrap($('#photo_list'), ['photo_list']);
+  script(src="http://api.map.baidu.com/api?v=2.0&ak=krPnXlL3wNORRa1KYN1RAx3c")
 
 

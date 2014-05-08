@@ -17,23 +17,25 @@ block panel
         .row
           label 擂主：
           label= arena.champion.cid ? arena.champion.tname :'无'
-        if(alert_flag)
+        if(arena.champion.provoke_status)
+          .row
+            label 擂主备战中
+        else if(alert_flag)
           .row
             button(data-toggle="modal" data-target="#addCampaignInfoModal") 填写挑战信息
         else if(champion_flag)
           .row
             button(data-toggle="modal" data-target="#addCampaignInfoModal") 修改挑战信息
-        else if(!champion_flag)
-          if(arena.champion.cid)
-            if(arena.champion.active)
-              .row
-                button(ng-click='challengeArena("#{arena.id}")') 攻擂
-            else
-              .row
-                label 请等待擂主填写挑战信息
+        else if(arena.champion.cid)
+          if(arena.champion.active)
+            .row
+              button(ng-click='challengeArena("#{arena.id}")') 攻擂
           else
             .row
-              button(ng-click='robArena("#{arena.id}")') 我要抢擂
+              label 请等待擂主填写挑战信息
+        else
+          .row
+            button(ng-click='robArena("#{arena.id}")') 我要抢擂
         div(class="modal fade" id="addCampaignInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
           .modal-dialog
             .modal-content
@@ -119,6 +121,13 @@ block panel
         .row
           label 备注：
           label= arena.campaign_info.remark ? arena.campaign_info.remark : ''
+        if(challenger)
+          .row
+            label 挑战者公司：
+            label= challenger.cname
+          .row
+            label 挑战者队伍：
+            label= challenger.tname
     hr
     .row
       h1 历届擂主信息
