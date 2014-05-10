@@ -20,10 +20,10 @@ var UserSchema = new Schema({
         type: String,
         unique: true
     },
-    roles: [{
-        type: String,
-        default: 'authenticated'
-    }],
+    roles: {
+        type: Array,
+        default: ['authenticated']
+    },
     hashed_password: String,
     provider: String,
     salt: String,
