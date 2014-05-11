@@ -32,6 +32,7 @@
     "connect-flash": "^0.1.1",
     "consolidate": "^0.10.0",
     "cookie-parser": "~1.0.1",
+    "csurf": "^1.1.0",
     "dependable": "0.2.5",
     "errorhandler": "~1.0.0",
     "express": "^4.1.0",
