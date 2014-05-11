@@ -23,7 +23,8 @@ var express = require('express'),
     util = require('./util'),
     assetmanager = require('assetmanager'),
     fs = require('fs'),
-    Grid = require('gridfs-stream');
+    Grid = require('gridfs-stream'),
+    csrf = require('csurf');
 
 module.exports = function(app, passport, db) {
 
@@ -94,6 +95,22 @@ module.exports = function(app, passport, db) {
             collection: config.sessionCollection
         })
     }));
+
+    // CSRF Token support with angularjs' $http service
+    // var csrfValue = function(req) {
+    //   var token = (req.body && req.body._csrf)
+    //     || (req.query && req.query._csrf)
+    //     || (req.headers['x-csrf-token'])
+    //     || (req.headers['x-xsrf-token']);
+    //   return token;
+    // };
+    //
+    // app.use(csrf({value: csrfValue}));
+    //
+    // app.use(function(req, res, next) {
+    //   res.cookie('XSRF-TOKEN', req.session._csrf);
+    //   next();
+    // });
 
     // Dynamic helpers
     app.use(helpers(config.app.name));
