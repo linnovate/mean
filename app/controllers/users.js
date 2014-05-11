@@ -319,7 +319,7 @@ exports.getGroupMessages = function(req, res) {
             var negative = 0;
             console.log(req.session.companyGroup);
             for(var k = 0; k < group_message[j].provoke.camp.length; k ++) {
-              if(group_message[j].provoke.camp[k].tname === req.session.companyGroup.name){
+              if(group_message[j].provoke.camp[k].tname === req.user.group[flag-1].tname){
                 positive = group_message[j].provoke.camp[k].vote.positive;
                 negative = group_message[j].provoke.camp[k].vote.negative;
                 break;
