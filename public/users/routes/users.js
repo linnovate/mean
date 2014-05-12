@@ -40,7 +40,7 @@ angular.module('mean').config(['$stateProvider',
                 }
             })
             .state('edit user', {
-                url: '/:userId/edit',
+                url: '/users/:userId/edit',
                 templateUrl: 'public/users/views/edit.html',
                 resolve: {
                     loggedin: checkLoggedin
