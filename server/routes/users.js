@@ -19,6 +19,10 @@ module.exports = function(app, passport) {
     app.route('/usercreate')
         .get(users.create);
 
+    // Get all the users
+    app.route('/users')
+        .get(users.all);
+
     //Show, save, delete the user
     app.route('/users/:userId')
         .get(users.show)
