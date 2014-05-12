@@ -1,6 +1,7 @@
 <user data-ng-controller="UsersController" data-ng-init="findOne()">
     <span>{{user.username}}</span>
     <h2>{{user.name}}</h2>
+    <!-- Edit / Delete not functioning yet
     <div data-ng-if="(global.user._id == user._id) || (global.isAdmin)">
         <a class="btn" href="/#!/users/{{user._id}}/edit">
             <i class="glyphicon glyphicon-edit"></i>
@@ -8,5 +9,5 @@
         <a class="btn" data-ng-click="remove();">
             <i class="glyphicon glyphicon-trash"></i>
         </a>
-    </div>
+    </div>-->
 </user>
