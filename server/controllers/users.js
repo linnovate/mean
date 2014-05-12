@@ -4,13 +4,21 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    _ = require('lodash');;
 
 /**
  * Auth callback
  */
 exports.authCallback = function(req, res) {
     res.redirect('/');
+};
+
+/**
+ * Update callback
+ */
+exports.updateCallback = function(req, res) {
+    res.redirect('/users');
 };
 
 /**
@@ -100,4 +108,64 @@ exports.user = function(req, res, next, id) {
             req.profile = user;
             next();
         });
+};
+
+/**
+ * Update user
+ */
+exports.save = function(req, res) {
+    var user = req.user;
+
+    user = _.extend(user, req.body);
+
+    user.save(function(err) {
+        if (err) {
+            return res.send('users/signup', {
+                errors: err.errors,
+                section: user
+            });
+        } else {
+            res.jsonp(user);
+        }
+    });
+};
+
+/**
+ * Delete a User
+ */
+exports.destroy = function(req, res) {
+    var user = req.user;
+    //Todo Find User Data and Delete?
+    user.remove(function(err) {
+        if (err) {
+            return res.send('users/signup', {
+                errors: err.errors,
+                user: user
+            });
+        } else {
+            res.jsonp(user);
+        }
+    });
+};
+
+/**
+ * Show a User
+ */
+exports.show = function(req, res) {
+    res.jsonp(req.user);
+};
+
+/**
+ * List of Users
+ */
+exports.all = function(req, res) {
+    User.find().sort('-username').exec(function(err, users) {
+        if (err) {
+            res.render('error', {
+                status: 500
+            });
+        } else {
+            res.jsonp(users);
+        }
+    });
 };
