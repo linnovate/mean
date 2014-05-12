@@ -19,8 +19,8 @@ angular.module('mean')
             })
                 .success(function(){
                     $scope.createError = 0;
-                    //$rootScope.user = $scope.user;
-                    $state.go('users.all users');
+                    $rootScope.user = $scope.user;
+                    $state.go('all users');
                 })
                 .error(function(error){
                     // Error: authentication failed
