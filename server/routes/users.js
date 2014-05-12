@@ -17,7 +17,7 @@ module.exports = function(app, passport) {
         
     // Create user from admin
     app.route('/usercreate')
-        .get(users.create);
+        .post(users.create);
 
     // Get all the users
     app.route('/users')
