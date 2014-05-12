@@ -12,13 +12,10 @@ angular.module('mean')
 
             $http.post('/usercreate', {
                 email: $scope.user.email,
-                name: $scope.user.firstname + ' '  + $scope.user.lastname,
+                name: $scope.user.name,
                 password: $scope.user.password,
-                confirmPassword: $scope.user.password,
-                username: $scope.user.email,
-                firstname: $scope.user.firstname,
-                lastname: $scope.user.lastname,
-                ui_settings: $scope.user.ui_settings
+                confirmPassword: $scope.user.confirmPassword,
+                username: $scope.user.username
             })
                 .success(function(){
                     $scope.createError = 0;
