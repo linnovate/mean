@@ -25,44 +25,32 @@ angular.module('mean').config(['$stateProvider',
 
         // states for my app
         $stateProvider
-            .state('users.all users', {
-                url: '/list',
+            .state('all users', {
+                url: '/users',
                 templateUrl: 'public/users/views/list.html',
                 resolve: {
                     loggedin: checkLoggedin
-                },
-                data: {
-                    displayName: false
                 }
             })
-            .state('users.create user', {
-                url: '/create',
+            .state('create user', {
+                url: '/users/create',
                 templateUrl: 'public/users/views/create.html',
                 resolve: {
                     loggedin: checkLoggedin
-                },
-                data: {
-                    displayName: 'New user'
                 }
             })
-            .state('users.edit user', {
+            .state('edit user', {
                 url: '/:userId/edit',
                 templateUrl: 'public/users/views/edit.html',
                 resolve: {
                     loggedin: checkLoggedin
-                },
-                data: {
-                    displayName: '{{ user.title }}'
                 }
             })
-            .state('users.user by id', {
-                url: '/:userId',
+            .state('user by id', {
+                url: '/users/:userId',
                 templateUrl: 'public/users/views/view.html',
                 resolve: {
                     loggedin: checkLoggedin
-                },
-                data: {
-                    displayName: '{{ user.username }}'
                 }
             }
         );
