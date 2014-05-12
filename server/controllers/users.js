@@ -15,13 +15,6 @@ exports.authCallback = function(req, res) {
 };
 
 /**
- * Update callback
- */
-exports.updateCallback = function(req, res) {
-    res.redirect('/users');
-};
-
-/**
  * Show login form
  */
 exports.signin = function(req, res) {
@@ -47,9 +40,9 @@ exports.session = function(req, res) {
 };
 
 /**
- * Create user
+ * Register user
  */
-exports.create = function(req, res, next) {
+exports.register = function(req, res, next) {
     var user = new User(req.body);
 
     user.provider = 'local';
