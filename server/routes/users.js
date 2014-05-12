@@ -7,12 +7,27 @@ module.exports = function(app, passport) {
 
     app.route('/logout')
         .get(users.signout);
+        
     app.route('/users/me')
         .get(users.me);
 
-    // Setting up the users api
+    // Create user from registration
     app.route('/register')
+        .post(users.register);
+        
+    // Create user from admin
+    app.route('/usercreate')
         .post(users.create);
+
+    // Get all the users
+    app.route('/users')
+        .get(users.all);
+
+    //Show, save, delete the user
+    app.route('/users/:userId')
+        .get(users.show)
+        .post(users.save)
+        .delete(users.destroy);
 
     // Setting up the userId param
     app.param('userId', users.user);

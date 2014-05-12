@@ -14,6 +14,18 @@ module.exports = function(app) {
                 defaultMenu[index] = JSON.parse(item);
             });
 
+            defaultMenu.push(
+                {
+                    'roles': ['admin'],
+                    'title': 'Users',
+                    'link': 'all users'
+                },{
+                    'roles': ['admin'],
+                    'title': 'Create New User',
+                    'link': 'create user'
+                });
+
+
             var items = mean.menus.get({
                 roles: roles,
                 menu: menu,
