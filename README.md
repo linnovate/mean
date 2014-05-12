@@ -19,6 +19,9 @@ $ npm install -g bower
 
 ### Optional [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 * Grunt - Download and Install [Grunt](http://gruntjs.com).
+```
+$ npm install -g grunt-cli
+```
 
 ## Additional Packages
 * Express - Defined as npm module in the [package.json](package.json) file.
