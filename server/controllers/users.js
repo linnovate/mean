@@ -5,7 +5,7 @@
  */
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    _ = require('lodash');;
+    _ = require('lodash');
 
 /**
  * Auth callback
