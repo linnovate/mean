@@ -24,6 +24,9 @@ exports.render = function(req, res) {
             roles: req.user.roles
         } : {},
         modules: modules,
+        isAdmin: function (){
+           return (req.user && (req.user.roles.indexOf('admin') !== -1));
+        },
         adminEnabled: function() {
             return (req.user && (req.user.roles.indexOf('admin') !== -1) && mean.moduleEnabled('mean-admin'));
         }
