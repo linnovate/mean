@@ -122,12 +122,12 @@ If you are using node instead of grunt, it is very similar:
 > NOTE: Running Node.js applications in the __production__ environment enables caching, which is disabled by default in all other environments.
 
 ## Maintaining your own repository
-After initializing a project, you'll see that the root directory of your project is already a git repository. MEAN uses git to download and update its own code. To handle its own operations, MEAN uses a remote called `upstream` this way you can use git like you would use it in any other project.
+After initializing a project, you'll see that the root directory of your project is already a git repository. MEAN uses git to download and update its own code. To handle its own operations, MEAN creates a remote called `upstream`. This way you can use git as you would in any other project.
 
-To maintain your own public or private repository, all you need to do is to add your repository as remote
+To maintain your own public or private repository, add your repository as remote. See here for information on [adding an existing project to GitHub](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line).
 
 ```
-git remote add origin git@github.com:[username]/[repo_name].git
+git remote add origin <remote respository URL>
 git push -u origin master
 ```
 
