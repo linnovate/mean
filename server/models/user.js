@@ -24,14 +24,10 @@ var UserSchema = new Schema({
         type: Array,
         default: ['authenticated']
     },
-    hashed_password: String,
     provider: String,
-    salt: String,
-    facebook: {},
-    twitter: {},
-    github: {},
-    google: {},
-    linkedin: {}
+    providerData: {},
+    hashed_password: String,
+    salt: String
 });
 
 /**
@@ -43,6 +39,21 @@ UserSchema.virtual('password').set(function(password) {
     this.hashed_password = this.hashPassword(password);
 }).get(function() {
     return this._password;
+});
+UserSchema.virtual('facebook').get(function() {
+    return this.providerData;
+});
+UserSchema.virtual('twitter').get(function() {
+    return this.providerData;
+});
+UserSchema.virtual('github').get(function() {
+    return this.providerData;
+});
+UserSchema.virtual('google').get(function() {
+    return this.providerData;
+});
+UserSchema.virtual('linkedin').get(function() {
+    return this.providerData;
 });
 
 /**
