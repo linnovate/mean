@@ -4,34 +4,34 @@
 
 // MEAN CLI.
 var program = require('commander'),
-  _ = require('lodash');
+    _ = require('lodash');
 
 // set program version
 var version = require('../package').version;
 program.version(version, '-v, --version');
 
 program
-  .command('init <name> [options]', 'Create a MEAN application in the current working directory')
-  .command('install <module> [options]', 'Installs a MEAN module')
-  .command('uninstall <module>', 'Uninstalls a MEAN module')
-  .command('docs', 'Opens MEAN documentation in your local browser')
-  .command('package <name> [options]', 'package')
-  .command('list', 'List all installed packages')
-  .command('status', 'Overall system status')
-  .command('user <email> [options]', 'Manage users')
-  .parse(process.argv);
+    .command('init <name> [options]', 'Create a MEAN application in the current working directory')
+    .command('install <module> [options]', 'Installs a MEAN module')
+    .command('uninstall <module>', 'Uninstalls a MEAN module')
+    .command('docs', 'Opens MEAN documentation in your local browser')
+    .command('package <name> [options]', 'package')
+    .command('list', 'List all installed packages')
+    .command('status', 'Overall system status')
+    .command('user <email> [options]', 'Manage users')
+    .parse(process.argv);
 
 // print help with no args
 if (program.args.length < 1) {
-  program.help();
+    program.help();
 }
 
 // if there is a command, make sure it's valid
 var commands = program.commands.map(function(command) {
-  return command._name;
+    return command._name;
 });
 if (!_.contains(commands, program.args[0])) {
-  console.log('mean: `' + program.rawArgs[2] + '` is not a mean command. See `mean --help`.');
-  console.log();
-  process.exit(1);
+    console.log('mean: `' + program.rawArgs[2] + '` is not a mean command. See `mean --help`.');
+    console.log();
+    process.exit(1);
 }

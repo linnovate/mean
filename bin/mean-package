@@ -3,22 +3,22 @@
 'use strict';
 
 var cli = require('../lib/cli'),
-  program = require('commander');
+    program = require('commander');
 
 program
-  .description('Scaffolds a new MEAN package.')
-  .option('-d, --delete', 'delete')
-  .option('-f, --force', 'force')
-  .parse(process.argv);
+    .description('Scaffolds a new MEAN package.')
+    .option('-d, --delete', 'delete')
+    .option('-f, --force', 'force')
+    .parse(process.argv);
 
 if (!program.args.length) {
-  console.error('error: package name required');
-  process.exit(1);
+    console.error('error: package name required');
+    process.exit(1);
 }
 
 var options = {
-  delete: program.delete,
-  force: program.force
+    delete: program.delete,
+    force: program.force
 };
 
 cli.pkg(program.args[0], options);

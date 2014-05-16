@@ -3,10 +3,10 @@
 'use strict';
 
 var cli = require('../lib/cli'),
-  program = require('commander');
+    program = require('commander');
 
 program
-  .description('List all installed packages')
-  .parse(process.argv);
+    .description('List all installed packages')
+    .parse(process.argv);
 
 cli.list();
