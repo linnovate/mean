@@ -4,8 +4,9 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
     function($scope, $stateParams, $location, Global, Articles) {
         $scope.global = Global;
 
-        $scope.hasAuthorization = function(article){
-            return ((($scope.global.isAdmin) || (!article.user)) || (article.user && (article.user._id === $scope.global.user._id)));
+        $scope.hasAuthorization = function(article) {
+            if (!article || !article.user) return false;
+            return $scope.global.isAdmin || article.user._id === $scope.global.user._id;
         };
 
         $scope.create = function() {

@@ -4,16 +4,14 @@ var articles = require('../controllers/articles');
 
 // Article authorization helpers
 var hasAuthorization = function(req, res, next) {
-    if (((req.isAdmin) || (!req.article.user)) || (req.article.user && (req.article.user_id !== req.user._id))) {
-        next();
-    }
-    else {
+    if (!req.isAdmin && req.article.user.id !== req.user.id) {
         return res.send(401, 'User is not authorized');
     }
+    next();
 };
 
 module.exports = function(Articles, app, auth) {
-    
+
     app.route('/articles')
         .get(articles.all)
         .post(auth.requiresLogin, articles.create);
