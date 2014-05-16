@@ -1,7 +1,7 @@
 'use strict';
 
 //Setting up route
-angular.module('mean.articles').config(['$stateProvider',
+angular.module('mean').config(['$stateProvider',
     function($stateProvider) {
         // Check if the user is connected
         var checkLoggedin = function($q, $timeout, $http, $location) {

@@ -4,10 +4,14 @@
 // Generated on Sat Oct 05 2013 22:00:14 GMT+0700 (ICT)
 
 module.exports = function(config) {
+    var _ = require('lodash'),
+        basePath = '../../',
+        assets = require(basePath + 'server/config/assets.json');
+
     config.set({
 
         // base path, that will be used to resolve files and exclude
-        basePath: '../../',
+        basePath: basePath,
 
 
         // frameworks to use
@@ -15,23 +19,11 @@ module.exports = function(config) {
 
 
         // list of files / patterns to load in the browser
-        files: [
-            'public/system/lib/angular/angular.js',
-            'public/system/lib/angular-mocks/angular-mocks.js',
-            'public/system/lib/angular-cookies/angular-cookies.js',
-            'public/system/lib/angular-resource/angular-resource.js',
-            'public/system/lib/angular-ui-router/release/angular-ui-router.js',
-            'public/system/lib/angular-bootstrap/ui-bootstrap-tpls.js',
-            'public/system/lib/angular-bootstrap/ui-bootstrap.js',
-            'public/*/*.js',
-            'public/{auth,articles}/*/*.js',
-            'public/system/{controllers,routes,services}/*.js',
-            'public/init.js',
+        files: _.flatten(_.values(assets.js)).concat([
             'test/karma/unit/**/*.js',
             'packages/*/public/**/*.js',
             'packages/*/test/karma/**/*.js'
-        ],
-
+        ]),
 
         // list of files to exclude
         exclude: [

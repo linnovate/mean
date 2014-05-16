@@ -169,7 +169,7 @@
 
             }));
 
-            it('$scope.remove() should send a DELETE request with a valid articleId' +
+            it('$scope.remove() should send a DELETE request with a valid articleId ' +
                 'and remove the article from the scope', inject(function(Articles) {
 
                     // fixture rideshare
