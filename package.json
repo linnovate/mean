@@ -11,7 +11,7 @@
     { "name": "Amos Haviv", "mail": "mail@amoshaviv" },
     { "name": "Drew Fyock", "mail": "drew@steelbisondev.com" }
   ],
-  "mean" : true,
+  "mean": "0.3.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/linnovate/mean.git"
