@@ -1,11 +1,11 @@
 {
   "name": "articles",
-  "version": "0.0.0",
-  "description": "Some description of articles",
+  "version": "0.0.1",
+  "description": "Articles example pacakge",
   "author": {
-    "name": "mean scaffold"
+    "name": "Linnovate"
   },
-  "mean" : true,
+  "mean": "0.3.3",
   "engines": {
     "node": "0.10.x",
     "npm": "1.4.x"
