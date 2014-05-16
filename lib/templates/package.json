@@ -1,7 +1,7 @@
 {
-    "name": "__name__",
+    "name": "__pkgName__",
     "version": "0.0.1",
-    "description": "Some description of __name__",
+    "description": "Some description of __pkgName__",
     "author": {
         "name": "__author__"
     },
