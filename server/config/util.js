@@ -11,7 +11,7 @@ var walk = function(modulesPath, excludeDir, callback) {
         if (stat.isFile() && /(.*)\.(js|coffee)$/.test(file)) {
             callback(newPath);
         } else if (stat.isDirectory() && file !== excludeDir) {
-	    walk(newPath, excludeDir, callback);
+            walk(newPath, excludeDir, callback);
         }
     });
 };

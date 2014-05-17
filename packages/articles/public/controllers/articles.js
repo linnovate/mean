@@ -32,8 +32,9 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
                     }
                 }
             } else {
-                $scope.article.$remove();
-                $location.path('articles');
+                $scope.article.$remove(function(response) {
+                    $location.path('articles');
+                });
             }
         };
 
