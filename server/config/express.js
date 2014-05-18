@@ -69,7 +69,6 @@ module.exports = function(app, passport, db) {
     app.use(expressValidator());
     app.use(bodyParser());
     app.use(methodOverride());
-    app.use(cookieParser());
 
     // Import your asset file
     var assets = require('./assets.json');
