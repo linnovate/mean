@@ -1,7 +1,7 @@
 <section data-ng-controller="ArticlesController" data-ng-init="findOne()">
-    <span>{{article.created | date:'medium'}}</span> /
-    <span>{{article.user.name}}</span>
-    <h2>{{article.title}}</h2>
+    <span ng-bind="article.created | date:'medium'"></span> /
+    <span ng-bind="article.user.name"></span>
+    <h2 ng-bind="article.title"></h2>
     <div data-ng-if="hasAuthorization(article)">
         <a class="btn" href="/#!/articles/{{article._id}}/edit">
             <i class="glyphicon glyphicon-edit"></i>
@@ -10,5 +10,5 @@
             <i class="glyphicon glyphicon-trash"></i>
         </a>
     </div>
-    <div>{{article.content}}</div>
+    <div data-ng-bind-html="article.content"></div>
 </section>
