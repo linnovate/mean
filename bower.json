@@ -4,6 +4,7 @@
     "dependencies": {
         "angular": "latest",
         "angular-resource": "latest",
+        "angular-sanitize": "latest",
         "angular-cookies": "latest",
         "angular-mocks": "latest",
         "angular-route": "latest",
