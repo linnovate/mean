@@ -32,6 +32,10 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
                     }
                 }
                 $state.go('all articles');
+            } else {
+                $scope.article.$remove(function(response) {
+                    $state.go('all articles');
+                });
             }
         };
 
