@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
  */
 var validatePresenceOf = function(value) {
     // If you are authenticating by any of the oauth strategies, don't validate.
-    return (this.prodiver && this.provider !== 'local') || value.length;
+    return (this.provider && this.provider !== 'local') || value.length;
 };
 
 /**
