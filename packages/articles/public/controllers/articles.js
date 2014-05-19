@@ -30,10 +30,8 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
                         $scope.articles.splice(i, 1);
                     }
                 }
-            } else {
-                $scope.article.$remove();
-            }
-            $state.go('all articles');
+                $state.go('all articles');
+            } 
         };
 
         $scope.update = function() {
