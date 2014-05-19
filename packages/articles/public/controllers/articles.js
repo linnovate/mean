@@ -14,7 +14,7 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
                 content: this.content
             });
             article.$save(function(response) {
-                $state.go('articles/' + response._id);
+                $state.go('article by id', {articleId : response._id});
             });
 
             this.title = '';
@@ -44,7 +44,7 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
             article.updated.push(new Date().getTime());
 
             article.$update(function() {
-                $state.go('articles/' + article._id);
+                $state.go('article by id', {articleId : article._id});
             });
         };
 
