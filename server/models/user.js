@@ -89,8 +89,19 @@ UserSchema.methods = {
      */
     hasRole: function(role) {
         var roles = this.roles;
-        return (roles.indexOf('admin') !== -1 || roles.indexOf(role) !== -1);
+        return roles.indexOf('admin') !== -1 || roles.indexOf(role) !== -1;
     },
+	
+    /**
+     * IsAdmin - check if the user is an administrator
+     *
+     * @return {Boolean}
+     * @api public
+     */
+    isAdmin: function() {
+        return this.roles.indexOf('admin') !== -1;
+    },
+	
     /**
      * Authenticate - check if the passwords are the same
      *
