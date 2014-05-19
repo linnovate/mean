@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Global', 'Articles',
-    function($scope, $stateParams, $location, Global, Articles) {
+angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams', '$state', 'Global', 'Articles',
+    function($scope, $stateParams, $state, Global, Articles) {
         $scope.global = Global;
 
         $scope.hasAuthorization = function(article){
@@ -14,7 +14,7 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
                 content: this.content
             });
             article.$save(function(response) {
-                $location.path('articles/' + response._id);
+                $state.go('articles/' + response._id);
             });
 
             this.title = '';
@@ -30,9 +30,10 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
                         $scope.articles.splice(i, 1);
                     }
                 }
+                $state.go('all articles');
             } else {
                 $scope.article.$remove();
-                $location.path('articles');
+                $state.go('all articles');
             }
         };
 
@@ -44,7 +45,7 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
             article.updated.push(new Date().getTime());
 
             article.$update(function() {
-                $location.path('articles/' + article._id);
+                $state.go('articles/' + article._id);
             });
         };
 
