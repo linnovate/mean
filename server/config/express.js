@@ -27,7 +27,7 @@ var express = require('express'),
 
 module.exports = function(app, passport, db) {
 
-    var gfs = new Grid(db.connections[0].db, db.mongo);
+    var gfs = new Grid(db.connection.db, db.mongo);
 
     app.set('showStackError', true);
 
