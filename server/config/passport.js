@@ -72,7 +72,8 @@ module.exports = function(passport) {
                         name: profile.displayName,
                         username: profile.username,
                         provider: 'twitter',
-                        twitter: profile._json
+                        twitter: profile._json,
+                        roles: ['authenticated']
                     });
                     user.save(function(err) {
                         if (err) console.log(err);
@@ -104,7 +105,8 @@ module.exports = function(passport) {
                         email: profile.emails[0].value,
                         username: profile.username || profile.emails[0].value.split('@')[0],
                         provider: 'facebook',
-                        facebook: profile._json
+                        facebook: profile._json,
+                        roles: ['authenticated']
                     });
                     user.save(function(err) {
                         if (err) console.log(err);
@@ -133,7 +135,8 @@ module.exports = function(passport) {
                         email: profile.emails[0].value,
                         username: profile.username,
                         provider: 'github',
-                        github: profile._json
+                        github: profile._json,
+                        roles: ['authenticated']
                     });
                     user.save(function(err) {
                         if (err) console.log(err);
@@ -162,7 +165,8 @@ module.exports = function(passport) {
                         email: profile.emails[0].value,
                         username: profile.emails[0].value,
                         provider: 'google',
-                        google: profile._json
+                        google: profile._json,
+                        roles: ['authenticated']
                     });
                     user.save(function(err) {
                         if (err) console.log(err);
@@ -191,7 +195,8 @@ module.exports = function(passport) {
                         name: profile.displayName,
                         email: profile.emails[0].value,
                         username: profile.emails[0].value,
-                        provider: 'linkedin'
+                        provider: 'linkedin',
+                        roles: ['authenticated']
                     });
                     user.save(function(err) {
                         if (err) console.log(err);
