@@ -1,9 +1,9 @@
 'use strict';
 
 var paths = {
-    js: ['*.js', 'server/**/*.js', 'public/**/*.js', 'test/**/*.js', '!test/coverage/**', '!public/system/lib/**', 'packages/**/*.js', '!packages/**/node_modules/**'],
-    html: ['public/**/views/**', 'server/views/**', 'packages/**/public/**/views/**', 'packages/**/server/views/**'],
-    css: ['public/**/css/*.css', '!public/system/lib/**', 'packages/**/public/**/css/*.css']
+    js: ['*.js', 'server/**/*.js', 'public/**/*.js', 'test/**/*.js', '!test/coverage/**', 'packages/**/*.js', '!packages/**/node_modules/**'],
+    html: ['public/**/views/**', 'server/views/**', 'packages/**/views/**', 'packages/**/server/views/**'],
+    css: ['public/**/css/*.css', 'packages/**/public/**/css/*.css']
 };
 
 module.exports = function(grunt) {
@@ -15,7 +15,7 @@ module.exports = function(grunt) {
     // Project Configuration
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        assets: grunt.file.readJSON('server/config/assets.json'),
+        assets: grunt.file.readJSON('config/assets.json'),
         clean: ['public/build'],
         watch: {
             js: {
@@ -76,7 +76,7 @@ module.exports = function(grunt) {
                     nodeArgs: ['--debug'],
                     delayTime: 1,
                     env: {
-                        PORT: require('./server/config/config').port
+                        PORT: require('./config/config').port
                     },
                     cwd: __dirname
                 }
