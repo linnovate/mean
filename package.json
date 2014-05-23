@@ -1,11 +1,16 @@
 {
   "name": "meanio",
-  "version": "0.4.27",
+  "version": "0.4.28",
   "preferGlobal": true,
   "description": "Simple command line interface for installing and managing MEAN apps",
   "author": {
     "name": "linnovate"
   },
+  "contributors": [
+    { "name": "Lior Kesos", "mail": "lior@linnovate.net" },
+    { "name": "Yonatan Ellman", "mail": "yonatan@linnovate.net" },
+    { "name": "Drew Fyock", "mail": "drew@steelbisondev.com" }
+  ],
   "license": "MIT",
   "main": "index",
   "bin": {
