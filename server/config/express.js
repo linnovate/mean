@@ -152,7 +152,7 @@ module.exports = function(app, passport, db) {
     });
 
     app.use('/public', express.static(config.root + '/public'));
-    app.use('/config', express.static(config.root + '/config'));
+    app.use('/config/lib', express.static(config.root + '/config/lib'));
 
     mean.events.on('modulesFound', function() {
 
