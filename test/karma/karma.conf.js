@@ -6,7 +6,7 @@
 module.exports = function(config) {
     var _ = require('lodash'),
         basePath = '../../',
-        assets = require(basePath + 'server/config/assets.json');
+        assets = require(basePath + 'config/assets.json');
 
     config.set({
 
