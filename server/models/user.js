@@ -8,32 +8,22 @@ var mongoose = require('mongoose'),
     crypto = require('crypto');
 
 /**
- * Validations
- */
-var validatePresenceOf = function(value) {
-    // If you are authenticating by any of the oauth strategies, don't validate.
-    return (this.provider && this.provider !== 'local') || value.length;
-};
-
-/**
  * User Schema
  */
 var UserSchema = new Schema({
     name: {
         type: String,
         required: true,
-        validate: [validatePresenceOf, 'Name cannot be blank']
     },
     email: {
         type: String,
         required: true,
         match: [/.+\@.+\..+/, 'Please enter a valid email'],
-        validate: [validatePresenceOf, 'Email cannot be blank']
     },
     username: {
         type: String,
         unique: true,
-        validate: [validatePresenceOf, 'Username cannot be blank']
+	required: true
     },
     roles: {
         type: Array,
@@ -41,7 +31,7 @@ var UserSchema = new Schema({
     },
     hashed_password: {
         type: String,
-        validate: [validatePresenceOf, 'Password cannot be blank']
+	required: true
     },
     provider: {
         type: String,
@@ -91,7 +81,7 @@ UserSchema.methods = {
         var roles = this.roles;
         return roles.indexOf('admin') !== -1 || roles.indexOf(role) !== -1;
     },
-	
+
     /**
      * IsAdmin - check if the user is an administrator
      *
@@ -101,7 +91,7 @@ UserSchema.methods = {
     isAdmin: function() {
         return this.roles.indexOf('admin') !== -1;
     },
-	
+
     /**
      * Authenticate - check if the passwords are the same
      *
