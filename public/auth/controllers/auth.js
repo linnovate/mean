@@ -34,7 +34,7 @@ angular.module('mean.controllers.login', [])
             };
         }
     ])
-    .controller('RegisterCtrl', ['$scope', '$rootScope', '$http', '$location',
+    .controller('SignUpCtrl', ['$scope', '$rootScope', '$http', '$location',
         function($scope, $rootScope, $http, $location) {
             $scope.user = {};
 
