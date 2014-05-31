@@ -19,13 +19,13 @@ module.exports = function(app, passport) {
 
     // AngularJS route to check for authentication
     app.route('/loggedin')
-        .get(function(req, res) {
+        .get(function(req, res) { 
             res.send(req.isAuthenticated() ? 200 : 401);
     });
 
     // AngularJS route to check for just authentication
     app.route('/loggedout')
-        .get(function(req, res) {
+        .get(function(req, res) { 
             res.send(req.isAuthenticated() ? 403 : 200);
     });
     

@@ -3,9 +3,9 @@
 //Setting up route
 angular.module('mean').config(['$stateProvider',
     function($stateProvider) {
-        // Check if the user is connected
+        // Check if the user is connected  
         var checkLoggedin = function($q, $timeout, $http, $location) {
-            // Make an AJAX call to check if the user is logged in
+            //Make an AJAX call to check if the user is logged in
             return $http.get('/loggedin');
         };
 
