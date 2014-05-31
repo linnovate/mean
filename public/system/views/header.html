@@ -13,9 +13,9 @@
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right" data-ng-if="!global.authenticated">
-            <li><a ui-sref="auth.signup">Sign up</a></li>
+            <li><a ui-sref="auth.register">Register</a></li>
             <li class="divider-vertical"></li>
-            <li><a ui-sref="auth.login">Login</a></li>
+            <li><a ui-sref="auth.signin">Sign In</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right" data-ng-if="global.authenticated">
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i><span data-ng-bind="global.user.name"></span><b class="caret"></b></a>

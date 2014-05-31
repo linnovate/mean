@@ -1,0 +1,12 @@
+.form-group div.col-md-8{
+    position:relative;
+    margin-right:15px;
+    padding-right:0;
+}
+.form-group:not(.form-actions) div.col-md-8:after{
+    position:absolute;
+    content:'*';
+    color:red;
+    right:-10px;
+    top:0;
+}

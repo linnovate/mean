@@ -14,21 +14,21 @@ angular.module('mean.auth').config(['$stateProvider',
                 abstract: true,
                 templateUrl: 'public/auth/views/index.html'
             })
-            .state('auth.login', {
-                url: '/login',
-                templateUrl: 'public/auth/views/login.html',
+            .state('auth.signin', {
+                url: '/signin',
+                templateUrl: 'public/auth/views/signin.html',
                 resolve: {
                     loggedin: checkLoggedOut
                 },
-                controller:'LoginCtrl'
+                controller:'SigninCtrl'
             })
-            .state('auth.signup', {
+            .state('auth.register', {
                 url: '/register',
-                templateUrl: 'public/auth/views/signup.html',
+                templateUrl: 'public/auth/views/register.html',
                 resolve: {
                     loggedin: checkLoggedOut
                 },
-                controller:'SignUpCtrl'
+                controller:'RegisterCtrl'
             });
     }
 ]);

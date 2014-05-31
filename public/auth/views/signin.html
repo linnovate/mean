@@ -1,0 +1,27 @@
+<h2>Sign in</h2>
+<form class="form-horizontal signin" data-ng-submit="login()">
+    <div class="form-group">
+        <div class="col-md-8">
+            <input tabindex="1" type="email" name="email" placeholder="Email" class="form-control" required="required" data-ng-model="user.email"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-8">
+            <input tabindex="2" type="password" name="password" placeholder="Password" class="form-control" ng-model="user.password"/>
+        </div>
+    </div>
+    <div class="form-group form-actions">
+        <div class="col-md-8">
+            <div class="pull-right">
+                <button tabindex="3" type="submit" class="btn btn-primary">Sign In</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group form-actions" data-ng-show="loginerror">
+        <div class="col-md-8">
+            <div class="alert alert-danger animated fadeIn">{{loginerror}}</div>
+        </div>
+    </div>
+</form>
+        
+

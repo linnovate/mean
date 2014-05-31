@@ -1,15 +1,5 @@
-.text-edit {
-    padding: 13px 0 0 0;
-}
-.account {
-    text-align:right;
-}
-.account>div, .account>ul {
-    text-align:left;
-}
-.content {
+body{
     margin-top:70px;
-    width:100%
 }
 footer {
     position:fixed;
