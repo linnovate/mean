@@ -1,17 +1,22 @@
 {
     "css": {
         "public/build/css/dist.min.css": [
+            "public/system/lib/bootstrap/dist/css/bootstrap.min.css",
+            "public/system/lib/font-awesome/css/font-awesome.min.css",
+            "public/system/lib/bootstrap-social/bootstrap-social.css",
             "public/**/assets/css/*.css"
         ]
     },
     "js": {
         "public/build/js/dist.min.js": [
+            "public/system/lib/lodash/dist/lodash.min.js",
+            "public/system/lib/jquery/dist/jquery.min.js",
+            "public/system/lib/bootstrap/dist/js/bootstrap.min.js",
             "public/system/lib/angular/angular.js",
             "public/system/lib/angular-mocks/angular-mocks.js",
             "public/system/lib/angular-cookies/angular-cookies.js",
             "public/system/lib/angular-resource/angular-resource.js",
             "public/system/lib/angular-ui-router/release/angular-ui-router.js",
-            "public/system/lib/jquery/dist/jquery.min.js",
             "public/system/lib/angular-bootstrap/ui-bootstrap.js",
             "public/system/lib/angular-bootstrap/ui-bootstrap-tpls.js",
             "public/init.js",

@@ -70,6 +70,7 @@ module.exports = function(app, passport, db) {
     app.use(bodyParser());
     app.use(methodOverride());
 
+
     // Import your asset file
     var assets = require('./assets.json');
     assetmanager.init({

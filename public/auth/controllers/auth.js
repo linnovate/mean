@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('mean.controllers.login', [])
-    .controller('LoginCtrl', ['$scope', '$rootScope', '$http', '$location',
+    .controller('SigninCtrl', ['$scope', '$rootScope', '$http', '$location',
         function($scope, $rootScope, $http, $location) {
             // This object will be filled by the form
             $scope.user = {};
 
             // Register the login() function
             $scope.login = function() {
-                $http.post('/login', {
+                $http.post('/signin', {
                     email: $scope.user.email,
                     password: $scope.user.password
                 })
@@ -37,8 +37,8 @@ angular.module('mean.controllers.login', [])
     .controller('RegisterCtrl', ['$scope', '$rootScope', '$http', '$location',
         function($scope, $rootScope, $http, $location) {
             $scope.user = {};
-
-            $scope.register = function() {
+            $scope.errors = [];
+            $scope.signup = function() {
                 $scope.usernameError = null;
                 $scope.registerError = null;
                 $http.post('/register', {

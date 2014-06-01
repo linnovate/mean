@@ -22,3 +22,4 @@ modules = modules.concat(packageModules);
 
 // Combined modules
 angular.module('mean', modules);
+

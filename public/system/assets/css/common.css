@@ -1,30 +1,5 @@
-.page-header {
-    padding-bottom: 0 !important;
-    margin: 0 !important;
-    border-bottom: 0 !important;
-}
-.page-header .navbar-nav {
-    float: right;
-}
-.page-header>div>div, .page-header>div>ul {
-    display:inline-block;
-}
-.text-edit {
-    padding: 13px 0 0 0;
-}
-.account {
-    text-align:right;
-}
-.account>div, .account>ul {
-    text-align:left;
-}
-.navbar .nav>li>a.brand {
-    padding-left:20px;
-    margin-left:0
-}
-.content {
+body{
     margin-top:70px;
-    width:100%
 }
 footer {
     position:fixed;
