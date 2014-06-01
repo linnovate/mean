@@ -71,7 +71,6 @@
     "view-helpers": "^0.1.4"
   },
   "devDependencies": {
-    "assetmanager": "0.1.2",
     "grunt-karma": "^0.8.2",
     "grunt-mocha-test": "^0.10.2",
     "karma": "^0.12.10",
