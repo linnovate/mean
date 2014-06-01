@@ -19,7 +19,7 @@ module.exports = function(config) {
 
 
         // list of files / patterns to load in the browser
-        files: _.flatten(_.values(assets.js)).concat([
+        files: _.flatten(_.values(assets.core.js)).concat([
             'test/karma/unit/**/*.js',
             'packages/*/public/**/*.js',
             'packages/*/test/karma/**/*.js'
