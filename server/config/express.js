@@ -70,18 +70,16 @@ module.exports = function(app, passport, db) {
     app.use(bodyParser());
     app.use(methodOverride());
 
-    // Import your asset file
-    var assets = require('./assets.json');
-    assetmanager.init({
-        js: assets.js,
-        css: assets.css,
+    // Import the assets file
+    var assets = assetmanager.process({
+        assets: require('./assets.json'),
         debug: (process.env.NODE_ENV !== 'production'),
         webroot: 'public/public'
     });
 
     // Add assets to local variables
     app.use(function(req, res, next) {
-        res.locals.assets = assetmanager.assets;
+        res.locals.assets = assets;
         next();
     });
 

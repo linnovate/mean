@@ -48,11 +48,11 @@ module.exports = function(grunt) {
             }
         },
         uglify: {
-            options: {
-                mangle: false
-            },
-            production: {
-                files: '<%= assets.js %>'
+            core: {
+                options: {
+                    mangle: false
+                },
+                files: '<%= assets.core.js %>'
             }
         },
         csslint: {
@@ -62,8 +62,8 @@ module.exports = function(grunt) {
             src: paths.css
         },
         cssmin: {
-            combine: {
-                files: '<%= assets.css %>'
+            core: {
+                files: '<%= assets.core.css %>'
             }
         },
         nodemon: {
