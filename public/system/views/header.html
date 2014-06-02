@@ -9,7 +9,7 @@
     <div id="navbar-collapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-left">
             <li data-ng-repeat="item in menus.main"  data-ng-class="{active:$state.includes('{{item.link}}')}">
-                <a mean-token="item.link" data-ui-sref="{{item.link}}">{{item.title}}</a>
+                <a data-ui-sref="{{item.link}}">{{item.title}}</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right" data-ng-if="!global.authenticated">

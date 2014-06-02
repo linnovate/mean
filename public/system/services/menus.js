@@ -1,8 +1,14 @@
 'use strict';
 
-angular.module('mean.system').factory('Menus', ['$resource', function($resource) {
-    return $resource('admin/menu/:name', {
-        name: '@name',
-        defaultMenu: '@defaultMenu'
-    });
-}]);
+angular.module('mean.system')
+    .factory('Menus', ['$http', function($http) {
+        return {
+            query : function(name,defaultMenu){
+                return $http.get('/admin/menu/'+name, {
+                    params: {
+                        'defaultMenu[]': defaultMenu
+                    }
+                });
+            }
+        }; 
+    }]);

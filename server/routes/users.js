@@ -35,8 +35,7 @@ module.exports = function(app, passport) {
             failureFlash: true
         }), function(req, res) {
             res.send({
-                user: req.user,
-                redirect: (req.user.roles.indexOf('admin') !== -1) ? req.get('referer') : false
+                user: {name:req.user.name,username:req.user.username,_id:req.user._id,roles:req.user.roles} 
             });
         });
 

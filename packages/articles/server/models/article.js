@@ -11,23 +11,34 @@ var mongoose = require('mongoose'),
  * Article Schema
  */
 var ArticleSchema = new Schema({
-    created: {
-        type: Date,
-        default: Date.now
-    },
     title: {
         type: String,
-        default: '',
+        required: true,
         trim: true
     },
-    content: {
+    description: {
         type: String,
         default: '',
         trim: true
     },
-    user: {
-        type: Schema.ObjectId,
-        ref: 'User'
+    pic: {
+        type: String,
+        default: 'pippo.jpg',
+        required: true,    
+        trim: true
+    },
+    price:  {
+        type: Number,
+        required: true,
+        trim: true
+    },
+    categories: {
+        type: [String]
+    },
+    created: {
+        type: Date,
+        required: true,
+        default: Date.now
     }
 });
 
@@ -35,16 +46,28 @@ var ArticleSchema = new Schema({
  * Validations
  */
 ArticleSchema.path('title').validate(function(title) {
-    return title.length;
-}, 'Title cannot be blank');
+    if(typeof title !== 'undefined' && title !== null){
+        return title.length > 0;
+    }
+    return false;
+}, 'Title cannot be empty');
 
-/**
- * Statics
- */
-ArticleSchema.statics.load = function(id, cb) {
-    this.findOne({
-        _id: id
-    }).populate('user', 'name username').exec(cb);
-};
+ArticleSchema.path('pic').validate(function(pic) {
+    return /\.(jpeg|jpg|gif|png)$/i.test(pic);
+}, 'Is not a valid image');
+
+ArticleSchema.path('price').validate(function(price) {
+    if(typeof price !== 'undefined' && price !== null){
+        return /^[0-9\.,]+$/.test(price);
+    }
+    return false;
+ }, 'Is not a valid price format');
+
+ArticleSchema.path('categories').validate(function(categories) {
+    if(typeof categories !== 'undefined' && categories !== null){
+        return categories.length > 0;
+    }
+    return false;
+}, 'Categories cannot be empty');
 
 mongoose.model('Article', ArticleSchema);

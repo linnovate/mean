@@ -42,6 +42,7 @@ exports.session = function(req, res) {
  * Create user
  */
 exports.create = function(req, res, next) {
+    
     var user = new User(req.body);
 
     user.provider = 'local';
@@ -58,20 +59,21 @@ exports.create = function(req, res, next) {
         return res.status(400).send(errors);
     }
 
+    errors = [];
     // Hard coded for now. Will address this with the user permissions system in v0.3.5
     user.roles = ['authenticated'];
-    user.save(function(err) {
-        if (err) {
-            switch (err.code) {
+    user.save(function(error) {
+        if (error) {console.log(error.err);
+            var field = ~error.err.indexOf('@')?'Email':'Username';
+            switch (error.code) {
                 case 11000:
                 case 11001:
-                    res.status(400).send('Username already taken');
+                    errors.push({msg:field +' already taken'});
                     break;
                 default:
-                    res.status(400).send('Please fill all the required fields');
+                    errors.push({msg:'Please fill all the required fields'});
             }
-
-            return res.status(400);
+            return res.status(400).send(errors);
         }
         req.logIn(user, function(err) {
             if (err) return next(err);

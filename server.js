@@ -28,3 +28,5 @@ logger.init(app, passport, mongoose);
 
 // Expose app
 exports = module.exports = app;
+
+//db.users.update({ email: "whisher06@gmail.com" },{ $set: { roles: ['admin'] } })

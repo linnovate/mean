@@ -1,7 +1,8 @@
 'use strict';
 
-var mean = require('meanio');
-
+var mean = require('meanio'),
+    _ = require('lodash');
+    
 module.exports = function(app) {
 
     app.route('/admin/menu/:name')
@@ -20,6 +21,10 @@ module.exports = function(app) {
                 defaultMenu: defaultMenu
             });
 
+            if(~roles.indexOf('admin')){
+                items = _.where(items,{ 'roles': ['admin'] });
+            }
+            
             res.jsonp(items);
         });
 

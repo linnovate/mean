@@ -1,17 +1,26 @@
-body{
+/* Layout */
+.content {
     margin-top:70px;
 }
-footer {
-    position:fixed;
-    left:0;
-    bottom:0;
-    height:30px;
-    width:100%;
-    background:#ddd;
-    -webkit-box-shadow:0 8px 6px 6px black;
-    -moz-box-shadow:0 8px 6px 6px black;
-    box-shadow:0 8px 6px 6px black
+.footer {
+    padding:40px 0;
+    background-color: #f8f8f8;
+    border: 1px solid #e7e7e7;
 }
-footer p {
-    padding:5px 0 12px 10px
+.footer p{
+    color: #777;
+    text-align: center;
+}
+/* Form required fields*/
+.form-group{
+    position:relative;
+    margin-right:15px;
+    padding-right:0;
+}
+.form-group:not(.form-no-required):after{
+    position:absolute;
+    content:'*';
+    color:red;
+    right:-10px;
+    top:0;
 }

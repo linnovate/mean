@@ -1,6 +1,6 @@
 {% extends 'layouts/default.html' %}
 {% block content %}
-    <div data-ui-view>
+    <div class="container" data-ui-view>
         <script type="text/javascript">
             window.user = {{user|json|safe}};        
             window.modules = {{modules|json|safe}};      
