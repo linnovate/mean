@@ -6,6 +6,14 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     crypto = require('crypto');
+ 
+/**
+  * Validations
+  */
+ var validatePresenceOf = function(value) {
+     // If you are authenticating by any of the oauth strategies, don't validate.
+     return (this.provider && this.provider !== 'local') || (value && value.length);
+ };
 
 /**
  * User Schema
@@ -23,7 +31,7 @@ var UserSchema = new Schema({
     username: {
         type: String,
         unique: true,
-	required: true
+        required: true
     },
     roles: {
         type: Array,
@@ -31,7 +39,7 @@ var UserSchema = new Schema({
     },
     hashed_password: {
         type: String,
-	required: true
+        validate: [validatePresenceOf, 'Password cannot be blank']
     },
     provider: {
         type: String,
