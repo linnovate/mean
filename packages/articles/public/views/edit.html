@@ -1,5 +1,5 @@
 <section data-ng-controller="ArticlesController" data-ng-init="findOne()">
-    <form class="form-horizontal col-md-6" role="form" data-ng-submit="update()">
+    <form name="articleForm" class="form-horizontal col-md-6" role="form" data-ng-submit="articleForm.$valid && update()" novalidate>
         <div class="form-group">
             <label mean-token="'edit-title'" for="title" class="col-md-2 control-label">Title</label>
             <div class="col-md-10">
