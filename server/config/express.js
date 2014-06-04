@@ -20,7 +20,7 @@ var express = require('express'),
     config = require('./config'),
     expressValidator = require('express-validator'),
     appPath = process.cwd(),
-    util = require('./util'),
+    util = require('meanio/lib/util'),
     assetmanager = require('assetmanager'),
     fs = require('fs'),
     Grid = require('gridfs-stream');
@@ -161,7 +161,7 @@ module.exports = function(app, passport, db) {
             // Skip the app/routes/middlewares directory as it is meant to be
             // used and shared by routes as further middlewares and is not a
             // route by itself
-            util.walk(appPath + '/server/routes', 'middlewares', function(path) {
+            util.walk(appPath + '/server', 'route', 'middlewares', function(path) {
                 require(path)(app, passport);
             });
         }

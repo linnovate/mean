@@ -10,7 +10,7 @@ module.exports = function(passport, db) {
 
     function bootstrapModels() {
         // Bootstrap models
-        require('../util').walk(appPath + '/server/models', null, function(path) {
+        require('meanio/lib/util').walk(appPath + '/server', 'model', null, function(path) {
             require(path);
         });
     }
