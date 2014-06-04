@@ -1,5 +1,5 @@
 <section data-ng-controller="ArticlesController">
-    <form class="form-horizontal col-md-6" role="form" data-ng-submit="create()">
+    <form name="articleForm" class="form-horizontal col-md-6" role="form" data-ng-submit="articleForm.$valid && create()" novalidate>
         <div class="form-group">
             <label mean-token="'create-title'" class="col-md-3 control-label">Title</label>
             <div class="col-md-9">
