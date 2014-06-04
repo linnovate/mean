@@ -1,6 +1,6 @@
 'use strict';
 
-var articles = require('./articles-controller');
+var articles = require('./articles-CONTROLLER');
 
 // Article authorization helpers
 var hasAuthorization = function(req, res, next) {
