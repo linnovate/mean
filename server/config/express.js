@@ -89,7 +89,9 @@ module.exports = function(app, passport, db) {
         store: new mongoStore({
             db: db.connection.db,
             collection: config.sessionCollection
-        })
+        }),
+        cookie: config.sessionCookie,
+        name: config.sessionName
     }));
 
     // Dynamic helpers
