@@ -121,7 +121,7 @@
                     $httpBackend.expectPOST('articles', postArticleData()).respond(responseArticleData());
 
                     // Run controller
-                    scope.create();
+                    scope.create(true);
                     $httpBackend.flush();
 
                     // test form input(s) are reset
@@ -132,7 +132,7 @@
                     expect($location.path()).toBe('/articles/' + responseArticleData()._id);
                 });
 
-            it('$scope.update() should update a valid article', inject(function(Articles) {
+            it('$scope.update(true) should update a valid article', inject(function(Articles) {
 
                 // fixture rideshare
                 var putArticleData = function() {
@@ -161,7 +161,7 @@
                 */
 
                 // run controller
-                scope.update();
+                scope.update(true);
                 $httpBackend.flush();
 
                 // test URL location to new object
