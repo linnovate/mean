@@ -10,7 +10,7 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
         };
 
         $scope.create = function(isValid) {
-            if (isValid){
+            if (isValid) {
                 var article = new Articles({
                     title: this.title,
                     content: this.content
@@ -21,7 +21,7 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
 
                 this.title = '';
                 this.content = '';
-            }else{
+            } else {
                 $scope.submitted = true;
             }
         };
@@ -43,7 +43,7 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
         };
 
         $scope.update = function(isValid) {
-            if (isValid){
+            if (isValid) {
                 var article = $scope.article;
                 if (!article.updated) {
                     article.updated = [];
@@ -53,7 +53,7 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
                 article.$update(function() {
                     $location.path('articles/' + article._id);
                 });
-            }else{
+            } else {
                 $scope.submitted = true;
             }
         };
