@@ -21,12 +21,12 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
     name: {
         type: String,
-        required: true,
+        required: true
     },
     email: {
         type: String,
         required: true,
-        match: [/.+\@.+\..+/, 'Please enter a valid email'],
+        match: [/.+\@.+\..+/, 'Please enter a valid email']
     },
     username: {
         type: String,
