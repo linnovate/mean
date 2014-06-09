@@ -7,6 +7,10 @@ var mongoose = require('mongoose'),
     passport = require('passport'),
     logger = require('mean-logger');
 
+/* Set tmp folder fot upload files */
+
+process.env.TMPDIR = './server/tmp';
+
 /**
  * Main application entry file.
  * Please note that the order of loading is important.

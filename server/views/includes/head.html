@@ -18,10 +18,12 @@
     <meta property="fb:admins" content="APP_ADMIN">
     
     
-    {% for file in assets.css %}
+    {% for file in assets.vendor.css %}
         <link rel="stylesheet" href="{{file}}">
     {% endfor %}
-
+    {% for file in assets.scripts.css %}
+        <link rel="stylesheet" href="{{file}}">
+    {% endfor %}
     
 
     <link rel="stylesheet" href="/modules/aggregated.css">

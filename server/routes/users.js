@@ -29,6 +29,12 @@ module.exports = function(app, passport) {
             res.send(req.isAuthenticated() ? 403 : 200);
     });
     
+    app.route('/loggedinadmin')
+        .get(function(req, res) { 
+            var isAdmin = req.isAuthenticated() && req.user.isAdmin();
+            res.send(isAdmin ? 200 : 401);
+    });
+    
     // Setting the local strategy route
     app.route('/signin')
         .post(passport.authenticate('local', {

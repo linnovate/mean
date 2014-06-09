@@ -15,7 +15,7 @@ exports.requiresLogin = function(req, res, next) {
  * Basic Role checking - future release with full permission system
  */
 exports.requiresAdmin = function(req, res, next) {
-    if (!req.isAuthenticated() || !req.user.hasRole('admin')) {
+    if (!req.isAuthenticated() || !req.user.isAdmin()) {
         return res.send(401, 'User is not authorized');
     }
     next();

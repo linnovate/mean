@@ -18,12 +18,11 @@ var ArticleSchema = new Schema({
     },
     description: {
         type: String,
-        default: '',
+        required: true,   
         trim: true
     },
-    pic: {
+    avatar: {
         type: String,
-        default: 'pippo.jpg',
         required: true,    
         trim: true
     },
@@ -33,7 +32,8 @@ var ArticleSchema = new Schema({
         trim: true
     },
     categories: {
-        type: [String]
+        type: [String],
+        required: true
     },
     created: {
         type: Date,
@@ -52,8 +52,8 @@ ArticleSchema.path('title').validate(function(title) {
     return false;
 }, 'Title cannot be empty');
 
-ArticleSchema.path('pic').validate(function(pic) {
-    return /\.(jpeg|jpg|gif|png)$/i.test(pic);
+ArticleSchema.path('avatar').validate(function(avatar) {
+    return /\.(jpeg|jpg|gif|png)$/i.test(avatar);
 }, 'Is not a valid image');
 
 ArticleSchema.path('price').validate(function(price) {

@@ -1,24 +1,24 @@
 <form class="form-horizontal signup" novalidate data-ng-submit="save()">
-    <h1>Sign up</h1>
+    <h1 data-translate="auth.register.header"></h1>
     <div class="col-md-8">
         <div class="form-group">
-            <input tabindex="1" type="text" name="name" placeholder="Full name" class="form-control" required="required" data-ng-model="user.name"/>
+            <input tabindex="1" type="text" name="name" placeholder="{{'auth.register.name.placeholder' | translate}}" class="form-control" required="required" data-ng-model="user.name"/>
         </div>
         <div class="form-group">
-            <input tabindex="2" type="email" name="email" placeholder="Email" class="form-control" required="required" data-ng-model="user.email"/>
+            <input tabindex="2" type="email" name="email" placeholder="{{'auth.register.email.placeholder' | translate}}" class="form-control" required="required" data-ng-model="user.email"/>
         </div>
         <div class="form-group">
-            <input tabindex="3" type="text" name="username" placeholder="Username" class="form-control" required="required" data-ng-model="user.username"/>
+            <input tabindex="3" type="text" name="username" placeholder="{{'auth.register.username.placeholder' | translate}}" class="form-control" required="required" data-ng-model="user.username"/>
         </div>
         <div class="form-group">
-            <input tabindex="4" id="password" type="password" name="password" placeholder="Password" class="form-control" required="required" data-ng-model="user.password"/>
+            <input tabindex="4" id="password" type="password" name="password" placeholder="{{'auth.register.password.placeholder' | translate}}" class="form-control" required="required" data-ng-model="user.password"/>
         </div>
         <div class="form-group">
-            <input tabindex="5" id="confirmPassword" type="password" name="confirmPassword" placeholder="Retype password" required="required" class="form-control" data-ng-model="user.confirmPassword"/>
+            <input tabindex="5" id="confirmPassword" type="password" name="confirmPassword" placeholder="{{'auth.register.repassword.placeholder' | translate}}" required="required" class="form-control" data-ng-model="user.confirmPassword"/>
         </div>
         <div class="form-group form-no-required">
             <div class="pull-right">
-                    <button tabindex="6" type="submit" class="btn btn-primary">Register</button>
+                <button tabindex="6" type="submit" class="btn btn-primary" data-translate="auth.register.btn"></button>
             </div>
         </div>
         <div class="form-group form-no-required" data-ng-if="hasErrors">

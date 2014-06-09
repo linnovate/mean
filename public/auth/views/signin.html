@@ -1,15 +1,15 @@
 <form name="form" class="form-horizontal signin" novalidate data-ng-submit="login()">
-    <h1>Sign in</h1>
+    <h1 data-translate="auth.signin.header"></h1>
     <div class="col-md-8">
         <div class="form-group">
-           <input tabindex="1" type="email" name="email" placeholder="Email" class="form-control" required="required" data-ng-model="user.email"/>
+           <input tabindex="1" type="email" name="email" placeholder="{{'auth.signin.email.placeholder' | translate}}" class="form-control" required="required" data-ng-model="user.email"/>
         </div>
         <div class="form-group">
-            <input tabindex="2" type="password" name="password" placeholder="Password" class="form-control" required="required" data-ng-model="user.password"/>
+            <input tabindex="2" type="password" name="password" placeholder="{{'auth.signin.password.placeholder' | translate}}" class="form-control" required="required" data-ng-model="user.password"/>
         </div>
         <div class="form-group form-no-required">
             <div class="pull-right">
-                <button tabindex="3" type="submit" class="btn btn-primary" data-ng-disabled="form.$invalid">Sign In</button>
+                <button tabindex="3" type="submit" class="btn btn-primary" data-ng-disabled="form.$invalid" data-translate="auth.signin.btn"></button>
             </div>
         </div>
         <div class="form-group form-no-required" data-ng-if="error">

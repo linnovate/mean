@@ -17,6 +17,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         assets: grunt.file.readJSON('server/config/assets.json'),
         clean: ['public/build'],
+        lib: 'public/system/lib',
         watch: {
             js: {
                 files: paths.js,
@@ -47,12 +48,22 @@ module.exports = function(grunt) {
                 }
             }
         },
+        concat:{
+            productionCssVendor:{
+                files: '<%= assets.vendor.css %>',
+                nonull: true
+            },
+            productionJsVendor:{
+                files: '<%= assets.vendor.js %>',
+                nonull: true
+            }
+        },
         uglify: {
             options: {
                 mangle: false
             },
-            production: {
-                files: '<%= assets.js %>'
+            productionScripts: {
+                files: '<%= assets.scripts.js %>'
             }
         },
         csslint: {
@@ -62,8 +73,22 @@ module.exports = function(grunt) {
             src: paths.css
         },
         cssmin: {
-            combine: {
-                files: '<%= assets.css %>'
+            productionScripts: {
+                files: '<%= assets.scripts.css %>'
+            }
+        },
+        copy: {
+            bootstrapFonts: {
+                cwd: '<%= lib %>/bootstrap/fonts/',
+                src: '*',
+                dest: 'public/build/fonts',
+                expand: true
+            },
+            awesomeFonts: {
+                cwd: '<%= lib %>/font-awesome/fonts/',
+                src: '*',
+                dest: 'public/build/fonts',
+                expand: true
             }
         },
         nodemon: {
@@ -112,7 +137,7 @@ module.exports = function(grunt) {
 
     //Default task(s).
     if (process.env.NODE_ENV === 'production') {
-        grunt.registerTask('default', ['clean','cssmin', 'uglify', 'concurrent']);
+        grunt.registerTask('default', ['clean','cssmin', 'uglify', 'concat', 'copy', 'concurrent']);
     } else {
         grunt.registerTask('default', ['clean','jshint', 'csslint', 'concurrent']);
     }
@@ -122,5 +147,5 @@ module.exports = function(grunt) {
 
     // For Heroku users only.
     // Docs: https://github.com/linnovate/mean/wiki/Deploying-on-Heroku
-    grunt.registerTask('heroku:production', ['cssmin', 'uglify']);
+    grunt.registerTask('heroku:production', ['clean','cssmin', 'uglify', 'concat', 'copy']);
 };

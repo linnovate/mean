@@ -28,7 +28,6 @@ exports.render = function(req, res) {
             roles: req.user.roles
         } : {},
         modules: modules,
-        isAdmin: isAdmin,
-        adminEnabled: isAdmin() && mean.moduleEnabled('mean-admin')
+        isAdmin: isAdmin()
     });
 };

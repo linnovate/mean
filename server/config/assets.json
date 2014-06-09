@@ -1,27 +1,42 @@
 {
-    "css": {
-        "public/build/css/dist.min.css": [
-            "public/system/lib/bootstrap/dist/css/bootstrap.min.css",
-            "public/system/lib/font-awesome/css/font-awesome.min.css",
-            "public/system/lib/bootstrap-social/bootstrap-social.css",
-            "public/**/assets/css/*.css"
-        ]
+   "vendor":{ 
+        "css": {
+            "public/build/css/vendor.min.css": [
+                "public/system/lib/bootstrap/dist/css/bootstrap.min.css",
+                "public/system/lib/font-awesome/css/font-awesome.min.css",
+                "public/system/lib/bootstrap-social/bootstrap-social.css"
+            ]
+        },
+        "js": {
+            "public/build/js/vendor.min.js": [
+                "public/system/lib/lodash/dist/lodash.min.js",
+                "public/system/lib/jquery/dist/jquery.min.js",
+                "public/system/lib/bootstrap/dist/js/bootstrap.min.js",
+                "public/system/lib/ng-file-upload/angular-file-upload-html5-shim.min.js",
+                "public/system/lib/angular/angular.min.js",
+                "public/system/lib/angular-i18n/angular-locale_it-it.js",
+                "public/system/lib/angular-translate/angular-translate.min.js",
+                "public/system/lib/angular-ui-router/release/angular-ui-router.min.js",
+                "public/system/lib/restangular/dist/restangular.min.js",
+                "public/system/lib/angular-bootstrap/ui-bootstrap.min.js",
+                "public/system/lib/angular-bootstrap/ui-bootstrap-tpls.min.js",
+                "public/system/lib/ng-file-upload/angular-file-upload.min.js",
+                "public/system/lib/angular-mocks/angular-mocks.js"
+            ]
+        }
     },
-    "js": {
-        "public/build/js/dist.min.js": [
-            "public/system/lib/lodash/dist/lodash.min.js",
-            "public/system/lib/jquery/dist/jquery.min.js",
-            "public/system/lib/bootstrap/dist/js/bootstrap.min.js",
-            "public/system/lib/angular/angular.js",
-            "public/system/lib/angular-mocks/angular-mocks.js",
-            "public/system/lib/angular-cookies/angular-cookies.js",
-            "public/system/lib/angular-resource/angular-resource.js",
-            "public/system/lib/angular-ui-router/release/angular-ui-router.js",
-            "public/system/lib/angular-bootstrap/ui-bootstrap.js",
-            "public/system/lib/angular-bootstrap/ui-bootstrap-tpls.js",
-            "public/init.js",
-            "public/*/*.js",
-            "public/*/{controllers,routes,services}/*.js"
-        ]
+    "scripts":{ 
+       "css": {
+            "public/build/css/scripts.min.css": [
+                "public/**/assets/css/*.css"
+            ]
+       },
+       "js": {
+            "public/build/js/scripts.min.js": [
+                "public/init.js",
+                "public/*/*.js",
+                "public/*/{controllers,routes,services,filters}/*.js"
+            ]
+        }
     }
 }

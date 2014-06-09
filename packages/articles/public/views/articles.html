@@ -1,0 +1,52 @@
+<div class="well">
+    <a class="btn btn-primary" data-ui-sref="create_article">{{ 'article.labels.add' | translate }}</a>
+</div>
+<table class="table table-striped" data-ng-if="hasItems">
+    <thead>
+        <tr>
+            <th>{{ 'article.headers.pic' | translate }}</th>
+            <th>{{ 'article.headers.title' | translate }}</th>
+            <th>{{ 'article.headers.description' | translate }}</th>
+            <th>{{ 'article.headers.price' | translate }}</th>
+            <th>{{ 'article.headers.categories' | translate }}</th>
+            <th>{{ 'article.headers.actions' | translate }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr data-ng-repeat="article in paginator.items">
+            <td><img class="avatar" alt="{{article.title}}" data-ng-src="/public/uploads/{{article.avatar}}"></td>
+            <td>{{article.title}}</td>
+            <td>{{article.description | words:10}}</td>
+            <td>{{article.price}}</td>
+            <td>{{article.categories}}</td>
+            <td>
+                <a data-ui-sref="edit_article({ id: article.id })" class="btn btn-warning btn-sm">
+                    <span class="glyphicon glyphicon-edit"></span> {{ 'article.labels.edit' | translate }}
+                </a>
+                <a data-ui-sref="delete_article({ id: article.id })" class="btn btn-danger btn-sm">
+                    <span class="glyphicon glyphicon-trash"></span> {{ 'article.labels.del' | translate }}
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="text-center" data-ng-if="hasItems">
+    <ul class="pagination">
+        <li data-ng-class="{disabled: !paginator.hasPrevious()}">
+            <a href data-ng-click="paginator.previous()">&laquo; </a>
+        </li>
+        <li data-ng-class="{disabled: !paginator.hasFirst()}">
+            <a href data-ng-click="paginator.first()">&lsaquo;</a>
+        </li>
+        <li data-ng-repeat="n in [] | pagination:paginator.getStart():paginator.getEnd()" data-ng-class="{active: n == paginator.getCurrentPage()}">
+            <a  href data-ng-click="paginator.toPageId(n)">{{n}}</a>
+        </li>
+        <li data-ng-class="{disabled: !paginator.hasLast()}">
+            <a href data-ng-click="paginator.last()">&rsaquo; </a>
+        </li>
+        <li data-ng-class="{disabled: !paginator.hasNext()}">
+            <a href data-ng-click="paginator.next()">&raquo;</a>
+        </li>
+    </ul>
+</div>
+

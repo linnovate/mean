@@ -1,43 +1,74 @@
 'use strict';
 
-//Setting up route
-angular.module('mean').config(['$stateProvider',
+//Setting up routes
+angular.module('mean.articles').config(['$stateProvider',
     function($stateProvider) {
-        // Check if the user is connected  
-        var checkLoggedin = function($q, $timeout, $http, $location) {
-            //Make an AJAX call to check if the user is logged in
+
+        //================================================
+        // Check if the user is connected
+        //================================================
+        var checkLoggedin = function($http) {
             return $http.get('/loggedin');
+        };
+        
+        //================================================
+        // Check if the user is admin
+        //================================================
+        var checkLoggedinAdmin = function($http) {
+            return $http.get('/loggedinadmin');
         };
 
         // states for my app
         $stateProvider
-            .state('all articles', {
+            .state('articles', {
                 url: '/articles',
-                templateUrl: 'articles/views/list.html',
+                templateUrl: 'articles/views/articles.html',
                 resolve: {
-                    loggedin: checkLoggedin
-                }
+                    loggedin: checkLoggedin,
+                    articles: function(Articles){
+                        return Articles.all();
+                    }
+                },
+                controller: 'ArticlesIndexCtrl'
             })
-            .state('create article', {
+            .state('create_article', {
                 url: '/articles/create',
-                templateUrl: 'articles/views/create.html',
+                templateUrl: 'articles/views/form.html',
                 resolve: {
-                    loggedin: checkLoggedin
-                }
+                    loggedin: checkLoggedinAdmin,
+                    categories: function(Categories){
+                        return Categories.all().then(function(data){
+                            return data;
+                        });
+                    }
+                },
+                controller: 'ArticlesCreateCtrl'
             })
-            .state('edit article', {
-                url: '/articles/:articleId/edit',
-                templateUrl: 'articles/views/edit.html',
+            .state('edit_article', {
+                url: '/articles/:id/edit',
+                templateUrl: 'articles/views/form.html',
                 resolve: {
-                    loggedin: checkLoggedin
-                }
+                    loggedin: checkLoggedin,
+                    article: function(Articles, $stateParams){
+                        return Articles.one($stateParams.id);
+                    },
+                    categories: function(Categories){
+                        return Categories.all().then(function(data){
+                            return data;
+                        });
+                    }
+                },
+                controller: 'ArticlesEditCtrl'
             })
-            .state('article by id', {
-                url: '/articles/:articleId',
-                templateUrl: 'articles/views/view.html',
+            .state('delete_article', {
+                url: '/articles/:id/delete',
+                templateUrl: 'articles/views/delete.html',
                 resolve: {
-                    loggedin: checkLoggedin
-                }
+                    loggedin: checkLoggedin,
+                    article: function(Articles, $stateParams){
+                        return Articles.one($stateParams.id);
+                    }
+                },
+                controller: 'ArticlesDeleteCtrl'
             });
-    }
-]);
+    }]);

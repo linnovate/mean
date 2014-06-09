@@ -3,8 +3,8 @@
 //Setting up route
 angular.module('mean.auth').config(['$stateProvider',
     function($stateProvider) {
-        //  Check if the user is not conntected
-        var checkLoggedOut = function($q, $timeout, $http, $location) {
+        //  Check if the user is not connetected
+        var checkLoggedOut = function($http) {
             return $http.get('/loggedout');
         };
 

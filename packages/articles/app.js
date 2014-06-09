@@ -29,14 +29,10 @@ Articles.register(function(app, auth, database) {
     });
     Articles.menus.add({
         'roles': ['admin'],
-        'title': 'Articles admin',
-        'link': 'all articles'
+        'title': 'Articles',
+        'link': 'articles'
     });
-    Articles.menus.add({
-        'roles': ['admin'],
-        'title': 'Create New Article admin',
-        'link': 'create article'
-    });
+    
 
     /*
     //Uncomment to use. Requires meanio@0.3.7 or above
@@ -55,7 +51,8 @@ Articles.register(function(app, auth, database) {
       //you now have the settings object
     });
     */
+   
+    Articles.angularDependencies(['angularFileUpload']);
     Articles.aggregateAsset('css', 'articles.css');
-
     return Articles;
 });

@@ -3,7 +3,10 @@
         <p class="clearfix">LaLista - &#169; 2014 All Rights Reserved</p>
     </div>
 </div>
-{% for file in assets.js %}
+{% for file in assets.vendor.js %}
+    <script type="text/javascript" src="{{file}}"></script>
+{% endfor %}
+{% for file in assets.scripts.js %}
     <script type="text/javascript" src="{{file}}"></script>
 {% endfor %}
 

@@ -3,18 +3,29 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+var fs = require('fs'),
+    formidable = require('formidable'),
+    mongoose = require('mongoose'),
     Article = mongoose.model('Article'),
     _ = require('lodash');
+    
+var uploadsDir = process.cwd() + '/public/uploads';
 
 
 /**
- * Find article by id
+ * Find lista by id
  */
 exports.article = function(req, res, next, id) {
-    Article.load(id, function(err, article) {
-        if (err) return next(err);
-        if (!article) return next(new Error('Failed to load article ' + id));
+    if (!/^[0-9a-fA-F]{24}$/.test(id)) {
+        return next(new Error('Failed to load article ' + id));
+    }
+    Article.findById(id).exec(function (err, article) {
+        if (err) {
+            return next(err);
+        }
+        if (!article) {
+            return next(new Error('Failed to load article ' + id));
+        }
         req.article = article;
         next();
     });
@@ -26,16 +37,33 @@ exports.article = function(req, res, next, id) {
 exports.create = function(req, res) {
     var article = new Article(req.body);
     article.user = req.user;
-
     article.save(function(err) {
         if (err) {
-            return res.send('users/signup', {
-                errors: err.errors,
-                article: article
+            return res.json(500,{
+                error: 'Cannot save the article'
             });
-        } else {
-            res.jsonp(article);
         }
+        res.json(article);
+    });
+};
+
+/**
+ * Upload avatar article
+ */
+exports.upload = function(req, res) {
+    var form = new formidable.IncomingForm;
+    form.parse(req, function(err, fields, files){
+        if(err){
+            return res.json(500, err.message);
+        }
+        var tmpfilename = files.avatar.path;
+        var filename = uploadsDir + '/' + files.avatar.name;
+        fs.rename(tmpfilename, filename , function (err) {
+            if (err){
+               return res.json(500, err); 
+            } 
+            res.json(200,{avatar:files.avatar.name});
+        });
     });
 };
 
@@ -44,18 +72,12 @@ exports.create = function(req, res) {
  */
 exports.update = function(req, res) {
     var article = req.article;
-
     article = _.extend(article, req.body);
-
     article.save(function(err) {
         if (err) {
-            return res.send('users/signup', {
-                errors: err.errors,
-                article: article
-            });
-        } else {
-            res.jsonp(article);
-        }
+            return res.json(500, err);
+        } 
+        res.json(article);
     });
 };
 
@@ -64,16 +86,11 @@ exports.update = function(req, res) {
  */
 exports.destroy = function(req, res) {
     var article = req.article;
-
     article.remove(function(err) {
         if (err) {
-            return res.send('users/signup', {
-                errors: err.errors,
-                article: article
-            });
-        } else {
-            res.jsonp(article);
-        }
+             return res.json(500, err);
+        } 
+        res.json(article);
     });
 };
 
@@ -81,20 +98,30 @@ exports.destroy = function(req, res) {
  * Show an article
  */
 exports.show = function(req, res) {
-    res.jsonp(req.article);
+    res.json(req.article);
 };
 
 /**
  * List of Articles
  */
 exports.all = function(req, res) {
-    Article.find().sort('-created').populate('user', 'name username').exec(function(err, articles) {
+    Article.find().sort('-created').exec(function(err, articles) {
         if (err) {
-            res.render('error', {
-                status: 500
-            });
-        } else {
-            res.jsonp(articles);
-        }
+            return res.json(500, err);
+        } 
+        res.json(articles);
     });
 };
+
+/**
+ * List of categories
+ */
+exports.categories = function(req, res) {
+    Article.distinct('categories').exec(function(err, categories) {
+        if (err) {
+           return res.json(500,{ error: 'Cannot get the categories' });
+        }
+        res.json(categories); 
+    });
+};
+

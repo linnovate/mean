@@ -24,6 +24,9 @@ var express = require('express'),
     assetmanager = require('assetmanager'),
     fs = require('fs'),
     Grid = require('gridfs-stream');
+    
+    
+
 
 module.exports = function(app, passport, db) {
 
@@ -59,9 +62,6 @@ module.exports = function(app, passport, db) {
     // Set views path, template engine and default layout
     app.set('views', config.root + '/server/views');
 
-    // Enable jsonp
-    app.enable('jsonp callback');
-
     // The cookieParser should be above session
     app.use(cookieParser());
 
@@ -72,17 +72,15 @@ module.exports = function(app, passport, db) {
 
 
     // Import your asset file
-    var assets = require('./assets.json');
-    assetmanager.init({
-        js: assets.js,
-        css: assets.css,
+    var assets = assetmanager.process({
+        assets: require('./assets.json'),
         debug: (process.env.NODE_ENV !== 'production'),
-        webroot: 'public/public'
+        webroot:'public/public'
     });
-
+   
     // Add assets to local variables
     app.use(function(req, res, next) {
-        res.locals.assets = assetmanager.assets;
+        res.locals.assets = assets;
         next();
     });
 

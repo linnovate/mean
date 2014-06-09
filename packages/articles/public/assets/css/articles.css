@@ -1,0 +1,33 @@
+input[type="file"] {
+    display: block;
+}
+.file-upload-input{
+    position:absolute;
+    z-index:2;
+    top:0;
+    left:0;
+    filter: alpha(opacity=0);
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    opacity:0;
+    background-color:transparent;
+    color:transparent;
+}
+img.avatar{
+    width: 50px;   
+}
+img.avatar-preview{
+    width: 80px;   
+}
+.drop-box {
+    border: 2px dashed #fff;
+    background-color:#F2D6DB;
+    height: 150px; 
+    text-align: center;
+}
+.drop-box.dragover {
+    border: 2px dashed blue;
+}
+.drop-box p {
+    padding-top: 60px;
+    color: #aaa;
+}

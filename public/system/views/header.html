@@ -13,14 +13,14 @@
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right" data-ng-if="!global.authenticated">
-            <li><a ui-sref="auth.register">Register</a></li>
+            <li><a ui-sref="auth.register" translate="header.register"></a></li>
             <li class="divider-vertical"></li>
-            <li><a ui-sref="auth.signin">Sign In</a></li>
+            <li><a ui-sref="auth.signin" translate="header.signin"></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right" data-ng-if="global.authenticated">
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i><span data-ng-bind="global.user.name"></span><b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/logout">Logout</a></li>
+                    <li><a href="/logout" translate="header.logout"></a></li>
                 </ul>
             </li>
         </ul>
