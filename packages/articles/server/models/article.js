@@ -17,12 +17,12 @@ var ArticleSchema = new Schema({
     },
     title: {
         type: String,
-        default: '',
+	required: true,
         trim: true
     },
     content: {
         type: String,
-        default: '',
+	required: true,
         trim: true
     },
     user: {
@@ -35,8 +35,12 @@ var ArticleSchema = new Schema({
  * Validations
  */
 ArticleSchema.path('title').validate(function(title) {
-    return title.length;
+    return !!title;
 }, 'Title cannot be blank');
+
+ArticleSchema.path('content').validate(function(content) {
+    return !!content;
+}, 'Content cannot be blank');
 
 /**
  * Statics

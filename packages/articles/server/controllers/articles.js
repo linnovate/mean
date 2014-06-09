@@ -29,13 +29,12 @@ exports.create = function(req, res) {
 
     article.save(function(err) {
         if (err) {
-            return res.send('users/signup', {
-                errors: err.errors,
-                article: article
+	   return res.jsonp(500,{
+		error: 'Cannot save the article'
             });
-        } else {
-            res.jsonp(article);
         }
+	res.jsonp(article);
+
     });
 };
 
@@ -49,13 +48,12 @@ exports.update = function(req, res) {
 
     article.save(function(err) {
         if (err) {
-            return res.send('users/signup', {
-                errors: err.errors,
-                article: article
+	    return res.jsonp(500,{
+		error: 'Cannot update the article'
             });
-        } else {
-            res.jsonp(article);
-        }
+	}
+	res.jsonp(article);
+
     });
 };
 
@@ -67,13 +65,12 @@ exports.destroy = function(req, res) {
 
     article.remove(function(err) {
         if (err) {
-            return res.send('users/signup', {
-                errors: err.errors,
-                article: article
+	    return res.jsonp(500,{
+		error: 'Cannot delete the article'
             });
-        } else {
-            res.jsonp(article);
-        }
+	}
+	res.jsonp(article);
+
     });
 };
 
@@ -90,11 +87,11 @@ exports.show = function(req, res) {
 exports.all = function(req, res) {
     Article.find().sort('-created').populate('user', 'name username').exec(function(err, articles) {
         if (err) {
-            res.render('error', {
-                status: 500
+	    return res.jsonp(500,{
+		error: 'Cannot list the articles'
             });
-        } else {
-            res.jsonp(articles);
-        }
+	}
+	res.jsonp(articles);
+
     });
 };
