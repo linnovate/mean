@@ -6,7 +6,6 @@
 nbproject/
 node_modules/
 public/system/lib
-public/uploads
 mean.iml
 test/coverage/
 modules/public/
