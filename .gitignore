@@ -3,6 +3,7 @@
 .sass-cache/
 .bower-*/
 .idea/
+nbproject/
 node_modules/
 public/system/lib
 mean.iml
@@ -10,3 +11,4 @@ test/coverage/
 modules/public/
 modules/views/
 /public/build/
+/nbproject/private/
