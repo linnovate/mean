@@ -2,6 +2,7 @@
     "name": "mean",
     "version": "0.3.3",
     "dependencies": {
+        "jquery": "1.x",
         "angular": "latest",
         "angular-resource": "latest",
         "angular-cookies": "latest",
