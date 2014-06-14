@@ -3,7 +3,7 @@
 //Setting up route
 angular.module('mean.auth').config(['$stateProvider',
     function($stateProvider) {
-        // Check if the user is not conntected
+        // Check if the user is not connected
         var checkLoggedOut = function($q, $timeout, $http, $location) {
             // Initialize a new promise
             var deferred = $q.defer();

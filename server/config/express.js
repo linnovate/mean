@@ -59,7 +59,7 @@ module.exports = function(app, passport, db) {
     // Set views path, template engine and default layout
     app.set('views', config.root + '/server/views');
 
-    // Enable jsonp
+    // Enable JSONP
     app.enable('jsonp callback');
 
     // The cookieParser should be above session
@@ -107,7 +107,7 @@ module.exports = function(app, passport, db) {
     // Connect flash for flash messages
     app.use(flash());
 
-    // Setting the fav icon and static folder
+    // Setting the favicon and static folder
     app.use(favicon(appPath + '/public/system/assets/img/favicon.ico'));
 
     app.get('/modules/aggregated.js', function(req, res) {
