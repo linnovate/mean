@@ -127,7 +127,7 @@ After initializing a project, you'll see that the root directory of your project
 To maintain your own public or private repository, add your repository as remote. See here for information on [adding an existing project to GitHub](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line).
 
 ```
-git remote add origin <remote respository URL>
+git remote add origin <remote repository URL>
 git push -u origin master
 ```
 
