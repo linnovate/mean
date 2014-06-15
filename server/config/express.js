@@ -18,6 +18,7 @@ var express = require('express'),
     flash = require('connect-flash'),
     helpers = require('view-helpers'),
     config = require('./config'),
+    assets = require('./assets.json'),
     expressValidator = require('express-validator'),
     appPath = process.cwd(),
     util = require('meanio/lib/util'),
@@ -70,16 +71,13 @@ module.exports = function(app, passport, db) {
     app.use(bodyParser());
     app.use(methodOverride());
 
-    // Import the assets file
-    var assets = assetmanager.process({
-        assets: require('./assets.json'),
-        debug: (process.env.NODE_ENV !== 'production'),
-        webroot: 'public/public'
-    });
-
-    // Add assets to local variables
+    // Import the assets file and add to locals
     app.use(function(req, res, next) {
-        res.locals.assets = assets;
+	res.locals.assets = assetmanager.process({
+	    assets: assets,
+	    debug: process.env.NODE_ENV !== 'production',
+	    webroot: 'public/public'
+	});
         next();
     });
 
