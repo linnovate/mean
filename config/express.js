@@ -3,15 +3,13 @@
 /**
  * Module dependencies.
  */
-var express = require('express'),
-    favicon = require('serve-favicon'),
+var favicon = require('serve-favicon'),
     morgan = require('morgan'),
     compression = require('compression'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
-    errorHandler = require('errorhandler'),
     mean = require('meanio'),
     consolidate = require('consolidate'),
     mongoStore = require('mean-connect-mongo')(session),
@@ -20,14 +18,10 @@ var express = require('express'),
     config = require('meanio').loadConfig(),
     expressValidator = require('express-validator'),
     appPath = process.cwd(),
-    util = require('meanio/lib/util'),
-    assetmanager = require('assetmanager'),
-    fs = require('fs'),
-    Grid = require('gridfs-stream');
+    assetmanager = require('assetmanager');
 
 module.exports = function(app, passport, db) {
 
-    var gfs = new Grid(db.connection.db, db.mongo);
 
     app.set('showStackError', true);
 
@@ -110,96 +104,4 @@ module.exports = function(app, passport, db) {
     // Setting the fav icon and static folder
     app.use(favicon(appPath + '/public/system/assets/img/favicon.ico'));
 
-    app.get('/modules/aggregated.js', function(req, res) {
-        res.setHeader('content-type', 'text/javascript');
-        res.send(mean.aggregated.js);
-    });
-
-    function themeHandler(req, res) {
-
-        res.setHeader('content-type', 'text/css');
-
-        gfs.files.findOne({
-            filename: 'theme.css'
-        }, function(err, file) {
-
-            if (!file) {
-                fs.createReadStream(appPath + '/public/system/lib/bootstrap/dist/css/bootstrap.css').pipe(res);
-            } else {
-                // streaming to gridfs
-                var readstream = gfs.createReadStream({
-                    filename: 'theme.css'
-                });
-
-                //error handling, e.g. file does not exist
-                readstream.on('error', function(err) {
-                    console.log('An error occurred!', err.message);
-                    throw err;
-                });
-
-                readstream.pipe(res);
-            }
-        });
-    }
-
-    // We override this file to allow us to swap themes
-    // We keep the same public path so we can make use of the bootstrap assets
-    app.get('/public/system/lib/bootstrap/dist/css/bootstrap.css', themeHandler);
-
-    app.get('/modules/aggregated.css', function(req, res) {
-        res.setHeader('content-type', 'text/css');
-        res.send(mean.aggregated.css);
-    });
-
-    app.use('/public', express.static(config.root + '/public'));
-
-    mean.events.on('modulesFound', function() {
-
-        for (var name in mean.modules) {
-            app.use('/' + name, express.static(config.root + '/' + mean.modules[name].source + '/' + name + '/public'));
-        }
-
-        function bootstrapRoutes() {
-            // Skip the app/routes/middlewares directory as it is meant to be
-            // used and shared by routes as further middlewares and is not a
-            // route by itself
-            util.walk(appPath + '/server', 'route', 'middlewares', function(path) {
-                require(path)(app, passport);
-            });
-        }
-
-        bootstrapRoutes();
-
-        //mean middlware from modules after routes
-        app.use(mean.chainware.after);
-
-        // Assume "not found" in the error msgs is a 404. this is somewhat
-        // silly, but valid, you can do whatever you like, set properties,
-        // use instanceof etc.
-        app.use(function(err, req, res, next) {
-            // Treat as 404
-            if (~err.message.indexOf('not found')) return next();
-
-            // Log it
-            console.error(err.stack);
-
-            // Error page
-            res.status(500).render('500', {
-                error: err.stack
-            });
-        });
-
-        // Assume 404 since no middleware responded
-        app.use(function(req, res) {
-            res.status(404).render('404', {
-                url: req.originalUrl,
-                error: 'Not found'
-            });
-        });
-
-        // Error handler - has to be last
-        if (process.env.NODE_ENV === 'development') {
-            app.use(errorHandler());
-        }
-    });
 };

@@ -1,30 +1,9 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
-var mongoose = require('mongoose'),
-    passport = require('passport'),
-    logger = require('mean-logger');
+// Requires meanio
+var mean = require('meanio');
 
-/**
- * Main application entry file.
- * Please note that the order of loading is important.
- */
-
-// Initializing system variables
-var config = require('meanio').loadConfig();
-var db = mongoose.connect(config.db);
-
-// Bootstrap Models, Dependencies, Routes and the app as an express app
-var app = require('./config/system/bootstrap')(passport, db);
-
-// Start the app by listening on <port>, optional hostname
-app.listen(config.port, config.hostname);
-console.log('Mean app started on port ' + config.port + ' (' + process.env.NODE_ENV + ')');
-
-// Initializing logger
-logger.init(app, passport, mongoose);
-
-// Expose app
-exports = module.exports = app;
+// Creates and serves mean application
+mean.serve({/*options placeholder*/}, function(app, config) {
+	console.log('running...');
+});
