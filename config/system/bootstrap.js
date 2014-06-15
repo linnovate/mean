@@ -18,7 +18,7 @@ module.exports = function(passport, db) {
     bootstrapModels();
 
     // Bootstrap passport config
-    require(appPath + '/server/config/passport')(passport);
+    require(appPath + '/config/passport')(passport);
 
     function bootstrapDependencies() {
         // Register passport dependency
@@ -46,7 +46,7 @@ module.exports = function(passport, db) {
 
     // Express settings
     var app = express();
-    require(appPath + '/server/config/express')(app, passport, db);
+    require(appPath + '/config/express')(app, passport, db);
 
     return app;
 };

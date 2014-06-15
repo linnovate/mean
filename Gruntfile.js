@@ -15,7 +15,7 @@ module.exports = function(grunt) {
     // Project Configuration
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        assets: grunt.file.readJSON('server/config/assets.json'),
+        assets: grunt.file.readJSON('config/assets.json'),
         clean: ['public/build'],
         watch: {
             js: {
@@ -76,7 +76,7 @@ module.exports = function(grunt) {
                     nodeArgs: ['--debug'],
                     delayTime: 1,
                     env: {
-                        PORT: require('./server/config/config').port
+                        PORT: require('./config/config').port
                     },
                     cwd: __dirname
                 }
