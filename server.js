@@ -16,9 +16,6 @@ var mongoose = require('mongoose'),
 var config = require('./server/config/config');
 var db = mongoose.connect(config.db);
 
-// Set PORT env variable
-process.env.PORT = process.env.PORT || config.port;
-
 // Bootstrap Models, Dependencies, Routes and the app as an express app
 var app = require('./server/config/system/bootstrap')(passport, db);
 
