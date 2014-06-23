@@ -75,9 +75,12 @@ module.exports = function(grunt) {
                     ext: 'js,html',
                     nodeArgs: ['--debug'],
                     delayTime: 1,
+<<<<<<< HEAD
                     env: {
                         PORT: require('meanio').loadConfig().port
                     },
+=======
+>>>>>>> a48d6db92223e76ae91b91a35c5615bbb24bb880
                     cwd: __dirname
                 }
             }

@@ -17,12 +17,12 @@ var ArticleSchema = new Schema({
     },
     title: {
         type: String,
-	required: true,
+        required: true,
         trim: true
     },
     content: {
         type: String,
-	required: true,
+        required: true,
         trim: true
     },
     user: {
