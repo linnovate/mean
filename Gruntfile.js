@@ -91,9 +91,14 @@ module.exports = function(grunt) {
         mochaTest: {
             options: {
                 reporter: 'spec',
-                require: 'server.js'
+                require: [
+                    'server.js',
+                    function() {
+                        require('mongoose').connection.once('open', function() {});
+                    }
+                ]
             },
-            src: ['test/mocha/**/*.js', 'packages/**/test/mocha/**/*.js']
+            src: ['packages/**/server/tests/**/*.js']
         },
         env: {
             test: {
@@ -102,7 +107,7 @@ module.exports = function(grunt) {
         },
         karma: {
             unit: {
-                configFile: 'test/karma/karma.conf.js'
+                configFile: 'karma.conf.js'
             }
         }
     });
