@@ -75,12 +75,9 @@ module.exports = function(grunt) {
                     ext: 'js,html',
                     nodeArgs: ['--debug'],
                     delayTime: 1,
-<<<<<<< HEAD
                     env: {
                         PORT: require('meanio').loadConfig().port
                     },
-=======
->>>>>>> a48d6db92223e76ae91b91a35c5615bbb24bb880
                     cwd: __dirname
                 }
             }
@@ -115,9 +112,9 @@ module.exports = function(grunt) {
 
     //Default task(s).
     if (process.env.NODE_ENV === 'production') {
-        grunt.registerTask('default', ['clean','cssmin', 'uglify', 'concurrent']);
+        grunt.registerTask('default', ['clean', 'cssmin', 'uglify', 'concurrent']);
     } else {
-        grunt.registerTask('default', ['clean','jshint', 'csslint', 'concurrent']);
+        grunt.registerTask('default', ['clean', 'jshint', 'csslint', 'concurrent']);
     }
 
     //Test task.
