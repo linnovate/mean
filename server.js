@@ -14,17 +14,15 @@ var mongoose = require('mongoose'),
 
 // Initializing system variables
 var config = require('./server/config/config');
-var app = {};
-var db = mongoose.connect(config.db, function(err) {
-    if (err) {
-	console.error('Error:', err.message);
-	return console.error('**Could not connect to MongoDB. Please ensure mongod is running and restart MEAN app.**');
-    }
+var db = mongoose.connect(config.db);
+var conn = mongoose.connection;
+conn.on('error', console.log.bind(console, '**Could not connect to MongoDB. Please ensure mongod is running and restart MEAN app.**\n'));
 
-    // Bootstrap Models, Dependencies, Routes and the app as an express app
-    app = require('./server/config/system/bootstrap')(passport, db);
+// Bootstrap Models, Dependencies, Routes and the app as an express app
+var app = require('./server/config/system/bootstrap')(passport, db);
 
-    // Start the app by listening on <port>, optional hostname
+// Start the app by listening on <port>, optional hostname
+conn.once('open', function() {
     app.listen(config.port, config.hostname);
     console.log('MEAN app started on port ' + config.port + ' (' + process.env.NODE_ENV + ')');
 

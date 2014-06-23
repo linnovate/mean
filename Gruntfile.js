@@ -88,7 +88,12 @@ module.exports = function(grunt) {
         mochaTest: {
             options: {
                 reporter: 'spec',
-                require: 'server.js'
+                require: [
+                    'server.js',
+                    function() {
+                        require('mongoose').connection.once('open', function() {});
+                    }
+                ]
             },
             src: ['test/mocha/**/*.js', 'packages/**/test/mocha/**/*.js']
         },
@@ -109,9 +114,9 @@ module.exports = function(grunt) {
 
     //Default task(s).
     if (process.env.NODE_ENV === 'production') {
-        grunt.registerTask('default', ['clean','cssmin', 'uglify', 'concurrent']);
+        grunt.registerTask('default', ['clean', 'cssmin', 'uglify', 'concurrent']);
     } else {
-        grunt.registerTask('default', ['clean','jshint', 'csslint', 'concurrent']);
+        grunt.registerTask('default', ['clean', 'jshint', 'csslint', 'concurrent']);
     }
 
     //Test task.
