@@ -5,16 +5,16 @@
  */
 var Module = require('meanio').Module;
 
-var Articles = new Module('Articles');
+var Articles = new Module('articles');
 
 /*
  * All MEAN packages require registration
  * Dependency injection is used to define required modules
  */
-Articles.register(function(app, Auth, database) {
+Articles.register(function(app, auth, database) {
 
     //We enable routing. By default the Package Object is passed to the routes
-    Articles.routes(app, Auth.auth, database);
+    Articles.routes(app, auth, database);
 
     //We are adding a link to the main menu for all authenticated users
     Articles.menus.add({
