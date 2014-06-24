@@ -16,7 +16,6 @@ var morgan = require('morgan'),
     helpers = require('view-helpers'),
     config = require('meanio').loadConfig(),
     expressValidator = require('express-validator'),
-    appPath = process.cwd(),
     assetmanager = require('assetmanager');
 
 module.exports = function(app, passport, db) {
