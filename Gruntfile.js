@@ -1,9 +1,9 @@
 'use strict';
 
 var paths = {
-    js: ['*.js', 'public/**/*.js', 'test/**/*.js', '!test/coverage/**', '!public/lib/**', 'packages/**/*.js', '!packages/**/node_modules/**'],
-    html: ['public/**/views/**', 'packages/**/public/**/views/**', 'packages/**/server/views/**'],
-    css: ['public/**/css/*.css', '!public/lib/**', 'packages/**/public/**/css/*.css']
+    js: ['*.js', 'test/**/*.js', '!test/coverage/**', '!bower_components/**', 'packages/**/*.js', '!packages/**/node_modules/**'],
+    html: ['packages/**/public/**/views/**', 'packages/**/server/views/**'],
+    css: ['!bower_components/**', 'packages/**/public/**/css/*.css']
 };
 
 module.exports = function(grunt) {
@@ -16,7 +16,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         assets: grunt.file.readJSON('config/assets.json'),
-        clean: ['public/build'],
+        clean: ['bower_components/build'],
         watch: {
             js: {
                 files: paths.js,
@@ -71,7 +71,7 @@ module.exports = function(grunt) {
                 script: 'server.js',
                 options: {
                     args: [],
-                    ignore: ['public/**', 'node_modules/**'],
+                    ignore: ['node_modules/**'],
                     ext: 'js,html',
                     nodeArgs: ['--debug'],
                     delayTime: 1,

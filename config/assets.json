@@ -1,23 +1,20 @@
 {
     "core": {
         "css": {
-            "public/build/css/dist.min.css": [
-                "public/**/assets/css/*.css"
+            "bower_components/build/css/dist.min.css": [
             ]
         },
         "js": {
-            "public/build/js/dist.min.js": [
-                "public/lib/jquery/dist/jquery.min.js",
-                "public/lib/angular/angular.js",
-                "public/lib/angular-mocks/angular-mocks.js",
-                "public/lib/angular-cookies/angular-cookies.js",
-                "public/lib/angular-resource/angular-resource.js",
-                "public/lib/angular-ui-router/release/angular-ui-router.js",
-                "public/lib/angular-bootstrap/ui-bootstrap.js",
-                "public/lib/angular-bootstrap/ui-bootstrap-tpls.js",
-                "system/init.js",
-                "public/*/*.js",
-                "public/*/{controllers,routes,services}/*.js"
+            "bower_components/build/js/dist.min.js": [
+                "bower_components/jquery/dist/jquery.min.js",
+                "bower_components/angular/angular.js",
+                "bower_components/angular-mocks/angular-mocks.js",
+                "bower_components/angular-cookies/angular-cookies.js",
+                "bower_components/angular-resource/angular-resource.js",
+                "bower_components/angular-ui-router/release/angular-ui-router.js",
+                "bower_components/angular-bootstrap/ui-bootstrap.js",
+                "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
+                "system/init.js"                
             ]
         }
     }
