@@ -13,7 +13,7 @@ angular.module('mean.system').config(['$stateProvider', '$urlRouterProvider',
                     templateUrl: 'public/system/views/index.html'
                 })
                 .state('auth', {
-                    templateUrl: 'mean-user/views/index.html'
+                    templateUrl: 'users/views/index.html'
                 });
         }
     ])

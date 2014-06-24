@@ -5,7 +5,7 @@
  */
 var Module = require('meanio').Module;
 
-var MeanUser = new Module('mean-user');
+var MeanUser = new Module('Users');
 
 /*
  * All MEAN packages require registration
