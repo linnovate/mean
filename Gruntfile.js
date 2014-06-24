@@ -1,8 +1,8 @@
 'use strict';
 
 var paths = {
-    js: ['*.js', 'server/**/*.js', 'public/**/*.js', 'test/**/*.js', '!test/coverage/**', '!public/lib/**', 'packages/**/*.js', '!packages/**/node_modules/**'],
-    html: ['public/**/views/**', 'server/views/**', 'packages/**/public/**/views/**', 'packages/**/server/views/**'],
+    js: ['*.js', 'public/**/*.js', 'test/**/*.js', '!test/coverage/**', '!public/lib/**', 'packages/**/*.js', '!packages/**/node_modules/**'],
+    html: ['public/**/views/**', 'packages/**/public/**/views/**', 'packages/**/server/views/**'],
     css: ['public/**/css/*.css', '!public/lib/**', 'packages/**/public/**/css/*.css']
 };
 

@@ -3,8 +3,7 @@
 /**
  * Module dependencies.
  */
-var favicon = require('serve-favicon'),
-    morgan = require('morgan'),
+var morgan = require('morgan'),
     compression = require('compression'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
@@ -49,9 +48,6 @@ module.exports = function(app, passport, db) {
 
     // set .html as the default extension
     app.set('view engine', 'html');
-
-    // Set views path, template engine and default layout
-    app.set('views', config.root + '/server/views');
 
     // Enable jsonp
     app.enable('jsonp callback');
@@ -100,8 +96,4 @@ module.exports = function(app, passport, db) {
 
     // Connect flash for flash messages
     app.use(flash());
-
-    // Setting the fav icon and static folder
-    app.use(favicon(appPath + '/public/system/assets/img/favicon.ico'));
-
 };

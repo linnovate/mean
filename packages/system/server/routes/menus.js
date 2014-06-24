@@ -2,7 +2,7 @@
 
 var mean = require('meanio');
 
-module.exports = function(app) {
+module.exports = function(System, app, auth, database) {
 
     app.route('/admin/menu/:name')
         .get(function(req, res) {
