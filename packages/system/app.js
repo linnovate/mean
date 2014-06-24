@@ -17,14 +17,6 @@ System.register(function(app, auth, database) {
     //We enable routing. By default the Package Object is passed to the routes
     System.routes(app, auth, database);
 
-    //We are adding a link to the main menu for all authenticated users
-    System.menus.add({
-        title: 'system example page',
-        link: 'system example page',
-        roles: ['authenticated'],
-        menu: 'main'
-    });
-
     System.aggregateAsset('css','common.css');
 
     // Set views path, template engine and default layout
