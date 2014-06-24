@@ -1,13 +1,13 @@
 'use strict';
 
 module.exports = {
-    db: 'mongodb://localhost/mean-dev',
+    db: 'mongodb://localhost/milkshayk-local',
     app: {
         name: 'MEAN - FullStack JS - Development'
     },
     facebook: {
-        clientID: 'APP_ID',
-        clientSecret: 'APP_SECRET',
+        clientID: '606379419460339',
+        clientSecret: '4fffc9d98d93b9fa52755c2bfff1424a',
         callbackURL: 'http://localhost:3000/auth/facebook/callback'
     },
     twitter: {

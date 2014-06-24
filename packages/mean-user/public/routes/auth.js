@@ -1,7 +1,7 @@
 'use strict';
 
 //Setting up route
-angular.module('mean.auth').config(['$stateProvider',
+angular.module('mean.mean-user').config(['$stateProvider',
     function($stateProvider) {
         // Check if the user is not connected
         var checkLoggedOut = function($q, $timeout, $http, $location) {
@@ -27,14 +27,14 @@ angular.module('mean.auth').config(['$stateProvider',
         $stateProvider
             .state('auth.login', {
                 url: '/login',
-                templateUrl: 'public/auth/views/login.html',
+                templateUrl: 'mean-user/views/login.html',
                 resolve: {
                     loggedin: checkLoggedOut
                 }
             })
             .state('auth.register', {
                 url: '/register',
-                templateUrl: 'public/auth/views/register.html',
+                templateUrl: 'mean-user/views/register.html',
                 resolve: {
                     loggedin: checkLoggedOut
                 }
