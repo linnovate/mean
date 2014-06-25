@@ -18,12 +18,10 @@
     <meta property="fb:admins" content="APP_ADMIN">
 
     {% for file in assets.core.css %}
-        <link rel="stylesheet" href="{{file}}">
+        <link rel="stylesheet" href="/{{file}}">
     {% endfor %}
 
-    <link rel="stylesheet" href="/public/system/lib/bootstrap/dist/css/bootstrap.css">
-
-    <link rel="stylesheet" href="/modules/aggregated.css">
+    <link rel="stylesheet" href="/system/lib/bootstrap/dist/css/bootstrap.css">
 
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

@@ -26,7 +26,7 @@
     "postinstall": "node node_modules/bower/bin/bower install"
   },
   "dependencies": {
-    "assetmanager": "^1.0.0",
+    "assetmanager": "^1.1.1",
     "body-parser": "^1.2.0",
     "bower": "^1.3.3",
     "compression": "^1.0.1",
