@@ -2,7 +2,8 @@
     "core": {
         "css": {
             "public/build/css/dist.min.css": [
-                "public/**/assets/css/*.css"
+                "public/**/assets/css/*.css",
+                "packages/*/public/assets/css/*.css"
             ]
         },
         "js": {
@@ -17,7 +18,8 @@
                 "public/system/lib/angular-bootstrap/ui-bootstrap-tpls.js",
                 "public/init.js",
                 "public/*/*.js",
-                "public/*/{controllers,routes,services}/*.js"
+                "public/*/{controllers,routes,services}/*.js",
+                "packages/*/public/{controllers,routes,services}/*.js"
             ]
         }
     }

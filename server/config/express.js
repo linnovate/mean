@@ -18,7 +18,7 @@ var express = require('express'),
     flash = require('connect-flash'),
     helpers = require('view-helpers'),
     config = require('./config'),
-    assets = require('./assets.json'),
+    assetJSON = require('./assets.json'),
     expressValidator = require('express-validator'),
     appPath = process.cwd(),
     util = require('meanio/lib/util'),
@@ -72,12 +72,13 @@ module.exports = function(app, passport, db) {
     app.use(methodOverride());
 
     // Import the assets file and add to locals
+   var assets = assetmanager.process({
+        assets: assetJSON,
+        debug: process.env.NODE_ENV !== 'production',
+        webroot: /public\/|packages\//g
+    });
     app.use(function(req, res, next) {
-	res.locals.assets = assetmanager.process({
-	    assets: assets,
-	    debug: process.env.NODE_ENV !== 'production',
-	    webroot: 'public/public'
-	});
+        res.locals.assets = assets;
         next();
     });
 
@@ -108,11 +109,6 @@ module.exports = function(app, passport, db) {
     // Setting the favicon and static folder
     app.use(favicon(appPath + '/public/system/assets/img/favicon.ico'));
 
-    app.get('/modules/aggregated.js', function(req, res) {
-        res.setHeader('content-type', 'text/javascript');
-        res.send(mean.aggregated.js);
-    });
-
     function themeHandler(req, res) {
 
         res.setHeader('content-type', 'text/css');
@@ -142,14 +138,9 @@ module.exports = function(app, passport, db) {
 
     // We override this file to allow us to swap themes
     // We keep the same public path so we can make use of the bootstrap assets
-    app.get('/public/system/lib/bootstrap/dist/css/bootstrap.css', themeHandler);
+    app.get('/system/lib/bootstrap/dist/css/bootstrap.css', themeHandler);
 
-    app.get('/modules/aggregated.css', function(req, res) {
-        res.setHeader('content-type', 'text/css');
-        res.send(mean.aggregated.css);
-    });
-
-    app.use('/public', express.static(config.root + '/public'));
+    app.use('/', express.static(config.root + '/public'));
 
     mean.events.on('modulesFound', function() {
 
