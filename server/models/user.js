@@ -6,14 +6,14 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     crypto = require('crypto');
- 
+
 /**
-  * Validations
-  */
- var validatePresenceOf = function(value) {
-     // If you are authenticating by any of the oauth strategies, don't validate.
-     return (this.provider && this.provider !== 'local') || (value && value.length);
- };
+ * Validations
+ */
+var validatePresenceOf = function(value) {
+    // If you are authenticating by any of the oauth strategies, don't validate.
+    return (this.provider && this.provider !== 'local') || (value && value.length);
+};
 
 /**
  * User Schema
