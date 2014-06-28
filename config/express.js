@@ -56,14 +56,17 @@ module.exports = function(app, passport, db) {
 
     // Request body parsing middleware should be above methodOverride
     app.use(expressValidator());
-    app.use(bodyParser());
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
     app.use(methodOverride());
 
-    // Import the assets file
+    // Import the assets file and add to locals
     var assets = assetmanager.process({
         assets: require('./assets.json'),
-        debug: (process.env.NODE_ENV !== 'production'),
-        webroot: 'public/public'
+        debug: process.env.NODE_ENV !== 'production',
+        webroot: /public\/|packages\//g
     });
 
     // Add assets to local variables

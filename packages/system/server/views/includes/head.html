@@ -20,10 +20,8 @@
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
 
     {% for file in assets.core.css %}
-        <link rel="stylesheet" href="{{file}}">
+        <link rel="stylesheet" href="/{{file}}">
     {% endfor %}
-
-    <link rel="stylesheet" href="/modules/aggregated.css">
 
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
