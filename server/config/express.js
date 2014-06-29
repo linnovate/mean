@@ -93,7 +93,9 @@ module.exports = function(app, passport, db) {
             collection: config.sessionCollection
         }),
         cookie: config.sessionCookie,
-        name: config.sessionName
+        name: config.sessionName,
+        resave: true,
+        saveUninitialized: true,
     }));
 
     // Dynamic helpers
