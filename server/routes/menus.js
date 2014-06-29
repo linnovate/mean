@@ -10,15 +10,11 @@ module.exports = function (app) {
             var menu = req.params.name ? req.params.name : 'main';
             var defaultMenu = (req.query.defaultMenu ? req.query.defaultMenu : []);
 
-            if (Object.prototype.toString.call(defaultMenu) === '[object Array]') {
-                defaultMenu.forEach(function (item, index) {
-                    defaultMenu[index] = JSON.parse(item);
-                });
-            } else {
-                var temp = [];
-                temp.push(JSON.parse(defaultMenu));
-                defaultMenu = temp;
-            }
+            if(!Array.isArray(defaultMenu)) defaultMenu = [defaultMenu];
+
+            defaultMenu.forEach(function (item, index) {
+                defaultMenu[index] = JSON.parse(item);
+            });
 
             var items = mean.menus.get({
                 roles: roles,
