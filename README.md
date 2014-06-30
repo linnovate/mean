@@ -94,6 +94,15 @@ $ npm cache clean
 $ bower cache clean
 ```
 
+#### Installation problems on Windows 8 / 8.1
+Some of Mean.io dependencies uses [node-gyp](https://github.com/TooTallNate/node-gyp) with supported Python version 2.7.x. So if you see an error related to node-gyp rebuild follow next steps:
+
+1. install [Python 2.7.x](https://www.python.org/downloads/)
+2. install [Microsoft Visual Studio C++ 2012 Express](http://www.microsoft.com/ru-ru/download/details.aspx?id=34673)
+3. fire NPM update
+````
+$ npm update -g
+````
 
 ## Configuration
 All configuration is specified in the [server/config](server/config/) folder, particularly the [config.js](server/config/config.js) file and the [env](server/config/env/) files. Here you will need to specify your application name, database name, and hook up any social app keys if you want integration with Twitter, Facebook, GitHub, or Google.
