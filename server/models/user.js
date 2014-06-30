@@ -135,4 +135,7 @@ UserSchema.methods = {
     }
 };
 
+// Mongoose automatically normalizes the collection name to lower case and ads and "s" to the end
+// so "User" becomes "users"
+// see: http://stackoverflow.com/questions/10547118/why-does-mongoose-always-add-an-s-to-the-end-of-my-collection-name
 mongoose.model('User', UserSchema);
