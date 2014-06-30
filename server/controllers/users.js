@@ -17,7 +17,7 @@ exports.authCallback = function(req, res) {
  * Show login form
  */
 exports.signin = function(req, res) {
-    if(req.isAuthenticated()) {
+    if (req.isAuthenticated()) {
         return res.redirect('/');
     }
     res.redirect('#!/login');
