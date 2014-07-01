@@ -1,8 +1,6 @@
 'use strict';
 
 // Karma configuration
-// Generated on Sat Oct 05 2013 22:00:14 GMT+0700 (ICT)
-
 module.exports = function(config) {
     var _ = require('lodash'),
         basePath = '.',
@@ -18,8 +16,10 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: _.flatten(_.values(assets.core.js)).concat([
-            'test/karma/unit/**/*.js',
-            'packages/*/public/**/*.js'
+            'packages/system/public/init.js',
+//            'packages/*/public/{controllers,routes,services}/*.js',
+//            'packages/*/public/tests/*.js'
+            'packages/*/public/*/*.js'
         ]),
 
         // list of files to exclude
@@ -34,10 +34,8 @@ module.exports = function(config) {
             // source files, that you wanna generate coverage for
             // do not include tests or libraries
             // (these files will be instrumented by Istanbul)
-            'public/js/controllers/*.js': ['coverage'],
-            'public/js/services/*.js': ['coverage'],
-            'packages/*/public/*/controllers/*.js': ['coverage'],
-            'packages/*/public/*/services/*.js': ['coverage']
+            'packages/*/public/controllers/*.js': ['coverage'],
+            'packages/*/public/services/*.js': ['coverage']
         },
 
         coverageReporter: {
@@ -53,7 +51,8 @@ module.exports = function(config) {
 
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_INFO,
+//        logLevel: config.LOG_INFO,
+        logLevel: config.LOG_DEBUG,
 
         // enable / disable watching file and executing tests whenever any file changes
         autoWatch: true,
