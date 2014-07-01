@@ -1,7 +1,7 @@
 {
   "name": "mean",
   "description": "MEAN.io: A fullstack JavaScript framework powered by MongoDB, ExpressJS, AngularJS, NodeJS.",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "private": false,
   "author": "Linnovate <mean@linnovate.net>",
   "contributors": [
@@ -11,7 +11,7 @@
     { "name": "Amos Haviv", "mail": "mail@amoshaviv" },
     { "name": "Drew Fyock", "mail": "drew@steelbisondev.com" }
   ],
-  "mean": "0.3.3",
+  "mean": "0.4.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/linnovate/mean.git"
@@ -53,8 +53,7 @@
     "lodash": "^2.4.1",
     "mean-connect-mongo": "0.4.3",
     "gridfs-stream": "^0.5.1",
-    "mean-logger": "0.0.1",
-    "meanio": "0.4.x",
+    "meanio": "0.5.1",
     "method-override": "^1.0.0",
     "mongoose": "^3.8.8",
     "morgan": "^1.0.0",

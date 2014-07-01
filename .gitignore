@@ -6,7 +6,7 @@ npm-debug.log
 .idea/
 nbproject/
 node_modules/
-public/system/lib
+bower_components
 mean.iml
 test/coverage/
 modules/public/

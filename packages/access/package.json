@@ -1,0 +1,15 @@
+{
+    "name": "access",
+    "version": "0.0.0",
+    "description": "Some description of auth",
+    "author": {
+        "name": "mean scaffold"
+    },
+    "mean": "0.4.x",
+    "engines": {
+        "node": "0.10.x",
+        "npm": "1.4.x"
+    },
+    "dependencies": {},
+    "license": "MIT"
+}
