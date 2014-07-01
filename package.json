@@ -51,7 +51,7 @@
     "grunt-nodemon": "0.2.1",
     "load-grunt-tasks": "^0.4.0",
     "lodash": "^2.4.1",
-    "mean-connect-mongo": "0.4.3",
+    "mean-connect-mongo": "~0.4.4",
     "gridfs-stream": "^0.5.1",
     "meanio": "~0.5.1",
     "method-override": "^1.0.0",
