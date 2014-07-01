@@ -53,7 +53,7 @@
     "lodash": "^2.4.1",
     "mean-connect-mongo": "0.4.3",
     "gridfs-stream": "^0.5.1",
-    "meanio": "0.5.1",
+    "meanio": "~0.5.1",
     "method-override": "^1.0.0",
     "mongoose": "^3.8.8",
     "morgan": "^1.0.0",
