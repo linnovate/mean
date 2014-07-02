@@ -70,7 +70,7 @@ describe('<Unit Test>', function() {
                     if (!err) {
                         _user2.remove();
                     }
-                    
+
                     done();
                 });
             });
@@ -105,6 +105,20 @@ describe('<Unit Test>', function() {
 
                 return _user.save(function(err) {
                     should.exist(err);
+                    done();
+                });
+            });
+
+            it('should be able to to save without password and provider set to twitter', function(done) {
+
+                var _user = new User(user1);
+
+                _user.password = '';
+                _user.provider = 'twitter';
+
+                return _user.save(function(err) {
+                    should.not.exist(err);
+                    _user.remove();
                     done();
                 });
             });
