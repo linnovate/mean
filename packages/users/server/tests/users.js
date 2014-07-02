@@ -69,10 +69,10 @@ describe('<Unit Test>', function() {
                 });
             });
 
-            it('should show an error when try to save without password', function(done) {
+            it('should show an error when try to save without password and provider set to local', function(done) {
                 
                 var _user = new User(user);
-                _user.password = '';
+                _user.provider = 'local';
 
                 return _user.save(function(err) {
                     should.exist(err);
