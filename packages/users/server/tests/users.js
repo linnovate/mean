@@ -56,6 +56,24 @@ describe('<Unit Test>', function() {
 
             });
 
+            it('should be able to create user and save user for updates without problems', function(done) {
+
+                var _user = new User(user1);
+                _user.save(function(err) {
+                    should.not.exist(err);
+
+                    _user.name = 'Full name2';
+                    _user.save(function(err) {
+                        should.not.exist(err);
+                        _user.remove(function() {
+                            done();
+                        });
+                    });
+
+                });
+
+            });
+
             it('should fail to save an existing user with the same values', function(done) {
                 
                 var _user1 = new User(user1);
@@ -65,13 +83,18 @@ describe('<Unit Test>', function() {
 
                 return _user2.save(function(err) {
                     should.exist(err);
-                    _user1.remove();
+                    _user1.remove(function() {
 
-                    if (!err) {
-                        _user2.remove();
-                    }
+                        if (!err) {
+                            _user2.remove(function() {
+                                done();
+                            });
+                        }
 
-                    done();
+                        done();
+
+                    });
+
                 });
             });
 
@@ -116,10 +139,11 @@ describe('<Unit Test>', function() {
                 _user.password = '';
                 _user.provider = 'twitter';
 
-                return _user.save(function(err) {
-                    should.not.exist(err);
-                    _user.remove();
-                    done();
+                return _user.save(function(err) {                
+                    _user.remove(function() {
+                        should.not.exist(err);
+                        done();
+                    });
                 });
             });
 
