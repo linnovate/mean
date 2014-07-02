@@ -38,7 +38,7 @@ describe('<Unit Test>', function() {
                 user.save(done);
             });
 
-            it('should fail to save an existing user again', function(done) {
+            it('should fail to save an existing user with the same values', function(done) {
                 user.save(function(err) {
                     return user2.save(function(err) {
                         should.exist(err);
@@ -48,12 +48,38 @@ describe('<Unit Test>', function() {
             });
 
             it('should show an error when try to save without name', function(done) {
-                user.name = '';
-                return user.save(function(err) {
+                
+                var _user = new User(user);
+                _user.name = '';
+
+                return _user.save(function(err) {
                     should.exist(err);
                     done();
                 });
             });
+
+            it('should show an error when try to save without username', function(done) {
+                
+                var _user = new User(user);
+                _user.username = '';
+
+                return _user.save(function(err) {
+                    should.exist(err);
+                    done();
+                });
+            });
+
+            it('should show an error when try to save without password', function(done) {
+                
+                var _user = new User(user);
+                _user.password = '';
+
+                return _user.save(function(err) {
+                    should.exist(err);
+                    done();
+                });
+            });
+
         });
 
         after(function(done) {
