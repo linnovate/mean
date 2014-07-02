@@ -14,6 +14,12 @@ module.exports = function(MeanUser, app, auth, database, passport) {
     app.route('/register')
         .post(users.create);
 
+		app.route('/forgot-password')
+        .post(users.forgotpassword);
+
+    app.route('/reset/:token')
+        .post(users.resetpassword);
+
     // Setting up the userId param
     app.param('userId', users.user);
 

@@ -16,6 +16,9 @@ module.exports = {
 
     // The name of the MongoDB collection to store sessions in
     sessionCollection: 'sessions',
+    notifyTemplate: {
+      forgotPassword:'<div><span>{message}</span></div>'
+    },
 
     // The session cookie settings
     sessionCookie: {
