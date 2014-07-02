@@ -72,7 +72,11 @@ module.exports = function(app, passport, db) {
     // Add assets to local variables
     app.use(function(req, res, next) {
         res.locals.assets = assets;
-        next();
+
+        mean.aggregated('js', 'header', function(data) {
+            res.locals.headerJs = data;
+            next();
+        });
     });
 
     // Express/Mongo session storage
