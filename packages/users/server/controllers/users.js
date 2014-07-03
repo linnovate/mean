@@ -134,10 +134,13 @@ exports.user = function(req, res, next, id) {
  */
 
 exports.resetpassword = function(req, res, next) {
-    console.log(req.params.token);
     User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
-        if (err) return next(err);
-        if (!user) return next(new Error('Password token does not match '));
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            return res.status(500).jsonp({err: err});
+        }
         user.password = req.body.password;
         // user.resetPasswordToken = undefined;
         // user.resetPasswordExpires = undefined;
@@ -148,7 +151,6 @@ exports.resetpassword = function(req, res, next) {
                     user: user,
                 });
             });
-            res.status(200);
         });
     });
 };

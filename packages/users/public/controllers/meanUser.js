@@ -105,8 +105,8 @@ angular.module('mean.users')
                         $location.url('/');
                     }
                 })
-                .error(function() {
-                    $scope.loginerror = 'Could not update password';
+                .error(function(response) {
+                    $scope.resetpassworderror = 'Could not update password as token is invalid or may have expired';
                 });
             };
         }
