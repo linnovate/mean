@@ -5,12 +5,11 @@
  */
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    nodemailer = require('nodemailer'),
     async = require('async'),
-    templates = require('../../../../config/env/all'),
-    mailConfig = require('../../../../config/env/' + process.env.NODE_ENV),
+    config = require('meanio').loadConfig(),
     crypto = require('crypto'),
-    transport = nodemailer.createTransport('SMTP', mailConfig.mailer);
+    templates = require('../template');
+
 
 /**
  * Auth callback
@@ -144,13 +143,13 @@ exports.resetpassword = function(req, res, next) {
         // user.resetPasswordExpires = undefined;
         user.save(function(err) {
             req.logIn(user, function(err) {
-              if (err) return next(err);
-              return res.send({
-                user: user,
-              });
+                if (err) return next(err);
+                return res.send({
+                    user: user,
+                });
             });
             res.status(200);
-         });
+        });
     });
 };
 
@@ -158,64 +157,54 @@ exports.resetpassword = function(req, res, next) {
  * Callback for forgot password link
  */
 exports.forgotpassword = function(req, res, next) {
-  async.waterfall([
-    function(done) {
-      crypto.randomBytes(20, function(err, buf) {
-        var token = buf.toString('hex');
-        done(err, token);
-      });
-    },
-    function(token, done) {
-      User.findOne({ email: req.body.email }, function(err, user) {
-        if ((err) || (!user)) {
-          done(true);
+    async.waterfall([
+        function(done) {
+            crypto.randomBytes(20, function(err, buf) {
+                var token = buf.toString('hex');
+                done(err, token);
+            });
+        },
+        function(token, done) {
+            User.findOne({ $or : [ {email: req.body.text } , { username: req.body.text} ]} , function(err, user) {
+                if ((err) || (!user)) {
+                    done(true);
+                }
+                else {
+                    done(err, user, token);
+                }
+            });
+        },
+        function(user, token, done) {
+            user.resetPasswordToken = token;
+            user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+            user.save(function(err) {
+                done(err, token, user);
+            });
+        },
+        function(token, user, done) {
+            var mailOptions = {
+                to: user.email,
+                //from: 'SENDER EMAIL ADDRESS', // sender address
+            };
+            mailOptions = templates.forgot_password_email(user, req, token, mailOptions);
+            config.sendMail(mailOptions);
+            done(null, true);
+        }
+    ],
+    function(err, status) {
+        var response = {
+            'message' : 'Mail successfully sent',
+            'status' : 'success'
+        };
+        if (err) {
+            response = {
+                'message' : 'User does not exist',
+                'status' : 'danger'
+            };
+            res.jsonp(response);
         }
         else {
-          done(err, user, token);
+            res.jsonp(response);
         }
-        });
-    },
-    function(user, token, done) {
-          user.resetPasswordToken = token;
-          user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-          user.save(function(err) {
-            done(err, token, user);
-        });
-    },
-    function(token, user, done) {
-
-      var mailOptions = {
-        to: req.body.email,
-          from: 'SENDER EMAIL ADDRESS', // sender address
-      };
-      console.log(mailOptions);
-      var message = 'Hey ' + user.name + '<br/> You are trying to reset ur password. Click on the link below to reset ur password' + 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-      'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-      'http://' + req.headers.host + '/#!/auth/reset/' + token + '\n\n' +
-      'If you did not request this, please ignore this email and your password will remain unchanged.\n';
-      mailOptions.subject = 'Resetting the password';
-      var mailBody = templates.notifyTemplate.forgotPassword.replace('{message}',message);
-      mailOptions.html = mailBody;
-      transport.sendMail(mailOptions, function(error, response){
-        if(error){
-          console.log(error);
-        }else{
-          console.log('Message sent:'  + response.message);
-        }
-      });
-       var response = {
-        'msg' : 'Please check your mail',
-        'type' : 'success'
-       };
-       res.jsonp(response);
-       next();
-    }
-  ], function(err) {
-    var response = {
-        'error' : err,
-        'type' : 'fail'
-       };
-
-    if (err) res.jsonp(response);
-  });
+    });
 };

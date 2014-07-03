@@ -44,16 +44,16 @@ angular.module('mean.users').config(['$stateProvider',
                     loggedin: checkLoggedOut
                 }
             })
-            .state('auth.forgotpassword', {
-                url: '/forgotpassword',
-                templateUrl: 'users/views/forgotpassword.html',
+            .state('forgot-password', {
+                url: '/forgot-password',
+                templateUrl: 'users/views/forgot-password.html',
                 resolve: {
                     loggedin: checkLoggedOut
                 }
             })
-            .state('auth.resetPassword', {
+            .state('reset-password', {
                 url: '/reset/:tokenId',
-                templateUrl: 'users/views/resetPassword.html',
+                templateUrl: 'users/views/reset-password.html',
                 resolve: {
                     loggedin: checkLoggedOut
                 }

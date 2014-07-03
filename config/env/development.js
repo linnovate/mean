@@ -31,10 +31,10 @@ module.exports = {
         callbackURL: 'http://localhost:3000/auth/linkedin/callback'
     },
     mailer: {
-      service: 'SERVICE_PROVIDER',
-      auth: {
-          user: 'EMAIL_ID',
-          pass: 'PASSWORD'
-      }
+        service: 'SERVICE_PROVIDER',
+        auth: {
+            user: 'EMAIL_ID',
+            pass: 'PASSWORD'
+        }
     }
 };

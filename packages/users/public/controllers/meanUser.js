@@ -70,15 +70,11 @@ angular.module('mean.users')
         function($scope, $rootScope, $http, $location) {
             $scope.user = {};
             $scope.forgotpassword = function() {
-
-
                 $http.post('/forgot-password', {
-                    email: $scope.user.email,
+                    text: $scope.text,
                 })
                     .success(function(response) {
                         $scope.response = response;
-                        // authentication OK
-                        $scope.registerError = 0;
                         $rootScope.user = $scope.user;
                         $rootScope.$emit('loggedin');
                     })
@@ -92,28 +88,26 @@ angular.module('mean.users')
         function($scope, $rootScope, $http, $location, $stateParams) {
             $scope.user = {};
             $scope.resetpassword = function() {
-                    $http.post('/reset/' + $stateParams.tokenId, {
+                $http.post('/reset/' + $stateParams.tokenId, {
                     password: $scope.user.password,
                 })
                 .success(function(response) {
-                        // authentication OK
-                        $scope.loginError = 0;
-                        $rootScope.user = response.user;
-                        $rootScope.$emit('loggedin');
-                        if (response.redirect) {
-                            if (window.location.href === response.redirect) {
-                                //This is so an admin user will get full admin page
-                                window.location.reload();
-                            } else {
-                                window.location = response.redirect;
-                            }
+                    $rootScope.user = response.user;
+                    $rootScope.$emit('loggedin');
+                    if (response.redirect) {
+                        if (window.location.href === response.redirect) {
+                            //This is so an admin user will get full admin page
+                            window.location.reload();
                         } else {
-                            $location.url('/');
+                            window.location = response.redirect;
                         }
-                    })
-                         .error(function() {
-                        $scope.loginerror = 'Authentication failed.';
-                    });
+                    } else {
+                        $location.url('/');
+                    }
+                })
+                .error(function() {
+                    $scope.loginerror = 'Could not update password';
+                });
             };
         }
     ]);
