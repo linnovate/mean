@@ -12,11 +12,15 @@ var should = require('should'),
     User = mongoose.model('User'),
     Article = mongoose.model('Article');
 
-//Globals
+/**
+ * Globals
+ */
 var user;
 var article;
 
-//The tests
+/**
+ * Test Suites
+ */
 describe('<Unit Test>', function() {
     describe('Model Article:', function() {
         beforeEach(function(done) {
@@ -54,6 +58,25 @@ describe('<Unit Test>', function() {
                     done();
                 });
             });
+
+            it('should be able to show an error when try to save without content', function(done) {
+                article.content = '';
+
+                return article.save(function(err) {
+                    should.exist(err);
+                    done();
+                });
+            });
+
+            it('should be able to show an error when try to save without user', function(done) {
+                article.user = {}
+
+                return article.save(function(err) {
+                    should.exist(err);
+                    done();
+                });
+            });
+
         });
 
         afterEach(function(done) {
