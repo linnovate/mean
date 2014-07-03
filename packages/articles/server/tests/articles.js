@@ -46,6 +46,9 @@ describe('<Unit Test>', function() {
             it('should be able to save without problems', function(done) {
                 return article.save(function(err) {
                     should.not.exist(err);
+                    article.title.should.equal('Article Title');
+                    article.content.should.equal('Article Content');
+                    article.user.should.not.have.length(0);
                     done();
                 });
             });
@@ -69,7 +72,7 @@ describe('<Unit Test>', function() {
             });
 
             it('should be able to show an error when try to save without user', function(done) {
-                article.user = {}
+                article.user = {};
 
                 return article.save(function(err) {
                     should.exist(err);
