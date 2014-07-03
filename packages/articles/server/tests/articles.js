@@ -49,6 +49,7 @@ describe('<Unit Test>', function() {
                     article.title.should.equal('Article Title');
                     article.content.should.equal('Article Content');
                     article.user.should.not.have.length(0);
+                    article.created.should.not.have.length(0);
                     done();
                 });
             });
