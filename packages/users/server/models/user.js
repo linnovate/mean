@@ -17,7 +17,7 @@ var validatePresenceOf = function(value) {
 
 var validateUniqueEmail = function(value, callback) {
     var User = mongoose.model('User');
-    User.find({email : value}, function(err, user) {
+    User.find({$and: [{email : value}, { _id: { $ne : this._id }}]}, function(err, user) {
         callback(err || user.length === 0);
     });
 };
