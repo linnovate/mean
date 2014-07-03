@@ -17,6 +17,7 @@ module.exports = function(config) {
         // list of files / patterns to load in the browser
         files: _.flatten(_.values(assets.core.js)).concat([
             'packages/system/public/init.js',
+            'packages/system/public/system.js',
 //            'packages/*/public/{controllers,routes,services}/*.js',
 //            'packages/*/public/tests/*.js'
             'packages/*/public/*/*.js'
