@@ -12,7 +12,11 @@
                 });
             });
 
-            beforeEach(module('mean'));
+            beforeEach(function() {
+                module('mean');
+                module('mean.system');
+                module('mean.users');
+            });
 
             var LoginCtrl,
                 scope,
@@ -45,7 +49,9 @@
 
                 spyOn($rootScope, '$emit');
                 // test expected GET request
-                $httpBackend.when('POST','/login').respond(200, {user: 'Fred'});
+                $httpBackend.when('POST', '/login').respond(200, {
+                    user: 'Fred'
+                });
                 scope.login();
                 $httpBackend.flush();
                 // test scope value
@@ -75,7 +81,11 @@
                 });
             });
 
-            beforeEach(module('mean'));
+            beforeEach(function() {
+                module('mean');
+                module('mean.system');
+                module('mean.users');
+            });
 
             var RegisterCtrl,
                 scope,
@@ -109,7 +119,7 @@
                 spyOn($rootScope, '$emit');
                 // test expected GET request
                 scope.user.name = 'Fred';
-                $httpBackend.when('POST','/register').respond(200, 'Fred');
+                $httpBackend.when('POST', '/register').respond(200, 'Fred');
                 scope.register();
                 $httpBackend.flush();
                 // test scope value
@@ -122,7 +132,7 @@
 
 
             it('should fail to register with duplicate Username', function() {
-                $httpBackend.when('POST','/register').respond(400, 'Username already taken');
+                $httpBackend.when('POST', '/register').respond(400, 'Username already taken');
                 scope.register();
                 $httpBackend.flush();
                 // test scope value
@@ -131,7 +141,7 @@
             });
 
             it('should fail to register with non-matching passwords', function() {
-                $httpBackend.when('POST','/register').respond(400, 'Password mismatch');
+                $httpBackend.when('POST', '/register').respond(400, 'Password mismatch');
                 scope.register();
                 $httpBackend.flush();
                 // test scope value
