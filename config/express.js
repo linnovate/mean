@@ -3,23 +3,22 @@
 /**
  * Module dependencies.
  */
-var morgan = require('morgan'),
+var mean = require('meanio'),
     compression = require('compression'),
+    morgan = require('morgan'),
+    consolidate = require('consolidate'),
+    cookieParser = require('cookie-parser'),
+    expressValidator = require('express-validator'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
-    cookieParser = require('cookie-parser'),
+    assetmanager = require('assetmanager'),
     session = require('express-session'),
-    mean = require('meanio'),
-    consolidate = require('consolidate'),
-    mongoStore = require('mean-connect-mongo')(session),
-    flash = require('connect-flash'),
+    mongoStore = require('connect-mongo')(session),
     helpers = require('view-helpers'),
-    config = require('meanio').loadConfig(),
-    expressValidator = require('express-validator'),
-    assetmanager = require('assetmanager');
+    flash = require('connect-flash'),
+    config = mean.loadConfig();
 
 module.exports = function(app, passport, db) {
-
 
     app.set('showStackError', true);
 

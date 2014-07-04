@@ -92,7 +92,10 @@ module.exports = function(grunt) {
                 require: [
                     'server.js',
                     function() {
-                        require('mongoose').connection.once('open', function() {});
+                        // preload all models
+                        require('glob').sync('packages/**/server').forEach(function(file) {
+                            require('meanio/lib/util').walk(__dirname + '/' + file, 'model', null, require);
+                        });
                     }
                 ]
             },

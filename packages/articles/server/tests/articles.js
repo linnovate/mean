@@ -1,9 +1,5 @@
 'use strict';
 
-// there has to be a better way to bootstrap package models for mocha tests
-require('../models/article');
-require('../../../users/server/models/user');
-
 /**
  * Module dependencies.
  */
