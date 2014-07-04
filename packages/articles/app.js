@@ -47,7 +47,7 @@ Articles.register(function(app, auth, database) {
     // This writes over the last settings.
     Articles.settings({'anotherSettings':'some value'});
 
-    // Get settings. Retrieves latest saved settigns
+    // Get settings. Retrieves latest saved settings
     Articles.settings(function (err, settings) {
       //you now have the settings object
     });
