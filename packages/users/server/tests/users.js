@@ -1,5 +1,19 @@
 'use strict';
 
+var crypto = require('crypto');
+
+/**
+ * Create a random hex string of specific length and 
+ * @todo consider taking out to a common unit testing javascript helper
+ * @return string
+ */
+function getRandomString(len) {
+    if (!len)
+        len = 16;
+
+    return crypto.randomBytes(Math.ceil(len/2)).toString('hex');
+}
+
 /**
  * Module dependencies.
  */
@@ -21,16 +35,16 @@ describe('<Unit Test>', function() {
         before(function(done) {
             user1 = {
                 name: 'Full name',
-                email: 'test@test.com',
-                username: 'user',
+                email: 'test' + getRandomString() + '@test.com',
+                username: getRandomString(),
                 password: 'password',
                 provider: 'local'
             };
 
             user2 = {
                 name: 'Full name',
-                email: 'test@test.com',
-                username: 'user',
+                email: 'test' + getRandomString() + '@test.com',
+                username: getRandomString(),
                 password: 'password',
                 provider: 'local'
             };
@@ -40,9 +54,14 @@ describe('<Unit Test>', function() {
 
         describe('Method Save', function() {
             it('should begin without the test user', function(done) {
-                User.find({ email: 'test@test.com' }, function(err, users) {
+                User.find({ email: user1.email }, function(err, users) {
                     users.should.have.length(0);
-                    done();
+
+                    User.find({ email: user2.email }, function(err, users) {
+                        users.should.have.length(0);
+                        done();
+                    });
+                    
                 });
             });
 
@@ -79,7 +98,7 @@ describe('<Unit Test>', function() {
                 var _user1 = new User(user1);
                 _user1.save();
 
-                var _user2 = new User(user2);
+                var _user2 = new User(user1);
 
                 return _user2.save(function(err) {
                     should.exist(err);
