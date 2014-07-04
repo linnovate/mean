@@ -61,7 +61,7 @@ describe('<Unit Test>', function() {
                         users.should.have.length(0);
                         done();
                     });
-                    
+
                 });
             });
 
@@ -69,6 +69,7 @@ describe('<Unit Test>', function() {
 
                 var _user = new User(user1);
                 _user.save(function(err) {
+                    should.not.exist(err);
                     _user.remove();
                     done();
                 });
