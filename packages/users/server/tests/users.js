@@ -85,6 +85,7 @@ describe('<Unit Test>', function() {
                     _user.name = 'Full name2';
                     _user.save(function(err) {
                         should.not.exist(err);
+                        _user.name.should.equal('Full name2');
                         _user.remove(function() {
                             done();
                         });
@@ -162,6 +163,8 @@ describe('<Unit Test>', function() {
                 return _user.save(function(err) {                
                     _user.remove(function() {
                         should.not.exist(err);
+                        _user.provider.should.equal('twitter');
+                        _user.hashed_password.should.have.length(0);
                         done();
                     });
                 });
