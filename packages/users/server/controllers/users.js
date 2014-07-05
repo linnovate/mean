@@ -185,8 +185,7 @@ exports.forgotpassword = function(req, res, next) {
         },
         function(token, user, done) {
             var mailOptions = {
-                to: user.email,
-                //from: 'SENDER EMAIL ADDRESS', // sender address
+                to: user.email
             };
             mailOptions = templates.forgot_password_email(user, req, token, mailOptions);
             config.sendMail(mailOptions);

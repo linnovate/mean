@@ -7,6 +7,7 @@ module.exports = {
             'http://' + req.headers.host + '/#!/reset/' + token + '\n\n' +
             'If you did not request this, please ignore this email and your password will remain unchanged.\n';
         mailOptions.subject = 'Resetting the password';
+        mailOptions.from = 'SENDER EMAIL ADDRESS'; // sender address
         return mailOptions;
     }
 };
