@@ -3,8 +3,10 @@
 (function() {
     describe('MEAN controllers', function() {
         describe('HeaderController', function() {
-            // Load the controllers module
-            beforeEach(module('mean'));
+            beforeEach(function() {
+                module('mean');
+                module('mean.system');
+            });
 
             var scope, HeaderController;
 

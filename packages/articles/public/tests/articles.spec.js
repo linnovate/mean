@@ -17,8 +17,11 @@
                 });
             });
 
-            // Load the controllers module
-            beforeEach(module('mean'));
+            beforeEach(function() {
+                module('mean');
+                module('mean.system');
+                module('mean.articles');
+            });
 
             // Initialize the controller and a mock scope
             var ArticlesController,

@@ -16,10 +16,7 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: _.flatten(_.values(assets.core.js)).concat([
-            'packages/system/public/init.js',
-            'packages/system/public/system.js',
-//            'packages/*/public/{controllers,routes,services}/*.js',
-//            'packages/*/public/tests/*.js'
+            'packages/*/public/*.js',
             'packages/*/public/*/*.js'
         ]),
 
@@ -32,7 +29,7 @@ module.exports = function(config) {
 
         // coverage
         preprocessors: {
-            // source files, that you wanna generate coverage for
+            // source files that you want to generate coverage for
             // do not include tests or libraries
             // (these files will be instrumented by Istanbul)
             'packages/*/public/controllers/*.js': ['coverage'],
@@ -52,8 +49,7 @@ module.exports = function(config) {
 
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-//        logLevel: config.LOG_INFO,
-        logLevel: config.LOG_DEBUG,
+        logLevel: config.LOG_INFO,
 
         // enable / disable watching file and executing tests whenever any file changes
         autoWatch: true,
