@@ -153,7 +153,7 @@ We pre-included an article example. Check out:
   * [The AngularJs Views Folder](packages/articles/public/views) - Where we keep our CRUD views.
 
 ## Heroku Quick Deployment
-Before you start make sure you have the [Heroku toolbelt](<https://toolbelt.heroku.com/")
+Before you start make sure you have the [Heroku toolbelt](<https://toolbelt.heroku.com/)
 installed and an accessible MongoDB instance - you can try [MongoHQ](http://www.mongohq.com/)
 which has an easy setup).
 
