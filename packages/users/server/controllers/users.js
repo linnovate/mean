@@ -136,14 +136,20 @@ exports.user = function(req, res, next, id) {
 exports.resetpassword = function(req, res, next) {
     User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
         if (err) {
-            return next(err);
+            return res.status(400).jsonp({msg: err});
         }
         if (!user) {
-            return res.status(500).jsonp({err: err});
+            return res.status(400).jsonp({msg: 'Token invalid or expired'});
+        }
+        req.assert('password', 'Password must be between 8-20 characters long').len(8, 20);
+        req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+        var errors = req.validationErrors();
+        if (errors) {
+            return res.status(400).send(errors);
         }
         user.password = req.body.password;
-        // user.resetPasswordToken = undefined;
-        // user.resetPasswordExpires = undefined;
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpires = undefined;
         user.save(function(err) {
             req.logIn(user, function(err) {
                 if (err) return next(err);
@@ -185,7 +191,8 @@ exports.forgotpassword = function(req, res, next) {
         },
         function(token, user, done) {
             var mailOptions = {
-                to: user.email
+                to: user.email,
+                from: config.emailFrom
             };
             mailOptions = templates.forgot_password_email(user, req, token, mailOptions);
             config.sendMail(mailOptions);
