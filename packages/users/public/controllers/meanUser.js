@@ -90,6 +90,7 @@ angular.module('mean.users')
             $scope.resetpassword = function() {
                 $http.post('/reset/' + $stateParams.tokenId, {
                     password: $scope.user.password,
+                    confirmPassword: $scope.user.confirmPassword
                 })
                 .success(function(response) {
                     $rootScope.user = response.user;
@@ -105,8 +106,11 @@ angular.module('mean.users')
                         $location.url('/');
                     }
                 })
-                .error(function(response) {
-                    $scope.resetpassworderror = 'Could not update password as token is invalid or may have expired';
+                .error(function(error) {
+                    if (error.msg === 'Token invalid or expired')
+                        $scope.resetpassworderror = 'Could not update password as token is invalid or may have expired';
+                    else
+                        $scope.validationError = error;
                 });
             };
         }
