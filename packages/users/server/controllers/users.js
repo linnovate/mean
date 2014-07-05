@@ -4,7 +4,12 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    async = require('async'),
+    config = require('meanio').loadConfig(),
+    crypto = require('crypto'),
+    templates = require('../template');
+
 
 /**
  * Auth callback
@@ -64,6 +69,11 @@ exports.create = function(req, res, next) {
         if (err) {
             switch (err.code) {
                 case 11000:
+                    res.status(400).send([{
+                        msg: 'Email already taken',
+                        param: 'email'
+                    }]);
+                    break;
                 case 11001:
                     res.status(400).send([{
                         msg: 'Username already taken',
@@ -117,4 +127,85 @@ exports.user = function(req, res, next, id) {
             req.profile = user;
             next();
         });
+};
+
+/**
+ * Resets the password
+ */
+
+exports.resetpassword = function(req, res, next) {
+    User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            return res.status(500).jsonp({err: err});
+        }
+        user.password = req.body.password;
+        // user.resetPasswordToken = undefined;
+        // user.resetPasswordExpires = undefined;
+        user.save(function(err) {
+            req.logIn(user, function(err) {
+                if (err) return next(err);
+                return res.send({
+                    user: user,
+                });
+            });
+        });
+    });
+};
+
+/**
+ * Callback for forgot password link
+ */
+exports.forgotpassword = function(req, res, next) {
+    async.waterfall([
+        function(done) {
+            crypto.randomBytes(20, function(err, buf) {
+                var token = buf.toString('hex');
+                done(err, token);
+            });
+        },
+        function(token, done) {
+            User.findOne({ $or : [ {email: req.body.text } , { username: req.body.text} ]} , function(err, user) {
+                if ((err) || (!user)) {
+                    done(true);
+                }
+                else {
+                    done(err, user, token);
+                }
+            });
+        },
+        function(user, token, done) {
+            user.resetPasswordToken = token;
+            user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+            user.save(function(err) {
+                done(err, token, user);
+            });
+        },
+        function(token, user, done) {
+            var mailOptions = {
+                to: user.email
+            };
+            mailOptions = templates.forgot_password_email(user, req, token, mailOptions);
+            config.sendMail(mailOptions);
+            done(null, true);
+        }
+    ],
+    function(err, status) {
+        var response = {
+            'message' : 'Mail successfully sent',
+            'status' : 'success'
+        };
+        if (err) {
+            response = {
+                'message' : 'User does not exist',
+                'status' : 'danger'
+            };
+            res.jsonp(response);
+        }
+        else {
+            res.jsonp(response);
+        }
+    });
 };

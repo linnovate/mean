@@ -29,5 +29,13 @@ module.exports = {
         clientID: 'API_KEY',
         clientSecret: 'SECRET_KEY',
         callbackURL: 'http://localhost:3000/auth/linkedin/callback'
+    },
+    mailer: {
+        service: 'SERVICE_PROVIDER',
+        auth: {
+            user: 'EMAIL_ID',
+            pass: 'PASSWORD'
+        }
     }
 };
+
