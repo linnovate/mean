@@ -20,7 +20,7 @@ module.exports = function(System, app, auth, database) {
                 defaultMenu: defaultMenu
             });
 
-            res.jsonp(items);
+            res.json(items);
         });
 
 };

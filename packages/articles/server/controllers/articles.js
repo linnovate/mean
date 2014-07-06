@@ -29,11 +29,11 @@ exports.create = function(req, res) {
 
     article.save(function(err) {
         if (err) {
-            return res.jsonp(500, {
+            return res.json(500, {
                 error: 'Cannot save the article'
             });
         }
-        res.jsonp(article);
+        res.json(article);
 
     });
 };
@@ -48,11 +48,11 @@ exports.update = function(req, res) {
 
     article.save(function(err) {
         if (err) {
-            return res.jsonp(500, {
+            return res.json(500, {
                 error: 'Cannot update the article'
             });
         }
-        res.jsonp(article);
+        res.json(article);
 
     });
 };
@@ -65,11 +65,11 @@ exports.destroy = function(req, res) {
 
     article.remove(function(err) {
         if (err) {
-            return res.jsonp(500, {
+            return res.json(500, {
                 error: 'Cannot delete the article'
             });
         }
-        res.jsonp(article);
+        res.json(article);
 
     });
 };
@@ -78,7 +78,7 @@ exports.destroy = function(req, res) {
  * Show an article
  */
 exports.show = function(req, res) {
-    res.jsonp(req.article);
+    res.json(req.article);
 };
 
 /**
@@ -87,11 +87,11 @@ exports.show = function(req, res) {
 exports.all = function(req, res) {
     Article.find().sort('-created').populate('user', 'name username').exec(function(err, articles) {
         if (err) {
-            return res.jsonp(500, {
+            return res.json(500, {
                 error: 'Cannot list the articles'
             });
         }
-        res.jsonp(articles);
+        res.json(articles);
 
     });
 };
