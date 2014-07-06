@@ -75,8 +75,6 @@ angular.module('mean.users')
                 })
                     .success(function(response) {
                         $scope.response = response;
-                        $rootScope.user = $scope.user;
-                        $rootScope.$emit('loggedin');
                     })
                     .error(function(error) {
                         $scope.response = error;
