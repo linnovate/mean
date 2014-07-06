@@ -16,7 +16,7 @@ Access.register(function(database) {
 	var auth = require('./server/config/authorization');
 	require('./server/config/passport')(passport);
 
-	// This is for backwards compatabillity
+	// This is for backwards compatibility
 	mean.register('auth', function() {
 		return auth;
 	});

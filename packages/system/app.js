@@ -25,7 +25,7 @@ System.register(function(app, auth, database) {
     // Set views path, template engine and default layout
     app.set('views', __dirname + '/server/views');
 
-    // Setting the fav icon and static folder
+    // Setting the favicon and static folder
     app.use(favicon(__dirname + '/public/assets/img/favicon.ico'));
 
     // Adding robots and humans txt    
