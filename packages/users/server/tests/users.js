@@ -83,9 +83,9 @@ describe('<Unit Test>', function() {
                     should.not.exist(err);
 
                     // the user1 object and users in general are created with only the 'authenticated' role
-                    _user.hasRole('authenticated').should.be.true;
-                    _user.hasRole('admin').should.be.false;
-                    _user.isAdmin().should.be.false;
+                    _user.hasRole('authenticated').should.equal(true);
+                    _user.hasRole('admin').should.equal(false);
+                    _user.isAdmin().should.equal(false);
                     _user.roles.should.have.length(1);
                     _user.remove(function(err) {
                         done();
@@ -102,7 +102,7 @@ describe('<Unit Test>', function() {
                     should.not.exist(err);
                     _user.hashed_password.should.not.have.length(0);
                     _user.salt.should.not.have.length(0);
-                    _user.authenticate(user1.password).should.be.true;
+                    _user.authenticate(user1.password).should.equal(true);
                     _user.remove(function(err) {
                         done();
                     });
