@@ -1,10 +1,7 @@
 'use strict';
 
 var path = require('path'),
-    rootPath = path.normalize(__dirname + '/../..'),
-    nodemailer = require('nodemailer'),
-    config = require('meanio').loadConfig(),
-    transport = nodemailer.createTransport('SMTP', config.mailer);
+    rootPath = path.normalize(__dirname + '/../..');
 
 module.exports = {
     root: rootPath,
@@ -35,15 +32,5 @@ module.exports = {
     },
 
     // The session cookie name
-    sessionName: 'connect.sid',
-
-    sendMail: function(mailOptions) {
-        transport.sendMail(mailOptions, function(err, response) {
-            if(err) {
-                return err;
-            } else {
-                return response;
-            }
-        });
-    }
+    sessionName: 'connect.sid'
 };
