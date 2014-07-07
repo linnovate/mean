@@ -29,7 +29,7 @@ module.exports = function(grunt) {
                 files: paths.html,
                 options: {
                     livereload: true,
-                    interval:500
+                    interval: 500
                 }
             },
             css: {
@@ -92,10 +92,7 @@ module.exports = function(grunt) {
                 require: [
                     'server.js',
                     function() {
-                        // preload all models
-                        require('glob').sync('packages/**/server').forEach(function(file) {
-                            require('meanio/lib/util').walk(__dirname + '/' + file, 'model', null, require);
-                        });
+                        require('meanio/lib/util').preload(__dirname + '/packages/**/server', 'model');
                     }
                 ]
             },
