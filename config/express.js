@@ -47,9 +47,6 @@ module.exports = function(app, passport, db) {
     // set .html as the default extension
     app.set('view engine', 'html');
 
-    // Enable jsonp
-    app.enable('jsonp callback');
-
     // The cookieParser should be above session
     app.use(cookieParser());
 

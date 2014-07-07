@@ -110,7 +110,7 @@ exports.create = function(req, res, next) {
  * Send User
  */
 exports.me = function(req, res) {
-    res.jsonp(req.user || null);
+    res.json(req.user || null);
 };
 
 /**
@@ -136,10 +136,10 @@ exports.user = function(req, res, next, id) {
 exports.resetpassword = function(req, res, next) {
     User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
         if (err) {
-            return res.status(400).jsonp({msg: err});
+            return res.status(400).json({msg: err});
         }
         if (!user) {
-            return res.status(400).jsonp({msg: 'Token invalid or expired'});
+            return res.status(400).json({msg: 'Token invalid or expired'});
         }
         req.assert('password', 'Password must be between 8-20 characters long').len(8, 20);
         req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
@@ -209,10 +209,10 @@ exports.forgotpassword = function(req, res, next) {
                 'message' : 'User does not exist',
                 'status' : 'danger'
             };
-            res.jsonp(response);
+            res.json(response);
         }
         else {
-            res.jsonp(response);
+            res.json(response);
         }
     });
 };
