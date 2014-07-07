@@ -105,7 +105,7 @@ $ npm update -g
 ````
 
 ## Configuration
-All configuration is specified in the [config](/config/) folder, particularly the [config.js](/config/config.js) file and the [env](config/env/) files. Here you will need to specify your application name, database name, and hook up any social app keys if you want integration with Twitter, Facebook, GitHub, or Google.
+All configuration is specified in the [config](/config/) folder, through the [env](config/env/) files, and is orchestrated through the [meanio](https://github.com/linnovate/mean-cli) NPM module. Here you will need to specify your application name, database name, and hook up any social app keys if you want integration with Twitter, Facebook, GitHub, or Google.
 
 ### Environmental Settings
 
@@ -158,7 +158,7 @@ We pre-included an article example. Check out:
   * [The AngularJs Views Folder](packages/articles/public/views) - Where we keep our CRUD views.
 
 ## Heroku Quick Deployment
-Before you start make sure you have the [Heroku toolbelt](<https://toolbelt.heroku.com/")
+Before you start make sure you have the [Heroku toolbelt](https://toolbelt.heroku.com/)
 installed and an accessible MongoDB instance - you can try [MongoHQ](http://www.mongohq.com/)
 which has an easy setup).
 
