@@ -11,25 +11,25 @@ angular.module('mean.users')
                     email: $scope.user.email,
                     password: $scope.user.password
                 })
-                    .success(function(response) {
-                        // authentication OK
-                        $scope.loginError = 0;
-                        $rootScope.user = response.user;
-                        $rootScope.$emit('loggedin');
-                        if (response.redirect) {
-                            if (window.location.href === response.redirect) {
-                                //This is so an admin user will get full admin page
-                                window.location.reload();
-                            } else {
-                                window.location = response.redirect;
-                            }
+                .success(function(response) {
+                    // authentication OK
+                    $scope.loginError = 0;
+                    $rootScope.user = response.user;
+                    $rootScope.$emit('loggedin');
+                    if (response.redirect) {
+                        if (window.location.href === response.redirect) {
+                            //This is so an admin user will get full admin page
+                            window.location.reload();
                         } else {
-                            $location.url('/');
+                            window.location = response.redirect;
                         }
-                    })
-                    .error(function() {
-                        $scope.loginerror = 'Authentication failed.';
-                    });
+                    } else {
+                        $location.url('/');
+                    }
+                })
+                .error(function() {
+                    $scope.loginerror = 'Authentication failed.';
+                });
             };
         }
     ])
@@ -47,22 +47,22 @@ angular.module('mean.users')
                     username: $scope.user.username,
                     name: $scope.user.name
                 })
-                    .success(function() {
-                        // authentication OK
-                        $scope.registerError = 0;
-                        $rootScope.user = $scope.user;
-                        $rootScope.$emit('loggedin');
-                        $location.url('/');
-                    })
-                    .error(function(error) {
-                        // Error: authentication failed
-                        if (error === 'Username already taken') {
-                            $scope.usernameError = error;
-                        } else if (error === 'Email already taken'){
-                            $scope.emailError = error;
-                        }
-                        else $scope.registerError = error;
-                    });
+                .success(function() {
+                    // authentication OK
+                    $scope.registerError = 0;
+                    $rootScope.user = $scope.user;
+                    $rootScope.$emit('loggedin');
+                    $location.url('/');
+                })
+                .error(function(error) {
+                    // Error: authentication failed
+                    if (error === 'Username already taken') {
+                        $scope.usernameError = error;
+                    } else if (error === 'Email already taken'){
+                        $scope.emailError = error;
+                    }
+                    else $scope.registerError = error;
+                });
             };
         }
     ])
@@ -71,14 +71,14 @@ angular.module('mean.users')
             $scope.user = {};
             $scope.forgotpassword = function() {
                 $http.post('/forgot-password', {
-                    text: $scope.text,
+                    text: $scope.text
                 })
-                    .success(function(response) {
-                        $scope.response = response;
-                    })
-                    .error(function(error) {
-                        $scope.response = error;
-                    });
+                .success(function(response) {
+                    $scope.response = response;
+                })
+                .error(function(error) {
+                    $scope.response = error;
+                });
             };
         }
     ])
