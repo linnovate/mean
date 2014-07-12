@@ -10,7 +10,7 @@ module.exports = function(Slack, app, auth, database) {
 	app.post('/yesman',function(req,res) {
 	var reply = slacki.respond(req.body,function(hook) {
 		return {
-			text: 'Good point, ' + hook.user_name + ' you are on channel ' + hook.channel_name,
+			text: 'Good point, ' + hook.user_name + ' you are on channel ' + hook.channel_name ,
 			username: 'Kate'
 		};
 
@@ -28,4 +28,5 @@ module.exports = function(Slack, app, auth, database) {
             //Rendering a view from the Package server/views
             res.send(html);
         });
+		});
 };
