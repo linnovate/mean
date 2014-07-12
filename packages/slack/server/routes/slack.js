@@ -3,12 +3,27 @@
 // The Package is past automatically as first parameter
 module.exports = function(Slack, app, auth, database) {
 
-    app.get('/slack/example/anyone', function(req, res, next) {
-        res.send('Anyone can access this');
-    });
+	var SlackInst = require('node-slack');
+var meandomain = 'meanio';
+var meantoken = 'xoxp-2194933696-2194933708-2443321518-a2df23';
+	var slacki = new SlackInst(meandomain,meantoken);
+	app.post('/yesman',function(req,res) {
 
-    app.get('/slack/example/auth', auth.requiresLogin, function(req, res, next) {
-        res.send('Only authenticated users can access this');
+					var reply = slacki.respond(req.body,function(hook) {
+						return {
+							text: 'Good point, ' + hook.user_name,
+							username: 'Bot'
+						};
+
+					});
+
+					res.json(reply);
+
+	});
+
+
+    app.get('/slack/all', auth.requiresLogin, function(req, res, next) {
+			res.send('foobar');
     });
 
     app.get('/slack/example/admin', auth.requiresAdmin, function(req, res, next) {

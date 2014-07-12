@@ -84,6 +84,7 @@
     "time-grunt": "^0.3.1",
     "view-helpers": "^0.1.4",
     "async": "~0.9.0",
+		"node-slack": "latest",
     "nodemailer": "~0.7.0"
   },
   "devDependencies": {
