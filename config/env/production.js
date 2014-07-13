@@ -1,6 +1,10 @@
 'use strict';
 
 module.exports = {
+    slack:{
+      meandomain : 'meanio',
+      meantoken : 'xoxp-2194933696-2194933708-2443321518-a2df23'
+    },
     db: 'mongodb://test:test@ds053648.mongolab.com:53648/meantest',
     app: {
         name: 'MEAN - A Modern Stack - Production'
@@ -39,4 +43,3 @@ module.exports = {
         }
     }
 };
-
