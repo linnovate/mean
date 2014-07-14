@@ -41,4 +41,10 @@ describe('mean.js', function() {
         }).should.be.an.Array.and.have.length(2); // anonymous, authenticated
     });
 
+    it('properly weight js footer menus', function (done) {
+        mean.aggregated('js', 'footer', function (aggr) {
+            aggr.should.be.empty;
+            done();
+        });
+    });
 });

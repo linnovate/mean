@@ -5,7 +5,7 @@ var path = require('path'),
 
 var CMD = path.join(process.cwd(), 'bin', 'mean');
 
-describe('`mean`', function() {
+describe('mean', function() {
 
     it('executes without error', function(done) {
         exec(CMD, function(err) {
