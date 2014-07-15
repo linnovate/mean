@@ -4,28 +4,22 @@
   "version": "0.4.0",
   "private": false,
   "author": "Linnovate <mean@linnovate.net>",
-  "contributors": [
-    {
-      "name": "Lior Kesos",
-      "mail": "lior@linnovate.net"
-    },
-    {
-      "name": "Yonatan Ellman",
-      "mail": "yonatan@linnovate.net"
-    },
-    {
-      "name": "Drew Fyock",
-      "mail": "drew@steelbisondev.com"
-    },
-    {
-      "name": "Ehud Shahak",
-      "mail": "ehud@linnovate.net"
-    },
-    {
-      "name": "Amos Haviv",
-      "mail": "mail@amoshaviv.com"
-    }
-  ],
+  "contributors": [{
+    "name": "Lior Kesos",
+    "mail": "lior@linnovate.net"
+  }, {
+    "name": "Yonatan Ellman",
+    "mail": "yonatan@linnovate.net"
+  }, {
+    "name": "Drew Fyock",
+    "mail": "drew@steelbisondev.com"
+  }, {
+    "name": "Ehud Shahak",
+    "mail": "ehud@linnovate.net"
+  }, {
+    "name": "Amos Haviv",
+    "mail": "mail@amoshaviv.com"
+  }],
   "mean": "0.4.0",
   "repository": {
     "type": "git",
@@ -42,6 +36,7 @@
   },
   "dependencies": {
     "assetmanager": "^1.1.1",
+    "async": "~0.9.0",
     "body-parser": "^1.2.0",
     "bower": "^1.3.3",
     "compression": "^1.0.1",
@@ -72,6 +67,7 @@
     "method-override": "^1.0.0",
     "mongoose": "^3.8.8",
     "morgan": "^1.0.0",
+    "nodemailer": "~0.7.0"
     "passport": "^0.2.0",
     "passport-facebook": "^1.0.3",
     "passport-github": "^0.1.5",
@@ -83,9 +79,6 @@
     "swig": "^1.3.2",
     "time-grunt": "^0.3.1",
     "view-helpers": "^0.1.4",
-    "async": "~0.9.0",
-		"node-slack": "latest",
-    "nodemailer": "~0.7.0"
   },
   "devDependencies": {
     "grunt-karma": "^0.8.2",

@@ -1,11 +1,7 @@
 'use strict';
 
 module.exports = {
-    slack:{
-      meandomain : 'meanio',
-      meantoken : 'xoxp-2194933696-2194933708-2443321518-a2df23'
-    },
-    db: 'mongodb://test:test@ds053648.mongolab.com:53648/meantest',
+    db: 'mongodb://localhost/mean-prod',
     app: {
         name: 'MEAN - A Modern Stack - Production'
     },
@@ -34,7 +30,7 @@ module.exports = {
         clientSecret: 'SECRET_KEY',
         callbackURL: 'http://localhost:3000/auth/linkedin/callback'
     },
-    emailFrom : 'SENDER EMAIL ADDRESS', // sender address like ABC <abc@example.com>
+    emailFrom: 'SENDER EMAIL ADDRESS', // sender address like ABC <abc@example.com>
     mailer: {
         service: 'SERVICE_PROVIDER',
         auth: {
