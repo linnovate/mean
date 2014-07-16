@@ -13,20 +13,20 @@ var MeanUser = new Module('users');
  */
 MeanUser.register(function(app, auth, passport, database) {
 
-    //We enable routing. By default the Package Object is passed to the routes
-    MeanUser.routes(app, auth, database, passport);
+  //We enable routing. By default the Package Object is passed to the routes
+  MeanUser.routes(app, auth, database, passport);
 
-    //We are adding a link to the main menu for all authenticated users
-    // MeanUser.menus.add({
-    //     title: 'meanUser example page',
-    //     link: 'meanUser example page',
-    //     roles: ['authenticated'],
-    //     menu: 'main'
-    // });
+  //We are adding a link to the main menu for all authenticated users
+  // MeanUser.menus.add({
+  //     title: 'meanUser example page',
+  //     link: 'meanUser example page',
+  //     roles: ['authenticated'],
+  //     menu: 'main'
+  // });
 
-    MeanUser.aggregateAsset('js', 'meanUser.js');
+  MeanUser.aggregateAsset('js', 'meanUser.js');
 
-    /**
+  /**
     //Uncomment to use. Requires meanio@0.3.7 or above
     // Save settings with callback
     // Use this for saving data from administration pages
@@ -48,5 +48,5 @@ MeanUser.register(function(app, auth, passport, database) {
     });
     */
 
-    return MeanUser;
+  return MeanUser;
 });
