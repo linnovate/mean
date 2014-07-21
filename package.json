@@ -1,6 +1,6 @@
 {
   "name": "meanio",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "preferGlobal": true,
   "description": "Simple command line interface for installing and managing MEAN apps",
   "author": {
@@ -20,7 +20,7 @@
       "mail": "drew@steelbisondev.com"
     }
   ],
-  "license": "MIT",
+  "license": "AGPL",
   "main": "index",
   "bin": {
     "mean": "./bin/mean",
