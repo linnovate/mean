@@ -1,6 +1,6 @@
 {
   "name": "mean",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "dependencies": {
     "jquery": "1.x",
     "angular": "latest",
