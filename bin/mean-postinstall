@@ -1,39 +1,12 @@
-var fs = require ('fs'),
-    chalk = require ('chalk'),
-    spawn = require('child_process').spawn,
-    npm = require(process.cwd() + '/node_modules/meanio/node_modules/npm');
+#!/usr/bin/env node
 
-    // install bower
-    console.log('Installing Bower packages');
-    bowered  = spawn('node', ['node_modules/bower/bin/bower', 'install', '--config.interactive=false']);
-    bowered.stdin.end();
+'use strict';
 
-    console.log("Auto installing packages");
+var cli = require('../lib/cli'),
+    program = require('commander');
 
-    npm.load(function(err, npm) {
-	var source = 'packages';
-	var rootDir = process.cwd();
-	fs.readdir(rootDir + '/' + source, function(err, files) {
-	    if (err || !files || !files.length) {
-		if (err && err.code !== 'ENOENT') console.log(err);
-		return callback();
-	    }
+program
+    .description('Postinstall bower and package dependencies')
+    .parse(process.argv);
 
-	    var packagesNum = files.length;
-	    files.forEach(function(file, index) {
-		var packageDir = rootDir + '/' + source + '/' + file;
-
-		process.chdir(packageDir);
-
-		npm.commands.install(['.'], function(err) {
-		    if (err) {
-			console.log(err);
-			console.log(chalk.red('Error: npm install failed'));
-		    }
-		    else {
-			console.log(chalk.green('Success: installed package ' + file));
-		    }
-		});
-	    });
-	});
-    });
+cli.postinstall();

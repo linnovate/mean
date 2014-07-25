@@ -1,30 +1,27 @@
 {
   "name": "meanio",
-  "version": "0.5.9",
+  "version": "0.5.10",
   "preferGlobal": true,
   "description": "Simple command line interface for installing and managing MEAN apps",
   "author": {
     "name": "linnovate"
   },
-  "contributors": [
-    {
-      "name": "Lior Kesos",
-      "mail": "lior@linnovate.net"
-    },
-    {
-      "name": "Yonatan Ellman",
-      "mail": "yonatan@linnovate.net"
-    },
-    {
-      "name": "Drew Fyock",
-      "mail": "drew@steelbisondev.com"
-    }
-  ],
+  "contributors": [{
+    "name": "Lior Kesos",
+    "mail": "lior@linnovate.net"
+  }, {
+    "name": "Yonatan Ellman",
+    "mail": "yonatan@linnovate.net"
+  }, {
+    "name": "Drew Fyock",
+    "mail": "drew@steelbisondev.com"
+  }],
   "license": "AGPL",
   "main": "index",
   "bin": {
     "mean": "./bin/mean",
     "mean-init": "./bin/mean-init",
+    "mean-postinstall": "./bin/mean-postinstall",
     "mean-install": "./bin/mean-install",
     "mean-uninstall": "./bin/mean-uninstall",
     "mean-docs": "./bin/mean-docs",
@@ -47,7 +44,8 @@
     "npm": "1.4.x"
   },
   "dependencies": {
-    "chalk": "^0.4.0",
+    "bower": "^1.3.8",
+    "chalk": "^0.5.1",
     "commander": "^2.2.0",
     "dependable": "^0.2.5",
     "glob": "^4.0.3",

@@ -12,6 +12,7 @@ program.version(version, '-v, --version');
 
 program
     .command('init <name> [options]', 'Create a MEAN application in the current working directory')
+    .command('postinstall', 'Run bower and npm install for packages')
     .command('install <module> [options]', 'Installs a MEAN module')
     .command('uninstall <module>', 'Uninstalls a MEAN module')
     .command('docs', 'Opens MEAN documentation in your local browser')
