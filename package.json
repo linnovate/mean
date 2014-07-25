@@ -1,6 +1,6 @@
 {
   "name": "meanio",
-  "version": "0.5.8",
+  "version": "0.5.9",
   "preferGlobal": true,
   "description": "Simple command line interface for installing and managing MEAN apps",
   "author": {
@@ -53,6 +53,7 @@
     "glob": "^4.0.3",
     "lodash": "^2.4.1",
     "mongodb": "^1.4.0",
+    "mean-health": "~0.1.3",
     "mongoose": "^3.8.12",
     "npm": "^1.4.7",
     "opener": "^1.3.0",
