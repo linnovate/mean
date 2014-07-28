@@ -1,6 +1,6 @@
 {
   "name": "meanio",
-  "version": "0.5.11",
+  "version": "0.5.12",
   "preferGlobal": true,
   "description": "Simple command line interface for installing and managing MEAN apps",
   "author": {
@@ -15,6 +15,9 @@
   }, {
     "name": "Drew Fyock",
     "mail": "drew@steelbisondev.com"
+  }, {
+    "name": "Ehud Shahak",
+    "mail": "ehud@linnovate.net"
   }],
   "license": "AGPL",
   "main": "index",
