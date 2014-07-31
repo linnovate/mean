@@ -72,19 +72,19 @@
 
     // Custom Globals
     "globals": {
-      "angular": true,
-      "define": true,
-      "require": true,
-      "exports": true,
-      "module": true,
-      "describe": true,
-      "before": true,
-      "beforeEach": true,
-      "after": true,
-      "afterEach": true,
-      "it": true,
-      "inject": true,
-      "expect": true,
-      "spyOn": true
+      "angular"     : true,
+      "define"      : false,
+      "require"     : false,
+      "exports"     : false,
+      "module"      : false,
+      "describe"    : false,
+      "before"      : false,
+      "beforeEach"  : false,
+      "after"       : false,
+      "afterEach"   : false,
+      "it"          : false,
+      "inject"      : false,
+      "expect"      : false,
+      "spyOn"       : false
     }
 }
