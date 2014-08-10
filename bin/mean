@@ -20,7 +20,11 @@ program
     .command('list', 'List all installed packages')
     .command('status', 'Overall system status')
     .command('user <email> [options]', 'Manage users')
-    .parse(process.argv);
+    .command('authorize', 'Authorize your client')
+    .command('whoami', 'Identifies authorized user')
+    .command('register', 'Registers a user on mean network')
+
+.parse(process.argv);
 
 // print help with no args
 if (program.args.length < 1) {
