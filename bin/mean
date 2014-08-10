@@ -23,6 +23,7 @@ program
     .command('authorize', 'Authorize your client')
     .command('whoami', 'Identifies authorized user')
     .command('register', 'Registers a user on mean network')
+    .command('addKey', 'Add SSH key to network.mean.io')    
 
 .parse(process.argv);
 
