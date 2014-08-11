@@ -23,7 +23,9 @@ program
     .command('authorize', 'Authorize your client')
     .command('whoami', 'Identifies authorized user')
     .command('register', 'Registers a user on mean network')
-    .command('addKey', 'Add SSH key to network.mean.io')    
+    .command('addKey', 'Add SSH key to network.mean.io')
+    .command('publish', 'Publishes a package on the mean network')
+    .command('search', 'Searches for a package on the mean network')
 
 .parse(process.argv);
 

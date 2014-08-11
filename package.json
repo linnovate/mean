@@ -27,6 +27,8 @@
     "mean-authorize": "./bin/mean-authorize",
     "mean-whoami": "./bin/mean-whoami",
     "mean-addKey": "./bin/mean-addKey",
+    "mean-publish": "./bin/mean-publish",
+    "mean-search": "./bin/mean-search",
     "mean-register": "./bin/mean-register",    
     "mean-postinstall": "./bin/mean-postinstall",
     "mean-install": "./bin/mean-install",
