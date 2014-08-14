@@ -28,5 +28,5 @@ If you become aware of any facts or circumstances related to the representation 
 
 ## Contributor confirmation list
 
-Lior Kesos,
+Lior Kesos,   
 Yonatan Ellman
