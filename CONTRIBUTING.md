@@ -1,7 +1,7 @@
 ## Overview
 
 The mean-cli project requires agreeing to the following CLA (contributor license agreement) for developers that would like to contribute code to the project.
-As contributors we appreciate your time and energy but the company behidn the project - Linnoate Technologies LTD has spend alot of time and money and does not want merging a contribution to hurt the rights and control of the project
+As contributors we appreciate your time and energy but the company behind the project - Linnoate Technologies LTD has spend alot of time and money and does not want merging a contribution to hurt the rights and control of the project
 
 Please read the following text carefully and if you agree to it's content -
 
@@ -12,6 +12,8 @@ Please read the following text carefully and if you agree to it's content -
 Once we merge the file you can gladly contribute to the project!
 
 ## Agreement Content
+
+By "commiting" to this file, you ("you" or "You") hereby grant to Linnovate and to recipients of software distributed through Linnovate a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable license to use, make, have made, offer to sell, sell, import, reproduce, prepare derivative works of, publicly display, publicly perform, sublicense, and distribute Your Contributions and such derivative works as part of Linnovate.
 
 You, the contributor agree to the following…
 
@@ -27,3 +29,4 @@ If you become aware of any facts or circumstances related to the representation 
 ## Contributor confirmation list
 
 Lior Kesos
+Yonatan Ellman
