@@ -31,3 +31,4 @@ If you become aware of any facts or circumstances related to the representation 
 Lior Kesos  
 Yonatan Ellman   
 Drew Fyock  
+Taylor Thomas
