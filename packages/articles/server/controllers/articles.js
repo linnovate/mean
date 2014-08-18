@@ -5,8 +5,10 @@
  */
 var mongoose = require('mongoose'),
   Article = mongoose.model('Article'),
+  config = require('meanio').loadConfig(),
   _ = require('lodash');
 
+mongoose.set('debug', config.mongoose && config.mongoose.debug);
 
 /**
  * Find article by id
