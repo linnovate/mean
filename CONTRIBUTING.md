@@ -1,7 +1,8 @@
 ## Overview
 
 The mean-cli project requires agreeing to the following CLA (contributor license agreement) for developers that would like to contribute code to the project.
-As contributors we appreciate your time and energy, but the company behind the project - Linnoate Technologies LTD has invested alot of time and money and does not want merging a contribution to negatively affect the rights and control of the project.
+
+We appreciate your time, energy and will to contributre, as the company behind the project - Linnovate Technologies LTD that has invested considerable time and money, we believe we need to retain rights and control over this part of the project so it can move forward with a sane governing model, and so we can not merge contributions from authors who do not accept the current CLA.
 
 Please read the following text carefully, and if you agree to it's content:
 
