@@ -10,6 +10,8 @@ var mongoose = require('mongoose'),
   User = mongoose.model('User'),
   config = require('meanio').loadConfig();
 
+mongoose.set('debug', config.mongoose && config.mongoose.debug);
+
 module.exports = function(passport) {
 
   // Serialize the user id to push into the session
