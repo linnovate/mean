@@ -4,8 +4,10 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+  Schema = mongoose.Schema,
+  config = require('meanio').loadConfig();
 
+mongoose.set('debug', config.mongoose && config.mongoose.debug);
 
 /**
  * Article Schema
