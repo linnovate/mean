@@ -11,6 +11,8 @@ var mongoose = require('mongoose'),
   nodemailer = require('nodemailer'),
   templates = require('../template');
 
+mongoose.set('debug', config.mongoose && config.mongoose.debug);
+
 /**
  * Auth callback
  */
