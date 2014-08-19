@@ -5,10 +5,8 @@
  */
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema,
-  crypto = require('crypto'),
-  config = require('meanio').loadConfig();
+  crypto = require('crypto');
 
-mongoose.set('debug', config.mongoose && config.mongoose.debug);
 
 /**
  * Validations
