@@ -111,8 +111,10 @@ All configuration is specified in the [config](/config/) folder, through the [en
 
 There is a shared environment config: __all__.
 * __root__ - This the default root path for the application.
+* __port__ - DEPRECATED to __http.port__ or __https.port__.
 * __http.port__ - This sets the default application port.
-* __https__ - These settings are for running HTTPS / SSL on your application.
+* __https__ - These settings are for running HTTPS / SSL for a secure application.
+  * __port__ - This sets the default application port for HTTPS / SSL.
   * __ssl.key__ - The path to public key.
   * __ssl.cert__ - The path to certificate.
 
