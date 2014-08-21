@@ -122,8 +122,11 @@ There are three environments provided by default: __development__, __test__, and
 
 Each of these environments has the following configuration options:
 
-* __db__ - This is the name of the MongoDB database to use, and is set by default to __mean-dev__ for the development environment.
-* __mongoose.debug__ - Setting this option to __true__ will log the output all Mongoose executed collection methods to your console.  The default is set to __true__ for the development environment.
+* __db__ - This is where you specify the MongoDB / Mongoose settings
+  * __url__ - This is the url/name of the MongoDB database to use, and is set by default to __mean-dev__ for the development environment.
+  * __debug__ - Setting this option to __true__ will log the output all Mongoose executed collection methods to your
+console.  The default is set to __true__ for the development environment.
+  * __options__ - These are the database options that will be passed directly to mongoose.connect in the __production__  environment: [server, replset, user, pass, auth, mongos] (http://mongoosejs.com/docs/connections.html#options) or read this (http://mongodb.github.io/node-mongodb-native/driver-articles/mongoclient.html#mongoclient-connect-options) for more information.
 * __app.name__ - This is the name of your app or website, and can be different for each environment. You can tell which environment you are running by looking at the TITLE attribute that your app generates.
 * __Social OAuth Keys__ - Facebook, GitHub, Google, Twitter. You can specify your own social application keys here for each platform:
   * __clientID__
