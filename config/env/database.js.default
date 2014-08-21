@@ -1,0 +1,7 @@
+'use strict';
+
+module.exports = {
+	development: 'mongodb://localhost/mean-dev',
+	test: 'mongodb://localhost/mean-test',
+	prod: 'mongodb://localhost/mean-prod'
+};
