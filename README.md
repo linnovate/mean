@@ -114,7 +114,7 @@ There is a shared environment config: __all__.
 * __port__ - DEPRECATED to __http.port__ or __https.port__.
 * __http.port__ - This sets the default application port.
 * __https__ - These settings are for running HTTPS / SSL for a secure application.
-  * __port__ - This sets the default application port for HTTPS / SSL.
+  * __port__ - This sets the default application port for HTTPS / SSL. If HTTPS is not used then is value is to be set to __false__. The default is set to __false__. If HTTPS is to be used the standar HTTPS port is __443__. 
   * __ssl.key__ - The path to public key.
   * __ssl.cert__ - The path to certificate.
 
