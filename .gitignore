@@ -53,3 +53,4 @@ test/coverage/
 modules/public/
 modules/views/
 /public/build/
+config/env/database.js

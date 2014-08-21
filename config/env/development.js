@@ -1,7 +1,9 @@
 'use strict';
 
+var database = require('./database');
+
 module.exports = {
-  db: 'mongodb://localhost/mean-dev',
+  db: database.development,
   mongoose: {
     debug: true
   },

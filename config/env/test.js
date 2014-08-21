@@ -1,7 +1,9 @@
 'use strict';
 
+var database = require('./database');
+
 module.exports = {
-  db: 'mongodb://localhost/mean-test',
+  db: database.test,
   port: 3001,
   app: {
     name: 'MEAN - A Modern Stack - Test'

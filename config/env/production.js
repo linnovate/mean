@@ -1,7 +1,9 @@
 'use strict';
 
+var database = require('./database');
+
 module.exports = {
-  db: 'mongodb://localhost/mean-prod',
+  db: database.production,
   app: {
     name: 'MEAN - A Modern Stack - Production'
   },
