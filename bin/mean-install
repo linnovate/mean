@@ -3,21 +3,21 @@
 'use strict';
 
 var cli = require('../lib/cli'),
-    program = require('commander');
+  program = require('commander');
 
 program
-    .description('Installs a MEAN module')
-    .option('-b, --branch [branch]', 'git branch')
-    .option('-t, --tag [tag]', 'git tag')    
-    .option('-g, --git', 'clone using git:// instead of https://')
-    .parse(process.argv);
+  .description('Installs a MEAN module')
+  .option('-b, --branch [branch]', 'git branch')
+  .option('-t, --tag [tag]', 'git tag')
+  .option('-g, --git', 'clone using git:// instead of https://')
+  .parse(process.argv);
 
 var options = {
-    branch: program.branch || 'master',
-    git: program.git,
-    npm: program.npm,
-    tag: program.tag,
-    repo: program.repo
+  branch: program.branch || 'master',
+  git: program.git,
+  npm: program.npm,
+  tag: program.tag,
+  repo: program.repo
 };
 
 cli.install(program.args.length ? program.args[0] : 'mean', options);

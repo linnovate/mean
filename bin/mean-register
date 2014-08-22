@@ -3,10 +3,10 @@
 'use strict';
 
 var cli = require('../lib/cli'),
-	program = require('commander');
+  program = require('commander');
 
 program
-	.description('Registers a user on the mean.io network.')
-	.parse(process.argv);
+  .description('Registers a user on the mean.io network.')
+  .parse(process.argv);
 
 cli.register();
