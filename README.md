@@ -11,13 +11,13 @@ See http://mean.io/#!/docs for more in-depth information about mean.
 
 ## The repository contains
 * The bin file used for cli operations.
-* Core functionality for managing mean packages.
+* Commands for managing packages on the mean network.
 
 ## Basic Usage
 
   Install Package:
 
-    $ sudo npm install -g meanio
+    $ sudo npm install -g mean-cli
 
   Explore CLI functionality:
 

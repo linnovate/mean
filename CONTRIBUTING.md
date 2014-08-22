@@ -28,8 +28,8 @@ If you become aware of any facts or circumstances related to the representation 
 
 ## Contributor confirmation list
 
-Lior Kesos  
-Yonatan Ellman   
-Drew Fyock  
-Taylor Thomas
-David Büttner
+* Lior Kesos {liorkesos}
+* Yonatan Ellman {ellman}
+* Drew Fyock {fyockm}
+* Taylor Thomas {thomastaylor312}
+* David Büttner {zloKOMAtic}

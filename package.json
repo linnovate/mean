@@ -1,6 +1,6 @@
 {
-  "name": "meanio",
-  "version": "0.6.4",
+  "name": "mean-cli",
+  "version": "0.6.5",
   "preferGlobal": true,
   "description": "Simple command line interface for installing and managing MEAN apps",
   "author": {
@@ -25,7 +25,6 @@
     }
   ],
   "license": "AGPL",
-  "main": "index",
   "bin": {
     "mean": "./bin/mean",
     "mean-init": "./bin/mean-init",
@@ -34,7 +33,7 @@
     "mean-addKey": "./bin/mean-addKey",
     "mean-publish": "./bin/mean-publish",
     "mean-search": "./bin/mean-search",
-    "mean-register": "./bin/mean-register",    
+    "mean-register": "./bin/mean-register",
     "mean-postinstall": "./bin/mean-postinstall",
     "mean-install": "./bin/mean-install",
     "mean-uninstall": "./bin/mean-uninstall",
@@ -51,7 +50,8 @@
   "keywords": [
     "mean",
     "meanio",
-    "mean.io"
+    "mean.io",
+    "mean-cli"
   ],
   "engines": {
     "node": "0.10.x",
@@ -59,22 +59,16 @@
   },
   "dependencies": {
     "bower": "^1.3.8",
-    "prompt": "0.2.13",
     "chalk": "^0.5.1",
     "commander": "2.2.0",
-    "dependable": "^0.2.5",
-    "glob": "^4.0.3",
     "lodash": "^2.4.1",
-    "request": "latest",    
-    "mongodb": "^1.4.0",
     "mean-health": "~0.1.3",
     "mongoose": "^3.8.12",
     "npm": "^1.4.7",
     "opener": "^1.3.0",
-    "q": "^1.0.1",
-    "shelljs": "^0.3.0",
-    "swig": "^1.3.2",
-    "uglify-js": "^2.4.14"
+    "prompt": "0.2.13",
+    "request": "latest",
+    "shelljs": "^0.3.0"
   },
   "devDependencies": {
     "grunt": "^0.4.4",
