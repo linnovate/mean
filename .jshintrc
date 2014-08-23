@@ -36,7 +36,7 @@
     "spyOn"
   ],
   "indent": 2, // Specify indentation spacing
-  "devel": true, // Allow development statements e.g. `console.log();`.
+  "devel": false, // Allow development statements e.g. `console.log();`.
   "noempty": true, // Prohibit use of empty blocks.
   "latedef": "nofunc"
 }
