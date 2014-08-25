@@ -66,6 +66,7 @@
     "method-override": "^1.0.0",
     "mongoose": "^3.8.8",
     "morgan": "^1.0.0",
+    "ms": "0.6.2",
     "nodemailer": "~0.7.0",
     "passport": "^0.2.0",
     "passport-facebook": "^1.0.3",
