@@ -94,6 +94,7 @@
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-requirejs": "^0.2.1",
     "karma-script-launcher": "^0.1.0",
+    "ms": "^0.6.2",
     "requirejs": "^2.1.11",
     "should": "3.3.1",
     "supertest": "0.11.0"
