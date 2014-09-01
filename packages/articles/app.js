@@ -28,8 +28,12 @@ Articles.register(function(app, auth, database) {
     'link': 'create article'
   });
 
-  //Articles.aggregateAsset('js','/packages/system/public/services/menus.js', {group:'footer', absolute:true, weight:-9999});
-  //Articles.aggregateAsset('js', 'test.js', {group: 'footer', weight: -1});
+  //Articles.aggregateAsset('js','/packages/system/public/services/menus.js',{group:'footer',absolute:true, weight:-9999});
+  Articles.aggregateAsset('js', 'test.js', {
+    group: 'footer',
+    weight: -1
+  });
+
 
   /*
     //Uncomment to use. Requires meanio@0.3.7 or above

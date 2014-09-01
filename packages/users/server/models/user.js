@@ -43,7 +43,7 @@ var UserSchema = new Schema({
     type: String,
     required: true,
     unique: true,
-    match: [/\S+@\S+\.\S+/, 'Please enter a valid email'],
+    match: [/.+\@.+\..+/, 'Please enter a valid email'],
     validate: [validateUniqueEmail, 'E-mail address is already in-use']
   },
   username: {

@@ -1,9 +1,9 @@
 {
   "name": "access",
-  "version": "0.0.1",
-  "description": "Access package",
+  "version": "0.0.0",
+  "description": "Some description of auth",
   "author": {
-    "name": "Linnovate"
+    "name": "mean scaffold"
   },
   "mean": "0.4.x",
   "engines": {

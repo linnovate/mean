@@ -1,3 +1,395 @@
 .meanUser-example h1 {
 	background-color: purple
 }
+body {
+    background: url("/users/assets/img/bg.png");
+}
+@font-face {
+    font-family: 'futura_bkbook';
+    src: url("/users/assets/fonts/ufonts.com_futura-book.eot");
+    src: url("/users/assets/fonts/ufonts.com_futura-book.eot?#iefix") format("embedded-opentype"), url("/users/assets/fonts/ufonts.com_futura-book.woff") format("woff"), url("/users/assets/fonts/ufonts.com_futura-book.ttf") format("truetype"), url("/users/assets/fonts/ufonts.com_futura-book.svg#futura_bkbook") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'open_sans_hebrewregular';
+    src: url("/users/assets/fonts/opensanshebrew-regular.eot");
+    src: url("/users/assets/fonts/opensanshebrew-regular.eot?#iefix") format("embedded-opentype"), url("/users/assets/fonts/opensanshebrew-regular.woff") format("woff"), url("/users/assets/fonts/opensanshebrew-regular.ttf") format("truetype"), url("/users/assets/fonts/opensanshebrew-regular.svg#open_sans_hebrewregular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'open_sans_hebrewlight';
+    src: url("/users/assets/fonts/opensanshebrew-light.eot");
+    src: url("/users/assets/fonts/opensanshebrew-light.eot?#iefix") format("embedded-opentype"), url("/users/assets/fonts/opensanshebrew-light.woff") format("woff"), url("/users/assets/fonts/opensanshebrew-light.ttf") format("truetype"), url("/users/assets/fonts/opensanshebrew-light.svg#open_sans_hebrewlight") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'proxima_nova_rgregular';
+    src: url("/users/assets/fonts/mark_simonson_-_proxima_nova_regular.eot");
+    src: url("/users/assets/fonts/mark_simonson_-_proxima_nova_regular.eot?#iefix") format("embedded-opentype"), url("/users/assets/fonts/mark_simonson_-_proxima_nova_regular.woff") format("woff"), url("/users/assets/fonts/mark_simonson_-_proxima_nova_regular.ttf") format("truetype"), url("/users/assets/fonts/mark_simonson_-_proxima_nova_regular.svg#proxima_nova_rgregular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'proxima_novalight';
+    src: url("/users/assets/fonts/proximanova-light.eot");
+    src: url("/users/assets/fonts/proximanova-light.eot?#iefix") format("embedded-opentype"), url("/users/assets/fonts/proximanova-light.woff") format("woff"), url("/users/assets/fonts/proximanova-light.ttf") format("truetype"), url("/users/assets/fonts/proximanova-light.svg#proxima_novalight") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+.form {
+    width: 748px;
+    height: 435px;
+    background: #fff;
+    box-shadow: 0 1px 3px 1px #003644;
+    margin-top: 35px;
+    left: 20%;
+    position: relative;
+}
+.login-form {
+    width: 479px;
+    height: 435px;
+    background: white;
+    top: 12%;
+    left: 20%;
+    float: left;
+}
+.login-form .login-form__left {
+    width: 440px;
+    float: left;
+    height: 100%;
+}
+.login-form .login-form__left header {
+    padding: 34px 0 1px 27px;
+}
+.login-form .login-form__left header h2 {
+    font-size: 30px;
+    padding-bottom: 4px;
+    font-family: "futura_bkbook";
+    margin: 0;
+    text-transform: uppercase;
+}
+.login-form .login-form__left header p {
+    font-size: 16px;
+    font-family: 'proxima_nova_rgregular';
+}
+.login-form .login-form__left #login_form {
+    padding-left: 27px;
+}
+.login-form .login-form__left #login_form .email {
+    position: relative;
+}
+.login-form .login-form__left #login_form .email #email_block {
+    width: 401px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    padding: 18px 0 18px 16px;
+    outline: none;
+    font-size: 15px;
+    font-family: 'proxima_nova_rgregular';
+}
+.login-form .login-form__left #login_form .email #email_block:invalid {
+    box-shadow: none;
+}
+.login-form .login-form__left #login_form .email #email_block:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
+}
+.error_message {
+    display: none;
+    position: absolute;
+    line-height: 29px;
+    height: auto;
+    bottom: 67px;
+    left: 0;
+    background: blue;
+    text-align: center;
+    border-radius: 3px;
+    min-width: 30px;
+    max-width: 150px;
+}
+.error_message:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    border-top: 10px solid blue;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    margin-left: -4px;
+}
+.login-form .login-form__left #login_form .email .search-email {
+    position: absolute;
+    width: 30px;
+    height: 21px;
+    background: url("/users/assets/img/mail_login.png") no-repeat;
+    top: 18px;
+    right: 28px;
+}
+.login-form .login-form__left #login_form .password {
+    position: relative;
+}
+.login-form .login-form__left #login_form .password #password_block  {
+    width: 401px;
+    height: 57px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    padding: 18px 0 16px 16px;
+    margin-top: 10px;
+    outline: none;
+    font-size: 15px;
+    font-family: "proxima_nova_rgregular";
+}
+.login-form .login-form__left #login_form .password #password_block:invalid {
+    box-shadow: none;
+}
+.login-form .login-form__left #login_form .password #password_block:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
+}
+.login-form .login-form__left #login_form .password .search-password {
+    position: absolute;
+    background: url("/users/assets/img/eye_password.png") no-repeat 50% 50%;
+    width: 40px;
+    height: 30px;
+    top: 25px;
+    right: 22px;
+    cursor: pointer;
+}
+.login-form .login-form__left #login_form .password .icon_hide_password {
+    background: url("/users/assets/img/eye_password_disabled.png") no-repeat 50% 50%;
+    width: 40px;
+    height: 30px;
+    top: 25px;
+    right: 22px;
+}
+.login-form .login-form__left #login_form .password .search-password .hide_text_password {
+    display: none;
+    position: absolute;
+    line-height: 38px;
+    width: 125px;
+    height: 34px;
+    bottom: 39px;
+    right: -40px;
+    background: #0588a0;
+    text-align: center;
+    border-radius: 5px;
+    font-family: "proxima_nova_rgregular";
+    color: white;
+}
+.login-form .login-form__left #login_form .password .search-password .hide_text_password:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    border-top: 10px solid #0588a0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    margin-left: -4px;
+}
+.login-form .login-form__left #login_form .password .search-password:hover .hide_text_password {
+    display: block;
+}
+.login-form .login-form__left #login_form .password .icon_hide_password:hover .hide_text_password {
+    display: block;
+}
+.login-form .login-form__left #login_form .forgot_password {
+    margin-top: 5px;
+    margin-left: 8px;
+}
+.login-form .login-form__left #login_form .forgot_password a {
+    font-size: 15px;
+    color: #68a80c;
+    text-decoration: none;
+    font-family: "open_sans_hebrewregular";
+}
+.login-form .login-form__left #login_form .button_login {
+    margin-top: 23px;
+}
+.login-form .login-form__left #login_form .button_login #login_block {
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    background: url("/users/assets/img/button_login.png") no-repeat 50% 50%;
+    width: 107px;
+    height: 47px;
+    font-size: 21px;
+    color: white;
+    font-family: "open_sans_hebrewregular";
+}
+.login-form .login-form__left #login_form .button_login #login_block:hover {
+    background: url("/users/assets/img/button_login_hover.png") no-repeat 50% 50%;
+}
+.login-form .login-form__left #login_form .button_login #login_block:focus {
+    outline: none;
+}
+.login-form .login-form__left #login_form .button_login p {
+    display: inline-block;
+    font-size: 15px;
+    margin-left: 15px;
+    font-family: "open_sans_hebrewregular";
+    vertical-align: top;
+    padding-top: 11px;
+}
+.login-form .login-form__left #login_form .button_login a {
+    display: inline-block;
+    font-size: 15px;
+    color: #68a80c;
+    text-decoration: none;
+    margin-left: 1px;
+    padding-top: 11px;
+    vertical-align: top;
+    font-family: "open_sans_hebrewregular";
+}
+.login-form .login-form__center {
+    height: 100%;
+    float: left;
+    background: url("/users/assets/img/devide_line.png") no-repeat 50% 30%;
+    padding: 0 10px;
+}
+.login-form .login-form__center p {
+    margin-top: 155px;
+    font-family: 'proxima_novalight';
+    font-size: 16px;
+}
+.login-form__right {
+    height: 100%;
+    float: left;
+    width: 270px;
+    padding-left: 22px;
+}
+.login-form__right .social_wrap {
+    width: 235px;
+    height: 345px;
+    margin-top: 30px;
+    padding-left: 0;
+    display: block;
+    position:relative;
+}
+.login-form__right .social {
+    margin: 0;
+    padding-left: 0;
+    display: block;
+    list-style:none;
+    position:absolute;
+    top:50%;
+    left:0;
+    right:0;
+    -ms-transform: translate(0, -50%); /* IE 9 */
+    -webkit-transform: translate(0, -50%); /* Chrome, Safari, Opera */
+    transform: translate(0, -50%);
+}
+.login-form__right .social .social_icon {
+    width: 230px;
+    height: 62px;
+    border: 1px solid #e1e1e0;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    list-style-type: none;
+    vertical-align: middle;
+    display: inline-block;
+}
+.login-form__right .social .social_icon:hover {
+    background: #f1f1f1;
+}
+.login-form__right .social .social_icon .button {
+    display: block;
+    text-decoration: none;
+    padding: 22px 0 22px 60px;
+    line-height: 1;
+    color: #959595;
+}
+.login-form__right .social .social_icon .button:active {
+    color: #959595;
+}
+.login-form__right .social .social_icon .button span {
+    font-size: 15px;
+    font-family: 'open_sans_hebrewlight';
+}
+.login-form__right .social .social_icon .button span:visited {
+    color: #959595;
+}
+.login-form__right .social .social_icon_in .button {
+    position: relative;
+}
+.login-form__right .social .social_icon_in .button:before {
+    content: '';
+    position: absolute;
+    background: url("/users/assets/img/social_in.png") no-repeat 50% 50%;
+    width: 50px;
+    height: 47px;
+    top: 10px;
+    left: 0;
+}
+.login-form__right .social .social_icon_fb .button {
+    position: relative;
+}
+.login-form__right .social .social_icon_fb .button:before {
+    content: '';
+    position: absolute;
+    background: url("/users/assets/img/social_fb.png") no-repeat 50% 50%;
+    width: 41px;
+    height: 40px;
+    top: 10px;
+    left: 8px;
+}
+.login-form__right .social .social_icon_gh .button {
+    position: relative;
+}
+.login-form__right .social .social_icon_gh .button:before {
+    content: '';
+    position: absolute;
+    background: url("/users/assets/img/social_github.png") no-repeat 50% 50%;
+    width: 40px;
+    height: 40px;
+    top: 10px;
+    left: 8px;
+}
+.login-form__right .social .social_icon_tw .button {
+    position: relative;
+}
+.login-form__right .social .social_icon_tw .button:before {
+    content: '';
+    position: absolute;
+    background: url("/users/assets/img/social_tw.png") no-repeat 50% 50%;
+    width: 40px;
+    height: 41px;
+    top: 10px;
+    left: 8px;
+}
+.login-form__right .social .social_icon_google .button {
+    position: relative;
+}
+.login-form__right .social .social_icon_google .button:before {
+    content: '';
+    position: absolute;
+    background: url("/users/assets/img/social_g+.png") no-repeat 50% 50%;
+    width: 40px;
+    height: 41px;
+    top: 10px;
+    left: 8px;
+}
+.woman_ninja {
+    position: absolute;
+    top: 74.5%;
+    left: 21%;
+    pointer-events: none;
+}
+
+.registration_form {
+    width: 479px;
+    float: left;
+    margin-right: 10px;
+}

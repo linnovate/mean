@@ -1,9 +1,9 @@
 {
   "name": "users",
   "version": "0.0.1",
-  "description": "Users package",
+  "description": "Some description of mean-user",
   "author": {
-    "name": "Linnovate"
+    "name": "mean scaffold"
   },
   "mean": "0.4.x",
   "engines": {

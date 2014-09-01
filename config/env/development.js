@@ -1,35 +1,32 @@
 'use strict';
 
 module.exports = {
-  db: 'mongodb://localhost/mean-dev',
-  mongoose: {
-    debug: true
-  },
+  db: 'mongodb://localhost/mean-network1',
   app: {
     name: 'MEAN - FullStack JS - Development'
   },
   facebook: {
-    clientID: 'APP_ID',
+    clientID: 'DEFAULT_CLIENT_ID',
     clientSecret: 'APP_SECRET',
     callbackURL: 'http://localhost:3000/auth/facebook/callback'
   },
   twitter: {
-    clientID: 'CONSUMER_KEY',
+    clientID: 'DEFAULT_CLIENT_ID',
     clientSecret: 'CONSUMER_SECRET',
     callbackURL: 'http://localhost:3000/auth/twitter/callback'
   },
   github: {
-    clientID: 'APP_ID',
+    clientID: 'DEFAULT_CLIENT_ID',
     clientSecret: 'APP_SECRET',
     callbackURL: 'http://localhost:3000/auth/github/callback'
   },
   google: {
-    clientID: 'APP_ID',
+    clientID: 'DEFAULT_CLIENT_ID',
     clientSecret: 'APP_SECRET',
     callbackURL: 'http://localhost:3000/auth/google/callback'
   },
   linkedin: {
-    clientID: 'API_KEY',
+    clientID: 'DEFAULT_CLIENT_I',
     clientSecret: 'SECRET_KEY',
     callbackURL: 'http://localhost:3000/auth/linkedin/callback'
   },
