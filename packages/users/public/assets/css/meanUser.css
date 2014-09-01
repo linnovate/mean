@@ -3,6 +3,7 @@
 }
 body {
     background: url("/users/assets/img/bg.png");
+		background-size:100%;
 }
 @font-face {
     font-family: 'futura_bkbook';
