@@ -21,6 +21,7 @@ program
     .command('status', 'Overall system status')
     .command('user <email> [options]', 'Manage users')
     .command('authorize', 'Authorize your client')
+    .command('logout', 'Logout authorized client')
     .command('whoami', 'Identifies authorized user')
     .command('register', 'Registers a user on mean network')
     .command('addKey', 'Add SSH key to network.mean.io')
