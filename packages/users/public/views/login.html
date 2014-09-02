@@ -1,4 +1,4 @@
-<!--<div data-ng-controller="LoginCtrl">
+<div data-ng-controller="LoginCtrl">
   <div class="alert alert-danger animated fadeIn" ng-show="loginerror">{{loginerror}}</div>
   <h1>Sign in</h1>
   <form  ng-submit="login()" class="signin form-horizontal">
@@ -26,46 +26,4 @@
       </div>
     </div>
   </form>
-</div> -->
-
-<div data-ng-controller="LoginCtrl">
-<div class="login-form">
-    <div class="login-form__left">
-        <div class="alert alert-danger animated fadeIn" ng-show="loginerror">{{loginerror}}</div>
-        <header>
-            <h2>Login</h2>
-            <p>Welcome to Built with MEAN.IO, login to get started.</p>
-        </header>
-        <form id="login_form" ng-submit="login()">
-            <div class="email">
-                <input required id="email_block" type="email" name="email" placeholder="Email Address" ng-model="user.email">
-                <div class="error_message">Please enter a correct info #</div>
-                <span class="search-email"></span>
-            </div>
-            <div class="password">
-                <input required id="password_block" name="password" type="{{input.type}}" placeholder="{{input.placeholder}}" ng-model="user.password">
-                <div class="error_message">Please enter a correct info #</div>
-                <span class="search-password {{input.iconClass}}" ng-click = "togglePasswordVisible()">
-                      <div class="hide_text_password">
-                          {{input.tooltipText}}
-                      </div>
-                </span>
-            </div>
-            <div class="forgot_password">
-                <a ui-sref='forgot-password'>Forgot your password?</a>
-            </div>
-            <div class="button_login">
-                <button type="submit" id="login_block">Login</button>
-                <p>Don't have an account?</p>
-                <a ui-sref='auth.register' >Sign up</a>
-            </div>
-        </form>
-    </div>
-    <div class="login-form__center">
-        <p>or</p>
-    </div>
-    <div class="woman_ninja">
-        <img src="/users/assets/img/woman_ninja.png" alt="#">
-    </div>
-</div>
 </div>

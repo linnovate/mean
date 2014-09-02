@@ -5,11 +5,11 @@
   "author": {
     "name": "Linnovate"
   },
-  "mean": "0.3.3",
+  "mean": "0.4.x",
   "engines": {
     "node": "0.10.x",
     "npm": "1.4.x"
   },
   "dependencies": {},
-  "license": "GPL"
+  "license": "MIT"
 }

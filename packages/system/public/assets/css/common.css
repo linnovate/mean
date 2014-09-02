@@ -1,48 +1,50 @@
 .page-header {
-    padding-bottom: 0 !important;
-    margin: 0 !important;
-    border-bottom: 0 !important;
+	padding-bottom: 0;
+	margin: 0;
+	border-bottom: 0;
 }
 .page-header .navbar-nav {
-    float: right;
+	float: right;
 }
-.page-header>div>div, .page-header>div>ul {
-    display:inline-block;
+.page-header>div>div,
+.page-header>div>ul {
+	display: inline-block;
 }
 .text-edit {
-    padding: 13px 0 0 0;
+	padding: 13px 0 0 0;
 }
 .account {
-    text-align:right;
+	text-align: right;
 }
-.account>div, .account>ul {
-    text-align:left;
+.account>div,
+.account>ul {
+	text-align: left;
 }
 .navbar .nav>li>a.brand {
-    padding-left:20px;
-    margin-left:0
+	padding-left: 20px;
+	margin-left: 0
 }
 .content {
-    margin-top:70px;
-    width:100%
+	margin-top: 70px;
+	width: 100%
 }
 footer {
-    position:fixed;
-    left:0;
-    bottom:0;
-    height:30px;
-    width:100%;
-    background:#ddd;
-    -webkit-box-shadow:0 8px 6px 6px black;
-    -moz-box-shadow:0 8px 6px 6px black;
-    box-shadow:0 8px 6px 6px black
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	height: 30px;
+	width: 100%;
+	background: #ddd;
+	-webkit-box-shadow: 0 8px 6px 6px black;
+	-moz-box-shadow: 0 8px 6px 6px black;
+	box-shadow: 0 8px 6px 6px black
 }
 footer p {
-    padding:5px 0 12px 10px
+	padding: 5px 0 12px 10px
 }
-.ng-invalid.ng-dirty{
-    border-color:#FA787E;
+.ng-invalid.ng-dirty {
+	border-color: #FA787E;
 }
-.ng-valid.ng-dirty{
-    border-color:#78FA89;
+.ng-valid.ng-dirty {
+	border-color: #78FA89;
 }

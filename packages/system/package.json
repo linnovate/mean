@@ -1,11 +1,11 @@
 {
   "name": "system",
-  "version": "0.0.0",
-  "description": "Some description of system",
+  "version": "0.0.1",
+  "description": "Base system package",
   "author": {
-    "name": "mean scaffold"
+    "name": "Linnovate"
   },
-  "mean": true,
+  "mean": "0.4.x",
   "engines": {
     "node": "0.10.x",
     "npm": "1.4.x"

@@ -1,39 +1,31 @@
 <div class="container">
-    <div class="row form">
-        <div>
-            <div ui-view></div>
-        </div>
-        <div class="row login-form__right " data-ng-controller="AuthCtrl">
-            <div class="social_wrap">
-                <ul class="social">
-                    <li ng-if="socialButtons.hasOwnProperty('linkedin')" class="social_icon social_icon_in">
-                        <a href="/auth/linkedin" class="button">
-                            <span>Login With LinkedIn</span>
-                        </a>
-                    </li>
-                    <li ng-if="socialButtons.hasOwnProperty('facebook')" class="social_icon social_icon_fb">
-                        <a href="/auth/facebook" class="button">
-                            <span>Login With Facebook</span>
-                        </a>
-                    </li>
-                    <li ng-if="socialButtons.hasOwnProperty('github')" class="social_icon social_icon_gh">
-                        <a href="/auth/github" class="button">
-                            <span>Login With GitHub</span>
-                        </a>
-                    </li>
-                    <li ng-if="socialButtons.hasOwnProperty('twitter')" class="social_icon social_icon_tw">
-                        <a href="/auth/twitter" class="button">
-                            <span>Login With Tweeter</span>
-                        </a>
-                    </li>
-                    <li ng-if="socialButtons.hasOwnProperty('google')" class="social_icon social_icon_google">
-                        <a href="/auth/google" class="button">
-                            <span>Login With Google</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+  <div class="row">
+    <div class="col-md-offset-1 col-md-5">
+      <a href="/auth/facebook">
+        <img src="/users/assets/img/icons/facebook.png"/>
+      </a>
 
+      <a href="/auth/github">
+        <img src="/users/assets/img/icons/github.png"/>
+      </a>
+
+      <a href="/auth/linkedin">
+        <img src="/users/assets/img/icons/linkedin.png"/>
+      </a>
+
+      <a href="/auth/twitter">
+        <img src="/users/assets/img/icons/twitter.png"/>
+      </a>
+
+      <a href="/auth/google">
+        <img src="/users/assets/img/icons/google.png"/>
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div ui-view></div>
+    </div>
+  </div>
+</div>

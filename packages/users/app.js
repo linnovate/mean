@@ -26,8 +26,6 @@ MeanUser.register(function(app, auth, passport, database) {
 
   MeanUser.aggregateAsset('js', 'meanUser.js');
 
-  MeanUser.aggregateAsset('css', 'meanUser.css');
-
   /**
     //Uncomment to use. Requires meanio@0.3.7 or above
     // Save settings with callback
