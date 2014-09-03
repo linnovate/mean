@@ -32,11 +32,11 @@ $ npm install -g grunt-cli
 * UI Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
 
 ## Quick Install
-  The quickest way to get started with MEAN is to install the `meanio` package from NPM.
+  The quickest way to get started with MEAN is to install the `mean-cli` package from NPM.
 
   Install MEAN CLI:
 
-    $ [sudo] npm install -g meanio@latest
+    $ [sudo] npm install -g mean-cli
     $ mean init <myApp>
     $ cd <myApp> && npm install
 
