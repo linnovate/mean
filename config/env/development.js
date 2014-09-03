@@ -6,7 +6,7 @@ module.exports = {
     name: 'MEAN - FullStack JS - Development'
   },
   facebook: {
-    clientID: 'DEFAULT_CLIENT_ID',
+    clientID: 'DEFAULT_CLIENT_I',
     clientSecret: 'APP_SECRET',
     callbackURL: 'http://localhost:3000/auth/facebook/callback'
   },

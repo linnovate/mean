@@ -8,12 +8,14 @@ angular.module('mean.users')
     function ($scope, $rootScope, $http, $location) {
       // This object will contain list of available social buttons to authorize
       $scope.socialButtons = {};
+      $scope.socialButtonsCounter = 0;
 
       $http.get('/get-config')
         .success(function (config) {
           for (var conf in config) {
             if (config[conf].hasOwnProperty(clientIdProperty) && config[conf][clientIdProperty] !== defaultID) {
               $scope.socialButtons[conf] = true;
+              $scope.socialButtonsCounter += 1;
             }
           }
         })
