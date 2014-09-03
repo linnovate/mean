@@ -1,11 +1,9 @@
 .meanUser-example h1 {
 	background-color: purple
 }
-
 html {
     height: 100%;
 }
-
 body {
     background: url("/users/assets/img/bg.png");
     height: 100%;
@@ -53,15 +51,13 @@ body {
 .form {
     background: #ffffff;
     box-shadow: 0 1px 3px 1px #003644;
-    margin-top: 35px;
-    left: 50%;
     position: relative;
 }
 
 .main-form {
     width: 748px;
     height: 435px;
-    margin-left: -374px;
+    margin: 35px auto;
 }
 
 .login-form__left {
@@ -93,7 +89,7 @@ body {
     width: 401px;
     border: 1px solid #d3d3d3;
     border-radius: 5px;
-    padding: 18px 0 18px 16px;
+    padding: 17px 0 17px 16px;
     outline: none;
     font-size: 15px;
     font-family: 'proxima_nova_rgregular';
@@ -428,6 +424,6 @@ body {
 .forgot_password_form {
     padding: 34px 27px;
     height: 280px;
-    width: 465px;
-    margin-left: -232px;
+    width: 467px;
+    margin-top: 75px;
 }
