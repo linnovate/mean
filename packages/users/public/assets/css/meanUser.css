@@ -69,7 +69,7 @@ body {
 
 .login-form__left h2, .forgot_password_form h2 {
     font-size: 30px;
-    padding-bottom: 4px;
+    padding-bottom: 5px;
     font-family: "futura_bkbook";
     margin: 0;
     text-transform: uppercase;
@@ -242,7 +242,7 @@ body {
 }
 
 .button_send p {
-    margin-left: 65px;
+    margin-left: 69px;
 }
 
 .button_login a,
