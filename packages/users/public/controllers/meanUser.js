@@ -8,15 +8,17 @@ angular.module('mean.users')
     function ($scope, $rootScope, $http, $location) {
       // This object will contain list of available social buttons to authorize
       $scope.socialButtons = {};
+      $scope.socialButtonsCounter = 0;
 
       $http.get('/get-config')
         .success(function (config) {
           for (var conf in config) {
             if (config[conf].hasOwnProperty(clientIdProperty) && config[conf][clientIdProperty] !== defaultID) {
               $scope.socialButtons[conf] = true;
+              $scope.socialButtonsCounter += 1;
             }
           }
-        })
+        });
     }
   ])
   .controller('LoginCtrl', ['$scope', '$rootScope', '$http', '$location',
@@ -29,14 +31,14 @@ angular.module('mean.users')
         placeholder: 'Password',
         iconClass: '',
         tooltipText: 'Show password'
-      }
+      };
 
       $scope.togglePasswordVisible = function () {
-        $scope.input.type = $scope.input.type == 'text' ? 'password' : 'text';
-        $scope.input.placeholder = $scope.input.placeholder == 'Password' ? 'Visible Password' : 'Password';
-        $scope.input.iconClass = $scope.input.iconClass == 'icon_hide_password' ? '' : 'icon_hide_password';
-        $scope.input.tooltipText = $scope.input.tooltipText == 'Show password' ? 'Hide password' : 'Show password';
-      }
+        $scope.input.type = $scope.input.type === 'text' ? 'password' : 'text';
+        $scope.input.placeholder = $scope.input.placeholder === 'Password' ? 'Visible Password' : 'Password';
+        $scope.input.iconClass = $scope.input.iconClass === 'icon_hide_password' ? '' : 'icon_hide_password';
+        $scope.input.tooltipText = $scope.input.tooltipText === 'Show password' ? 'Hide password' : 'Show password';
+      };
 
       // Register the login() function
       $scope.login = function() {

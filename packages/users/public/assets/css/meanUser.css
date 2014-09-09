@@ -1,9 +1,15 @@
 .meanUser-example h1 {
-	background-color: purple
+    background-color: purple
 }
+
+html {
+    height: 100%;
+}
+
 body {
     background: url("/users/assets/img/bg.png");
-		background-size:100%;
+    height: 100%;
+    position: relative;
 }
 @font-face {
     font-family: 'futura_bkbook';
@@ -45,48 +51,45 @@ body {
     font-style: normal;
 }
 .form {
-    width: 748px;
-    height: 435px;
-    background: #fff;
+    background: #ffffff;
     box-shadow: 0 1px 3px 1px #003644;
     margin-top: 35px;
-    left: 20%;
+    left: 50%;
     position: relative;
 }
-.login-form {
-    width: 479px;
+
+.main-form {
+    width: 748px;
     height: 435px;
-    background: white;
-    top: 12%;
-    left: 20%;
-    float: left;
+    margin-left: -374px;
 }
-.login-form .login-form__left {
+
+.login-form__left {
     width: 440px;
-    float: left;
     height: 100%;
+    float: left;
+    padding: 34px 0 0 27px;
 }
-.login-form .login-form__left header {
-    padding: 34px 0 1px 27px;
-}
-.login-form .login-form__left header h2 {
+
+.login-form__left h2, .forgot_password_form h2 {
     font-size: 30px;
     padding-bottom: 4px;
     font-family: "futura_bkbook";
     margin: 0;
     text-transform: uppercase;
 }
-.login-form .login-form__left header p {
+
+.login-form__left p, .forgot_password_form p {
     font-size: 16px;
     font-family: 'proxima_nova_rgregular';
 }
-.login-form .login-form__left #login_form {
-    padding-left: 27px;
-}
-.login-form .login-form__left #login_form .email {
+
+.main-form .input-wrapper {
     position: relative;
+    margin-bottom: 10px;
 }
-.login-form .login-form__left #login_form .email #email_block {
+
+.main-form .input-wrapper input {
     width: 401px;
     border: 1px solid #d3d3d3;
     border-radius: 5px;
@@ -94,88 +97,48 @@ body {
     outline: none;
     font-size: 15px;
     font-family: 'proxima_nova_rgregular';
+    line-height: 22px;
 }
-.login-form .login-form__left #login_form .email #email_block:invalid {
+
+.main-form .input-wrapper input:invalid {
     box-shadow: none;
 }
-.login-form .login-form__left #login_form .email #email_block:focus {
+
+.main-form .input-wrapper input:focus {
     border-color: #66afe9;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
     box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
 }
-.error_message {
-    display: none;
+
+.pic.email {
     position: absolute;
-    line-height: 29px;
-    height: auto;
-    bottom: 67px;
-    left: 0;
-    background: blue;
-    text-align: center;
-    border-radius: 3px;
-    min-width: 30px;
-    max-width: 150px;
-}
-.error_message:after {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 50%;
-    top: 100%;
-    border-top: 10px solid blue;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    margin-left: -4px;
-}
-.login-form .login-form__left #login_form .email .search-email {
-    position: absolute;
+    background: url("/users/assets/img/mail_login.png") no-repeat;
     width: 30px;
     height: 21px;
-    background: url("/users/assets/img/mail_login.png") no-repeat;
     top: 18px;
     right: 28px;
 }
-.login-form .login-form__left #login_form .password {
-    position: relative;
-}
-.login-form .login-form__left #login_form .password #password_block  {
-    width: 401px;
-    height: 57px;
-    border: 1px solid #d3d3d3;
-    border-radius: 5px;
-    padding: 18px 0 16px 16px;
-    margin-top: 10px;
-    outline: none;
-    font-size: 15px;
-    font-family: "proxima_nova_rgregular";
-}
-.login-form .login-form__left #login_form .password #password_block:invalid {
-    box-shadow: none;
-}
-.login-form .login-form__left #login_form .password #password_block:focus {
-    border-color: #66afe9;
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
-}
-.login-form .login-form__left #login_form .password .search-password {
+
+.pic.password {
     position: absolute;
     background: url("/users/assets/img/eye_password.png") no-repeat 50% 50%;
     width: 40px;
     height: 30px;
-    top: 25px;
+    top: 16px;
     right: 22px;
     cursor: pointer;
 }
-.login-form .login-form__left #login_form .password .icon_hide_password {
+
+.login-form__left .icon_hide_password {
     background: url("/users/assets/img/eye_password_disabled.png") no-repeat 50% 50%;
     width: 40px;
     height: 30px;
-    top: 25px;
+    top: 16px;
     right: 22px;
 }
-.login-form .login-form__left #login_form .password .search-password .hide_text_password {
+
+.login-form__left .hide_text_password {
     display: none;
     position: absolute;
     line-height: 38px;
@@ -189,7 +152,8 @@ body {
     font-family: "proxima_nova_rgregular";
     color: white;
 }
-.login-form .login-form__left #login_form .password .search-password .hide_text_password:after {
+
+.login-form__left .hide_text_password:after {
     content: '';
     display: block;
     position: absolute;
@@ -200,26 +164,58 @@ body {
     border-right: 5px solid transparent;
     margin-left: -4px;
 }
-.login-form .login-form__left #login_form .password .search-password:hover .hide_text_password {
+
+.pic.password:hover .hide_text_password {
     display: block;
 }
-.login-form .login-form__left #login_form .password .icon_hide_password:hover .hide_text_password {
+
+.icon_hide_password:hover .hide_text_password {
     display: block;
 }
-.login-form .login-form__left #login_form .forgot_password {
-    margin-top: 5px;
+
+.error_message {
+    display: none;
+    position: absolute;
+    line-height: 29px;
+    height: auto;
+    bottom: 67px;
+    left: 0;
+    background: blue;
+    text-align: center;
+    border-radius: 3px;
+    min-width: 30px;
+    max-width: 150px;
+}
+
+.error_message:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    border-top: 10px solid blue;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    margin-left: -4px;
+}
+
+.login-form__left .forgot_password {
+    margin-top: -5px;
     margin-left: 8px;
 }
-.login-form .login-form__left #login_form .forgot_password a {
+
+.login-form__left .forgot_password a {
     font-size: 15px;
     color: #68a80c;
     text-decoration: none;
     font-family: "open_sans_hebrewregular";
 }
-.login-form .login-form__left #login_form .button_login {
+
+.login-form__left .button_login {
     margin-top: 23px;
 }
-.login-form .login-form__left #login_form .button_login #login_block {
+
+.submit_button {
     display: inline-block;
     border: none;
     cursor: pointer;
@@ -230,13 +226,17 @@ body {
     color: white;
     font-family: "open_sans_hebrewregular";
 }
-.login-form .login-form__left #login_form .button_login #login_block:hover {
+
+.submit_button:hover {
     background: url("/users/assets/img/button_login_hover.png") no-repeat 50% 50%;
 }
-.login-form .login-form__left #login_form .button_login #login_block:focus {
+
+.submit_button:focus {
     outline: none;
 }
-.login-form .login-form__left #login_form .button_login p {
+
+.button_login p,
+.button_send p {
     display: inline-block;
     font-size: 15px;
     margin-left: 15px;
@@ -244,7 +244,14 @@ body {
     vertical-align: top;
     padding-top: 11px;
 }
-.login-form .login-form__left #login_form .button_login a {
+
+.button_send p {
+    margin-left: 65px;
+}
+
+.button_login a,
+.button_send a,
+.button_register a {
     display: inline-block;
     font-size: 15px;
     color: #68a80c;
@@ -254,13 +261,19 @@ body {
     vertical-align: top;
     font-family: "open_sans_hebrewregular";
 }
-.login-form .login-form__center {
+
+.button_register a {
+    vertical-align: inherit;
+}
+
+.login-form__center {
     height: 100%;
     float: left;
     background: url("/users/assets/img/devide_line.png") no-repeat 50% 30%;
     padding: 0 10px;
 }
-.login-form .login-form__center p {
+
+.login-form__center p {
     margin-top: 155px;
     font-family: 'proxima_novalight';
     font-size: 16px;
@@ -269,16 +282,29 @@ body {
     height: 100%;
     float: left;
     width: 270px;
-    padding-left: 22px;
+    padding-left: 26px;
 }
 .login-form__right .social_wrap {
     width: 235px;
-    height: 345px;
-    margin-top: 30px;
+    height: 270px;
+    margin-top: 38px;
     padding-left: 0;
     display: block;
     position:relative;
 }
+
+.login-form__right .bigger {
+    height: 345px;
+    margin-top: 35px;
+}
+
+.login-form__right .bigger .social {
+    top: inherit;
+    -ms-transform: none; /* IE 9 */
+    -webkit-transform: none; /* Chrome, Safari, Opera */
+    transform: none;
+}
+
 .login-form__right .social {
     margin: 0;
     padding-left: 0;
@@ -292,40 +318,45 @@ body {
     -webkit-transform: translate(0, -50%); /* Chrome, Safari, Opera */
     transform: translate(0, -50%);
 }
-.login-form__right .social .social_icon {
+
+.login-form__right .social_icon {
     width: 230px;
-    height: 62px;
+    height: 60px;
     border: 1px solid #e1e1e0;
     border-radius: 5px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     list-style-type: none;
     vertical-align: middle;
     display: inline-block;
 }
-.login-form__right .social .social_icon:hover {
+
+.login-form__right .social_icon:hover {
     background: #f1f1f1;
 }
-.login-form__right .social .social_icon .button {
+
+.login-form__right .social_icon .button {
     display: block;
     text-decoration: none;
     padding: 22px 0 22px 60px;
     line-height: 1;
     color: #959595;
+    position: relative;
 }
-.login-form__right .social .social_icon .button:active {
+
+.login-form__right .social_icon .button:active {
     color: #959595;
 }
-.login-form__right .social .social_icon .button span {
+
+.login-form__right .social_icon .button span {
     font-size: 15px;
     font-family: 'open_sans_hebrewlight';
 }
-.login-form__right .social .social_icon .button span:visited {
+
+.login-form__right .social_icon .button span:visited {
     color: #959595;
 }
-.login-form__right .social .social_icon_in .button {
-    position: relative;
-}
-.login-form__right .social .social_icon_in .button:before {
+
+.login-form__right .social_icon_in .button:before {
     content: '';
     position: absolute;
     background: url("/users/assets/img/social_in.png") no-repeat 50% 50%;
@@ -334,10 +365,8 @@ body {
     top: 10px;
     left: 0;
 }
-.login-form__right .social .social_icon_fb .button {
-    position: relative;
-}
-.login-form__right .social .social_icon_fb .button:before {
+
+.login-form__right .social_icon_fb .button:before {
     content: '';
     position: absolute;
     background: url("/users/assets/img/social_fb.png") no-repeat 50% 50%;
@@ -346,10 +375,8 @@ body {
     top: 10px;
     left: 8px;
 }
-.login-form__right .social .social_icon_gh .button {
-    position: relative;
-}
-.login-form__right .social .social_icon_gh .button:before {
+
+.login-form__right .social_icon_gh .button:before {
     content: '';
     position: absolute;
     background: url("/users/assets/img/social_github.png") no-repeat 50% 50%;
@@ -358,10 +385,8 @@ body {
     top: 10px;
     left: 8px;
 }
-.login-form__right .social .social_icon_tw .button {
-    position: relative;
-}
-.login-form__right .social .social_icon_tw .button:before {
+
+.login-form__right .social_icon_tw .button:before {
     content: '';
     position: absolute;
     background: url("/users/assets/img/social_tw.png") no-repeat 50% 50%;
@@ -370,10 +395,8 @@ body {
     top: 10px;
     left: 8px;
 }
-.login-form__right .social .social_icon_google .button {
-    position: relative;
-}
-.login-form__right .social .social_icon_google .button:before {
+
+.login-form__right .social_icon_google .button:before {
     content: '';
     position: absolute;
     background: url("/users/assets/img/social_g+.png") no-repeat 50% 50%;
@@ -382,15 +405,30 @@ body {
     top: 10px;
     left: 8px;
 }
-.woman_ninja {
+
+.woman_ninja_bottom {
     position: absolute;
-    top: 74.5%;
     left: 21%;
     pointer-events: none;
 }
 
+.woman_ninja_left {
+    position: absolute;
+    top: 75px;
+    left: -410px;
+    pointer-events: none;
+}
+
 .registration_form {
-    width: 479px;
+    width: 440px;
     float: left;
     margin-right: 10px;
+}
+
+.forgot_password_form {
+    padding: 34px 27px;
+    min-height: 280px;
+    height: auto;
+    width: 465px;
+    margin-left: -232px;
 }

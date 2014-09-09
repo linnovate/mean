@@ -1,10 +1,10 @@
-<div class="container">
-    <div class="row form">
-        <div>
-            <div ui-view></div>
-        </div>
+<div class="form main-form">
+    <div class="login-form__left" ui-view></div>
+    <div class="login-form__center">
+        <p>or</p>
+    </div>
         <div class="row login-form__right " data-ng-controller="AuthCtrl">
-            <div class="social_wrap">
+            <div class="social_wrap" ng-class="{bigger:socialButtonsCounter > 4}">
                 <ul class="social">
                     <li ng-if="socialButtons.hasOwnProperty('linkedin')" class="social_icon social_icon_in">
                         <a href="/auth/linkedin" class="button">
@@ -34,6 +34,6 @@
                 </ul>
             </div>
         </div>
-    </div>
+
 </div>
 
