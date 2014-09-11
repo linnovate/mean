@@ -4,28 +4,65 @@
   </div>
   <div class="alert alert-danger animated fadeIn" ng-show="usernameError">{{usernameError}}</div>
   <div class="alert alert-danger animated fadeIn" ng-show="emailError">{{emailError}}</div>
-
   <form id="register_form" ng-submit="register()">
     <h2>REGISTER</h2>
-    <div class="form-group">
-        <input id="name" type="text" name="name" required placeholder="Full name" class="form-control" ng-model="user.name"/>
+
+    <p>Welcome to Built with MEAN.IO, register to get started.</p>
+
+    <div class="input-wrapper">
+        <input required id="name" type="text" name="name" placeholder="Full Name"
+               ng-model="user.name">
+
+        <div class="error_message">Please enter a correct info #</div>
+        <span class="pic user"></span>
     </div>
-    <div class="form-group">
-        <input id="email" type="email" name="email" required placeholder="Email" class="form-control" ng-model="user.email"/>
+
+    <div class="input-wrapper">
+        <input required id="email_block" type="email" name="email" placeholder="Email Address"
+               ng-model="user.email">
+
+        <div class="error_message">Please enter a correct info #</div>
+        <span class="pic email"></span>
     </div>
-    <div class="form-group">
-        <input id="username" type="text" name="username" required placeholder="Username" class="form-control" ng-model="user.username"/>
+
+    <div class="input-wrapper">
+        <input required id="username" type="text" name="username" placeholder="Username"
+               ng-model="user.username">
+
+        <div class="error_message">Please enter a correct info #</div>
+        <span class="pic username"></span>
     </div>
-    <div class="form-group">
-        <input id="password" type="password" name="password" required placeholder="Password" class="form-control" ng-model="user.password"/>
+
+    <div class="input-wrapper">
+        <input required id="password_block" name="password" type="{{input.type}}"
+               placeholder="{{input.placeholder}}" ng-model="user.password">
+
+        <div class="error_message">Please enter a correct info #</div>
+        <span class="pic password {{input.iconClass}}" ng-click="togglePasswordVisible()">
+              <div class="hide_text_password">
+                  {{input.tooltipText}}
+              </div>
+        </span>
     </div>
-    <div class="form-group">
-        <input id="confirmPassword" type="password" name="confirmPassword" required placeholder="Repeat Password" class="form-control" ng-model="user.confirmPassword"/>
+    <div class="input-wrapper">
+        <input required id="confirm_password" name="confirm_password" type="{{input.type}}"
+               placeholder="{{input.placeholderConfirmPass}}" ng-model="user.confirmPassword">
+
+        <div class="error_message">Please enter a correct info #</div>
+        <span class="pic password {{input.iconClassConfirmPass}}" ng-click="togglePasswordConfirmVisible()">
+              <div class="hide_text_password">
+                  {{input.tooltipTextConfirmPass}}
+              </div>
+        </span>
     </div>
+
     <div class="button_register">
         <button type="submit" class="submit_button">Sign up</button>
-        &nbsp;or&nbsp;
-        <a ui-sref='auth.login'>Login</a>
+        <p>Already have an account?</p>
+        <a ui-sref='auth.login'>Log in</a>
+    </div>
+    <div class="woman_ninja_bottom">
+        <img src="/users/assets/img/woman_ninja.png" alt="#">
     </div>
   </form>
 </div>
