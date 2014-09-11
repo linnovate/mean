@@ -1,29 +1,24 @@
 {
   "name": "meanio",
-  "version": "0.5.21",
+  "version": "0.5.23",
   "preferGlobal": true,
   "description": "Simple command line interface for installing and managing MEAN apps",
   "author": {
     "name": "linnovate"
   },
-  "contributors": [
-    {
-      "name": "Lior Kesos",
-      "mail": "lior@linnovate.net"
-    },
-    {
-      "name": "Yonatan Ellman",
-      "mail": "yonatan@linnovate.net"
-    },
-    {
-      "name": "Drew Fyock",
-      "mail": "drew@steelbisondev.com"
-    },
-    {
-      "name": "Ehud Shahak",
-      "mail": "ehud@linnovate.net"
-    }
-  ],
+  "contributors": [{
+    "name": "Lior Kesos",
+    "mail": "lior@linnovate.net"
+  }, {
+    "name": "Yonatan Ellman",
+    "mail": "yonatan@linnovate.net"
+  }, {
+    "name": "Drew Fyock",
+    "mail": "drew@steelbisondev.com"
+  }, {
+    "name": "Ehud Shahak",
+    "mail": "ehud@linnovate.net"
+  }],
   "license": "AGPL",
   "main": "index",
   "bin": {
@@ -34,8 +29,9 @@
     "mean-addKey": "./bin/mean-addKey",
     "mean-publish": "./bin/mean-publish",
     "mean-search": "./bin/mean-search",
-    "mean-register": "./bin/mean-register",    
+    "mean-register": "./bin/mean-register",
     "mean-postinstall": "./bin/mean-postinstall",
+    "mean-preinstall": "./bin/mean-preinstall",
     "mean-install": "./bin/mean-install",
     "mean-uninstall": "./bin/mean-uninstall",
     "mean-docs": "./bin/mean-docs",
@@ -65,7 +61,7 @@
     "dependable": "^0.2.5",
     "glob": "^4.0.3",
     "lodash": "^2.4.1",
-    "request": "latest",    
+    "request": "latest",
     "mongodb": "^1.4.0",
     "mean-health": "~0.1.3",
     "mongoose": "^3.8.12",
