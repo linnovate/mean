@@ -17,7 +17,7 @@ See http://mean.io/#!/docs for more in-depth information about mean.
 
   Install Package:
 
-    $ sudo npm install -g meanio
+    $ [sudo] npm install -g mean-cli
 
   Explore CLI functionality:
 
