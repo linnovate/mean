@@ -3,13 +3,25 @@
     <a class="navbar-brand" ui-sref="home" mean-token="'site-title'">MEAN</a>
   </div>
 
-  <div class="left pull-left">
-    <ul class="navbar-nav nav">
-      <li data-ng-repeat="item in menus.main" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
-        <a mean-token="item.link" ui-sref='{{item.link}}'>{{item.title}}</a>
-      </li>
-    </ul>
-  </div>
+  <div class="left pull-left" data-ng-repeat="item in menus.main">
+		<ul class="navbar-nav nav" data-ng-if="!item.dropdown.length">
+			<li data-ng-if="!item.dropdown.length" ui-route="/{{item.link}}" class="dropdown" data-ng-class="{active: $uiRoute}">
+				<a data-ng-if="!item.dropdown.length" mean-token="item.link" ui-sref='{{item.link}}'>{{item.title}}</a>				
+			</li>			
+		</ul>
+		<ul class="navbar-nav nav" data-ng-if="item.dropdown.length" >
+			<li class="dropdown" data-ng-if="item.dropdown.length">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					{{item.title}} <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li ng-repeat="subitem in item.dropdown" ui-route="/{{subitem.link}}" ng-class="{active: $uiRoute, divider: subitem.divider}">
+						<a data-ng-if="!subitem.divider" mean-token="subitem.title" ui-sref='{{subitem.link}}'>{{subitem.title}}</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
 
   <div class="account">
     <div class="text-edit">
