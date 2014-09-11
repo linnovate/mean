@@ -4,12 +4,12 @@ var clientIdProperty = 'clientID',
     defaultID        = 'DEFAULT_CLIENT_ID';
 
 angular.module('mean.users')
-  .controller('AuthCtrl', ['$scope', '$rootScope', '$http', '$location',
-    function ($scope, $rootScope, $http, $location) {
+  .controller('AuthCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
+    function ($scope, $rootScope, $http, $location, Global) {
       // This object will contain list of available social buttons to authorize
       $scope.socialButtons = {};
       $scope.socialButtonsCounter = 0;
-
+      $scope.global = Global;
       $http.get('/get-config')
         .success(function (config) {
           for (var conf in config) {
@@ -21,14 +21,16 @@ angular.module('mean.users')
         });
     }
   ])
-  .controller('LoginCtrl', ['$scope', '$rootScope', '$http', '$location',
-    function($scope, $rootScope, $http, $location) {
+  .controller('LoginCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
+    function($scope, $rootScope, $http, $location, Global) {
       // This object will be filled by the form
       $scope.user = {};
-
+      $scope.global = Global;
+      $scope.global.registerForm = false;
       $scope.input = {
         type: 'password',
         placeholder: 'Password',
+        confirmPlaceholder: 'Repeat Password',
         iconClass: '',
         tooltipText: 'Show password'
       };
@@ -68,9 +70,32 @@ angular.module('mean.users')
       };
     }
   ])
-  .controller('RegisterCtrl', ['$scope', '$rootScope', '$http', '$location',
-    function($scope, $rootScope, $http, $location) {
+  .controller('RegisterCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
+    function ($scope, $rootScope, $http, $location, Global) {
       $scope.user = {};
+      $scope.global = Global;
+      $scope.global.registerForm = true;
+      $scope.input = {
+        type: 'password',
+        placeholder: 'Password',
+        placeholderConfirmPass: 'Repeat Password',
+        iconClassConfirmPass: '',
+        tooltipText: 'Show password',
+        tooltipTextConfirmPass: 'Show password'
+      };
+
+      $scope.togglePasswordVisible = function () {
+        $scope.input.type = $scope.input.type === 'text' ? 'password' : 'text';
+        $scope.input.placeholder = $scope.input.placeholder === 'Password' ? 'Visible Password' : 'Password';
+        $scope.input.iconClass = $scope.input.iconClass === 'icon_hide_password' ? '' : 'icon_hide_password';
+        $scope.input.tooltipText = $scope.input.tooltipText === 'Show password' ? 'Hide password' : 'Show password';
+      };
+      $scope.togglePasswordConfirmVisible = function () {
+        $scope.input.type = $scope.input.type === 'text' ? 'password' : 'text';
+        $scope.input.placeholderConfirmPass = $scope.input.placeholderConfirmPass === 'Repeat Password' ? 'Visible Password' : 'Repeat Password';
+        $scope.input.iconClassConfirmPass = $scope.input.iconClassConfirmPass === 'icon_hide_password' ? '' : 'icon_hide_password';
+        $scope.input.tooltipTextConfirmPass = $scope.input.tooltipTextConfirmPass === 'Show password' ? 'Hide password' : 'Show password';
+      };
 
       $scope.register = function() {
         $scope.usernameError = null;
@@ -100,9 +125,11 @@ angular.module('mean.users')
       };
     }
   ])
-  .controller('ForgotPasswordCtrl', ['$scope', '$rootScope', '$http', '$location',
-    function($scope, $rootScope, $http, $location) {
+  .controller('ForgotPasswordCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
+    function($scope, $rootScope, $http, $location, Global) {
       $scope.user = {};
+      $scope.global = Global;
+      $scope.global.registerForm = false;
       $scope.forgotpassword = function() {
         $http.post('/forgot-password', {
           text: $scope.text
@@ -116,9 +143,11 @@ angular.module('mean.users')
       };
     }
   ])
-  .controller('ResetPasswordCtrl', ['$scope', '$rootScope', '$http', '$location', '$stateParams',
-    function($scope, $rootScope, $http, $location, $stateParams) {
+  .controller('ResetPasswordCtrl', ['$scope', '$rootScope', '$http', '$location', '$stateParams', 'Global',
+    function($scope, $rootScope, $http, $location, $stateParams, Global) {
       $scope.user = {};
+      $scope.global = Global;
+      $scope.global.registerForm = false;
       $scope.resetpassword = function() {
         $http.post('/reset/' + $stateParams.tokenId, {
           password: $scope.user.password,

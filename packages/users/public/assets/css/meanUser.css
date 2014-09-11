@@ -64,6 +64,10 @@ body {
     margin-left: -374px;
 }
 
+.main-form.register-form {
+    height: 622px;
+}
+
 .login-form__left {
     width: 440px;
     height: 100%;
@@ -236,7 +240,8 @@ body {
 }
 
 .button_login p,
-.button_send p {
+.button_send p,
+.button_register p {
     display: inline-block;
     font-size: 15px;
     margin-left: 15px;
@@ -247,6 +252,10 @@ body {
 
 .button_send p {
     margin-left: 65px;
+}
+
+.button_register {
+    margin-top: 25px;
 }
 
 .button_login a,
@@ -262,10 +271,6 @@ body {
     font-family: "open_sans_hebrewregular";
 }
 
-.button_register a {
-    vertical-align: inherit;
-}
-
 .login-form__center {
     height: 100%;
     float: left;
@@ -273,11 +278,21 @@ body {
     padding: 0 10px;
 }
 
+.register-form .login-form__center {
+    margin-top: 38px;
+    background: url("/users/assets/img/devide_line_long.png") no-repeat 50% 0;
+}
+
 .login-form__center p {
     margin-top: 155px;
     font-family: 'proxima_novalight';
     font-size: 16px;
 }
+
+.register-form .login-form__center p {
+    margin-top: 227px;
+}
+
 .login-form__right {
     height: 100%;
     float: left;
@@ -291,6 +306,10 @@ body {
     padding-left: 0;
     display: block;
     position:relative;
+}
+
+.register-form .login-form__right .social_wrap {
+    height: 483px;
 }
 
 .login-form__right .bigger {
