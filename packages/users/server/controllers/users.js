@@ -174,7 +174,7 @@ exports.resetpassword = function(req, res, next) {
  * Send reset password email
  */
 function sendMail(mailOptions) {
-  var transport = nodemailer.createTransport('SMTP', config.mailer);
+  var transport = nodemailer.createTransport(config.mailer);
   transport.sendMail(mailOptions, function(err, response) {
     if (err) return err;
     return response;
