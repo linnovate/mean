@@ -3,10 +3,10 @@
 'use strict';
 
 var cli = require('../lib/cli'),
-    program = require('commander');
+  program = require('commander');
 
 program
-    .description('Postinstall bower and package dependencies')
-    .parse(process.argv);
+  .description('Postinstall bower and package dependencies')
+  .parse(process.argv);
 
 cli.postinstall();

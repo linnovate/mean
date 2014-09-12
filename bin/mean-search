@@ -3,10 +3,10 @@
 'use strict';
 
 var cli = require('../lib/cli'),
-	program = require('commander');
+  program = require('commander');
 
 program
-	.description('Searches for a package on the mean network.')
-	.parse(process.argv);
+  .description('Searches for a package on the mean network.')
+  .parse(process.argv);
 
 cli.search(program.args);
