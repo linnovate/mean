@@ -4,7 +4,7 @@
         <p>or</p>
     </div>
     <div class="row login-form__right " data-ng-controller="AuthCtrl">
-        <div class="social_wrap" ng-class="{bigger:socialButtonsCounter > 4}">
+        <div class="social_wrap" ng-class="{bigger:socialButtonsCounter > 4 && !global.registerForm}">
             <ul class="social">
                 <li ng-if="socialButtons.hasOwnProperty('linkedin')" class="social_icon social_icon_in">
                     <a href="/auth/linkedin" class="button">
