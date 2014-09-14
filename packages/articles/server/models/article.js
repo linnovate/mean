@@ -6,7 +6,10 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-var articlesConfig = require('meanio').config.clean.articles;
+var articlesConfig = require('meanio').config;
+if (!!articlesConfig){
+  articlesConfig = articlesConfig.clean.articles;
+}
 
 
 /**

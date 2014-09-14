@@ -45,6 +45,6 @@ module.exports = {
   // The session cookie name
   sessionName: 'connect.sid',
   articles: {
-    SEO: false 
+    SEO: true 
   }
 };

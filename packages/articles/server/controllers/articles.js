@@ -24,7 +24,10 @@ exports.article = function(req, res, next, id) {
  */
 
 function saveArticle(res, article, title){
-  var articlesConfig = require('meanio').config.clean.articles;
+  var articlesConfig = require('meanio').config;
+  if (!!articlesConfig){
+    articlesConfig = articlesConfig.clean.articles;
+  }
   if (!!articlesConfig && !!articlesConfig.SEO){
     article._id = title;
   }
