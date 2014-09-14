@@ -6,11 +6,13 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
+var articlesConfig = require('meanio').config.clean.articles;
+
 
 /**
  * Article Schema
  */
-var ArticleSchema = new Schema({
+var schemaObj = {
   created: {
     type: Date,
     default: Date.now
@@ -29,7 +31,15 @@ var ArticleSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   }
-});
+};
+
+if (!!articlesConfig && !!articlesConfig.SEO){
+  schemaObj._id = {
+    type: String
+  };
+}
+
+var ArticleSchema = new Schema(schemaObj);
 
 /**
  * Validations
