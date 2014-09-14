@@ -1,7 +1,7 @@
 'use strict';
 // To avoid displaying unneccesary social logins
 var clientIdProperty = 'clientID',
-    defaultID        = 'DEFAULT_CLIENT_ID';
+  defaultID        = 'DEFAULT_CLIENT_ID';
 
 angular.module('mean.users')
   .controller('AuthCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
