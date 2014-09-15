@@ -208,6 +208,23 @@ describe('<Unit Test>', function() {
         });
       });
 
+    }),
+
+    describe('Test Email Validations', function() {
+      it('Shouldnt allow invalid emails #1', function(done) {
+        var _user = new User(user1);
+        _user.email = 'Abc.example.com';
+        _user.save(function(err) {
+          should.exist(err);
+          if (!err) {
+            _user.remove(function() {
+              done();
+            });  
+          }        
+          done();
+        });
+      });
+
     });
 
     after(function(done) {
