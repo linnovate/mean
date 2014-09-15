@@ -210,6 +210,7 @@ describe('<Unit Test>', function() {
 
     }),
 
+    // source: http://en.wikipedia.org/wiki/Email_address
     describe('Test Email Validations', function() {
       it('Shouldnt allow invalid emails #1', function(done) {
         var _user = new User(user1);
@@ -227,7 +228,7 @@ describe('<Unit Test>', function() {
         });
       });
 
-            it('Shouldnt allow invalid emails #2', function(done) {
+      it('Shouldnt allow invalid emails #2', function(done) {
         var _user = new User(user1);
         _user.email = 'A@b@c@example.com';
         _user.save(function(err) {
