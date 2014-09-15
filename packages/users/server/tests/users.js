@@ -215,13 +215,15 @@ describe('<Unit Test>', function() {
         var _user = new User(user1);
         _user.email = 'Abc.example.com';
         _user.save(function(err) {
-          should.exist(err);
           if (!err) {
             _user.remove(function() {
+              should.exist(err);
               done();
             });  
-          }        
-          done();
+          } else {
+            should.exist(err);
+            done();
+          }
         });
       });
 
