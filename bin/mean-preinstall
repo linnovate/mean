@@ -3,10 +3,10 @@
 'use strict';
 
 var cli = require('../lib/cli'),
-    program = require('commander');
+  program = require('commander');
 
 program
-    .description('Preinstall package dependencies from mean.json')
-    .parse(process.argv);
+  .description('Preinstall package dependencies from mean.json')
+  .parse(process.argv);
 
 cli.preinstall();
