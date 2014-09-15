@@ -2,8 +2,8 @@ html {
     height: 100%;
 }
 
-body {
-    background: url("/theme/assets/img/bg.png");
+body.login, body.register,  body.forgot-password {
+background: url("/theme/assets/img/bg.png");
     height: 100%;
     position: relative;
 }
