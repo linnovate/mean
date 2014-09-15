@@ -208,7 +208,7 @@ describe('<Unit Test>', function() {
         });
       });
 
-    }),
+    });
 
     // source: http://en.wikipedia.org/wiki/Email_address
     describe('Test Email Validations', function() {
@@ -220,7 +220,7 @@ describe('<Unit Test>', function() {
             _user.remove(function() {
               should.exist(err);
               done();
-            });  
+            });
           } else {
             should.exist(err);
             done();
@@ -252,7 +252,7 @@ describe('<Unit Test>', function() {
             _user.remove(function() {
               should.exist(err);
               done();
-            });  
+            });
           } else {
             should.exist(err);
             done();
@@ -268,7 +268,7 @@ describe('<Unit Test>', function() {
             _user.remove(function() {
               should.exist(err);
               done();
-            });  
+            });
           } else {
             should.exist(err);
             done();
@@ -284,7 +284,7 @@ describe('<Unit Test>', function() {
             _user.remove(function() {
               should.exist(err);
               done();
-            });  
+            });
           } else {
             should.exist(err);
             done();
@@ -300,7 +300,7 @@ describe('<Unit Test>', function() {
             _user.remove(function() {
               should.exist(err);
               done();
-            });  
+            });
           } else {
             should.exist(err);
             done();
@@ -316,7 +316,7 @@ describe('<Unit Test>', function() {
             _user.remove(function() {
               should.exist(err);
               done();
-            });  
+            });
           } else {
             should.exist(err);
             done();
@@ -332,7 +332,7 @@ describe('<Unit Test>', function() {
             _user.remove(function() {
               should.exist(err);
               done();
-            });  
+            });
           } else {
             should.exist(err);
             done();
@@ -348,7 +348,7 @@ describe('<Unit Test>', function() {
             _user.remove(function() {
               should.not.exist(err);
               done();
-            });  
+            });
           } else {
             should.not.exist(err);
             done();
@@ -364,7 +364,7 @@ describe('<Unit Test>', function() {
             _user.remove(function() {
               should.not.exist(err);
               done();
-            });  
+            });
           } else {
             should.not.exist(err);
             done();
@@ -380,7 +380,7 @@ describe('<Unit Test>', function() {
             _user.remove(function() {
               should.not.exist(err);
               done();
-            });  
+            });
           } else {
             should.not.exist(err);
             done();
