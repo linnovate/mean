@@ -17,10 +17,10 @@
       <div class="pull-right" data-ng-show="global.authenticated" mean-translate></div>
     </div>
     <ul class="navbar-nav nav" data-ng-hide="global.authenticated">
-      <li><a ui-sref='auth.register'>Register</a>
+      <li><a ui-sref='auth.register'>Join</a>
       </li>
       <li class="divider-vertical"></li>
-      <li><a ui-sref='auth.login'>Login</a>
+      <li><a ui-sref='auth.login'>Log In</a>
       </li>
     </ul>
     <ul class="navbar-nav nav" data-ng-show="global.authenticated">
@@ -29,7 +29,7 @@
           {{global.user.name}} <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="/logout">Sign out</a>
+          <li><a href="/logout">Log Out</a>
           </li>
         </ul>
       </li>
