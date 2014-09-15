@@ -339,6 +339,54 @@ describe('<Unit Test>', function() {
         });
       });
 
+      it('Should save with valid email #1', function(done) {
+        var _user = new User(user1);
+        _user.email = 'john.doe@example.com';
+        _user.save(function(err) {
+          if (!err) {
+            _user.remove(function() {
+              should.not.exist(err);
+              done();
+            });  
+          } else {
+            should.not.exist(err);
+            done();
+          }
+        });
+      });
+
+      it('Should save with valid email #2', function(done) {
+        var _user = new User(user1);
+        _user.email = 'disposable.style.email.with+symbol@example.com';
+        _user.save(function(err) {
+          if (!err) {
+            _user.remove(function() {
+              should.not.exist(err);
+              done();
+            });  
+          } else {
+            should.not.exist(err);
+            done();
+          }
+        });
+      });
+
+      it('Should save with valid email #3', function(done) {
+        var _user = new User(user1);
+        _user.email = 'other.email-with-dash@example.com';
+        _user.save(function(err) {
+          if (!err) {
+            _user.remove(function() {
+              should.not.exist(err);
+              done();
+            });  
+          } else {
+            should.not.exist(err);
+            done();
+          }
+        });
+      });
+
     });
 
     after(function(done) {
