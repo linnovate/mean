@@ -1,7 +1,7 @@
 'use strict';
 // To avoid displaying unneccesary social logins
 var clientIdProperty = 'clientID',
-  defaultID        = 'DEFAULT_CLIENT_ID';
+  defaultPrefix        = 'DEFAULT_';
 
 angular.module('mean.users')
   .controller('AuthCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
@@ -13,7 +13,8 @@ angular.module('mean.users')
       $http.get('/get-config')
         .success(function (config) {
           for (var conf in config) {
-            if (config[conf].hasOwnProperty(clientIdProperty) && config[conf][clientIdProperty] !== defaultID) {
+            // Do not show auth providers that have the value DEFAULT as their clientID
+            if (config[conf].hasOwnProperty(clientIdProperty) && config[conf][clientIdProperty].indexOf(defaultPrefix)) {
               $scope.socialButtons[conf] = true;
               $scope.socialButtonsCounter += 1;
             }
