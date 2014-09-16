@@ -1,20 +1,20 @@
 'use strict';
 // To avoid displaying unneccesary social logins
 var clientIdProperty = 'clientID',
-  defaultPrefix        = 'DEFAULT_';
+  defaultPrefix = 'DEFAULT_';
 
 angular.module('mean.users')
   .controller('AuthCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
-    function ($scope, $rootScope, $http, $location, Global) {
+    function($scope, $rootScope, $http, $location, Global) {
       // This object will contain list of available social buttons to authorize
       $scope.socialButtons = {};
       $scope.socialButtonsCounter = 0;
       $scope.global = Global;
       $http.get('/get-config')
-        .success(function (config) {
+        .success(function(config) {
           for (var conf in config) {
             // Do not show auth providers that have the value DEFAULT as their clientID
-            if (config[conf].hasOwnProperty(clientIdProperty) && config[conf][clientIdProperty].indexOf(defaultPrefix)) {
+            if (config[conf].hasOwnProperty(clientIdProperty) && config[conf][clientIdProperty].indexOf(defaultPrefix) !== -1) {
               $scope.socialButtons[conf] = true;
               $scope.socialButtonsCounter += 1;
             }
@@ -36,7 +36,7 @@ angular.module('mean.users')
         tooltipText: 'Show password'
       };
 
-      $scope.togglePasswordVisible = function () {
+      $scope.togglePasswordVisible = function() {
         $scope.input.type = $scope.input.type === 'text' ? 'password' : 'text';
         $scope.input.placeholder = $scope.input.placeholder === 'Password' ? 'Visible Password' : 'Password';
         $scope.input.iconClass = $scope.input.iconClass === 'icon_hide_password' ? '' : 'icon_hide_password';
@@ -72,7 +72,7 @@ angular.module('mean.users')
     }
   ])
   .controller('RegisterCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
-    function ($scope, $rootScope, $http, $location, Global) {
+    function($scope, $rootScope, $http, $location, Global) {
       $scope.user = {};
       $scope.global = Global;
       $scope.global.registerForm = true;
@@ -85,13 +85,13 @@ angular.module('mean.users')
         tooltipTextConfirmPass: 'Show password'
       };
 
-      $scope.togglePasswordVisible = function () {
+      $scope.togglePasswordVisible = function() {
         $scope.input.type = $scope.input.type === 'text' ? 'password' : 'text';
         $scope.input.placeholder = $scope.input.placeholder === 'Password' ? 'Visible Password' : 'Password';
         $scope.input.iconClass = $scope.input.iconClass === 'icon_hide_password' ? '' : 'icon_hide_password';
         $scope.input.tooltipText = $scope.input.tooltipText === 'Show password' ? 'Hide password' : 'Show password';
       };
-      $scope.togglePasswordConfirmVisible = function () {
+      $scope.togglePasswordConfirmVisible = function() {
         $scope.input.type = $scope.input.type === 'text' ? 'password' : 'text';
         $scope.input.placeholderConfirmPass = $scope.input.placeholderConfirmPass === 'Repeat Password' ? 'Visible Password' : 'Repeat Password';
         $scope.input.iconClassConfirmPass = $scope.input.iconClassConfirmPass === 'icon_hide_password' ? '' : 'icon_hide_password';
