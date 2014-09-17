@@ -29,7 +29,7 @@ module.exports = {
     callbackURL: 'http://localhost:3000/auth/google/callback'
   },
   linkedin: {
-    clientID: 'DEFAULY_API_KEY',
+    clientID: 'DEFAULT_API_KEY',
     clientSecret: 'SECRET_KEY',
     callbackURL: 'http://localhost:3000/auth/linkedin/callback'
   },
