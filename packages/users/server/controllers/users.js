@@ -69,11 +69,6 @@ exports.create = function(req, res, next) {
     if (err) {
       switch (err.code) {
         case 11000:
-          res.status(400).send([{
-            msg: 'Email already taken',
-            param: 'email'
-          }]);
-          break;
         case 11001:
           res.status(400).send([{
             msg: 'Username already taken',
