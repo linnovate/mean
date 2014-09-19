@@ -47,17 +47,15 @@ background: url("/theme/assets/img/bg.png");
     font-style: normal;
 }
 .form {
-    background: #ffffff;
-    box-shadow: 0 1px 3px 1px #003644;
-    margin-top: 35px;
-    left: 50%;
+
+  /*  left: 50%;*/
     position: relative;
 }
 
 .main-form {
     width: 748px;
     height: 435px;
-    margin-left: -374px;
+    /*margin-left: -374px;*/
 }
 
 .main-form.register-form {
@@ -65,10 +63,15 @@ background: url("/theme/assets/img/bg.png");
 }
 
 .login-form__left {
+    
+    box-shadow: 0 1px 3px 1px #003644;
+    margin-top: 35px;
+ background-color: rgb(247, 247, 247);
     width: 440px;
     height: 100%;
     float: left;
-    padding: 34px 0 0 27px;
+margin:30px!important;
+    padding: 34px;
 }
 
 .login-form__left h2, .forgot_password_form h2 {
@@ -91,10 +94,13 @@ background: url("/theme/assets/img/bg.png");
 
 .main-form .input-wrapper input {
     width: 401px;
-    border: 1px solid #d3d3d3;
+    background-color: rgb(250, 255, 189)!important;
+border: 1px solid #aaa !important;
     border-radius: 5px;
     padding: 18px 0 18px 16px;
-    outline: none;
+-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.4) inset,0 1px 0 rgba(255,255,255,0.9)!important;
+-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.4) inset,0 1px 0 rgba(255,255,255,0.9)!important;
+box-shadow: 0 1px 3px rgba(0,0,0,0.4) inset,0 1px 0 rgba(255,255,255,0.9) !important;
     font-size: 15px;
     font-family: 'proxima_nova_rgregular';
     line-height: 22px;
@@ -235,6 +241,30 @@ background: url("/theme/assets/img/bg.png");
     outline: none;
 }
 
+a.button {
+
+        font-family: helvetica, arial, sans-serif!important;
+        font-weight: bold !important;
+        border-radius: 5px;
+        color: #333 !important;
+
+     border-top: 1px solid #ffffff;
+     
+    font-size: 15px;
+       background: #949494;
+   background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#ccc));
+   background: -webkit-linear-gradient(top, #f5f5f5, #ccc);
+   background: -moz-linear-gradient(top, #f5f5f5, #ccc);
+   background: -ms-linear-gradient(top, #f5f5f5, #ccc);
+   background: -o-linear-gradient(top, #f5f5f5, #ccc);
+   
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,.8) 0 1px 0;
+   /*text-shadow: rgba(0,0,0,.6) 1px 1px 0!important;*/
+    }
+
+
 .button_login p,
 .button_send p,
 .button_register p {
@@ -290,10 +320,11 @@ background: url("/theme/assets/img/bg.png");
 }
 
 .login-form__right {
+    background: transparent !important;
     height: 100%;
     float: left;
     width: 270px;
-    padding-left: 26px;
+
 }
 .login-form__right .social_wrap {
     width: 235px;
@@ -337,7 +368,7 @@ background: url("/theme/assets/img/bg.png");
 .login-form__right .social_icon {
     width: 230px;
     height: 60px;
-    border: 1px solid #e1e1e0;
+/*    border: 1px solid #e1e1e0;*/
     border-radius: 5px;
     margin-bottom: 10px;
     list-style-type: none;
