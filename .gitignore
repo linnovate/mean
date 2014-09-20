@@ -15,7 +15,11 @@ Icon
 *.iml
 *.ipr
 *.iws
-.idea/
+
+# Don't exclude the whole idea directory, just the user specific files
+#.idea/
+.idea/workspace.xml
+.idea/tasks.xml
 
 # --------------------
 # Netbeans Files
