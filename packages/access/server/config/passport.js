@@ -110,8 +110,12 @@ module.exports = function(passport) {
           roles: ['authenticated']
         });
         user.save(function(err) {
-          if (err) console.log(err);
-          return done(err, user);
+          if (err) {
+            console.log(err);
+            return done(null, false, {message: 'Facebook login failed, email already in use'});
+          } else {
+            return done(err, user);
+          }
         });
       });
     }
