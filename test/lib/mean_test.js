@@ -65,6 +65,16 @@ describe('mean.js', function() {
     menus.get().should.be.an.Array.and.have.length(2); //anonymous and all
     menus.get({roles:['mocha']}).should.be.an.Array.and.have.length(3); //authenticated, mocha and all
     menus.get({roles:['authenticated']}).should.be.an.Array.and.have.length(2); //authenticated and all
+
+    menus.add({
+      title:'check_all2',
+      roles:null
+    });
+
+    menus.get().should.be.an.Array.and.have.length(3); //anonymous and all
+    menus.get({roles:['mocha']}).should.be.an.Array.and.have.length(4); //authenticated, mocha and all
+    menus.get({roles:['authenticated']}).should.be.an.Array.and.have.length(3); //authenticated and all
+
   });
 
   it('properly weight js footer menus', function(done) {
