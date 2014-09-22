@@ -1,6 +1,6 @@
 {
   "name": "meanio",
-  "version": "0.5.38",
+  "version": "0.5.39",
   "preferGlobal": true,
   "description": "Simple command line interface for installing and managing MEAN apps",
   "author": {
@@ -31,6 +31,7 @@
     "mean-init": "./bin/mean-init",
     "mean-authorize": "./bin/mean-authorize",
     "mean-whoami": "./bin/mean-whoami",
+    "mean-login": "./bin/mean-login",    
     "mean-addKey": "./bin/mean-addKey",
     "mean-publish": "./bin/mean-publish",
     "mean-search": "./bin/mean-search",

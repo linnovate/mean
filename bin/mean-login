@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var cli = require('../lib/cli'),
+  program = require('commander');
+
+program
+  .description('Login to the network')
+  .parse(process.argv);
+
+cli.login(program.args[0]);
