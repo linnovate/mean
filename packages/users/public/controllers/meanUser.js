@@ -10,14 +10,11 @@ angular.module('mean.users')
       $scope.socialButtons = {};
       $scope.socialButtonsCounter = 0;
       $scope.global = Global;
-      $http.get('/get-config')
+      $http.post('/get-auth-providers')
         .success(function(config) {
-          for (var conf in config) {
-            // Do not show auth providers that have the value DEFAULT as their clientID
-            if (config[conf].hasOwnProperty(clientIdProperty) && config[conf][clientIdProperty].indexOf(defaultPrefix) !== -1) {
-              $scope.socialButtons[conf] = true;
-              $scope.socialButtonsCounter += 1;
-            }
+          for (var conf in config) {         
+            $scope.socialButtons[conf] = true;
+            $scope.socialButtonsCounter += 1;
           }
         });
     }
