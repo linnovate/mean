@@ -78,8 +78,12 @@ module.exports = function(passport) {
           roles: ['authenticated']
         });
         user.save(function(err) {
-          if (err) console.log(err);
-          return done(err, user);
+          if (err) {
+            console.log(err);
+            return done(null, false, {message: 'Twitter login failed, email already used by other login strategy'});
+          } else {
+            return done(err, user);
+          }
         });
       });
     }
@@ -110,8 +114,12 @@ module.exports = function(passport) {
           roles: ['authenticated']
         });
         user.save(function(err) {
-          if (err) console.log(err);
-          return done(err, user);
+          if (err) {
+            console.log(err);
+            return done(null, false, {message: 'Facebook login failed, email already used by other login strategy'});
+          } else {
+            return done(err, user);
+          }
         });
       });
     }
@@ -139,8 +147,12 @@ module.exports = function(passport) {
           roles: ['authenticated']
         });
         user.save(function(err) {
-          if (err) console.log(err);
-          return done(err, user);
+          if (err) {
+            console.log(err);
+            return done(null, false, {message: 'Github login failed, email already used by other login strategy'});
+          } else {
+            return done(err, user);
+          }
         });
       });
     }
@@ -168,8 +180,12 @@ module.exports = function(passport) {
           roles: ['authenticated']
         });
         user.save(function(err) {
-          if (err) console.log(err);
-          return done(err, user);
+          if (err) {
+            console.log(err);
+            return done(null, false, {message: 'Google login failed, email already used by other login strategy'});
+          } else {
+            return done(err, user);
+          }
         });
       });
     }
@@ -197,8 +213,12 @@ module.exports = function(passport) {
           roles: ['authenticated']
         });
         user.save(function(err) {
-          if (err) console.log(err);
-          return done(err, user);
+          if (err) {
+            console.log(err);
+            return done(null, false, {message: 'LinkedIn login failed, email already used by other login strategy'});
+          } else {
+            return done(err, user);
+          }
         });
       });
     }
