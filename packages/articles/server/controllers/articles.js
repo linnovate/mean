@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
   _ = require('lodash');
 
 /**
- * Authorization on article
+ * Authorization on article by roles
  */
 
 exports.hasAuthorization = function(roles){
