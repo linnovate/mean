@@ -7,6 +7,25 @@ var mongoose = require('mongoose'),
   Article = mongoose.model('Article'),
   _ = require('lodash');
 
+/**
+ * Authorization on article
+ */
+
+exports.hasAuthorization = function(roles){
+  return function(req, res, next){
+    if(req.article && req.article.user.id == req.user.id){
+      next();
+    }
+
+    while(roles.length > 0){
+      if(req.user.roles.indexOf(roles.pop()) !== -1) {
+        return next();
+      }
+    }
+
+    res.send(401, 'User is not authorized');
+  }
+}
 
 /**
  * Find article by id
