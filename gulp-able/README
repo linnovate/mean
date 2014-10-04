@@ -1,0 +1,4 @@
+The files in this directory help provide a runnable gulpfile as an alternative
+to grunt.  In order to use them, they should be copied into a project's root
+directory that was generated with the `mean init` command. Then in the new
+project directory, run `npm i` followed by `gulp`.
