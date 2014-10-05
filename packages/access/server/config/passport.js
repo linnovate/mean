@@ -211,7 +211,7 @@ module.exports = function(passport) {
           username: profile.emails[0].value,
           provider: 'linkedin',
           roles: ['authenticated'],
-		  linkedin: { 'id' : profile.id }
+          linkedin: { 'id' : profile.id }
         });
         user.save(function(err) {
           if (err) {
