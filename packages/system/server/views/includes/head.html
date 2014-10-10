@@ -20,8 +20,7 @@
   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="/modules/aggregated.css">
 
-  <!-- Inline javascript. Can set the src /modules/aggregated.js?group=header-->
-  <script type="text/javascript">{{headerJs|raw}}</script>
+ <script type="text/javascript" src="/modules/aggregated.js?group=header"></script>
 
   {% for file in assets.core.css %}
     <link rel="stylesheet" href="/{{file}}">
