@@ -1,3 +1,22 @@
-.theme-example h1 {
-  background-color: purple
+.welcome.container-fluid {
+  margin:10px;
+  background-color:#fff;
+}
+
+.welcome .info, .welcome .featured {
+  float:left;
+}
+.welcome .row {
+  margin:10px;
+  background-color:#f3f3f3;
+}
+.welcome .info {
+  background-color: #fff;
+
+}
+
+
+.welcome .whatsnext, .welcome .docs , .welcome .packages, .welcome .community,
+.welcome .featured-sites, .welcome .featured-packages {
+  height:100px;
 }
