@@ -6,9 +6,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
     $scope.sites = {
       'makeapoint':{
         'name':'makeapoint',
-        'text':'Makeapoint is a platform to craft and fine-tune ideas and
-                messages providing a graphical experience which brough an
-                offline methodlogy online',
+        'text':'Makeapoint is a platform to craft and fine-tune ideas and messages providing a graphical experience which brough an offline methodlogy online',
         'author':'Linnovate',
         'link':'http://www.linnovate.net',
         'image':'http://cdn.designbyhumans.com/pictures/blog/09-2013/pop-culture-cats/Pop_Culture_Cats_Hamilton_Hipster.jpg'
@@ -20,7 +18,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
         'link':'http://www.qed42.com',
         'image':'http://www.catster.com/files/cat-stretching-shutterstock_61984297.jpg'
       }
-    }
+    };
     $scope.packages = {
       'gmap':{
         'name':'Gmap',
@@ -43,10 +41,10 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
         'link':'http://www.linnovate.net',
         'image':'http://cdn.designbyhumans.com/pictures/blog/09-2013/pop-culture-cats/Pop_Culture_Cats_Hamilton_Hipster.jpg'
       }
-    }
+    };
 
     $scope.$watch(function () {
-      for (var i = 0; i < $scope.sites.length; i++) {
+      for (var i = 0; i < $scope.sites.length; i+=1) {
         if ($scope.sites[i].active) {
           return $scope.sites[i];
         }

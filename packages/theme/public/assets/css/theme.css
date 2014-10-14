@@ -31,6 +31,7 @@
 .welcome {
   padding-bottom: 4px;
   font-family: "futura_bkbook";
+  font-size:16px;
   margin: 0;
   margin:10px;
 }
@@ -48,12 +49,6 @@
 .welcome h3 {
   text-transform: uppercase;
   color: #0e0e0e;
-}
-
-.welcome .docs p, .welcome .packages p, .welcome .community p {
-  column-count: 2;
-  -webkit-column-count: 2; /* Chrome, Safari, Opera */
-  -moz-column-count: 2; /* Firefox */
 }
 
 
