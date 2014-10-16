@@ -3,7 +3,6 @@
 var paths = {
   js: ['*.js', 'test/**/*.js', '!test/coverage/**', '!bower_components/**', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/contrib/**/*.js', '!packages/contrib/**/node_modules/**'],
   html: ['packages/**/public/**/views/**', 'packages/**/server/views/**'],
-  less: ['packages/system/public/assets/less/*.less'],
   css: ['!bower_components/**', 'packages/**/public/**/css/*.css', '!packages/contrib/**/public/**/css/*.css']
 };
 
@@ -33,13 +32,6 @@ module.exports = function(grunt) {
           interval: 500
         }
       },
-	  less: {
-		files: paths.less,
-		tasks: ['less','csslint'],
-		options: {
-          livereload: true  
-		}
-	  },
       css: {
         files: paths.css,
         tasks: ['csslint'],
@@ -56,16 +48,6 @@ module.exports = function(grunt) {
         }
       }
     },
-	less: {
-		mean: {
-			files: [
-				{
-					src: ['packages/system/public/assets/less/common.less'],
-					dest: 'packages/system/public/assets/css/common.css'
-				}
-			]
-		}
-	},
     uglify: {
       core: {
         options: {
@@ -133,9 +115,9 @@ module.exports = function(grunt) {
 
   //Default task(s).
   if (process.env.NODE_ENV === 'production') {
-    grunt.registerTask('default', ['clean', 'less', 'cssmin', 'uglify', 'concurrent']);
+    grunt.registerTask('default', ['clean', 'cssmin', 'uglify', 'concurrent']);
   } else {
-    grunt.registerTask('default', ['clean', 'less', 'jshint', 'csslint', 'concurrent']);
+    grunt.registerTask('default', ['clean', 'jshint', 'csslint', 'concurrent']);
   }
 
   //Test task.
