@@ -60,7 +60,11 @@ exports.create = function(req, res, next) {
   var errors = req.validationErrors();
 
   if (!req.session.captcha.valid) {
-    errors.push({msg: "Invalid captcha response, try again", param: "captcha", value: 1});
+    var error = {msg: 'Invalid captcha response, try again', param: 'captcha', value: 1};
+    if (errors) 
+      errors.push();
+    else 
+      errors = [error];
   }
 
   if (errors) {

@@ -7,6 +7,8 @@ var users = require('../controllers/users'),
 
 module.exports = function(MeanUser, app, auth, database, passport) {
 
+  app.use('/captcha.jpg', captcha.generate());
+
   app.route('/logout')
     .get(users.signout);
   app.route('/users/me')

@@ -54,6 +54,13 @@
         </span>
         </div>
 
+        <h3>Captcha</h3>
+        <div class="input-wrapper">
+          <img class="captcha-img" ng-src="{{captchaSrc}}" />
+          <input required id="captcha" placeholder="Type the text from the image" ng-model="user.captcha" name="captcha">
+        </div>
+
+
         <div class="button_register">
             <button type="submit" class="submit_button">Sign up</button>
             <p>Already have an account?</p>
