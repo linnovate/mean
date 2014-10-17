@@ -2,7 +2,8 @@
 
 // User routes use users controller
 var users = require('../controllers/users'),
-    config = require('meanio').loadConfig();
+    config = require('meanio').loadConfig(),
+    captcha = require('easy-captcha');
 
 module.exports = function(MeanUser, app, auth, database, passport) {
 
@@ -12,8 +13,7 @@ module.exports = function(MeanUser, app, auth, database, passport) {
     .get(users.me);
 
   // Setting up the users api
-  app.route('/register')
-    .post(users.create);
+  app.post('/register', captcha.check, users.create);
 
   app.route('/forgot-password')
     .post(users.forgotpassword);

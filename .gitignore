@@ -1,8 +1,10 @@
+packages/contrib
+
 # --------------------
 # OSX Files
 # --------------------
 .DS_Store
-.AppleDouble
+.ApleDouble
 .LSOverride
 Icon
 ._*
