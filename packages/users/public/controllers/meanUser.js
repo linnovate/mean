@@ -85,6 +85,12 @@ angular.module('mean.users')
         tooltipTextConfirmPass: 'Show password'
       };
 
+      $scope.captchaSrc = '/captcha.jpg?' + new Date().getTime();
+
+      var updateCaptcha = function () {
+        $scope.captchaSrc = '/captcha.jpg?' + new Date().getTime();
+      };
+
       $scope.togglePasswordVisible = function() {
         $scope.input.type = $scope.input.type === 'text' ? 'password' : 'text';
         $scope.input.placeholder = $scope.input.placeholder === 'Password' ? 'Visible Password' : 'Password';
@@ -122,6 +128,8 @@ angular.module('mean.users')
             } else if (error === 'Email already taken') {
               $scope.emailError = error;
             } else $scope.registerError = error;
+
+            updateCaptcha();
           });
       };
     }
