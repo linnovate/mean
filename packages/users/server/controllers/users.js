@@ -91,14 +91,9 @@ exports.create = function(req, res, next) {
             res.status(400).send(modelErrors);
           }
       }
-
-      return res.status(400);
+      res.status(400).send('Unknown error');
     }
-    req.logIn(user, function(err) {
-      if (err) return next(err);
-      return res.redirect('/');
-    });
-    res.status(200);
+    res.status(200).send();
   });
 };
 /**
