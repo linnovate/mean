@@ -1,84 +1,102 @@
 <section class="welcome container-fluid" data-ng-controller="IndexController">
   <h1 class="pull-left" mean-token="'welcome-default'">WELCOME TO MEAN.IO</h1>
-  <div class="col-md-12 row">
+  <div class="col-md-12 first">
+    MEAN.io makes building apps simpler and faster. With this website framework, you can <a href="">create members</a>, </br>
+    articles, or <a href="http://mean.io/#!/packages">add more features</a> with a package from the community or write one yourself.
+    </div>
+    <div class="col-md-12 row">
     <div class="info col-md-6">
-      <div id="whatsnext">
-        <h2>What to do next</h2>
-        <p>Congratulations on installing your mean.io site!</br>
-          To Administer the site - signup and assign the admin role by running:
-        </p>
-        <p class="bg-info"><strong>mean user -a admin youremail@provider.com</strong></p>
-        To understand what mean is all about and where it is going checkout our
-         <a href="https://github.com/linnovate/mean/wiki/Mission-Statement">Mission Statement</a> in the wiki.
-      </div>
       <div class="docs">
+        <div class="welcome-sprite"></div>
         <h3>Browse the  Documentation</h3>
-        <span>
-        Before you jump in it's important to read the documentation and to
-        slowly master different aspects of extending and developing for MEAN
-        </span>
-        <div class="pull-left">
-          <ul>
-            <li>Overview</li>
-            <li>Packages</li>
-            <li>File Structure</li>
-          </ul>
-        </div>
-        <div class="pull-left">
-          <ul>
-            <li>CLI</li>
-            <li>Network</li>
-            <li>3</li>
-          </ul>
-        </div>
-      </div>
-      <span class="morelink"><a href="http://mean.io/#!/docs">All Documentation</a></span>
-      <div class="packages">
-        <h3>Browse our packages</h3>
-        <p>
-        packages
+        <p class="docs-desc">
+        Before you jump in it's important to read the documentation and learn about the different aspects of extending and developing MEAN.<br/>
+        Mean is based on MongoDB, Express.js, Angular.js and Node.js and even basic proffeciency in these technologies will help you dive in to mean development - luckily there are plenty of <a href="#">tutorials around</a>.
         </p>
-        <span class="morelink"><a href="http://mean.io/#!/docs">All Packages</a></span>
+        <div class="docs-link first">
+          <ul>
+            <li><a href="#">Overview</a></li>
+            <li><a href="#">Packages</a></li>
+          </ul>
+        </div>
+        <div class="docs-link">
+          <ul>
+            <li><a href="#">CLI</a></li>
+            <li><a href="#">Network</a></li>
+          </ul>
+        </div>
+        <div class="docs-link">
+          <ul>
+            <li><a href="#">File Structure</a></li>
+            <li><a href="#">Contribution</a></li>
+          </ul>
+        </div>
+      <span class="morelink"><a href="http://mean.io/#!/docs">All Documentation</a></span>
+      </div>
+      <div class="packages">
+        <div class="welcome-sprite"></div>
+        <h3>Browse our packages</h3>
+        <div class="package">
+          <h4><a href="#">Token</a></h4>
+          <p>"Inplace edit" any text on the site which is wrapped by the mean-token directive.</p>
+        </div>
+        <div class="package">
+          <h4><a href="#">Comments</a></h4>
+          <p>Add comments to your objects including realtime socket.io based notifications.</p>
+        </div>
+        <div class="package">
+        <h4><a href="#">Gmap</a></h4>
+          <p>Add geo information to your objects using a google map with location autocomplete.</p>
+        </div>
+        <div class="package">
+          <h4><a href="#">Mean-admin</a></h4>
+          <p>Admnister your mean application including user, theme, variable and general settings</p>
+        </div>
+        <span class="morelink"><a href="http://mean.io/#!/packages">All Packages</a></span>
       </div>
       <div class="community">
+        <div class="welcome-sprite"></div>
         <h3>Join our community</h3>
-        <p>
-        community
-      </p>
+        <div class="welcome-sprite"></div>
+        <div class="package">
+          <h4><a href="#">Facebook group</a></h4>
+          <p>"Inplace edit" any text on the site which is wrapped by the mean-token directive.</p>
+        </div><div class="welcome-sprite"></div>
+        <div class="package">
+          <h4><a href="#">IRC</a></h4>
+          <p>"Inplace edit" any text on the site which is wrapped by the mean-token directive.</p>
+        </div><div class="welcome-sprite"></div>
+        <div class="package">
+          <h4><a href="#">Github</a></h4>
+          <p>"Inplace edit" any text on the site which is wrapped by the mean-token directive.</p>
+        </div>
+        <div class="package">
+          <h4><a href="#">Stack overflow</a></h4>
+          <p>"Inplace edit" any text on the site which is wrapped by the mean-token directive.</p>
+        </div>
       </div>
     </div>
     <div class="featured col-md-6">
       <div class="featured-sites">
         <h2>Get Inspired</h2>
-         <carousel interval="myInterval">
-           <slide ng-repeat="site in sites" active="site.active">
-             <img ng-src="{{site.image}}" style="margin:auto;">
-             <div class="carousel-caption">
-            </div>
-            </img>
-            <span class="pull-left">
-            <h4>Slide {{site.name}} by {{site.author}}</h4>
-            <p>{{site.text}}</p>
-            </span>
-          </slide>
-          //Render {{site.name}} here
-
-          <span class="morelink"><a href="http://builtwith.mean.io">Built with MEAN</a></span>
-        </carousel>
+        <div class="featuredpic">
+          <img ng-src="{{sites.makeapoint.image}}"/>
+        </div>
+        <h4>{{sites.makeapoint.name}} <span>by
+          <a href="{{sites.makeapoint.link}}">{{sites.makeapoint.author}}</a></span></h4>
+          <p>{{sites.makeapoint.text}}</p>
+        <span class="morelink"><a href="http://builtwith.mean.io">Built with MEAN</a></span>
       </div>
       <div class="featured-packages">
         <h2>Featured Package</h2>
-        <carousel interval="myInterval">
-          <slide ng-repeat="pkg in packages" active="pkg.active">
-            <img ng-src="{{pkg.image}}" style="margin:auto;">
-         </img>
-         <span class="pull-left">
-         <h4>Slide {{pkg.name}} by {{pkg.author}}</h4>
-         <p>{pkg.text}}</p>
-        </span>
-         </slide>
-         <span class="morelink"><a href="http://mean.io">All Packages</a></span>
-       </carousel>
+        <div class="featuredpic">
+          <img ng-src="{{packages.gmap.image}}"/>
+        </div>
+        <h4>{{packages.gmap.name}} <span>by
+          <a href="{{sites.makeapoint.link}}">{{packages.gmap.author}}</a></span></h4>
+          <p>{{sites.makeapoint.text}}</p>
+        <span class="morelink"><a href="http://builtwith.mean.io">All Packages</a></span>
+
       </div>
     </div>
   </div>
