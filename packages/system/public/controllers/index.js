@@ -9,7 +9,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
         'text':'Makeapoint is a platform to craft and fine-tune ideas and messages providing a graphical experience which brough an offline methodlogy online',
         'author':'Linnovate',
         'link':'http://www.linnovate.net',
-        'image':'http://cdn.designbyhumans.com/pictures/blog/09-2013/pop-culture-cats/Pop_Culture_Cats_Hamilton_Hipster.jpg'
+        'image':'/theme/assets/img/makeapoint.png'
       },
       'intranet':{
         'name':'Intranet',
