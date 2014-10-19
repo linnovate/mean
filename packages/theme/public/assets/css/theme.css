@@ -45,7 +45,7 @@
 }
 
 .welcome .info {
-  margin-top:18px;
+  margin-top:10px;
   background-color: #fff;
 }
 
@@ -56,8 +56,9 @@
 }
 
 .welcome h2 {
-font-size:30px;
-font-weight:300;
+  margin-top: 27px;
+  font-size:30px;
+  font-weight:300;
 }
 
 .welcome h3 {
@@ -100,13 +101,16 @@ font-weight:300;
      margin: 0 0.6em 0 -1em;
 }
 
-.welcome .info p {
-  font-size: 14px;
+.welcome  p {
+  font-size: 12px;
   margin-top: 10px;
   margin-left:53px;
 }
 .welcome .info .docs {
   height:100%;
+}
+.welcome .info .docs p{
+  font-size:14px;
 }
 
 .docs-desc {
@@ -171,11 +175,55 @@ font-weight:300;
 }
 
 .packages .welcome-sprite {
-  background:url('/theme/assets/img/welcome_sprite.png') no-repeat -53px 0;
+  background:url('/theme/assets/img/welcome_sprite.png') no-repeat -60px 0;
 }
 
 .community .welcome-sprite {
-  background:url('/theme/assets/img/welcome_sprite.png') no-repeat -106px 0;
+  background:url('/theme/assets/img/welcome_sprite.png') no-repeat -120px 0;
+}
+
+.community .package {
+  float:left;
+  margin-bottom:10px;
+}
+.community .package p{
+  width:190px;
+  margin: 0 0 0 10px;
+}
+.community .package h4{
+  margin: 0 0 0 10px;
+}
+
+
+.socialsprite {
+    background-image: url(/theme/assets/img/welcome_social.png);
+    background-repeat: no-repeat;
+    display: block;
+    float:left;
+}
+
+.sprite-facebook {
+    width: 39px;
+    height: 42px;
+    background-position: -5px -5px;
+}
+
+.sprite-github {
+    width: 40px;
+    height: 44px;
+    background-position: -54px -5px;
+}
+
+.sprite-irc {
+    width: 38px;
+    height: 42px;
+    background-position: -104px -5px;
+}
+
+.sprite-stackoverflow {
+    width: 40px;
+    height: 44px;
+    background-position: -152px -5px;
 }
 
 /* Featured Sites */
@@ -189,6 +237,7 @@ font-weight:300;
   font-size:14px;
 }
 
-.featured-sites p {
+.featured-sites p, .featured-packages p {
   font-size:14px;
+  margin-left:0;
 }

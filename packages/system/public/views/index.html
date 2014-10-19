@@ -1,7 +1,7 @@
 <section class="welcome container-fluid" data-ng-controller="IndexController">
   <h1 class="pull-left" mean-token="'welcome-default'">WELCOME TO MEAN.IO</h1>
   <div class="col-md-12 first">
-    MEAN.io makes building apps simpler and faster. With this website framework, you can <a href="">create members</a>, </br>
+    MEAN.io makes building apps simpler and faster. With this website framework, you can <a href="https://github.com/linnovate/mean/wiki/CLI#user-management">create members</a>, </br>
     articles, or <a href="http://mean.io/#!/packages">add more features</a> with a package from the community or write one yourself.
     </div>
     <div class="col-md-12 row">
@@ -57,22 +57,25 @@
       <div class="community">
         <div class="welcome-sprite"></div>
         <h3>Join our community</h3>
-        <div class="welcome-sprite"></div>
+          <i class="socialsprite sprite-facebook"></i>
+          <div class="package">
+            <h4><a href="#">Facebook group</a></h4>
+            <p>Unformal support, news and just hanging out</p>
+          </div>
+            <i class="socialsprite sprite-irc"></i>
+          <div class="package">
+            <h4><a href="#">IRC</a></h4>
+            <p>Support and Techinical discussions</a></p>
+          </div>
+        <i class="socialsprite sprite-github"></i>
         <div class="package">
-          <h4><a href="#">Facebook group</a></h4>
-          <p>"Inplace edit" any text on the site which is wrapped by the mean-token directive.</p>
-        </div><div class="welcome-sprite"></div>
-        <div class="package">
-          <h4><a href="#">IRC</a></h4>
-          <p>"Inplace edit" any text on the site which is wrapped by the mean-token directive.</p>
-        </div><div class="welcome-sprite"></div>
-        <div class="package">
-          <h4><a href="#">Github</a></h4>
-          <p>"Inplace edit" any text on the site which is wrapped by the mean-token directive.</p>
+          <h4><a href="http://github.com/linnovate/mean">Github</a></h4>
+          <p>Issues, Support, Code discussions and PRs</p>
         </div>
+        <i class="socialsprite sprite-stackoverflow"></i>
         <div class="package">
-          <h4><a href="#">Stack overflow</a></h4>
-          <p>"Inplace edit" any text on the site which is wrapped by the mean-token directive.</p>
+          <h4><a href="http://hangout.mean.io">Hangout</a></h4>
+          <p>Video support, shared coding and to meet the people behind mean.io</p>
         </div>
       </div>
     </div>
@@ -94,9 +97,8 @@
         </div>
         <h4>{{packages.gmap.name}} <span>by
           <a href="{{sites.makeapoint.link}}">{{packages.gmap.author}}</a></span></h4>
-          <p>{{sites.makeapoint.text}}</p>
+          <p>{{packages.gmap.text}}</p>
         <span class="morelink"><a href="http://builtwith.mean.io">All Packages</a></span>
-
       </div>
     </div>
   </div>

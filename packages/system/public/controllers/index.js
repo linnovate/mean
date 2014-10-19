@@ -21,11 +21,11 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
     };
     $scope.packages = {
       'gmap':{
-        'name':'Comments',
-        'text':'comments package',
-        'author':'qed42',
+        'name':'gmap',
+        'text':'gmap lets you add geographical information to your applications objects',
+        'author':'linnovate',
         'link':'http://www.qed42.com',
-        'image':'/theme/assets/img/makeapoint.png'
+        'image':'/theme/assets/img/gmap.png'
       },
       'upload':{
         'name':'Upload',
