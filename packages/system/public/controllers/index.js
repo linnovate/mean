@@ -16,16 +16,16 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
         'text':'Enterpintranet',
         'author':'qed42',
         'link':'http://www.qed42.com',
-        'image':'http://www.catster.com/files/cat-stretching-shutterstock_61984297.jpg'
+        'image':''
       }
     };
     $scope.packages = {
       'gmap':{
-        'name':'Gmap',
-        'text':'hello text',
-        'author':'Linnovate',
-        'link':'http://www.linnovate.net',
-        'image':'http://cdn.designbyhumans.com/pictures/blog/09-2013/pop-culture-cats/Pop_Culture_Cats_Hamilton_Hipster.jpg'
+        'name':'Comments',
+        'text':'comments package',
+        'author':'qed42',
+        'link':'http://www.qed42.com',
+        'image':'/theme/assets/img/makeapoint.png'
       },
       'upload':{
         'name':'Upload',
