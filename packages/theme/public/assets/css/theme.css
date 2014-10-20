@@ -47,6 +47,7 @@
 .welcome .info {
   margin-top:10px;
   background-color: #fff;
+	padding-bottom: 10px;
 }
 
 .welcome h1 {
@@ -59,6 +60,10 @@
   margin-top: 27px;
   font-size:30px;
   font-weight:300;
+}
+
+.featured-packages h2{
+	margin-top:0;
 }
 
 .welcome h3 {
