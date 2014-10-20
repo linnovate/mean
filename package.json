@@ -1,6 +1,6 @@
 {
   "name": "meanio",
-  "version": "0.6.5",
+  "version": "0.6.8",
   "description": "Extracted functionality for MEAN.io",
   "author": {
     "name": "linnovate"
@@ -17,6 +17,9 @@
   }],
   "license": "AGPL",
   "main": "index",
+  "scripts": {
+    "preinstall": "./scripts/preinstall"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/linnovate/meanio.git"
