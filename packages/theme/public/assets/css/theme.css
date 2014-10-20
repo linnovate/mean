@@ -118,7 +118,7 @@
 }
 
 .docs-link {
-  margin: 16px 0 0 0px;
+  margin: 16px 0 0 0;
   float:left;
   width:120px;
 }
@@ -169,17 +169,21 @@
   width:53px;
   height:53px;
 }
-
+.welcome-sprite{
+  background-image: url(/theme/assets/img/welcome_sprite.png);
+  background-repeat: no-repeat;
+  display: block;
+}
 .docs .welcome-sprite {
-  background:url('/theme/assets/img/welcome_sprite.png') no-repeat 0 -7px ;
+  background-position: 0 -7px ;
 }
 
 .packages .welcome-sprite {
-  background:url('/theme/assets/img/welcome_sprite.png') no-repeat -60px 0;
+  background-position: -60px 0;
 }
 
 .community .welcome-sprite {
-  background:url('/theme/assets/img/welcome_sprite.png') no-repeat -120px 0;
+  background-position: -120px 0;
 }
 
 .community .package {
