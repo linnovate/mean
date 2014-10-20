@@ -18,7 +18,7 @@
   "license": "AGPL",
   "main": "index",
   "scripts": {
-    "preinstall": "./scripts/preinstall"
+    "preinstall": "node ./scripts/preinstall"
   },
   "repository": {
     "type": "git",
