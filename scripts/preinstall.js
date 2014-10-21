@@ -15,24 +15,19 @@ if (~args.indexOf('meanio') && ~args.indexOf('--global')) {
   process.exit(1);
 } else if (~args.indexOf('mean-cli')) {
   var spawn = require('child_process').spawn,
-    npmls = spawn('npm', ['ls', '--global', '--parseable', '--depth', '0']),
-    grep = spawn('grep', ['meanio']);
+    npmls = spawn('npm', ['ls', '--global', '--json', '--depth', '0']);
 
-  npmls.stdout.on('data', function(data) {
-    grep.stdin.write(data);
+  var data = {};
+  npmls.stdout.on('data', function(d) {
+    data = d;
   });
 
   npmls.on('close', function() {
-    grep.stdin.end();
-  });
+    try {
+      data = JSON.parse(data);
+    } catch (e) {}
 
-  grep.stdout.on('data', function(data) {
-    console.log('' + data);
-  });
-
-  grep.on('close', function(code) {
-    // meanio global was found
-    if (code === 0) {
+    if (data && data.dependencies.meanio) {
       console.log('  Please run \'npm uninstall -g meanio\' prior to installing mean-cli');
       console.log('');
       process.exit(1);
