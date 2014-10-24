@@ -28,13 +28,14 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
 
     $scope.remove = function(article) {
       if (article) {
-        article.$remove();
-
-        for (var i in $scope.articles) {
-          if ($scope.articles[i] === article) {
-            $scope.articles.splice(i, 1);
+        article.$remove(function(response) {
+          for (var i in $scope.articles) {
+            if ($scope.articles[i] === article) {
+              $scope.articles.splice(i, 1);
+            }
           }
-        }
+          $location.path('articles');
+        });
       } else {
         $scope.article.$remove(function(response) {
           $location.path('articles');
