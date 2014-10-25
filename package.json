@@ -1,6 +1,6 @@
 {
   "name": "meanio",
-  "version": "0.6.10",
+  "version": "0.6.11",
   "description": "Extracted functionality for MEAN.io",
   "author": {
     "name": "linnovate"
@@ -15,7 +15,7 @@
     "name": "Drew Fyock",
     "mail": "drew@steelbisondev.com"
   }],
-  "license": "AGPL",
+  "license": "MIT",
   "main": "index",
   "scripts": {
     "preinstall": "node ./scripts/preinstall"
