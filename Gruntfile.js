@@ -41,12 +41,12 @@ module.exports = function(grunt) {
       }
     },
     jshint: {
-      all: {
-        src: paths.js,
-        options: {
-          jshintrc: true
-        }
-      }
+      options: {
+        node: true
+      },
+      all: [
+        'Gruntfile.js'
+      ]
     },
     uglify: {
       core: {
