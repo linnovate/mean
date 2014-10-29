@@ -133,7 +133,7 @@ angular.module('mean.users')
       $scope.global.registerForm = false;
       $scope.forgotpassword = function() {
         $http.post('/forgot-password', {
-          text: $scope.text
+          text: $scope.user.email
         })
           .success(function(response) {
             $scope.response = response;
