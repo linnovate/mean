@@ -1,6 +1,6 @@
 'use strict';
 
-// The Package is past automatically as first parameter
+// The Package is passed automatically as first parameter
 module.exports = function(Theme, app, auth, database) {
 
   app.get('/theme/example/anyone', function(req, res, next) {
