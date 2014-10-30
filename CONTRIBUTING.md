@@ -2,7 +2,7 @@
 
 The mean-cli project requires agreeing to the following CLA (contributor license agreement) for developers that would like to contribute code to the project.
 
-We appreciate your time, energy and will to contributre, as the company behind the project - Linnovate Technologies LTD that has invested considerable time and money, we believe we need to retain rights and control over this part of the project so it can move forward with a sane governing model, and so we can not merge contributions from authors who do not accept the current CLA.
+We appreciate your time, energy and will to contribute, as the company behind the project - Linnovate Technologies LTD that has invested considerable time and money, we believe we need to retain rights and control over this part of the project so it can move forward with a sane governing model, and so we can not merge contributions from authors who do not accept the current CLA.
 
 Please read the following text carefully, and if you agree to it's content:
 
@@ -14,7 +14,7 @@ Once we merge the file you can gladly contribute to the project!
 
 ## Agreement Content
 
-By "commiting" to this file, you ("you" or "You") hereby grant to Linnovate and to recipients of software distributed through Linnovate a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable license to use, make, have made, offer to sell, sell, import, reproduce, prepare derivative works of, publicly display, publicly perform, sublicense, and distribute Your Contributions and such derivative works as part of Linnovate.
+By "committing" to this file, you ("you" or "You") hereby grant to Linnovate and to recipients of software distributed through Linnovate a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable license to use, make, have made, offer to sell, sell, import, reproduce, prepare derivative works of, publicly display, publicly perform, sublicense, and distribute Your Contributions and such derivative works as part of Linnovate.
 
 You, the contributor agree to the following…
 
@@ -36,3 +36,4 @@ If you become aware of any facts or circumstances related to the representation 
 * David Büttner {zloKOMAtic}
 * Andrija Petrovic {andrija-hers}
 * John Morris {spxis} 
+* Liran Tal {lirantal}
