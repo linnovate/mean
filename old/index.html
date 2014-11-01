@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Mean : MEAN (Mongo, Express, Angular, Node) stack Boilerplate" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Mean</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/linnovate/mean">View on GitHub</a>
+          <a id="contactus_banner" href="mailto:mean@linnovate.net">Contact Us</a>
+          <a id="blog_banner" href="http://blog.mean.io">Blog</a>
+          
+          <h1 id="project_title">Mean</h1>
+          <h2 id="project_tagline">MEAN (Mongo, Express, Angular, Node) stack Boilerplate</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/linnovate/mean/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/linnovate/mean/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="mean-stack" class="anchor" href="#mean-stack"><span class="octicon octicon-link"></span></a>MEAN Stack</h1>
+
+<p>MEAN is a boilerplate that provides a nice starting point for <a href="http://www.mongodb.org/">MongoDB</a>, <a href="http://www.nodejs.org/">Node.js</a>, <a href="http://expressjs.com/">Express</a>, and <a href="http://angularjs.org/">AngularJS</a> based applications. It is designed to give you quick and organized way to start developing of MEAN based web apps with useful modules like mongoose and passport pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.  </p>
+
+<h2>
+<a name="prerequisites" class="anchor" href="#prerequisites"><span class="octicon octicon-link"></span></a>Prerequisites</h2>
+
+<ul>
+<li>Node.js - Download and Install <a href="http://www.nodejs.org/download/">Node.js</a>. You can also follow <a href="https://gist.github.com/isaacs/579814">this gist</a> for a quick and easy way to install Node.js and npm</li>
+<li>MongoDB - Download and Install <a href="http://www.mongodb.org/downloads">MongoDB</a> - Make sure it's running on the default port (27017).</li>
+</ul><h3>
+<a name="tools-prerequisites" class="anchor" href="#tools-prerequisites"><span class="octicon octicon-link"></span></a>Tools Prerequisites</h3>
+
+<ul>
+<li>NPM - Node.js package manager, should be installed when you install node.js.</li>
+<li>Bower - Web package manager, installing <a href="http://bower.io/">Bower</a> is simple when you have npm:</li>
+</ul><pre><code>$ npm install -g bower
+</code></pre>
+
+<h3>
+<a name="optional" class="anchor" href="#optional"><span class="octicon octicon-link"></span></a>Optional</h3>
+
+<ul>
+<li>Grunt - Download and Install <a href="http://gruntjs.com">Grunt</a>.</li>
+</ul><h2>
+<a name="additional-packages" class="anchor" href="#additional-packages"><span class="octicon octicon-link"></span></a>Additional Packages</h2>
+
+<ul>
+<li>Express - Defined as npm module in the <a href="package.json">package.json</a> file.</li>
+<li>Mongoose - Defined as npm module in the <a href="package.json">package.json</a> file.</li>
+<li>Passport - Defined as npm module in the <a href="package.json">package.json</a> file.</li>
+<li>AngularJS - Defined as bower module in the <a href="bower.json">bower.json</a> file.</li>
+<li>Twitter Bootstrap - Defined as bower module in the <a href="bower.json">bower.json</a> file.</li>
+<li>UI Bootstrap - Defined as bower module in the <a href="bower.json">bower.json</a> file.</li>
+</ul><h2>
+<a name="quick-install" class="anchor" href="#quick-install"><span class="octicon octicon-link"></span></a>Quick Install</h2>
+
+<p>The quickest way to get started with MEAN is to clone the project and utilize it like this:</p>
+
+<p>Install dependencies:</p>
+
+<pre><code>$ npm install
+</code></pre>
+
+<p>We recommend using <a href="https://github.com/gruntjs/grunt-cli">Grunt</a> to start the server:</p>
+
+<pre><code>$ grunt
+</code></pre>
+
+<p>When not using grunt you can use:</p>
+
+<pre><code>$ node server
+</code></pre>
+
+<p>Then open a browser and go to:</p>
+
+<pre><code>http://localhost:3000
+</code></pre>
+
+<h2>
+<a name="troubleshooting" class="anchor" href="#troubleshooting"><span class="octicon octicon-link"></span></a>Troubleshooting</h2>
+
+<p>During install some of you may encounter some issues, most of this issues can be solved by one of the following tips.
+If you went through all this and still can't solve the issue, feel free to contact me(Amos), via the repository issue tracker or the links provided below.</p>
+
+<h4>
+<a name="update-npm-bower-or-grunt" class="anchor" href="#update-npm-bower-or-grunt"><span class="octicon octicon-link"></span></a>Update NPM, Bower or Grunt</h4>
+
+<p>Sometimes you may find there is a weird error during install like npm's <em>Error: ENOENT</em>, usually updating those tools to the latest version solves the issue.</p>
+
+<p>Updating NPM:</p>
+
+<pre><code>$ npm update -g npm
+</code></pre>
+
+<p>Updating Grunt:</p>
+
+<pre><code>$ npm update -g grunt-cli
+</code></pre>
+
+<p>Updating Bower:</p>
+
+<pre><code>$ npm update -g bower
+</code></pre>
+
+<h4>
+<a name="cleaning-npm-and-bower-cache" class="anchor" href="#cleaning-npm-and-bower-cache"><span class="octicon octicon-link"></span></a>Cleaning NPM and Bower cache</h4>
+
+<p>NPM and Bower has a caching system for holding packages that you already installed.
+We found that often cleaning the cache solves some troubles this system creates.</p>
+
+<p>NPM Clean Cache:</p>
+
+<pre><code>$ npm cache clean
+</code></pre>
+
+<p>Bower Clean Cache:</p>
+
+<pre><code>$ bower cache clean
+</code></pre>
+
+<h2>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>All configuration is specified in the <a href="config/">config</a> folder, particularly the <a href="config/config.js">config.js</a> file and the <a href="config/env/">env</a> files. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, GitHub or Google.</p>
+
+<h3>
+<a name="environmental-settings" class="anchor" href="#environmental-settings"><span class="octicon octicon-link"></span></a>Environmental Settings</h3>
+
+<p>There are three environments provided by default, <strong>development</strong>, <strong>test</strong>, and <strong>production</strong>. Each of these environments has the following configuration options:</p>
+
+<ul>
+<li>
+<strong>db</strong> - This is the name of the MongoDB database to use, and is set by default to <strong>mean-dev</strong> for the development environment.</li>
+<li>
+<strong>app.name</strong> - This is the name of your app or website, and can be different for each environment. You can tell which environment you are running by looking at the TITLE attribute that your app generates.</li>
+<li>
+<strong>Social OAuth Keys</strong> - Facebook, GitHub, Google, Twitter. You can specify your own social application keys here for each platform:
+
+<ul>
+<li><strong>clientID</strong></li>
+<li><strong>clientSecret</strong></li>
+<li><strong>callbackURL</strong></li>
+</ul>
+</li>
+</ul><p>To run with a different environment, just specify NODE_ENV as you call grunt:</p>
+
+<pre><code>$ NODE_ENV=test grunt
+</code></pre>
+
+<p>If you are using node instead of grunt, it is very similar:</p>
+
+<pre><code>$ NODE_ENV=test node server
+</code></pre>
+
+<blockquote>
+<p>NOTE: Running Node.js applications in the <strong>production</strong> environment enables caching, which is disabled by default in all other environments.</p>
+</blockquote>
+
+<h2>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p>We pre-included an article example, check it out:</p>
+
+<ul>
+<li>
+<a href="https://github.com/linnovate/mean/blob/master/app/models/article.js">The Model</a> - Where we define our object schema.</li>
+<li>
+<a href="https://github.com/linnovate/mean/blob/master/app/controllers/articles.js">The Controller</a> - Where we take care of our backend logic.</li>
+<li>
+<a href="https://github.com/linnovate/mean/blob/master/config/routes.js">NodeJS Routes</a> - Where we define our REST service routes.</li>
+<li>
+<a href="https://github.com/linnovate/mean/blob/master/public/js/config.js">AngularJs Routes</a> - Where we define our CRUD routes.</li>
+<li>
+<a href="https://github.com/linnovate/mean/blob/master/public/js/services/articles.js">The AngularJs Service</a> - Where we connect to our REST service.</li>
+<li>
+<a href="https://github.com/linnovate/mean/blob/master/public/js/controllers/articles.js">The AngularJs Controller</a> - Where we take care of  our frontend logic.</li>
+<li>
+<a href="https://github.com/linnovate/mean/blob/master/public/views/articles">The AngularJs Views Folder</a> - Where we keep our CRUD views.</li>
+</ul><h2>
+<a name="heroku-quick-deployment" class="anchor" href="#heroku-quick-deployment"><span class="octicon octicon-link"></span></a>Heroku Quick Deployment</h2>
+
+<p>Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed and an accessible mongo db instance - you can try <a href="http://www.mongohq.com/">mongohq</a> which have an easy setup )</p>
+
+<div class="highlight highlight-bash"><pre>git init
+git add .
+git commit -m <span class="s2">"initial version"</span>
+heroku apps:create
+git push heroku master
+</pre></div>
+
+<h2>
+<a name="more-information" class="anchor" href="#more-information"><span class="octicon octicon-link"></span></a>More Information</h2>
+
+<ul>
+<li>Visit us at <a href="http://www.linnovate.net/">Linnovate.net</a>.</li>
+<li>Visit our <a href="http://www.meanleanstartupmachine.com/">Ninja's Zone</a> for extended support.</li>
+</ul><h2>
+<a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>Credits</h2>
+
+<p>Inspired by the great work of <a href="https://github.com/madhums/">Madhusudhan Srinivasa</a></p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>(The MIT License)</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Mean is maintained by <a href="http://www.linnovate.net">Linnovate</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-36499287-4");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
