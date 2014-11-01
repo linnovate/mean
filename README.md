@@ -106,8 +106,67 @@ MEAN is an acronym for *M*ongo, *E*xpress.js , *A*ngular.js and *N* ode.js
 * <a href="http://getbootstrap.com/">Twitter Bootstrap</a> - The most popular HTML, CSS, and JS framework for developing responsive, mobile first projects.
 * <a href="http://angular-ui.github.io/bootstrap/">UI Bootstrap</a> - Bootstrap components written in pure AngularJS
 
+## CLI
+### Overview
 
-## Configuration
+The MEAN CLI is a simple Command Line Interface for installing and managing MEAN applications. As a core module of the mean.io project, it provides a number of useful tools to make interaction with your MEAN application easier, with features such as: scaffolding, module creation and admin, status checks, and user management.
+
+  $ mean
+  $ mean --help
+  $ mean help
+
+  <code>mean help</code> can also be used in conjunction with any command to get more information about that particular functionality. For example, try <code>mean help init</code> to see the options for init
+<pre>
+  $ mean help [command]
+  </pre>
+### Users
+
+ <p>Information can be display for a specific customer via <code>mean user email</code>. Email is required. User roles can be assigned or removed with the <code>--addRole (or -a)</code> and <code>--removeRole (or -r)</code> options, respectively.
+  <p>For example, the <i>Admin</i> role is required to edit tokens.</p>
+  <pre>
+  $ mean user &lt;email&gt;
+  $ mean user &lt;email&gt; --addRole &lt;role&gt;
+  $ mean user &lt;email&gt; --removeRole &lt;role&gt;
+  </pre>
+
+### packages
+#### Management
+ <p class="alert alert-warning">All of the remaining of the commands must be run from the root folder of your MEAN application.</p>
+ <h2>Contrib Packages</h2>
+
+  <p>Contrib MEAN packages can be installed or uninstalled via the CLI. Also, currently installed modules can be viewed with the <code>list</code> command.</p>
+  <pre>
+  $ mean list
+  $ mean install &lt;module&gt;
+  $ mean uninstall &lt;module&gt;
+  </pre>
+
+  <p class="alert alert-info">Mean packages installed via the installer are found in <i>/node_modules</i></p>
+#### Scaffolding
+To create a new MEAN app, run <code>mean init</code>. Name for the application is optional. If no name is provided, "mean" is used. The MEAN project will be cloned from GitHub into a directory of the application name.
+
+  $ mean init [name]
+  $ cd [name] &amp;&amp; npm install
+
+  <p class="alert alert-info">Note: <a href="http://git-scm.com/downloads">git</a> must be installed for this command to work properly.</p>
+
+### Misc
+#### Status
+<p>Check the database connection for a particular environment (e.g. development (default), test, production) and make sure that the meanio command line version is up to date.</p>
+  <pre>
+  $ mean status
+  </pre>
+#### Docs
+<p>A simple shortcut to open the mean documentation in your default browser.</p>
+  <pre>
+  $ mean docs
+  </pre>
+## Packages
+### Using contrib packages
+### Creating your own package
+### Contributing you package
+### Packages Files structure
+### Config
 All configuration is specified in the [config](/config/) folder, through the [env](config/env/) files, and is orchestrated through the [meanio](https://github.com/linnovate/mean-cli) NPM module. Here you will need to specify your application name, database name, and hook up any social app keys if you want integration with Twitter, Facebook, GitHub, or Google.
 
 ### Environmental Settings
