@@ -807,6 +807,7 @@ a.big.button:hover:visited {
   color: #565666;
 }
 .menu a.level-2 {
+  font-size:1.2em;
   font-weight: normal;
 }
 .menu a.level-3 {
