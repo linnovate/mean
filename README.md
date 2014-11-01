@@ -2,47 +2,40 @@
 
 MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. It is designed to give you a quick and organized way to start developing MEAN based web apps with useful modules like Mongoose and Passport pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.
 ## Prerequisites
-<ul>
-<li><strong>MongoDB</strong> <a href="http://www.mongodb.org/downloads">Download</a> and Install mongodb - <a href="http://docs.mongodb.org/manual">Checkout their manual</a> if you're just starting</li>
-<li><strong>Node.js</strong> - <a href="http://nodejs.org/download/">Download</a> and Install Node.js, codeschool has free <a href="https://www.codeschool.com/courses/real-time-web-with-node-js">node</a> and <a href="https://www.codeschool.com/courses/shaping-up-with-angular-js">angular</a> tutorials</li>
-<li><strong>git</strong> - Get git using a package manager or <a href="http://git-scm.com/downloads">download</a> it if you're on </li>
-</ul>
-
-* NPM - Node.js package manage; should be installed when you install node.js.
-* Bower - Web package manager. Installing [Bower](http://bower.io/) is simple when you have `npm`:
-```
-$ npm install -g bower
-```
+* *MongoDB* - <a href="http://www.mongodb.org/downloads">Download</a> and Install mongodb - <a href="http://docs.mongodb.org/manual">Checkout their manual</a> if you're just starting.
+* *Node.js* - <a href="http://nodejs.org/download/">Download</a> and Iמstall Node.js, codeschool has free <a href="https://www.codeschool.com/courses/real-time-web-with-node-js">node</a> and <a href="https://www.codeschool.com/courses/shaping-up-with-angular-js">angular</a> tutorials.
+* *Git* - Get git using a package manager or <a href="http://git-scm.com/downloads">download</a> it.
 * Grunt - Download and Install [Grunt](http://gruntjs.com).
 ```
 $ npm install -g grunt-cli
 ```
 
 ## Installation
-The quickest way to get started with MEAN is to install the `mean-cli` package from NPM.
+To start with MEAN install the `mean-cli` package from NPM.
+This will add the *mean* command which lets you interact (install, manage, update ...) your mean based  application.
 
 ### Install the MEAN CLI:
 
-    $ sudo npm install -g mean-cli
-    $ mean init <myApp>
-    $ cd <myApp> && npm install
+  $ sudo npm install -g mean-cli
+  $ mean init <myApp>
+  $ cd <myApp> && npm install
 
 ### Invoke node with Grunt
-  We recommend using [Grunt](https://github.com/gruntjs/grunt-cli) to start the server:
+We recommend using [Grunt](https://github.com/gruntjs/grunt-cli) to start the server:
 
-    $ grunt
+  $ grunt
 
-  If grunt aborts because of JSHINT errors, these can be overridden with the `force` flag:
+If grunt aborts because of JSHINT errors, these can be overridden with the `force` flag:
 
-    $ grunt -f
+  $ grunt -f
 
-  Alternatively, when not using `grunt` (and for production environments) you can run:
+Alternatively, when not using `grunt` (and for production environments) you can run:
 
-    $ node server
+  $ node server
 
-  Then, open a browser and go to:
+Then, open a browser and go to:
 
-    http://localhost:3000
+  http://localhost:3000
 ### Troubleshooting
 During install some of you may encounter some issues.
 
