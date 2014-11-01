@@ -78,7 +78,7 @@ Some of Mean.io dependencies uses [node-gyp](https://github.com/TooTallNate/node
 
 1. install [Python 2.7.x](https://www.python.org/downloads/)
 2. install [Microsoft Visual Studio C++ 2012 Express](http://www.microsoft.com/ru-ru/download/details.aspx?id=34673)
-3. fire NPM update
+3. Run NPM update
 ````
 $ npm update -g
 ````
@@ -87,7 +87,7 @@ $ npm update -g
 
 ### The MEAN stack
 
-MEAN is an acronym for Mongo, Express.js , Angular.js and Node.js
+MEAN is an acronym for *M*ongo, *E*xpress.js , *A*ngular.js and *N* ode.js
 
 <dl class="dl-horizontal">
 <dt>MongoDB</dt>
@@ -152,7 +152,7 @@ To simply run tests
 
 > NOTE: Running Node.js applications in the __production__ environment enables caching, which is disabled by default in all other environments.
 
-## Maintaining your own repository
+## Staying up to date
 After initializing a project, you'll see that the root directory of your project is already a git repository. MEAN uses git to download and update its own code. To handle its own operations, MEAN creates a remote called `upstream`. This way you can use git as you would in any other project.
 
 To maintain your own public or private repository, add your repository as remote. See here for information on [adding an existing project to GitHub](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line).
@@ -162,17 +162,6 @@ git remote add origin <remote repository URL>
 git push -u origin master
 ```
 
-
-## Getting Started
-We pre-included an article example. Check out:
-
-  * [The Model](packages/articles/server/models/article.js) - Where we define our object schema.
-  * [The Controller](packages/articles/server/controllers/articles.js) - Where we take care of our backend logic.
-  * [NodeJS Routes](packages/articles/server/routes/articles.js) - Where we define our REST service routes.
-  * [AngularJs Routes](packages/articles/public/routes/articles.js) - Where we define our CRUD routes.
-  * [The AngularJs Service](packages/articles/public/services/articles.js) - Where we connect to our REST service.
-  * [The AngularJs Controller](packages/articles/public/controllers/articles.js) - Where we take care of  our frontend logic.
-  * [The AngularJs Views Folder](packages/articles/public/views) - Where we keep our CRUD views.
 
 ## Hosting MEAN
 
@@ -204,17 +193,18 @@ heroku config:set NODE_ENV=production
 1. Merge your completed local app into this new repo. You will have some conflicts, so merge carefully, line by line.
 1. Commit and push the repo with the Openshift code back up to Openshift. Restart your instance on Openshift, you should see your site!
 
-## Cedits
-  * <a href="https://github.com/vkarpov15">Valeri Karpov</a> for coining the term *mean* and triggering the mean stack movement.
-  * <a href="https://github.com/amoshaviv">Amos Haviv</a>  for the creation of the initial version of mean.io while working for us @linnovate.
-  * <a href="https://github.com/madhums/">Madhusudhan Srinivasa</a> which inspired us with his great work.
 
 ## More Information
   * Visit us at [Linnovate.net](http://www.linnovate.net/).
   * Visit our [Ninja's Zone](http://www.meanleanstartupmachine.com/) for extended support.
 
+## Cedits
+  * <a href="https://github.com/vkarpov15">Valeri Karpov</a> for coining the term *mean* and triggering the mean stack movement.
+  * <a href="https://github.com/amoshaviv">Amos Haviv</a>  for the creation of the initial version of mean.io while working for us @linnovate.
+  * <a href="https://github.com/madhums/">Madhusudhan Srinivasa</a> which inspired us with his great work.
+
 ## License
-[The MIT License](http://opensource.org/licenses/MIT)
+We belive that mean should be free and easy to integrate within your existing projects so we chose the [The MIT License](http://opensource.org/licenses/MIT)
 
 [![Build Status](https://travis-ci.org/linnovate/mean.svg?branch=master)](https://travis-ci.org/linnovate/mean)
 [![Dependencies Status](https://david-dm.org/linnovate/mean.svg)](https://david-dm.org/linnovate/mean)
