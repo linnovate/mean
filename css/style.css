@@ -595,7 +595,8 @@ body.no-literate .content pre > code:hover::-webkit-scrollbar-thumb {
   }
 }
 .header {
-  background: #f3f6fb;
+  /*background: #f3f6fb;*/
+  background: #000;
   text-shadow: 0 1px 0 rgba(255,255,255,0.5);
   border-bottom: solid 1px #dfe2e7;
   padding: 15px 15px 15px 30px;
@@ -634,14 +635,14 @@ body.no-literate .content pre > code:hover::-webkit-scrollbar-thumb {
 .header h1,
 .header h1 a,
 .header h1 a:visited {
-  color: #9090aa;
+  color: #0f96ba;
 }
 .header h1 a:hover {
-  color: #505050;
+  color: #0f96ba;
 }
 .header li a {
   font-size: 0.88em;
-  color: #9090aa;
+  color: #fff;
   display: block;
 }
 .header li a:hover {
@@ -649,6 +650,7 @@ body.no-literate .content pre > code:hover::-webkit-scrollbar-thumb {
 }
 @media (min-width: 480px) {
   .header h1 {
+    color:#fff;
     float: left;
   }
   .header ul,
