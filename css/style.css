@@ -788,10 +788,10 @@ a.big.button:hover:visited {
 }
 .menu a,
 .menu a:visited {
-  color: #2badad;
+  color: #0f96ba;
 }
 .menu a:hover {
-  color: #228a8a;
+  color: #004057;
 }
 .menu a.level-1 {
   font-family: montserrat, sans-serif;
@@ -876,4 +876,3 @@ code .comment {
   position: relative;
   z-index: 1;
 }
-
