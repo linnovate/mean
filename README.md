@@ -14,12 +14,14 @@ $ npm install -g grunt-cli
 To start with MEAN install the `mean-cli` package from NPM.
 This will add the *mean* command which lets you interact (install, manage, update ...) your mean based  application.
 
-### Install the MEAN CLI:
-<pre>
+### Install the MEAN CLI
+
+```bash
   $ sudo npm install -g mean-cli
   $ mean init <myApp>
   $ cd <myApp> && npm install
-</pre>
+```
+
 ### Invoke node with Grunt
 We recommend using [Grunt](https://github.com/gruntjs/grunt-cli) to start the server:
 
@@ -36,6 +38,7 @@ Alternatively, when not using `grunt` (and for production environments) you can 
 Then, open a browser and go to:
 
   http://localhost:3000
+
 ### Troubleshooting
 During install some of you may encounter some issues.
 
@@ -45,12 +48,11 @@ Most issues can be solved by one of the following tips, but if are unable to fin
 Sometimes you may find there is a weird error during install like npm's *Error: ENOENT*. Usually updating those tools to the latest version solves the issue.
 
 * Updating NPM:
-```
+```bash
 $ npm update -g npm
 ```
-
 * Updating Grunt:
-```
+```bash
 $ npm update -g grunt-cli
 ```
 
@@ -64,12 +66,12 @@ NPM and Bower has a caching system for holding packages that you already install
 We found that often cleaning the cache solves some troubles this system creates.
 
 * NPM Clean Cache:
-```
+```bash
 $ npm cache clean
 ```
 
 * Bower Clean Cache:
-```
+```bash
 $ bower cache clean
 ```
 
