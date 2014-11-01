@@ -1,5 +1,5 @@
-MEAN Stack
-> [![MEAN Logo](http://linnovate.github.io/mean/img/meanlogo.png)]
+# MEAN Stack
+
 [![Build Status](https://travis-ci.org/linnovate/mean.svg?branch=master)](https://travis-ci.org/linnovate/mean)
 [![Dependencies Status](https://david-dm.org/linnovate/mean.svg)](https://david-dm.org/linnovate/mean)
 
