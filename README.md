@@ -11,7 +11,6 @@ MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://w
 <li><strong>git</strong> - Get git using a package manager or <a href="http://git-scm.com/downloads">download</a> it if you're on </li>
 </ul>
 
-### Tools Prerequisites
 * NPM - Node.js package manage; should be installed when you install node.js.
 * Bower - Web package manager. Installing [Bower](http://bower.io/) is simple when you have `npm`:
 ```
@@ -21,8 +20,9 @@ $ npm install -g bower
 ```
 $ npm install -g grunt-cli
 ```
+
 ## Installation
-  The quickest way to get started with MEAN is to install the `mean-cli` package from NPM.
+The quickest way to get started with MEAN is to install the `mean-cli` package from NPM.
 
 ### Install the MEAN CLI:
 
