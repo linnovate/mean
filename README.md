@@ -21,27 +21,16 @@ $ npm install -g bower
 ```
 $ npm install -g grunt-cli
 ```
-
-## Technologies
-
-Mean
-## Additional Packages
-* Express - Defined as npm module in the [package.json](package.json) file.
-* Mongoose - Defined as npm module in the [package.json](package.json) file.
-* Passport - Defined as npm module in the [package.json](package.json) file.
-* AngularJS - Defined as bower module in the [bower.json](bower.json) file.
-* Twitter Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
-* UI Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
-
-## Quick Install
+## Quick Start
   The quickest way to get started with MEAN is to install the `mean-cli` package from NPM.
 
-  Install MEAN CLI:
+### Install the MEAN CLI:
 
     $ sudo npm install -g mean-cli
     $ mean init <myApp>
     $ cd <myApp> && npm install
 
+### Invoke node with Grunt
   We recommend using [Grunt](https://github.com/gruntjs/grunt-cli) to start the server:
 
     $ grunt
@@ -57,6 +46,28 @@ Mean
   Then, open a browser and go to:
 
     http://localhost:3000
+
+## Technologies
+
+<dl class="dl-horizontal">
+<dt>MongoDB</dt>
+<dd>Go through MongoDB Official Website and proceed to its Great Manual, which should help you understand NoSQL and MongoDB better.</dd>
+<dt>Express</dt>
+<dd>The best way to understand express is through its Official Website, particularly The Express Guide; you can also go through this StackOverflow Thread for more resources.</dd>
+<dt>AngularJS</dt>
+<dd>Angular's Official Website is a great starting point. You can also use Thinkster Popular Guide, and the Egghead Videos.</dd>
+<dt>Node.js</dt>
+<dd>Start by going through Node.js Official Website and this StackOverflow Thread, which should get you going with the Node.js platform in no time.</dd>
+</dl>
+## Additional Packages
+* Express - Defined as npm module in the [package.json](package.json) file.
+* Mongoose - Defined as npm module in the [package.json](package.json) file.
+* Passport - Defined as npm module in the [package.json](package.json) file.
+* AngularJS - Defined as bower module in the [bower.json](bower.json) file.
+* Twitter Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
+* UI Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
+
+
 
 ## Troubleshooting
 During install some of you may encounter some issues.
