@@ -55,10 +55,11 @@ $ npm install -g grunt-cli
 <dt>Express</dt>
 <dd>The best way to understand express is through its Official Website, particularly The Express Guide; you can also go through this StackOverflow Thread for more resources.</dd>
 <dt>AngularJS</dt>
-<dd>Angular's Official Website is a great starting point. You can also use Thinkster Popular Guide, and the Egghead Videos.</dd>
+<dd>Angular's Official Website is a great starting point. CodeSchool and google created a <a href="https://www.codeschool.com/courses/shaping-up-with-angular-js">great tutorial</a> for beginners., and the angular videos by <a href="https://egghead.io/">Egghead</a>.</dd>
 <dt>Node.js</dt>
 <dd>Start by going through Node.js Official Website and this StackOverflow Thread, which should get you going with the Node.js platform in no time.</dd>
 </dl>
+
 ## Additional Packages
 * Express - Defined as npm module in the [package.json](package.json) file.
 * Mongoose - Defined as npm module in the [package.json](package.json) file.
@@ -212,6 +213,11 @@ heroku config:set NODE_ENV=production
 1. On your new app's console page on Openshift, make a note of the git repo where the code lives. Clone that repo to your local computer where your mean.io app codebase is.
 1. Merge your completed local app into this new repo. You will have some conflicts, so merge carefully, line by line.
 1. Commit and push the repo with the Openshift code back up to Openshift. Restart your instance on Openshift, you should see your site!
+
+## Cedits
+  * <a href="https://github.com/vkarpov15">Valeri Karpov</a> for coining the term *mean* and triggering the mean stack movement.
+  * <a href="https://github.com/amoshaviv">Amos Haviv</a>  for the creation of the initial version of mean.io while working for us @linnovate.
+  * <a href="https://github.com/madhums/">Madhusudhan Srinivasa</a> which inspired us with his great work.
 
 ## More Information
   * Visit us at [Linnovate.net](http://www.linnovate.net/).
