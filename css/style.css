@@ -879,3 +879,8 @@ code .comment {
   position: relative;
   z-index: 1;
 }
+
+/* Custom additions start here */
+
+dl.dl-horizontal dt{float:left; font-weight:bold;}
+dl.dl-horizontal dd {margin-left:80px;}
