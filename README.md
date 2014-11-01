@@ -160,18 +160,19 @@ To create a new MEAN app, run <code>mean init</code>. Name for the application i
   <p class="alert alert-info">Note: <a href="http://git-scm.com/downloads">git</a> must be installed for this command to work properly.</p>
 
 ### Misc
-<h3>Status</h3>
+<h4>Status</h4>
 <p>Check the database connection for a particular environment (e.g. development (default), test, production) and make sure that the meanio command line version is up to date.</p>
-  <pre>
+
   $ mean status
-  </pre>
-<h3>Docs</h3>
+
+<h4>Docs</h4>
 <p>A simple shortcut to open the mean documentation in your default browser.</p>
   <pre>
   $ mean docs
   </pre>
 ## Packages
 ### Using contrib packages
+As mentioned in the #cli
 ### Creating your own package
 ### Contributing you package
 ### Packages Files structure
