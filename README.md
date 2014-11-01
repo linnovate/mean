@@ -21,7 +21,7 @@ $ npm install -g bower
 ```
 $ npm install -g grunt-cli
 ```
-## Quick Start
+## Installation
   The quickest way to get started with MEAN is to install the `mean-cli` package from NPM.
 
 ### Install the MEAN CLI:
@@ -46,31 +46,7 @@ $ npm install -g grunt-cli
   Then, open a browser and go to:
 
     http://localhost:3000
-
-## Technologies
-
-### The MEAN stack
-
-MEAN is an acronym for Mongo, Express.js , Angular.js and Node.js
-
-<dl class="dl-horizontal">
-<dt>MongoDB</dt>
-<dd>Go through MongoDB Official Website and proceed to its Great Manual, which should help you understand NoSQL and MongoDB better.</dd>
-<dt>Express</dt>
-<dd>The best way to understand express is through its Official Website, particularly The Express Guide; you can also go through this StackOverflow Thread for more resources.</dd>
-<dt>AngularJS</dt>
-<dd>Angular's Official Website is a great starting point. CodeSchool and google created a <a href="https://www.codeschool.com/courses/shaping-up-with-angular-js">great tutorial</a> for beginners., and the angular videos by <a href="https://egghead.io/">Egghead</a>.</dd>
-<dt>Node.js</dt>
-<dd>Start by going through Node.js Official Website and this StackOverflow Thread, which should get you going with the Node.js platform in no time.</dd>
-</dl>
-
-### Additional Tools
-* <a href="http://mongoosejs.com/">Mongoose</a> - The mongodb node.js driver in charge of providing elegant mongodb object modeling for node.js
-* <a href="http://passportjs.org/"">Passport</a> - An authentication middleware for Node.js which supports authentication using a username and password, Facebook, Twitter, and more.
-* <a href="http://getbootstrap.com/">Twitter Bootstrap</a> - The most popular HTML, CSS, and JS framework for developing responsive, mobile first projects.
-* <a href="http://angular-ui.github.io/bootstrap/">UI Bootstrap</a> - Bootstrap components written in pure AngularJS
-
-## Troubleshooting
+### Troubleshooting
 During install some of you may encounter some issues.
 
 Most issues can be solved by one of the following tips, but if are unable to find a solution feel free to contact us via the repository issue tracker or the links provided below.
@@ -116,6 +92,29 @@ Some of Mean.io dependencies uses [node-gyp](https://github.com/TooTallNate/node
 ````
 $ npm update -g
 ````
+## Technologies
+
+### The MEAN stack
+
+MEAN is an acronym for Mongo, Express.js , Angular.js and Node.js
+
+<dl class="dl-horizontal">
+<dt>MongoDB</dt>
+<dd>Go through MongoDB Official Website and proceed to its Great Manual, which should help you understand NoSQL and MongoDB better.</dd>
+<dt>Express</dt>
+<dd>The best way to understand express is through its Official Website, particularly The Express Guide; you can also go through this StackOverflow Thread for more resources.</dd>
+<dt>AngularJS</dt>
+<dd>Angular's Official Website is a great starting point. CodeSchool and google created a <a href="https://www.codeschool.com/courses/shaping-up-with-angular-js">great tutorial</a> for beginners., and the angular videos by <a href="https://egghead.io/">Egghead</a>.</dd>
+<dt>Node.js</dt>
+<dd>Start by going through Node.js Official Website and this StackOverflow Thread, which should get you going with the Node.js platform in no time.</dd>
+</dl>
+
+### Additional Tools
+* <a href="http://mongoosejs.com/">Mongoose</a> - The mongodb node.js driver in charge of providing elegant mongodb object modeling for node.js
+* <a href="http://passportjs.org/"">Passport</a> - An authentication middleware for Node.js which supports authentication using a username and password, Facebook, Twitter, and more.
+* <a href="http://getbootstrap.com/">Twitter Bootstrap</a> - The most popular HTML, CSS, and JS framework for developing responsive, mobile first projects.
+* <a href="http://angular-ui.github.io/bootstrap/">UI Bootstrap</a> - Bootstrap components written in pure AngularJS
+
 
 ## Configuration
 All configuration is specified in the [config](/config/) folder, through the [env](config/env/) files, and is orchestrated through the [meanio](https://github.com/linnovate/mean-cli) NPM module. Here you will need to specify your application name, database name, and hook up any social app keys if you want integration with Twitter, Facebook, GitHub, or Google.
