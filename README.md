@@ -4,13 +4,10 @@
 MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. It is designed to give you a quick and organized way to start developing MEAN based web apps with useful modules like Mongoose and Passport pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.
 
 ## Prerequisites
-* Node.js - Download and Install [Node.js](http://www.nodejs.org/download/). You can also follow [this gist](https://gist.github.com/isaacs/579814) for a quick and easy way to install Node.js and npm
-* MongoDB - Download and Install [MongoDB](http://docs.mongodb.org/manual/installation/) - Make sure `mongod` is running on the default port (27017).
 
-<hr>
 <ul>
 <li><strong>MongoDB</strong> <a href="http://www.mongodb.org/downloads">Download</a> and Install mongodb - <a href="http://docs.mongodb.org/manual">Checkout their manual</a> if you're just starting</li>
-<li><strong>Node.js</strong> - <a href="http://nodejs.org/download/">Download</a> and Install Node.js, codeschool has free <a href="https://www.codeschool.com/courses/real-time-web-with-node-js">node</a> and < a href="https://www.codeschool.com/courses/shaping-up-with-angular-js">angular</a> tutorials</li>
+<li><strong>Node.js</strong> - <a href="http://nodejs.org/download/">Download</a> and Install Node.js, codeschool has free <a href="https://www.codeschool.com/courses/real-time-web-with-node-js">node</a> and <a href="https://www.codeschool.com/courses/shaping-up-with-angular-js">angular</a> tutorials</li>
 <li><strong>git</strong> - Get git using a package manager or <a href="http://git-scm.com/downloads">download</a> it if you're on </li>
 </ul>
 
