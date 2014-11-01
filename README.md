@@ -92,6 +92,7 @@ Some of Mean.io dependencies uses [node-gyp](https://github.com/TooTallNate/node
 ````
 $ npm update -g
 ````
+
 ## Technologies
 
 ### The MEAN stack
