@@ -106,6 +106,10 @@ MEAN is an acronym for *M*ongo, *E*xpress.js , *A*ngular.js and *N* ode.js
 * <a href="http://getbootstrap.com/">Twitter Bootstrap</a> - The most popular HTML, CSS, and JS framework for developing responsive, mobile first projects.
 * <a href="http://angular-ui.github.io/bootstrap/">UI Bootstrap</a> - Bootstrap components written in pure AngularJS
 
+[![Build Status](https://travis-ci.org/linnovate/mean.svg?branch=master)](https://travis-ci.org/linnovate/mean)
+[![Dependencies Status](https://david-dm.org/linnovate/mean.svg)](https://david-dm.org/linnovate/mean)
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+
 ## CLI
 ### Overview
 
@@ -132,9 +136,7 @@ The MEAN CLI is a simple Command Line Interface for installing and managing MEAN
 ### packages
 #### Management
  <p class="alert alert-warning">All of the remaining of the commands must be run from the root folder of your MEAN application.</p>
- <h2>Contrib Packages</h2>
-
-  <p>Contrib MEAN packages can be installed or uninstalled via the CLI. Also, currently installed modules can be viewed with the <code>list</code> command.</p>
+  <p>Contributed MEAN packages can be installed or uninstalled via the CLI. Also, currently installed modules can be viewed with the <code>list</code> command.</p>
   <pre>
   $ mean list
   $ mean install &lt;module&gt;
@@ -142,6 +144,13 @@ The MEAN CLI is a simple Command Line Interface for installing and managing MEAN
   </pre>
 
   <p class="alert alert-info">Mean packages installed via the installer are found in <i>/node_modules</i></p>
+#### Search
+To find new packages run the *mean search* command
+
+  $ mean search [packagename]
+
+mean search will return all of the available packages, mean search packagename will filter the search results.
+
 #### Scaffolding
 To create a new MEAN app, run <code>mean init</code>. Name for the application is optional. If no name is provided, "mean" is used. The MEAN project will be cloned from GitHub into a directory of the application name.
 
@@ -151,12 +160,12 @@ To create a new MEAN app, run <code>mean init</code>. Name for the application i
   <p class="alert alert-info">Note: <a href="http://git-scm.com/downloads">git</a> must be installed for this command to work properly.</p>
 
 ### Misc
-#### Status
+<h3>Status</h3>
 <p>Check the database connection for a particular environment (e.g. development (default), test, production) and make sure that the meanio command line version is up to date.</p>
   <pre>
   $ mean status
   </pre>
-#### Docs
+<h3>Docs</h3>
 <p>A simple shortcut to open the mean documentation in your default browser.</p>
   <pre>
   $ mean docs
@@ -264,7 +273,3 @@ heroku config:set NODE_ENV=production
 
 ## License
 We belive that mean should be free and easy to integrate within your existing projects so we chose the [The MIT License](http://opensource.org/licenses/MIT)
-
-[![Build Status](https://travis-ci.org/linnovate/mean.svg?branch=master)](https://travis-ci.org/linnovate/mean)
-[![Dependencies Status](https://david-dm.org/linnovate/mean.svg)](https://david-dm.org/linnovate/mean)
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
