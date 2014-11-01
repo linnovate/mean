@@ -15,11 +15,11 @@ To start with MEAN install the `mean-cli` package from NPM.
 This will add the *mean* command which lets you interact (install, manage, update ...) your mean based  application.
 
 ### Install the MEAN CLI:
-
+<pre>
   $ sudo npm install -g mean-cli
   $ mean init <myApp>
   $ cd <myApp> && npm install
-
+</pre>
 ### Invoke node with Grunt
 We recommend using [Grunt](https://github.com/gruntjs/grunt-cli) to start the server:
 
