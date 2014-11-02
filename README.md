@@ -25,7 +25,8 @@ This will add the *mean* command which lets you interact (install, manage, updat
 ```bash
   $ sudo npm install -g mean-cli
 ```
-From your web server's root directory, excute the following commands. 
+From your web server's root directory, excute the following commands:
+
 ```
   $ sudo mean init <myApp>
   $ cd <myApp> && sudo npm install && sudo bower install --allow-root
