@@ -32,11 +32,11 @@ If grunt aborts because of JSHINT errors, these can be overridden with the `forc
   $ grunt -f
 ```
 Alternatively, when not using `grunt` (and for production environments) you can run:
-```
+```bash
   $ node server
 ```
 Then, open a browser and go to:
-```
+```bash
   http://localhost:3000
 ```
 ### Troubleshooting
@@ -81,9 +81,9 @@ Some of Mean.io dependencies uses [node-gyp](https://github.com/TooTallNate/node
 1. install [Python 2.7.x](https://www.python.org/downloads/)
 2. install [Microsoft Visual Studio C++ 2012 Express](http://www.microsoft.com/ru-ru/download/details.aspx?id=34673)
 3. Run NPM update
-````
+```bash
 $ npm update -g
-````
+```
 
 ## Technologies
 
@@ -115,65 +115,65 @@ MEAN is an acronym for *M*ongo, *E*xpress.js , *A*ngular.js and *N* ode.js
 ### Overview
 
 The MEAN CLI is a simple Command Line Interface for installing and managing MEAN applications. As a core module of the mean.io project, it provides a number of useful tools to make interaction with your MEAN application easier, with features such as: scaffolding, module creation and admin, status checks, and user management.
-
+```bash
   $ mean
   $ mean --help
   $ mean help
-
+```
   <code>mean help</code> can also be used in conjunction with any command to get more information about that particular functionality. For example, try <code>mean help init</code> to see the options for init
-<pre>
+```bash
   $ mean help [command]
-  </pre>
+```
 ### Users
 
  <p>Information can be display for a specific customer via <code>mean user email</code>. Email is required. User roles can be assigned or removed with the <code>--addRole (or -a)</code> and <code>--removeRole (or -r)</code> options, respectively.
   <p>For example, the <i>Admin</i> role is required to edit tokens.</p>
-  <pre>
+```bash
   $ mean user &lt;email&gt;
   $ mean user &lt;email&gt; --addRole &lt;role&gt;
   $ mean user &lt;email&gt; --removeRole &lt;role&gt;
-  </pre>
+```
 
 ### packages
 #### Management
  <p class="alert alert-warning">All of the remaining of the commands must be run from the root folder of your MEAN application.</p>
   <p>Contributed MEAN packages can be installed or uninstalled via the CLI. Also, currently installed modules can be viewed with the <code>list</code> command.</p>
-  <pre>
+```bash
   $ mean list
   $ mean install &lt;module&gt;
   $ mean uninstall &lt;module&gt;
-  </pre>
+```
 
   <p class="alert alert-info">Mean packages installed via the installer are found in <i>/node_modules</i></p>
 #### Search
 To find new packages run the *mean search* command
-
+```bash
   $ mean search [packagename]
-
+```
 mean search will return all of the available packages, mean search packagename will filter the search results.
 
 #### Scaffolding
 To create a new MEAN app, run <code>mean init</code>. Name for the application is optional. If no name is provided, "mean" is used. The MEAN project will be cloned from GitHub into a directory of the application name.
-
+```bash
   $ mean init [name]
   $ cd [name] &amp;&amp; npm install
-
+```
   <p class="alert alert-info">Note: <a href="http://git-scm.com/downloads">git</a> must be installed for this command to work properly.</p>
 
 ### Misc
 <h4>Status</h4>
 <p>Check the database connection for a particular environment (e.g. development (default), test, production) and make sure that the meanio command line version is up to date.</p>
-
+```bash
   $ mean status
-
+```
 <h4>Docs</h4>
 <p>A simple shortcut to open the mean documentation in your default browser.</p>
-  <pre>
+```bash
   $ mean docs
-  </pre>
+```
+
 ## Packages
 Everything in mean.io is a package and when extending mean with custom functionality make sure you create your own package and do not alter the core packages.
-T
 ### Core Packages
 #### System
 coming soon
@@ -186,7 +186,7 @@ coming soon
 #### Articles
 coming soon
 ### Files structure
-
+coming soon
 ### Creating your own package
 To create your own package and scaffold it's initial code - run
 ```bash
@@ -195,7 +195,9 @@ mean package <packageName>
 This will create a package under */packages/custom/pkgName*
 ### Contributing you package
 ### Config
-All configuration is specified in the [config](/config/) folder, through the [env](config/env/) files, and is orchestrated through the [meanio](https://github.com/linnovate/meanio) NPM module. Here you will need to specify your application name, database name, and hook up any social app keys if you want integration with Twitter, Facebook, GitHub, or Google.
+All the configuration is specified in the [config](/config/) folder,
+through the [env](config/env/) files, and is orchestrated through the [meanio](https://github.com/linnovate/meanio) NPM module.
+Here you will need to specify your application name, database name, and hook up any social app keys if you want integration with Twitter, Facebook, GitHub, or Google.
 
 ### Environmental Settings
 
@@ -232,7 +234,7 @@ If you are using node instead of grunt, it is very similar:
     $ NODE_ENV=test node server
 ```
 To simply run tests
-```
+```bash
     $ npm test
 ```
 > NOTE: Running Node.js applications in the __production__ environment enables caching, which is disabled by default in all other environments.
@@ -242,7 +244,7 @@ After initializing a project, you'll see that the root directory of your project
 
 To maintain your own public or private repository, add your repository as remote. See here for information on [adding an existing project to GitHub](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line).
 
-```
+```bash
 git remote add origin <remote repository URL>
 git push -u origin master
 ```
@@ -257,7 +259,7 @@ which has an easy setup).
 
 Add the db string to the production env in server/config/env/production.js.
 
-```
+```bash
 git init
 git add .
 git commit -m "initial version"
