@@ -201,7 +201,8 @@ Here you will need to specify your application name, database name, and hook up 
 
 ### Environmental Settings
 
-There is a shared environment config: __all__.
+There is a shared environment config: __all__
+
 * __root__ - This the default root path for the application.
 * __port__ - DEPRECATED to __http.port__ or __https.port__.
 * __http.port__ - This sets the default application port.
