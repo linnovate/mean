@@ -104,7 +104,7 @@ MEAN is an acronym for *M*ongo, *E*xpress.js , *A*ngular.js and *N* ode.js
 
 ### Additional Tools
 * <a href="http://mongoosejs.com/">Mongoose</a> - The mongodb node.js driver in charge of providing elegant mongodb object modeling for node.js
-* <a href="http://passportjs.org/"">Passport</a> - An authentication middleware for Node.js which supports authentication using a username and password, Facebook, Twitter, and more.
+* <a href="http://passportjs.org/">Passport</a> - An authentication middleware for Node.js which supports authentication using a username and password, Facebook, Twitter, and more.
 * <a href="http://getbootstrap.com/">Twitter Bootstrap</a> - The most popular HTML, CSS, and JS framework for developing responsive, mobile first projects.
 * <a href="http://angular-ui.github.io/bootstrap/">UI Bootstrap</a> - Bootstrap components written in pure AngularJS
 [![Build Status](https://travis-ci.org/linnovate/mean.svg?branch=master)](https://travis-ci.org/linnovate/mean)
@@ -127,11 +127,11 @@ The MEAN CLI is a simple Command Line Interface for installing and managing MEAN
 ### Users
 
  <p>Information can be display for a specific customer via <code>mean user email</code>. Email is required. User roles can be assigned or removed with the <code>--addRole (or -a)</code> and <code>--removeRole (or -r)</code> options, respectively.
-  <p>For example, the <i>Admin</i> role is required to edit tokens.</p>
+  <p>For example, the <i>admin</i> role is required to edit tokens.</p>
 ```bash
-  $ mean user &lt;email&gt;
-  $ mean user &lt;email&gt; --addRole &lt;role&gt;
-  $ mean user &lt;email&gt; --removeRole &lt;role&gt;
+  $ mean user <email>
+  $ mean user <email> --addRole <role>;
+  $ mean user <email> --removeRole <role>;
 ```
 
 ### packages
