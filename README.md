@@ -139,8 +139,8 @@ The MEAN CLI is a simple Command Line Interface for installing and managing MEAN
   <p>Contributed MEAN packages can be installed or uninstalled via the CLI. Also, currently installed modules can be viewed with the <code>list</code> command.</p>
 ```bash
   $ mean list
-  $ mean install &lt;module&gt;
-  $ mean uninstall &lt;module&gt;
+  $ mean install <module>
+  $ mean uninstall <module>
 ```
 
   <p class="alert alert-info">Mean packages installed via the installer are found in <i>/node_modules</i></p>
@@ -155,7 +155,7 @@ mean search will return all of the available packages, mean search packagename w
 To create a new MEAN app, run <code>mean init</code>. Name for the application is optional. If no name is provided, "mean" is used. The MEAN project will be cloned from GitHub into a directory of the application name.
 ```bash
   $ mean init [name]
-  $ cd [name] &amp;&amp; npm install
+  $ cd [name] && npm install
 ```
   <p class="alert alert-info">Note: <a href="http://git-scm.com/downloads">git</a> must be installed for this command to work properly.</p>
 
