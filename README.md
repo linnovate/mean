@@ -55,9 +55,8 @@ $ npm update -g npm
 ```bash
 $ npm update -g grunt-cli
 ```
-
 * Updating Bower:
-```
+```bash
 $ npm update -g bower
 ```
 
