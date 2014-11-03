@@ -333,7 +333,6 @@ The settings object is a persistance object that is stored in the packages colle
     MyPackage.settings(function (err, settings) {
       //you now have the settings object
     });
-  </div>
 
 > Each time you save settings you overwrite your previous value.
 > Settings are designed to be used to store basic configuration options
