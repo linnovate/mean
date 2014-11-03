@@ -201,7 +201,43 @@ The theme package adds some basic CSS and other assets such as images and backgr
 #### Articles
 Articles package is typically used as an example, starting point for managing content that might be used in a blog or cms. The full CRUD is implemented on the server and client.
 ### Files structure
-coming soon
+The file structure is similar to that of the mean project itself
+
+`Fundamental` Files at the `root` of the package
+
+**Server**
+
+app.js         Packages are registered here
+package.json   Defines package name, version and `mean=true`
+
+All of the Server side code resides in the `/server` directory.
+
+  
+Server
+--- config        # Configuration files
+--- controllers   # Server side logic goes here
+--- models        # Database Schema Models
+--- routes        # Rest api endpoints for routing
+--- views         # Swig based html rendering
+
+**Client**
+
+All of the Client side code resides in the `/public` directory.
+
+public            # Anything in public is public assessible
+--- assets        # Javascript/Css/Images (not aggregated)
+--- controllers   # Angular Controllers
+--- config        # Contains routing files
+--- services      # Angular Services (there are also directive and filter folders)
+--- views         # Angular views
+
+All javascript within public is automatically aggregated with the exception of files in assets which can be manually added using the `aggregateAsset()` function
+
+Files within public of the package can be accessed externally `/[package-name]/path-to-file-relative-to-public` for example to access tokens angular controller tokens/controllers/tokens.js
+
+
+
+
 ### Creating your own package
 To create your own package and scaffold it's initial code - run
 ```bash
