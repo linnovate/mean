@@ -803,7 +803,7 @@ a.big.button:hover:visited {
 }
 .menu a.level-1,
 .menu a.level-1:visited {
-  color: #9090aa;
+  color: #fff;
 }
 .menu a.level-1:hover {
   color: #565666;
