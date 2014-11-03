@@ -513,7 +513,7 @@ heroku config:set NODE_ENV=production
   * Visit us at [Linnovate.net](http://www.linnovate.net/).
   * Visit our [Ninja's Zone](http://www.meanleanstartupmachine.com/) for extended support.
 
-## Cedits
+## Credits
   * <a href="https://github.com/vkarpov15">Valeri Karpov</a> for coining the term *mean* and triggering the mean stack movement.
   * <a href="https://github.com/amoshaviv">Amos Haviv</a>  for the creation of the initial version of mean.io while working for us @linnovate.
   * <a href="https://github.com/madhums/">Madhusudhan Srinivasa</a> which inspired us with his great work.
