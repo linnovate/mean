@@ -263,10 +263,13 @@ Dependency injection allows you to declare what dependencies you require and rel
 
 Looking again at the registration example we can see that `MyPackage` depends on the `Tokens` and can make use of it full functionality including overriding it.
 
-  // Example of registering the tokens package
-  MyPackage.register(function(app, auth, database, Tokens) {
+ 
+
+    // Example of registering the tokens package
+     MyPackage.register(function(app, auth, database, Tokens) {
+
     //I can make use of the tokens within my module
-    MyPackage.someExampleFunction('some paramater');
+       MyPackage.someExampleFunction('some paramater');
 
     //I can override functions
     MyPackage.someExampleFunction = function(param) {
@@ -286,8 +289,9 @@ In addition you are able to declare which angular dependencies you want your ang
 
 Below is an example of adding an angular dependency to our angular module.
 
-  // Example of adding an angular dependency of the ngDragDrop to the
-  MyPackage.angularDependencies(['ngDragDrop']);
+      // Example of adding an angular dependency of the ngDragDrop to the
+      MyPackage.angularDependencies(['ngDragDrop']);
+
   </div>
 
 > See the assets section for an example how to add external libraries to
@@ -299,14 +303,14 @@ All assets such as images, javascript libraries and css stylesheets should be wi
 
 Javascript and css from `assets` can be aggregated to the global aggregation files. By default all javascript is automatically wrapped within an anonymous function unless given the option `{global:true}` to not enclose the javascript within a contained scope
 
-  //Adding jquery to the mean project
-  MyPackage.aggregateAsset('js','jquery.min.js');
-
-  //Adding another library - global by default is false
-  MyPackage.aggregateAsset('js','jquery.min.js', {global:true});
-
-  //Adding some css to the mean project
-  MyPackage.aggregateAsset('css','default.css');
+      //Adding jquery to the mean project
+      MyPackage.aggregateAsset('js','jquery.min.js');
+    
+      //Adding another library - global by default is false
+      MyPackage.aggregateAsset('js','jquery.min.js', {global:true});
+    
+      //Adding some css to the mean project
+      MyPackage.aggregateAsset('css','default.css');
 
 
 > Javascript files outside of assets are automatically aggregated and
@@ -316,10 +320,11 @@ Javascript and css from `assets` can be aggregated to the global aggregation fil
 ###Settings Object
 The settings object is a persistance object that is stored in the packages collection and allows for saving persistant information per package such as configuration options or admin settings for the package.
 
-  //Receives two arguments the first being the settings object the second
-  //is a callback function
+  Receives two arguments the first being the settings object the second is a callback function
+  
+
     MyPackage.settings({'someSetting':'some value'},function (err, settings) {
-      //you will receive the settings object on success
+        //you will receive the settings object on success
     });
 
     // Another save settings example this time with no callback
@@ -340,30 +345,30 @@ The settings object is a persistance object that is stored in the packages colle
 ###Express Routes
 All routing to server side controllers is handled by express routes. The package system uses the typical express approach. The package system has a route function that passes along the package object to the main routing file typically `server/routes/index.js`
 
-  //By default the Package Object is passed to the routes along withe the other arguments
+  By default the Package Object is passed to the routes along withe the other arguments
   MyPackage.routes(app, auth, database);
 
 
 Example from the `server/routes/index.js`
 
-  // The Package is past automatically as first parameter
-  module.exports = function(MyPackage, app, auth, database) {
-
-  //example route
-  app.get('/myPackage/example/anyone', function (req,res,next) {
-    res.send('Anyone can access this');
-  });
-
-};
+      // The Package is past automatically as first parameter
+      module.exports = function(MyPackage, app, auth, database) {
+    
+      //example route
+      app.get('/myPackage/example/anyone', function (req,res,next) {
+        res.send('Anyone can access this');
+      });
+    
+    };
 
 ###Angular Routes
 The angular routes are defined in `public/config/routes`. Just like the latest version of mean, the packages  use the `$stateProvider`
 
-  $stateProvider
-    .state('myPackage example page', {
-      url: '/myPackage/example',
-      templateUrl: 'myPackage/views/index.html'
-    });
+      $stateProvider
+        .state('myPackage example page', {
+          url: '/myPackage/example',
+          templateUrl: 'myPackage/views/index.html'
+        });
 
 > The angular views are publically accessible via templateUrl when
 > prefixed with the package name
@@ -376,13 +381,13 @@ Each link specifies its `title`, `template`, `menu` and `role` that is allowed t
 
 Below is an example how to add a link to the main menu from `app.js`
 
-  //We are adding a link to the main menu for all authenticated users
-  MyPackage.menus.add({
-    title: "myPackage example page",
-    link: "myPackage example page",
-    roles: ["authenticated"],
-    menu: "main"
-  });
+      //We are adding a link to the main menu for all authenticated users
+      MyPackage.menus.add({
+        title: "myPackage example page",
+        link: "myPackage example page",
+        roles: ["authenticated"],
+        menu: "main"
+      });
 
 
 > You can look at the angular header controller in the mean project for
@@ -518,3 +523,4 @@ heroku config:set NODE_ENV=production
 
 ## License
 We belive that mean should be free and easy to integrate within your existing projects so we chose the [The MIT License](http://opensource.org/licenses/MIT)
+
