@@ -1,0 +1,78 @@
+<!doctype html>
+<!--
+
+  Instructions:
+
+  - Save this file.
+  - Replace "USER" with your GitHub username.
+  - Replace "REPO" with your GitHub repo name.
+  - Replace "Your Project" with your project name.
+  - Upload this file (or commit to GitHub Pages).
+
+  Customize as you see fit!
+
+-->
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+
+  <title>The MEAN.io Tutorial</title>
+
+  <!-- Flatdoc -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src='http://rstacruz.github.io/flatdoc/v/0.8.6/legacy.js'></script>
+  <script src='http://rstacruz.github.io/flatdoc/v/0.8.6/flatdoc.js'></script>
+
+  <!-- Flatdoc theme -->
+  <link  href='css/style.css' rel='stylesheet'>
+  <script src='http://rstacruz.github.io/flatdoc/v/0.8.6/theme-white/script.js'></script>
+
+  <!-- Meta -->
+  <meta content="MEAN.IO" property="og:title">
+  <meta content="MEAN provides a Mongo, Express, Angular and Node.js powered fullstack js framework" name="description">
+
+  <!-- Initializer -->
+  <script>
+    Flatdoc.run({
+      fetcher: Flatdoc.github('https://raw.githubusercontent.com/wiki/linnovate/mean/Tutorial.md')
+    });
+  </script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36499287-6', 'auto');
+    ga('send', 'pageview', location.pathname + location.search + location.hash);
+
+  </script>
+</head>
+<body role='flatdoc' class='no-literate large-brief'>
+
+  <div class='header'>
+    <div class='left'>
+      <h1>MEAN.IO Documentation</h1>
+      <ul>
+        <li><a href='https://github.com/linnovate/mean'>View on GitHub</a></li>
+        <li><a href='https://github.com/linnovate/mean/issues'>Issues</a></li>
+      </ul>
+    </div>
+    <div class='right'>
+      <!-- GitHub buttons: see http://ghbtns.com -->
+      <iframe src="http://ghbtns.com/github-btn.html?user=linnovate&amp;repo=mean&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+    </div>
+  </div>
+
+  <div class='content-root'>
+    <div class='menubar'>
+      <div class='menu section' role='flatdoc-menu'></div>
+    </div>
+    <div role='flatdoc-content' class='content'></div>
+  </div>
+
+</body>
+
+</html>
