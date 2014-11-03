@@ -292,8 +292,6 @@ Below is an example of adding an angular dependency to our angular module.
       // Example of adding an angular dependency of the ngDragDrop to the
       MyPackage.angularDependencies(['ngDragDrop']);
 
-  </div>
-
 > See the assets section for an example how to add external libraries to
 > the client such as the `gDragDrop `javascript library
 
