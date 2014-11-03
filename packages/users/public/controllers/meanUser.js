@@ -112,6 +112,8 @@ angular.module('mean.users')
             // authentication OK
             $scope.registerError = 0;
             $rootScope.user = $scope.user;
+            Global.user = $rootScope.user;
+            Global.authenticated = !! $rootScope.user;
             $rootScope.$emit('loggedin');
             $location.url('/');
           })
