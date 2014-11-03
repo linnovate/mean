@@ -790,7 +790,7 @@ a.big.button:hover:visited {
 }
 .menu a,
 .menu a:visited {
-  color: #0f96ba;
+  color: #000;
 }
 .menu a:hover {
   color: #004057;
@@ -809,12 +809,13 @@ a.big.button:hover:visited {
   color: #565666;
 }
 .menu a.level-2 {
-  font-size:1.2em;
-  font-weight: normal;
+  font-size:1.5em;
+  font-weight: 500;
 }
 .menu a.level-3 {
+	color:#444;
   font-weight: normal;
-  font-size: 0.9em;
+  font-size: 1.2em;
   padding-left: 10px;
 }
 .menu a.active {
