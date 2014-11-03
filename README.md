@@ -212,8 +212,6 @@ Defines package name, version and `mean=true` in the **package.json**
 
 All of the Server side code resides in the `/server` directory.
 
-  
-
     Server
     --- config        # Configuration files
     --- controllers   # Server side logic goes here
@@ -236,6 +234,184 @@ All javascript within public is automatically aggregated with the exception of f
 
 Files within public of the package can be accessed externally `/[package-name]/path-to-file-relative-to-public` for example to access tokens angular controller tokens/controllers/tokens.js
 
+
+###Registering a Package
+
+In order for a Package to work it needs to be registered. By doing this you make package system aware that you are ready and that other packages are able to depend on you. The packages are registered from within `app.js` 
+
+When registering you are required to declare all your dependencies in order for the package system to make them available to your package.
+
+
+    // Example of registering the MyPackage
+    MyPackage.register(function(app, auth, database) {
+    
+    });
+
+MEAN has 3 pre registered dependencies. `app` which makes the express app available `auth` which has some basic authentication functions and `database` which contains the mongoose database connection.<
+
+> All dependencies specified must be registered in order to use them
+
+###Dependency Injection
+
+> An injection is the passing of a dependency (a service) to a dependent
+> object (a client). The service is made part of the client's state.
+> Passing the service to the client, rather than allowing a client to
+> build or find the service, is the fundamental requirement of the
+> pattern. [Wikipedia](http://en.wikipedia.org/wiki/Dependency_injection)
+
+
+Dependency injection allows you to declare what dependencies you require and rely on the package system to resolve all dependencies for you. Any package registered is automatically made available to anyone who would like to depend on them.
+
+Looking again at the registration example we can see that `MyPackage` depends on the `Tokens` and can make use of it full functionality including overriding it.
+
+  // Example of registering the tokens package
+  MyPackage.register(function(app, auth, database, Tokens) {
+    //I can make use of the tokens within my module
+    MyPackage.someExampleFunction('some paramater');
+
+    //I can override functions
+    MyPackage.someExampleFunction = function(param) {
+      //my custom logic goes here
+    };
+  });
+
+> Packages when in code are used in a capitalized form
+
+###Angular Modules and Dependencies
+
+Every package registration automatically creates a corresponding angular module of the form `mean.[package-name]`
+
+The package system injects this information into the mean init functions and allows developers to base their controllers, services, filters, directives etc on either an existing module or on their own one.
+
+In addition you are able to declare which angular dependencies you want your angular module to use.
+
+Below is an example of adding an angular dependency to our angular module.
+
+  // Example of adding an angular dependency of the ngDragDrop to the
+  MyPackage.angularDependencies(['ngDragDrop']);
+  </div>
+
+> See the assets section for an example how to add external libraries to
+> the client such as the `gDragDrop `javascript library
+
+###Assets and Aggregation
+
+All assets such as images, javascript libraries and css stylesheets should be within `public/assets` of the package file structure.
+
+Javascript and css from `assets` can be aggregated to the global aggregation files. By default all javascript is automatically wrapped within an anonymous function unless given the option `{global:true}` to not enclose the javascript within a contained scope
+
+  //Adding jquery to the mean project
+  MyPackage.aggregateAsset('js','jquery.min.js');
+
+  //Adding another library - global by default is false
+  MyPackage.aggregateAsset('js','jquery.min.js', {global:true});
+
+  //Adding some css to the mean project
+  MyPackage.aggregateAsset('css','default.css');
+
+
+> Javascript files outside of assets are automatically aggregated and
+> injected into the mean project. As a result libraries that you do not
+> want aggregated should be placed within `public/assets/js`
+
+###Settings Object
+The settings object is a persistance object that is stored in the packages collection and allows for saving persistant information per package such as configuration options or admin settings for the package.
+
+  //Receives two arguments the first being the settings object the second
+  //is a callback function
+    MyPackage.settings({'someSetting':'some value'},function (err, settings) {
+      //you will receive the settings object on success
+    });
+
+    // Another save settings example this time with no callback
+    // This writes over the last settings.
+    MyPackage.settings({'anotherSettings':'some value'});
+
+    // Get settings. Retrieves latest saved settigns
+    MyPackage.settings(function (err, settings) {
+      //you now have the settings object
+    });
+  </div>
+
+> Each time you save settings you overwrite your previous value.
+> Settings are designed to be used to store basic configuration options
+> and should not be used as a large data store
+
+
+###Express Routes
+All routing to server side controllers is handled by express routes. The package system uses the typical express approach. The package system has a route function that passes along the package object to the main routing file typically `server/routes/index.js`
+
+  //By default the Package Object is passed to the routes along withe the other arguments
+  MyPackage.routes(app, auth, database);
+
+
+Example from the `server/routes/index.js`
+
+  // The Package is past automatically as first parameter
+  module.exports = function(MyPackage, app, auth, database) {
+
+  //example route
+  app.get('/myPackage/example/anyone', function (req,res,next) {
+    res.send('Anyone can access this');
+  });
+
+};
+
+###Angular Routes
+The angular routes are defined in `public/config/routes`. Just like the latest version of mean, the packages  use the `$stateProvider`
+
+  $stateProvider
+    .state('myPackage example page', {
+      url: '/myPackage/example',
+      templateUrl: 'myPackage/views/index.html'
+    });
+
+> The angular views are publically accessible via templateUrl when
+> prefixed with the package name
+
+###Menu System
+
+Packages are able to hook into an existing menu system and add links to various menus integrated within mean.
+
+Each link specifies its `title`, `template`, `menu` and `role` that is allowed to see the link. If the menu specified does not exist a new menu will be created. The menu object is made accessible within the client by means of a *menu angular service* that queries the menu controller for information about links.
+
+Below is an example how to add a link to the main menu from `app.js`
+
+  //We are adding a link to the main menu for all authenticated users
+  MyPackage.menus.add({
+    title: "myPackage example page",
+    link: "myPackage example page",
+    roles: ["authenticated"],
+    menu: "main"
+  });
+
+
+> You can look at the angular header controller in the mean project for
+> more info. You can find it `public/system/controllers/header.js` and
+> see how the menu service is implemented
+
+###Html View Rendering
+The packages come built in with a rendering function allowing packages to render static html. The default templating engine is *swig*. The views are found in `server/views` of the package and should end with the .html suffix
+
+Below is an example rendering some simple html>
+
+  app.get('/myPackage/example/render', function (req,res,next) {
+    MyPackage.render('index', {packageName:'myPackage'}, function (err, html) {
+      //Rendering a view from the Package server/views
+      res.send(html);
+    });
+  });
+
+###Overriding the default views and layouts
+One is able to override the default layout of the application through a custom package.
+
+Below is an example overriding the default layout of system and instead using the layourts found locally within the package
+
+    MyPackage.register(function(system, app) {
+      app.set('views', __dirname + '/server/views');
+
+> Please note that the package must depend on `System` to ensure it is
+> evaluated after `System` and can thus override the views folder
 
 ### Creating your own package
 To create your own package and scaffold it's initial code - run
