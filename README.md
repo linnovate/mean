@@ -234,7 +234,6 @@ All javascript within public is automatically aggregated with the exception of f
 
 Files within public of the package can be accessed externally `/[package-name]/path-to-file-relative-to-public` for example to access tokens angular controller tokens/controllers/tokens.js
 
-
 ###Registering a Package
 
 In order for a Package to work it needs to be registered. By doing this you make package system aware that you are ready and that other packages are able to depend on you. The packages are registered from within `app.js` 
