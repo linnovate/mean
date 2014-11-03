@@ -809,13 +809,13 @@ a.big.button:hover:visited {
   color: #565666;
 }
 .menu a.level-2 {
-  font-size:1.5em;
+  font-size:1.3em;
   font-weight: 500;
 }
 .menu a.level-3 {
 	color:#444;
   font-weight: normal;
-  font-size: 1.2em;
+  font-size: 1.05em;
   padding-left: 10px;
 }
 .menu a.active {
