@@ -420,8 +420,9 @@ To create your own package and scaffold it's initial code - run
 mean package <packageName>
 ```
 This will create a package under */packages/custom/pkgName*
-### Contributing you package
-### Config
+### Contributing your package
+
+## Config
 All the configuration is specified in the [config](/config/) folder,
 through the [env](config/env/) files, and is orchestrated through the [meanio](https://github.com/linnovate/meanio) NPM module.
 Here you will need to specify your application name, database name, and hook up any social app keys if you want integration with Twitter, Facebook, GitHub, or Google.
