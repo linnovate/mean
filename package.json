@@ -4,22 +4,7 @@
   "version": "0.4.0",
   "private": false,
   "author": "Linnovate <mean@linnovate.net>",
-  "contributors": [{
-    "name": "Lior Kesos",
-    "mail": "lior@linnovate.net"
-  }, {
-    "name": "Yonatan Ellman",
-    "mail": "yonatan@linnovate.net"
-  }, {
-    "name": "Drew Fyock",
-    "mail": "drew@steelbisondev.com"
-  }, {
-    "name": "Ehud Shahak",
-    "mail": "ehud@linnovate.net"
-  }, {
-    "name": "Amos Haviv",
-    "mail": "mail@amoshaviv.com"
-  }],
+  "contributors": "https://github.com/linnovate/mean/graphs/contributors",
   "mean": "0.4.0",
   "repository": {
     "type": "git",
