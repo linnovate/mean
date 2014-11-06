@@ -138,6 +138,7 @@ The MEAN CLI is a simple Command Line Interface for installing and managing MEAN
 #### Management
  <p class="alert alert-warning">All of the remaining of the commands must be run from the root folder of your MEAN application.</p>
   <p>Contributed MEAN packages can be installed or uninstalled via the CLI. Also, currently installed modules can be viewed with the <code>list</code> command.</p>
+
 ```bash
   $ mean list
   $ mean install <module>
