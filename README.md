@@ -125,7 +125,7 @@ The MEAN CLI is a simple Command Line Interface for installing and managing MEAN
 ```
 ### Users
 
- <p>Information can be display for a specific customer via <code>mean user email</code>. Email is required. User roles can be assigned or removed with the <code>--addRole (or -a)</code> and <code>--removeRole (or -r)</code> options, respectively.
+ <p>Information can be display for a specific customer via <code>mean user email</code>. Email is required. User roles can be assigned or removed with the <code>--addRole (or -a)</code> and <code>--removeRole (or -r)</code> options, respectively.</p>
   <p>For example, the <i>admin</i> role is required to edit tokens.</p>
 ```bash
   $ mean user <email> 
