@@ -331,7 +331,7 @@ The settings object is a persistance object that is stored in the packages colle
     // This writes over the last settings.
     MyPackage.settings({'anotherSettings':'some value'});
 
-    // Get settings. Retrieves latest saved settigns
+    // Get settings. Retrieves latest saved settings
     MyPackage.settings(function (err, settings) {
       //you now have the settings object
     });
