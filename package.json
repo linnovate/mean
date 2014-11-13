@@ -1,7 +1,7 @@
 {
   "name": "mean",
   "description": "MEAN.io: A fullstack JavaScript framework powered by MongoDB, ExpressJS, AngularJS, NodeJS.",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "private": false,
   "author": "Linnovate <mean@linnovate.net>",
   "contributors": "https://github.com/linnovate/mean/graphs/contributors",
@@ -17,7 +17,7 @@
   "scripts": {
     "start": "node node_modules/grunt-cli/bin/grunt",
     "test": "node node_modules/grunt-cli/bin/grunt test",
-    "postinstall": "node node_modules/meanio/bin/mean-postinstall"
+    "postinstall": "node node_modules/meanio/node_modules/mean-cli/bin/mean-postinstall"
   },
   "dependencies": {
     "assetmanager": "^1.1.1",
@@ -47,7 +47,7 @@
     "grunt-nodemon": "0.2.1",
     "load-grunt-tasks": "^0.4.0",
     "lodash": "^2.4.1",
-    "meanio": "~0.5.10",
+    "meanio": "~0.6.12",
     "method-override": "^1.0.0",
     "mongoose": "^3.8.8",
     "morgan": "^1.0.0",
