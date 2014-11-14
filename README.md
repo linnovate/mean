@@ -424,9 +424,10 @@ mean package <packageName>
 This will create a package under */packages/custom/pkgName*
 
 ### Contributing your package
-Once your package is decent and you want to share it with the world you can start the process of contributing it and submiting it so it can be included in the package repository.
+Once your package is in good shape and you want to share it with the world you can start the process of contributing it and submiting it so it can be included in the package repository.
 To contribute your package register to the network (see the section below) and run
 ```bash 
+mean register // register to the mean network (see below)
 cd packages/custom/pkgNName>
 mean publish
 ```
