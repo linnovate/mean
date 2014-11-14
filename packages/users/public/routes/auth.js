@@ -1,8 +1,8 @@
 'use strict';
 
 //Setting up route
-angular.module('mean.users').config(['$stateProvider',
-  function($stateProvider) {
+angular.module('mean.users').config(['$stateProvider', '$viewPathProvider',
+  function($stateProvider, $viewPathProvider) {
     // Check if the user is not connected
     var checkLoggedOut = function($q, $timeout, $http, $location) {
       // Initialize a new promise
@@ -28,32 +28,32 @@ angular.module('mean.users').config(['$stateProvider',
     $stateProvider
       .state('auth', {
         url: '/auth',
-        templateUrl: 'users/views/index.html'
+        templateUrl: $viewPathProvider.path('users/views/index.html')
       })
       .state('auth.login', {
         url: '/login',
-        templateUrl: 'users/views/login.html',
+        templateUrl: $viewPathProvider.path('users/views/login.html'),
         resolve: {
           loggedin: checkLoggedOut
         }
       })
       .state('auth.register', {
         url: '/register',
-        templateUrl: 'users/views/register.html',
+        templateUrl: $viewPathProvider.path('users/views/register.html'),
         resolve: {
           loggedin: checkLoggedOut
         }
       })
       .state('forgot-password', {
         url: '/forgot-password',
-        templateUrl: 'users/views/forgot-password.html',
+        templateUrl: $viewPathProvider.path('users/views/forgot-password.html'),
         resolve: {
           loggedin: checkLoggedOut
         }
       })
       .state('reset-password', {
         url: '/reset/:tokenId',
-        templateUrl: 'users/views/reset-password.html',
+        templateUrl: $viewPathProvider.path('users/views/reset-password.html'),
         resolve: {
           loggedin: checkLoggedOut
         }
