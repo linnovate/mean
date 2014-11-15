@@ -1,18 +1,22 @@
 # MEAN.io
 
-MEAN is a framework for an easy starting point with [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. It is designed to give you a quick and organized way to start developing MEAN based web apps with useful modules like Mongoose and Passport pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.
+The powerful MEAN ecosystem is designed as an easy foundation to integrate JavaScript open-source functions for building dynamic web sites with [MongoDB](http://www.mongodb.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/), and [Node.js](http://www.nodejs.org/). 
+
+You get a quick and organized way, to lay the groundwork, using MEAN supported web functions with useful modules like Mongoose and Passport, pre-bundled and configured. MEAN focuses on the connection points between existing popular platforms and solves common integration problem.
+
+Along with being a joy to use, the boilerplate concept provides an ecosystem that coders and company executives can fall in love with. Use the MEAN stack in a structured way to improve collaborating. You (and/or you and your collaborators) create your boiler-plate/template for the width and breadth of your web site project. Then distribute the boilerplate/template among your collaborates so that you have a point of reference. It helps you fence-in the scope of the project without crushing the talents and spirits of your collaborators.
 ## Prerequisites
-* *MongoDB* - <a href="http://www.mongodb.org/downloads">Download</a> and Install mongodb - <a href="http://docs.mongodb.org/manual">Checkout their manual</a> if you're just starting.
-* *Node.js* - <a href="http://nodejs.org/download/">Download</a> and Iמstall Node.js, codeschool has free <a href="https://www.codeschool.com/courses/real-time-web-with-node-js">node</a> and <a href="https://www.codeschool.com/courses/shaping-up-with-angular-js">angular</a> tutorials.
-* *Git* - Get git using a package manager or <a href="http://git-scm.com/downloads">download</a> it.
-* Grunt - Download and Install [Grunt](http://gruntjs.com).
+* *MongoDB* - <a href="http://www.mongodb.org/downloads">Download</a> and Install MongoDB. Checkout their <a href="http://docs.mongodb.org/manual">manual</a> to get started or refresh your knowledge.
+* *Node.js* - <a href="http://nodejs.org/download/">Download</a> and Install Node.js. Code School has free <a href="https://www.codeschool.com/courses/real-time-web-with-node-js">node</a> and <a href="https://www.codeschool.com/courses/shaping-up-with-angular-js">angular</a> tutorials.
+* *GitHub* - Use Git package manager or <a href="http://git-scm.com/downloads">download</a> Git and Install it.
+* *Grunt* - <a href="http://gruntjs.com/getting-started">Download</> and Install Grunt JavaScript Task Runner.
 ```
 $ npm install -g grunt-cli
 ```
 
 ## Installation
 To start with MEAN install the `mean-cli` package from NPM.
-This will add the *mean* command which lets you interact (install, manage, update ...) your mean based  application.
+This will add the *mean* command which lets you interact (install, manage, update ...) your mean based application.
 
 ### Install the MEAN CLI
 
