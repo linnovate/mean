@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mean.system').provider('$viewPath', function() {
-  function ViewProvider() {
+  function ViewPathProvider() {
     var overrides = {};
 
     this.path = function(path) {
@@ -22,5 +22,5 @@ angular.module('mean.system').provider('$viewPath', function() {
     };
   }
 
-  return new ViewProvider();
+  return new ViewPathProvider();
 });

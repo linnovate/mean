@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('mean.theme').config(['$stateProvider', '$viewPathProvider',
-  function($stateProvider, $viewPathProvider) {
-    $stateProvider.state('theme example page', {
+angular.module('mean.theme').config(['$meanStateProvider',
+  function($meanStateProvider) {
+    $meanStateProvider.state('theme example page', {
       url: '/theme/example',
-      templateUrl: $viewPathProvider.path('theme/views/index.html')
+      templateUrl: 'theme/views/index.html'
     });
   }
 ]);
