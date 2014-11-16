@@ -1,13 +1,13 @@
 {
   "name": "mean",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "dependencies": {
     "jquery": "1.x",
-    "angular": "latest",
-    "angular-resource": "latest",
-    "angular-cookies": "latest",
-    "angular-mocks": "latest",
-    "angular-route": "latest",
+    "angular": "1.3.2",
+    "angular-resource": "1.3.2",
+    "angular-cookies": "1.3.2",
+    "angular-mocks": "1.3.2",
+    "angular-route": "1.3.2",
     "bootstrap": "3.1.1",
     "angular-bootstrap": "0.11.0",
     "angular-ui-router": "#master"
