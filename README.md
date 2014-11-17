@@ -317,6 +317,13 @@ Javascript and css from `assets` can be aggregated to the global aggregation fil
 > injected into the mean project. As a result libraries that you do not
 > want aggregated should be placed within `public/assets/js`
 
+The aggregation supports the ability to control the location of where to inject the aggregated code and if you add a weight and a group to your aggregateAsset method you can make sure it's included in the correct region.
+
+      MyPackage.aggregateAsset('js','first.js',{global:true,  weight: -4, group: 'header'});
+>The line that gets loaded in your head.html calls the header group and injects the js you want to include first-
+> in packages/system/server/views/includes/head.html 
+> <script type="text/javascript" src="/modules/aggregated.js?group=header"></script>
+
 ###Settings Object
 The settings object is a persistance object that is stored in the packages collection and allows for saving persistant information per package such as configuration options or admin settings for the package.
 
