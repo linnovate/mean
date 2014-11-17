@@ -3,7 +3,8 @@
 var paths = {
   js: ['*.js', 'test/**/*.js', '!test/coverage/**', '!bower_components/**', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/contrib/**/*.js', '!packages/contrib/**/node_modules/**'],
   html: ['packages/**/public/**/views/**', 'packages/**/server/views/**'],
-  css: ['!bower_components/**', 'packages/**/public/**/css/*.css', '!packages/contrib/**/public/**/css/*.css']
+  css: ['!bower_components/**', 'packages/**/public/**/css/*.css', '!packages/contrib/**/public/**/css/*.css'],
+  less: ['**/public/**/css/*.less'],
 };
 
 module.exports = function(grunt) {
@@ -32,6 +33,13 @@ module.exports = function(grunt) {
           interval: 500
         }
       },
+      less: {
+        files: paths.less,
+        tasks: ['less'],
+        options: {
+          livereload: true
+        }
+      },
       css: {
         files: paths.css,
         tasks: ['csslint'],
@@ -39,6 +47,19 @@ module.exports = function(grunt) {
           livereload: true
         }
       }
+    },
+    less: {
+      customers_less: {
+        files: [
+          {
+            expand: true,
+            cwd: 'packages',
+            src: paths.less,
+            dest: 'packages',
+            ext: '.css'
+          }
+        ]
+      },
     },
     jshint: {
       all: {
@@ -117,7 +138,7 @@ module.exports = function(grunt) {
   if (process.env.NODE_ENV === 'production') {
     grunt.registerTask('default', ['clean', 'cssmin', 'uglify', 'concurrent']);
   } else {
-    grunt.registerTask('default', ['clean', 'jshint', 'csslint', 'concurrent']);
+    grunt.registerTask('default', ['clean', 'jshint', 'less', 'csslint', 'concurrent']);
   }
 
   //Test task.
