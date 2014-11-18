@@ -23,7 +23,7 @@
 
         inject(function($injector) {
             http = $injector.get('$http');
-          })
+          });
       });
 
       // check to see if it has the expected function
