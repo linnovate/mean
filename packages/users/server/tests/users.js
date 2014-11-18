@@ -17,7 +17,7 @@ function getRandomString(len) {
 /**
  * Module dependencies.
  */
-var should = require('should'),
+var expect = require('expect.js'),
   mongoose = require('mongoose'),
   User = mongoose.model('User');
 
@@ -57,12 +57,12 @@ describe('<Unit Test>', function() {
         User.find({
           email: user1.email
         }, function(err, users) {
-          users.should.have.length(0);
+          expect(users.length).to.equal(0);
 
           User.find({
             email: user2.email
           }, function(err, users) {
-            users.should.have.length(0);
+            expect(users.length).to.equal(0);
             done();
           });
 
@@ -73,7 +73,7 @@ describe('<Unit Test>', function() {
 
         var _user = new User(user1);
         _user.save(function(err) {
-          should.not.exist(err);
+          expect(err).to.be(null);
           _user.remove();
           done();
         });
@@ -84,13 +84,13 @@ describe('<Unit Test>', function() {
 
         var _user = new User(user1);
         _user.save(function(err) {
-          should.not.exist(err);
+          expect(err).to.be(null);
 
           // the user1 object and users in general are created with only the 'authenticated' role
-          _user.hasRole('authenticated').should.equal(true);
-          _user.hasRole('admin').should.equal(false);
-          _user.isAdmin().should.equal(false);
-          _user.roles.should.have.length(1);
+          expect(_user.hasRole('authenticated')).to.equal(true);
+          expect(_user.hasRole('admin')).to.equal(false);
+          expect(_user.isAdmin()).to.equal(false);
+          expect(_user.roles.length).to.equal(1);
           _user.remove(function(err) {
             done();
           });
@@ -103,10 +103,11 @@ describe('<Unit Test>', function() {
         var _user = new User(user1);
 
         _user.save(function(err) {
-          should.not.exist(err);
-          _user.hashed_password.should.not.have.length(0);
-          _user.salt.should.not.have.length(0);
-          _user.authenticate(user1.password).should.equal(true);
+          expect(err).to.be(null);
+
+          expect(_user.hashed_password.length).to.not.equal(0);
+          expect(_user.salt.length).to.not.equal(0);
+          expect(_user.authenticate(user1.password)).to.equal(true);
           _user.remove(function(err) {
             done();
           });
@@ -118,12 +119,12 @@ describe('<Unit Test>', function() {
 
         var _user = new User(user1);
         _user.save(function(err) {
-          should.not.exist(err);
+          expect(err).to.be(null);
 
           _user.name = 'Full name2';
           _user.save(function(err) {
-            should.not.exist(err);
-            _user.name.should.equal('Full name2');
+            expect(err).to.be(null);
+            expect(_user.name).to.equal('Full name2');
             _user.remove(function() {
               done();
             });
@@ -141,7 +142,7 @@ describe('<Unit Test>', function() {
         var _user2 = new User(user1);
 
         return _user2.save(function(err) {
-          should.exist(err);
+          expect(err).to.not.be(null);
           _user1.remove(function() {
 
             if (!err) {
@@ -163,7 +164,7 @@ describe('<Unit Test>', function() {
         _user.name = '';
 
         return _user.save(function(err) {
-          should.exist(err);
+          expect(err).to.not.be(null);
           done();
         });
       });
@@ -174,7 +175,7 @@ describe('<Unit Test>', function() {
         _user.username = '';
 
         return _user.save(function(err) {
-          should.exist(err);
+          expect(err).to.not.be(null);
           done();
         });
       });
@@ -186,7 +187,7 @@ describe('<Unit Test>', function() {
         _user.provider = 'local';
 
         return _user.save(function(err) {
-          should.exist(err);
+          expect(err).to.not.be(null);
           done();
         });
       });
@@ -200,9 +201,9 @@ describe('<Unit Test>', function() {
 
         return _user.save(function(err) {
           _user.remove(function() {
-            should.not.exist(err);
-            _user.provider.should.equal('twitter');
-            _user.hashed_password.should.have.length(0);
+            expect(err).to.be(null);
+            expect(_user.provider).to.equal('twitter');
+            expect(_user.hashed_password.length).to.equal(0);
             done();
           });
         });
@@ -218,11 +219,11 @@ describe('<Unit Test>', function() {
         _user.save(function(err) {
           if (!err) {
             _user.remove(function() {
-              should.exist(err);
+              expect(err).to.not.be(null);
               done();
             });
           } else {
-            should.exist(err);
+            expect(err).to.not.be(null);
             done();
           }
         });
@@ -233,11 +234,11 @@ describe('<Unit Test>', function() {
         _user.email = 'A@b@c@example.com';
         _user.save(function(err) {
           if (err) {
-            should.exist(err);
+            expect(err).to.not.be(null);
             done();
           } else {
             _user.remove(function(err2) {
-              should.exist(err);
+              expect(err).to.not.be(null);
               done();
             });
           }
@@ -250,11 +251,11 @@ describe('<Unit Test>', function() {
         _user.save(function(err) {
           if (!err) {
             _user.remove(function() {
-              should.exist(err);
+              expect(err).to.not.be(null);
               done();
             });
           } else {
-            should.exist(err);
+            expect(err).to.not.be(null);
             done();
           }
         });
@@ -266,11 +267,11 @@ describe('<Unit Test>', function() {
         _user.save(function(err) {
           if (!err) {
             _user.remove(function() {
-              should.exist(err);
+              expect(err).to.not.be(null);
               done();
             });
           } else {
-            should.exist(err);
+            expect(err).to.not.be(null);
             done();
           }
         });
@@ -282,11 +283,11 @@ describe('<Unit Test>', function() {
         _user.save(function(err) {
           if (!err) {
             _user.remove(function() {
-              should.exist(err);
+              expect(err).to.not.be(null);
               done();
             });
           } else {
-            should.exist(err);
+            expect(err).to.not.be(null);
             done();
           }
         });
@@ -298,11 +299,11 @@ describe('<Unit Test>', function() {
         _user.save(function(err) {
           if (!err) {
             _user.remove(function() {
-              should.exist(err);
+              expect(err).to.not.be(null);
               done();
             });
           } else {
-            should.exist(err);
+            expect(err).to.not.be(null);
             done();
           }
         });
@@ -314,11 +315,11 @@ describe('<Unit Test>', function() {
         _user.save(function(err) {
           if (!err) {
             _user.remove(function() {
-              should.exist(err);
+              expect(err).to.not.be(null);
               done();
             });
           } else {
-            should.exist(err);
+            expect(err).to.not.be(null);
             done();
           }
         });
@@ -330,11 +331,11 @@ describe('<Unit Test>', function() {
         _user.save(function(err) {
           if (!err) {
             _user.remove(function() {
-              should.exist(err);
+              expect(err).to.not.be(null);
               done();
             });
           } else {
-            should.exist(err);
+            expect(err).to.not.be(null);
             done();
           }
         });
@@ -346,11 +347,11 @@ describe('<Unit Test>', function() {
         _user.save(function(err) {
           if (!err) {
             _user.remove(function() {
-              should.not.exist(err);
+              expect(err).to.be(null);
               done();
             });
           } else {
-            should.not.exist(err);
+            expect(err).to.be(null);
             done();
           }
         });
@@ -362,11 +363,11 @@ describe('<Unit Test>', function() {
         _user.save(function(err) {
           if (!err) {
             _user.remove(function() {
-              should.not.exist(err);
+              expect(err).to.be(null);
               done();
             });
           } else {
-            should.not.exist(err);
+            expect(err).to.be(null);
             done();
           }
         });
@@ -378,11 +379,11 @@ describe('<Unit Test>', function() {
         _user.save(function(err) {
           if (!err) {
             _user.remove(function() {
-              should.not.exist(err);
+              expect(err).to.be(null);
               done();
             });
           } else {
-            should.not.exist(err);
+            expect(err).to.be(null);
             done();
           }
         });
