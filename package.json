@@ -66,6 +66,7 @@
     "view-helpers": "^0.1.4"
   },
   "devDependencies": {
+    "expect.js": "^0.3.1",
     "grunt-karma": "^0.8.2",
     "grunt-mocha-test": "^0.10.2",
     "karma": "^0.12.24",
@@ -82,7 +83,6 @@
     "karma-script-launcher": "^0.1.0",
     "ms": "^0.6.2",
     "requirejs": "^2.1.11",
-    "should": "3.3.1",
     "supertest": "0.11.0"
   }
 }
