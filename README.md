@@ -317,6 +317,13 @@ Javascript and css from `assets` can be aggregated to the global aggregation fil
 > injected into the mean project. As a result libraries that you do not
 > want aggregated should be placed within `public/assets/js`
 
+The aggregation supports the ability to control the location of where to inject the aggregated code and if you add a weight and a group to your aggregateAsset method you can make sure it's included in the correct region.
+
+      MyPackage.aggregateAsset('js','first.js',{global:true,  weight: -4, group: 'header'});
+>The line that gets loaded in your head.html calls the header group and injects the js you want to include first-
+> in packages/system/server/views/includes/head.html 
+> <script type="text/javascript" src="/modules/aggregated.js?group=header"></script>
+
 ###Settings Object
 The settings object is a persistance object that is stored in the packages collection and allows for saving persistant information per package such as configuration options or admin settings for the package.
 
@@ -331,7 +338,7 @@ The settings object is a persistance object that is stored in the packages colle
     // This writes over the last settings.
     MyPackage.settings({'anotherSettings':'some value'});
 
-    // Get settings. Retrieves latest saved settigns
+    // Get settings. Retrieves latest saved settings
     MyPackage.settings(function (err, settings) {
       //you now have the settings object
     });
@@ -424,9 +431,10 @@ mean package <packageName>
 This will create a package under */packages/custom/pkgName*
 
 ### Contributing your package
-Once your package is decent and you want to share it with the world you can start the process of contributing it and submiting it so it can be included in the package repository.
+Once your package is in good shape and you want to share it with the world you can start the process of contributing it and submiting it so it can be included in the package repository.
 To contribute your package register to the network (see the section below) and run
 ```bash 
+mean register // register to the mean network (see below)
 cd packages/custom/pkgNName>
 mean publish
 ```

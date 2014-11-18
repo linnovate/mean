@@ -1,8 +1,8 @@
 'use strict';
 
 //Setting up route
-angular.module('mean.users').config(['$stateProvider',
-  function($stateProvider) {
+angular.module('mean.users').config(['$meanStateProvider',
+  function($meanStateProvider) {
     // Check if the user is not connected
     var checkLoggedOut = function($q, $timeout, $http, $location) {
       // Initialize a new promise
@@ -25,7 +25,7 @@ angular.module('mean.users').config(['$stateProvider',
 
 
     // states for my app
-    $stateProvider
+    $meanStateProvider
       .state('auth', {
         url: '/auth',
         templateUrl: 'users/views/index.html'

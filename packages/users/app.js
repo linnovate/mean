@@ -42,7 +42,7 @@ MeanUser.register(function(app, auth, passport, database) {
         'anotherSettings': 'some value'
     });
 
-    // Get settings. Retrieves latest saved settigns
+    // Get settings. Retrieves latest saved settings
     MeanUser.settings(function(err, settings) {
         //you now have the settings object
     });

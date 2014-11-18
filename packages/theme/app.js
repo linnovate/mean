@@ -43,7 +43,7 @@ Theme.register(function(app, auth, database) {
         'anotherSettings': 'some value'
     });
 
-    // Get settings. Retrieves latest saved settigns
+    // Get settings. Retrieves latest saved settings
     Theme.settings(function(err, settings) {
         //you now have the settings object
     });
