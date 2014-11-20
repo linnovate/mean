@@ -208,7 +208,7 @@
       });
 
       it('should display success response on success', function() {
-        scope.user.email = "test@test.com";
+        scope.user.email = 'test@test.com';
         $httpBackend.when('POST', '/forgot-password').respond(200,'Mail successfully sent');
         scope.forgotpassword();
         $httpBackend.flush();
@@ -217,7 +217,7 @@
 
       });
       it('should display error response on failure', function() {
-        scope.user.email = "test@test.com";
+        scope.user.email = 'test@test.com';
         $httpBackend.when('POST', '/forgot-password').respond(400,'User does not exist');
         scope.forgotpassword();
         $httpBackend.flush();
