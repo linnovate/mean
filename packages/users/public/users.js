@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('mean.users', ['mean.system']);
+angular.module('mean.users', ['mean.system']); 
