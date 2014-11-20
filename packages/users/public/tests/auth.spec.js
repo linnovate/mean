@@ -161,6 +161,72 @@
         expect(scope.registerError).toBe('Password mismatch');
       });
     });
+
+    describe('ForgotPasswordCtrl', function() {
+      beforeEach(function() {
+        jasmine.addMatchers({
+          toEqualData: function() {
+            return {
+              compare: function(actual, expected) {
+                return {
+                  pass: angular.equals(actual, expected)
+                };
+              }
+            };
+          }
+        });
+      });
+
+      beforeEach(function() {
+        module('mean');
+        module('mean.system');
+        module('mean.users');
+      });
+
+      var ForgotPasswordCtrl,
+          scope,
+          $rootScope,
+          $httpBackend
+
+      beforeEach(inject(function($controller, _$rootScope_, _$httpBackend_) {
+
+        scope = _$rootScope_.$new();
+        $rootScope = _$rootScope_;
+
+        ForgotPasswordCtrl = $controller('ForgotPasswordCtrl', {
+          $scope: scope,
+          $rootScope: _$rootScope_
+        });
+
+        $httpBackend = _$httpBackend_;
+
+      }));
+
+      afterEach(function() {
+        $httpBackend.verifyNoOutstandingExpectation();
+        $httpBackend.verifyNoOutstandingRequest();
+      });
+
+      it('should display success response on success', function() {
+        scope.user.email = 'test@test.com';
+        $httpBackend.when('POST', '/forgot-password').respond(200,'Mail successfully sent');
+        scope.forgotpassword();
+        $httpBackend.flush();
+
+        expect(scope.response).toEqual('Mail successfully sent');
+
+      });
+      it('should display error response on failure', function() {
+        scope.user.email = 'test@test.com';
+        $httpBackend.when('POST', '/forgot-password').respond(400,'User does not exist');
+        scope.forgotpassword();
+        $httpBackend.flush();
+
+        expect(scope.response).toEqual('User does not exist');
+
+      });
+
+    });
   });
 
 
