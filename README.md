@@ -412,7 +412,7 @@ Below is an example rendering some simple html>
     });
   });
 
-###Overriding the default views and layouts
+###Overriding the default layouts
 One is able to override the default layout of the application through a custom package.
 
 Below is an example overriding the default layout of system and instead using the layourts found locally within the package
@@ -422,6 +422,18 @@ Below is an example overriding the default layout of system and instead using th
 
 > Please note that the package must depend on `System` to ensure it is
 > evaluated after `System` and can thus override the views folder
+
+### Overriding views
+You may override public views used by certain core packages.  To create a custom home page, you would create a custom package and modify the script in it's public folder like so:
+
+```
+angular.module('mean.mycustompackage', ['mean.system'])
+  .config(['$viewPathProvider', function($viewPathProvider) {
+    $viewPathProvider.override('system/views/index.html', 'mycustompackage/views/myhomepage.html');
+  }]);
+```
+
+This will render *mycustompackage/views/myhomepage.html* as the home page.
 
 ### Creating your own package
 To create your own package and scaffold it's initial code - run
