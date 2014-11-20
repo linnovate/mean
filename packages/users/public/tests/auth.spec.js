@@ -186,10 +186,9 @@
       var ForgotPasswordCtrl,
           scope,
           $rootScope,
-          $httpBackend,
-          $locaion;
+          $httpBackend
 
-      beforeEach(inject(function($controller, _$rootScope_, _$httpBackend_, _$location_ ) {
+      beforeEach(inject(function($controller, _$rootScope_, _$httpBackend_) {
 
         scope = _$rootScope_.$new();
         $rootScope = _$rootScope_;
@@ -200,8 +199,6 @@
         });
 
         $httpBackend = _$httpBackend_;
-        $locaion   = _$location_;
-
 
       }));
 
