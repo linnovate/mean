@@ -186,7 +186,7 @@
       var ForgotPasswordCtrl,
           scope,
           $rootScope,
-          $httpBackend
+          $httpBackend ;
 
       beforeEach(inject(function($controller, _$rootScope_, _$httpBackend_) {
 
