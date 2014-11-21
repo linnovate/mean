@@ -1,3 +1,5 @@
+/* jshint -W079 */ 
+/* Related to https://github.com/linnovate/mean/issues/898 */
 'use strict';
 
 var crypto = require('crypto');
@@ -17,8 +19,9 @@ function getRandomString(len) {
 /**
  * Module dependencies.
  */
+
 var expect = require('expect.js'),
-  mongoose = require('mongoose'),
+  	mongoose = require('mongoose'),
   User = mongoose.model('User');
 
 /**
