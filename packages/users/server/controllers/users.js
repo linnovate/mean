@@ -105,7 +105,12 @@ exports.create = function(req, res, next) {
  * Send User
  */
 exports.me = function(req, res) {
-  res.json(req.user || null);
+  if(req.user) {
+    res.json(req.user.getSafeUser());
+  }
+  else {
+    res.json(null);
+  }
 };
 
 /**

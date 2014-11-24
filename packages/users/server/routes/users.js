@@ -36,7 +36,7 @@ module.exports = function(MeanUser, app, auth, database, passport) {
       failureFlash: true
     }), function(req, res) {
       res.send({
-        user: req.user,
+        user: req.user.getSafeUser(),
         redirect: (req.user.roles.indexOf('admin') !== -1) ? req.get('referer') : false
       });
     });

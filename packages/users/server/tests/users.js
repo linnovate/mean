@@ -394,6 +394,24 @@ describe('<Unit Test>', function() {
 
     });
 
+    describe('Method getSafeUser', function() {
+        it('should not expose sensitive info', function(done) {
+          var _user = new User(user1);
+          var safeUser = _user.getSafeUser();
+
+          expect(_user.password).to.not.be(undefined);
+          expect(_user.hashed_password).to.not.be(undefined);
+          expect(_user.salt).to.not.be(undefined);
+          expect(_user._id).to.not.be(undefined);
+
+          expect(safeUser.password).to.be(undefined);
+          expect(safeUser.hashed_password).to.be(undefined);
+          expect(safeUser.salt).to.be(undefined);
+          expect(safeUser._id).to.be(undefined);
+          done();
+        })
+
+    }),
     after(function(done) {
 
       /** Clean up user objects
