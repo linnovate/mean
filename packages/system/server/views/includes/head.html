@@ -18,12 +18,17 @@
   <meta property="fb:admins" content="APP_ADMIN">
 
   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="/modules/aggregated.css">
 
- <script type="text/javascript" src="/modules/aggregated.js?group=header"></script>
+  {% for file in aggregatedassets.header.css %}
+    <link rel="stylesheet" href="{{file}}">
+  {% endfor %}
 
-  {% for file in assets.core.css %}
-    <link rel="stylesheet" href="/{{file}}">
+  {% for file in aggregatedassets.footer.css %}
+    <link rel="stylesheet" href="{{file}}">
+  {% endfor %}
+
+  {% for file in aggregatedassets.header.js %}
+    <script type="text/javascript" src="{{file}}"></script>
   {% endfor %}
 
     <!--[if lt IE 9]>
