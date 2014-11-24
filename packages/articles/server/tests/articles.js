@@ -82,9 +82,9 @@ describe('<Unit Test>', function() {
     });
 
     afterEach(function(done) {
-      article.remove();
-      user.remove();
-      done();
+      article.remove(function () {
+        user.remove(done);
+      });
     });
   });
 });
