@@ -1,10 +1,12 @@
+/* jshint -W079 */ 
+/* Related to https://github.com/linnovate/mean/issues/898 */
 'use strict';
 
 /**
  * Module dependencies.
  */
 var expect = require('expect.js'),
-  mongoose = require('mongoose'),
+	mongoose = require('mongoose'),
   User = mongoose.model('User'),
   Article = mongoose.model('Article');
 
