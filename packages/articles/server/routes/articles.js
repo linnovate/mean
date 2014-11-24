@@ -5,7 +5,7 @@ var articles = require('../controllers/articles');
 // Article authorization helpers
 var hasAuthorization = function(req, res, next) {
   if (!req.user.isAdmin && req.article.user.id !== req.user.id) {
-    return res.send(401, 'User is not authorized');
+    return res.send(401).send('User is not authorized');
   }
   next();
 };
