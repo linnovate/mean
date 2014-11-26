@@ -43,5 +43,8 @@ module.exports = {
   },
 
   // The session cookie name
-  sessionName: 'connect.sid'
+  sessionName: 'connect.sid',
+  articles: {
+    SEO: true 
+  }
 };

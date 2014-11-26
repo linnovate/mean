@@ -7,7 +7,6 @@ var mongoose = require('mongoose'),
   Article = mongoose.model('Article'),
   _ = require('lodash');
 
-
 /**
  * Find article by id
  */
@@ -23,12 +22,24 @@ exports.article = function(req, res, next, id) {
 /**
  * Create an article
  */
-exports.create = function(req, res) {
-  var article = new Article(req.body);
-  article.user = req.user;
 
+function saveArticle(res, article, title){
+  var articlesConfig = require('meanio').config;
+  if (!!articlesConfig){
+    articlesConfig = articlesConfig.clean.articles;
+  }
+  if (!!articlesConfig && !!articlesConfig.SEO){
+    article._id = title;
+  }
   article.save(function(err) {
     if (err) {
+      console.log(err);
+      if (!!articlesConfig && !!articlesConfig.SEO){
+        if(err.code === 11000){
+          saveArticle(res,article,title+'_');
+          return;
+        }
+      }
       return res.json(500, {
         error: 'Cannot save the article'
       });
@@ -36,6 +47,16 @@ exports.create = function(req, res) {
     res.json(article);
 
   });
+}
+
+function sanitize(text){
+  return encodeURIComponent(text);
+}
+
+exports.create = function(req, res) {
+  var article = new Article(req.body);
+  article.user = req.user;
+  saveArticle(res, article, sanitize(article.title));
 };
 
 /**
