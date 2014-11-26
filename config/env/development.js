@@ -1,9 +1,10 @@
 'use strict';
 
 module.exports = {
-  db: 'mongodb://localhost/mean-dev1',
+  db: 'mongodb://localhost/mean-dev',
 	debug: true,
-  aggregate: 'whatever that is not false, because boolean false value turns aggregation off', //false
+//  aggregate: 'whatever that is not false, because boolean false value turns aggregation off', //false
+  aggregate: false,
   mongoose: {
     debug: false
   },
