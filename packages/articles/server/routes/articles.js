@@ -16,9 +16,9 @@ module.exports = function(Articles, app, auth) {
     .get(articles.all)
     .post(auth.requiresLogin, articles.create);
   app.route('/articles/:articleId')
-    .get(auth.isMongoId,articles.show)
-    .put(auth.isMongoId,auth.requiresLogin, hasAuthorization, articles.update)
-    .delete(auth.isMongoId,auth.requiresLogin, hasAuthorization, articles.destroy);
+    .get(auth.isMongoId, articles.show)
+    .put(auth.isMongoId, auth.requiresLogin, hasAuthorization, articles.update)
+    .delete(auth.isMongoId, auth.requiresLogin, hasAuthorization, articles.destroy);
 
   // Finish with setting up the articleId param
   app.param('articleId', articles.article);
