@@ -2,7 +2,8 @@
 
 module.exports = {
   db: 'mongodb://localhost/mean-dev1',
-	debug: 'true',
+	debug: true,
+  aggregate: 'whatever that is not false, because boolean false value turns aggregation off', //false
   mongoose: {
     debug: false
   },

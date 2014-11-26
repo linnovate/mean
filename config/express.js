@@ -18,6 +18,11 @@ var mean = require('meanio'),
   flash = require('connect-flash'),
   config = mean.loadConfig();
 
+function onAggregatedSrc(loc,ext,res,next,data){
+  res.locals.aggregatedassets[loc][ext] = data;
+  next && next();
+}
+
 module.exports = function(app, passport, db) {
 
   app.set('showStackError', true);
@@ -64,15 +69,22 @@ module.exports = function(app, passport, db) {
     debug: process.env.NODE_ENV !== 'production',
     webroot: /public\/|packages\//g
   });
+  for(var i in assets.core.css){
+    mean.aggregate('css',assets.core.css[i],{group:'header',singlefile:true},mean.config.clean);
+  }
+  for(var i in assets.core.js){
+    mean.aggregate('js',assets.core.js[i],{group:'footer',singlefile:true,global:true,weight:-1000000+i},mean.config.clean);
+  }
 
   // Add assets to local variables
   app.use(function(req, res, next) {
-    res.locals.assets = assets;
+    //res.locals.assets = assets;
+    res.locals.aggregatedassets = {header:{},footer:{}};
 
-    mean.aggregated('js', 'header', function(data) {
-      res.locals.headerJs = data;
-      next();
-    });
+    mean.aggregatedsrc('css', 'header', onAggregatedSrc.bind(null,'header','css',res,null));
+    mean.aggregatedsrc('js', 'header', onAggregatedSrc.bind(null,'header','js',res,null));
+    mean.aggregatedsrc('css', 'footer', onAggregatedSrc.bind(null,'footer','css',res,null));
+    mean.aggregatedsrc('js', 'footer', onAggregatedSrc.bind(null,'footer','js',res,next));
   });
 
   // Express/Mongo session storage
