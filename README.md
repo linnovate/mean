@@ -1,4 +1,9 @@
-# MEAN.io
+[![Build Status](https://travis-ci.org/linnovate/mean.svg?branch=master)](https://travis-ci.org/linnovate/mean)
+[![Dependencies Status](https://david-dm.org/linnovate/mean.svg)](https://david-dm.org/linnovate/mean)
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/linnovate/mean?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+# MEAN
 
 MEAN is a framework for an easy starting point with [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. It is designed to give you a quick and organized way to start developing MEAN based web apps with useful modules like Mongoose and Passport pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.
 ## Prerequisites
@@ -106,9 +111,7 @@ MEAN is an acronym for *M*ongo, *E*xpress.js , *A*ngular.js and *N* ode.js
 * <a href="http://passportjs.org/">Passport</a> - An authentication middleware for Node.js which supports authentication using a username and password, Facebook, Twitter, and more.
 * <a href="http://getbootstrap.com/">Twitter Bootstrap</a> - The most popular HTML, CSS, and JS framework for developing responsive, mobile first projects.
 * <a href="http://angular-ui.github.io/bootstrap/">UI Bootstrap</a> - Bootstrap components written in pure AngularJS
-[![Build Status](https://travis-ci.org/linnovate/mean.svg?branch=master)](https://travis-ci.org/linnovate/mean)
-[![Dependencies Status](https://david-dm.org/linnovate/mean.svg)](https://david-dm.org/linnovate/mean)
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+
 
 ## CLI
 ### Overview
@@ -125,18 +128,20 @@ The MEAN CLI is a simple Command Line Interface for installing and managing MEAN
 ```
 ### Users
 
- <p>Information can be display for a specific customer via <code>mean user email</code>. Email is required. User roles can be assigned or removed with the <code>--addRole (or -a)</code> and <code>--removeRole (or -r)</code> options, respectively.
+ <p>Information can be display for a specific customer via <code>mean user email</code>. Email is required. User roles can be assigned or removed with the <code>--addRole (or -a)</code> and <code>--removeRole (or -r)</code> options, respectively.</p>
   <p>For example, the <i>admin</i> role is required to edit tokens.</p>
+
 ```bash
-  $ mean user <email>
-  $ mean user <email> --addRole <role>;
-  $ mean user <email> --removeRole <role>;
+  $ mean user <email> 
+  $ mean user <email> --addRole <role>; 
+  $ mean user <email> --removeRole <role>; 
 ```
 
 ### packages
 #### Management
  <p class="alert alert-warning">All of the remaining of the commands must be run from the root folder of your MEAN application.</p>
   <p>Contributed MEAN packages can be installed or uninstalled via the CLI. Also, currently installed modules can be viewed with the <code>list</code> command.</p>
+
 ```bash
   $ mean list
   $ mean install <module>
@@ -315,6 +320,13 @@ Javascript and css from `assets` can be aggregated to the global aggregation fil
 > injected into the mean project. As a result libraries that you do not
 > want aggregated should be placed within `public/assets/js`
 
+The aggregation supports the ability to control the location of where to inject the aggregated code and if you add a weight and a group to your aggregateAsset method you can make sure it's included in the correct region.
+
+      MyPackage.aggregateAsset('js','first.js',{global:true,  weight: -4, group: 'header'});
+>The line that gets loaded in your head.html calls the header group and injects the js you want to include first-
+> in packages/system/server/views/includes/head.html 
+> <script type="text/javascript" src="/modules/aggregated.js?group=header"></script>
+
 ###Settings Object
 The settings object is a persistance object that is stored in the packages collection and allows for saving persistant information per package such as configuration options or admin settings for the package.
 
@@ -329,7 +341,7 @@ The settings object is a persistance object that is stored in the packages colle
     // This writes over the last settings.
     MyPackage.settings({'anotherSettings':'some value'});
 
-    // Get settings. Retrieves latest saved settigns
+    // Get settings. Retrieves latest saved settings
     MyPackage.settings(function (err, settings) {
       //you now have the settings object
     });
@@ -403,7 +415,7 @@ Below is an example rendering some simple html>
     });
   });
 
-###Overriding the default views and layouts
+###Overriding the default layouts
 One is able to override the default layout of the application through a custom package.
 
 Below is an example overriding the default layout of system and instead using the layourts found locally within the package
@@ -414,6 +426,18 @@ Below is an example overriding the default layout of system and instead using th
 > Please note that the package must depend on `System` to ensure it is
 > evaluated after `System` and can thus override the views folder
 
+### Overriding views
+You may override public views used by certain core packages.  To create a custom home page, you would create a custom package and modify the script in it's public folder like so:
+
+```
+angular.module('mean.mycustompackage', ['mean.system'])
+  .config(['$viewPathProvider', function($viewPathProvider) {
+    $viewPathProvider.override('system/views/index.html', 'mycustompackage/views/myhomepage.html');
+  }]);
+```
+
+This will render *mycustompackage/views/myhomepage.html* as the home page.
+
 ### Creating your own package
 To create your own package and scaffold it's initial code - run
 ```bash
@@ -422,9 +446,10 @@ mean package <packageName>
 This will create a package under */packages/custom/pkgName*
 
 ### Contributing your package
-Once your package is decent and you want to share it with the world you can start the process of contributing it and submiting it so it can be included in the package repository.
+Once your package is in good shape and you want to share it with the world you can start the process of contributing it and submiting it so it can be included in the package repository.
 To contribute your package register to the network (see the section below) and run
 ```bash 
+mean register // register to the mean network (see below)
 cd packages/custom/pkgNName>
 mean publish
 ```

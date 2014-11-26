@@ -1,10 +1,12 @@
+/* jshint -W079 */ 
+/* Related to https://github.com/linnovate/mean/issues/898 */
 'use strict';
 
 /**
  * Module dependencies.
  */
-var should = require('should'),
-  mongoose = require('mongoose'),
+var expect = require('expect.js'),
+	mongoose = require('mongoose'),
   User = mongoose.model('User'),
   Article = mongoose.model('Article');
 
@@ -41,11 +43,11 @@ describe('<Unit Test>', function() {
     describe('Method Save', function() {
       it('should be able to save without problems', function(done) {
         return article.save(function(err) {
-          should.not.exist(err);
-          article.title.should.equal('Article Title');
-          article.content.should.equal('Article Content');
-          article.user.should.not.have.length(0);
-          article.created.should.not.have.length(0);
+          expect(err).to.be(null);
+          expect(article.title).to.equal('Article Title');
+          expect(article.content).to.equal('Article Content');
+          expect(article.user.length).to.not.equal(0);
+          expect(article.created.length).to.not.equal(0);
           done();
         });
       });
@@ -54,7 +56,7 @@ describe('<Unit Test>', function() {
         article.title = '';
 
         return article.save(function(err) {
-          should.exist(err);
+          expect(err).to.not.be(undefined);
           done();
         });
       });
@@ -63,7 +65,7 @@ describe('<Unit Test>', function() {
         article.content = '';
 
         return article.save(function(err) {
-          should.exist(err);
+          expect(err).to.not.be(undefined);
           done();
         });
       });
@@ -72,7 +74,7 @@ describe('<Unit Test>', function() {
         article.user = {};
 
         return article.save(function(err) {
-          should.exist(err);
+          expect(err).to.not.be(undefined);
           done();
         });
       });
@@ -80,9 +82,9 @@ describe('<Unit Test>', function() {
     });
 
     afterEach(function(done) {
-      article.remove();
-      user.remove();
-      done();
+      article.remove(function () {
+        user.remove(done);
+      });
     });
   });
 });
