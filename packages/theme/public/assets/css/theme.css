@@ -85,7 +85,7 @@
   border-top:3px solid #f3f3f3;
 }
 
-.welcome .packages h3, .welcome .community h3 {
+.welcome .packages h3 {
   margin:20px 0 20px 0;
 }
 
@@ -233,6 +233,15 @@
     width: 40px;
     height: 44px;
     background-position: -152px -5px;
+}
+
+/* Featured Pic */
+.featuredpic img{
+  width:510px;
+}
+
+.welcome .community h3{
+  margin-bottom:40px;
 }
 
 /* Featured Sites */
