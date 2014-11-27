@@ -12,9 +12,9 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
         'image':'/theme/assets/img/makeapoint.png'
       },
       'cactus':{
-        'name':'cactus',
-        'text':'Cactus intranet is an enterprise social network with features like real-time newsfeed, notifications, groups, events, polls, referral system etc. The system has role based permission system, allowing different stakeholders access and controls relevant to them.',
-        'author':'qed42',
+        'name':'Cactus Intranet',
+        'text':'Cactus Intranet is an enterprise social network with features like real-time newsfeed, notifications, groups, events, polls, referral system etc. The system has role based permission system, allowing different stakeholders access and controls relevant to them.',
+        'author':'QED42',
         'link':'http://www.qed42.com',
         'image':'/theme/assets/img/cactus.png'
       }
