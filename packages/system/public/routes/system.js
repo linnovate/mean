@@ -16,6 +16,7 @@ angular.module('mean.system').provider('$viewPath', function() {
         throw new Error('View already has an override: ' + defaultPath);
       }
       overrides[defaultPath] = newPath;
+      return this;
     };
 
     this.$get = function() {
@@ -28,17 +29,21 @@ angular.module('mean.system').provider('$viewPath', function() {
 
 // $meanStateProvider, provider to wire up $viewPathProvider to $stateProvider
 angular.module('mean.system').provider('$meanState', ['$stateProvider', '$viewPathProvider', function($stateProvider, $viewPathProvider) {
-  this.state = function(stateName, data) {
-    if (data.templateUrl) {
-      data.templateUrl = $viewPathProvider.path(data.templateUrl);
-    }
-    $stateProvider.state(stateName, data);
-    return this;
-  };
+  function MeanStateProvider() {
+    this.state = function(stateName, data) {
+      if (data.templateUrl) {
+        data.templateUrl = $viewPathProvider.path(data.templateUrl);
+      }
+      $stateProvider.state(stateName, data);
+      return this; 
+    };
 
-  this.$get = function() {
-    return this;
-  };
+    this.$get = function() {
+      return this;
+    };
+  }
+
+  return new MeanStateProvider();
 }]);
 
 //Setting up route

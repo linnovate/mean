@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('mean.system', ['mean-factory-interceptor']);
+angular.module('mean.system', ['ui.router', 'mean-factory-interceptor']);
