@@ -35,7 +35,7 @@ angular.module('mean.system').provider('$meanState', ['$stateProvider', '$viewPa
         data.templateUrl = $viewPathProvider.path(data.templateUrl);
       }
       $stateProvider.state(stateName, data);
-      return this;
+      return this; 
     };
 
     this.$get = function() {
