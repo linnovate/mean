@@ -70,11 +70,10 @@ exports.create = function(req, res, next) {
       switch (err.code) {
         case 11000:
         case 11001:
-          res.status(400).send([{
+          return res.status(400).send([{
             msg: 'Username already taken',
             param: 'username'
           }]);
-          break;
         default:
           var modelErrors = [];
 
@@ -88,17 +87,12 @@ exports.create = function(req, res, next) {
               });
             }
 
-            res.status(400).send(modelErrors);
+            return res.status(400).send(modelErrors);
           }
       }
-
-      return res.status(400);
+      return res.status(400).send('Unknown error');
     }
-    req.logIn(user, function(err) {
-      if (err) return next(err);
-      return res.redirect('/');
-    });
-    res.status(200);
+    return res.status(200).send();
   });
 };
 /**
