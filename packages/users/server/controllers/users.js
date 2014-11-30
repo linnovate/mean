@@ -70,7 +70,7 @@ exports.create = function(req, res, next) {
       switch (err.code) {
         case 11000:
         case 11001:
-          res.status(400).send([{
+          res.status(400).json([{
             msg: 'Username already taken',
             param: 'username'
           }]);
@@ -88,7 +88,7 @@ exports.create = function(req, res, next) {
               });
             }
 
-            res.status(400).send(modelErrors);
+            res.status(400).json(modelErrors);
           }
       }
 
@@ -158,7 +158,7 @@ exports.resetpassword = function(req, res, next) {
       req.logIn(user, function(err) {
         if (err) return next(err);
         return res.send({
-          user: user,
+          user: user
         });
       });
     });
