@@ -1,6 +1,6 @@
 'use strict';
 
-// Requires meanio
+// Requires meanio .
 var mean = require('meanio');
 
 // Creates and serves mean application
