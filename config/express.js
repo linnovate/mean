@@ -19,6 +19,13 @@ var mean = require('meanio'),
   config = mean.loadConfig();
 
 function onAggregatedSrc(loc,ext,res,next,data){
+  var isWin = /^win/.test(process.platform);
+  if(isWin) {
+    for (var i = 0; i < data.length; i++) {
+      data[i]=data[i].replace(/\\/g,'/');
+    }
+  }
+
   res.locals.aggregatedassets[loc][ext] = data;
   next && next();
 }
