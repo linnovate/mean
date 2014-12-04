@@ -4,21 +4,21 @@
 var mean = require('meanio');
 var cluster = require('cluster');
 
-
-// Code to run if we're in the master process
-if (cluster.isMaster) {
+// Code to run if we're in the master process or if we are not in debug mode
+if ((cluster.isMaster) && (process.execArgv[0] !== '--debug')) {
+//if (cluster.isMaster) {
 
     // Count the machine's CPUs
     var cpuCount = require('os').cpus().length;
 
     // Create a worker for each CPU
     for (var i = 0; i < cpuCount; i += 1) {
+        console.log ('forking ',i);
         cluster.fork();
     }
 
     // Listen for dying workers
     cluster.on('exit', function (worker) {
-
         // Replace the dead worker, we're not sentimental
         console.log('Worker ' + worker.id + ' died :(');
         cluster.fork();
@@ -28,14 +28,14 @@ if (cluster.isMaster) {
 // Code to run if we're in a worker process
 } else {
 
-
+    var workerId = 0;
+    if (!cluster.isMaster)
+    {
+        workerId = cluster.worker.id;
+    }
 // Creates and serves mean application
-mean.serve({ workerid:cluster.worker.id /* more options placeholder*/ }, function(app, config) {
-    app.workerid = cluster.worker.id;
-	var port = config.https && config.https.port ? config.https.port : config.http.port;
-	console.log('Mean app started on port ' + port + ' (' + process.env.NODE_ENV + ')');
-});
-
-    console.log('Worker ' + cluster.worker.id + ' running!');
-
+    mean.serve({ workerid: workerId /* more options placeholder*/ }, function (app, config) {
+        var port = config.https && config.https.port ? config.https.port : config.http.port;
+        console.log('Mean app started on port ' + port + ' (' + process.env.NODE_ENV + ') cluster.worker.id:', workerId);
+    });
 }
