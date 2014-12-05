@@ -36,7 +36,7 @@ module.exports = function(grunt) {
           var compiledStat = fs.statSync(compiledFile),
             sassStat = fs.statSync(file);
           if (sassStat.mtime > compiledStat.mtime) {
-            console.log('recompiling: ' + file + ' => ' + compiledFile);
+            grunt.log.writeln('recompiling: ' + file + ' => ' + compiledFile);
             compileSass = true;
           }
         }
