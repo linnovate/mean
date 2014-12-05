@@ -113,11 +113,17 @@ module.exports = function(grunt) {
   //Load NPM tasks
   require('load-grunt-tasks')(grunt);
 
+  // Load local tasks from 'tasks' directory
+  grunt.loadTasks('tasks');
+
+  // Load package tasks
+  require('glob').sync('packages/**/tasks').forEach(grunt.loadTasks);
+
   //Default task(s).
   if (process.env.NODE_ENV === 'production') {
-    grunt.registerTask('default', ['clean', 'cssmin', 'uglify', 'concurrent']);
+    grunt.registerTask('default', ['clean', 'cssmin', 'uglify', 'package-default', 'concurrent']);
   } else {
-    grunt.registerTask('default', ['clean', 'jshint', 'csslint', 'concurrent']);
+    grunt.registerTask('default', ['clean', 'jshint', 'csslint', 'package-default', 'concurrent']);
   }
 
   //Test task.
