@@ -3,8 +3,8 @@
 var paths = {
   js: ['*.js', 'test/**/*.js', '!test/coverage/**', '!bower_components/**', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/contrib/**/*.js', '!packages/contrib/**/node_modules/**'],
   html: ['packages/**/public/**/views/**', 'packages/**/server/views/**'],
-  css: ['!bower_components/**', 'packages/**/public/**/css/*.css', '!packages/contrib/**/public/**/css/*.css', 'packages/**/public/**/css/*.compiled.css'],
-  sass: ['packages/custom/**/public/assets/sass/*.scss']
+  css: ['!bower_components/**', 'packages/**/public/**/css/*.css', '!packages/contrib/**/public/**/css/*.css', '!packages/**/public/**/css/*.compiled.css'],
+  sass: ['packages/**/public/assets/sass/*.scss']
 };
 
 module.exports = function(grunt) {
