@@ -24,7 +24,9 @@ This will add the *mean* command which lets you interact (install, manage, updat
 ```bash
   $ sudo npm install -g mean-cli
   $ mean init <myApp>
-  $ cd <myApp> && npm install
+  $ cd <myApp>
+  $ npm install
+  $ bower install
 ```
 
 ### Invoke node with Grunt
