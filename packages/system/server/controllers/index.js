@@ -26,7 +26,7 @@ exports.render = function(req, res) {
       username: req.user.username,
       roles: req.user.roles
     } : {},
-    ngTitle: '{{title}}',
+    ngTitle: '{{$title}}',
     modules: modules,
     isAdmin: isAdmin,
     adminEnabled: isAdmin() && mean.moduleEnabled('mean-admin')

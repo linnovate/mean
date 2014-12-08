@@ -2,6 +2,6 @@
 
 angular.module('mean.system', ['ui.router', 'mean-factory-interceptor'])
   .run(['$rootScope', '$window', function($rootScope, $window) {
-    $rootScope.title = $window.defaultTitle;
+    $rootScope.$title = $window.defaultTitle;
   }])
 ;
