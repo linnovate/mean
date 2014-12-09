@@ -12,7 +12,7 @@ MEAN is a framework for an easy starting point with [MongoDB](http://www.mongodb
 * *Git* - Get git using a package manager or <a href="http://git-scm.com/downloads">download</a> it.
 * Grunt - Download and Install [Grunt](http://gruntjs.com).
 ```
-$ npm install -g grunt-cli
+$ sudo npm install -g grunt-cli
 ```
 
 ## Installation
