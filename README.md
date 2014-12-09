@@ -447,6 +447,15 @@ mean package <packageName>
 ```
 This will create a package under */packages/custom/pkgName*
 
+### Deleting a package
+To delete your package, and remove its files:
+
+```
+mean uninstall myPackage
+```
+Where "myPackage" is the name of your package.
+
+
 ### Contributing your package
 Once your package is in good shape and you want to share it with the world you can start the process of contributing it and submiting it so it can be included in the package repository.
 To contribute your package register to the network (see the section below) and run
