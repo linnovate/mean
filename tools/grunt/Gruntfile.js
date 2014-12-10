@@ -117,7 +117,6 @@ module.exports = function(grunt) {
       main: {
         src: paths.sass,
         options: {
-          sourcemap: true
         }
       }
     }

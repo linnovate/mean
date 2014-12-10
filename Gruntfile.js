@@ -117,7 +117,6 @@ module.exports = function(grunt) {
       main: {
         src: paths.sass,
         options: {
-          sourcemap: true
         }
       }
     }
@@ -129,7 +128,7 @@ module.exports = function(grunt) {
 
   //Default task(s).
   if (process.env.NODE_ENV === 'production') {
-    grunt.registerTask('default', ['clean', 'cssmin', 'uglify', 'concurrent']);
+    grunt.registerTask('default', ['clean', 'meanCompass', 'cssmin', 'uglify', 'concurrent']);
   } else {
     grunt.registerTask('default', ['clean', 'jshint', 'meanCompass', 'csslint', 'concurrent']);
   }
