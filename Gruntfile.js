@@ -3,7 +3,8 @@
 var paths = {
   js: ['*.js', 'test/**/*.js', '!test/coverage/**', '!bower_components/**', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/contrib/**/*.js', '!packages/contrib/**/node_modules/**'],
   html: ['packages/**/public/**/views/**', 'packages/**/server/views/**'],
-  css: ['!bower_components/**', 'packages/**/public/**/css/*.css', '!packages/contrib/**/public/**/css/*.css']
+  css: ['!bower_components/**', 'packages/**/public/**/css/*.css', '!packages/contrib/**/public/**/css/*.css'],
+  sass: ['!bower_components/**', 'packages/**/public/**/*.scss']
 };
 
 module.exports = function(grunt) {
@@ -38,6 +39,10 @@ module.exports = function(grunt) {
         options: {
           livereload: true
         }
+      },
+      sass: {
+        files: paths.sass,
+        tasks: ['meanCompass']
       }
     },
     jshint: {
@@ -107,17 +112,26 @@ module.exports = function(grunt) {
       unit: {
         configFile: 'karma.conf.js'
       }
+    },
+    meanCompass: {
+      main: {
+        src: paths.sass,
+        options: {
+          sourcemap: true
+        }
+      }
     }
   });
 
   //Load NPM tasks
   require('load-grunt-tasks')(grunt);
+  grunt.loadTasks('tools/grunt/tasks');
 
   //Default task(s).
   if (process.env.NODE_ENV === 'production') {
     grunt.registerTask('default', ['clean', 'cssmin', 'uglify', 'concurrent']);
   } else {
-    grunt.registerTask('default', ['clean', 'jshint', 'csslint', 'concurrent']);
+    grunt.registerTask('default', ['clean', 'jshint', 'meanCompass', 'csslint', 'concurrent']);
   }
 
   //Test task.
