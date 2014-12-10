@@ -107,6 +107,9 @@ module.exports = function(grunt) {
       unit: {
         configFile: 'karma.conf.js'
       }
+    },
+    mean: {
+      main: ['packages/**/meanGruntfile.js', '!packages/**/node_modules/**']
     }
   });
 
@@ -115,9 +118,9 @@ module.exports = function(grunt) {
 
   //Default task(s).
   if (process.env.NODE_ENV === 'production') {
-    grunt.registerTask('default', ['clean', 'cssmin', 'uglify', 'concurrent']);
+    grunt.registerTask('default', ['clean', 'mean', 'cssmin', 'uglify', 'concurrent']);
   } else {
-    grunt.registerTask('default', ['clean', 'jshint', 'csslint', 'concurrent']);
+    grunt.registerTask('default', ['clean', 'mean', 'jshint', 'csslint', 'concurrent']);
   }
 
   //Test task.
