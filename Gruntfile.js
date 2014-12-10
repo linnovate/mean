@@ -4,7 +4,7 @@ var paths = {
   js: ['*.js', 'test/**/*.js', '!test/coverage/**', '!bower_components/**', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/contrib/**/*.js', '!packages/contrib/**/node_modules/**'],
   html: ['packages/**/public/**/views/**', 'packages/**/server/views/**'],
   css: ['!bower_components/**', 'packages/**/public/**/css/*.css', '!packages/contrib/**/public/**/css/*.css'],
-  sass: ['!bower_components/**', 'packages/**/public/**/*.scss']
+  sass: ['!bower_components/**', '!packages/contrib/**', 'packages/**/public/**/*.scss']
 };
 
 module.exports = function(grunt) {
@@ -127,7 +127,6 @@ module.exports = function(grunt) {
 
   //Load NPM tasks
   require('load-grunt-tasks')(grunt);
-  grunt.loadTasks('tools/grunt/tasks');
 
   //Default task(s).
   if (process.env.NODE_ENV === 'production') {
