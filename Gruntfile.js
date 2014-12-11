@@ -3,7 +3,8 @@
 var paths = {
   js: ['*.js', 'test/**/*.js', '!test/coverage/**', '!bower_components/**', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/contrib/**/*.js', '!packages/contrib/**/node_modules/**'],
   html: ['packages/**/public/**/views/**', 'packages/**/server/views/**'],
-  css: ['!bower_components/**', 'packages/**/public/**/css/*.css', '!packages/contrib/**/public/**/css/*.css']
+  css: ['!bower_components/**', 'packages/**/public/**/css/*.css', '!packages/contrib/**/public/**/css/*.css', '!packages/**/public/**/css/*.compiled.css'],
+  sass: ['packages/**/public/assets/sass/*.scss']
 };
 
 module.exports = function(grunt) {
@@ -35,6 +36,13 @@ module.exports = function(grunt) {
       css: {
         files: paths.css,
         tasks: ['csslint'],
+        options: {
+          livereload: true
+        }
+      },
+      sass: {
+        files: paths.sass,
+        tasks: ['sasscompile'],
         options: {
           livereload: true
         }
@@ -107,17 +115,26 @@ module.exports = function(grunt) {
       unit: {
         configFile: 'karma.conf.js'
       }
+    },
+    sasscompile: {
+      options: {
+        search: paths.sass,
+        loadPath: [] // optional list of paths for including sass files
+      }
     }
   });
 
   //Load NPM tasks
   require('load-grunt-tasks')(grunt);
 
+  // Load local tasks from 'tasks' directory
+  grunt.loadTasks('tasks');
+
   //Default task(s).
   if (process.env.NODE_ENV === 'production') {
-    grunt.registerTask('default', ['clean', 'cssmin', 'uglify', 'concurrent']);
+    grunt.registerTask('default', ['clean', 'cssmin', 'uglify', 'sasscompile', 'concurrent']);
   } else {
-    grunt.registerTask('default', ['clean', 'jshint', 'csslint', 'concurrent']);
+    grunt.registerTask('default', ['clean', 'jshint', 'csslint', 'sasscompile', 'concurrent']);
   }
 
   //Test task.
