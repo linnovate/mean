@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Global', 'Articles',
-  function($scope, $stateParams, $location, Global, Articles) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Global', 'Articles', '$rootScope',
+  function($scope, $stateParams, $location, Global, Articles, $rootScope) {
     $scope.global = Global;
 
     $scope.hasAuthorization = function(article) {
@@ -69,6 +69,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
       Articles.get({
         articleId: $stateParams.articleId
       }, function(article) {
+        $rootScope.$title = article.title;
         $scope.article = article;
       });
     };
