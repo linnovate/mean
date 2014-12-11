@@ -4,5 +4,10 @@
 
 {% if (process.env.NODE_ENV == 'development') %}
   <!-- Livereload script rendered -->
+  <!--
+  Liverload is disabled based on https://github.com/linnovate/mean/issues/929
+  When @andrija-hers work on the new aggregation will be released (0.4.2) we will -
+  try to re-enable livereload
   <script type="text/javascript" src="{{'//' + req.hostname + ':35729/livereload.js'}}"></script>
+-->
 {% endif %}
