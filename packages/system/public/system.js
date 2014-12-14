@@ -6,7 +6,6 @@ angular.module('mean.system', ['ui.router', 'mean-factory-interceptor'])
       var toPath = toState.url;
       toPath = toPath.replace(new RegExp('/', 'g'), '');
       toPath = toPath.replace(new RegExp(':', 'g'),'-');
-      console.log(toState.url,toPath);
       $rootScope.state = toPath;
       if($rootScope.state === '' ) {
         $rootScope.state = 'firstPage';
