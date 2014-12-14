@@ -3,9 +3,10 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-  Schema = mongoose.Schema,
-  crypto = require('crypto');
+var mongoose  = require('mongoose'),
+    Schema    = mongoose.Schema,
+    crypto    = require('crypto'),
+          _   = require('lodash');
 
 /**
  * Validations
@@ -31,13 +32,21 @@ var validateUniqueEmail = function(value, callback) {
 };
 
 /**
+ * Getter
+ */
+var escapeProperty = function(value) {
+  return _.escape(value);
+};
+
+/**
  * User Schema
  */
 
 var UserSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    get: escapeProperty
   },
   email: {
     type: String,
@@ -50,7 +59,8 @@ var UserSchema = new Schema({
   username: {
     type: String,
     unique: true,
-    required: true
+    required: true,
+    get: escapeProperty
   },
   roles: {
     type: Array,
