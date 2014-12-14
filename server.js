@@ -6,7 +6,8 @@ var cluster = require('cluster');
 
 
 // Code to run if we're in the master process or if we are not in debug mode/ running tests
-if ((cluster.isMaster) && (process.execArgv[0] !== '--debug')&&(process.env.NODE_ENV!=='test')) {
+
+if ((cluster.isMaster) && (process.execArgv.indexOf('--debug') < 0) && (process.env.NODE_ENV!=='test') && (process.execArgv.indexOf('--singleProcess')<0)) {
 //if (cluster.isMaster) {
 
     // Count the machine's CPUs
