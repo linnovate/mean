@@ -63,3 +63,9 @@ test/coverage/
 modules/public/
 modules/views/
 /public/build/
+
+# --------------------
+# vim Files
+# --------------------
+*.swp
+
