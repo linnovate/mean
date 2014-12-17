@@ -22,7 +22,7 @@ This will add the *mean* command which lets you interact (install, manage, updat
 ### Install the MEAN CLI
 
 ```bash
-  $ sudo npm install -g mean-cli
+  $ npm install -g mean-cli
   $ mean init <myApp>
   $ cd <myApp> && npm install
 ```
