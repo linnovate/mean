@@ -3,4 +3,4 @@
 npm install -g grunt grunt-cli
 npm install -g
 npm link
-grunt
+grunt test && grunt
