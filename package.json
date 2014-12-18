@@ -18,8 +18,7 @@
     "start": "node server",
     "mocha": "node node_modules/.bin/mocha packages/**/server/tests/**/*.js -R spec -r tools/test/mocha-req.js",
     "karma": "node node_modules/karma/bin/karma start",
-    "test": "npm run mocha && npm run karma",
-    "postinstall": "node node_modules/meanio/node_modules/mean-cli/bin/mean-postinstall"
+    "test": "npm run mocha && npm run karma"
   },
   "dependencies": {
     "assetmanager": "^1.1.1",
