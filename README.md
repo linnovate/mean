@@ -546,6 +546,8 @@ To do so all you need to do is the following steps.
 1. make sure you have a unique name for your app (not the default mean) and that the name is in the package.json
 1. Run ```mean deploy```
 1. It will create the meanio remote which can be used to update your remote app by ```git push meanio master```
+1. You can add remote command using the --remote flag for instance to add a role to a user on the remote cloud instance run ```mean user -a RoleName emailAddress --remote```
+1. To get an idea of whats happening on the mean log (node.js based logging) run ```mean logs -n 100` to get the last 100 lines...
 
 ### Heroku
 Before you start make sure you have the [Heroku toolbelt](https://toolbelt.heroku.com/)
