@@ -113,12 +113,21 @@ module.exports = function(grunt) {
   //Load NPM tasks
   require('load-grunt-tasks')(grunt);
 
-  //Default task(s).
+  /**
+   * Default Task
+   */
+  grunt.mean.push('clean', -9999);
+  grunt.mean.push('concurrent', 9999);
   if (process.env.NODE_ENV === 'production') {
-    grunt.registerTask('default', ['clean', 'cssmin', 'uglify', 'concurrent']);
+    grunt.mean.push('cssmin', 100);
+    grunt.mean.push('uglify', 200);
   } else {
-    grunt.registerTask('default', ['clean', 'jshint', 'csslint', 'concurrent']);
+    grunt.mean.push('jshint', -200);
+    grunt.mean.push('csslint', 100);
   }
+
+  //Default task.
+  grunt.registerTask('default', ['mean']);
 
   //Test task.
   grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);

@@ -392,6 +392,28 @@ describe('<Unit Test>', function() {
         });
       });
 
+      it('name should be escaped from xss', function(done) {
+
+        var _user = new User(user1);
+        _user.name = '</script><script>alert(1)</script>';
+
+        return _user.save(function(err) {
+          expect(_user.name).to.be('&lt;/script&gt;&lt;script&gt;alert(1)&lt;/script&gt;');
+          done();
+        });
+      });
+
+      it('username should be escaped from xss', function(done) {
+
+        var _user = new User(user1);
+        _user.name = '<b>xss</b>';
+
+        return _user.save(function(err) {
+          expect(_user.name).to.be('&lt;b&gt;xss&lt;/b&gt;');
+          done();
+        });
+      });
+
     });
 
     after(function(done) {
