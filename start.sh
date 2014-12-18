@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-npm install -g grunt
+npm install -g grunt grunt-cli
 grunt
