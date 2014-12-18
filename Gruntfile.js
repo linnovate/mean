@@ -116,18 +116,18 @@ module.exports = function(grunt) {
   /**
    * Default Task
    */
-  grunt.mean.push('clean', -9999);
-  grunt.mean.push('concurrent', 9999);
+  grunt.hook.push('clean', -9999);
+  grunt.hook.push('concurrent', 9999);
   if (process.env.NODE_ENV === 'production') {
-    grunt.mean.push('cssmin', 100);
-    grunt.mean.push('uglify', 200);
+    grunt.hook.push('cssmin', 100);
+    grunt.hook.push('uglify', 200);
   } else {
-    grunt.mean.push('jshint', -200);
-    grunt.mean.push('csslint', 100);
+    grunt.hook.push('jshint', -200);
+    grunt.hook.push('csslint', 100);
   }
 
   //Default task.
-  grunt.registerTask('default', ['mean']);
+  grunt.registerTask('default', ['hook']);
 
   //Test task.
   grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
