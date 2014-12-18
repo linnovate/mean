@@ -540,6 +540,11 @@ git push -u origin master
 
 
 ## Hosting MEAN
+Since version 0.4.2 MEAN provides a command to easily upload your app to the *mean cloud*.
+To do so all you need to do is the following steps.
+# make sure you have a unique name for your app (not the default mean) and that the name is in the package.json
+# Run ```mean deploy```
+# It will create the meanio remote which can be used to update your remote app by ```git push meanio master```
 
 ### Heroku
 Before you start make sure you have the [Heroku toolbelt](https://toolbelt.heroku.com/)
