@@ -1,9 +1,9 @@
 {
-  "name": "mean",
+  "name": "zoharpaaspoc4",
   "description": "MEAN.io: A fullstack JavaScript framework powered by MongoDB, ExpressJS, AngularJS, NodeJS.",
   "version": "0.4.2",
   "private": false,
-  "author": "Linnovate <mean@linnovate.net>",
+  "author": "Zohar <zohar@linnovate.net>",
   "contributors": "https://github.com/linnovate/mean/graphs/contributors",
   "mean": "0.4.2",
   "repository": {
