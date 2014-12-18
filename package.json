@@ -38,7 +38,7 @@
     "forever": "^0.11.1",
     "gridfs-stream": "^0.5.1",
     "grunt-cli": "^0.1.13",
-    "grunt-mean": "~0.2.1",
+    "grunt-hook": "~0.3.0",
     "grunt-concurrent": "^1.0.0",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-csslint": "^0.3.1",
