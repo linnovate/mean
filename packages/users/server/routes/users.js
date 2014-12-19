@@ -40,11 +40,21 @@ module.exports = function(MeanUser, app, auth, database, passport) {
         redirect: (req.user.roles.indexOf('admin') !== -1) ? req.get('referer') : false
       });
     });
-
-  // AngularJS route to get config of social buttons
-  app.route('/get-config')
-    .get(function (req, res) {
-      res.send(config);
+  // AngularJS route to return social callbackURL
+  app.route('/get-auth-providers')
+    .post(function (req, res) {
+      var clientIdProperty = 'clientID',
+      defaultPrefix = 'DEFAULT_',
+      callbackURL = 'callbackURL',
+      response={};
+      for(var conf in config){
+        if (config[conf] !== undefined && config[conf][clientIdProperty] !== undefined){
+          if(config[conf][clientIdProperty].toString().indexOf(defaultPrefix) === -1) {
+              response[conf] = config[conf][callbackURL];
+          }
+        }
+      }
+      res.send(response);
     });
 
   // Setting the facebook oauth routes
