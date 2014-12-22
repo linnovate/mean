@@ -44,8 +44,35 @@ module.exports = function(MeanUser, app, auth, database, passport) {
   // AngularJS route to get config of social buttons
   app.route('/get-config')
     .get(function (req, res) {
-      res.send(config);
+      //!! do not expose other config
+      var authMethod = ["facebook","twitter","google","github","linkedin"];
+      config.social = {};
+      for (var i=0,N=authMethod.length; i<N; i++) {
+        var provider = authMethod[i];
+        config.social[provider] = config[provider];
+      }
+      
+      //TODO : social login grouping in config
+      //so it should simpler call:
+      res.json(config.social);
     });
+  
+  //TODO : social login grouping in config and automatic handlers
+  /*
+  for (var method in config.social) {
+    app.route('/auth/' + method)
+      .get(passport.authenticate(method, {
+        failureRedirect: '#!/login',
+        scope: config.social[method].scope || []
+      }), users.signin);
+      
+    app.route('/auth/' + method + '/callback')
+      .get(passport.authenticate(method, {
+        failureRedirect: '#!/login'
+      }), users.authCallback);
+  }
+  */
+  //TODO : REMOVE ALL below if config altered and uncomment above
 
   // Setting the facebook oauth routes
   app.route('/auth/facebook')
