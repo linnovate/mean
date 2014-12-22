@@ -1,0 +1,17 @@
+language: node_js
+
+cache:
+  - apt
+  - npm
+  
+matrix:
+  fast_finish: true
+  
+services: mongodb
+
+before_install:
+  - chmod u+x start.sh
+
+
+script:
+  - ./start.sh 
