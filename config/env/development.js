@@ -12,7 +12,7 @@ module.exports = {
     name: 'MEAN - FullStack JS - Development'
   },
   facebook: {
-    clientID: 'DEFAULT_APP_ID',
+    clientID: 'APP_ID',
     clientSecret: 'APP_SECRET',
     callbackURL: 'http://localhost:3000/auth/facebook/callback'
   },
@@ -22,7 +22,7 @@ module.exports = {
     callbackURL: 'http://localhost:3000/auth/twitter/callback'
   },
   github: {
-    clientID: 'DEFAULT_APP_ID',
+    clientID: 'APP_ID',
     clientSecret: 'APP_SECRET',
     callbackURL: 'http://localhost:3000/auth/github/callback'
   },
