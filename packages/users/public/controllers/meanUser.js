@@ -1,7 +1,4 @@
 'use strict';
-// To avoid displaying unneccesary social logins
-var clientIdProperty = 'clientID',
-  defaultPrefix = 'DEFAULT_';
 
 angular.module('mean.users')
   .controller('AuthCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
@@ -9,19 +6,14 @@ angular.module('mean.users')
       // This object will contain list of available social buttons to authorize
       $scope.socialButtonsCounter = 0;
       $scope.global = Global;
-      /*
+
       $http.get('/get-config')
         .success(function(config) {
-          for (var conf in config) {
-            // Do not show auth providers that have the value DEFAULT as their clientID
-            if (config[conf].hasOwnProperty(clientIdProperty) && config[conf][clientIdProperty].indexOf(defaultPrefix) === -1) {
-              $scope.socialButtons[conf] = true;
-              $scope.socialButtonsCounter += 1;
-            }
-          }
+          $scope.socialButtons = config;
         });
-        */
+
         // Temporarely removed the "intelligent" social disaplay turning everything on.
+        /*
         $scope.socialButtons = {
           'facebook':true,
           'twitter':true,
@@ -29,6 +21,7 @@ angular.module('mean.users')
           'google':true,
           'linkedin':true
         }
+        */
     }
   ])
   .controller('LoginCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',

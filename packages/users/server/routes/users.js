@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 // User routes use users controller
 var users = require('../controllers/users'),
     config = require('meanio').loadConfig();
@@ -51,23 +49,46 @@ module.exports = function(MeanUser, app, auth, database, passport) {
       var defaultPrefix = 'DEFAULT_';
       var socialNetworks = ['facebook','linkedin','twitter','github','google']; //ugly hardcoding :(
       var configuredApps = {};
-      for (var conf in config) {
-        console.log('->'+ config[conf]);
+      for (var network in socialNetworks){
+        var netObject = config[socialNetworks[network]];
+        if ( netObject.hasOwnProperty(clientIdProperty) ) {
+            //if (net.indexOf(defaultPrefix) === -1){
+              if (netObject[clientIdProperty].indexOf(defaultPrefix) === -1 ){
+                configuredApps[socialNetworks[network]] = true ;
+              }
+          //  }
+        }
+      }
+      res.send(configuredApps);
 
+        /*
+        if ( netObject.hasOwnProperty(clientIdProperty) {
+        //  && config[socialNetworks[network]].indexOf(defaultPrefix) === -1 ){
+            console.log(netObject);
+            configuredApps.socialNetworks[network] = true ;
+        }
+
+      }
+
+  //    console.log(configuredApps);
+      */
+    });
+/*
         if (socialNetworks.indexOf(config[conf])) {
           console.log(conf + '--------------->');
           console.log(defaultPrefix);
+        }
           //config is currently flat should probably have a network sub object.
+
           if (config[conf].hasOwnProperty(clientIdProperty)){
             if (config[conf][clientIdProperty].indexOf(defaultPrefix) === -1) {
             configuredApps[conf] = true;
             }
+
           }
-        }
-      }
-      console.log(configuredApps);
-      res.send(configuredApps);
-    });
+          */
+
+
 
   // Setting the facebook oauth routes
   app.route('/auth/facebook')
