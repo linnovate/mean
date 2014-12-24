@@ -11,17 +11,6 @@ angular.module('mean.users')
         .success(function(config) {
           $scope.socialButtons = config;
         });
-
-        // Temporarely removed the "intelligent" social disaplay turning everything on.
-        /*
-        $scope.socialButtons = {
-          'facebook':true,
-          'twitter':true,
-          'github':true,
-          'google':true,
-          'linkedin':true
-        }
-        */
     }
   ])
   .controller('LoginCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',

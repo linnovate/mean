@@ -52,11 +52,9 @@ module.exports = function(MeanUser, app, auth, database, passport) {
       for (var network in socialNetworks){
         var netObject = config[socialNetworks[network]];
         if ( netObject.hasOwnProperty(clientIdProperty) ) {
-            //if (net.indexOf(defaultPrefix) === -1){
               if (netObject[clientIdProperty].indexOf(defaultPrefix) === -1 ){
                 configuredApps[socialNetworks[network]] = true ;
               }
-          //  }
         }
       }
       res.send(configuredApps);
