@@ -1,8 +1,8 @@
 'use strict';
 
 // User routes use users controller
-var users = require('../controllers/users');
-//  config = require('meanio').loadConfig();
+var users = require('../controllers/users'),
+    config = require('meanio').loadConfig();
 
 module.exports = function(MeanUser, app, auth, database, passport) {
 
@@ -42,12 +42,25 @@ module.exports = function(MeanUser, app, auth, database, passport) {
     });
 
   // AngularJS route to get config of social buttons
-  /* Temporarely disabling to avoid security issue
   app.route('/get-config')
     .get(function (req, res) {
-      res.send(config);
+      // To avoid displaying unneccesary social logins
+      var clientIdProperty = 'clientID';
+      var defaultPrefix = 'DEFAULT_';
+      var socialNetworks = ['facebook','linkedin','twitter','github','google']; //ugly hardcoding :(
+      var configuredApps = {};
+      for (var network in socialNetworks){
+        var netObject = config[socialNetworks[network]];
+        if ( netObject.hasOwnProperty(clientIdProperty) ) {
+            //if (net.indexOf(defaultPrefix) === -1){
+              if (netObject[clientIdProperty].indexOf(defaultPrefix) === -1 ){
+                configuredApps[socialNetworks[network]] = true ;
+              }
+          //  }
+        }
+      }
+      res.send(configuredApps);
     });
-*/
 
   // Setting the facebook oauth routes
   app.route('/auth/facebook')
