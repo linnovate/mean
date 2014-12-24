@@ -1,8 +1,8 @@
 'use strict';
 
 // User routes use users controller
-var users = require('../controllers/users'),
-    config = require('meanio').loadConfig();
+var users = require('../controllers/users');
+//  config = require('meanio').loadConfig();
 
 module.exports = function(MeanUser, app, auth, database, passport) {
 
