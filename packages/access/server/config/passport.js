@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
   FacebookStrategy = require('passport-facebook').Strategy,
   GitHubStrategy = require('passport-github').Strategy,
   GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
-  LinkedinStrategy = require('passport-linkedin').Strategy,
+  LinkedinStrategy = require('passport-linkedin-oauth2').Strategy,
   User = mongoose.model('User'),
   config = require('meanio').loadConfig();
 
@@ -193,10 +193,11 @@ module.exports = function(passport) {
 
   // use linkedin strategy
   passport.use(new LinkedinStrategy({
-      consumerKey: config.linkedin.clientID,
-      consumerSecret: config.linkedin.clientSecret,
+      clientID: config.linkedin.clientID,
+      clientSecret: config.linkedin.clientSecret,
       callbackURL: config.linkedin.callbackURL,
-      profileFields: ['id', 'first-name', 'last-name', 'email-address']
+      state: true,
+      scope: ['r_emailaddress', 'r_basicprofile']
     },
     function(accessToken, refreshToken, profile, done) {
       User.findOne({
