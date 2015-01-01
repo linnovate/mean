@@ -22,7 +22,7 @@
     "postinstall": "node node_modules/meanio/node_modules/mean-cli/bin/mean-postinstall"
   },
   "dependencies": {
-    "assetmanager": "1.1.1",
+    "assetmanager": "1.1.2",
     "async": "0.9.0",
     "body-parser": "1.10.0",
     "compression": "1.2.1",
