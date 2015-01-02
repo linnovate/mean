@@ -66,7 +66,7 @@ module.exports = function(app, passport, db) {
   // Import the assets file and add to locals
   var assets = assetmanager.process({
     assets: require('./assets.json'),
-    debug: !config.aggregate,
+    debug: !(config.aggregate||false),
     webroot: /public\/|packages\//g
   });
   for(var i in assets.core.css){
