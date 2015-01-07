@@ -27,7 +27,8 @@ describe('mean.js', function() {
     menus.get().should.eql([{
       title: 'test',
       name: 'test',
-      link:null,
+      icon : null,
+      link: null,
       roles: ['anonymous'],
       submenus:[],
     }]);
