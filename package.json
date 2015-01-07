@@ -39,6 +39,7 @@
     "npm": "1.4.x"
   },
   "dependencies": {
+    "clean-css": "^2.2.23",
     "dependable": "^0.2.5",
     "glob": "^4.0.3",
     "lodash": "^2.4.1",
