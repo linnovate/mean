@@ -44,6 +44,7 @@
     "grunt-nodemon": "^0.3.0",
     "load-grunt-tasks": "^0.6.0",
     "lodash": "^2.4.1",
+    "meanio": "linnovate/meanio#ng",
     "mongoose": "^3.8.8",
     "morgan": "^1.0.0",
     "ms": "^0.6.2",
