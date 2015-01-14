@@ -62,6 +62,12 @@ var UserSchema = new Schema({
     required: true,
     get: escapeProperty
   },
+  created_at: {
+    type: Date
+  },
+  updated_at: {
+    type: Date
+  },
   roles: {
     type: Array,
     default: ['authenticated']
@@ -101,6 +107,11 @@ UserSchema.virtual('password').set(function(password) {
 UserSchema.pre('save', function(next) {
   if (this.isNew && this.provider === 'local' && this.password && !this.password.length)
     return next(new Error('Invalid password'));
+  var now = new Date();
+  this.updated_at = now;
+  if ( !this.created_at ){
+    this.created_at = now;
+  }
   next();
 });
 

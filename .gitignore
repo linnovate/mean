@@ -63,3 +63,8 @@ test/coverage/
 modules/public/
 modules/views/
 /public/build/
+
+# --------------------
+# Contrib package
+# --------------------
+packages/contrib
