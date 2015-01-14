@@ -2,7 +2,7 @@
 
 angular.module('mean.articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Global', 'Articles',
   function($scope, $stateParams, $location, Global, Articles) {
-    $scope.global = Global
+    $scope.global = Global;
     // Complying to
     var vm = this;
     $scope.hasAuthorization = function(article) {
