@@ -40,6 +40,8 @@ module.exports = function(app, passport, db) {
     // no compression and 9 is best compression, but slowest
     level: 9
   }));
+  
+  app.use('/bower_components', express.static(config.root + '/bower_components'));
 
   // Only use logger for development environment
   if (process.env.NODE_ENV === 'development') {
