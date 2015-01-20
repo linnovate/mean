@@ -43,7 +43,7 @@
 
         scope = $rootScope.$new();
 
-        ArticlesController = $controller('ArticlesController', {
+        ArticlesController = $controller('ArticlesController as vm', {
           $scope: scope
         });
 
@@ -69,7 +69,7 @@
           $httpBackend.flush();
 
           // test scope value
-          expect(scope.articles).toEqualData([{
+          expect(scope.vm.articles).toEqualData([{
             title: 'An Article about MEAN',
             content: 'MEAN rocks!'
           }]);
@@ -97,7 +97,7 @@
           $httpBackend.flush();
 
           // test scope value
-          expect(scope.article).toEqualData(testArticleData());
+          expect(scope.vm.article).toEqualData(testArticleData());
 
         });
 
