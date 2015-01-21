@@ -31,8 +31,9 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
       if (article) {
         article.$remove(function(response) {
           for (var i in $scope.articles) {
-            if (vm.articles[i] === article) {
-              vm.articles.splice(i, 1);
+            if ($scope.articles[i] === article) {
+	      $scope.articles.splice(i,1);
+	      //vm.articles = $scope.articles;
             }
           }
           $location.path('articles');
@@ -46,10 +47,10 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
 
     $scope.update = function(isValid) {
       if (isValid) {
-        var article = vm.article;
-        if (!article.updated) {
+        var article = $scope.article;//vm.article;
+        if(!article.updated) {
           article.updated = [];
-        }
+	}
         article.updated.push(new Date().getTime());
 
         article.$update(function() {
