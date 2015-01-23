@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
   FacebookStrategy = require('passport-facebook').Strategy,
   GitHubStrategy = require('passport-github').Strategy,
   GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
-  LinkedinStrategy = require('passport-linkedin').Strategy,
+  LinkedinStrategy = require('passport-linkedin-oauth2').Strategy,
   User = mongoose.model('User'),
   config = require('meanio').loadConfig();
 
@@ -61,8 +61,9 @@ module.exports = function(passport) {
       callbackURL: config.twitter.callbackURL
     },
     function(token, tokenSecret, profile, done) {
+      var fakeEmail = profile.id + '@twitter.com';
       User.findOne({
-        'twitter.id_str': profile.id
+        email: fakeEmail
       }, function(err, user) {
         if (err) {
           return done(err);
@@ -75,6 +76,7 @@ module.exports = function(passport) {
           username: profile.username,
           provider: 'twitter',
           twitter: profile._json,
+          email: fakeEmail,
           roles: ['authenticated']
         });
         user.save(function(err) {
@@ -97,7 +99,7 @@ module.exports = function(passport) {
     },
     function(accessToken, refreshToken, profile, done) {
       User.findOne({
-        'facebook.id': profile.id
+        email: profile.emails[0].value
       }, function(err, user) {
         if (err) {
           return done(err);
@@ -133,7 +135,7 @@ module.exports = function(passport) {
     },
     function(accessToken, refreshToken, profile, done) {
       User.findOne({
-        'github.id': profile.id
+        email: profile.emails[0].value
       }, function(err, user) {
         if (user) {
           return done(err, user);
@@ -166,7 +168,7 @@ module.exports = function(passport) {
     },
     function(accessToken, refreshToken, profile, done) {
       User.findOne({
-        'google.id': profile.id
+        email: profile.emails[0].value
       }, function(err, user) {
         if (user) {
           return done(err, user);
@@ -193,32 +195,34 @@ module.exports = function(passport) {
 
   // use linkedin strategy
   passport.use(new LinkedinStrategy({
-      consumerKey: config.linkedin.clientID,
-      consumerSecret: config.linkedin.clientSecret,
+      clientID: config.linkedin.clientID,
+      clientSecret: config.linkedin.clientSecret,
       callbackURL: config.linkedin.callbackURL,
-      profileFields: ['id', 'first-name', 'last-name', 'email-address']
+      state: true,
+      scope: ['r_emailaddress', 'r_basicprofile']
     },
     function(accessToken, refreshToken, profile, done) {
-      User.findOne({
-        'linkedin.id': profile.id
-      }, function(err, user) {
-        if (user) {
-          return done(err, user);
-        }
-        user = new User({
-          name: profile.displayName,
-          email: profile.emails[0].value,
-          username: profile.emails[0].value,
-          provider: 'linkedin',
-          roles: ['authenticated']
-        });
-        user.save(function(err) {
-          if (err) {
-            console.log(err);
-            return done(null, false, {message: 'LinkedIn login failed, email already used by other login strategy'});
-          } else {
+      process.nextTick(function () {
+        User.findOne({
+          'email': profile.emails[0].value
+        }, function (err, user) {
+          if (user) {
             return done(err, user);
           }
+          user = new User({
+            name: profile.displayName,
+            email: profile.emails[0].value,
+            username: profile.emails[0].value,
+            provider: 'linkedin',
+            roles: ['authenticated']
+          });
+          user.save(function (err) {
+            if (err) {
+              return done(null, false, {message: 'LinkedIn login failed, email already used by other login strategy'});
+            } else {
+              return done(err, user);
+            }
+          });
         });
       });
     }
