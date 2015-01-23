@@ -6,18 +6,12 @@
           <label mean-token="'create-title'" class="mute control-label">Email</label>
           <div class="">
             <input name="title" type="email" class="form-control" data-ng-model="email" id="email" required>
-            <div ng-show="submitted && commentForm.email.$invalid" class="help-block">
-              <p ng-show="commentForm.email.$error.required">Email is required</p>
-            </div>
           </div>
         </div>
         <div ng-class="{ 'has-error' : submitted && commentForm.content.$invalid }">
           <label mean-token="'create-content'" for="content" class="mute control-label">Comment</label><br>
           <div class="">
             <textarea name="content" data-ng-model="content" id="content" cols="30" rows="4" class="form-control" required></textarea>
-            <div ng-show="submitted && commentForm.content.$invalid" class="help-block">
-              <p ng-show="commentForm.content.$error.required">Comment is required</p>
-            </div>
           </div>
         </div>
         <div>

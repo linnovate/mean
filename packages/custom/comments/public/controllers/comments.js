@@ -28,6 +28,7 @@ angular.module('mean.comments').controller('CommentsController', ['$scope', '$ti
        * @return {Void}
        */
     	create: function(isValid) {
+        $scope.submitted = true;
     		if (isValid) {
     			var comment = new Comments.single({
     				email: this.email,
@@ -35,6 +36,7 @@ angular.module('mean.comments').controller('CommentsController', ['$scope', '$ti
     				article: articleId
     			});
     			this.email = this.content = '';
+          $scope.submitted = false;
     			comment.$save(function(response) {
     				if (!response.error) {
 	    				$scope.refreshComments();
