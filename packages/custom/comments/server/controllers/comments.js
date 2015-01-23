@@ -2,11 +2,8 @@
 
 var mongoose = require('mongoose'),
   Comment = mongoose.model('Comment'),
-  processError = function(err, res) {
-    return res.status(500).json({
-      error: err.message
-    });
-  };;
+  helper = require('../helpers/general'),
+  processError = helper.processError;
 
 /**
  * A reference to self
@@ -25,7 +22,7 @@ module.exports = $this = {
     /**
      * Lets publish all comments written by admin by default
      */
-    if (req.user.isAdmin()) {
+    if (helper.isAdmin(req.user)) {
       req.body.published = true;
     } else { //if not admin, let us set a flag to allow reading unpublished articles for this time
       req.allowUnpublished = true;
@@ -39,6 +36,8 @@ module.exports = $this = {
       if (err) {
         return processError(err, res);
       }
+      req.comment = newComment._id;
+      $this.show(req, res);
     });
   },
 
@@ -59,7 +58,26 @@ module.exports = $this = {
       }
       res.json(commentItems);
     });
-  }
+  },
 
+  /**
+   * Get a singular published comment in JSON format
+   * (unpublished comments can be retrieved by setting the req.allowUnpublished flag to true)
+   * @param  {Object} req The request object with the comment param
+   * @param  {Object} res The response object
+   * @return {Void}     
+   */
+  show: function(req, res) {
+    var commentId = req.param('comment') || req.comment;
+    Comment.find({_id: commentId, published: (req.allowUnpublished ? false : true)})
+    .populate('article')
+    .populate('user')
+    .exec(function(err, commentItem) {
+      if (err) {
+        return processError(err);
+      }
+      res.json(commentItem);
+    });
+  }
 
 };
