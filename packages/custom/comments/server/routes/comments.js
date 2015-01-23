@@ -1,6 +1,7 @@
 'use strict';
 
 var comments = require('../controllers/comments');
+var helper = require('../helpers/general');
 
 /* jshint -W098 */
 // The Package is past automatically as first parameter
@@ -28,8 +29,17 @@ module.exports = function(Comments, app, auth, database) {
   .post(comments.create);
 
   /**
+   * Get an existing comment
+   */
+  endPoint(':comment')
+  .get(comments.show)
+  .put(helper.restrictedAccess, comments.update)
+  .delete(helper.restrictedAccess, comments.trash);
+  
+  /**
    * Get list of all comments for a specific article
    */
   endPoint('list/:article')
   .get(comments.list);
+
 };

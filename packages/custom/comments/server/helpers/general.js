@@ -31,6 +31,7 @@ module.exports.restrictedAccess = function(req, res, next) {
  * @return {Void}
  */
 module.exports.processError = function(err, res) {
+  throw err;
   return res.status(errors.general).json({
     error: err.message
   });
