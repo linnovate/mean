@@ -50,6 +50,7 @@ module.exports = $this = {
   list: function(req, res) {
     var articleId = req.param('article');
     Comment.find({article: articleId, published: true})
+    .sort({created: 'desc'})
     .populate('article')
     .populate('user')
     .exec(function(err, commentItems) {
