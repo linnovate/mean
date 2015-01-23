@@ -69,7 +69,7 @@ module.exports = $this = {
    */
   show: function(req, res) {
     var commentId = req.param('comment') || req.comment;
-    Comment.find({_id: commentId, published: (req.allowUnpublished ? false : true)})
+    Comment.findByOne({_id: commentId, published: (req.allowUnpublished ? false : true)})
     .populate('article')
     .populate('user')
     .exec(function(err, commentItem) {
