@@ -2,7 +2,7 @@
 
 angular.module('mean.comments').service('Comments', ['$resource',
   function($resource) {
-	  this.single = $resource('comments/:commentId', {
+    this.single = $resource('comments/:commentId', {
       commentId: '@_id'
     }, {
       update: {

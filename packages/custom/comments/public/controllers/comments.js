@@ -36,11 +36,19 @@ angular.module('mean.comments').controller('CommentsController', ['$scope', '$ti
     			});
     			this.email = this.content = '';
     			comment.$save(function(response) {
-    				$scope.refreshComments();
-    				$scope.success = true;
-    				$timeout(function() {
-    					$scope.success = false;
-    				}, 5000);
+    				if (!response.error) {
+	    				$scope.refreshComments();
+	    				$scope.success = true;
+	    				$timeout(function() {
+	    					$scope.success = false;
+	    				}, 5000);
+	    			} else {
+	    				$scope.failure = true;
+	    				$scope.errorMsg = response.error;
+	    				$timeout(function() {
+	    					$scope.failure = false;
+	    				}, 5000);
+	    			}
     			});
     		}
     	},
