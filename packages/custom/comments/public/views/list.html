@@ -1,6 +1,11 @@
 <div class="row comments-section" data-ng-controller="CommentsController as cc">
   <h4 class="col-md-12"><hr>Share your thoughts</h4>
-  <section class="comments col-md-12">
+  <section class="comment-form col-md-4">
+      <div class="alert alert-success" role="alert" data-ng-if="success">
+        <strong>Success!</strong> {{::successMsg}}
+      </div>
+  </section>
+  <section class="comments col-md-8">
     <h5 data-ng-hide="!commentItems || commentItems.length">No comments yet. <br> Be the first one to share an opinion!</h5>
     <ul class="list-unstyled">
       <li data-ng-repeat="comment in commentItems">
