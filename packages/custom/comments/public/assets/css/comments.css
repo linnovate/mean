@@ -1,0 +1,31 @@
+.comments-section {
+  margin-top: 10px;
+}
+.comments-section .comments h2 {
+	font-size: 110%;
+	margin: 0 0 5px 0;
+}
+.comments-section .comments ul {
+}
+.comments-section .comments ul li, .comments-section .comment-form {
+	padding: 20px;
+	margin-bottom: 15px;
+	background: #efefef;
+	border-radius: 4px;
+}
+.comments-section .comment-form button {
+	margin: 10px 0;
+}
+
+.comments-section .comment-form .form-horizontal .control-label {
+	text-align: left;
+}
+.comments-section .mute {
+	color: #aaa;
+	font-weight: normal;
+}
+.comments-section .attn {
+	color: #cc2222;
+	font-weight: normal;
+	float: right;
+}

@@ -1,0 +1,54 @@
+<div class="row comments-section" data-ng-controller="CommentsController as cc">
+  <h4 class="col-md-12"><hr>Share your thoughts</h4>
+  <section class="comment-form col-md-4">
+      <form name="commentForm" class="form-horizontal" role="form" data-ng-submit="create(commentForm.$valid)" novalidate>
+        <div ng-class="{ 'has-error' : submitted && commentForm.title.$invalid }">
+          <label mean-token="'create-title'" class="mute control-label">Email</label>
+          <div class="">
+            <input name="title" type="email" class="form-control" data-ng-model="email" id="email" required>
+          </div>
+        </div>
+        <div ng-class="{ 'has-error' : submitted && commentForm.content.$invalid }">
+          <label mean-token="'create-content'" for="content" class="mute control-label">Comment</label><br>
+          <div class="">
+            <textarea name="content" data-ng-model="content" id="content" cols="30" rows="4" class="form-control" required></textarea>
+          </div>
+        </div>
+        <div>
+          <div class="">
+            <button mean-token="'create-submit'" type="submit" class="btn btn-info">Submit</button>
+          </div>
+        </div>
+      </form>
+      <div class="alert alert-success" role="alert" data-ng-if="success">
+        <strong>Success!</strong> {{::successMsg}}
+      </div>
+      <div class="alert alert-danger" role="alert" data-ng-if="failure">
+        <strong>Oops!</strong> {{::errorMsg}}
+      </div>
+  </section>
+  <section class="comments col-md-8">
+    <h5 data-ng-hide="!commentItems || commentItems.length">No comments yet. <br> Be the first one to share an opinion!</h5>
+    <ul class="list-unstyled">
+      <li data-ng-repeat="comment in commentItems">
+        <span class="mute">{{comment.created | date:'medium'}}</span>
+        <span class="attn">{{!comment.published? "unpublished" : "" }}</span>
+        <h2>
+          <span>{{comment.user.email}}</span>
+          <span data-ng-if="canApprove">
+            <a class="btn" data-ng-click="approve(comment)" data-ng-if="!comment.published">
+              <i class="glyphicon glyphicon-ok"></i>
+            </a>
+            <a class="btn" data-ng-click="disapprove(comment)" data-ng-if="comment.published">
+              <i class="glyphicon glyphicon-ban-circle"></i>
+            </a>
+            <a class="btn" data-ng-click="remove(comment);">
+              <i class="glyphicon glyphicon-trash"></i>
+            </a>
+          </span>
+        </h2>
+        <div>{{comment.content}}</div>
+      </li>
+    </ul>
+  </section>
+</div>
