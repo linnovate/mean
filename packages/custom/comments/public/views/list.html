@@ -1,0 +1,16 @@
+<div class="row comments-section" data-ng-controller="CommentsController as cc">
+  <h4 class="col-md-12"><hr>Share your thoughts</h4>
+  <section class="comments col-md-12">
+    <h5 data-ng-hide="!commentItems || commentItems.length">No comments yet. <br> Be the first one to share an opinion!</h5>
+    <ul class="list-unstyled">
+      <li data-ng-repeat="comment in commentItems">
+        <span class="mute">{{comment.created | date:'medium'}}</span>
+        <span class="attn">{{!comment.published? "unpublished" : "" }}</span>
+        <h2>
+          <span>{{comment.user.email}}</span>
+        </h2>
+        <div>{{comment.content}}</div>
+      </li>
+    </ul>
+  </section>
+</div>
