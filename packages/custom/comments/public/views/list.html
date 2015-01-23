@@ -8,6 +8,17 @@
         <span class="attn">{{!comment.published? "unpublished" : "" }}</span>
         <h2>
           <span>{{comment.user.email}}</span>
+          <span data-ng-if="canApprove">
+            <a class="btn" data-ng-click="approve(comment)" data-ng-if="!comment.published">
+              <i class="glyphicon glyphicon-ok"></i>
+            </a>
+            <a class="btn" data-ng-click="disapprove(comment)" data-ng-if="comment.published">
+              <i class="glyphicon glyphicon-ban-circle"></i>
+            </a>
+            <a class="btn" data-ng-click="remove(comment);">
+              <i class="glyphicon glyphicon-trash"></i>
+            </a>
+          </span>
         </h2>
         <div>{{comment.content}}</div>
       </li>
