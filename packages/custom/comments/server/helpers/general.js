@@ -31,7 +31,6 @@ module.exports.restrictedAccess = function(req, res, next) {
  * @return {Void}
  */
 module.exports.processError = function(err, res) {
-  throw err;
   return res.status(errors.general).json({
     error: err.message
   });
@@ -42,7 +41,7 @@ module.exports.processError = function(err, res) {
  * @return {Boolean}
  */
 module.exports.isAdmin = function(user) {
-  if (user && user.isAdmin) {
+  if (user && user.isAdmin()) {
     return true;
   }
   return false;
