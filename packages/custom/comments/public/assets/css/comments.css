@@ -1,3 +1,11 @@
-.comments-example h1 {
-  background-color: purple
+.comments-section {
+  margin-top: 10px;
+}
+.comments-section .comments h2 {
+	font-size: 110%;
+	margin: 0 0 5px 0;
+}
+.comments-section .mute {
+	color: #aaa;
+	font-weight: normal;
 }
