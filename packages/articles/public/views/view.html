@@ -11,4 +11,7 @@
     </a>
   </div>
   <div>{{vm.article.content}}</div>
+  <div data-ng-if="vm.article">
+    <comment-list data-article-id="vm.article._id"></comment-list>
+  </div>
 </section>
