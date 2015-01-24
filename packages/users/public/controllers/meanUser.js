@@ -34,31 +34,14 @@ angular.module('mean.users')
         $scope.input.tooltipText = $scope.input.tooltipText === 'Show password' ? 'Hide password' : 'Show password';
       };
 
+      // Watch for loginfail event and update $scope.loginerror
+      $rootScope.$on('loginfail', function(){
+        $scope.loginerror = MeanUser.loginerror;
+      });
+
       // Register the login() function
       $scope.login = function() {
-        $http.post('/login', {
-          email: $scope.user.email,
-          password: $scope.user.password
-        })
-          .success(function(response) {
-            // authentication OK
-            $scope.loginError = 0;
-            $rootScope.user = response.user;
-            $rootScope.$emit('loggedin');
-            if (response.redirect) {
-              if (window.location.href === response.redirect) {
-                //This is so an admin user will get full admin page
-                window.location.reload();
-              } else {
-                window.location = response.redirect;
-              }
-            } else {
-              $location.url('/');
-            }
-          })
-          .error(function() {
-            $scope.loginerror = 'Authentication failed.';
-          });
+        MeanUser.login($scope.user);
       };
     }
   ])
@@ -88,34 +71,16 @@ angular.module('mean.users')
         $scope.input.iconClassConfirmPass = $scope.input.iconClassConfirmPass === 'icon_hide_password' ? '' : 'icon_hide_password';
         $scope.input.tooltipTextConfirmPass = $scope.input.tooltipTextConfirmPass === 'Show password' ? 'Hide password' : 'Show password';
       };
+      
+      // Watch for registerfail event and update error messages in $scope
+      $rootScope.$on('registerfail', function(){
+        $scope.usernameError = MeanUser.usernameError;
+        $scope.registerError = MeanUser.registerError;
+        $scope.emailError = MeanUser.emailError;
+      });
 
-      $scope.register = function() {
-        $scope.usernameError = null;
-        $scope.registerError = null;
-        $http.post('/register', {
-          email: $scope.user.email,
-          password: $scope.user.password,
-          confirmPassword: $scope.user.confirmPassword,
-          username: $scope.user.username,
-          name: $scope.user.name
-        })
-          .success(function() {
-            // authentication OK
-            $scope.registerError = 0;
-            $rootScope.user = $scope.user;
-            Global.user = $rootScope.user;
-            Global.authenticated = !! $rootScope.user;
-            $rootScope.$emit('loggedin');
-            $location.url('/');
-          })
-          .error(function(error) {
-            // Error: authentication failed
-            if (error === 'Username already taken') {
-              $scope.usernameError = error;
-            } else if (error === 'Email already taken') {
-              $scope.emailError = error;
-            } else $scope.registerError = error;
-          });
+      $scope.register = function (){
+        MeanUser.register($scope.user);
       };
     }
   ])
@@ -142,31 +107,15 @@ angular.module('mean.users')
       $scope.user = {};
       $scope.global = Global;
       $scope.global.registerForm = false;
+      
+      // Watch for resetpasswordfail event and update error messages in $scope
+      $rootScope.$on('resetpasswordfail', function(){
+        $scope.resetpassworderror = MeanUser.resetpassworderror;
+        $scope.validationError = MeanUser.validationError;
+      });
+
       $scope.resetpassword = function() {
-        $http.post('/reset/' + $stateParams.tokenId, {
-          password: $scope.user.password,
-          confirmPassword: $scope.user.confirmPassword
-        })
-          .success(function(response) {
-            $rootScope.user = response.user;
-            $rootScope.$emit('loggedin');
-            if (response.redirect) {
-              if (window.location.href === response.redirect) {
-                //This is so an admin user will get full admin page
-                window.location.reload();
-              } else {
-                window.location = response.redirect;
-              }
-            } else {
-              $location.url('/');
-            }
-          })
-          .error(function(error) {
-            if (error.msg === 'Token invalid or expired')
-              $scope.resetpassworderror = 'Could not update password as token is invalid or may have expired';
-            else
-              $scope.validationError = error;
-          });
+        MeanUser.resetpassword($scope.user);
       };
     }
   ]);
