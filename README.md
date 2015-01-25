@@ -9,12 +9,14 @@ MEAN is a framework for an easy starting point with [MongoDB](http://www.mongodb
 ## Prerequisites
 * *MongoDB* - <a href="http://www.mongodb.org/downloads">Download</a> and Install mongodb - <a href="http://docs.mongodb.org/manual">Checkout their manual</a> if you're just starting.
 * *Node.js* - <a href="http://nodejs.org/download/">Download</a> and Install Node.js, nodeschool has free <a href=" http://nodeschool.io/#workshoppers">node tutorials</a> to get you started.
+
+```bash
+$ sudo apt-get install python-software-properties python g++ make
+$ sudo add-apt-repository ppa:chris-lea/node.js
+$ sudo apt-get update
+$ sudo apt-get install nodejs
 ```
-sudo apt-get install python-software-properties python g++ make
-sudo add-apt-repository ppa:chris-lea/node.js
-sudo apt-get update
-sudo apt-get install nodejs
-```
+
 * *Git* - Get git using a package manager or <a href="http://git-scm.com/downloads">download</a> it.
 * Grunt - Download and Install [Grunt](http://gruntjs.com).
 ```
@@ -111,7 +113,7 @@ MEAN is an acronym for *M*ongo, *E*xpress.js , *A*ngular.js and *N*ode.js
 <dt>Express</dt>
 <dd>The best way to understand express is through its Official Website, particularly The Express Guide; you can also go through this StackOverflow thread for more resources.</dd>
 <dt>AngularJS</dt>
-<dd>Angular's Official Website is a great starting point. CodeSchool and google created a <a href="https://www.codeschool.com/courses/shaping-up-with-angular-js">great tutorial</a> hreadfor beginners, and the angular videos by <a href="https://egghead.io/">Egghead</a>.</dd>
+<dd>Angular's Official Website is a great starting point. CodeSchool and google created a <a href="https://www.codeschool.com/courses/shaping-up-with-angular-js">great tutorial</a> for beginners, and the angular videos by <a href="https://egghead.io/">Egghead</a>.</dd>
 <dt>Node.js</dt>
 <dd>Start by going through Node.js Official Website and this StackOverflow thread, which should get you going with the Node.js platform in no time.</dd>
 </dl>
@@ -164,7 +166,7 @@ To find new packages run the *mean search* command
 ```bash
 $ mean search [packagename]
 ```
-`mean search` will return all of the available packages, `mean search packagename` will filter the search results.
+`mean search` will return all of the available packages, `mean search [packagename]` will filter the search results.
 
 #### Scaffolding
 To create a new MEAN app, run <code>mean init</code>. Name for the application is optional. If no name is provided, "mean" is used. The MEAN project will be cloned from GitHub into a directory of the application name.
@@ -259,6 +261,7 @@ When registering you are required to declare all your dependencies in order for 
 // Example of registering the MyPackage
 MyPackage.register(function(app, auth, database) {
   // ...
+
 });
 ```
 
@@ -287,7 +290,7 @@ Looking again at the registration example we can see that `MyPackage` depends on
 MyPackage.register(function(app, auth, database, Tokens) {
 
   // I can make use of the tokens within my module
-   MyPackage.someExampleFunction('some paramater');
+  MyPackage.someExampleFunction('some parameter');
 
   // I can override functions
   MyPackage.someExampleFunction = function(param) {
@@ -356,7 +359,7 @@ The settings object is a persistance object that is stored in the packages colle
   
 ```javascript
 MyPackage.settings({'someSetting':'some value'}, function (err, settings) {
-    //you will receive the settings object on success
+    // You will receive the settings object on success
 });
 
 // Another save settings example this time with no callback
@@ -365,7 +368,7 @@ MyPackage.settings({'anotherSettings':'some value'});
 
 // Get settings. Retrieves latest saved settings
 MyPackage.settings(function (err, settings) {
-  //you now have the settings object
+  // You now have the settings object
 });
 ```
 
@@ -475,7 +478,7 @@ This will render *mycustompackage/views/myhomepage.html* as the home page.
 To create your own package and scaffold its initial code, run the following command:
 
 ```bash
-mean package <packageName>
+$ mean package <packageName>
 ```
 
 This will create a package under */packages/custom/pkgName*
@@ -483,8 +486,8 @@ This will create a package under */packages/custom/pkgName*
 ### Deleting a package
 To delete your package, and remove its files:
 
-```
-mean uninstall myPackage
+```bash
+$ mean uninstall myPackage
 ```
 Where "myPackage" is the name of your package.
 
@@ -494,9 +497,9 @@ Once your package is in good shape and you want to share it with the world you c
 To contribute your package register to the network (see the section below) and run
 
 ```bash 
-mean register # register to the mean network (see below)
-cd <packages/custom/pkgName>
-mean publish
+$ mean register # register to the mean network (see below)
+$ cd <packages/custom/pkgName>
+$ mean publish
 ```
 
 ## MEAN Network
@@ -508,11 +511,11 @@ We're building all of this as we speak but we allready have some elements in pla
 
 #### Registration
 ```bash
-mean register
+$ mean register
 ```
 #### Identity
 ```bash
-mean whoami
+$ mean whoami
 ```
 ### Deploy
 Coming soon!
@@ -569,15 +572,15 @@ After initializing a project, you'll see that the root directory of your project
 To update your MEAN app to the latest version of MEAN
 
 ```bash
-git pull upstream master
-npm install
+$ git pull upstream master
+$ npm install
 ```
 
 To maintain your own public or private repository, add your repository as remote. See here for information on [adding an existing project to GitHub](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line).
 
 ```bash
-git remote add origin <remote repository URL>
-git push -u origin master
+$ git remote add origin <remote repository URL>
+$ git push -u origin master
 ```
 
 
@@ -586,10 +589,10 @@ Since version 0.4.2 MEAN provides a command to easily upload your app to the *me
 To do so all you need to do is the following steps.
 
 1. make sure you have a unique name for your app (not the default mean) and that the name is in the package.json
-1. Run ```mean deploy```
-1. It will create the meanio remote which can be used to update your remote app by ```git push meanio master```
-1. You can add remote command using the --remote flag for instance to add a role to a user on the remote cloud instance run ```mean user -a RoleName emailAddress --remote```
-1. To get an idea of whats happening on the mean log (node.js based logging) run ```mean logs -n 100``` to get the last 100 lines...
+1. Run `mean deploy`
+1. It will create the meanio remote which can be used to update your remote app by `git push meanio master`
+1. You can add remote command using the --remote flag for instance to add a role to a user on the remote cloud instance run `mean user -a RoleName emailAddress --remote`
+1. To get an idea of whats happening on the mean log (node.js based logging) run `mean logs -n 100` to get the last 100 lines...
 
 ### Heroku
 Before you start make sure you have the [Heroku toolbelt](https://toolbelt.heroku.com/)
@@ -599,14 +602,14 @@ which has an easy setup).
 Add the db string to the production env in *server/config/env/production.js*.
 
 ```bash
-git init
-git add .
-git commit -m "initial version"
-heroku apps:create
-heroku config:add NODE_ENV=production
-heroku config:add BUILDPACK_URL=https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git
-git push heroku master
-heroku config:set NODE_ENV=production
+$ git init
+$ git add .
+$ git commit -m "initial version"
+$ heroku apps:create
+$ heroku config:add NODE_ENV=production
+$ heroku config:add BUILDPACK_URL=https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git
+$ git push heroku master
+$ heroku config:set NODE_ENV=production
 ```
 
 ### OpenShift
