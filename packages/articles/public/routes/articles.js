@@ -16,7 +16,7 @@ angular.module('mean.articles').config(['$stateProvider',
         // Not Authenticated
         else {
           $timeout(deferred.reject);
-          $location.url('/login');
+          $location.url('/auth/login');
         }
       });
 
