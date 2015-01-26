@@ -129,7 +129,8 @@ module.exports = function(passport) {
   passport.use(new GitHubStrategy({
       clientID: config.github.clientID,
       clientSecret: config.github.clientSecret,
-      callbackURL: config.github.callbackURL
+      callbackURL: config.github.callbackURL,
+      scope: config.github.scope,
     },
     function(accessToken, refreshToken, profile, done) {
       User.findOne({
