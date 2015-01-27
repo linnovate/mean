@@ -28,7 +28,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
 					$window.user = response.user;
 					Global.authenticated = !! $rootScope.user;
 					$rootScope.$emit('loggedin');
-					if (response.redirect) {
+					if (response.redirect && angular.isDefined(response.user)) {
 						if ($window.location.href === response.redirect && response.user.roles.indexOf('admin') !== -1) {
 							//This is so an admin user will get full admin page, but no need to refresh if user is not admin
 							$window.location.reload();
