@@ -58,6 +58,10 @@ angular.module('mean.users')
         tooltipText: 'Show password',
         tooltipTextConfirmPass: 'Show password'
       };
+      
+      $scope.usernameError = MeanUser.usernameError;
+      $scope.registerError = MeanUser.registerError;
+      $scope.emailError = MeanUser.emailError;
 
       $scope.togglePasswordVisible = function() {
         $scope.input.type = $scope.input.type === 'text' ? 'password' : 'text';
