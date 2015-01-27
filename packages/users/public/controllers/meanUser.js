@@ -78,6 +78,10 @@ angular.module('mean.users')
         $scope.registerError = MeanUser.registerError;
         $scope.emailError = MeanUser.emailError;
       });
+      
+      $rootScope.$on('loggedin', function(){
+        $scope.registerError = MeanUser.registerError;
+      });
 
       $scope.register = function (){
         MeanUser.register($scope.user);
