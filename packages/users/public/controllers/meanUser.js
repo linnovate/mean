@@ -13,8 +13,8 @@ angular.module('mean.users')
         });
     }
   ])
-  .controller('LoginCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
-    function($scope, $rootScope, $http, $location, Global) {
+  .controller('LoginCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global', 'MeanUser',
+    function($scope, $rootScope, $http, $location, Global, MeanUser) {
       // This object will be filled by the form
       $scope.user = {};
       $scope.global = Global;
@@ -45,8 +45,8 @@ angular.module('mean.users')
       };
     }
   ])
-  .controller('RegisterCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
-    function($scope, $rootScope, $http, $location, Global) {
+  .controller('RegisterCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global', 'MeanUser',
+    function($scope, $rootScope, $http, $location, Global, MeanUser) {
       $scope.user = {};
       $scope.global = Global;
       $scope.global.registerForm = true;
@@ -102,8 +102,8 @@ angular.module('mean.users')
       };
     }
   ])
-  .controller('ResetPasswordCtrl', ['$scope', '$rootScope', '$http', '$location', '$stateParams', 'Global',
-    function($scope, $rootScope, $http, $location, $stateParams, Global) {
+  .controller('ResetPasswordCtrl', ['$scope', '$rootScope', '$http', '$location', '$stateParams', 'Global', 'MeanUser'
+    function($scope, $rootScope, $http, $location, $stateParams, Global, MeanUser) {
       $scope.user = {};
       $scope.global = Global;
       $scope.global.registerForm = false;
