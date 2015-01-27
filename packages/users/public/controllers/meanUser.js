@@ -102,7 +102,7 @@ angular.module('mean.users')
       };
     }
   ])
-  .controller('ResetPasswordCtrl', ['$scope', '$rootScope', '$http', '$location', '$stateParams', 'Global', 'MeanUser'
+  .controller('ResetPasswordCtrl', ['$scope', '$rootScope', '$http', '$location', '$stateParams', 'Global', 'MeanUser',
     function($scope, $rootScope, $http, $location, $stateParams, Global, MeanUser) {
       $scope.user = {};
       $scope.global = Global;
