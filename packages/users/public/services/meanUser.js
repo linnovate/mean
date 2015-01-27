@@ -8,7 +8,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
 
 		MeanUserFactory.loginerror = 0;
 		MeanUserFactory.usernameError = null;
-		MeanUserFactory.registerError = null;
+		MeanUserFactory.registerError = 0;
 		MeanUserFactory.resetpassworderror = null;
 		MeanUserFactory.validationError = null;
 
