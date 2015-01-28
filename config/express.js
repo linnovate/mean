@@ -8,6 +8,7 @@ var mean = require('meanio'),
   morgan = require('morgan'),
   consolidate = require('consolidate'),
   cookieParser = require('cookie-parser'),
+  express = require('express'),
   expressValidator = require('express-validator'),
   bodyParser = require('body-parser'),
   methodOverride = require('method-override'),
@@ -40,6 +41,9 @@ module.exports = function(app, passport, db) {
     // no compression and 9 is best compression, but slowest
     level: 9
   }));
+
+  // Enable compression on bower_components
+  app.use('/bower_components', express.static(config.root + '/bower_components'));
 
   // Only use logger for development environment
   if (process.env.NODE_ENV === 'development') {
