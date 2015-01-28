@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/brownman/meanio.svg)](https://travis-ci.org/brownman/meanio)
+[![Build Status](https://travis-ci.org/linnovate/meanio.svg)](https://travis-ci.org/linnovate/meanio)
 [![NPM version](https://badge.fury.io/js/meanio.svg)](http://badge.fury.io/js/meanio)
 [![Dependency Status](https://david-dm.org/linnovate/meanio.svg)](https://david-dm.org/linnovate/meanio)
 
