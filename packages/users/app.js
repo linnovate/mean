@@ -40,7 +40,6 @@ MeanUser.register(function(app, database, passport) {
   //     menu: 'main'
   // });
 
-  MeanUser.aggregateAsset('js', 'meanUser.js');
   MeanUser.angularDependencies(['mean.system']);
 
   /**
