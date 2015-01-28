@@ -13,5 +13,5 @@ before_install:
   - chmod u+x start.sh
 
 
-script:
+after_script:
   - ./start.sh 
