@@ -16,6 +16,8 @@ var mean = require('meanio'),
   mongoStore = require('connect-mongo')(session),
   helpers = require('view-helpers'),
   flash = require('connect-flash'),
+  modRewrite = require('connect-modrewrite'),
+  seo = require('mean-seo'),
   config = mean.loadConfig();
 
 function onAggregatedSrc(loc,ext,res,next,data){
@@ -112,4 +114,13 @@ module.exports = function(app, passport, db) {
 
   // Connect flash for flash messages
   app.use(flash());
+
+  app.use(modRewrite([
+    '!^/api/.*|\\.html|\\.js|\\.css|\\.swf|\\.jp(e?)g|\\.png|\\.gif|\\.svg|\\.eot|\\.ttf|\\.woff|\\.pdf$ /index.html [L]'
+  ]));
+
+  app.use(seo({
+    cacheClient: 'disk', // Can be 'disk' or 'redis'
+    cacheDuration: 2 * 60 * 60 * 24 * 1000, // In milliseconds for disk cache
+}));
 };

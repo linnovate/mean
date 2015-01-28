@@ -9,7 +9,7 @@ angular.module('mean.articles').config(['$stateProvider',
       var deferred = $q.defer();
 
       // Make an AJAX call to check if the user is logged in
-      $http.get('/loggedin').success(function(user) {
+      $http.get('/api/loggedin').success(function(user) {
         // Authenticated
         if (user !== '0') $timeout(deferred.resolve);
 

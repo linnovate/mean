@@ -1,0 +1,4 @@
+bower_components
+node_modules
+.bower-cache
+.bower-registry
