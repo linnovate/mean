@@ -119,8 +119,5 @@ module.exports = function(app, passport, db) {
     '!^/api/.*|\\.html|\\.js|\\.css|\\.swf|\\.jp(e?)g|\\.png|\\.gif|\\.svg|\\.eot|\\.ttf|\\.woff|\\.pdf$ /index.html [L]'
   ]));
 
-  app.use(seo({
-    cacheClient: 'disk', // Can be 'disk' or 'redis'
-    cacheDuration: 2 * 60 * 60 * 24 * 1000, // In milliseconds for disk cache
-}));
+  app.use(seo());
 };
