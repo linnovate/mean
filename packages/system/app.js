@@ -4,8 +4,7 @@
  * Defining the Package
  */
 var Module = require('meanio').Module,
-  favicon = require('serve-favicon'),
-  express = require('express');
+  favicon = require('serve-favicon');
 
 var SystemPackage = new Module('system');
 
@@ -19,6 +18,7 @@ SystemPackage.register(function(app, auth, database) {
   SystemPackage.routes(app, auth, database);
 
   SystemPackage.aggregateAsset('css', 'common.css');
+  SystemPackage.angularDependencies(['ui.router', 'mean-factory-interceptor']);
 
   // The middleware in config/express will run before this code
 
@@ -29,7 +29,7 @@ SystemPackage.register(function(app, auth, database) {
   app.use(favicon(__dirname + '/public/assets/img/favicon.ico'));
 
   // Adding robots and humans txt
-  app.use(express.static(__dirname + '/public/assets/static'));
+  app.useStatic(__dirname + '/public/assets/static');
 
   return SystemPackage;
 });

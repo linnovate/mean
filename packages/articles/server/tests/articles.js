@@ -42,12 +42,12 @@ describe('<Unit Test>', function() {
 
     describe('Method Save', function() {
       it('should be able to save without problems', function(done) {
-        return article.save(function(err) {
+        return article.save(function(err,data) {
           expect(err).to.be(null);
-          expect(article.title).to.equal('Article Title');
-          expect(article.content).to.equal('Article Content');
-          expect(article.user.length).to.not.equal(0);
-          expect(article.created.length).to.not.equal(0);
+          expect(data.title).to.equal('Article Title');
+          expect(data.content).to.equal('Article Content');
+          expect(data.user.length).to.not.equal(0);
+          expect(data.created.length).to.not.equal(0);
           done();
         });
       });

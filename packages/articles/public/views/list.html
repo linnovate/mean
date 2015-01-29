@@ -1,6 +1,6 @@
-<section data-ng-controller="ArticlesController as vm" data-ng-init="find()">
+<section data-ng-controller="ArticlesController" data-ng-init="find()">
   <ul class="articles unstyled">
-    <li data-ng-repeat="article in ::vm.articles">
+    <li data-ng-repeat="article in articles">
       <span>{{article.created | date:'medium'}}</span> /
       <span>{{article.user.name}}</span>
       <h2>
