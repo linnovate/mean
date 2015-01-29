@@ -116,7 +116,7 @@ module.exports = function(app, passport, db) {
   app.use(flash());
 
   app.use(modRewrite([
-    '!^/api/.*|\\.html|\\.js|\\.css|\\.swf|\\.jp(e?)g|\\.png|\\.gif|\\.svg|\\.eot|\\.ttf|\\.woff|\\.pdf$ /index.html [L]'
+    '!^/api/.*|\\.html|\\.js|\\.css|\\.swf|\\.jp(e?)g|\\.png|\\.gif|\\.svg|\\.eot|\\.ttf|\\.woff|\\.pdf$ / [L]'
   ]));
 
   app.use(seo());

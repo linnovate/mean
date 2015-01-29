@@ -43,7 +43,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
           $location.path('articles');
         });
       }
-      $scope.apply();
     };
 
     $scope.update = function(isValid) {

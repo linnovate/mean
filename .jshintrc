@@ -30,7 +30,7 @@
     "maxlen"        : false,    // {int} Max number of characters per line
 
     // Relaxing
-    "asi"           : false,     // true: Tolerate Automatic Semicolon Insertion (no semicolons)
+    "asi"           : true,     // true: Tolerate Automatic Semicolon Insertion (no semicolons)
     "boss"          : false,     // true: Tolerate assignments where comparisons would be expected
     "debug"         : false,     // true: Allow debugger statements e.g. browser breakpoints.
     "eqnull"        : false,     // true: Tolerate use of `== null`
