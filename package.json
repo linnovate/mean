@@ -1,6 +1,6 @@
 {
   "name": "meanio",
-  "version": "0.6.17",
+  "version": "0.7.0",
   "description": "Extracted functionality for MEAN.io",
   "author": {
     "name": "linnovate"
@@ -17,12 +17,17 @@
     {
       "name": "Drew Fyock",
       "mail": "drew@steelbisondev.com"
+    },
+    {
+      "name": "Andrija Petrovic",
+      "mail": "andrija.hers@gmail.com"
     }
   ],
   "license": "MIT",
   "main": "index",
   "scripts": {
-    "preinstall": "node ./scripts/preinstall"
+    "preinstall": "node ./scripts/preinstall",
+    "postinstall": "cd ./lib/core_modules/server && npm install && cd -"
   },
   "repository": {
     "type": "git",
@@ -39,8 +44,9 @@
     "npm": "1.4.x"
   },
   "dependencies": {
-    "clean-css": "^2.2.23",
-    "dependable": "^0.2.5",
+    "complex-list": "latest",
+    "dependable-list": "latest",
+    "lazy-dependable": "latest",
     "glob": "^4.0.3",
     "lodash": "^2.4.1",
     "mean-cli": "^0.9.6",

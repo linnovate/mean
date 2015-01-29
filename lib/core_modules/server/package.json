@@ -1,0 +1,13 @@
+{
+  "name": "server",
+  "dependencies": {
+    "express": "^4.2.0",
+    "express-session": "^1.1.0",
+    "express-validator": "^2.1.1",
+    "connect-mongo": "^0.4.1",
+    "cookie-parser": "^1.1.0",
+    "gridfs-stream": "^0.5.1",
+    "passport": "^0.2.0",
+    "method-override": "^1.0.0"
+  }
+}
