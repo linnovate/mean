@@ -1,3 +1,5 @@
 {
-	"dependencies":{}
+  "dependencies": {
+    "mean-admin": "latest"
+  }
 }

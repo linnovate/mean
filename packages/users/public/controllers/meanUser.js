@@ -13,13 +13,15 @@ angular.module('mean.users')
         });
     }
   ])
-  .controller('LoginCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
-    function($scope, $rootScope, $http, $location, Global) {
+  .controller('LoginCtrl', ['$rootScope', 'MeanUser',
+    function($rootScope, MeanUser) {
+      var vm = this;
+
       // This object will be filled by the form
-      $scope.user = {};
-      $scope.global = Global;
-      $scope.global.registerForm = false;
-      $scope.input = {
+      vm.user = {};
+      /*$scope.global = Global;
+      $scope.global.registerForm = false;*/
+      vm.input = {
         type: 'password',
         placeholder: 'Password',
         confirmPlaceholder: 'Repeat Password',
@@ -27,38 +29,21 @@ angular.module('mean.users')
         tooltipText: 'Show password'
       };
 
-      $scope.togglePasswordVisible = function() {
-        $scope.input.type = $scope.input.type === 'text' ? 'password' : 'text';
-        $scope.input.placeholder = $scope.input.placeholder === 'Password' ? 'Visible Password' : 'Password';
-        $scope.input.iconClass = $scope.input.iconClass === 'icon_hide_password' ? '' : 'icon_hide_password';
-        $scope.input.tooltipText = $scope.input.tooltipText === 'Show password' ? 'Hide password' : 'Show password';
+      vm.togglePasswordVisible = function() {
+        vm.input.type = vm.input.type === 'text' ? 'password' : 'text';
+        vm.input.placeholder = vm.input.placeholder === 'Password' ? 'Visible Password' : 'Password';
+        vm.input.iconClass = vm.input.iconClass === 'icon_hide_password' ? '' : 'icon_hide_password';
+        vm.input.tooltipText = vm.input.tooltipText === 'Show password' ? 'Hide password' : 'Show password';
       };
 
+      $rootScope.$on('loginfail', function(){
+        vm.loginError = MeanUser.loginError;
+      });
+
+     
       // Register the login() function
-      $scope.login = function() {
-        $http.post('/login', {
-          email: $scope.user.email,
-          password: $scope.user.password
-        })
-          .success(function(response) {
-            // authentication OK
-            $scope.loginError = 0;
-            $rootScope.user = response.user;
-            $rootScope.$emit('loggedin');
-            if (response.redirect) {
-              if (window.location.href === response.redirect) {
-                //This is so an admin user will get full admin page
-                window.location.reload();
-              } else {
-                window.location = response.redirect;
-              }
-            } else {
-              $location.url('/');
-            }
-          })
-          .error(function() {
-            $scope.loginerror = 'Authentication failed.';
-          });
+      vm.login = function() {
+        MeanUser.login(this.user);
       };
     }
   ])

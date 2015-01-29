@@ -1,15 +1,15 @@
-<div data-ng-controller="RegisterCtrl">
-    <div ng-repeat="error in registerError">
-        <div class="alert alert-danger animated fadeIn">{{error.msg}}</div>
+<div data-ng-controller="RegisterCtrl as reg">
+    <div ng-repeat="error in reg.registerError">
+        <div class="alert alert-danger animated fadeIn">{{reg.error.msg}}</div>
     </div>
-    <div class="alert alert-danger animated fadeIn" ng-show="usernameError">{{usernameError}}</div>
-    <div class="alert alert-danger animated fadeIn" ng-show="emailError">{{emailError}}</div>
-    <form id="register_form" ng-submit="register()">
+    <div class="alert alert-danger animated fadeIn" ng-show="reg.usernameError">{{reg.usernameError}}</div>
+    <div class="alert alert-danger animated fadeIn" ng-show="reg.emailError">{{reg.emailError}}</div>
+    <form id="register_form" ng-submit="reg.register()">
         <h2>Sign Up</h2>
 
         <div class="input-wrapper">
             <input required id="name" type="text" name="name" placeholder="Full Name"
-                   ng-model="user.name">
+                   ng-model="reg.user.name">
 
             <div class="error_message">Please enter a correct info #</div>
             <span class="pic user"></span>
@@ -17,7 +17,7 @@
 
         <div class="input-wrapper">
             <input required id="email_block" type="email" name="email" placeholder="Email Address"
-                   ng-model="user.email">
+                   ng-model="reg.user.email">
 
             <div class="error_message">Please enter a correct info #</div>
             <span class="pic email"></span>
@@ -25,31 +25,31 @@
 
         <div class="input-wrapper">
             <input required id="username" type="text" name="username" placeholder="Username"
-                   ng-model="user.username">
+                   ng-model="reg.user.username">
 
             <div class="error_message">Please enter a correct info #</div>
             <span class="pic username"></span>
         </div>
 
         <div class="input-wrapper">
-            <input required id="password_block" name="password" type="{{input.type}}"
-                   placeholder="{{input.placeholder}}" ng-model="user.password">
+            <input required id="password_block" name="password" type="{{reg.input.type}}"
+                   placeholder="{{reg.input.placeholder}}" ng-model="reg.user.password">
 
             <div class="error_message">Please enter a correct info #</div>
-        <span class="pic password {{input.iconClass}}" ng-click="togglePasswordVisible()">
+        <span class="pic password {{reg.input.iconClass}}" ng-click="reg.togglePasswordVisible()">
               <div class="hide_text_password">
-                  {{input.tooltipText}}
+                  {{reg.input.tooltipText}}
               </div>
         </span>
         </div>
         <div class="input-wrapper">
-            <input required id="confirm_password" name="confirm_password" type="{{input.type}}"
-                   placeholder="{{input.placeholderConfirmPass}}" ng-model="user.confirmPassword">
+            <input required id="confirm_password" name="confirm_password" type="{{reg.input.type}}"
+                   placeholder="{{reg.input.placeholderConfirmPass}}" ng-model="reg.user.confirmPassword">
 
             <div class="error_message">Please enter a correct info #</div>
-        <span class="pic password {{input.iconClassConfirmPass}}" ng-click="togglePasswordConfirmVisible()">
+        <span class="pic password {{reg.input.iconClassConfirmPass}}" ng-click="reg.togglePasswordConfirmVisible()">
               <div class="hide_text_password">
-                  {{input.tooltipTextConfirmPass}}
+                  {{reg.input.tooltipTextConfirmPass}}
               </div>
         </span>
         </div>
