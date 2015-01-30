@@ -92,7 +92,7 @@ module.exports = function(grunt) {
         require: [
           'server.js',
           function() {
-            require('meanio/lib/util').preload(__dirname + '/packages/**/server', 'model');
+            require('meanio/lib/core_modules/module/util').preload(__dirname + '/packages/**/server', 'model');
           }
         ]
       },
