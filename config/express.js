@@ -7,7 +7,7 @@ var mean = require('meanio'),
   compression = require('compression'),
   morgan = require('morgan'),
   consolidate = require('consolidate'),
-  assetmanager = require('assetmanager'),
+  express = require('express'),
   helpers = require('view-helpers'),
   flash = require('connect-flash'),
   config = mean.loadConfig();
@@ -29,6 +29,9 @@ module.exports = function(app, db) {
     // no compression and 9 is best compression, but slowest
     level: 9
   }));
+
+  // Enable compression on bower_components
+  app.use('/bower_components', express.static(config.root + '/bower_components'));
 
   // Only use logger for development environment
   if (process.env.NODE_ENV === 'development') {
