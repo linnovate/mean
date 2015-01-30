@@ -27,7 +27,7 @@
   "main": "index",
   "scripts": {
     "preinstall": "node ./scripts/preinstall",
-    "postinstall": "cd ./lib/core_modules/server && npm install && cd -"
+    "postinstall": "cd ./lib/core_modules/server && npm install && cd ../../.."
   },
   "repository": {
     "type": "git",
