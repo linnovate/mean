@@ -99,8 +99,8 @@ module.exports = function(MeanUser, app, auth, database, passport) {
     .get(passport.authenticate('google', {
       failureRedirect: '/login',
       scope: [
-        'https://www.googleapis.com/api/auth/userinfo.profile',
-        'https://www.googleapis.com/api/auth/userinfo.email'
+        'https://www.googleapis.com/auth/userinfo.profile',
+        'https://www.googleapis.com/auth/userinfo.email'
       ]
     }), users.signin);
 
