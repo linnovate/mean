@@ -11,8 +11,7 @@ MEAN is a framework for an easy starting point with [MongoDB](http://www.mongodb
 * *Node.js* - <a href="http://nodejs.org/download/">Download</a> and Install Node.js, nodeschool has free <a href=" http://nodeschool.io/#workshoppers">node tutorials</a> to get you started.
 
 ```bash
-$ sudo apt-get install python-software-properties python g++ make
-$ sudo add-apt-repository ppa:chris-lea/node.js
+$ curl -sL https://deb.nodesource.com/setup | sudo bash -
 $ sudo apt-get update
 $ sudo apt-get install nodejs
 ```
