@@ -6,7 +6,11 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
     var vm = this;
 
     vm.menus = {};
-    vm.hdrvars = {};
+    vm.hdrvars = {
+      authenticated: MeanUser.loggedin,
+      user: MeanUser.user, 
+      isAdmin: MeanUser.isAdmin
+    };
 
     // Default hard coded menu items for main menu
     var defaultMainMenu = [];
@@ -32,9 +36,21 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
       queryMenu('main', defaultMainMenu);
 
       vm.hdrvars = {
-        authenticated: !! MeanUser.user,
+        authenticated: MeanUser.loggedin,
         user: MeanUser.user, 
         isAdmin: MeanUser.isAdmin
+      };
+    });
+
+    vm.logout = function(){
+      MeanUser.logout();
+    };
+
+    $rootScope.$on('logout', function(){
+      vm.hdrvars = {
+        authenticated: false, 
+        user: {},
+        isAdmin: false
       };
     });
 

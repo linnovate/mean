@@ -16,7 +16,7 @@ module.exports = function(MeanUser, app, auth, database, passport) {
 
   app.route('/logout')
     .get(users.signout);
-  app.route('/api/users/me')
+  app.route('/users/me')
     .get(users.me);
 
   // Setting up the users api
@@ -43,12 +43,16 @@ module.exports = function(MeanUser, app, auth, database, passport) {
     .post(passport.authenticate('local', {
       failureFlash: true
     }), function(req, res) {      
-      var payload = { 
+      /*var payload = { 
         user: req.user,
         redirect: req.body.redirect
-      };
+      };*/
+      var payload = req.user;
+      payload.redirect = req.body.redirect;
+      var escaped = JSON.stringify(payload);      
+      escaped = encodeURI(escaped);
       // We are sending the payload inside the token
-      var token = jwt.sign(payload, secret, { expiresInMinutes: 60*5 });
+      var token = jwt.sign(escaped, secret, { expiresInMinutes: 60*5 });
       res.json({ token: token });
     });
 
