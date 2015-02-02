@@ -17,9 +17,12 @@ $ sudo apt-get install nodejs
 ```
 
 * *Git* - Get git using a package manager or <a href="http://git-scm.com/downloads">download</a> it.
-* Grunt - Download and Install [Grunt](http://gruntjs.com).
+* Mean currently works with either grunt or gulp..
 ```
 $ npm install -g grunt-cli
+$ npm install -g gulp
+// and bower
+$ npm install -g bower 
 ```
 
 ## Installation
