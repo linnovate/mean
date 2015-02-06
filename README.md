@@ -56,7 +56,7 @@ http://localhost:3000
 ```
 
 ### Troubleshooting
-During installation depending on your os and prerequiste versions you may encounter some issues.
+During installation depending on your os and prerequisite versions you may encounter some issues.
 
 Most issues can be solved by one of the following tips, but if you are unable to find a solution feel free to contact us via the repository issue tracker or the links provided below.
 
