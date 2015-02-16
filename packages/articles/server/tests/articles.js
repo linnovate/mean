@@ -22,6 +22,7 @@ var article;
 describe('<Unit Test>', function() {
   describe('Model Article:', function() {
     beforeEach(function(done) {
+      this.timeout(0);
       user = new User({
         name: 'Full name',
         email: 'test@test.com',
