@@ -35,7 +35,7 @@ module.exports = function(app, db) {
 
   // Only use logger for development environment
   if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev'));
+    require('./middlewares/logging')(app, config.logging);
   }
 
   // assign the template engine to .html files
