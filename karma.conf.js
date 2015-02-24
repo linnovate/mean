@@ -13,6 +13,11 @@ module.exports = function(config) {
 
     // frameworks to use
     frameworks: ['jasmine'],
+proxies: {
+//'/_getModules': 'http://localhost:3000/_getModules'
+  '/': 'http://localhost:3001/'
+
+},
 
     // list of files / patterns to load in the browser
     files: _.flatten(_.values(assets.core.js)).concat([
