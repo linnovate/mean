@@ -9,11 +9,8 @@ matrix:
   
 services: mongodb
 
-before_install:
+after_success:
   - chmod u+x start.sh
-
-
-after_script:
   - ./start.sh 
 
 notifications:
