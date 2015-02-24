@@ -19,6 +19,16 @@ module.exports = function(System, app, auth, database) {
           return JSON.parse(item);
         })
       });
+      
+      items.sort(function(a,b){
+        if(a.order && b.order)
+          return a.order - b.order;
+        if(a.order && !b.order)
+          return -1;
+        if(!a.order && b.order)
+          return 1;
+        return 0;
+      });
 
       res.json(items);
     });
