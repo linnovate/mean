@@ -49,6 +49,10 @@ proxies: {
     // web server port
     port: 9876,
 
+    proxies: {
+      '/': 'http://localhost:3001/'
+    },
+
     // enable / disable colors in the output (reporters and logs)
     colors: true,
 
