@@ -2,7 +2,6 @@
   <div class="logo pull-left">
     <a class="navbar-brand" ui-sref="home" mean-token="'site-title'">MEAN</a>
   </div>
-
   <div class="left pull-left">
     <ul class="navbar-nav nav">
       <li data-ng-repeat="item in menus.main" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
@@ -29,7 +28,8 @@
           {{global.user.name}} <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="/logout">Log Out</a>
+          <li data-ng-repeat="item in menus.account" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
+            <a mean-token="item.link" ui-sref='{{item.link}}'>{{item.title}}</a>
           </li>
         </ul>
       </li>
