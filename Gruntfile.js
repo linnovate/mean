@@ -115,6 +115,7 @@ module.exports = function(grunt) {
 
   /**
    * Default Task
+
    */
   grunt.hook.push('clean', -9999);
   grunt.hook.push('concurrent', 9999);
@@ -125,6 +126,8 @@ module.exports = function(grunt) {
     grunt.hook.push('jshint', -200);
     grunt.hook.push('csslint', 100);
   }
+
+
 
   //Default task.
   grunt.registerTask('default', ['hook']);
