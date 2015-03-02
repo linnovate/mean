@@ -50,15 +50,15 @@ $ mean init <myApp>
 $ cd <myApp> && npm install
 ```
 
-### Invoke node with Grunt
-We recommend using [Grunt](https://github.com/gruntjs/grunt-cli) to start the server:
+### Invoke node with a task manager
+Mean supports both grunt and gulp 
+Run one of the task managers to start the server:
 ```bash
 $ grunt
+or 
+$ gulp
 ```
-If grunt aborts because of JSHINT errors, these can be overridden with the `force` flag:
-```bash
-$ grunt -f
-```
+
 Alternatively, when not using `grunt` (and for production environments) you can run:
 ```bash
 $ node server
