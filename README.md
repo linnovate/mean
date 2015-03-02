@@ -32,10 +32,10 @@ $ sudo apt-get install nodejs
 
 * Mean currently works with either grunt or gulp..
 ```
-$ npm install -g grunt-cli
-$ npm install -g gulp
+$ sudo npm install -g grunt-cli
+$ sudo npm install -g gulp
 // and bower
-$ npm install -g bower 
+$ sudo npm install -g bower 
 ```
 
 ## Installation
@@ -45,9 +45,9 @@ This will add the *mean* command which lets you interact (install, manage, updat
 ### Install the MEAN CLI
 
 ```bash
-$ npm install -g mean-cli
+$ sudo npm install -g mean-cli
 $ mean init <myApp>
-$ cd <myApp> && npm install
+$ cd <myApp> && sudo npm install
 ```
 
 ### Invoke node with a task manager
@@ -78,17 +78,17 @@ Sometimes you may find there is a weird error during install like npm's *Error: 
 
 * Updating NPM:
 ```bash
-$ npm update -g npm
+$ sudo npm update -g npm
 ```
 
 * Updating Grunt:
 ```bash
-$ npm update -g grunt-cli
+$ sudo npm update -g grunt-cli
 ```
 
 * Updating Bower:
 ```bash
-$ npm update -g bower
+$ sudo npm update -g bower
 ```
 
 #### Cleaning NPM and Bower cache
