@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.org/linnovate/mean.svg?branch=master)](https://travis-ci.org/linnovate/mean)
 [![Dependencies Status](https://david-dm.org/linnovate/mean.svg)](https://david-dm.org/linnovate/mean)
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 [![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/linnovate/mean?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # [![MEAN Logo](http://mean.io/system/assets/img/logos/meanlogo.png)](http://mean.io/) MEAN Stack
@@ -36,7 +35,6 @@ $ sudo apt-get install nodejs
 
 * Mean currently works with either grunt or gulp..
 ```
-$ npm install -g grunt-cli
 $ npm install -g gulp
 // and bower
 $ npm install -g bower 
@@ -55,15 +53,13 @@ $ cd <myApp> && npm install
 ```
 
 ### Invoke node with a task manager
-Mean supports both grunt and gulp 
-Run one of the task managers to start the server:
+Mean supports the gulp task runner for various services which are applied on the code.
+To start you application run - 
 ```bash
-$ grunt
-or 
 $ gulp
 ```
 
-Alternatively, when not using `grunt` (and for production environments) you can run:
+Alternatively, when not using `gulp` (and for production environments) you can run:
 ```bash
 $ node server
 ```
