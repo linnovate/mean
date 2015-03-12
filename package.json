@@ -48,7 +48,7 @@
     "lodash": "2.4.1",
     "load-grunt-tasks": "^0.6.0",
     "meanio": "linnovate/meanio",
-    "mongoose": "3.8.21",
+    "mongoose": "3.8.24",
     "morgan": "1.5.0",
     "ms": "0.6.2",
     "nodemailer": "1.2.2",
