@@ -25,6 +25,8 @@ Theme.register(function(app, auth, database) {
 //  });
 
   Theme.aggregateAsset('css', 'loginForms.css');
+  Theme.aggregateAsset('css', 'theme.css');
+  Theme.angularDependencies(['mean.system']);
 
   /**
     //Uncomment to use. Requires meanio@0.3.7 or above
@@ -42,7 +44,7 @@ Theme.register(function(app, auth, database) {
         'anotherSettings': 'some value'
     });
 
-    // Get settings. Retrieves latest saved settigns
+    // Get settings. Retrieves latest saved settings
     Theme.settings(function(err, settings) {
         //you now have the settings object
     });

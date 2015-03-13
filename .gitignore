@@ -10,6 +10,16 @@ Icon
 .Trashes
 
 # --------------------
+# Eclipse or Nodeclipse "Enide Studio" Files
+# --------------------
+# recommended to add to Git SCM
+# or generate with `nodeclipse -p` command
+.project
+.settings/
+.*.md.html
+
+
+# --------------------
 # IntelliJ Files
 # --------------------
 *.iml
@@ -53,3 +63,10 @@ test/coverage/
 modules/public/
 modules/views/
 /public/build/
+/packages/custom/
+/packages/contrib/
+
+# --------------------
+# vim Files
+# --------------------
+*.swp

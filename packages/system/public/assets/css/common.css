@@ -40,6 +40,10 @@ footer {
 footer p {
 	padding: 5px 0 12px 10px
 }
+
+.featuredpic img{
+  width:510px;
+}
 /*.ng-invalid.ng-dirty{*/
     /*border-color:#FA787E;*/
 /*}*/

@@ -29,7 +29,7 @@ exports.create = function(req, res) {
 
   article.save(function(err) {
     if (err) {
-      return res.json(500, {
+      return res.status(500).json({
         error: 'Cannot save the article'
       });
     }
@@ -48,7 +48,7 @@ exports.update = function(req, res) {
 
   article.save(function(err) {
     if (err) {
-      return res.json(500, {
+      return res.status(500).json({
         error: 'Cannot update the article'
       });
     }
@@ -65,7 +65,7 @@ exports.destroy = function(req, res) {
 
   article.remove(function(err) {
     if (err) {
-      return res.json(500, {
+      return res.status(500).json({
         error: 'Cannot delete the article'
       });
     }
@@ -87,7 +87,7 @@ exports.show = function(req, res) {
 exports.all = function(req, res) {
   Article.find().sort('-created').populate('user', 'name username').exec(function(err, articles) {
     if (err) {
-      return res.json(500, {
+      return res.status(500).json({
         error: 'Cannot list the articles'
       });
     }

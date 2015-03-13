@@ -4,21 +4,21 @@
  * Defining the Package
  */
 var Module = require('meanio').Module,
-  favicon = require('serve-favicon'),
-  express = require('express');
+  favicon = require('serve-favicon');
 
-var System = new Module('system');
+var SystemPackage = new Module('system');
 
 /*
  * All MEAN packages require registration
  * Dependency injection is used to define required modules
  */
-System.register(function(app, auth, database) {
+SystemPackage.register(function(app, auth, database) {
 
   //We enable routing. By default the Package Object is passed to the routes
-  System.routes(app, auth, database);
+  SystemPackage.routes(app, auth, database);
 
-  System.aggregateAsset('css', 'common.css');
+  SystemPackage.aggregateAsset('css', 'common.css');
+  SystemPackage.angularDependencies(['ui.router', 'mean-factory-interceptor']);
 
   // The middleware in config/express will run before this code
 
@@ -29,7 +29,16 @@ System.register(function(app, auth, database) {
   app.use(favicon(__dirname + '/public/assets/img/favicon.ico'));
 
   // Adding robots and humans txt
-  app.use(express.static(__dirname + '/public/assets/static'));
+  app.useStatic(__dirname + '/public/assets/static');
 
-  return System;
+  SystemPackage.menus.add({
+    title: 'Log Out',
+    link: 'Log Out',
+    roles: ['authenticated'],
+    menu: 'account'
+  });
+  
+
+  return SystemPackage;
+
 });

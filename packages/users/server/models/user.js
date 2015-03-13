@@ -3,9 +3,10 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-  Schema = mongoose.Schema,
-  crypto = require('crypto');
+var mongoose  = require('mongoose'),
+    Schema    = mongoose.Schema,
+    crypto    = require('crypto'),
+          _   = require('lodash');
 
 /**
  * Validations
@@ -31,13 +32,21 @@ var validateUniqueEmail = function(value, callback) {
 };
 
 /**
+ * Getter
+ */
+var escapeProperty = function(value) {
+  return _.escape(value);
+};
+
+/**
  * User Schema
  */
 
 var UserSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    get: escapeProperty
   },
   email: {
     type: String,
@@ -50,7 +59,8 @@ var UserSchema = new Schema({
   username: {
     type: String,
     unique: true,
-    required: true
+    required: true,
+    get: escapeProperty
   },
   roles: {
     type: Array,
@@ -67,6 +77,7 @@ var UserSchema = new Schema({
   salt: String,
   resetPasswordToken: String,
   resetPasswordExpires: Date,
+  profile: {},
   facebook: {},
   twitter: {},
   github: {},
@@ -153,6 +164,18 @@ UserSchema.methods = {
     if (!password || !this.salt) return '';
     var salt = new Buffer(this.salt, 'base64');
     return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
+  },
+
+  /**
+   * Hide security sensitive fields
+   * 
+   * @returns {*|Array|Binary|Object}
+   */
+  toJSON: function() {
+    var obj = this.toObject();
+    delete obj.hashed_password;
+    delete obj.salt;
+    return obj;
   }
 };
 
