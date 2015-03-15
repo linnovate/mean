@@ -103,7 +103,9 @@ gulp.task('karma:unit', function (done) {
   karma.start({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true
-  }, done);
+  },  function(exitStatus){
+    done(exitStatus ? "There are failing unit tests" : undefined);
+  });
 });
 
 gulp.task('loadTestSchema', function () {
