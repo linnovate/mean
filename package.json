@@ -52,6 +52,7 @@
     "view-helpers": "0.1.5"
   },
   "devDependencies": {
+    "require-dir":"latest",
     "expect.js": "0.3.1",
     "grunt-karma": "0.8.3",
     "grunt-mocha-test": "0.10.2",
