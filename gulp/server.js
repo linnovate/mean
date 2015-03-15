@@ -15,9 +15,6 @@ var del = require('del'),
 //var assets = require('./config/assets.json');
 
   var paths = gulp.paths;
-gulp.task('env:test', function () {
-  process.env.NODE_ENV = 'test';
-});
 
 gulp.task('env:develop', function () {
   process.env.NODE_ENV = 'development';
