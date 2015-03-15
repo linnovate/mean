@@ -130,4 +130,6 @@ gulp.task('watch', function () {
   plugins.livereload.listen({interval: 500});
 });
 
+gulp.task('test', ['env:test', 'karma:unit', 'mochaTest']);
+
 // https://github.com/gulpjs/gulp/blob/master/docs/recipes/delete-files-folde
