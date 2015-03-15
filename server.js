@@ -20,7 +20,7 @@ if ((cluster.isMaster) && (process.execArgv.indexOf('--debug') < 0) && (process.
 
     console.log('for real!');
     // Count the machine's CPUs
-    var cpuCount = 1; //require('os').cpus().length;
+    var cpuCount = require('os').cpus().length;
 
     // Create a worker for each CPU
     for (var i = 0; i < cpuCount; i += 1) {
