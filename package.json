@@ -17,8 +17,8 @@
   "scripts": {
     "start": "node server",
     "mocha": "node node_modules/.bin/mocha packages/**/server/tests/**/*.js -R spec -r tools/test/mocha-req.js",
-    "karma": "node node_modules/karma/bin/karma start",
-    "test": "npm run mocha && NODE_ENV=test node server & sleep 4 && npm run karma",
+    "karma": "node node_modules/karma/bin/karma start karma.conf.js",
+    "test": "npm run mocha && NODE_ENV=test node server & sleep 10 && npm run karma",
     "postinstall": "node node_modules/meanio/node_modules/mean-cli/bin/mean-postinstall"
   },
   "dependencies": {
