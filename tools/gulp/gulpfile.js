@@ -42,6 +42,11 @@ function tokenizeConfig(config) {
   };
 }
 
+/** 
+ * gulp help - show available gulp commands
+ */
+gulp.task('help', plugins.taskListing);
+
 gulp.task('csslint', function () {
   return gulp.src(paths.css)
     .pipe(plugins.csslint('.csslintrc'))
