@@ -18,7 +18,7 @@ gulp.task('env:test', function () {
 
 gulp.task('loadTestSchema', function () {
   require('../server.js');
-//  require('../node_modules/meanio/lib/util').preload('../packages/**/server', 'model');
+  require('../node_modules/meanio/lib/core_modules/module/util').preload('../packages/**/server', 'model');
 });
 
 gulp.task('mochaTest', ['loadTestSchema'], function () {
