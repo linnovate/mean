@@ -7,6 +7,7 @@ var del = require('del');
 var plugins = gulpLoadPlugins();
 var paths = gulp.paths;
 //var defaultTasks = ['clean', 'jshint', 'less', 'csslint', 'develop', 'watch'];
+gulp.task('help', plugins.taskListing);
 var defaultTasks = ['clean', 'jshint', 'csslint','develop','watch'];
 
 gulp.task('clean', function (cb) {
