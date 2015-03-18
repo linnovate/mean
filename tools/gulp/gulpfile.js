@@ -107,8 +107,8 @@ gulp.task('karma:unit', function (done) {
 });
 
 gulp.task('loadTestSchema', function () {
-  require('server.js');
-  require('meanio/lib/util').preload(__dirname + '/packages/**/server', 'model');
+  require('./server.js');
+  require('meanio/lib/core_modules/module/util').preload(__dirname + '/packages/**/server', 'model');
 });
 
 gulp.task('mochaTest', ['loadTestSchema'], function () {
