@@ -256,19 +256,19 @@ All of the Server side code resides in the `/server` directory.
 All of the Client side code resides in the `/public` directory.
 
     public            
-    --- assets        # Javascript/Css/Images (not aggregated)
-    --- controllers   # Angular Controllers
+    --- assets        # JavaScript/CSS/Images (not aggregated)
+    --- controllers   # Angular controllers
     --- config        # Contains routing files
-    --- services      # Angular Services (also directive and filter folders)
+    --- services      # Angular services (also directive and filter folders)
     --- views         # Angular views
 
-All javascript within public is automatically aggregated with the exception of files in assets which can be manually added using the `aggregateAsset()` function
+All JavaScript within `public` is automatically aggregated with the exception of files in `public/assets`, which can be manually added using the `aggregateAsset()` function.
 
-Files within public of the package can be accessed externally `/[package-name]/path-to-file-relative-to-public` for example to access tokens angular controller tokens/controllers/tokens.js
+Files within the `public` directory of the package can be accessed externally at `/[package-name]/path-to-file-relative-to-public`. For example, to access the `Tokens` Angular controller, `tokens/controllers/tokens.js`.
 
 ###Registering a Package
 
-In order for a Package to work it needs to be registered. By doing this you make package system aware that you are ready and that other packages are able to depend on you. The packages are registered from within `app.js` 
+In order for a Package to work it needs to be registered. By doing this you make the package system aware that you are ready and that other packages are able to depend on you. The packages are registered from within `app.js`.
 
 When registering you are required to declare all your dependencies in order for the package system to make them available to your package.
 
@@ -298,7 +298,7 @@ MEAN has 3 pre registered dependencies:
 
 Dependency injection allows you to declare what dependencies you require and rely on the package system to resolve all dependencies for you. Any package registered is automatically made available to anyone who would like to depend on them.
 
-Looking again at the registration example we can see that `MyPackage` depends on the `Tokens` and can make use of it full functionality including overriding it.
+Looking again at the registration example we can see that `MyPackage` depends on the `Tokens` package and can make use of its full functionality, including overriding it.
  
 ```javascript
 // Example of registering the tokens package
