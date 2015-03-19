@@ -59,7 +59,6 @@
           user: 'Fred'
         });
         scope.login();
-        $httpBackend.flush();
         // test scope value
         expect($rootScope.user).toEqual('Fred');
         expect($rootScope.$emit).toHaveBeenCalledWith('loggedin');
