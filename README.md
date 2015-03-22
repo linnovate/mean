@@ -585,6 +585,18 @@ $ npm test
 
 As from mean-0.4.4 control over the logging format has been delgated to the env configuration files.
 The formats and implementation are done using the morgan node module and it's [predefined format](https://github.com/expressjs/morgan#predefined-formats)
+Within each configuration file (config/env/development.js) for instance you state the format in the 'logging' object.
+```
+'use strict';
+
+module.exports = {
+  db: 'mongodb://' + (process.env.DB_PORT_27017_TCP_ADDR || 'localhost') + '/mean-dev',
+  debug: true,
+  logging: {
+    format: 'tiny'
+  },
+```
+
 The default for the development environment uses [tiny format](https://github.com/expressjs/morgan#tiny)
 ```
 GET /system/views/index.html 304 2.379 ms - -
@@ -596,6 +608,12 @@ GET /system/assets/img/logos/linnovate.png 304 3.001 ms - -
 ```
 
 The production uses the widely used [combined format](https://github.com/expressjs/morgan#combined).
+```
+:1 - - [22/Mar/2015:13:13:42 +0000] "GET /modules/aggregated.js HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
+::1 - - [22/Mar/2015:13:13:42 +0000] "GET /modules/aggregated.js?group=header HTTP/1.1" 200 0 "http://localhost:3000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
+::1 - - [22/Mar/2015:13:13:42 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
+::1 - - [22/Mar/2015:13:13:42 +0000] "GET /modules/aggregated.css HTTP/1.1" 200 - "http://localhost:3000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
+```
 
 ## Staying up to date
 After initializing a project, you'll see that the root directory of your project is already a git repository. MEAN uses git to download and update its own code. To handle its own operations, MEAN creates a remote called `upstream`. This way you can use git as you would in any other project. 
