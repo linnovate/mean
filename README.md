@@ -581,6 +581,12 @@ $ npm test
 ```
 > NOTE: Running Node.js applications in the __production__ environment enables caching, which is disabled by default in all other environments.
 
+### Logging
+
+As from mean-0.4.4 control over the logging format has been delgated to the env configuration files.
+The formats and implementation are done using the morgan node module and it's [predefined format](https://github.com/expressjs/morgan#predefined-formats)
+The default for the development environmanet uses [tiny format](https://github.com/expressjs/morgan#tiny) and the production uses the widely used [combined format](https://github.com/expressjs/morgan#combined).
+
 ## Staying up to date
 After initializing a project, you'll see that the root directory of your project is already a git repository. MEAN uses git to download and update its own code. To handle its own operations, MEAN creates a remote called `upstream`. This way you can use git as you would in any other project. 
 
