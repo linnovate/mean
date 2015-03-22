@@ -1,18 +1,22 @@
 'use strict';
 
-
 var gulp = require('gulp'),
-  gulpLoadPlugins = require('gulp-load-plugins');
-var del = require('del');
-var plugins = gulpLoadPlugins();
-var paths = gulp.paths;
-//var defaultTasks = ['clean', 'jshint', 'less', 'csslint', 'develop', 'watch'];
-gulp.task('help', plugins.taskListing);
-var defaultTasks = ['clean', 'jshint', 'csslint','develop','watch'];
+  gulpLoadPlugins = require('gulp-load-plugins'),
+  through = require('through'),
+  gutil = require('gulp-util'),
+  plugins = gulpLoadPlugins(),
+  paths = {
+    js: ['*.js', 'test/**/*.js', '!test/coverage/**', '!bower_components/**', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/contrib/**/*.js', '!packages/contrib/**/node_modules/**'],
+    html: ['packages/**/public/**/views/**', 'packages/**/server/views/**'],
+    css: ['!bower_components/**', 'packages/**/public/**/css/*.css', '!packages/contrib/**/public/**/css/*.css'],
+    less: ['**/public/**/css/*.less'],
+    sass: ['**/public/**/css/*.scss']
+  };
 
-gulp.task('clean', function (cb) {
+var defaultTasks = ['clean', 'jshint', 'less', 'csslint', 'devServe', 'watch'];
 
-  return del(['bower_components/build'], cb);
+gulp.task('env:development', function () {
+  process.env.NODE_ENV = 'development';
 });
 
 gulp.task('jshint', function () {
@@ -30,7 +34,15 @@ gulp.task('csslint', function () {
     .pipe(count('csslint', 'files lint free'));
 });
 
-gulp.task('develop', ['env:develop'], function () {
+gulp.task('less', function() {
+  return gulp.src(paths.less)
+    .pipe(plugins.less())
+    .pipe(gulp.dest(function (vinylFile) {
+      return vinylFile.cwd;
+    }));
+});
+
+gulp.task('devServe', ['env:development'], function () {
   plugins.nodemon({
     script: 'server.js',
     ext: 'html js',
@@ -45,11 +57,8 @@ gulp.task('watch', function () {
   gulp.watch(paths.html).on('change', plugins.livereload.changed);
   gulp.watch(paths.css, ['csslint']).on('change', plugins.livereload.changed);
   gulp.watch(paths.less, ['less']).on('change', plugins.livereload.changed);
-
   plugins.livereload.listen({interval: 500});
 });
-
-gulp.task('default', defaultTasks);
 
 function count(taskName, message) {
   var fileCount = 0;
@@ -62,6 +71,7 @@ function count(taskName, message) {
     gutil.log(gutil.colors.cyan(taskName + ': ') + fileCount + ' ' + message || 'files processed.');
     this.emit('end'); // jshint ignore:line
   }
-
   return through(countFiles, endStream);
 }
+
+gulp.task('development', defaultTasks);
