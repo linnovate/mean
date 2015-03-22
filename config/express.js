@@ -1,3 +1,4 @@
+/* globals require */
 'use strict';
 
 /**
@@ -33,10 +34,8 @@ module.exports = function(app, db) {
   // Enable compression on bower_components
   app.use('/bower_components', express.static(config.root + '/bower_components'));
 
-  //if (process.env.NODE_ENV === 'development') {
-    app.enable('trust proxy'); // Log Real IP (X-Forwarded-For)
-    app.use(morgan('combined')); // Use detailed format, logstash ready
-  //}
+  // Adds logging based on logging config in config/env/ entry
+  require('./middlewares/logging')(app, config.logging);
 
   // assign the template engine to .html files
   app.engine('html', consolidate[config.templateEngine]);

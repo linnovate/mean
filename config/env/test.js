@@ -5,6 +5,9 @@ module.exports = {
   http: {
     port: 3001
   },
+  logging: {
+    format: 'common'
+  },
   app: {
     name: 'MEAN - A Modern Stack - Test'
   },
