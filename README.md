@@ -49,7 +49,7 @@ This will add the *mean* command which lets you interact (install, manage, updat
 ```bash
 $ npm install -g mean-cli
 $ mean init <myApp>
-$ cd <myApp> && npm install
+$ cd <myApp> && bower install && npm install
 ```
 
 ### Invoke node with a task manager
