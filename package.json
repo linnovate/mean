@@ -50,7 +50,6 @@
     "view-helpers": "0.1.5"
   },
   "devDependencies": {
-    "require-dir":"latest",
     "expect.js": "0.3.1",
     "karma": "0.12.28",
     "karma-chrome-launcher": "0.1.7",
