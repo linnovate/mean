@@ -6,32 +6,32 @@ var users = require('../controllers/users'),
 
 module.exports = function(MeanUser, app, auth, database, passport) {
 
-  app.route('/logout')
+  app.route('/api/logout')
     .get(users.signout);
-  app.route('/users/me')
+  app.route('/api/users/me')
     .get(users.me);
 
   // Setting up the users api
-  app.route('/register')
+  app.route('/api/register')
     .post(users.create);
 
-  app.route('/forgot-password')
+  app.route('/api/forgot-password')
     .post(users.forgotpassword);
 
-  app.route('/reset/:token')
+  app.route('/api/reset/:token')
     .post(users.resetpassword);
 
   // Setting up the userId param
   app.param('userId', users.user);
 
   // AngularJS route to check for authentication
-  app.route('/loggedin')
+  app.route('/api/loggedin')
     .get(function(req, res) {
       res.send(req.isAuthenticated() ? req.user : '0');
     });
 
   // Setting the local strategy route
-  app.route('/login')
+  app.route('/api/login')
     .post(passport.authenticate('local', {
       failureFlash: true
     }), function(req, res) {
@@ -42,7 +42,7 @@ module.exports = function(MeanUser, app, auth, database, passport) {
     });
 
   // AngularJS route to get config of social buttons
-  app.route('/get-config')
+  app.route('/api/get-config')
     .get(function (req, res) {
       // To avoid displaying unneccesary social logins
       var clientIdProperty = 'clientID';
@@ -61,64 +61,64 @@ module.exports = function(MeanUser, app, auth, database, passport) {
     });
 
   // Setting the facebook oauth routes
-  app.route('/auth/facebook')
+  app.route('/api/auth/facebook')
     .get(passport.authenticate('facebook', {
       scope: ['email', 'user_about_me'],
-      failureRedirect: '#!/login'
+      failureRedirect: '/login'
     }), users.signin);
 
-  app.route('/auth/facebook/callback')
+  app.route('/api/auth/facebook/callback')
     .get(passport.authenticate('facebook', {
-      failureRedirect: '#!/login'
+      failureRedirect: '/login'
     }), users.authCallback);
 
   // Setting the github oauth routes
-  app.route('/auth/github')
+  app.route('/api/auth/github')
     .get(passport.authenticate('github', {
-      failureRedirect: '#!/login'
+      failureRedirect: '/login'
     }), users.signin);
 
-  app.route('/auth/github/callback')
+  app.route('/api/auth/github/callback')
     .get(passport.authenticate('github', {
-      failureRedirect: '#!/login'
+      failureRedirect: '/login'
     }), users.authCallback);
 
   // Setting the twitter oauth routes
-  app.route('/auth/twitter')
+  app.route('/api/auth/twitter')
     .get(passport.authenticate('twitter', {
-      failureRedirect: '#!/login'
+      failureRedirect: '/login'
     }), users.signin);
 
-  app.route('/auth/twitter/callback')
+  app.route('/api/auth/twitter/callback')
     .get(passport.authenticate('twitter', {
-      failureRedirect: '#!/login'
+      failureRedirect: '/login'
     }), users.authCallback);
 
   // Setting the google oauth routes
-  app.route('/auth/google')
+  app.route('/api/auth/google')
     .get(passport.authenticate('google', {
-      failureRedirect: '#!/login',
+      failureRedirect: '/login',
       scope: [
         'https://www.googleapis.com/auth/userinfo.profile',
         'https://www.googleapis.com/auth/userinfo.email'
       ]
     }), users.signin);
 
-  app.route('/auth/google/callback')
+  app.route('/api/auth/google/callback')
     .get(passport.authenticate('google', {
-      failureRedirect: '#!/login'
+      failureRedirect: '/login'
     }), users.authCallback);
 
   // Setting the linkedin oauth routes
-  app.route('/auth/linkedin')
+  app.route('/api/auth/linkedin')
     .get(passport.authenticate('linkedin', {
-      failureRedirect: '#!/login',
+      failureRedirect: '/login',
       scope: ['r_emailaddress']
     }), users.signin);
 
-  app.route('/auth/linkedin/callback')
+  app.route('/api/auth/linkedin/callback')
     .get(passport.authenticate('linkedin', {
-      failureRedirect: '#!/login'
+      failureRedirect: '/login'
     }), users.authCallback);
 
 };

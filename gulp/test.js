@@ -2,18 +2,17 @@ var gulp = require('gulp'),
   gulpLoadPlugins = require('gulp-load-plugins'),
   karma = require('karma').server;
 var plugins = gulpLoadPlugins();
+var defaultTasks = ['env:test', 'karma:unit', 'mochaTest'];
 
-gulp.task('test', ['env:test', 'karma:unit', 'mochaTest']);
+gulp.task('env:test', function () {
+  process.env.NODE_ENV = 'test';
+});
 
 gulp.task('karma:unit', function (done) {
   karma.start({
     configFile: __dirname + '/../karma.conf.js',
     singleRun: true
   }, done);
-});
-
-gulp.task('env:test', function () {
-  process.env.NODE_ENV = 'test';
 });
 
 gulp.task('loadTestSchema', function () {
@@ -27,3 +26,5 @@ gulp.task('mochaTest', ['loadTestSchema'], function () {
       reporter: 'spec'
     }));
 });
+
+gulp.task('test', defaultTasks);

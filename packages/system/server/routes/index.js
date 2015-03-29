@@ -9,7 +9,6 @@ module.exports = function(System, app, auth, database) {
   app.route('/')
     .get(index.render);
 
-
   app.get('/*',function(req,res,next){
         res.header('workerID' , JSON.stringify(mean.options.workerid) );
         next(); // http://expressjs.com/guide.html#passing-route control

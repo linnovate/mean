@@ -1,3 +1,4 @@
+/* globals require */
 'use strict';
 
 /**
@@ -10,6 +11,8 @@ var mean = require('meanio'),
   express = require('express'),
   helpers = require('view-helpers'),
   flash = require('connect-flash'),
+  modRewrite = require('connect-modrewrite'),
+  seo = require('mean-seo'),
   config = mean.loadConfig();
 
 module.exports = function(app, db) {
@@ -33,10 +36,8 @@ module.exports = function(app, db) {
   // Enable compression on bower_components
   app.use('/bower_components', express.static(config.root + '/bower_components'));
 
-  //if (process.env.NODE_ENV === 'development') {
-    app.enable('trust proxy'); // Log Real IP (X-Forwarded-For)
-    app.use(morgan('combined')); // Use detailed format, logstash ready
-  //}
+  // Adds logging based on logging config in config/env/ entry
+  require('./middlewares/logging')(app, config.logging);
 
   // assign the template engine to .html files
   app.engine('html', consolidate[config.templateEngine]);
@@ -50,4 +51,10 @@ module.exports = function(app, db) {
 
   // Connect flash for flash messages
   app.use(flash());
+
+  app.use(modRewrite([
+    '!^/api/.*|\\_getModules|\\.html|\\.js|\\.css|\\.swf|\\.jp(e?)g|\\.png|\\.gif|\\.svg|\\.eot|\\.ttf|\\.woff|\\.pdf$ / [L]'
+  ]));
+
+  app.use(seo());
 };
