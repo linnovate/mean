@@ -12,10 +12,10 @@ var hasAuthorization = function(req, res, next) {
 
 module.exports = function(Articles, app, auth) {
 
-  app.route('/articles')
+  app.route('/api/articles')
     .get(articles.all)
     .post(auth.requiresLogin, articles.create);
-  app.route('/articles/:articleId')
+  app.route('/api/articles/:articleId')
     .get(auth.isMongoId, articles.show)
     .put(auth.isMongoId, auth.requiresLogin, hasAuthorization, articles.update)
     .delete(auth.isMongoId, auth.requiresLogin, hasAuthorization, articles.destroy);

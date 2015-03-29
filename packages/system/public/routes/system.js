@@ -35,7 +35,7 @@ angular.module('mean.system').provider('$meanState', ['$stateProvider', '$viewPa
         data.templateUrl = $viewPathProvider.path(data.templateUrl);
       }
       $stateProvider.state(stateName, data);
-      return this; 
+      return this;
     };
 
     this.$get = function() {
@@ -60,14 +60,17 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
       });
 
     $meanStateProvider
-      .state('Log Out', {        
+      .state('Log Out', {
         controller: function () {
           window.location = '/logout';
         }
-      });      
+      });
   }
 ]).config(['$locationProvider',
   function($locationProvider) {
-    $locationProvider.hashPrefix('!');
+    $locationProvider.html5Mode({
+      enabled:true,
+      requireBase:false
+    });
   }
 ]);
