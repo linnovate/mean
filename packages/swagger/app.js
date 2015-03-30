@@ -72,13 +72,13 @@ Swagger.register(function(app, auth, database) {
   // });
 
   app.get('/api/docs', function(req, res, next) {    
-    // Swagger.render('index', {endpoint:'api/docs'}, function (err, html) {
-    //   //Rendering a view from the Package server/views
-    //   if (err) return res.send(500,err);
-    //    res.send(html);
-    // });
+    Swagger.render('index', {endpoint:'/api/swagger/docs'}, function (err, html) {
+      //Rendering a view from the Package server/views
+      if (err) return res.send(500,err);
+       res.send(html);
+    });
   
-    res.redirect('/swagger/views/index.html');
+    //res.redirect('/swagger/views/index.html');
   });
 
   return Swagger;
