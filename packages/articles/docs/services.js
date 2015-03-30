@@ -7,7 +7,7 @@ exports.load = function(swagger, parms) {
   var list = {
     'spec': {
       description: 'Article operations',
-      path: '/api/articles',
+      path: '/articles',
       method: 'GET',
       summary: 'Get all Articles',
       notes: '',
@@ -21,7 +21,7 @@ exports.load = function(swagger, parms) {
   var create = {
     'spec': {
       description: 'Device operations',
-      path: '/api/articles',
+      path: '/articles',
       method: 'POST',
       summary: 'Create article',
       notes: '',

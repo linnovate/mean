@@ -37,7 +37,7 @@ Swagger.register(function(app, auth, database) {
       });
 
     swagger.configureSwaggerPaths('', 'api/swagger/docs', '');
-    swagger.configure('/', '1.0.0');
+    swagger.configure('/api', '1.0.0');
   };
 
   config.swagger = config.swagger || {};
@@ -65,7 +65,7 @@ Swagger.register(function(app, auth, database) {
   });
 
   swagger.configureSwaggerPaths('', 'api/swagger/docs', '');
-  swagger.configure('/', '1.0.0');
+  swagger.configure('/api', '1.0.0');
 
   // app.get('/api/swagger', function (req,res) {
   //   res.send('api/swagger');
