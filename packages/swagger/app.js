@@ -25,7 +25,6 @@ Swagger.register(function(app, auth, database) {
     skipParm
   ];
 
-
   Swagger.add = function(path) {
     var model = require(path + '/docs/models');
     swagger.addModels(model);
@@ -37,11 +36,12 @@ Swagger.register(function(app, auth, database) {
         searchableOptions: defaultGetParams
       });
 
-    swagger.configureSwaggerPaths('', '/api-docs', '');
+    swagger.configureSwaggerPaths('', 'api/swagger/docs', '');
     swagger.configure('/', '1.0.0');
   };
 
   config.swagger = config.swagger || {};
+
   swagger.configureDeclaration(config.app.name, {
     description: config.swagger.description || 'MEAN App API',
     authorizations: ['oauth2'],
@@ -64,10 +64,21 @@ Swagger.register(function(app, auth, database) {
     }
   });
 
-  swagger.configureSwaggerPaths('', '/api-docs', '');
+  swagger.configureSwaggerPaths('', 'api/swagger/docs', '');
   swagger.configure('/', '1.0.0');
-  app.get(/^\/docs(\/.*)?$/, function(req, res, next) {
-    res.redirect('/swagger/views/');
+
+  // app.get('/api/swagger', function (req,res) {
+  //   res.send('api/swagger');
+  // });
+
+  app.get('/api/docs', function(req, res, next) {    
+    // Swagger.render('index', {endpoint:'api/docs'}, function (err, html) {
+    //   //Rendering a view from the Package server/views
+    //   if (err) return res.send(500,err);
+    //    res.send(html);
+    // });
+  
+    res.redirect('/swagger/views/index.html');
   });
 
   return Swagger;

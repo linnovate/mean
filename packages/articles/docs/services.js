@@ -1,9 +1,5 @@
 'use strict';
 
-//var swagger = require('swagger-node-express');
-//    paramTypes = swagger.paramTypes,
-//    swe = swagger.errors;
-
 exports.load = function(swagger, parms) {
 
   var searchParms = parms.searchableOptions;
@@ -11,7 +7,7 @@ exports.load = function(swagger, parms) {
   var list = {
     'spec': {
       description: 'Article operations',
-      path: '/articles',
+      path: '/api/articles',
       method: 'GET',
       summary: 'Get all Articles',
       notes: '',
@@ -25,7 +21,7 @@ exports.load = function(swagger, parms) {
   var create = {
     'spec': {
       description: 'Device operations',
-      path: '/articles',
+      path: '/api/articles',
       method: 'POST',
       summary: 'Create article',
       notes: '',
