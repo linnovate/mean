@@ -1,6 +1,6 @@
 {
   "name": "meanio",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "Extracted functionality for MEAN.io",
   "author": {
     "name": "linnovate"
@@ -35,6 +35,7 @@
     "mean-health": "~0.1.3",
     "q": "^1.0.1",
     "request": "^2.47.0",
+    "mean-cli":"latest",
     "swig": "^1.3.2",
     "uglify-js": "^2.4.14"
   },
