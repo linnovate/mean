@@ -9,7 +9,7 @@ if (env === 'production') { var defaultTasks = ['clean', 'cssmin', 'uglify', 'se
 if (env === 'test')       { var defaultTasks = ['env:test', 'karma:unit', 'mochaTest'];}
 */
 // read gulp directory contents for the tasks...
-require('require-dir')('./gulp');
+require('require-dir')('.');
 console.log('Invoking gulp -',env);
 gulp.task('default', ['clean'], function (defaultTasks) {
   // run with paramater
