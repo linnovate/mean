@@ -119,7 +119,7 @@ UserSchema.methods = {
    */
   hasRole: function(role) {
     var roles = this.roles;
-    return roles.indexOf('admin') !== -1 || roles.indexOf(role) !== -1;
+    return this.isAdmin() || roles.indexOf(role) !== -1;
   },
 
   /**
