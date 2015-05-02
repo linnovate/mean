@@ -116,6 +116,15 @@ Some of Mean.io dependencies uses [node-gyp](https://github.com/TooTallNate/node
 $ npm update -g
 ```
 
+#### Git "not found" on Windows
+If you get this error when trying to `mean init`:
+
+```text
+Prerequisite not installed: git
+```
+
+And you definitely have Git for Windows installed, then it's not included in your path. Find the folder containing git.exe (likely `C:\Program Files (x86)\Git\cmd`) and add it to your PATH.
+
 ## Technologies
 
 ### The MEAN stack
