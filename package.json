@@ -1,7 +1,7 @@
 {
   "name": "mean",
   "description": "MEAN.io: A fullstack JavaScript framework powered by MongoDB, ExpressJS, AngularJS, NodeJS.",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "private": false,
   "author": "Linnovate <mean@linnovate.net>",
   "contributors": "https://github.com/linnovate/mean/graphs/contributors",
@@ -49,7 +49,8 @@
     "swig": "1.4.2",
     "view-helpers": "0.1.5",
     "shelljs": "0.4.0",
-    "request": "2.55.0"
+    "request": "2.55.0",
+    "npm": "^2.1.0"
   },
   "devDependencies": {
     "expect.js": "0.3.1",
