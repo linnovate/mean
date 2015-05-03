@@ -44,7 +44,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       this.registerError = null;
       this.resetpassworderror = null;
       this.validationError = null;
-      $http.get('/users/me').success(this.onIdentity.bind(this));
+      $http.get('/api/users/me').success(this.onIdentity.bind(this));
     }
 
     MeanUserKlass.prototype.onIdentity = function(response){
@@ -90,7 +90,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
     MeanUserKlass.prototype.login = function (user) {
       // this is an ugly hack due to mean-admin needs
       var destination = $location.path().indexOf('/login') === -1 ? $location.absUrl() : false;
-      $http.post('/login', {
+      $http.post('/api/login', {
           email: user.email,
           password: user.password,
           redirect: destination
@@ -100,7 +100,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
     };
 
     MeanUserKlass.prototype.register = function(user) {
-      $http.post('/register', {
+      $http.post('/api/register', {
         email: user.email,
         password: user.password,
         confirmPassword: user.confirmPassword,
@@ -112,7 +112,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
     };
 
     MeanUserKlass.prototype.resetpassword = function(user) {
-        $http.post('/reset/' + $stateParams.tokenId, {
+        $http.post('/api/reset/' + $stateParams.tokenId, {
           password: user.password,
           confirmPassword: user.confirmPassword
         })
@@ -121,7 +121,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       };
 
     MeanUserKlass.prototype.forgotpassword = function(user) {
-        $http.post('/forgot-password', {
+        $http.post('/api/forgot-password', {
           text: user.email
         })
           .success(this.onIdentity.bind(this))
@@ -134,7 +134,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       this.isAdmin = false;
       localStorage.removeItem('JWT');
       $rootScope.$emit('logout');
-      $http.get('/logout');
+      $http.get('/api/logout');
     };
 
 

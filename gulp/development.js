@@ -13,7 +13,8 @@ var gulp = require('gulp'),
     sass: ['**/public/**/css/*.scss']
   };
 
-var defaultTasks = ['clean', 'jshint', 'less', 'csslint', 'devServe', 'watch'];
+/*var defaultTasks = ['clean', 'jshint', 'less', 'csslint', 'devServe', 'watch'];*/
+var defaultTasks = ['clean',  'less', 'csslint', 'devServe', 'watch'];
 
 gulp.task('env:development', function () {
   process.env.NODE_ENV = 'development';

@@ -24,6 +24,10 @@ var MeanUser = new MeanUserKlass();
  */
 MeanUser.register(function(app, database, passport) {
   // This is for backwards compatibility
+ MeanUser.aggregateAsset('js', '../lib/angular-jwt/dist/angular-jwt.min.js', {
+        absolute: false,
+        global: true
+    });
   MeanUser.auth =require('./authorization');
   require('./passport')(passport);
 
