@@ -1,7 +1,7 @@
 {
   "name": "mean",
   "description": "MEAN.io: A fullstack JavaScript framework powered by MongoDB, ExpressJS, AngularJS, NodeJS.",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "private": false,
   "author": "Linnovate <mean@linnovate.net>",
   "contributors": "https://github.com/linnovate/mean/graphs/contributors",
@@ -19,7 +19,7 @@
     "mocha": "node node_modules/.bin/mocha packages/**/server/tests/**/*.js -R spec -r tools/test/mocha-req.js",
     "karma": "node node_modules/karma/bin/karma start karma.conf.js",
     "test": "npm run mocha && NODE_ENV=test npm run start & sleep 20 && npm run karma",
-    "postinstall": "node node_modules/meanio/scripts/postinstall.js"
+    "postinstall": "node tools/scripts/postinstall.js"
   },
   "dependencies": {
     "assetmanager": "1.1.2",
@@ -47,7 +47,9 @@
     "passport-twitter": "1.0.2",
     "serve-favicon": "2.2.0",
     "swig": "1.4.2",
-    "view-helpers": "0.1.5"
+    "view-helpers": "0.1.5",
+    "shelljs": "0.4.0",
+    "request": "2.55.0"
   },
   "devDependencies": {
     "expect.js": "0.3.1",
