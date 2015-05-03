@@ -1,9 +1,9 @@
-<div class="form main-form" ng-controller="AuthCtrl" ng-class="{'register-form' : global.registerForm}">
+<div class="form main-form" ng-controller="AuthCtrl as auth" ng-class="{'register-form' : global.registerForm}">
     <div class="login-form__left" ui-view></div>
     <div class="login-form__center">
         <p>or</p>
     </div>
-    <div class="row login-form__right " data-ng-controller="AuthCtrl">
+    <div class="row login-form__right ">
         <div class="social_wrap" ng-class="{bigger:socialButtonsCounter > 4 && !global.registerForm}">
             <ul class="social">
                 <li ng-if="socialButtons.hasOwnProperty('linkedin')" class="social_icon social_icon_in">

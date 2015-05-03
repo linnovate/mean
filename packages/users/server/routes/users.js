@@ -4,7 +4,13 @@
 var users = require('../controllers/users'),
     config = require('meanio').loadConfig();
 
+var jwt = require('jsonwebtoken'); //https://npmjs.org/package/node-jsonwebtoken
+var expressJwt = require('express-jwt'); //https://npmjs.org/package/express-jwt
+
 module.exports = function(MeanUser, app, auth, database, passport) {
+
+  // We are going to protect /api routes with JWT
+  app.use('/api', expressJwt({secret: config.secret}));
 
   app.route('/logout')
     .get(users.signout);
@@ -34,11 +40,18 @@ module.exports = function(MeanUser, app, auth, database, passport) {
   app.route('/login')
     .post(passport.authenticate('local', {
       failureFlash: true
-    }), function(req, res) {
-      res.send({
+    }), function(req, res) {      
+      /*var payload = { 
         user: req.user,
-        redirect: (req.user.roles.indexOf('admin') !== -1) ? req.get('referer') : false
-      });
+        redirect: req.body.redirect
+      };*/
+      var payload = req.user;
+      payload.redirect = req.body.redirect;
+      var escaped = JSON.stringify(payload);      
+      escaped = encodeURI(escaped);
+      // We are sending the payload inside the token
+      var token = jwt.sign(escaped, config.secret, { expiresInMinutes: 60*5 });
+      res.json({ token: token });
     });
 
   // AngularJS route to get config of social buttons

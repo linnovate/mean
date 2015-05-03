@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Global', 'Articles',
-  function($scope, $stateParams, $location, Global, Articles) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Global', 'Articles', 'MeanUser',
+  function($scope, $stateParams, $location, Global, Articles, MeanUser) {
     $scope.global = Global;
     $scope.hasAuthorization = function(article) {
       if (!article || !article.user) return false;
-      return $scope.global.isAdmin || article.user._id === $scope.global.user._id;
+      return MeanUser.isAdmin || article.user._id === MeanUser.user._id;
     };
 
     $scope.create = function(isValid) {

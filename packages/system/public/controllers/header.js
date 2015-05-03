@@ -1,9 +1,16 @@
 'use strict';
 
-angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Global', 'Menus',
-  function($scope, $rootScope, Global, Menus) {
-    $scope.global = Global;
-    $scope.menus = {};
+angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Menus', 'MeanUser',
+  function($scope, $rootScope, Menus, MeanUser) {
+    
+    var vm = this;
+
+    vm.menus = {};
+    vm.hdrvars = {
+      authenticated: MeanUser.loggedin,
+      user: MeanUser.user, 
+      isAdmin: MeanUser.isAdmin
+    };
 
     // Default hard coded menu items for main menu
     var defaultMainMenu = [];
@@ -15,7 +22,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
         name: name,
         defaultMenu: defaultMenu
       }, function(menu) {
-        $scope.menus[name] = menu;
+        vm.menus[name] = menu;
       });
     }
 
@@ -30,9 +37,22 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
 
       queryMenu('main', defaultMainMenu);
 
-      $scope.global = {
-        authenticated: !! $rootScope.user,
-        user: $rootScope.user
+      vm.hdrvars = {
+        authenticated: MeanUser.loggedin,
+        user: MeanUser.user, 
+        isAdmin: MeanUser.isAdmin
+      };
+    });
+
+    vm.logout = function(){
+      MeanUser.logout();
+    };
+
+    $rootScope.$on('logout', function(){
+      vm.hdrvars = {
+        authenticated: false, 
+        user: {},
+        isAdmin: false
       };
     });
 

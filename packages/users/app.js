@@ -40,7 +40,7 @@ MeanUser.register(function(app, database, passport) {
   //     menu: 'main'
   // });
 
-  MeanUser.angularDependencies(['mean.system']);
+  MeanUser.angularDependencies(['mean.system', 'angular-jwt']);
 
   /**
     //Uncomment to use. Requires meanio@0.3.7 or above
