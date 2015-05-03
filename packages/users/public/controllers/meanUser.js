@@ -7,7 +7,7 @@ angular.module('mean.users')
       $scope.socialButtonsCounter = 0;
       $scope.global = Global;
 
-      $http.get('/get-config')
+      $http.get('/api/get-config')
         .success(function(config) {
           $scope.socialButtons = config;
         });
@@ -36,7 +36,7 @@ angular.module('mean.users')
 
       // Register the login() function
       $scope.login = function() {
-        $http.post('/login', {
+        $http.post('/api/login', {
           email: $scope.user.email,
           password: $scope.user.password
         })
@@ -92,7 +92,7 @@ angular.module('mean.users')
       $scope.register = function() {
         $scope.usernameError = null;
         $scope.registerError = null;
-        $http.post('/register', {
+        $http.post('/api/register', {
           email: $scope.user.email,
           password: $scope.user.password,
           confirmPassword: $scope.user.confirmPassword,
@@ -125,7 +125,7 @@ angular.module('mean.users')
       $scope.global = Global;
       $scope.global.registerForm = false;
       $scope.forgotpassword = function() {
-        $http.post('/forgot-password', {
+        $http.post('/api/forgot-password', {
           text: $scope.user.email
         })
           .success(function(response) {
@@ -143,7 +143,7 @@ angular.module('mean.users')
       $scope.global = Global;
       $scope.global.registerForm = false;
       $scope.resetpassword = function() {
-        $http.post('/reset/' + $stateParams.tokenId, {
+        $http.post('/api/reset/' + $stateParams.tokenId, {
           password: $scope.user.password,
           confirmPassword: $scope.user.confirmPassword
         })
