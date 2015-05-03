@@ -11,6 +11,8 @@ var mean = require('meanio'),
   express = require('express'),
   helpers = require('view-helpers'),
   flash = require('connect-flash'),
+  modRewrite = require('connect-modrewrite'),
+  seo = require('mean-seo'),
   config = mean.loadConfig();
 
 module.exports = function(app, db) {
@@ -49,4 +51,12 @@ module.exports = function(app, db) {
 
   // Connect flash for flash messages
   app.use(flash());
+
+  app.use(modRewrite([
+    
+    '!^/api/.*|\\_getModules|\\.html|\\.js|\\.css|\\.swf|\\.jp(e?)g|\\.png|\\.gif|\\.svg|\\.eot|\\.ttf|\\.woff|\\.pdf$ / [L]'    
+
+  ]));
+
+  app.use(seo());
 };

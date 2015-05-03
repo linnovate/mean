@@ -5,7 +5,7 @@
   "private": false,
   "author": "Linnovate <mean@linnovate.net>",
   "contributors": "https://github.com/linnovate/mean/graphs/contributors",
-  "mean": "0.5",
+  "mean": "0.5.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/linnovate/mean.git"
@@ -51,6 +51,8 @@
     "view-helpers": "0.1.5"
   },
   "devDependencies": {
+    "connect-modrewrite": "^0.7.9",
+    "require-dir":"latest",
     "expect.js": "0.3.1",
     "karma": "0.12.28",
     "karma-chrome-launcher": "0.1.7",
@@ -64,6 +66,7 @@
     "karma-phantomjs-launcher": "0.1.4",
     "karma-requirejs": "0.2.2",
     "karma-script-launcher": "0.1.0",
+    "mean-seo": "0.0.8",
     "mocha": "2.1.0",
     "requirejs": "2.1.15",
     "supertest": "0.11.0",

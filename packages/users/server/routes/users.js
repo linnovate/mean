@@ -9,9 +9,6 @@ var expressJwt = require('express-jwt'); //https://npmjs.org/package/express-jwt
 
 module.exports = function(MeanUser, app, auth, database, passport) {
 
-  // We are going to protect /api routes with JWT
-  /*app.use('/api', expressJwt({secret: config.secret}));*/
-
   app.route('/api/logout')
     .get(users.signout);
   app.route('/api/users/me')
@@ -77,40 +74,40 @@ module.exports = function(MeanUser, app, auth, database, passport) {
   app.route('/api/auth/facebook')
     .get(passport.authenticate('facebook', {
       scope: ['email', 'user_about_me'],
-      failureRedirect: '#!/login'
+      failureRedirect: '/login'
     }), users.signin);
 
   app.route('/api/auth/facebook/callback')
     .get(passport.authenticate('facebook', {
-      failureRedirect: '#!/login'
+      failureRedirect: '/login'
     }), users.authCallback);
 
   // Setting the github oauth routes
   app.route('/api/auth/github')
     .get(passport.authenticate('github', {
-      failureRedirect: '#!/login'
+      failureRedirect: '/login'
     }), users.signin);
 
   app.route('/api/auth/github/callback')
     .get(passport.authenticate('github', {
-      failureRedirect: '#!/login'
+      failureRedirect: '/login'
     }), users.authCallback);
 
   // Setting the twitter oauth routes
   app.route('/api/auth/twitter')
     .get(passport.authenticate('twitter', {
-      failureRedirect: '#!/login'
+      failureRedirect: '/login'
     }), users.signin);
 
   app.route('/api/auth/twitter/callback')
     .get(passport.authenticate('twitter', {
-      failureRedirect: '#!/login'
+      failureRedirect: '/login'
     }), users.authCallback);
 
   // Setting the google oauth routes
   app.route('/api/auth/google')
     .get(passport.authenticate('google', {
-      failureRedirect: '#!/login',
+      failureRedirect: '/login',
       scope: [
         'https://www.googleapis.com/auth/userinfo.profile',
         'https://www.googleapis.com/auth/userinfo.email'
@@ -119,19 +116,19 @@ module.exports = function(MeanUser, app, auth, database, passport) {
 
   app.route('/api/auth/google/callback')
     .get(passport.authenticate('google', {
-      failureRedirect: '#!/login'
+      failureRedirect: '/login'
     }), users.authCallback);
 
   // Setting the linkedin oauth routes
   app.route('/api/auth/linkedin')
     .get(passport.authenticate('linkedin', {
-      failureRedirect: '#!/login',
+      failureRedirect: '/login',
       scope: ['r_emailaddress']
     }), users.signin);
 
   app.route('/api/auth/linkedin/callback')
     .get(passport.authenticate('linkedin', {
-      failureRedirect: '#!/login'
+      failureRedirect: '/login'
     }), users.authCallback);
 
 };

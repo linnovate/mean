@@ -26,7 +26,7 @@ exports.signin = function(req, res) {
   if (req.isAuthenticated()) {
     return res.redirect('/');
   }
-  res.redirect('#!/login');
+  res.redirect('/login');
 };
 
 /**

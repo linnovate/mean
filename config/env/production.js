@@ -35,27 +35,27 @@ module.exports = {
   facebook: {
     clientID: 'APP_ID',
     clientSecret: 'APP_SECRET',
-    callbackURL: 'http://localhost:3000/auth/facebook/callback'
+    callbackURL: 'http://localhost:3000/api/auth/facebook/callback'
   },
   twitter: {
     clientID: 'CONSUMER_KEY',
     clientSecret: 'CONSUMER_SECRET',
-    callbackURL: 'http://localhost:3000/auth/twitter/callback'
+    callbackURL: 'http://localhost:3000/api/auth/twitter/callback'
   },
   github: {
     clientID: 'APP_ID',
     clientSecret: 'APP_SECRET',
-    callbackURL: 'http://localhost:3000/auth/github/callback'
+    callbackURL: 'http://localhost:3000/api/auth/github/callback'
   },
   google: {
     clientID: 'APP_ID',
     clientSecret: 'APP_SECRET',
-    callbackURL: 'http://localhost:3000/auth/google/callback'
+    callbackURL: 'http://localhost:3000/api/auth/google/callback'
   },
   linkedin: {
     clientID: 'API_KEY',
     clientSecret: 'SECRET_KEY',
-    callbackURL: 'http://localhost:3000/auth/linkedin/callback'
+    callbackURL: 'http://localhost:3000/api/auth/linkedin/callback'
   },
   emailFrom: 'SENDER EMAIL ADDRESS', // sender address like ABC <abc@example.com>
   mailer: {

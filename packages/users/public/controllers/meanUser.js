@@ -7,7 +7,7 @@ angular.module('mean.users')
       $scope.socialButtonsCounter = 0;
       $scope.global = Global;
 
-      $http.get('/get-config')
+      $http.get('/api/get-config')
         .success(function(config) {
           $scope.socialButtons = config;
         });
@@ -75,6 +75,7 @@ angular.module('mean.users')
         vm.input.tooltipTextConfirmPass = vm.input.tooltipTextConfirmPass === 'Show password' ? 'Hide password' : 'Show password';
       };
 
+<<<<<<< HEAD
       $rootScope.$on('loginfail', function(){        
         vm.registerError = MeanUser.registerError;
       });
@@ -82,10 +83,40 @@ angular.module('mean.users')
       // Register the register() function
       vm.register = function() {
         MeanUser.register(this.user);
+=======
+      $scope.register = function() {
+        $scope.usernameError = null;
+        $scope.registerError = null;
+        $http.post('/api/register', {
+          email: $scope.user.email,
+          password: $scope.user.password,
+          confirmPassword: $scope.user.confirmPassword,
+          username: $scope.user.username,
+          name: $scope.user.name
+        })
+          .success(function() {
+            // authentication OK
+            $scope.registerError = 0;
+            $rootScope.user = $scope.user;
+            Global.user = $rootScope.user;
+            Global.authenticated = !! $rootScope.user;
+            $rootScope.$emit('loggedin');
+            $location.url('/');
+          })
+          .error(function(error) {
+            // Error: authentication failed
+            if (error === 'Username already taken') {
+              $scope.usernameError = error;
+            } else if (error === 'Email already taken') {
+              $scope.emailError = error;
+            } else $scope.registerError = error;
+          });
+>>>>>>> 0.5
       };
 
     }
   ])
+<<<<<<< HEAD
   .controller('ForgotPasswordCtrl', ['MeanUser',
     function(MeanUser) {
       var vm = this;
@@ -103,6 +134,56 @@ angular.module('mean.users')
       vm.registerForm = MeanUser.registerForm = false;
       vm.resetpassword = function() {
         MeanUser.resetpassword(this.user);
+=======
+  .controller('ForgotPasswordCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
+    function($scope, $rootScope, $http, $location, Global) {
+      $scope.user = {};
+      $scope.global = Global;
+      $scope.global.registerForm = false;
+      $scope.forgotpassword = function() {
+        $http.post('/api/forgot-password', {
+          text: $scope.user.email
+        })
+          .success(function(response) {
+            $scope.response = response;
+          })
+          .error(function(error) {
+            $scope.response = error;
+          });
+      };
+    }
+  ])
+  .controller('ResetPasswordCtrl', ['$scope', '$rootScope', '$http', '$location', '$stateParams', 'Global',
+    function($scope, $rootScope, $http, $location, $stateParams, Global) {
+      $scope.user = {};
+      $scope.global = Global;
+      $scope.global.registerForm = false;
+      $scope.resetpassword = function() {
+        $http.post('/api/reset/' + $stateParams.tokenId, {
+          password: $scope.user.password,
+          confirmPassword: $scope.user.confirmPassword
+        })
+          .success(function(response) {
+            $rootScope.user = response.user;
+            $rootScope.$emit('loggedin');
+            if (response.redirect) {
+              if (window.location.href === response.redirect) {
+                //This is so an admin user will get full admin page
+                window.location.reload();
+              } else {
+                window.location = response.redirect;
+              }
+            } else {
+              $location.url('/');
+            }
+          })
+          .error(function(error) {
+            if (error.msg === 'Token invalid or expired')
+              $scope.resetpassworderror = 'Could not update password as token is invalid or may have expired';
+            else
+              $scope.validationError = error;
+          });
+>>>>>>> 0.5
       };
     }
   ]);
