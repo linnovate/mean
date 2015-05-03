@@ -31,15 +31,27 @@ module.exports = function(MeanUser, app, auth, database, passport) {
     });
 
   // Setting the local strategy route
-  app.route('/login')
-    .post(passport.authenticate('local', {
-      failureFlash: true
-    }), function(req, res) {
-      res.send({
-        user: req.user,
-        redirect: (req.user.roles.indexOf('admin') !== -1) ? req.get('referer') : false
-      });
-    });
+  app.post('/login', function(req, res, next) {
+		passport.authenticate('local', {
+			failureFlash: true
+		}, function(err, user, info) {
+			// in case of exception
+			if (err) { return next(err); }
+			// if login fails due to wrong credentials
+			/*if (!user) {
+				//return res.redirect('/login');
+				res.send({ redirect: '#!' + req.body.redirect });
+			}*/
+			// if login successful, execute login
+			req.logIn(user, function(err) {
+				if (err) { return next(err); }
+				res.send({
+					user: req.user,
+					redirect: req.body.redirect
+				});
+			});
+		})(req, res, next);
+	});
 
   // AngularJS route to get config of social buttons
   app.route('/get-config')
