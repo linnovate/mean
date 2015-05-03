@@ -58,9 +58,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       } else if(angular.isDefined(response.token)) {
         localStorage.setItem('JWT', response.token);
         var encodedProfile = decodeURI(b64_to_utf8(response.token.split('.')[1]));
-        //var encodedProfile = response.token.split('.')[1];
         var payload = JSON.parse(encodedProfile);
-        //this.user = payload.user;
         this.user = payload;
         var destination = payload.redirect;
         if (this.user.roles.indexOf('admin') !== -1) this.isAdmin = true;
@@ -113,7 +111,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
         .error(this.onIdFail.bind(this));
     };
 
-    MeanUserKlass.resetpassword = function(user) {
+    MeanUserKlass.prototype.resetpassword = function(user) {
         $http.post('/reset/' + $stateParams.tokenId, {
           password: user.password,
           confirmPassword: user.confirmPassword
@@ -122,7 +120,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
           .error(this.onIdFail.bind(this));
       };
 
-    MeanUserKlass.forgotpassword = function(user) {
+    MeanUserKlass.prototype.forgotpassword = function(user) {
         $http.post('/forgot-password', {
           text: user.email
         })

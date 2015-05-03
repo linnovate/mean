@@ -43,6 +43,7 @@
     "grunt-contrib-watch": "0.6.1",
     "grunt-env": "0.4.2",
     "grunt-nodemon": "0.3.0",
+    "jsonwebtoken":"latest",
     "load-grunt-tasks": "0.6.0",
     "lodash": "2.4.1",
     "meanio": "linnovate/meanio#ng",

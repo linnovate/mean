@@ -7,12 +7,10 @@ var users = require('../controllers/users'),
 var jwt = require('jsonwebtoken'); //https://npmjs.org/package/node-jsonwebtoken
 var expressJwt = require('express-jwt'); //https://npmjs.org/package/express-jwt
 
-var secret = 'nekitamot token trte mrte 23233';
-
 module.exports = function(MeanUser, app, auth, database, passport) {
 
   // We are going to protect /api routes with JWT
-  app.use('/api', expressJwt({secret: secret}));
+  app.use('/api', expressJwt({secret: config.secret}));
 
   app.route('/logout')
     .get(users.signout);
@@ -52,7 +50,7 @@ module.exports = function(MeanUser, app, auth, database, passport) {
       var escaped = JSON.stringify(payload);      
       escaped = encodeURI(escaped);
       // We are sending the payload inside the token
-      var token = jwt.sign(escaped, secret, { expiresInMinutes: 60*5 });
+      var token = jwt.sign(escaped, config.secret, { expiresInMinutes: 60*5 });
       res.json({ token: token });
     });
 
