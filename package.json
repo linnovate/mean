@@ -9,7 +9,6 @@
   "license": "MIT",
   "main": "index",
   "scripts": {
-    "preinstall": "node ./scripts/preinstall",
     "postinstall": "cd ./lib/core_modules/server && npm install && cd ../../.."
   },
   "repository": {
