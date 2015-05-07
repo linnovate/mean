@@ -6,6 +6,7 @@ exports.render = function(req, res) {
 
   var modules = [];
   // Preparing angular modules list with dependencies
+  console.log('In here');
   for (var name in mean.modules) {
     modules.push({
       name: name,
@@ -31,4 +32,5 @@ exports.render = function(req, res) {
     isAdmin: isAdmin,
     adminEnabled: isAdmin() && mean.moduleEnabled('mean-admin')
   });
+
 };

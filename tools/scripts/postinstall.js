@@ -168,15 +168,12 @@ function packagesNpmInstall(source) {
 
 
 
-
-var bower = require('bower');
-console.log('     Installing Bower dependencies');
-bower.commands.update().on('error', function(err) {
-  console.log(err);
+shell.exec('bower update', function(code) {
+  console.log('    Updating Bower dependencies');
 });
 
 
-packagesNpmInstall('packages');
+packagesNpmInstall('packages/contrib');
 packagesNpmInstall('packages/custom');
 packagesNpmInstall('packages/core');
 
