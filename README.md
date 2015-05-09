@@ -11,7 +11,7 @@ MEAN is a framework for an easy starting point with [MongoDB](http://www.mongodb
 * *Node.js* - <a href="http://nodejs.org/download/">Download</a> and Install Node.js, nodeschool has free <a href=" http://nodeschool.io/#workshoppers">node tutorials</a> to get you started.
 * *MongoDB* - <a href="http://www.mongodb.org/downloads">Download</a> and Install mongodb - <a href="http://docs.mongodb.org/manual">Checkout their manual</a> if you're just starting.
 
-If you're using ubuntu this is the preffered repository to use...
+If you're using ubuntu, this is the preferred repository to use...
 
 ```bash
 $ curl -sL https://deb.nodesource.com/setup | sudo bash -
@@ -218,7 +218,7 @@ Everything in mean.io is a package and when extending mean with custom functiona
 
 The mean.io package system allows developers to create modular code that provides useful tools that other mean developers can use. The packages, when published, are plug-and-play and are used in a way very similar to traditional npm packages.
 
-The mean.io package system integrates all the packages into the mean project as if the code was part of mean itself and provides the developers with all the necceesary tools required to integrate their package into the host project.
+The mean.io package system integrates all the packages into the mean project as if the code was part of mean itself and provides the developers with all the necessary tools required to integrate their package into the host project.
 
 There are two types of packages:
 
@@ -377,7 +377,7 @@ MyPackage.aggregateAsset('js','first.js',{global:true,  weight: -4, group: 'head
 > <script type="text/javascript" src="/modules/aggregated.js?group=header"></script>
 
 ###Settings Object
-The settings object is a persistance object that is stored in the packages collection and allows for saving persistant information per package such as configuration options or admin settings for the package.
+The settings object is a persistence object that is stored in the packages collection and allows for saving persistent information per package such as configuration options or admin settings for the package.
 
   Receives two arguments the first being the settings object the second is a callback function
   
@@ -439,7 +439,7 @@ $stateProvider
 
 Packages are able to hook into an existing menu system and add links to various menus integrated within Mean.
 
-Each link specifies its `title`, `template`, `menu` and `role` that is allowed to see the link. If the menu specified does not exist a new menu will be created. The menu object is made accessible within the client by means of a *menu angular service* that queries the menu controller for information about links.
+Each link specifies its `title`, `template`, `menu` and `role` that is allowed to see the link. If the menu specified does not exist, a new menu will be created. The menu object is made accessible within the client by means of a *menu angular service* that queries the menu controller for information about links.
 
 Below is an example how to add a link to the main menu from `app.js`
 
