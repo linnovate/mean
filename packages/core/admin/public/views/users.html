@@ -1,0 +1,38 @@
+<section data-ng-controller="UsersController">
+    <form id="user-add-form" class="row-fluid form-inline" name="addUserForm" data-ng-submit="add()">
+        <div class="">
+            <span data-ng-repeat="field in userSchema">
+                <input data-ng-if="(field['type'] == 'text' || field['type'] == 'password')" type="{{field['type']}}" class="span2" data-ng-model="user[field['schemaKey']]" placeholder="{{field['title']}}" id="user-add-title" />
+                <select data-ng-if="field['type'] == 'select'" data-ng-model="user[field['schemaKey']]" ng-multiple="true" multiple ng-options="option for option in field['options']">
+                    <option value="">-- Choose Role --</option>
+                </select>
+            </span>
+            <input type="submit" class="btn span1" value="Add" />
+        </div>
+    </form>
+    <div class="loader" data-ng-init="init()" data-ng-hide="users.length"></div>
+    <div class="actions-bar" data-ng-show="users.length">
+        <input type="button" class="btn btn-danger" data-ng-hide="edit" data-ng-click="edit=!edit" value="Edit">
+        <input type="button" class="btn btn-primary" data-ng-show="edit" data-ng-click="edit=!edit" value="Done">
+    </div>
+    <table class="table table-striped table-bordered table-hover editable-table" data-ng-show="users.length">
+        <tr>
+            <th data-ng-show="edit">
+                Edit
+            </th>
+            <th data-ng-repeat="field in userSchema" data-ng-if="field.inTable">{{field.title}}</th>
+        </tr>
+        <tr data-ng-repeat="user in users">
+            <td data-ng-show="edit">
+                <button class="glyphicon glyphicon-trash" data-ng-click="remove(user)" value="del">
+                    <i class="icon-trash icon-white"></i>
+                </button>
+            </td>
+            <td class="table-editable-cell" data-ng-repeat="field in userSchema" data-ng-if="field.inTable">
+                <span data-ng-if="(field['type'] == 'text')" class="editable-span" data-ng-editable="update(user)" data-ng-editable-model="user[field['schemaKey']]"></span>
+                <span data-ng-click="beforeSelect(field['schemaKey'], user)" data-ng-if="(field['type'] == 'select')" class="editable-span" data-ng-editable-select="update(user, field['schemaKey'])" data-ng-editable-select-model="user[field['schemaKey']]" data-ng-editable-select-options="field['options']">
+                </span>
+            </td>
+        </tr>
+    </table>
+</section>
