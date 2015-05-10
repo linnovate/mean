@@ -47,13 +47,12 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
       MeanUser.logout();
     };
 
-    $rootScope.$on('logout', function() {
-      //vm.hdrvars = {
-      //  authenticated: false,
-      //  user: {},
-      //  isAdmin: false
-      //};
-	    console.log('logout');
+    $rootScope.$on('logout', function(){
+      vm.hdrvars = {
+        authenticated: false,
+        user: {},
+        isAdmin: false
+      };
 	    window.location.reload();
     });
 

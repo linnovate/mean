@@ -63,6 +63,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
         var destination = payload.redirect;
         if (this.user.roles.indexOf('admin') !== -1) this.isAdmin = true;
         $rootScope.$emit('loggedin');
+        window.location.reload();
         if (destination) {
             $location.path(destination);
         } else {
@@ -95,9 +96,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
           password: user.password,
           redirect: destination
         })
-        .success(function() {
-		      window.location.reload();
-	      })
+        .success(this.onIdentity.bind(this))
         .error(this.onIdFail.bind(this));
     };
 
@@ -109,9 +108,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
         username: user.username,
         name: user.name
       })
-        .success(function() {
-		      window.location.reload();
-	      })
+        .success(this.onIdentity.bind(this))
         .error(this.onIdFail.bind(this));
     };
 
@@ -120,9 +117,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
           password: user.password,
           confirmPassword: user.confirmPassword
         })
-          .success(function() {
-		        window.location.reload();
-	        })
+          .success(this.onIdentity.bind(this))
           .error(this.onIdFail.bind(this));
       };
 
@@ -130,9 +125,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
         $http.post('/api/forgot-password', {
           text: user.email
         })
-          .success(function() {
-		        window.location.reload();
-	        })
+          .success(this.onIdentity.bind(this))
           .error(this.onIdFail.bind(this));
       };
 
@@ -140,9 +133,11 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       this.user = {};
       this.loggedin = false;
       this.isAdmin = false;
-      localStorage.removeItem('JWT');
-      $rootScope.$emit('logout');
-      $http.get('/api/logout');
+
+      $http.get('/api/logout').success(function(data) {
+	      localStorage.removeItem('JWT');
+	      $rootScope.$emit('logout');
+      });
     };
 
 

@@ -24,11 +24,9 @@
                 </div>
                 {% if !user.roles %}
                 <ul class="navbar-nav nav auth-link">
-                    <li><a ui-sref='auth.register'>Join</a>
-                    </li>
+                    <li><a ui-sref='auth.register'>Join</a></li>
                     <li class="divider-vertical"></li>
-                    <li><a ui-sref='auth.login'>Log In</a>
-                    </li>
+                    <li><a ui-sref='auth.login'>Log In</a></li>
                 </ul>
                 {% endif %}
                 {% if user.roles %}
