@@ -1,10 +1,19 @@
 'use strict';
 
-angular.module('mean.admin').controller('ModulesController', ['$scope', 'Global', '$rootScope', '$http', 'Modules',
-    function($scope, Global, $rootScope, $http, Modules) {
-        $scope.oneAtATime = true;
-        Modules.get(function(data) {
-            $scope.modules = data;
-        });
+angular.module('mean.admin').controller('ModulesController', ['$scope', 'Global', '$rootScope', 'Menus', 'Modules',
+    function($scope, Global, $rootScope, Menus, Modules) {
+
+	    var vm = this;
+
+	    $scope.modules = [];
+
+	    vm.init = function() {
+		    Menus.query({
+			    name: 'main',
+			    defaultMenu: []
+		    }, function(menu) {
+			    vm.modules = menu;
+		    });
+	    };
     }
 ]);

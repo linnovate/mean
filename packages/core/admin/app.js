@@ -12,6 +12,14 @@ var Admin = new Module('admin');
  */
 
 Admin.register(function(app, auth, database) {
+
+	Admin.menus.add({
+		title: 'admin example',
+		link: 'admin example',
+		roles: ['admin'],
+		menu: 'main'
+	});
+
     Admin.aggregateAsset('css', 'admin.css');
     Admin.aggregateAsset('js', '../lib/ng-clip/src/ngClip.js', {
         absolute: false,

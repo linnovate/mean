@@ -20,6 +20,7 @@ module.exports = function(System, app, auth, database) {
         })
       });
 
-      res.json(items);
+	  res.json(items);
+
     });
 };

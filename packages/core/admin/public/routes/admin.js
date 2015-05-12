@@ -14,7 +14,10 @@ angular.module('mean.admin').config(['$stateProvider', '$urlRouterProvider',
             }).state('modules', {
                 url: '/admin/modules',
                 templateUrl: 'admin/views/modules.html'
-            });
+            }).state('admin example', {
+		        url: '/admin/example',
+		        templateUrl: 'admin/views/example.html'
+	        });
     }
 ]).config(['ngClipProvider',
     function(ngClipProvider) {
