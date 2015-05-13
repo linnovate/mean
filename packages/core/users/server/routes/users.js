@@ -5,11 +5,8 @@ var users = require('../controllers/users'),
     config = require('meanio').loadConfig();
 
 var jwt = require('jsonwebtoken'); //https://npmjs.org/package/node-jsonwebtoken
-var expressJwt = require('express-jwt'); //https://npmjs.org/package/express-jwt
 
 module.exports = function(MeanUser, app, auth, database, passport) {
-
-  //app.use('/api', expressJwt({secret: config.secret}));
 
   app.route('/api/logout')
     .get(users.signout);
@@ -38,12 +35,8 @@ module.exports = function(MeanUser, app, auth, database, passport) {
   // Setting the local strategy route
   app.route('/api/login')
     .post(passport.authenticate('local', {
-      failureFlash: true
+      failureFlash: false
     }), function(req, res) {      
-      /*var payload = { 
-        user: req.user,
-        redirect: req.body.redirect
-      };*/
       var payload = req.user;
       payload.redirect = req.body.redirect;
       var escaped = JSON.stringify(payload);      

@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('mean.admin').controller('AdminController', ['$scope', 'Global', 'Menus', '$rootScope',
-    function($scope, Global, Menus, $rootScope) {
+angular.module('mean.admin').controller('AdminController', ['$scope', 'Global', 'Menus', '$rootScope', 'MeanUser',
+    function($scope, Global, Menus, $rootScope, MeanUser) {
         $scope.global = Global;
         $scope.menus = {};
         $scope.overIcon = false;
-
+        $scope.user = MeanUser;
         var icons = 'admin/assets/img/icons/';
         
         // Default hard coded menu items for main menu

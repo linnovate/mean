@@ -63,7 +63,6 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
         var destination = payload.redirect;
         if (this.user.roles.indexOf('admin') !== -1) this.isAdmin = true;
         $rootScope.$emit('loggedin');
-        window.location.reload();
         if (destination) {
             $location.path(destination);
         } else {

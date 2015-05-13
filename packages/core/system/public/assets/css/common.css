@@ -10,7 +10,8 @@
     display: inline-block;
 }
 .text-edit {
-    padding: 13px 0 0 0;
+    float: right; 
+    margin-top: 12px;
 }
 .account {
     text-align:right;

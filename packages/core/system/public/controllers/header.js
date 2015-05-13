@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Menus', 'MeanUser',
-  function($scope, $rootScope, Menus, MeanUser) {
+angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Menus', 'MeanUser', '$state',
+  function($scope, $rootScope, Menus, MeanUser, $state) {
     
     var vm = this;
 
@@ -47,13 +47,14 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
       MeanUser.logout();
     };
 
-    $rootScope.$on('logout', function(){
+    $rootScope.$on('logout', function() {
       vm.hdrvars = {
         authenticated: false,
         user: {},
         isAdmin: false
       };
-	    window.location.reload();
+      queryMenu('main', defaultMainMenu);
+      $state.go('home');
     });
 
   }

@@ -1,4 +1,4 @@
-<div class="admin-menu" data-ng-controller="AdminController">
+<div class="admin-menu" ng-controller="AdminController" ng-show="user.isAdmin">
     <ul class="nav">
         <li id="stable" data-ng-repeat="item in menus.admin" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}" ui-sref='{{item.link}}'>
             <a href="">

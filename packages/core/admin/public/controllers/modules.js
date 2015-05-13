@@ -9,7 +9,7 @@ angular.module('mean.admin').controller('ModulesController', ['$scope', 'Global'
 
 	    vm.init = function() {
 		    Menus.query({
-			    name: 'main',
+			    name: 'modules',
 			    defaultMenu: []
 		    }, function(menu) {
 			    vm.modules = menu;
