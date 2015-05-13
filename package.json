@@ -32,7 +32,7 @@
     "jsonwebtoken": "latest",
     "lodash":"latest",
     "meanio": "linnovate/meanio",
-    "mongoose":"3.8.x",
+    "mongoose":"latest",
     "morgan":"latest",
     "ms":"latest",
     "nodemailer":"latest",
