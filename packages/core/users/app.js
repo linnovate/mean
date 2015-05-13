@@ -24,6 +24,10 @@ var MeanUser = new MeanUserKlass();
  */
 MeanUser.register(function(app, database, passport) {
   // This is for backwards compatibility
+ MeanUser.aggregateAsset('js', '../lib/angular-jwt/dist/angular-jwt.min.js', {
+        absolute: false,
+        global: true
+    });
   MeanUser.auth =require('./authorization');
   require('./passport')(passport);
 
@@ -32,15 +36,9 @@ MeanUser.register(function(app, database, passport) {
   //We enable routing. By default the Package Object is passed to the routes
   MeanUser.routes(app, MeanUser.auth, database, passport);
 
-  //We are adding a link to the main menu for all authenticated users
-  // MeanUser.menus.add({
-  //     title: 'meanUser example page',
-  //     link: 'meanUser example page',
-  //     roles: ['authenticated'],
-  //     menu: 'main'
-  // });
+  MeanUser.aggregateAsset('js', '../lib/angular-jwt/dist/angular-jwt.min.js');
 
-  MeanUser.angularDependencies(['mean.system']);
+  MeanUser.angularDependencies(['mean.system', 'angular-jwt']);
 
   /**
     //Uncomment to use. Requires meanio@0.3.7 or above

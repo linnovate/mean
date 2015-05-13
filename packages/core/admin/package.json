@@ -1,0 +1,32 @@
+{
+  "name": "admin",
+  "version": "0.0.5",
+  "description": "Admin module for MEAN applications",
+  "author": {
+    "name": "Linnovate",
+    "email": "mean@linnovate.net"
+  },
+  "mean": "0.3.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/linnovate/mean-admin.git"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.4.x"
+  },
+   "scripts": {
+    "postinstall" : "bower install"
+  },
+  "dependencies": {
+    "request": "^2.36.0",
+    "mean-health": "~0.1.2"
+  },
+  "license": "MIT",
+  "_id": "mean-admin@0.0.3",
+  "_shasum": "b4ad3bebf83abb51575cf15aaf238251d50e765b",
+  "_from": "https://github.com/linnovate/mean-admin/tarball/master",
+  "_resolved": "https://github.com/linnovate/mean-admin/tarball/master",
+  "readme": "# [![MEAN Logo](http://www.mean.io/img/logos/meanlogo.png)](http://mean.io/) MEAN Admin\n\n[![Dependencies Status](https://david-dm.org/linnovate/mean-admin.png)](https://david-dm.org/linnovate/mean-admin)\n\nAdmin module for MEAN applications to manage:\n\n- Modules list\n- Bootswatch themes support\n- App Settings\n- User Management\n\n## Basic Usage\n\n  Install Package in root of your mean app:\n\n    $ mean install mean-admin\n\n  Add the admin role to your user:\n\n    $ mean user <email> -a admin\n\n  (Re)start the server:\n\n    $ grunt\n",
+  "readmeFilename": "README.md"
+}

@@ -55,7 +55,7 @@
 
         spyOn($rootScope, '$emit');
         // test expected GET request
-        $httpBackend.when('POST', '/login').respond(200, {
+        $httpBackend.when('POST', '/api/login').respond(200, {
           user: 'Fred'
         });
         scope.login();
@@ -69,7 +69,7 @@
 
 
       it('should fail to log in ', function() {
-        $httpBackend.expectPOST('/login').respond(400, 'Authentication failed');
+        $httpBackend.expectPOST('/api/login').respond(400, 'Authentication failed');
         scope.login();
         $httpBackend.flush();
         // test scope value
@@ -131,7 +131,7 @@
         spyOn($rootScope, '$emit');
         // test expected GET request
         scope.user.name = 'Fred';
-        $httpBackend.when('POST', '/register').respond(200, 'Fred');
+        $httpBackend.when('POST', '/api/register').respond(200, 'Fred');
         scope.register();
         $httpBackend.flush();
         // test scope value
@@ -144,7 +144,7 @@
 
 
       it('should fail to register with duplicate Username', function() {
-        $httpBackend.when('POST', '/register').respond(400, 'Username already taken');
+        $httpBackend.when('POST', '/api/register').respond(400, 'Username already taken');
         scope.register();
         $httpBackend.flush();
         // test scope value
@@ -153,7 +153,7 @@
       });
 
       it('should fail to register with non-matching passwords', function() {
-        $httpBackend.when('POST', '/register').respond(400, 'Password mismatch');
+        $httpBackend.when('POST', '/api/register').respond(400, 'Password mismatch');
         scope.register();
         $httpBackend.flush();
         // test scope value
@@ -209,7 +209,7 @@
 
       it('should display success response on success', function() {
         scope.user.email = 'test@test.com';
-        $httpBackend.when('POST', '/forgot-password').respond(200,'Mail successfully sent');
+        $httpBackend.when('POST', '/api/forgot-password').respond(200,'Mail successfully sent');
         scope.forgotpassword();
         $httpBackend.flush();
 
@@ -218,7 +218,7 @@
       });
       it('should display error response on failure', function() {
         scope.user.email = 'test@test.com';
-        $httpBackend.when('POST', '/forgot-password').respond(400,'User does not exist');
+        $httpBackend.when('POST', '/api/forgot-password').respond(400,'User does not exist');
         scope.forgotpassword();
         $httpBackend.flush();
 

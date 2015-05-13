@@ -1,0 +1,16 @@
+<section data-ng-controller="ModulesController as vm" id="modules-tab" ng-init="vm.init()">
+   <div class="wrapper">
+       <div class="row grid-title">
+           <div class="col-md-4">Module</div>
+           <div class="col-md-8">Description</div>
+       </div>
+       <div class="row module" ng-repeat="module in vm.modules" ng-show="module.roles.indexOf('authenticated') === -1 && module.roles.indexOf('admin') > -1">
+           <div class="col-md-4">
+               <div class="name">{{module.title}}</div>
+               <div><a href="">Deactivate</a> | <a ui-sref="{{module.link}}">Settings</a></div>
+           </div>
+           <div class="col-md-8">{{module.link}}</div>
+       </div>
+   </div>
+
+</section>

@@ -9,7 +9,8 @@ var mongoose = require('mongoose'),
   config = require('meanio').loadConfig(),
   crypto = require('crypto'),
   nodemailer = require('nodemailer'),
-  templates = require('../template');
+  templates = require('../template'),
+  jwt = require('jsonwebtoken'); //https://npmjs.org/package/node-jsonwebtoken
 
 /**
  * Auth callback
@@ -25,7 +26,7 @@ exports.signin = function(req, res) {
   if (req.isAuthenticated()) {
     return res.redirect('/');
   }
-  res.redirect('#!/login');
+  res.redirect('/login');
 };
 
 /**
@@ -94,9 +95,16 @@ exports.create = function(req, res, next) {
 
       return res.status(400);
     }
+    var payload = user;
+    payload.redirect = req.body.redirect;
+    var escaped = JSON.stringify(payload);
+    escaped = encodeURI(escaped);
     req.logIn(user, function(err) {
-      if (err) return next(err);
-      return res.redirect('/');
+      if (err) { return next(err); }
+
+      // We are sending the payload inside the token
+      var token = jwt.sign(escaped, config.secret, { expiresInMinutes: 60*5 });
+      res.json({ token: token });
     });
     res.status(200);
   });

@@ -1,0 +1,13 @@
+<div class="admin-menu" data-ng-controller="AdminController">
+    <ul class="nav">
+        <li id="stable" data-ng-repeat="item in menus.admin" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}" ui-sref='{{item.link}}'>
+            <a href="">
+                <img data-ng-show="item.icon" ng-src="{{item.icon}}">
+                <img data-ng-show="!item.icon" src="admin/assets/img/icons/settings.png">
+            </a>
+            <div class="showbox" data-ng-class="{'wide': openWide}" mean-token="item.title">{{item.title}}</div>
+        </li>
+    </ul>
+    <div data-ng-init="openWide=false" class="hover-ninja" data-ng-class="{'wide':openWide}" data-ng-click="openWide=!openWide"></div>
+    <div class="ninja"></div>
+</div>

@@ -6,14 +6,15 @@ var gulp = require('gulp'),
   gutil = require('gulp-util'),
   plugins = gulpLoadPlugins(),
   paths = {
-    js: ['*.js', 'test/**/*.js', '!test/coverage/**', '!bower_components/**', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/contrib/**/*.js', '!packages/contrib/**/node_modules/**'],
+    js: ['*.js', 'test/**/*.js', '!test/coverage/**', '!bower_components/**', '!packages/**/node_modules/**', '!packages/contrib/**/*.js', '!packages/contrib/**/node_modules/**', '!packages/core/**/*.js', '!packages/core/public/assets/lib/**/*.js'],
     html: ['packages/**/public/**/views/**', 'packages/**/server/views/**'],
-    css: ['!bower_components/**', 'packages/**/public/**/css/*.css', '!packages/contrib/**/public/**/css/*.css'],
+    css: ['!bower_components/**', 'packages/**/public/**/css/*.css', '!packages/contrib/**/public/**/css/*.css', '!packages/core/**/public/**/css/*.css'],
     less: ['**/public/**/css/*.less'],
     sass: ['**/public/**/css/*.scss']
   };
 
-var defaultTasks = ['clean', 'jshint', 'less', 'csslint', 'devServe', 'watch'];
+/*var defaultTasks = ['clean', 'jshint', 'less', 'csslint', 'devServe', 'watch'];*/
+var defaultTasks = ['clean',  'less', 'csslint', 'devServe', 'watch'];
 
 gulp.task('env:development', function () {
   process.env.NODE_ENV = 'development';

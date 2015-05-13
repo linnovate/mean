@@ -59,7 +59,7 @@
         'fetched from XHR', function() {
 
           // test expected GET request
-          $httpBackend.expectGET('articles').respond([{
+          $httpBackend.expectGET('api\/articles').respond([{
             title: 'An Article about MEAN',
             content: 'MEAN rocks!'
           }]);
@@ -90,7 +90,7 @@
           };
 
           // test expected GET request with response object
-          $httpBackend.expectGET(/articles\/([0-9a-fA-F]{24})$/).respond(testArticleData());
+          $httpBackend.expectGET(/api\/articles\/([0-9a-fA-F]{24})$/).respond(testArticleData());
 
           // run controller
           scope.findOne();
@@ -127,7 +127,7 @@
           scope.content = 'MEAN rocks!';
 
           // test post request is sent
-          $httpBackend.expectPOST('articles', postArticleData()).respond(responseArticleData());
+          $httpBackend.expectPOST('api\/articles', postArticleData()).respond(responseArticleData());
 
           // Run controller
           scope.create(true);
@@ -159,7 +159,7 @@
         scope.article = article;
 
         // test PUT happens correctly
-        $httpBackend.expectPUT(/articles\/([0-9a-fA-F]{24})$/).respond();
+        $httpBackend.expectPUT(/api\/articles\/([0-9a-fA-F]{24})$/).respond();
 
         // testing the body data is out for now until an idea for testing the dynamic updated array value is figured out
         //$httpBackend.expectPUT(/articles\/([0-9a-fA-F]{24})$/, putArticleData()).respond();
@@ -191,7 +191,7 @@
           scope.articles.push(article);
 
           // test expected rideshare DELETE request
-          $httpBackend.expectDELETE(/articles\/([0-9a-fA-F]{24})$/).respond(204);
+          $httpBackend.expectDELETE(/api\/articles\/([0-9a-fA-F]{24})$/).respond(204);
 
           // run controller
           scope.remove(article);
