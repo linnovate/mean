@@ -3,7 +3,7 @@
     position: fixed;
     background-color: #176583;
     height: 100%;
-    top: 51px;
+    top: 50px;
     width: 60px;
 }
 
@@ -21,10 +21,11 @@
     -ms-transition-duration: 0.5s;
 }
 #admin-menu .open-icon {
-    padding: 15px 10px;
-    font-size: 2em;
+    padding: 15px 15px;
+    font-size: 1.5em;
     color: #89D7F3;
     cursor: pointer;
+    top: 0px;
 }
 #admin-menu .opened .open-icon {
     text-align: right;
