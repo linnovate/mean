@@ -1,4 +1,4 @@
-.admin-menu {
+#admin-menu {
     z-index:1;
     position: fixed;
     background-color: #176583;
@@ -6,7 +6,35 @@
     top: 51px;
     width: 60px;
 }
-#stable .showbox {
+
+#admin-menu .nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #103c4d;
+}
+
+#admin-menu .nav , #admin-menu .open-icon, #admin-menu .wrapper-ninja {
+    width: 60px;
+    background-color: #176583;
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    -ms-transition-duration: 0.5s;
+}
+#admin-menu .open-icon {
+    padding: 15px 10px;
+    font-size: 2em;
+    color: #89D7F3;
+    cursor: pointer;
+}
+#admin-menu .opened .open-icon {
+    text-align: right;
+}
+
+#admin-menu ul li {
+    border-bottom: solid 1px #217D99;
+}
+
+#admin-menu .stable .showbox {
     position: absolute;
     top: 0;
     width: 0;
@@ -24,41 +52,23 @@
     border-bottom: solid 1px #217D99;
 }
 
-#stable:hover .showbox, .admin-menu #stable .showbox.wide {
-    width: 190px;
+#admin-menu .opened .nav, #admin-menu .opened .wrapper-ninja , #admin-menu .opened .open-icon {
+  width: 250px;
+}
+#admin-menu .opened .showbox {
     font-size: inherit;
-    background-color: #103c4d;
-    padding-left: 10px;
 }
-#stable:hover, .admin-menu #stable:hover .showbox.wide{
-    background-color: #103c4d;
-}
-#stable .showbox.wide {
-    background-color: #176583;
-}
-#stable a {
-    border-bottom: solid 1px #217D99;
-}
-#stable a:hover {
-    background-color: #103c4d;
-}
-.admin-menu .hover-ninja {
-    width: 60px;
+
+#admin-menu .wrapper-ninja {
     height: 100%;
-    background-color: #176583;
-    -webkit-transition-duration: 0.5s;
-    -moz-transition-duration: 0.5s;
-    -o-transition-duration: 0.5s;
-    -ms-transition-duration: 0.5s;
+    position: fixed;
 }
-.admin-menu .hover-ninja.wide {
-    width: 250px;
-}
-.admin-menu .hover-ninja.wide+.ninja {
+
+#admin-menu .opened .ninja {
     position:absolute;
     width: 287px;
 }
-.admin-menu .ninja {
+#admin-menu .ninja {
     width: 0;
     height: 305px;
     background: url(/admin/assets/img/ninja/ninja.png) no-repeat;
@@ -71,10 +81,12 @@
     -ms-transition-duration: 0.5s;
 }
 
+
 tr.disabled {
     pointer-events: none;
     opacity: 0.4;
 }
+
 span.editable-wrapper input {
     width: 80%;
 }

@@ -1,14 +1,14 @@
 {
   "name": "mean",
   "dependencies": {
-    "jquery": "1.x",
-    "angular": "1.3.2",
-    "angular-resource": "1.3.2",
-    "angular-cookies": "1.3.2",
-    "angular-mocks": "1.3.2",
-    "angular-route": "1.3.2",
-    "bootstrap": "3.1.1",
-    "angular-bootstrap": "0.11.0",
+    "jquery": "latest",
+    "angular": "latest",
+    "angular-resource": "latest",
+    "angular-cookies": "latest",
+    "angular-mocks": "latest",
+    "angular-route": "latest",
+    "bootstrap": "latest",
+    "angular-bootstrap": "latest",
     "angular-ui-router": "#master",
     "web-bootstrap": "./node_modules/meanio/resources/web-bootstrap.js"
   }
