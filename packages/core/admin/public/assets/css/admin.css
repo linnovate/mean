@@ -61,7 +61,7 @@
 .admin-menu .ninja {
     width: 0;
     height: 305px;
-    background: url(../admin/assets/img/ninja/ninja.png) no-repeat;
+    background: url(/admin/assets/img/ninja/ninja.png) no-repeat;
     position: absolute;
     bottom: 60px;
     left: 0px;
