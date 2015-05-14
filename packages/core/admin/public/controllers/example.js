@@ -12,7 +12,7 @@ angular.module('mean.admin').controller('ExampleController', ['$scope', 'Global'
 
 		vm.save = function() {
 			ModuleSettings.update('admin', {example: 'example', name: vm.app.name}).then(function(data) {
-				alert(JSON.stringify(data));
+          alert('Settings saved to admin module');
 			}, function(err) {
 				console.log('err', err);
 			});
