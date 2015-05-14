@@ -45,7 +45,6 @@
     "serve-favicon":"latest",
     "swig":"latest",
     "view-helpers":"latest",
-    "express-jwt": "latest",
     "shelljs":"latest",
     "request":"latest",
     "npm": "^2.1.0"
