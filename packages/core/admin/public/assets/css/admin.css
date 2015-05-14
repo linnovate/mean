@@ -118,7 +118,7 @@ span.editable-wrapper input {
     border: solid 1px rgb(232, 228, 225);
     border-top: none;
     padding: 10px 0;
-    border-left: solid 3px rgb(212, 73, 27);
+    border-left: solid 3px #176583;
 }
 
 #modules-tab .wrapper .module .name {
