@@ -61,7 +61,7 @@ describe('<Unit Test>', function() {
         article.title = '';
 
         return article.save(function(err) {
-          expect(err).to.not.be(undefined);
+          expect(err).to.not.be(null);
           done();
         });
       });
@@ -71,7 +71,7 @@ describe('<Unit Test>', function() {
         article.content = '';
 
         return article.save(function(err) {
-          expect(err).to.not.be(undefined);
+          expect(err).to.not.be(null);
           done();
         });
       });
@@ -81,7 +81,7 @@ describe('<Unit Test>', function() {
         article.user = {};
 
         return article.save(function(err) {
-          expect(err).to.not.be(undefined);
+          expect(err).to.not.be(null);
           done();
         });
       });
