@@ -34,7 +34,7 @@ exports.update = function(req, res) {
 
 		_module.settings(settings, function (err, settingsObj) {
 			if (err) return res.status(500).send(err);
-			res.jsonp(settingsObj.settings);
+			res.jsonp(settingsObj);
 		});
 	});
 };
