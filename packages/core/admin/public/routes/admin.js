@@ -14,8 +14,8 @@ angular.module('mean.admin').config(['$stateProvider', '$urlRouterProvider',
             }).state('modules', {
                 url: '/admin/modules',
                 templateUrl: 'admin/views/modules.html'
-            }).state('admin example', {
-		        url: '/admin/example',
+            }).state('admin settings', {
+		        url: '/admin/_settings',
 		        templateUrl: 'admin/views/example.html'
 	        });
     }

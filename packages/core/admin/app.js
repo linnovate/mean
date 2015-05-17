@@ -14,8 +14,8 @@ var Admin = new Module('admin');
 Admin.register(function(app, auth, database) {
 
 	Admin.menus.add({
-		title: 'admin example',
-		link: 'admin example',
+		title: 'admin settings',
+		link: 'admin settings',
 		roles: ['admin'],
 		menu: 'main'
 	});
