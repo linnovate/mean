@@ -1,6 +1,6 @@
 <div data-ng-controller="RegisterCtrl as reg">
     <div ng-repeat="error in reg.registerError">
-        <div class="alert alert-danger animated fadeIn">{{reg.error.msg}}</div>
+        <div class="alert alert-danger animated fadeIn">{{error.msg}}</div>
     </div>
     <div class="alert alert-danger animated fadeIn" ng-show="reg.usernameError">{{reg.usernameError}}</div>
     <div class="alert alert-danger animated fadeIn" ng-show="reg.emailError">{{reg.emailError}}</div>

@@ -36,7 +36,7 @@ angular.module('mean.users')
         vm.input.tooltipText = vm.input.tooltipText === 'Show password' ? 'Hide password' : 'Show password';
       };
 
-      $rootScope.$on('loginfail', function(){
+      $rootScope.$on('loginfailed', function(){
         vm.loginError = MeanUser.loginError;
       });
 
@@ -80,6 +80,10 @@ angular.module('mean.users')
       vm.register = function() {
         MeanUser.register(this.user);
       };
+
+      $rootScope.$on('registerfailed', function(){
+        vm.registerError = MeanUser.registerError;
+      });
     }
   ])
   .controller('ForgotPasswordCtrl', ['MeanUser',

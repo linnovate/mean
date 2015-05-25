@@ -79,10 +79,11 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
     MeanUserKlass.prototype.onIdFail = function (response) {
       $location.path(response.redirect);
       this.loginError = 'Authentication failed.';
-      this.registerError = response.msg;
+      this.registerError = response;
       this.validationError = response.msg;
       this.resetpassworderror = response.msg;
-      $rootScope.$emit('loginfail');
+      $rootScope.$emit('loginfailed');
+      $rootScope.$emit('registerfailed');
     };
 
     var MeanUser = new MeanUserKlass();
