@@ -6,31 +6,12 @@
     <div class="row login-form__right ">
         <div class="social_wrap" ng-class="{bigger:socialButtonsCounter > 4 && !global.registerForm}">
             <ul class="social">
-                <li ng-if="socialButtons.hasOwnProperty('linkedin')" class="social_icon social_icon_in">
-                    <a target="_self" href="/api/auth/linkedin" class="button">
-                        <span>Log In With LinkedIn</span>
+                <li ng-repeat="(key, val) in socialButtons" class="social_icon social_icon_{{key}}">
+                    <a target="_self" ng-href="/api/auth/{{key}}" class="button">
+                        <span class="text-capitalize">Log In With {{key}}</span>
                     </a>
                 </li>
-                <li ng-if="socialButtons.hasOwnProperty('facebook')" class="social_icon social_icon_fb">
-                    <a target="_self" href="/api/auth/facebook" class="button">
-                        <span>Log In With Facebook</span>
-                    </a>
-                </li>
-                <li ng-if="socialButtons.hasOwnProperty('github')" class="social_icon social_icon_gh">
-                    <a target="_self" href="/api/auth/github" class="button">
-                        <span>Log In With GitHub</span>
-                    </a>
-                </li>
-                <li ng-if="socialButtons.hasOwnProperty('twitter')" class="social_icon social_icon_tw">
-                    <a target="_self" href="/api/auth/twitter" class="button">
-                        <span>Log In With Twitter</span>
-                    </a>
-                </li>
-                <li ng-if="socialButtons.hasOwnProperty('google')" class="social_icon social_icon_google">
-                    <a target="_self" href="/api/auth/google" class="button">
-                        <span>Log In With Google</span>
-                    </a>
-                </li>
+
             </ul>
         </div>
     </div>

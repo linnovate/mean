@@ -371,7 +371,7 @@ background: url("/theme/assets/img/bg.png");
     color: #959595;
 }
 
-.login-form__right .social_icon_in .button:before {
+.login-form__right .social_icon_linkedin .button:before {
     content: '';
     position: absolute;
     background: url("/theme/assets/img/social_in.png") no-repeat 50% 50%;
@@ -381,7 +381,7 @@ background: url("/theme/assets/img/bg.png");
     left: 0;
 }
 
-.login-form__right .social_icon_fb .button:before {
+.login-form__right .social_icon_facebook .button:before {
     content: '';
     position: absolute;
     background: url("/theme/assets/img/social_fb.png") no-repeat 50% 50%;
@@ -391,7 +391,7 @@ background: url("/theme/assets/img/bg.png");
     left: 8px;
 }
 
-.login-form__right .social_icon_gh .button:before {
+.login-form__right .social_icon_github .button:before {
     content: '';
     position: absolute;
     background: url("/theme/assets/img/social_github.png") no-repeat 50% 50%;
@@ -401,7 +401,7 @@ background: url("/theme/assets/img/bg.png");
     left: 8px;
 }
 
-.login-form__right .social_icon_tw .button:before {
+.login-form__right .social_icon_twitter .button:before {
     content: '';
     position: absolute;
     background: url("/theme/assets/img/social_tw.png") no-repeat 50% 50%;

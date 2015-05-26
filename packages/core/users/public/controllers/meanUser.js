@@ -11,6 +11,7 @@ angular.module('mean.users')
       $http.get('/api/get-config')
         .success(function(config) {
           $scope.socialButtons = config;
+          $scope.socialButtonsCounter = Object.keys(config).length;
         });
     }
   ])
