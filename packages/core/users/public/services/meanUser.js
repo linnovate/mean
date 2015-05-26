@@ -3,6 +3,8 @@
 angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$location', '$stateParams', '$cookies', '$q', '$timeout', '$cookieStore',
   function($rootScope, $http, $location, $stateParams, $cookies, $q, $timeout, $cookieStore) {
 
+    var self;
+
     function escape(html) {
       return String(html)
         .replace(/&/g, '&amp;')
@@ -45,6 +47,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       this.resetpassworderror = null;
       this.validationError = null;
       $http.get('/api/users/me').success(this.onIdentity.bind(this));
+      self = this;
     }
 
     MeanUserKlass.prototype.onIdentity = function(response) {
@@ -196,6 +199,14 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
 
       return deferred.promise;
     };
+
+    var tokenWatch = $rootScope.$watch(function() { return $cookies.token; }, function(newVal, oldVal) {
+        if (newVal && newVal !== undefined && newVal !== null && newVal !== '') {
+         self.onIdentity({token: $cookies.token});
+         $cookieStore.remove('token');
+         tokenWatch();
+        }
+      });
 
     return MeanUser;
   }
