@@ -200,6 +200,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       return deferred.promise;
     };
 
+    //Temporary code
     var tokenWatch = $rootScope.$watch(function() { return $cookies.token; }, function(newVal, oldVal) {
         if (newVal && newVal !== undefined && newVal !== null && newVal !== '') {
          self.onIdentity({token: $cookies.token});
