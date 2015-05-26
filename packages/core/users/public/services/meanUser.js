@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$location', '$stateParams',
-  function($rootScope, $http, $location, $stateParams) {
+angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$location', '$stateParams', '$cookies', '$q', '$timeout', '$cookieStore',
+  function($rootScope, $http, $location, $stateParams, $cookies, $q, $timeout, $cookieStore) {
 
     function escape(html) {
       return String(html)
@@ -60,13 +60,14 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
         var encodedProfile = decodeURI(b64_to_utf8(response.token.split('.')[1]));
         var payload = JSON.parse(encodedProfile);
         this.user = payload;
-        var destination = payload.redirect;
+        var destination = $cookies.redirect;
         if (this.user.roles.indexOf('admin') !== -1) this.isAdmin = true;
         $rootScope.$emit('loggedin');
         if (destination) {
-            $location.path(destination);
+          $location.path(destination.replace(/^"|"$/g, ''));
+          $cookieStore.remove('redirect');
         } else {
-            $location.url('/');
+          $location.url('/');
         }
       } else {
         this.user = response;
@@ -140,6 +141,61 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       });
     };
 
+    MeanUserKlass.prototype.checkLoggedin = function() {
+     var deferred = $q.defer();
+
+      // Make an AJAX call to check if the user is logged in
+      $http.get('/api/loggedin').success(function(user) {
+        // Authenticated
+        if (user !== '0') $timeout(deferred.resolve);
+
+        // Not Authenticated
+        else {
+          $cookieStore.put('redirect', $location.path());
+          $timeout(deferred.reject);
+          $location.url('/auth/login');
+        }
+      });
+
+      return deferred.promise;
+    };
+
+    MeanUserKlass.prototype.checkLoggedOut = function() {
+       // Check if the user is not connected
+      // Initialize a new promise
+      var deferred = $q.defer();
+
+      // Make an AJAX call to check if the user is logged in
+      $http.get('/api/loggedin').success(function(user) {
+        // Authenticated
+        if (user !== '0') {
+          $timeout(deferred.reject);
+          $location.url('/');
+        }
+        // Not Authenticated
+        else $timeout(deferred.resolve);
+      });
+
+      return deferred.promise;
+    }
+
+    MeanUserKlass.prototype.checkAdmin = function() {
+     var deferred = $q.defer();
+
+      // Make an AJAX call to check if the user is logged in
+      $http.get('/api/loggedin').success(function(user) {
+        // Authenticated
+        if (user !== '0' && user.roles.indexOf('admin') !== -1) $timeout(deferred.resolve);
+
+        // Not Authenticated or not Admin
+        else {
+          $timeout(deferred.reject);
+          $location.url('/');
+        }
+      });
+
+      return deferred.promise;
+    };
 
     return MeanUser;
   }
