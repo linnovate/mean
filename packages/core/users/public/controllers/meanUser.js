@@ -87,14 +87,17 @@ angular.module('mean.users')
       });
     }
   ])
-  .controller('ForgotPasswordCtrl', ['MeanUser',
-    function(MeanUser) {
+  .controller('ForgotPasswordCtrl', ['MeanUser', '$rootScope',
+    function(MeanUser, $rootScope) {
       var vm = this;
       vm.user = {};      
       vm.registerForm = MeanUser.registerForm = false;
       vm.forgotpassword = function() {
         MeanUser.forgotpassword(this.user);
       };
+      $rootScope.$on('forgotmailsent', function(event, args){
+        vm.response = args;
+      });
     }
   ])
   .controller('ResetPasswordCtrl', ['MeanUser',

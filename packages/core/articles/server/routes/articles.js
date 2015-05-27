@@ -1,7 +1,5 @@
 'use strict';
 
-var articles = require('../controllers/articles');
-
 // Article authorization helpers
 var hasAuthorization = function(req, res, next) {
   if (!req.user.isAdmin && !req.article.user._id.equals(req.user._id)) {
@@ -11,6 +9,8 @@ var hasAuthorization = function(req, res, next) {
 };
 
 module.exports = function(Articles, app, auth) {
+  
+  var articles = require('../controllers/articles')(Articles);
 
   app.route('/api/articles')
     .get(articles.all)

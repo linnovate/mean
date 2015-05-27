@@ -1,12 +1,12 @@
 'use strict';
 
-// User routes use users controller
-var users = require('../controllers/users'),
-    config = require('meanio').loadConfig();
-
+var config = require('meanio').loadConfig();
 var jwt = require('jsonwebtoken'); //https://npmjs.org/package/node-jsonwebtoken
 
 module.exports = function(MeanUser, app, auth, database, passport) {
+
+  // User routes use users controller
+  var users = require('../controllers/users')(MeanUser);
 
   app.route('/api/logout')
     .get(users.signout);

@@ -129,7 +129,9 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
         $http.post('/api/forgot-password', {
           text: user.email
         })
-          .success(this.onIdentity.bind(this))
+          .success(function(response) {
+            $rootScope.$emit('forgotmailsent', response);
+          })
           .error(this.onIdFail.bind(this));
       };
 
