@@ -1302,8 +1302,9 @@
       "resolved": "https://registry.npmjs.org/lodash/-/lodash-3.8.0.tgz"
     },
     "meanio": {
-      "version": "0.8.5",
-      "from": "meanio@latest",
+      "version": "0.8.6",
+      "from": "../../../../tmp/npm-5264-e86635df/1432807259365-0.7588776333723217/5d05bd043993f8a168256c2b1735a0118eb29314",
+      "resolved": "git+https://github.com/linnovate/meanio#5d05bd043993f8a168256c2b1735a0118eb29314",
       "dependencies": {
         "complex-list": {
           "version": "0.1.4",
