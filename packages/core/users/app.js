@@ -41,5 +41,11 @@ MeanUser.register(function(app, database, passport) {
 
     MeanUser.angularDependencies(['angular-jwt']);
 
+    MeanUser.events.design({
+      //http://fontawesome.io/icons
+      icon: 'fa-user',
+      color: '#8C66B1'
+    });
+
     return MeanUser;
 });

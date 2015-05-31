@@ -16,6 +16,9 @@ Articles.register(function(app, auth, database, swagger) {
   //We enable routing. By default the Package Object is passed to the routes
   Articles.routes(app, auth, database);
 
+  Articles.aggregateAsset('css', 'articles.css');
+
+  
   //We are adding a link to the main menu for all authenticated users
   Articles.menus.add({
     'roles': ['authenticated'],
@@ -28,8 +31,12 @@ Articles.register(function(app, auth, database, swagger) {
     'link': 'create article'
   });
 
-  //Articles.aggregateAsset('js','/packages/system/public/services/menus.js', {group:'footer', absolute:true, weight:-9999});
-  //Articles.aggregateAsset('js', 'test.js', {group: 'footer', weight: -1});
+  Articles.events.design({
+    //http://fontawesome.io/icons
+    icon: 'fa-file-text',
+    color: '#8FD5FF'
+  });
+
 
   /*
     //Uncomment to use. Requires meanio@0.3.7 or above
@@ -48,7 +55,6 @@ Articles.register(function(app, auth, database, swagger) {
       //you now have the settings object
     });
     */
-  Articles.aggregateAsset('css', 'articles.css');
 
   // Only use swagger.add if /docs and the corresponding files exists
   swagger.add(__dirname);
