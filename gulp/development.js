@@ -44,6 +44,7 @@ gulp.task('less', function() {
 });
 
 gulp.task('devServe', ['env:development'], function () {
+  console.log('------------- devServe ---------------');
   plugins.nodemon({
     script: 'server.js',
     ext: 'html js',
@@ -54,7 +55,7 @@ gulp.task('devServe', ['env:development'], function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch(paths.js, ['jshint']).on('change', plugins.livereload.changed);
+  gulp.watch(paths.js, ['jshint']).on('change',plugins.livereload.changed);
   gulp.watch(paths.html).on('change', plugins.livereload.changed);
   gulp.watch(paths.css, ['csslint']).on('change', plugins.livereload.changed);
   gulp.watch(paths.less, ['less']).on('change', plugins.livereload.changed);

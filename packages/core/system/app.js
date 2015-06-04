@@ -3,10 +3,11 @@
 /*
  * Defining the Package
  */
-var Module = require('meanio').Module,
-  favicon = require('serve-favicon');
-
-var SystemPackage = new Module('system');
+var mean = require('meanio'),
+    Module = mean.Module,
+    config = mean.loadConfig,
+    favicon = require('serve-favicon'),
+    SystemPackage = new Module('system');
 
 /*
  * All MEAN packages require registration
@@ -23,7 +24,9 @@ SystemPackage.register(function(app, auth, database) {
   // The middleware in config/express will run before this code
 
   // Set views path, template engine and default layout
-  app.set('views', __dirname + '/server/views');
+  var viewsPath = (config.cssFramework === 'material') ? __dirname + '../../server/views' : __dirname + '/server/views';
+  app.set('views', viewsPath);
+
 
   // Setting the favicon and static folder
   app.use(favicon(__dirname + '/public/assets/img/favicon.ico'));
