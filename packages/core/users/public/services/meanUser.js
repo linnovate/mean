@@ -203,9 +203,9 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
     };
 
     //Temporary code
-    var tokenWatch = $rootScope.$watch(function() { return $cookies.token; }, function(newVal, oldVal) {
+    var tokenWatch = $rootScope.$watch(function() { return $cookies.get('token'); }, function(newVal, oldVal) {
         if (newVal && newVal !== undefined && newVal !== null && newVal !== '') {
-         self.onIdentity({token: $cookies.token});
+         self.onIdentity({token: $cookies.get('token')});
          $cookieStore.remove('token');
          tokenWatch();
         }
