@@ -236,7 +236,7 @@ The "system" package creates the basic pages as well as defines the layout of th
 #### Users
 The "users" package creates the database model of the user, provides validation as well as various login and registration features.
 #### Access
-The "access" package managers permissions and middleware. It controls the various authentication methods and is dependent on the users package
+The "access" package manages permissions and middleware. It controls the various authentication methods and is dependent on the users package
 #### Theme
 The "theme" package adds some basic CSS and other assets such as images and backgrounds
 #### Articles
