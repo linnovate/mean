@@ -60,6 +60,7 @@
     "gulp-cssmin": "latest",
     "gulp-jshint": "latest",
     "gulp-less": "latest",
+    "gulp-coffee": "latest",
     "gulp-livereload": "latest",
     "gulp-load-plugins": "latest",
     "gulp-mocha": "latest",
