@@ -138,9 +138,9 @@ module.exports = function(passport) {
           return done(err, user);
         }
         user = new User({
-          name: profile.displayName,
+	  name: profile._json.displayName || profile._json.login,
+          username: profile._json.login,
           email: profile.emails[0].value,
-          username: profile.username,
           provider: 'github',
           github: profile._json,
           roles: ['authenticated']
