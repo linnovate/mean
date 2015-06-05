@@ -54,7 +54,7 @@ $ cd <myApp> && npm install
 
 ### Invoke node with a task manager
 Mean supports the gulp task runner for various services which are applied on the code.
-To start you application run - 
+To start your application run - 
 ```bash
 $ gulp
 ```
