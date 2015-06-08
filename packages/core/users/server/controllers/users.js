@@ -10,6 +10,7 @@ var mongoose = require('mongoose'),
   crypto = require('crypto'),
   nodemailer = require('nodemailer'),
   templates = require('../template'),
+  _ = require('lodash'),
   jwt = require('jsonwebtoken'); //https://npmjs.org/package/node-jsonwebtoken
 
 
@@ -145,7 +146,30 @@ module.exports = function(MeanUser) {
          * Send User
          */
         me: function(req, res) {
-            res.json(req.user || null);
+            if (!req.user || !req.user.hasOwnProperty('_id')) return null;
+
+            User.findOne({
+                _id: req.user._id
+            }).exec(function(err, user) {
+
+                if (err || !user) return res.send(null);
+
+
+                var dbUser = user.toJSON();
+
+                delete dbUser._id;
+                delete req.user._id;
+
+                var eq = _.isEqual(dbUser, req.user);
+                if (eq) return res.json(req.user);
+
+                var payload = user;
+                var escaped = JSON.stringify(payload);
+                escaped = encodeURI(escaped);
+                var token = jwt.sign(escaped, config.secret, { expiresInMinutes: 60*5 });
+                res.json({ token: token });
+               
+            });
         },
 
         /**
