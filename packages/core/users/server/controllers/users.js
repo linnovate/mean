@@ -145,7 +145,18 @@ module.exports = function(MeanUser) {
          * Send User
          */
         me: function(req, res) {
-            res.json(req.user || null);
+            if (req.user && req.user.hasOwnProperty('_id')) {
+                User.findOne({
+                    _id: req.user._id
+                }).exec(function(err, user) {
+                    if (err || !user) res.json(null);
+                    else {
+                        req.user = user;
+                    }
+                });
+            } else {
+                res.json(null);
+            }
         },
 
         /**
