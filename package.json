@@ -80,7 +80,6 @@
     "karma-phantomjs-launcher": "latest",
     "karma-requirejs": "latest",
     "karma-script-launcher": "latest",
-    "mean-seo": "latest",
     "mocha": "latest",
     "require-dir": "latest",
     "requirejs": "latest",
