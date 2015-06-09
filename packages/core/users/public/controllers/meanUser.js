@@ -10,6 +10,7 @@ angular.module('mean.users')
 
       $http.get('/api/get-config')
         .success(function(config) {
+          if(config.hasOwnProperty('local')) delete config.local; // Only non-local passport strategies
           $scope.socialButtons = config;
           $scope.socialButtonsCounter = Object.keys(config).length;
         });
