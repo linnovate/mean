@@ -12,7 +12,7 @@ var mean = require('meanio'),
   helpers = require('view-helpers'),
   flash = require('connect-flash'),
   modRewrite = require('connect-modrewrite'),
-  seo = require('mean-seo'),
+  // seo = require('mean-seo'),
   config = mean.loadConfig();
 
 module.exports = function(app, db) {
@@ -58,5 +58,5 @@ module.exports = function(app, db) {
 
   ]));
 
-  app.use(seo());
+  // app.use(seo());
 };

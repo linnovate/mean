@@ -1,7 +1,7 @@
 {
   "name": "mean",
   "description": "MEAN.io: A fullstack JavaScript framework powered by MongoDB, ExpressJS, AngularJS, NodeJS.",
-  "version": "0.5.22",
+  "version": "0.5.23",
   "private": false,
   "author": "Linnovate <mean@linnovate.net>",
   "contributors": "https://github.com/linnovate/mean/graphs/contributors",
@@ -80,7 +80,6 @@
     "karma-phantomjs-launcher": "latest",
     "karma-requirejs": "latest",
     "karma-script-launcher": "latest",
-    "mean-seo": "latest",
     "mocha": "latest",
     "require-dir": "latest",
     "requirejs": "latest",
