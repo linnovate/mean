@@ -55,9 +55,9 @@ module.exports = function(passport) {
 
   // Use twitter strategy
   passport.use(new TwitterStrategy({
-      consumerKey: config.twitter.clientID,
-      consumerSecret: config.twitter.clientSecret,
-      callbackURL: config.twitter.callbackURL
+      consumerKey: config.strategies.twitter.clientID,
+      consumerSecret: config.strategies.twitter.clientSecret,
+      callbackURL: config.strategies.twitter.callbackURL
     },
     function(token, tokenSecret, profile, done) {
       User.findOne({
@@ -90,9 +90,9 @@ module.exports = function(passport) {
 
   // Use facebook strategy
   passport.use(new FacebookStrategy({
-      clientID: config.facebook.clientID,
-      clientSecret: config.facebook.clientSecret,
-      callbackURL: config.facebook.callbackURL
+      clientID: config.strategies.facebook.clientID,
+      clientSecret: config.strategies.facebook.clientSecret,
+      callbackURL: config.strategies.facebook.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
       User.findOne({
@@ -126,9 +126,9 @@ module.exports = function(passport) {
 
   // Use github strategy
   passport.use(new GitHubStrategy({
-      clientID: config.github.clientID,
-      clientSecret: config.github.clientSecret,
-      callbackURL: config.github.callbackURL
+      clientID: config.strategies.github.clientID,
+      clientSecret: config.strategies.github.clientSecret,
+      callbackURL: config.strategies.github.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
       User.findOne({
@@ -159,9 +159,9 @@ module.exports = function(passport) {
 
   // Use google strategy
   passport.use(new GoogleStrategy({
-      clientID: config.google.clientID,
-      clientSecret: config.google.clientSecret,
-      callbackURL: config.google.callbackURL
+      clientID: config.strategies.google.clientID,
+      clientSecret: config.strategies.google.clientSecret,
+      callbackURL: config.strategies.google.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
       User.findOne({
@@ -192,9 +192,9 @@ module.exports = function(passport) {
 
   // use linkedin strategy
   passport.use(new LinkedinStrategy({
-      consumerKey: config.linkedin.clientID,
-      consumerSecret: config.linkedin.clientSecret,
-      callbackURL: config.linkedin.callbackURL,
+      consumerKey: config.strategies.linkedin.clientID,
+      consumerSecret: config.strategies.linkedin.clientSecret,
+      callbackURL: config.strategies.linkedin.callbackURL,
       profileFields: ['id', 'first-name', 'last-name', 'email-address']
     },
     function(accessToken, refreshToken, profile, done) {
