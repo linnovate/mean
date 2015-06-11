@@ -21,6 +21,7 @@
     "assetmanager": "latest",
     "async": "latest",
     "body-parser": "latest",
+    "bower": "latest",
     "compression": "latest",
     "connect-flash": "latest",
     "consolidate": "latest",
