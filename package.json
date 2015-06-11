@@ -45,6 +45,7 @@
     "passport-linkedin": "latest",
     "passport-local": "latest",
     "passport-twitter": "latest",
+    "require-dir": "latest",
     "request": "latest",
     "serve-favicon": "latest",
     "shelljs": "latest",

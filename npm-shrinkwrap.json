@@ -2959,7 +2959,7 @@
     },
     "meanio": {
       "version": "0.8.74",
-      "from": "../../../var/folders/7_/tjnw1_b54z50812mth20m9hh0000gn/T/npm-24404-27ab2876/git-cache-7de9b0603173/8faddffa5c17cf2d85f8fc44b3d2c312285c3a55",
+      "from": "../../../var/folders/7_/tjnw1_b54z50812mth20m9hh0000gn/T/npm-25506-9340923c/git-cache-4fe0a7c5ca73/8faddffa5c17cf2d85f8fc44b3d2c312285c3a55",
       "resolved": "git+https://github.com/linnovate/meanio#8faddffa5c17cf2d85f8fc44b3d2c312285c3a55",
       "dependencies": {
         "complex-list": {
@@ -2979,7 +2979,7 @@
         },
         "glob": {
           "version": "4.5.3",
-          "from": "glob@>=4.4.2 <5.0.0",
+          "from": "glob@>=4.0.3 <5.0.0",
           "resolved": "https://registry.npmjs.org/glob/-/glob-4.5.3.tgz",
           "dependencies": {
             "inflight": {
@@ -3049,17 +3049,17 @@
         },
         "q": {
           "version": "1.4.1",
-          "from": "q@>=1.1.2 <2.0.0",
+          "from": "q@>=1.0.1 <2.0.0",
           "resolved": "https://registry.npmjs.org/q/-/q-1.4.1.tgz"
         },
         "uglify-js": {
           "version": "2.4.23",
-          "from": "uglify-js@>=2.4.0 <2.5.0",
+          "from": "uglify-js@>=2.4.14 <3.0.0",
           "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-2.4.23.tgz",
           "dependencies": {
             "async": {
               "version": "0.2.10",
-              "from": "async@>=0.2.0 <0.3.0",
+              "from": "async@>=0.2.6 <0.3.0",
               "resolved": "https://registry.npmjs.org/async/-/async-0.2.10.tgz"
             },
             "source-map": {
@@ -5869,6 +5869,11 @@
           }
         }
       }
+    },
+    "require-dir": {
+      "version": "0.3.0",
+      "from": "require-dir@latest",
+      "resolved": "https://registry.npmjs.org/require-dir/-/require-dir-0.3.0.tgz"
     },
     "serve-favicon": {
       "version": "2.2.1",
