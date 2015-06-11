@@ -39,6 +39,7 @@
     "ms": "latest",
     "nodemailer": "latest",
     "npm": "^2.1.0",
+    "npmlog": "latest",
     "passport-facebook": "latest",
     "passport-github": "latest",
     "passport-google-oauth": "latest",
