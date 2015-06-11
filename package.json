@@ -49,6 +49,7 @@
     "nodemailer": "latest",
     "npm": "^2.1.0",
     "npmlog": "latest",
+    "once": "latest",
     "passport-facebook": "latest",
     "passport-github": "latest",
     "passport-google-oauth": "latest",
@@ -75,6 +76,7 @@
     "gulp-uglify": "latest",
     "gulp-util": "latest",
     "through": "latest",
+    "del": "latest",
     "rimraf": "latest",
     "wrappy": "latest"
   },

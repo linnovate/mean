@@ -15,3 +15,5 @@ gulp.task('default', ['clean'], function (defaultTasks) {
   // run with paramater
   gulp.start(env);
 });
+
+gulp.task('heroku:production', 'production');
