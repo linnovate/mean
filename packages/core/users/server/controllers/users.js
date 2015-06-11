@@ -146,7 +146,7 @@ module.exports = function(MeanUser) {
          * Send User
          */
         me: function(req, res) {
-            if (!req.user || !req.user.hasOwnProperty('_id')) return null;
+            if (!req.user || !req.user.hasOwnProperty('_id')) return res.send(null);
 
             User.findOne({
                 _id: req.user._id

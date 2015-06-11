@@ -54,7 +54,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       this.loginError = 0;
       this.loggedin = true;
       this.registerError = 0;
-      if (response === null) {
+      if (!response) {
         this.user = {};
         this.loggedin = false;
         this.isAdmin = false;
