@@ -50,7 +50,22 @@
     "serve-favicon": "latest",
     "shelljs": "latest",
     "swig": "latest",
-    "view-helpers": "latest"
+    "view-helpers": "latest",
+    "gulp": "latest",
+    "gulp-concat": "latest",
+    "gulp-csslint": "latest",
+    "gulp-cssmin": "latest",
+    "gulp-jshint": "latest",
+    "gulp-less": "latest",
+    "gulp-coffee": "latest",
+    "gulp-livereload": "latest",
+    "gulp-load-plugins": "latest",
+    "gulp-mocha": "latest",
+    "gulp-nodemon": "latest",
+    "gulp-uglify": "latest",
+    "gulp-util": "latest",
+    "through": "latest",
+    "rimraf": "latest"
   },
   "devDependencies": {
     "connect-modrewrite": "latest",
