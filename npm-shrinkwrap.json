@@ -1973,6 +1973,18 @@
       "from": "connect-flash@latest",
       "resolved": "https://registry.npmjs.org/connect-flash/-/connect-flash-0.1.1.tgz"
     },
+    "connect-modrewrite": {
+      "version": "0.8.1",
+      "from": "connect-modrewrite@*",
+      "resolved": "https://registry.npmjs.org/connect-modrewrite/-/connect-modrewrite-0.8.1.tgz",
+      "dependencies": {
+        "qs": {
+          "version": "1.2.2",
+          "from": "qs@>=1.2.2 <2.0.0",
+          "resolved": "https://registry.npmjs.org/qs/-/qs-1.2.2.tgz"
+        }
+      }
+    },
     "consolidate": {
       "version": "0.13.1",
       "from": "consolidate@latest",
