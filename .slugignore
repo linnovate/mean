@@ -1,1 +1,12 @@
 /test
+/node_modules/grunt-karma/
+/node_modules/grunt-protractor-runner/
+/node_modules/karma/
+/node_modules/karma-chrome-launcher/
+/node_modules/karma-mocha/
+/node_modules/karma-ng-html2js-preprocessor/
+/node_modules/ngmin/
+/node_modules/protractor/
+/node_modules/rfile/
+/node_modules/rfileifi/
+/node_modules/rhtml/
