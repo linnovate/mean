@@ -1,41 +1,51 @@
 'use strict';
 
-angular.module('mean.admin').controller('UsersController', ['$scope', 'Global', 'Menus', '$rootScope', '$http', 'Users',
-    function($scope, Global, Menus, $rootScope, $http, Users) {
+angular.module('mean.admin').controller('UsersController', ['$scope', 'Global', 'Menus', '$rootScope', '$http', 'Users', 'Circles',
+    function($scope, Global, Menus, $rootScope, $http, Users, Circles) {
+
         $scope.global = Global;
-        $scope.userSchema = [{
-            title: 'Email',
-            schemaKey: 'email',
-            type: 'text',
-            inTable: true
-        }, {
-            title: 'Name',
-            schemaKey: 'name',
-            type: 'text',
-            inTable: true
-        }, {
-            title: 'Username',
-            schemaKey: 'username',
-            type: 'text',
-            inTable: true
-        }, {
-            title: 'Roles',
-            schemaKey: 'roles',
-            type: 'select',
-            options: ['authenticated', 'admin'],
-            inTable: true
-        }, {
-            title: 'Password',
-            schemaKey: 'password',
-            type: 'password',
-            inTable: false
-        }, {
-            title: 'Repeat password',
-            schemaKey: 'confirmPassword',
-            type: 'password',
-            inTable: false
-        }];
         $scope.user = {};
+
+        Circles.query(function(data) {
+            var circles = [];
+            for (var index in data.circles) circles.push(index);
+
+            $scope.userSchema = [{
+                title: 'Email',
+                schemaKey: 'email',
+                type: 'text',
+                inTable: true
+            }, {
+                title: 'Name',
+                schemaKey: 'name',
+                type: 'text',
+                inTable: true
+            }, {
+                title: 'Username',
+                schemaKey: 'username',
+                type: 'text',
+                inTable: true
+            }, {
+                title: 'Roles',
+                schemaKey: 'roles',
+                type: 'select',
+                options: circles,
+                inTable: true
+            }, {
+                title: 'Password',
+                schemaKey: 'password',
+                type: 'password',
+                inTable: false
+            }, {
+                title: 'Repeat password',
+                schemaKey: 'confirmPassword',
+                type: 'password',
+                inTable: false
+            }];
+                
+        });
+
+
 
         $scope.init = function() {
             Users.query({}, function(users) {
