@@ -1,0 +1,7 @@
+{
+  "name": "i18n",
+  "version": "0.0.1",
+  "dependencies": {
+    "ng-i18next": "~0.4.2"
+  }
+}
