@@ -20,6 +20,7 @@
   "dependencies": {
     "assetmanager": "latest",
     "async": "latest",
+    "bower": "latest",
     "body-parser": "latest",
     "compression": "latest",
     "connect-flash": "latest",
