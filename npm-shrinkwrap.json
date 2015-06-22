@@ -2956,9 +2956,9 @@
       "resolved": "https://registry.npmjs.org/lodash/-/lodash-3.9.3.tgz"
     },
     "meanio": {
-      "version": "0.8.75",
-      "from": "meanio@0.8.75",
-      "resolved": "https://registry.npmjs.org/meanio/-/meanio-0.8.75.tgz",
+      "version": "0.8.76",
+      "from": "meanio@latest",
+      "resolved": "https://registry.npmjs.org/meanio/-/meanio-0.8.76.tgz",
       "dependencies": {
         "complex-list": {
           "version": "0.1.4",
@@ -3169,7 +3169,7 @@
                   "dependencies": {
                     "ansi-regex": {
                       "version": "1.1.1",
-                      "from": "ansi-regex@>=1.1.0 <2.0.0",
+                      "from": "ansi-regex@>=1.0.0 <2.0.0",
                       "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-1.1.1.tgz"
                     },
                     "get-stdin": {
@@ -3186,7 +3186,7 @@
                   "dependencies": {
                     "ansi-regex": {
                       "version": "1.1.1",
-                      "from": "ansi-regex@>=1.1.0 <2.0.0",
+                      "from": "ansi-regex@>=1.0.0 <2.0.0",
                       "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-1.1.1.tgz"
                     }
                   }
@@ -3256,7 +3256,7 @@
                 },
                 "depd": {
                   "version": "1.0.1",
-                  "from": "depd@>=1.0.1 <1.1.0",
+                  "from": "depd@>=1.0.0 <1.1.0",
                   "resolved": "https://registry.npmjs.org/depd/-/depd-1.0.1.tgz"
                 },
                 "on-finished": {
