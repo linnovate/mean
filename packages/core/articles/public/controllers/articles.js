@@ -1,19 +1,23 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Global', 'Articles', 'MeanUser',
-  function($scope, $stateParams, $location, Global, Articles, MeanUser) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Global', 'Articles', 'MeanUser', 'Circles',
+  function($scope, $stateParams, $location, Global, Articles, MeanUser, Circles) {
     $scope.global = Global;
+
     $scope.hasAuthorization = function(article) {
       if (!article || !article.user) return false;
       return MeanUser.isAdmin || article.user._id === MeanUser.user._id;
     };
 
+    $scope.availableCircles = [];
+    Circles.query(function(circles) {
+        $scope.availableCircles = circles;
+    });
+    
     $scope.create = function(isValid) {
       if (isValid) {
-        var article = new Articles({
-          title: this.title,
-          content: this.content
-        });
+        var article = new Articles($scope.article);
+
         article.$save(function(response) {
           $location.path('articles/' + response._id);
         });

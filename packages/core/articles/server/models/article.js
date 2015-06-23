@@ -25,6 +25,7 @@ var ArticleSchema = new Schema({
     required: true,
     trim: true
   },
+  circles: [String],
   user: {
     type: Schema.ObjectId,
     ref: 'User'

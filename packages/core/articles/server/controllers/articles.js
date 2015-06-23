@@ -25,6 +25,7 @@ module.exports = function(Articles) {
         * Create an article
         */
         create: function(req, res) {
+          console.log(req.body);
             var article = new Article(req.body);
             article.user = req.user;
 
