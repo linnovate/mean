@@ -6,6 +6,8 @@ env:
 services:
   - mongodb
 
+before_install:
+  - sudo npm i -g bower
 
 notifications:
   webhooks:
