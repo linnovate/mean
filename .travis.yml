@@ -7,7 +7,7 @@ services:
   - mongodb
 
 before_install:
-  - sudo npm i -g bower
+  - npm i -g bower
 
 notifications:
   webhooks:
