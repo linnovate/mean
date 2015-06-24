@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-  describe('MEAN controllers', function() {
+  /*describe('MEAN controllers', function() {
     describe('IndexController', function() {
       beforeEach(function() {
         module('mean');
@@ -22,5 +22,5 @@
         expect(scope.global).toBeTruthy();
       });
     });
-  });
+  });*/
 })();

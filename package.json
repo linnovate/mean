@@ -76,7 +76,6 @@
     "karma-html2js-preprocessor": "latest",
     "karma-jasmine": "latest",
     "karma-ng-html2js-preprocessor": "latest",
-    "karma-ng-scenario": "latest",
     "karma-phantomjs-launcher": "latest",
     "karma-requirejs": "latest",
     "karma-script-launcher": "latest",

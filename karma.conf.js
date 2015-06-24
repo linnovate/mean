@@ -17,7 +17,13 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: _.flatten(_.values(assets.core.js)).concat([
       'packages/**/public/*.js',
-      'packages/**/public/*/*.js'
+      'packages/**/public/*/*.js',
+      'packages/core/admin/public/assets/lib/ng-clip/dest/ng-clip.min.js',
+      'packages/core/admin/public/assets/lib/zeroclipboard/dist/ZeroClipboard.js',
+      'packages/custom/i18n/public/assets/lib/angular-sanitize/angular-sanitize.min.js',
+      'packages/custom/i18n/public/assets/lib/i18next/i18next.min.js',
+      'packages/custom/i18n/public/assets/lib/ng-i18next/dist/ng-i18next.min.js',
+      'packages/core/users/public/assets/lib/angular-jwt/dist/angular-jwt.min.js',
     ]),
 
     // list of files to exclude
@@ -56,7 +62,7 @@ module.exports = function(config) {
     logLevel: config.LOG_DEBUG,
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
 
     // Start these browsers, currently available:
     // - Chrome
