@@ -8,6 +8,8 @@ module.exports = function(Circles, app, auth, database) {
 
     app.use(circles.loadCircles);
 	app.use(circles.userAcl);
+	app.use(circles.aclBlocker);
+
 
     app.get('/api/test', circles.test);
     app.get('/api/circles/visualize', circles.visualize);

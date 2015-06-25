@@ -18,8 +18,6 @@ Circles.register(function(app, auth, database) {
 
   Circles.models = {};
 
-  app.use(aclBlocker);
-
   Circles.routes(app, auth, database);
 
   Circles.aggregateAsset('css', 'circles.css');
@@ -38,31 +36,6 @@ Circles.register(function(app, auth, database) {
   return Circles;
 });
 
-function aclBlocker(req, res, next) {
-  req.acl = {
-    hasPermission: function(name) {
-
-    },
-    find: function() {
-
-      var model = arguments['0'],
-        callback = arguments['3'] || arguments['2'] || arguments['1'],
-        fields = arguments['3'] ? arguments['2'] : {},
-        query = arguments['2'] ? arguments['1'] : {};
-
-      if (!Circles.models[model]) {
-        Circles.models[model] = mongoose.model(model);
-      }
-
-      query.circles = {
-        $in: req.user ? req.user.circles || [] : []
-      };
-
-      Circles.models[model].find(query, fields, callback);
-    }
-  };
-  next();
-}
 
 function ensureCirclesExist() {
 

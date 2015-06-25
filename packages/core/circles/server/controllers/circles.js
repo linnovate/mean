@@ -12,12 +12,11 @@ module.exports = function(Circles, app) {
     return {
 
         test: function(req, res) {
-            meanio.db.find('Project', function(err, data) {
-                console.log(err);
-                console.log(data);
-                console.log('here')
-            });
-            return;
+            var query = req.acl.query('Circle');
+
+            query.find({}, function(err, data) {
+                res.send(data)
+            })
         },
 
         visualize: function(req, res) {
@@ -117,7 +116,7 @@ module.exports = function(Circles, app) {
             });
 
 
-//            return res.send(userRoles);
+            //            return res.send(userRoles);
 
             req.acl.user = {
                 tree: Circle.buildTrees(userRoles),
@@ -125,6 +124,22 @@ module.exports = function(Circles, app) {
             };
 
             return next();
+        },
+        aclBlocker: function(req, res, next) {
+            req.acl.query = function(model) {
+
+                if (!Circles.models[model]) {
+                    Circles.models[model] = mongoose.model(model);
+                }
+
+                return Circles.models[model].where({
+                    permissions: {
+                        $in: req.user ? req.user.circles || [] : []
+                    }
+                });
+            };
+
+            next();
         }
     }
 
