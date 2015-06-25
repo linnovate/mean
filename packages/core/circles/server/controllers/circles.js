@@ -12,7 +12,7 @@ module.exports = function(Circles, app) {
     return {
 
         test: function(req, res) {
-            var query = req.acl.query('Circle');
+            var query = req.acl.query('Article');
 
             query.find({}, function(err, data) {
                 res.send(data)
@@ -108,19 +108,21 @@ module.exports = function(Circles, app) {
             var roles = req.user && req.user.roles ? req.user.roles : ['annonymous'];
 
             var userRoles = {};
+            var list = [];
 
             roles.forEach(function(role) {
                 if (req.acl.circles[role]) {
+                    list.push(role);
                     userRoles[role] = req.acl.circles[role];
                 }
             });
 
 
-            //            return res.send(userRoles);
 
             req.acl.user = {
                 tree: Circle.buildTrees(userRoles),
-                circles: userRoles
+                circles: userRoles,
+                allowed: list,
             };
 
             return next();
@@ -131,10 +133,9 @@ module.exports = function(Circles, app) {
                 if (!Circles.models[model]) {
                     Circles.models[model] = mongoose.model(model);
                 }
-
                 return Circles.models[model].where({
                     permissions: {
-                        $in: req.user ? req.user.circles || [] : []
+                        $in: req.acl.user.allowed
                     }
                 });
             };
