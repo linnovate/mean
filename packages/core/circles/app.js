@@ -98,9 +98,5 @@ function ensureCirclesExist() {
 /*
 Y Override queries to check user permisisons
 Y Add middleware for checking for specific circles by name
-O Update user schema
-O Update article schema
-O Update admin page to assign circles to users
-O Update article create + edit to assign circles (many) according to name (select list - of his circles)
-O Page to create and manage circles
+O Page to create and manage circles + sow circles heirarchy
 */
