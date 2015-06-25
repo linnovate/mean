@@ -92,7 +92,7 @@ module.exports = function(Circles, app) {
         },
         loadCircles: function(req, res, next) {
             var data = app.get('circles');
-
+            req.acl = {};
             if (!data) {
                 Circle.buildPermissions(function(data) {
                     app.set('circles', data);
