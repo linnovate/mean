@@ -69,70 +69,64 @@ CircleSchema.statics.buildPermissions = function(callback) {
       level++;
     }
 
-    //now in the sample we are preparing the d3 representation
-
-    var flare = {
-      "name": "flare",
-      "children": []
-    }
-
-    var tree = []
-
-    for (var index in data) {
-      buildTree(index, tree);
-    }
-
     callback({
-      tree: tree,
+      tree: buildTrees(data),
       circles: data
     });
   });
 
-
-  function buildTree(id, branch) {
-
-    if (1 || noParents(id) && hasChildren(id)) {
-
-      var length = branch.length;
-
-      branch.push({
-        "name": data[id].name
-      });
-
-      if (hasChildren(id)) {
-        branch[length].children = [];
-      } else {
-        branch[length].size = 1;
-      }
-
-      //only goes here if there are children
-      data[id].children.forEach(function(child) {
-
-        if (id !== child) {
-          if (noChildren(child)) {
-            branch[length].children.push({
-              name: data[child].name,
-              size: 1
-            });
-          } else {
-            buildTree(child, branch[length].children);
-          }
-        }
-      });
-    }
-  }
-
-  function noParents(id) {
-    return data[id].parents.length === 0
-  }
-
-  function noChildren(id) {
-    return data[id].children.length === 0
-  }
-
-  function hasChildren(id) {
-    return !noChildren(id);
-  }
 };
 
+
+var buildTrees = CircleSchema.statics.buildTrees = function(data) {
+  var tree = []
+
+  for (var index in data) {
+    buildTree(data, index, tree);
+  }
+
+  return tree;
+};
+
+function buildTree(data, id, branch) {
+
+  var length = branch.length;
+
+  branch.push({
+    "name": data[id].name
+  });
+
+  if (hasChildren(data, id)) {
+    branch[length].children = [];
+  } else {
+    branch[length].size = 1;
+  }
+
+  //only goes here if there are children
+  data[id].children.forEach(function(child) {
+
+    if (id !== child && data[child]) {
+      if (noParents(data, child)) {
+        branch[length].children.push({
+          name: data[child].name,
+          size: 1
+        });
+      } else {
+        buildTree(data, child, branch[length].children);
+      }
+    }
+  });
+}
+
+function noParents(data, id) {
+  return data[id].parents.length === 0
+}
+
+function noChildren(data, id) {
+  return data[id].children.length === 0
+}
+
+function hasChildren(data, id) {
+  return !noChildren(data, id);
+}
 mongoose.model('Circle', CircleSchema);

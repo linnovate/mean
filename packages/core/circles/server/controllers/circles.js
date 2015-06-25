@@ -1,5 +1,3 @@
-
-
 // exports.inCircle = function(user, signature) {
 // 	//circles
 // 	//roles
@@ -30,10 +28,7 @@ module.exports = function(Circles, app) {
 
         tree: function(req, res) {
             Circle.buildPermissions(function(data) {
-                res.send({
-                    name: "flare",
-                    children: data
-                });
+                res.send(data.tree);
             });
         },
 
@@ -46,7 +41,7 @@ module.exports = function(Circles, app) {
                     return res.status(500).json({
                         error: 'Cannot save the circle'
                     });
-                 }
+                }
 
                 Circle.buildPermissions(function(data) {
                     app.set('circles', data);
@@ -90,36 +85,52 @@ module.exports = function(Circles, app) {
                 });
             });
         },
-
+        mine: function(req, res) {
+            return res.send(req.acl.user);
+        },
         all: function(req, res) {
-
-            //return all circles available to req.user to view it in articles permissions list
-            //FIX !!!
-            
-            var myCircles = [];
+            return res.send(req.acl.circles);
+        },
+        loadCircles: function(req, res, next) {
             var data = app.get('circles');
-
-            function myPermissions(circles) {
-                req.user.roles.forEach(function(role) {
-                    myCircles = myCircles.concat(circles[role].decendants);
-                    myCircles.push(role);
-                });
-                res.send(myCircles);
-            }
 
             if (!data) {
                 Circle.buildPermissions(function(data) {
                     app.set('circles', data);
-                    myPermissions(data.circles);
+                    req.acl = data;
+                    next();
                 });
-
-            }  else {
-                myPermissions(data.circles);
+            } else {
+                req.acl = data;
+                next();
             }
+        },
+        userAcl: function(req, res, next) {
+            var roles = req.user && req.user.roles ? req.user.roles : ['annonymous'];
+
+            var userRoles = {};
+
+            roles.forEach(function(role) {
+                if (req.acl.circles[role]) {
+                    userRoles[role] = req.acl.circles[role];
+                }
+            });
+
+
+//            return res.send(userRoles);
+
+            req.acl.user = {
+                tree: Circle.buildTrees(userRoles),
+                circles: userRoles
+            };
+
+            return next();
         }
     }
 
 };
+
+
 
 function validateCircles(name, circles, callback) {
 
@@ -137,3 +148,23 @@ function validateCircles(name, circles, callback) {
         });
     });
 }
+
+/*
+
+,
+        userRoles: function(req, res, next) {
+
+
+            var roles = req.user && req.user.roles ? req.user.roles : ['annonymous'];
+
+            var myRoles = {};
+
+            roles.forEach(function(role) {
+                if (req.circles[role]) {
+                    myRoles[role] = req.circes[role];
+                }
+            });
+
+            return myRoles;
+        }
+*/
