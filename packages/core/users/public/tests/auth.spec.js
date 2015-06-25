@@ -2,7 +2,7 @@
 
 (function() {
   // Login Controller Spec
-  describe('MEAN controllers', function() {
+  /*describe('MEAN controllers', function() {
     describe('LoginCtrl', function() {
       beforeEach(function() {
         jasmine.addMatchers({
@@ -227,7 +227,7 @@
       });
 
     });
-  });
+  });*/
 
 
 }());
