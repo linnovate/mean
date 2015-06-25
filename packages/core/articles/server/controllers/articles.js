@@ -4,15 +4,15 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-  Article = mongoose.model('Article'),
-  _ = require('lodash');
+    Article = mongoose.model('Article'),
+    _ = require('lodash');
 
 module.exports = function(Articles) {
 
     return {
         /**
-        * Find article by id
-        */
+         * Find article by id
+         */
         article: function(req, res, next, id) {
             Article.load(id, function(err, article) {
                 if (err) return next(err);
@@ -22,18 +22,18 @@ module.exports = function(Articles) {
             });
         },
         /**
-        * Create an article
-        */
+         * Create an article
+         */
         create: function(req, res) {
-          console.log(req.body);
+            console.log(req.body);
             var article = new Article(req.body);
             article.user = req.user;
 
             article.save(function(err) {
                 if (err) {
-                  return res.status(500).json({
-                    error: 'Cannot save the article'
-                  });
+                    return res.status(500).json({
+                        error: 'Cannot save the article'
+                    });
                 }
 
                 Articles.events.publish('create', {
@@ -44,8 +44,8 @@ module.exports = function(Articles) {
             });
         },
         /**
-        * Update an article
-        */
+         * Update an article
+         */
         update: function(req, res) {
             var article = req.article;
 
@@ -67,8 +67,8 @@ module.exports = function(Articles) {
             });
         },
         /**
-        * Delete an article
-        */
+         * Delete an article
+         */
         destroy: function(req, res) {
             var article = req.article;
 
@@ -88,8 +88,8 @@ module.exports = function(Articles) {
             });
         },
         /**
-        * Show an article
-        */
+         * Show an article
+         */
         show: function(req, res) {
 
             Articles.events.publish('view', {
@@ -99,19 +99,11 @@ module.exports = function(Articles) {
             res.json(req.article);
         },
         /**
-        * List of Articles
-        */
+         * List of Articles
+         */
         all: function(req, res) {
-            // Article.find({}).sort('-created').populate('user', 'name username').exec(function(err, articles) {
-            //     if (err) {
-            //         return res.status(500).json({
-            //             error: 'Cannot list the articles'
-            //         });
-            //     }
-
-            //     res.json(articles);
-            // });
-        req.acl.find('Article', {}, function(err, articles) {
+            var query = req.acl.query('Article');
+            query.find({}).sort('-created').populate('user', 'name username').exec(function(err, articles) {
                 if (err) {
                     return res.status(500).json({
                         error: 'Cannot list the articles'
@@ -120,6 +112,7 @@ module.exports = function(Articles) {
 
                 res.json(articles);
             });
+
         }
     };
 }

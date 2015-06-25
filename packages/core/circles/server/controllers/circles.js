@@ -115,7 +115,15 @@ module.exports = function(Circles, app) {
 
             roles.forEach(function(role) {
                 if (req.acl.circles[role]) {
+                    
                     list.push(role);
+                    req.acl.circles[role].decendants.forEach(function(descendent) {
+
+                        if (list.indexOf(descendent) === -1) {
+                            list.push(descendent);
+                        }
+                        
+                    });
                     userRoles[role] = req.acl.circles[role];
                 }
             });
