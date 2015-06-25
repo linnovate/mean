@@ -41,7 +41,14 @@ module.exports = {
     // at all. The cookie will expunge when the browser is closed.
     maxAge: null
   },
-
+  languages: [{
+    name: 'en',
+    direction: 'ltr',
+  }, {
+    name: 'he',
+    direction: 'rtl',
+  }],
+  currentLanguage: 'en',
   // The session cookie name
   sessionName: 'connect.sid'
 };
