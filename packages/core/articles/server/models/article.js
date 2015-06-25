@@ -29,7 +29,9 @@ var ArticleSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
-  permissions: [String],
+  permissions: {
+    type: Array
+  },
   updated: {
     type: Array
   }
