@@ -96,11 +96,14 @@ module.exports = function(Circles, app) {
             if (!data) {
                 Circle.buildPermissions(function(data) {
                     app.set('circles', data);
-                    req.acl = data;
+                    req.acl.tree = data.tree;
+                    req.acl.circles = data.circles;
+
                     next();
                 });
             } else {
-                req.acl = data;
+                req.acl.tree = data.tree;
+                req.acl.circles = data.circles;
                 next();
             }
         },
@@ -116,8 +119,6 @@ module.exports = function(Circles, app) {
                     userRoles[role] = req.acl.circles[role];
                 }
             });
-
-
 
             req.acl.user = {
                 tree: Circle.buildTrees(userRoles),
