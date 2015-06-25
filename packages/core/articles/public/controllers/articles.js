@@ -10,12 +10,21 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
     };
 
     $scope.availableCircles = [];
-    
+
     Circles.query(function(acl) {
-        for (var index in acl.circles)
+      for (var index in acl.circles) {
         $scope.availableCircles.push(index);
+
+        acl.circles[index].decendants.forEach(function(descendent) {
+          if ($scope.availableCircles.indexOf(descendent) === -1) {
+            $scope.availableCircles.push(descendent);
+          }
+        });
+      }
+
+
     });
-    
+
     $scope.create = function(isValid) {
       if (isValid) {
         var article = new Articles($scope.article);
@@ -36,7 +45,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
         article.$remove(function(response) {
           for (var i in $scope.articles) {
             if ($scope.articles[i] === article) {
-        $scope.articles.splice(i,1);
+              $scope.articles.splice(i, 1);
             }
           }
           $location.path('articles');
@@ -51,7 +60,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
     $scope.update = function(isValid) {
       if (isValid) {
         var article = $scope.article;
-        if(!article.updated) {
+        if (!article.updated) {
           article.updated = [];
         }
         article.updated.push(new Date().getTime());
