@@ -22,7 +22,7 @@
     <div class="form-group">
       <label mean-token="'permissions'" for="permissions" class="col-md-2 control-label">Permissions</label>
       <div class="col-md-10">
-         <ui-select multiple ng-model="article.circles">
+         <ui-select multiple ng-model="article.permissions">
             <ui-select-match placeholder="Select permissions...">{{$item}}</ui-select-match>
             <ui-select-choices repeat="circle in availableCircles | filter:$select.search">
               {{circle}}

@@ -23,9 +23,9 @@
     <div class="form-group">
       <label mean-token="'permissions'" for="permissions" class="col-md-3 control-label">Permissions</label>
       <div class="col-md-9">
-         <ui-select multiple ng-model="article.circles" name="circles" append-to-body="'true'">
-            <ui-select-match placeholder="Select permissions..." name="circles">{{$item}}</ui-select-match>
-            <ui-select-choices repeat="circle in availableCircles | filter:$select.search" name="circles">
+         <ui-select multiple ng-model="article.permissions" append-to-body="'true'">
+            <ui-select-match placeholder="Select permissions...">{{$item}}</ui-select-match>
+            <ui-select-choices repeat="circle in availableCircles | filter:$select.search" name="permissions">
               {{circle}}
             </ui-select-choices>
           </ui-select>

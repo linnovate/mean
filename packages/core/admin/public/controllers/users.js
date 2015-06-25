@@ -6,9 +6,11 @@ angular.module('mean.admin').controller('UsersController', ['$scope', 'Global', 
         $scope.global = Global;
         $scope.user = {};
 
-        Circles.query(function(data) {
+        Circles.query(function(acl) {
             var circles = [];
-            for (var index in data.circles) circles.push(index);
+            for (var index in acl.circles) {
+                circles.push(index);
+            }
 
             $scope.userSchema = [{
                 title: 'Email',
@@ -42,7 +44,7 @@ angular.module('mean.admin').controller('UsersController', ['$scope', 'Global', 
                 type: 'password',
                 inTable: false
             }];
-                
+            
         });
 
 

@@ -8,8 +8,11 @@ angular.module('mean.circles').factory('Circles', ['$resource',
     }, {
       update: {
         method: 'PUT'
+      },
+      query: {
+        method: 'GET',
+        isArray: false
       }
     });
   }
 ]);
-

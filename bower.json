@@ -11,8 +11,7 @@
     "angular-bootstrap": "latest",
     "angular-ui-router": "#master",
     "web-bootstrap": "./node_modules/meanio/resources/web-bootstrap.js",
-    "ui-select": "*",
-    "angular-ui-select": "~0.12.0",
-    "angular-sanitize": "~1.4.1"
+    "angular-ui-select": "latest",
+    "angular-sanitize": "latest"
   }
 }
