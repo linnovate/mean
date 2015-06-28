@@ -103,6 +103,7 @@ module.exports = function(Articles) {
          */
         all: function(req, res) {
             var query = req.acl.query('Article');
+
             query.find({}).sort('-created').populate('user', 'name username').exec(function(err, articles) {
                 if (err) {
                     return res.status(500).json({
@@ -110,7 +111,7 @@ module.exports = function(Articles) {
                     });
                 }
 
-                res.json(articles);
+                res.json(articles)
             });
 
         }

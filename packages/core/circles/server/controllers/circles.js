@@ -1,10 +1,4 @@
-// exports.inCircle = function(user, signature) {
-// 	//circles
-// 	//roles
-// }
-
-var meanio = require('meanio'),
-    mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
     Circle = mongoose.model('Circle');
 
 module.exports = function(Circles, app) {
@@ -88,11 +82,21 @@ module.exports = function(Circles, app) {
             return res.send(req.acl.user);
         },
         all: function(req, res) {
-            return res.send(req.acl.circles);
+            return res.send({
+                tree:req.acl.tree,
+                circles: req.acl.circles
+            });
+        },
+        show: function(req, res) {
+            console.log('SHOW');
+            return res.send('show');
         },
         loadCircles: function(req, res, next) {
             var data = app.get('circles');
-            req.acl = {};
+
+
+            if (!req.acl) req.acl = {};
+
             if (!data) {
                 Circle.buildPermissions(function(data) {
                     app.set('circles', data);
