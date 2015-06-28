@@ -9,9 +9,15 @@ angular.module('mean.circles').factory('Circles', ['$resource',
       update: {
         method: 'PUT'
       },
-      query: {
+      mine: {
         method: 'GET',
-        isArray: false
+        isArray: false,
+        url: '/api/circles/mine'
+      },
+      all: {
+        method: 'GET',
+        isArray: false,
+        url: '/api/circles/all'
       }
     });
   }

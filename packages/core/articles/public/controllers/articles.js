@@ -11,7 +11,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
 
     $scope.availableCircles = [];
 
-    Circles.query(function(acl) {
+    Circles.mine(function(acl) {
       for (var index in acl.circles) {
         $scope.availableCircles.push(index);
 
@@ -21,8 +21,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
           }
         });
       }
-
-
     });
 
     $scope.create = function(isValid) {

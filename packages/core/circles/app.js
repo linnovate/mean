@@ -36,34 +36,6 @@
   return Circles;
 });
 
-<<<<<<< HEAD
-=======
- function aclBlocker(req, res, next) {
-
-    if (!req.acl) req.acl = {};
-
-    req.acl.hasPermission =  function(name) {};
-    req.acl.find = function() {
-
-      var model = arguments['0'],
-      callback = arguments['3'] || arguments['2'] || arguments['1'],
-      fields = arguments['3'] ? arguments['2'] : {},
-      query = arguments['2'] ? arguments['1'] : {};
-
-      if (!Circles.models[model]) {
-        Circles.models[model] = mongoose.model(model);
-    }
-
-    query.premissions = {
-        $in: req.user ? req.user.roles || [] : []
-    };
-
-        Circles.models[model].find(query, fields, callback);
-    };
-    next();
-}
->>>>>>> b9dc6238ba33b285958a8dfd3fb04ca7c4c3e2bf
-
 function ensureCirclesExist() {
 
   var requiredCircles = ['annonymous', 'authenticated', 'can create content', 'can edit content', 'can delete content', 'admin'];
