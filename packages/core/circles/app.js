@@ -25,7 +25,7 @@
   Circles.menus.add({
     title: 'Circles',
     link: 'manage circles',
-    roles: ['authenticated'],
+    roles: ['authenticated', 'admin'],
     menu: 'main'
 });
 
