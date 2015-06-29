@@ -8,16 +8,33 @@ var hasAuthorization = function(req, res, next) {
   next();
 };
 
+var hasPermissions = function(req, res, next) {
+
+    var allowed = true;
+    var permission;
+
+    req.body.permissions.forEach(function(prm) {
+        if (req.acl.user.allowed.indexOf(prm) === -1) {
+            permission = prm;
+            allowed = false
+            return;
+        };
+    });
+
+    if (!allowed) return res.status(500).send('User not allowed to assign ' + permission + ' permission.');
+    next();
+};
+
 module.exports = function(Articles, app, auth) {
   
   var articles = require('../controllers/articles')(Articles);
 
   app.route('/api/articles')
     .get(articles.all)
-    .post(auth.requiresLogin, articles.create);
+    .post(auth.requiresLogin, hasPermissions, articles.create);
   app.route('/api/articles/:articleId')
     .get(auth.isMongoId, articles.show)
-    .put(auth.isMongoId, auth.requiresLogin, hasAuthorization, articles.update)
+    .put(auth.isMongoId, auth.requiresLogin, hasAuthorization, hasPermissions, articles.update)
     .delete(auth.isMongoId, auth.requiresLogin, hasAuthorization, articles.destroy);
 
   // Finish with setting up the articleId param

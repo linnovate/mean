@@ -12,27 +12,29 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
     $scope.availableCircles = [];
 
     Circles.mine(function(acl) {
-      for (var index in acl.circles) {
-        $scope.availableCircles.push(index);
+        $scope.availableCircles = acl.allowed;
+      // for (var index in acl.circles) {
+      //   $scope.availableCircles.push(index);
 
-        acl.circles[index].decendants.forEach(function(descendent) {
-          if ($scope.availableCircles.indexOf(descendent) === -1) {
-            $scope.availableCircles.push(descendent);
-          }
-        });
-      }
+      //   acl.circles[index].decendants.forEach(function(descendent) {
+      //     if ($scope.availableCircles.indexOf(descendent) === -1) {
+      //       $scope.availableCircles.push(descendent);
+      //     }
+      //   });
+      // }
     });
 
     $scope.create = function(isValid) {
       if (isValid) {
+        // $scope.article.permissions.push('test test');
         var article = new Articles($scope.article);
 
         article.$save(function(response) {
           $location.path('articles/' + response._id);
         });
 
-        this.title = '';
-        this.content = '';
+        $scope.article = {};
+
       } else {
         $scope.submitted = true;
       }

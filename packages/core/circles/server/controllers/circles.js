@@ -79,7 +79,8 @@ module.exports = function(Circles, app) {
             });
         },
         mine: function(req, res) {
-            return res.send(req.acl.user);
+            // return res.send(req.acl.user);
+            return res.send({allowed: req.acl.user.allowed});
         },
         all: function(req, res) {
             return res.send({
@@ -88,7 +89,6 @@ module.exports = function(Circles, app) {
             });
         },
         show: function(req, res) {
-            console.log('SHOW');
             return res.send('show');
         },
         loadCircles: function(req, res, next) {
