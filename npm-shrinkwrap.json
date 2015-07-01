@@ -3235,7 +3235,7 @@
           }
         },
         "stacksight": {
-          "version": "1.0.11",
+          "version": "1.0.12",
           "from": "stacksight@latest",
           "resolved": "https://registry.npmjs.org/stacksight/-/stacksight-1.0.11.tgz",
           "dependencies": {
