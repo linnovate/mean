@@ -80,7 +80,7 @@ module.exports = function(Circles, app) {
         },
         mine: function(req, res) {
             // return res.send(req.acl.user);
-            return res.send({allowed: req.acl.user});
+            return res.send({allowed: req.acl.user.allowed});
         },
         all: function(req, res) {
             return res.send({
