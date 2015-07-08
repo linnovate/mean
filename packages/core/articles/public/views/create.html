@@ -23,13 +23,20 @@
     <div class="form-group">
       <label mean-token="'permissions'" for="permissions" class="col-md-3 control-label">Permissions</label>
       <div class="col-md-9">
-         <ui-select multiple ng-model="article.permissions" append-to-body="'true'">
-            <ui-select-match placeholder="Select permissions...">{{$item}}</ui-select-match>
+         <ui-select multiple ng-model="article.permissions" append-to-body="'true'" on-select="selectPermission()">
+            <ui-select-match placeholder="Select permissions..." ng-click="showDescendants();">{{$item}}</ui-select-match>
             <ui-select-choices repeat="circle in availableCircles | filter:$select.search" name="permissions">
               {{circle}}
             </ui-select-choices>
           </ui-select>
       </div>
+    </div>
+
+     <div class="form-group" ng-show="descendants.length">
+        <label mean-token="'descendants'" for="descendants" class="col-md-2 control-label">Descendants</label>
+        <div class="col-md-10">
+          <span ng-repeat="descendant in descendants">{{descendant}} <span ng-hide="$last">, </span></span>
+        </div>
     </div>
 
     <div class="form-group">

@@ -13,16 +13,19 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
 
     Circles.mine(function(acl) {
         $scope.availableCircles = acl.allowed;
-      // for (var index in acl.circles) {
-      //   $scope.availableCircles.push(index);
-
-      //   acl.circles[index].decendants.forEach(function(descendent) {
-      //     if ($scope.availableCircles.indexOf(descendent) === -1) {
-      //       $scope.availableCircles.push(descendent);
-      //     }
-      //   });
-      // }
+        $scope.allDescendants = acl.descendants;
     });
+
+    $scope.showDescendants = function(permission) {
+        var temp = $('.ui-select-container .btn-primary').text().split(' ');
+        temp.shift(); //remove close icon
+        var selected = temp.join(' ');
+        $scope.descendants = $scope.allDescendants[selected];
+    };
+
+    $scope.selectPermission = function() {
+        $scope.descendants = [];
+    };
 
     $scope.create = function(isValid) {
       if (isValid) {

@@ -79,8 +79,11 @@ module.exports = function(Circles, app) {
             });
         },
         mine: function(req, res) {
-            // return res.send(req.acl.user);
-            return res.send({allowed: req.acl.user.allowed});
+            var descendants = {};
+            for (var index in req.acl.user.circles) {
+                descendants[index] = req.acl.user.circles[index].decendants;
+            }
+            return res.send({allowed: req.acl.user.allowed, descendants: descendants });
         },
         all: function(req, res) {
             return res.send({
