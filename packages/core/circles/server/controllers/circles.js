@@ -80,7 +80,7 @@ module.exports = function(Circles, app) {
         },
         mine: function(req, res) {
             // return res.send(req.acl.user);
-            return res.send({allowed: req.acl.user.allowed});
+            return res.send({allowed: req.acl.user});
         },
         all: function(req, res) {
             return res.send({
@@ -132,8 +132,14 @@ module.exports = function(Circles, app) {
                 }
             });
 
+            var tree = Circle.buildTrees(userRoles);
+
+            for (var index in tree) {
+                tree[index].children = req.acl.tree[index].children;
+            }
+
             req.acl.user = {
-                tree: Circle.buildTrees(userRoles),
+                tree: tree, 
                 circles: userRoles,
                 allowed: list,
             };
