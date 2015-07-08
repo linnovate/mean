@@ -129,5 +129,10 @@ span.editable-wrapper input {
     font-size: 12px;
 }
 
+.users .actions-bar {
+    clear: both;
+    margin: 20px 0;
+}
+
 
 
