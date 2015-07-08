@@ -6,11 +6,9 @@ angular.module('mean.admin').controller('UsersController', ['$scope', 'Global', 
         $scope.global = Global;
         $scope.user = {};
 
-        Circles.query(function(acl) {
-            var circles = [];
-            for (var index in acl.circles) {
-                circles.push(index);
-            }
+        Circles.mine(function(acl) {
+
+            var circles = acl.allowed;
 
             $scope.userSchema = [{
                 title: 'Email',
