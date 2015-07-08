@@ -120,7 +120,7 @@ module.exports = function(Circles, app) {
             roles.forEach(function(role) {
                 if (req.acl.circles[role]) {
                     
-                    list.push(role);
+                    if (list.indexOf(role) === -1) list.push(role);
                     req.acl.circles[role].decendants.forEach(function(descendent) {
 
                         if (list.indexOf(descendent) === -1) {
