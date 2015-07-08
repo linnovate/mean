@@ -10,6 +10,8 @@ var hasAuthorization = function(req, res, next) {
 
 var hasPermissions = function(req, res, next) {
 
+    req.body.permissions = req.body.permissions || ['authenticated'];
+
     req.body.permissions.forEach(function(permission) {
         if (req.acl.user.allowed.indexOf(permission) === -1) {
             return res.status(401).send('User not allowed to assign ' + permission + ' permission.');
