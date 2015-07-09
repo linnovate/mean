@@ -1,41 +1,51 @@
 'use strict';
 
-angular.module('mean.admin').controller('UsersController', ['$scope', 'Global', 'Menus', '$rootScope', '$http', 'Users',
-    function($scope, Global, Menus, $rootScope, $http, Users) {
+angular.module('mean.admin').controller('UsersController', ['$scope', 'Global', 'Menus', '$rootScope', '$http', 'Users', 'Circles',
+    function($scope, Global, Menus, $rootScope, $http, Users, Circles) {
+
         $scope.global = Global;
-        $scope.userSchema = [{
-            title: 'Email',
-            schemaKey: 'email',
-            type: 'text',
-            inTable: true
-        }, {
-            title: 'Name',
-            schemaKey: 'name',
-            type: 'text',
-            inTable: true
-        }, {
-            title: 'Username',
-            schemaKey: 'username',
-            type: 'text',
-            inTable: true
-        }, {
-            title: 'Roles',
-            schemaKey: 'roles',
-            type: 'select',
-            options: ['authenticated', 'admin'],
-            inTable: true
-        }, {
-            title: 'Password',
-            schemaKey: 'password',
-            type: 'password',
-            inTable: false
-        }, {
-            title: 'Repeat password',
-            schemaKey: 'confirmPassword',
-            type: 'password',
-            inTable: false
-        }];
         $scope.user = {};
+
+        Circles.mine(function(acl) {
+
+            var circles = acl.allowed;
+
+            $scope.userSchema = [{
+                title: 'Email',
+                schemaKey: 'email',
+                type: 'email',
+                inTable: true
+            }, {
+                title: 'Name',
+                schemaKey: 'name',
+                type: 'text',
+                inTable: true
+            }, {
+                title: 'Username',
+                schemaKey: 'username',
+                type: 'text',
+                inTable: true
+            }, {
+                title: 'Roles',
+                schemaKey: 'roles',
+                type: 'select',
+                options: circles,
+                inTable: true
+            }, {
+                title: 'Password',
+                schemaKey: 'password',
+                type: 'password',
+                inTable: false
+            }, {
+                title: 'Repeat password',
+                schemaKey: 'confirmPassword',
+                type: 'password',
+                inTable: false
+            }];
+            
+        });
+
+
 
         $scope.init = function() {
             Users.query({}, function(users) {
@@ -43,7 +53,8 @@ angular.module('mean.admin').controller('UsersController', ['$scope', 'Global', 
             });
         };
 
-        $scope.add = function() {
+        $scope.add = function(valid) {
+            if (!valid) return;
             if (!$scope.users) $scope.users = [];
 
             var user = new Users({
@@ -55,11 +66,13 @@ angular.module('mean.admin').controller('UsersController', ['$scope', 'Global', 
                 roles: $scope.user.roles
             });
 
-            user.$save(function(response) {
-                $scope.users.push(response);
+            user.$save(function(data, headers) {
+                $scope.user = {};
+                $scope.users.push(user);
+                $scope.userError = null;
+            }, function(data, headers) {
+                $scope.userError = data.data;
             });
-
-            this.firstName = this.lastName = this.email = this.password = this.role = '';
         };
 
         $scope.remove = function(user) {

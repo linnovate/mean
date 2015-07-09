@@ -10,6 +10,8 @@
     "bootstrap": "latest",
     "angular-bootstrap": "latest",
     "angular-ui-router": "#master",
-    "web-bootstrap": "./node_modules/meanio/resources/web-bootstrap.js"
+    "web-bootstrap": "./node_modules/meanio/resources/web-bootstrap.js",
+    "angular-ui-select": "latest",
+    "angular-sanitize": "latest"
   }
 }
