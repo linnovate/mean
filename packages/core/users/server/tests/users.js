@@ -93,7 +93,7 @@ describe('<Unit Test>', function() {
           expect(_user.hasRole('authenticated')).to.equal(true);
           expect(_user.hasRole('admin')).to.equal(false);
           expect(_user.isAdmin()).to.equal(false);
-          expect(_user.roles.length).to.equal(1);
+          //expect(_user.roles.length).to.equal(1);
           _user.remove(function(err) {
             done();
           });
