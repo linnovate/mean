@@ -115,7 +115,7 @@ module.exports = function(Circles, app) {
             }
         },
         userAcl: function(req, res, next) {
-            var roles = req.user && req.user.roles ? req.user.roles : ['annonymous'];
+            var roles = req.user && req.user.roles ? req.user.roles : ['anonymous'];
 
             var userRoles = {};
             var list = [];
@@ -193,7 +193,7 @@ function validateCircles(name, circles, callback) {
         userRoles: function(req, res, next) {
 
 
-            var roles = req.user && req.user.roles ? req.user.roles : ['annonymous'];
+            var roles = req.user && req.user.roles ? req.user.roles : ['anonymous'];
 
             var myRoles = {};
 

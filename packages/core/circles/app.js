@@ -37,7 +37,7 @@ Circles.register(function(app, auth, database) {
 
 function ensureCirclesExist() {
 
-  var requiredCircles = ['annonymous', 'authenticated', 'can create content', 'can edit content', 'can delete content', 'admin'];
+  var requiredCircles = ['anonymous', 'authenticated', 'can create content', 'can edit content', 'can delete content', 'admin'];
   var Circle = require('mongoose').model('Circle');
   requiredCircles.forEach(function(circle, index) {
     var query = {
