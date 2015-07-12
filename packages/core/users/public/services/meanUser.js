@@ -69,8 +69,6 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
         if (destination) {
           $location.path(destination.replace(/^"|"$/g, ''));
           $cookieStore.remove('redirect');
-        } else {
-          $location.url('/');
         }
       } else {
         this.user = response;
