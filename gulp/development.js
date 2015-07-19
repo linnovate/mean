@@ -47,29 +47,38 @@ gulp.task('less', function() {
 });
 
 gulp.task('devServe', ['env:development'], function () {
+
   plugins.nodemon({
     script: 'server.js',
     ext: 'html js',
     env: { 'NODE_ENV': 'development' } ,
     ignore: ['node_modules/'],
-    nodeArgs: ['--debug']
+    nodeArgs: ['--debug'],
+    stdout: false
+  }).on('readable', function() {
+    this.stdout.on('data', function(chunk) {
+      if(/Mean app started/.test(chunk)) {
+        setTimeout(function() { plugins.livereload.reload(); }, 500);
+      }
+      process.stdout.write(chunk);
+    });
+    this.stderr.pipe(process.stderr);
   });
 });
 
 gulp.task('coffee', function() {
   gulp.src(paths.coffee)
     .pipe(coffee({bare: true}).on('error', gutil.log))
-    .pipe(gulp.dest('./packages'))
+    .pipe(gulp.dest('./packages'));
 });
 
 gulp.task('watch', function () {
-  gulp.watch(paths.coffee,['coffee']).on('change', plugins.livereload.changed);
-  gulp.watch(paths.coffees).on('change',plugins.livereload.changed);
-  gulp.watch(paths.js, ['jshint']).on('change', plugins.livereload.changed);
-  gulp.watch(paths.html).on('change', plugins.livereload.changed);
+  plugins.livereload.listen({interval:500});
+
+  gulp.watch(paths.coffee,['coffee']);
+  gulp.watch(paths.js, ['jshint']);
   gulp.watch(paths.css, ['csslint']).on('change', plugins.livereload.changed);
-  gulp.watch(paths.less, ['less']).on('change', plugins.livereload.changed);
-  plugins.livereload.listen({interval: 500});
+  gulp.watch(paths.less, ['less']);
 });
 
 function count(taskName, message) {
