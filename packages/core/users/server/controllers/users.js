@@ -288,7 +288,7 @@ module.exports = function(MeanUser) {
                     response.status = 'danger';
 
                     MeanUser.events.publish('forgotpassword', {
-                        description: user.name + ' forgot his password.'
+                        description: req.body.text + ' forgot his password.'
                     });
                 }
                 res.json(response);
