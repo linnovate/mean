@@ -19,7 +19,10 @@ module.exports = function(MeanUser, app, auth, database, passport) {
   // AngularJS route to check for authentication
   app.route('/api/loggedin')
     .get(function(req, res) {
-      res.send(req.isAuthenticated() ? req.user : '0');
+      if (!req.isAuthenticated()) return res.send('0');
+      auth.findUser(req.user._id, function(user) {
+        res.send(user ? user : '0');
+      });
     });
 
   if(config.strategies.local.enabled)
