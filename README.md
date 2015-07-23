@@ -44,6 +44,18 @@ Then, open a browser and go to:
 ```bash
   http://localhost:3000
 ```
+
+#Running on a different port
+If you have a rails, node, or other mean project already running, you may need to use a different port. You can set the port and start your new mean project with one command:
+```bash
+$ export PORT=3001 && gulp
+```
+
+Then, open a browser and change the port number before you visit:
+```bash
+  http://localhost:3001
+```
+
 ### Troubleshooting
 During installation depending on your os and prerequiste versions you may encounter some issues.
 
@@ -132,9 +144,9 @@ The MEAN CLI is a simple Command Line Interface for installing and managing MEAN
   <p>For example, the <i>admin</i> role is required to edit tokens.</p>
 
 ```bash
-  $ mean user <email> 
-  $ mean user <email> --addRole <role>; 
-  $ mean user <email> --removeRole <role>; 
+  $ mean user <email>
+  $ mean user <email> --addRole <role>;
+  $ mean user <email> --removeRole <role>;
 ```
 
 ### packages
@@ -212,8 +224,8 @@ The file structure is similar to that of the mean project itself
 
 **Server**
 
-Packages are registered in the **app.js** 
-Defines package name, version and `mean=true` in the **package.json**   
+Packages are registered in the **app.js**
+Defines package name, version and `mean=true` in the **package.json**
 
 All of the Server side code resides in the `/server` directory.
 
@@ -228,7 +240,7 @@ All of the Server side code resides in the `/server` directory.
 
 All of the Client side code resides in the `/public` directory.
 
-    public            
+    public
     --- assets        # Javascript/Css/Images (not aggregated)
     --- controllers   # Angular Controllers
     --- config        # Contains routing files
@@ -241,14 +253,14 @@ Files within public of the package can be accessed externally `/[package-name]/p
 
 ###Registering a Package
 
-In order for a Package to work it needs to be registered. By doing this you make package system aware that you are ready and that other packages are able to depend on you. The packages are registered from within `app.js` 
+In order for a Package to work it needs to be registered. By doing this you make package system aware that you are ready and that other packages are able to depend on you. The packages are registered from within `app.js`
 
 When registering you are required to declare all your dependencies in order for the package system to make them available to your package.
 
 
     // Example of registering the MyPackage
     MyPackage.register(function(app, auth, database) {
-    
+
     });
 
 MEAN has 3 pre registered dependencies. `app` which makes the express app available `auth` which has some basic authentication functions and `database` which contains the mongoose database connection.<
@@ -268,7 +280,7 @@ Dependency injection allows you to declare what dependencies you require and rel
 
 Looking again at the registration example we can see that `MyPackage` depends on the `Tokens` and can make use of it full functionality including overriding it.
 
- 
+
 
     // Example of registering the tokens package
      MyPackage.register(function(app, auth, database, Tokens) {
@@ -308,10 +320,10 @@ Javascript and css from `assets` can be aggregated to the global aggregation fil
 
       //Adding jquery to the mean project
       MyPackage.aggregateAsset('js','jquery.min.js');
-    
+
       //Adding another library - global by default is false
       MyPackage.aggregateAsset('js','jquery.min.js', {global:true});
-    
+
       //Adding some css to the mean project
       MyPackage.aggregateAsset('css','default.css');
 
@@ -324,14 +336,14 @@ The aggregation supports the ability to control the location of where to inject 
 
       MyPackage.aggregateAsset('js','first.js',{global:true,  weight: -4, group: 'header'});
 >The line that gets loaded in your head.html calls the header group and injects the js you want to include first-
-> in packages/system/server/views/includes/head.html 
+> in packages/system/server/views/includes/head.html
 > <script type="text/javascript" src="/modules/aggregated.js?group=header"></script>
 
 ###Settings Object
 The settings object is a persistance object that is stored in the packages collection and allows for saving persistant information per package such as configuration options or admin settings for the package.
 
   Receives two arguments the first being the settings object the second is a callback function
-  
+
 
     MyPackage.settings({'someSetting':'some value'},function (err, settings) {
         //you will receive the settings object on success
@@ -362,12 +374,12 @@ Example from the `server/routes/myPackage.js`
 
       // The Package is past automatically as first parameter
       module.exports = function(MyPackage, app, auth, database) {
-    
+
       //example route
       app.get('/myPackage/example/anyone', function (req,res,next) {
         res.send('Anyone can access this');
       });
-    
+
     };
 
 ###Angular Routes
@@ -459,7 +471,7 @@ Where "myPackage" is the name of your package.
 ### Contributing your package
 Once your package is in good shape and you want to share it with the world you can start the process of contributing it and submiting it so it can be included in the package repository.
 To contribute your package register to the network (see the section below) and run
-```bash 
+```bash
 mean register // register to the mean network (see below)
 cd packages/custom/pkgNName>
 mean publish
@@ -582,4 +594,3 @@ heroku config:set NODE_ENV=production
 
 ## License
 We belive that mean should be free and easy to integrate within your existing projects so we chose the [The MIT License](http://opensource.org/licenses/MIT)
-
