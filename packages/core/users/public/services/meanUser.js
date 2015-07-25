@@ -63,7 +63,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
         var encodedProfile = decodeURI(b64_to_utf8(response.token.split('.')[1]));
         var payload = JSON.parse(encodedProfile);
         this.user = payload;
-        var destination = $cookies.redirect;
+        var destination = $cookies.get('redirect');
         if (this.user.roles.indexOf('admin') !== -1) this.isAdmin = true;
         $rootScope.$emit('loggedin');
         if (destination) {
