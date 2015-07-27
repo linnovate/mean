@@ -40,7 +40,10 @@ module.exports = function(MeanUser) {
           // We are sending the payload inside the token
           var token = jwt.sign(escaped, config.secret, { expiresInMinutes: 60*5 });
           res.cookie('token', token);
-          res.redirect('/');
+          var destination = config.strategies.landingPage;
+          if(!req.cookies.redirect)
+            res.cookie('redirect', destination);
+          res.redirect(destination);
         },
 
         /**
