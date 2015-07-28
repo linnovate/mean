@@ -5,7 +5,7 @@
   "private": false,
   "author": "Linnovate <mean@linnovate.net>",
   "contributors": "https://github.com/linnovate/mean/graphs/contributors",
-  "mean": "0.5.0",
+  "mean": "0.5.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/linnovate/mean.git"
