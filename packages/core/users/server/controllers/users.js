@@ -154,16 +154,7 @@ module.exports = function(MeanUser) {
 
                 if (err || !user) return res.send(null);
 
-
-                var dbUser = user.toJSON();
-                var id = req.user._id;
-
-                delete dbUser._id;
-                delete req.user._id;
-
-                var eq = _.isEqual(dbUser, req.user);
-                if (eq) {
-                    req.user._id = id;
+                if (_.isEqual(JSON.parse(JSON.stringify(user)), JSON.parse(JSON.stringify(req.user)))) {
                     return res.json(req.user);
                 }
 
