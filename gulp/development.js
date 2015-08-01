@@ -52,7 +52,7 @@ gulp.task('devServe', ['env:development'], function () {
     script: 'server.js',
     ext: 'html js',
     env: { 'NODE_ENV': 'development' } ,
-    ignore: ['node_modules/', 'bower_components/', 'logs/', 'packages/*/*/public/assets/lib/', 'packages/*/*/node_modules/', '**/.DS_Store', '**/.bower-*'],
+    ignore: ['node_modules/', 'bower_components/', 'logs/', 'packages/*/*/public/assets/lib/', 'packages/*/*/node_modules/', '.DS_Store', '**/.DS_Store', '.bower-*', '**/.bower-*'],
     nodeArgs: ['--debug'],
     stdout: false
   }).on('readable', function() {
