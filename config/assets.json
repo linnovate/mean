@@ -2,7 +2,6 @@
   "core": {
     "css": {
       "bower_components/build/css/dist.min.css": [
-        "bower_components/bootstrap/dist/css/bootstrap.css",
         "bower_components/angular-ui-select/dist/select.min.css"
       ]
     },
