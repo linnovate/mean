@@ -14,6 +14,7 @@ angular.module('mean.users').config(['$meanStateProvider', '$httpProvider', 'jwt
     $meanStateProvider
       .state('auth', {
         url: '/auth',
+        abstract: true,
         templateUrl: 'users/views/index.html'
       })
       .state('auth.login', {
