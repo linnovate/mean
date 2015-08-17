@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
     Article = mongoose.model('Article'),
+    config = require('meanio').loadConfig(),
     _ = require('lodash');
 
 module.exports = function(Articles) {
@@ -35,8 +36,15 @@ module.exports = function(Articles) {
                     });
                 }
 
-                Articles.events.publish('create', {
-                    description: req.user.name + ' created ' + req.body.title + ' article.'
+                Articles.events.publish({
+                    action: 'created',
+                    user: {
+                        name: req.user.name
+                    },
+                    url: config.hostname + '/articles/' + article._id,
+                    data: {
+                        title: article.title 
+                    }
                 });
 
                 res.json(article);
@@ -58,8 +66,15 @@ module.exports = function(Articles) {
                     });
                 }
 
-                Articles.events.publish('update', {
-                    description: req.user.name + ' updated ' + req.body.title + ' article.'
+                Articles.events.publish({
+                    action: 'updated',
+                    user: {
+                        name: req.user.name
+                    },
+                    data: {
+                        title: article.title 
+                    },
+                    url: config.hostname + '/articles/' + article._id
                 });
 
                 res.json(article);
@@ -79,8 +94,14 @@ module.exports = function(Articles) {
                     });
                 }
 
-                Articles.events.publish('remove', {
-                    description: req.user.name + ' deleted ' + article.title + ' article.'
+                Articles.events.publish({
+                    action: 'deleted',
+                    user: {
+                        name: req.user.name
+                    },
+                    data: {
+                        title: article.title 
+                    }
                 });
 
                 res.json(article);
@@ -91,8 +112,15 @@ module.exports = function(Articles) {
          */
         show: function(req, res) {
 
-            Articles.events.publish('view', {
-                description: req.user.name + ' read ' + req.article.title + ' article.'
+            Articles.events.publish({
+                action: 'view',
+                user: {
+                    name: req.user.name
+                },
+                data: {
+                    title: req.article.title
+                },
+                url: config.hostname + '/articles/' + req.article._id
             });
 
             res.json(req.article);
