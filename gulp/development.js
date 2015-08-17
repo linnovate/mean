@@ -16,7 +16,7 @@ var gulp = require('gulp'),
   };
 
 /*var defaultTasks = ['clean', 'jshint', 'less', 'csslint', 'devServe', 'watch'];*/
-var defaultTasks = ['coffee','clean', 'less', 'csslint', 'devServe', 'watch'];
+var defaultTasks = ['coffee','clean', 'less', 'csslint', 'debugServer', 'devServe', 'watch'];
 
 gulp.task('env:development', function () {
   process.env.NODE_ENV = 'development';
@@ -43,6 +43,21 @@ gulp.task('less', function() {
     .pipe(gulp.dest(function (vinylFile) {
       return vinylFile.cwd;
     }));
+});
+
+gulp.task('debugServer', function() {
+  var options = {
+    webPort: 1337,
+    webHost: 'localhost',
+    debugPort: 5858,
+    saveLiveEdit: true,
+    preload: false,
+    stackTraceLimit: 50,
+    hidden: []
+  };
+
+  return gulp.src([])
+    .pipe(plugins.nodeInspector(options));
 });
 
 gulp.task('devServe', ['env:development'], function () {
