@@ -1,7 +1,10 @@
 {
   "core": {
     "css": {
-      "bower_components/build/css/dist.min.css": []
+      "bower_components/build/css/dist.min.css": [
+        "bower_components/angular/angular-csp.css",
+        "bower_components/angular-ui-select/dist/select.min.css"
+      ]
     },
     "js": {
       "bower_components/build/js/dist.min.js": [
@@ -10,9 +13,11 @@
         "bower_components/angular-mocks/angular-mocks.js",
         "bower_components/angular-cookies/angular-cookies.min.js",
         "bower_components/angular-resource/angular-resource.min.js",
+        "bower_components/angular-sanitize/angular-sanitize.min.js",
         "bower_components/angular-ui-router/release/angular-ui-router.min.js",
         "bower_components/angular-jwt/dist/angular-jwt.min.js",
         "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
+        "bower_components/angular-ui-select/dist/select.min.js",
         "bower_components/web-bootstrap/index.js"
       ]
     }

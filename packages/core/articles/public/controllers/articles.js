@@ -1,25 +1,43 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Global', 'Articles', 'MeanUser',
-  function($scope, $stateParams, $location, Global, Articles, MeanUser) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Global', 'Articles', 'MeanUser', 'Circles',
+  function($scope, $stateParams, $location, Global, Articles, MeanUser, Circles) {
     $scope.global = Global;
+
     $scope.hasAuthorization = function(article) {
       if (!article || !article.user) return false;
       return MeanUser.isAdmin || article.user._id === MeanUser.user._id;
     };
 
+    $scope.availableCircles = [];
+
+    Circles.mine(function(acl) {
+        $scope.availableCircles = acl.allowed;
+        $scope.allDescendants = acl.descendants;
+    });
+
+    $scope.showDescendants = function(permission) {
+        var temp = $('.ui-select-container .btn-primary').text().split(' ');
+        temp.shift(); //remove close icon
+        var selected = temp.join(' ');
+        $scope.descendants = $scope.allDescendants[selected];
+    };
+
+    $scope.selectPermission = function() {
+        $scope.descendants = [];
+    };
+
     $scope.create = function(isValid) {
       if (isValid) {
-        var article = new Articles({
-          title: this.title,
-          content: this.content
-        });
+        // $scope.article.permissions.push('test test');
+        var article = new Articles($scope.article);
+
         article.$save(function(response) {
           $location.path('articles/' + response._id);
         });
 
-        this.title = '';
-        this.content = '';
+        $scope.article = {};
+
       } else {
         $scope.submitted = true;
       }
@@ -30,7 +48,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
         article.$remove(function(response) {
           for (var i in $scope.articles) {
             if ($scope.articles[i] === article) {
-	      $scope.articles.splice(i,1);
+              $scope.articles.splice(i, 1);
             }
           }
           $location.path('articles');
@@ -45,9 +63,9 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
     $scope.update = function(isValid) {
       if (isValid) {
         var article = $scope.article;
-        if(!article.updated) {
+        if (!article.updated) {
           article.updated = [];
-	}
+        }
         article.updated.push(new Date().getTime());
 
         article.$update(function() {

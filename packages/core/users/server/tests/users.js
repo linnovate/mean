@@ -93,7 +93,8 @@ describe('<Unit Test>', function() {
           expect(_user.hasRole('authenticated')).to.equal(true);
           expect(_user.hasRole('admin')).to.equal(false);
           expect(_user.isAdmin()).to.equal(false);
-          expect(_user.roles.length).to.equal(1);
+          // With the introduction of roles by circles a user has both anonymous and authenticated circles upon creation 
+          expect(_user.roles.length).to.equal(2);
           _user.remove(function(err) {
             done();
           });

@@ -19,7 +19,10 @@ module.exports = function(MeanUser, app, auth, database, passport) {
   // AngularJS route to check for authentication
   app.route('/api/loggedin')
     .get(function(req, res) {
-      res.send(req.isAuthenticated() ? req.user : '0');
+      if (!req.isAuthenticated()) return res.send('0');
+      auth.findUser(req.user._id, function(user) {
+        res.send(user ? user : '0');
+      });
     });
 
   if(config.strategies.local.enabled)
@@ -45,8 +48,11 @@ module.exports = function(MeanUser, app, auth, database, passport) {
           escaped = encodeURI(escaped);
           // We are sending the payload inside the token
           var token = jwt.sign(escaped, config.secret, { expiresInMinutes: 60*5 });
-          MeanUser.events.publish('login', {
-            description: req.user.name + ' login to the system.'
+          MeanUser.events.publish({
+            action: 'logged_in',
+            user: {
+                name: req.user.name
+            }
           });
           res.json({ token: token });
         });

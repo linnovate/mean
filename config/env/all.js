@@ -49,6 +49,7 @@ module.exports = {
     direction: 'rtl',
   }],
   currentLanguage: 'en',
+  cssFramework: 'bootstrap',
   // The session cookie name
   sessionName: 'connect.sid'
 };

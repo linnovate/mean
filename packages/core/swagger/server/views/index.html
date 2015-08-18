@@ -51,14 +51,7 @@
       sorter : "alpha"
     });
 
-    $('#input_apiKey').change(function() {
-      var key = $('#input_apiKey')[0].value;
-      log("key: " + key);
-      if(key && key.trim() != "") {
-        log("added key " + key);
-        window.authorizations.add("key", new ApiKeyAuthorization("api_key", key, "query"));
-      }
-    })
+    window.authorizations.add("key", new ApiKeyAuthorization("authorization", 'Bearer ' + window.localStorage.getItem('JWT'), "header"));
     window.swaggerUi.load();
   });
   </script>
@@ -76,7 +69,6 @@
         <img id="show-wordnik-dev-icon" src="/swagger/assets/img/wordnik_api.png" title="Show Wordnik Developer Apis">
       </div>
       <div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl" type="text"/></div>
-      <div class='input'><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text"/></div>
       <div class='input'><a id="explore" href="#">Explore</a></div>
     </form>
   </div>

@@ -11,7 +11,7 @@ var Articles = new Module('articles');
  * All MEAN packages require registration
  * Dependency injection is used to define required modules
  */
-Articles.register(function(app, auth, database, swagger) {
+Articles.register(function(app, auth, database, circles, swagger) {
 
   //We enable routing. By default the Package Object is passed to the routes
   Articles.routes(app, auth, database);
@@ -31,10 +31,9 @@ Articles.register(function(app, auth, database, swagger) {
     'link': 'create article'
   });
 
-  Articles.events.design({
-    //http://fontawesome.io/icons
-    icon: 'fa-file-text',
-    color: '#8FD5FF'
+  Articles.events.defaultData({
+    type: 'post',
+    subtype: 'article'
   });
 
 
