@@ -42,9 +42,7 @@ module.exports = function(Articles) {
                         name: req.user.name
                     },
                     url: config.hostname + '/articles/' + article._id,
-                    data: {
-                        title: article.title 
-                    }
+                    name: article.title
                 });
 
                 res.json(article);
@@ -71,9 +69,7 @@ module.exports = function(Articles) {
                     user: {
                         name: req.user.name
                     },
-                    data: {
-                        title: article.title 
-                    },
+                    name: article.title,
                     url: config.hostname + '/articles/' + article._id
                 });
 
@@ -99,9 +95,7 @@ module.exports = function(Articles) {
                     user: {
                         name: req.user.name
                     },
-                    data: {
-                        title: article.title 
-                    }
+                    name: article.title
                 });
 
                 res.json(article);
@@ -117,9 +111,7 @@ module.exports = function(Articles) {
                 user: {
                     name: req.user.name
                 },
-                data: {
-                    title: req.article.title
-                },
+                name: req.article.title,
                 url: config.hostname + '/articles/' + req.article._id
             });
 

@@ -3448,9 +3448,9 @@
       "resolved": "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz"
     },
     "meanio": {
-      "version": "0.8.80",
+      "version": "0.8.81",
       "from": "meanio@latest",
-      "resolved": "https://registry.npmjs.org/meanio/-/meanio-0.8.80.tgz",
+      "resolved": "https://registry.npmjs.org/meanio/-/meanio-0.8.81.tgz",
       "dependencies": {
         "complex-list": {
           "version": "0.1.4",
@@ -3744,7 +3744,7 @@
           }
         },
         "stacksight": {
-          "version": "1.0.17",
+          "version": "1.0.18",
           "from": "stacksight@latest",
           "dependencies": {
             "morgan": {
