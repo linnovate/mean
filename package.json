@@ -28,6 +28,7 @@
     "cookie-parser": "latest",
     "errorhandler": "latest",
     "express": "latest",
+    "express-session": "latest",
     "forever": "latest",
     "gridfs-stream": "latest",
     "jsonwebtoken": "latest",

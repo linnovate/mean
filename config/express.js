@@ -9,6 +9,7 @@ var mean = require('meanio'),
   morgan = require('morgan'),
   consolidate = require('consolidate'),
   express = require('express'),
+  session = require('express-session'),
   helpers = require('view-helpers'),
   flash = require('connect-flash'),
   modRewrite = require('connect-modrewrite'),
@@ -45,6 +46,8 @@ module.exports = function(app, db) {
   // set .html as the default extension
   app.set('view engine', 'html');
 
+  // Session support
+  app.use(session({ secret: config.secret }));
 
   // Dynamic helpers
   app.use(helpers(config.app.name));
