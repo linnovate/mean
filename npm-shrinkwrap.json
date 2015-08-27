@@ -3744,7 +3744,7 @@
           }
         },
         "stacksight": {
-          "version": "1.0.18",
+          "version": "1.0.20",
           "from": "stacksight@latest",
           "dependencies": {
             "morgan": {
