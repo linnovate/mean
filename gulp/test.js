@@ -19,11 +19,11 @@ gulp.task('karma:unit', function (done) {
 
 gulp.task('loadTestSchema', function () {
   require('../server.js');
-  require('../node_modules/meanio/lib/core_modules/module/util').preload('../packages/**/server', 'model');
+  require('../node_modules/meanio/lib/core_modules/module/util').preload('./packages/**/server', 'model');
 });
 
 gulp.task('mochaTest', ['loadTestSchema'], function () {
-  return gulp.src('../packages/**/server/tests/**/*.js', {read: false})
+  return gulp.src('./packages/**/server/tests/**/*.js', {read: false})
     .pipe(plugins.mocha({
       reporter: 'spec'
     }));
