@@ -5,6 +5,10 @@ module.exports = {
   http: {
     port: 3001
   },
+  aggregate: false,
+  assets: {
+    hash: false
+  },
   logging: {
     format: 'common'
   },
