@@ -50,7 +50,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       $http.get('/api/users/me').success(function(user) {
         if(!user && $cookies.get('token')) {
           self.onIdentity.bind(self)({token: $cookies.get('token')});
-          $cookieStore.remove('token');
+          $cookies.remove('token');
         } else {
           self.onIdentity.bind(self)(user);
         }
