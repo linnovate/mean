@@ -7,17 +7,16 @@ var gulp = require('gulp'),
   plugins = gulpLoadPlugins(),
   coffee = require('gulp-coffee'),
   paths = {
-    js: ['*.js', 'test/**/*.js', '!test/coverage/**', '!bower_components/**', '!packages/**/node_modules/**', '!packages/contrib/**/*.js', '!packages/contrib/**/node_modules/**', '!packages/core/**/*.js', '!packages/core/public/assets/lib/**/*.js'],
-    html: ['packages/**/public/**/views/**', 'packages/**/server/views/**'],
-    css: ['!bower_components/**', 'packages/**/public/**/css/*.css', '!packages/contrib/**/public/**/css/*.css', '!packages/core/**/public/**/css/*.css'],
-    less: ['**/public/**/css/*.less'],
-    sass: ['**/public/**/css/*.scss'],
-    coffee: ['packages/**/public/**/*.coffee','*.coffee'],
-    coffees: ['packages/**/server/**/*.coffee']
+    js: ['./*.js', 'config/**/*.js', 'gulp/**/*.js', 'tools/**/*.js', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
+    html: ['packages/**/*.html', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
+    css: ['packages/**/*.css', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
+    less: ['packages/**/*.less', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
+    sass: ['packages/**/*.scss', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
+    coffee: ['packages/**/*.coffee', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**']
   };
 
 /*var defaultTasks = ['clean', 'jshint', 'less', 'csslint', 'devServe', 'watch'];*/
-var defaultTasks = ['coffee','clean',  'less', 'csslint', 'devServe', 'watch'];
+var defaultTasks = ['coffee','clean', 'less', 'csslint', 'devServe', 'watch'];
 
 gulp.task('env:development', function () {
   process.env.NODE_ENV = 'development';
@@ -27,7 +26,7 @@ gulp.task('jshint', function () {
   return gulp.src(paths.js)
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter('jshint-stylish'))
-    .pipe(plugins.jshint.reporter('fail'))
+    // .pipe(plugins.jshint.reporter('fail')) to avoid shutdown gulp by warnings
     .pipe(count('jshint', 'files lint free'));
 });
 
@@ -52,7 +51,7 @@ gulp.task('devServe', ['env:development'], function () {
     script: 'server.js',
     ext: 'html js',
     env: { 'NODE_ENV': 'development' } ,
-    ignore: ['node_modules/'],
+    ignore: ['node_modules/', 'bower_components/', 'logs/', 'packages/*/*/public/assets/lib/', 'packages/*/*/node_modules/', '.DS_Store', '**/.DS_Store', '.bower-*', '**/.bower-*'],
     nodeArgs: ['--debug'],
     stdout: false
   }).on('readable', function() {

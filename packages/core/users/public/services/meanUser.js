@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$location', '$stateParams', '$cookies', '$q', '$timeout', '$cookieStore',
-  function($rootScope, $http, $location, $stateParams, $cookies, $q, $timeout, $cookieStore) {
+angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$location', '$stateParams', '$cookies', '$q', '$timeout',
+  function($rootScope, $http, $location, $stateParams, $cookies, $q, $timeout) {
 
     var self;
 
@@ -75,7 +75,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
         $rootScope.$emit('loggedin');
         if (destination) {
           $location.path(destination.replace(/^"|"$/g, ''));
-          $cookieStore.remove('redirect');
+          $cookies.remove('redirect');
         } else {
           $location.url('/');
         }
@@ -163,7 +163,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
 
         // Not Authenticated
         else {
-          $cookieStore.put('redirect', $location.path());
+          $cookies.put('redirect', $location.path());
           $timeout(deferred.reject);
           $location.url('/auth/login');
         }

@@ -3,7 +3,9 @@
 /*
  * Defining the Package
  */
-var Module = require('meanio').Module,
+var meanio = require('meanio');
+var Module = meanio.Module,
+  config = meanio.loadConfig(),
   favicon = require('serve-favicon');
 
 var SystemPackage = new Module('system');
@@ -19,6 +21,7 @@ SystemPackage.register(function(app, auth, database, circles) {
 
   SystemPackage.aggregateAsset('css', 'common.css');
   SystemPackage.angularDependencies(['mean-factory-interceptor']);
+  
 
   // The middleware in config/express will run before this code
 
