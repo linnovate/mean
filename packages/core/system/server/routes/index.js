@@ -13,4 +13,10 @@ module.exports = function(System, app, auth, database) {
         res.header('workerID' , JSON.stringify(mean.options.workerid) );
         next(); // http://expressjs.com/guide.html#passing-route control
   });
+
+  app.get('/api/get-public-config', function(req, res){
+    var config = mean.loadConfig();
+
+    return res.send(config.public);
+  });
 };
