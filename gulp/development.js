@@ -7,7 +7,7 @@ var gulp = require('gulp'),
   plugins = gulpLoadPlugins(),
   coffee = require('gulp-coffee'),
   paths = {
-    js: ['./*.js', 'config/**/*.js', 'gulp/**/*.js', 'tools/**/*.js', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
+    js: ['./*.js', 'config/**/*.js', 'gulp/**/*.js', 'tools/**/*.js', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**', '!packages/**/assets/**/js/**'],
     html: ['packages/**/*.html', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
     css: ['packages/**/*.css', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
     less: ['packages/**/*.less', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
