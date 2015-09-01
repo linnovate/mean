@@ -48,9 +48,10 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       this.validationError = null;
       self = this;
       $http.get('/api/users/me').success(function(user) {
-        if(!user && $cookies.get('token')) {
-          self.onIdentity.bind(self)({token: $cookies.get('token')});
+        if(!user && $cookies.get('token') && $cookies.get('redirect')) {
+          self.onIdentity.bind(self)({token: $cookies.get('token'), redirect: $cookies.get('redirect').replace(/^"|"$/g, '')});
           $cookies.remove('token');
+          $cookies.remove('redirect');
         } else {
           self.onIdentity.bind(self)(user);
         }
@@ -58,33 +59,21 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
     }
 
     MeanUserKlass.prototype.onIdentity = function(response) {
-      this.loginError = 0;
-      this.loggedin = true;
-      this.registerError = 0;
-      if (!response) {
-        this.user = {};
-        this.loggedin = false;
-        this.isAdmin = false;
-      } else if(angular.isDefined(response.token)) {
-        localStorage.setItem('JWT', response.token);
-        var encodedProfile = decodeURI(b64_to_utf8(response.token.split('.')[1]));
-        var payload = JSON.parse(encodedProfile);
-        this.user = payload;
-        var destination = $cookies.get('redirect');
-        if (this.user.roles.indexOf('admin') !== -1) this.isAdmin = true;
-        $rootScope.$emit('loggedin');
-        if (destination) {
-          $location.path(destination.replace(/^"|"$/g, ''));
-          $cookies.remove('redirect');
-        } else {
-          $location.url('/');
+        if (!response) return;
+        var encodedUser, user, destination;
+        if (angular.isDefined(response.token)) {
+            localStorage.setItem('JWT', response.token);
+            encodedUser = decodeURI(b64_to_utf8(response.token.split('.')[1]));
+            user = JSON.parse(encodedUser); 
         }
-      } else {
-        this.user = response;
+        destination = angular.isDefined(response.redirect) ? response.redirect : null;
+        this.user = user || response;
         this.loggedin = true;
-        if (this.user.roles.indexOf('admin') !== -1) this.isAdmin = true;
+        this.loginError = 0;
+        this.registerError = 0;
+        this.isAdmin = !! (this.user.roles.indexOf('admin') + 1);
+        if (destination) $location.path(destination);
         $rootScope.$emit('loggedin');
-      }
     };
 
     MeanUserKlass.prototype.onIdFail = function (response) {
