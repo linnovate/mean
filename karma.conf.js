@@ -2,9 +2,7 @@
 
 // Karma configuration
 module.exports = function(config) {
-  var _ = require('lodash'),
-    basePath = '.',
-    assets = require(basePath + '/config/assets.json');
+  var basePath = '.';
 
   config.set({
 
@@ -13,18 +11,6 @@ module.exports = function(config) {
 
     // frameworks to use
     frameworks: ['jasmine'],
-
-    // list of files / patterns to load in the browser
-    files: _.flatten(_.values(assets.core.js)).concat([
-      'packages/**/public/*.js',
-      'packages/**/public/*/*.js',
-      'packages/core/admin/public/assets/lib/ng-clip/dest/ng-clip.min.js',
-      'packages/core/admin/public/assets/lib/zeroclipboard/dist/ZeroClipboard.js',
-      'packages/custom/i18n/public/assets/lib/angular-sanitize/angular-sanitize.min.js',
-      'packages/custom/i18n/public/assets/lib/i18next/i18next.min.js',
-      'packages/custom/i18n/public/assets/lib/ng-i18next/dist/ng-i18next.min.js',
-      'packages/core/users/public/assets/lib/angular-jwt/dist/angular-jwt.min.js',
-    ]),
 
     // list of files to exclude
     exclude: [],
@@ -53,7 +39,7 @@ module.exports = function(config) {
     proxies: {
       '/': 'http://localhost:3001/'
     },
-    
+
     // enable / disable colors in the output (reporters and logs)
     colors: true,
 

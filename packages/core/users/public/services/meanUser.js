@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$location', '$stateParams', '$cookies', '$q', '$timeout', '$cookieStore',
-  function($rootScope, $http, $location, $stateParams, $cookies, $q, $timeout, $cookieStore) {
+angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$location', '$stateParams', '$cookies', '$q', '$timeout',
+  function($rootScope, $http, $location, $stateParams, $cookies, $q, $timeout) {
 
     var self;
 
@@ -46,8 +46,15 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       this.registerError = null;
       this.resetpassworderror = null;
       this.validationError = null;
-      $http.get('/api/users/me').success(this.onIdentity.bind(this));
       self = this;
+      $http.get('/api/users/me').success(function(user) {
+        if(!user && $cookies.get('token')) {
+          self.onIdentity.bind(self)({token: $cookies.get('token')});
+          $cookies.remove('token');
+        } else {
+          self.onIdentity.bind(self)(user);
+        }
+      });
     }
 
     MeanUserKlass.prototype.onIdentity = function(response) {
@@ -68,7 +75,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
         $rootScope.$emit('loggedin');
         if (destination) {
           $location.path(destination.replace(/^"|"$/g, ''));
-          $cookieStore.remove('redirect');
+          $cookies.remove('redirect');
         } else {
           $location.url('/');
         }
@@ -156,7 +163,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
 
         // Not Authenticated
         else {
-          $cookieStore.put('redirect', $location.path());
+          $cookies.put('redirect', $location.path());
           $timeout(deferred.reject);
           $location.url('/auth/login');
         }
@@ -201,15 +208,6 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
 
       return deferred.promise;
     };
-
-    //Temporary code
-    var tokenWatch = $rootScope.$watch(function() { return $cookies.get('token'); }, function(newVal, oldVal) {
-        if (newVal && newVal !== undefined && newVal !== null && newVal !== '') {
-         self.onIdentity({token: $cookies.get('token')});
-         $cookieStore.remove('token');
-         tokenWatch();
-        }
-      });
 
     return MeanUser;
   }

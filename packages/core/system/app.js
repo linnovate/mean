@@ -3,7 +3,9 @@
 /*
  * Defining the Package
  */
-var Module = require('meanio').Module,
+var meanio = require('meanio');
+var Module = meanio.Module,
+  config = meanio.loadConfig(),
   favicon = require('serve-favicon');
 
 var SystemPackage = new Module('system');
@@ -19,6 +21,7 @@ SystemPackage.register(function(app, auth, database, circles) {
 
   SystemPackage.aggregateAsset('css', 'common.css');
   SystemPackage.angularDependencies(['mean-factory-interceptor']);
+  
 
   // The middleware in config/express will run before this code
 
@@ -26,7 +29,11 @@ SystemPackage.register(function(app, auth, database, circles) {
   app.set('views', __dirname + '/server/views');
 
   // Setting the favicon and static folder
-  app.use(favicon(__dirname + '/public/assets/img/favicon.ico'));
+  if(config.favicon) {
+    app.use(favicon(config.favicon));
+  } else {
+    app.use(favicon(__dirname + '/public/assets/img/favicon.ico'));
+  }
 
   // Adding robots and humans txt
   app.useStatic(__dirname + '/public/assets/static');
