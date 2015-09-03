@@ -67,6 +67,7 @@
     "gulp-nodemon": "latest",
     "gulp-uglify": "latest",
     "gulp-util": "latest",
+    "gulp-node-inspector": "latest",
     "jshint-stylish": "latest",
     "karma": "latest",
     "karma-chrome-launcher": "latest",
