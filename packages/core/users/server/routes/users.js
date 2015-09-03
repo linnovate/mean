@@ -54,7 +54,10 @@ module.exports = function(MeanUser, app, auth, database, passport) {
                 name: req.user.name
             }
           });
-          res.json({ token: token });
+          res.json({
+            token: token,
+            redirect: config.strategies.landingPage
+          });
         });
   }
 
