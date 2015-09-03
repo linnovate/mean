@@ -107,7 +107,7 @@ module.exports = function(Articles) {
         show: function(req, res) {
 
             Articles.events.publish({
-                action: 'view',
+                action: 'viewed',
                 user: {
                     name: req.user.name
                 },
