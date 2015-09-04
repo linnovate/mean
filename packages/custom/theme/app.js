@@ -26,7 +26,7 @@ Theme.register(function(app, auth, database) {
 
   Theme.aggregateAsset('css', 'loginForms.css');
   Theme.aggregateAsset('css', 'theme.css');
-  Theme.angularDependencies(['mean.system']);
+  Theme.angularDependencies(['mean.system','ngMaterial']);
 
   /**
     //Uncomment to use. Requires meanio@0.3.7 or above

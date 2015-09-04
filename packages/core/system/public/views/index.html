@@ -1,104 +1,157 @@
 <section class="welcome container-fluid" data-ng-controller="IndexController">
-  <div class="col-md-12 first">
-    MEAN.io makes building apps simpler and faster. With this website framework, you can <a href="https://github.com/linnovate/mean/wiki/CLI#user-management">create members</a>, </br>
-    articles, or <a href="http://mean.io/#!/packages">add more features</a> with a package from the community.
-    </div>
-    <div class="col-md-12 row">
-    <div class="info col-md-6">
-      <div class="docs">
-        <div class="welcome-sprite"></div>
-        <h3>Browse the  Documentation</h3>
-        <p class="docs-desc">
-        Before you jump in it's important to read the documentation and learn about the different aspects of extending and developing MEAN.<br/>
-        Mean is based on MongoDB, Express.js, Angular.js and Node.js and even basic proficiency in these technologies will help you dive in to mean development - luckily there are plenty of <a href="http://learn.mean.io/">tutorials around</a>.
-        </p>
-        <div class="docs-link first">
-          <ul>
-            <li><a href="http://learn.mean.io/#mean-technologies">Overview</a></li>
-            <li><a href="http://learn.mean.io/#mean-packages">Packages</a></li>
-          </ul>
-        </div>
-        <div class="docs-link">
-          <ul>
-            <li><a href="http://learn.mean.io/#mean-cli">CLI</a></li>
-            <li><a href="http://learn.mean.io/#mean-mean-network">Network</a></li>
-          </ul>
-        </div>
-        <div class="docs-link">
-          <ul>
-            <li><a href="http://learn.mean.io/#mean-packages-overriding-the-default-layouts">Overriding</a></li>
-            <li><a href="http://learn.mean.io/#mean-packages-contributing-your-package">Contribution</a></li>
-          </ul>
-        </div>
-      <span class="morelink"><a href="http://mean.io/#!/docs">All Documentation</a></span>
-      </div>
-      <div class="packages">
-        <div class="welcome-sprite"></div>
-        <h3>Browse our packages</h3>
-        <div class="package">
-          <h4><a href="http://mean.io/#!/packages/5381820ea331eb26d1e97d3a">Token</a></h4>
-          <p>"Inplace edit" any text on the site which is wrapped by the mean-token directive.</p>
-        </div>
-        <div class="package">
-          <h4><a href="http://mean.io/#!/packages/5406ea218481325770de48d2">Comments</a></h4>
-          <p>Add comments to your objects including realtime socket.io based notifications.</p>
-        </div>
-        <div class="package">
-        <h4><a href="http://mean.io/#!/packages/5403969ab6f54b9162921322">Gmap</a></h4>
-          <p>Add geo information to your objects using a google map with location autocomplete.</p>
-        </div>
-        <div class="package">
-          <h4><a href="http://mean.io/#!/packages/538180d8a331eb26d1e97d39">Mean-admin</a></h4>
-          <p>Administer your mean application including user, theme, variable and general settings</p>
-        </div>
-        <span class="morelink"><a href="http://mean.io/#!/packages">All Packages</a></span>
-      </div>
-      <div class="community">
-        <div class="welcome-sprite"></div>
-        <h3>Join our community</h3>
-          <i class="socialsprite sprite-facebook"></i>
-          <div class="package">
-            <h4><a href="https://www.facebook.com/groups/mean.io/">Facebook group</a></h4>
-            <p>Informal support, news and just hanging out</p>
-          </div>
-            <i class="socialsprite sprite-irc"></i>
-          <div class="package">
-            <h4><a href="https://gitter.im/linnovate/mean">Gitter</a></h4>
-            <p>Support and Technical discussions</a></p>
-          </div>
-        <i class="socialsprite sprite-github"></i>
-        <div class="package">
-          <h4><a href="http://github.com/linnovate/mean">Github</a></h4>
-          <p>Issues, Support, Code discussions and PRs</p>
-        </div>
-        <i class="socialsprite sprite-stackoverflow"></i>
-        <div class="package">
-          <h4><a href="http://hangout.mean.io">Hangout</a></h4>
-          <p>Video support, shared coding and to meet the people behind mean.io</p>
-        </div>
-      </div>
-    </div>
-    <div class="featured col-md-6">
-      <div class="featured-sites">
-        <h2>Get Inspired</h2>
-        <div class="featuredpic">
-          <img ng-src="{{sites.cactus.image}}"/>
-        </div>
-        <h4>{{sites.cactus.name}} <span>by
-          <a href="{{sites.cactus.link}}">{{sites.cactus.author}}</a></span></h4>
-          <p>{{sites.cactus.text}}</p>
-        <span class="morelink"><a href="http://builtwith.mean.io">Built with MEAN</a></span>
-      </div>
-      <div class="featured-packages">
-        <h2>Featured Package</h2>
-        <div class="featuredpic">
-          <img ng-src="{{packages.gmap.image}}"/>
-        </div>
-        <h4>{{packages.gmap.name}} <span>by
-          <a href="{{sites.makeapoint.link}}">{{packages.gmap.author}}</a></span></h4>
-          <p>{{packages.gmap.text}}</p>
-        <span class="morelink"><a href="http://builtwith.mean.io">All Packages</a></span>
-      </div>
-    </div>
-  </div>
+	<div class="col-md-12 first">
+		MEAN.io makes building apps simpler and faster. With this website framework, you can <a href="https://github.com/linnovate/mean/wiki/CLI#user-management">create members</a>, </br>
+		articles, or <a href="http://mean.io/#!/packages">add more features</a> with a package from the community.
+	</div>
+	<!-- material support -->
+	<md-content flex class="md-padding">
+		<md-card>
+			<md-card-content>
+				<h2 class="md-title">Material Design Support</h2>
+
+				<p>Material Design is the<a href="https://www.google.com/design/spec/material-design/introduction.html"> design specs</a> by Google.</p>
+				<p>
+					For MEAN stack, we are making use of <a href="https://material.angularjs.org/latest/#/">Angular-Material</a>.
+				</p>
+				<p>
+					This next element is called <a href="https://material.angularjs.org/latest/#/demo/material.components.tabs">tabs</a> and we are inside a <a href="https://material.angularjs.org/latest/#/demo/material.components.card">card</a>. Play with tabs to get
+					a feel of material design.
+				</p>
+				<md-tabs md-dynamic-height md-border-bottom>
+					<md-tab label="one">
+						<md-content class="md-padding">
+							<h1 class="md-display-2">Tab One</h1>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis
+								nec, feugiat ultricies mi.</p>
+						</md-content>
+					</md-tab>
+					<md-tab label="two">
+						<md-content class="md-padding">
+							<h1 class="md-display-2">Tab Two</h1>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis
+								nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum enim, vel tempor sapien arcu a tellus. Vivamus convallis sodales ante varius gravida. Curabitur a purus vel augue ultrices ultricies
+								id a nisl. Nullam malesuada consequat diam, a facilisis tortor volutpat et. Sed urna dolor, aliquet vitae posuere vulputate, euismod ac lorem. Sed felis risus, pulvinar at interdum quis, vehicula sed odio. Phasellus in enim venenatis, iaculis
+								tortor eu, bibendum ante. Donec ac tellus dictum neque volutpat blandit. Praesent efficitur faucibus risus, ac auctor purus porttitor vitae. Phasellus ornare dui nec orci posuere, nec luctus mauris semper.</p>
+							<p>Morbi viverra, ante vel aliquet tincidunt, leo dolor pharetra quam, at semper massa orci nec magna. Donec posuere nec sapien sed laoreet. Etiam cursus nunc in condimentum facilisis. Etiam in tempor tortor. Vivamus faucibus egestas enim, at convallis
+								diam pulvinar vel. Cras ac orci eget nisi maximus cursus. Nunc urna libero, viverra sit amet nisl at, hendrerit tempor turpis. Maecenas facilisis convallis mi vel tempor. Nullam vitae nunc leo. Cras sed nisl consectetur, rhoncus sapien sit amet,
+								tempus sapien.</p>
+							<p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci
+								commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+						</md-content>
+					</md-tab>
+					<md-tab label="three">
+						<md-content class="md-padding">
+							<h1 class="md-display-2">Tab Three</h1>
+							<p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci
+								commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+						</md-content>
+					</md-tab>
+				</md-tabs>
+			</md-card-content>
+		</md-card>
+	</md-content>
+	<!-- older data -->
+	<div class="col-md-12 row">
+		<div class="info col-md-6">
+			<div class="docs">
+				<div class="welcome-sprite"></div>
+				<h3>Browse the Documentation</h3>
+				<p class="docs-desc">
+					Before you jump in it's important to read the documentation and learn about the different aspects of extending and developing MEAN.
+					<br/> Mean is based on MongoDB, Express.js, Angular.js and Node.js and even basic proficiency in these technologies will help you dive in to mean development - luckily there are plenty of <a href="http://learn.mean.io/">tutorials around</a>.
+				</p>
+				<div class="docs-link first">
+					<ul>
+						<li><a href="http://learn.mean.io/#mean-technologies">Overview</a></li>
+						<li><a href="http://learn.mean.io/#mean-packages">Packages</a></li>
+					</ul>
+				</div>
+				<div class="docs-link">
+					<ul>
+						<li><a href="http://learn.mean.io/#mean-cli">CLI</a></li>
+						<li><a href="http://learn.mean.io/#mean-mean-network">Network</a></li>
+					</ul>
+				</div>
+				<div class="docs-link">
+					<ul>
+						<li><a href="http://learn.mean.io/#mean-packages-overriding-the-default-layouts">Overriding</a></li>
+						<li><a href="http://learn.mean.io/#mean-packages-contributing-your-package">Contribution</a></li>
+					</ul>
+				</div>
+				<span class="morelink"><a href="http://mean.io/#!/docs">All Documentation</a></span>
+			</div>
+			<div class="packages">
+				<div class="welcome-sprite"></div>
+				<h3>Browse our packages</h3>
+				<div class="package">
+					<h4><a href="http://mean.io/#!/packages/5381820ea331eb26d1e97d3a">Token</a></h4>
+					<p>"Inplace edit" any text on the site which is wrapped by the mean-token directive.</p>
+				</div>
+				<div class="package">
+					<h4><a href="http://mean.io/#!/packages/5406ea218481325770de48d2">Comments</a></h4>
+					<p>Add comments to your objects including realtime socket.io based notifications.</p>
+				</div>
+				<div class="package">
+					<h4><a href="http://mean.io/#!/packages/5403969ab6f54b9162921322">Gmap</a></h4>
+					<p>Add geo information to your objects using a google map with location autocomplete.</p>
+				</div>
+				<div class="package">
+					<h4><a href="http://mean.io/#!/packages/538180d8a331eb26d1e97d39">Mean-admin</a></h4>
+					<p>Administer your mean application including user, theme, variable and general settings</p>
+				</div>
+				<span class="morelink"><a href="http://mean.io/#!/packages">All Packages</a></span>
+			</div>
+			<div class="community">
+				<div class="welcome-sprite"></div>
+				<h3>Join our community</h3>
+				<i class="socialsprite sprite-facebook"></i>
+				<div class="package">
+					<h4><a href="https://www.facebook.com/groups/mean.io/">Facebook group</a></h4>
+					<p>Informal support, news and just hanging out</p>
+				</div>
+				<i class="socialsprite sprite-irc"></i>
+				<div class="package">
+					<h4><a href="https://gitter.im/linnovate/mean">Gitter</a></h4>
+					<p>Support and Technical discussions</a>
+					</p>
+				</div>
+				<i class="socialsprite sprite-github"></i>
+				<div class="package">
+					<h4><a href="http://github.com/linnovate/mean">Github</a></h4>
+					<p>Issues, Support, Code discussions and PRs</p>
+				</div>
+				<i class="socialsprite sprite-stackoverflow"></i>
+				<div class="package">
+					<h4><a href="http://hangout.mean.io">Hangout</a></h4>
+					<p>Video support, shared coding and to meet the people behind mean.io</p>
+				</div>
+			</div>
+		</div>
+		<div class="featured col-md-6">
+			<div class="featured-sites">
+				<h2>Get Inspired</h2>
+				<div class="featuredpic">
+					<img ng-src="{{sites.cactus.image}}" />
+				</div>
+				<h4>{{sites.cactus.name}}
+					<span>by
+						<a href="{{sites.cactus.link}}">{{sites.cactus.author}}</a></span>
+				</h4>
+				<p>{{sites.cactus.text}}</p>
+				<span class="morelink"><a href="http://builtwith.mean.io">Built with MEAN</a></span>
+			</div>
+			<div class="featured-packages">
+				<h2>Featured Package</h2>
+				<div class="featuredpic">
+					<img ng-src="{{packages.gmap.image}}" />
+				</div>
+				<h4>{{packages.gmap.name}}
+					<span>by
+						<a href="{{sites.makeapoint.link}}">{{packages.gmap.author}}</a></span>
+				</h4>
+				<p>{{packages.gmap.text}}</p>
+				<span class="morelink"><a href="http://builtwith.mean.io">All Packages</a></span>
+			</div>
+		</div>
+	</div>
 </section>
