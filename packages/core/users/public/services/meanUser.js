@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$location', '$stateParams', '$cookies', '$q', '$timeout', '$cookieStore',
-  function($rootScope, $http, $location, $stateParams, $cookies, $q, $timeout, $cookieStore) {
+angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$location', '$stateParams', '$cookies', '$q', '$timeout',
+  function($rootScope, $http, $location, $stateParams, $cookies, $q, $timeout) {
 
     var self;
 
@@ -46,38 +46,37 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       this.registerError = null;
       this.resetpassworderror = null;
       this.validationError = null;
-      $http.get('/api/users/me').success(this.onIdentity.bind(this));
       self = this;
+      $http.get('/api/users/me').success(function(response) {
+        if(!response && $cookies.get('token') && $cookies.get('redirect')) {
+          self.onIdentity.bind(self)({
+            token: $cookies.get('token'), 
+            redirect: $cookies.get('redirect').replace(/^"|"$/g, '')
+          });
+          $cookies.remove('token');
+          $cookies.remove('redirect');
+        } else {
+          self.onIdentity.bind(self)(response);
+        }
+      });
     }
 
     MeanUserKlass.prototype.onIdentity = function(response) {
-      this.loginError = 0;
-      this.loggedin = true;
-      this.registerError = 0;
-      if (!response) {
-        this.user = {};
-        this.loggedin = false;
-        this.isAdmin = false;
-      } else if(angular.isDefined(response.token)) {
+      if (!response) return;
+      var encodedUser, user, destination;
+      if (angular.isDefined(response.token)) {
         localStorage.setItem('JWT', response.token);
-        var encodedProfile = decodeURI(b64_to_utf8(response.token.split('.')[1]));
-        var payload = JSON.parse(encodedProfile);
-        this.user = payload;
-        var destination = $cookies.get('redirect');
-        if (this.user.roles.indexOf('admin') !== -1) this.isAdmin = true;
-        $rootScope.$emit('loggedin');
-        if (destination) {
-          $location.path(destination.replace(/^"|"$/g, ''));
-          $cookieStore.remove('redirect');
-        } else {
-          $location.url('/');
-        }
-      } else {
-        this.user = response;
-        this.loggedin = true;
-        if (this.user.roles.indexOf('admin') !== -1) this.isAdmin = true;
-        $rootScope.$emit('loggedin');
+        encodedUser = decodeURI(b64_to_utf8(response.token.split('.')[1]));
+        user = JSON.parse(encodedUser); 
       }
+      destination = angular.isDefined(response.redirect) ? response.redirect : destination;
+      this.user = user || response;
+      this.loggedin = true;
+      this.loginError = 0;
+      this.registerError = 0;
+      this.isAdmin = !! (this.user.roles.indexOf('admin') + 1);
+      if (destination) $location.path(destination);
+      $rootScope.$emit('loggedin');
     };
 
     MeanUserKlass.prototype.onIdFail = function (response) {
@@ -156,7 +155,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
 
         // Not Authenticated
         else {
-          $cookieStore.put('redirect', $location.path());
+          $cookies.put('redirect', $location.path());
           $timeout(deferred.reject);
           $location.url('/auth/login');
         }
@@ -201,15 +200,6 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
 
       return deferred.promise;
     };
-
-    //Temporary code
-    var tokenWatch = $rootScope.$watch(function() { return $cookies.get('token'); }, function(newVal, oldVal) {
-        if (newVal && newVal !== undefined && newVal !== null && newVal !== '') {
-         self.onIdentity({token: $cookies.get('token')});
-         $cookieStore.remove('token');
-         tokenWatch();
-        }
-      });
 
     return MeanUser;
   }
