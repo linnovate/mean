@@ -11,6 +11,7 @@ console.log = function(){
 // Requires meanio .
 var mean = require('meanio');
 var cluster = require('cluster');
+var deferred = require('q').defer();
 
 
 // Code to run if we're in the master process or if we are not in debug mode/ running tests
@@ -50,7 +51,11 @@ if ((cluster.isMaster) &&
 // Creates and serves mean application
     mean.serve({ workerid: workerId /* more options placeholder*/ }, function (app) {
       var config = app.config.clean;
-        var port = config.https && config.https.port ? config.https.port : config.http.port;
-        console.log('Mean app started on port ' + port + ' (' + process.env.NODE_ENV + ') cluster.worker.id:', workerId);
+      var port = config.https && config.https.port ? config.https.port : config.http.port;
+      console.log('Mean app started on port ' + port + ' (' + process.env.NODE_ENV + ') cluster.worker.id:', workerId);
+
+      deferred.resolve(app);
     });
 }
+
+module.exports = deferred.promise;
