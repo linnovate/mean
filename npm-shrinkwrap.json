@@ -6392,6 +6392,11 @@
         }
       }
     },
+    "q": {
+      "version": "1.4.1",
+      "from": "q@latest",
+      "resolved": "https://registry.npmjs.org/q/-/q-1.4.1.tgz"
+    },
     "request": {
       "version": "2.60.0",
       "from": "https://registry.npmjs.org/request/-/request-2.60.0.tgz",
