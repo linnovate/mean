@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
   gulpLoadPlugins = require('gulp-load-plugins'),
   request = require('request'),
-  karma = require('karma').server,
+  karmaServer = require('karma').Server,
   _ = require('lodash'),
   fs = require('fs'),
   assets = require('../config/assets.json');
@@ -12,8 +12,9 @@ process.env.NODE_ENV = 'test';
 
 gulp.task('test', ['startServer', 'stopServer']);
 gulp.task('startServer', function(done) {
-  require('../server.js');
-  done();
+  var promise = require('../server.js');
+
+  promise.then(function(app){done();});
 });
 gulp.task('stopServer', ['runKarma'], function() {
   process.exit();
@@ -29,13 +30,15 @@ gulp.task('runKarma', ['runMocha'], function (done) {
     var aggregatedassets = JSON.parse(body);
     aggregatedassets = processIncludes(aggregatedassets.footer.js);
 
-    karma.start({
+    var karma = new karmaServer({
       configFile: __dirname + '/../karma.conf.js',
       singleRun: true,
       files: aggregatedassets.concat(['packages/**/public/tests/**/*.js', 'packages/**/public/**/*.html'])
     }, function () {
       done();
     });
+
+    karma.start();
   });
 });
 
