@@ -23,7 +23,7 @@ exports.config = {
     return capsPromise.then(function(caps){
       var browserName = caps.caps_.browserName;
       var browserVersion = caps.caps_.version;
-      var browserPrefix = browserName + "-" + browserVersion + "-";
+      var browserPrefix = browserName + '-' + browserVersion + '-';
       jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter({
         savePath: 'tests/results/e2e/junit',
         filePrefix: browserPrefix,
