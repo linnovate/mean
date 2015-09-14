@@ -13,7 +13,6 @@ process.env.NODE_ENV = 'test';
 gulp.task('test', ['startServer', 'stopServer']);
 gulp.task('startServer', function(done) {
   require('../server.js');
-  require('../node_modules/meanio/lib/core_modules/module/util').preload('../packages/**/server', 'model');
   done();
 });
 gulp.task('stopServer', ['runKarma'], function() {
@@ -33,7 +32,7 @@ gulp.task('runKarma', ['runMocha'], function (done) {
     karma.start({
       configFile: __dirname + '/../karma.conf.js',
       singleRun: true,
-      files: aggregatedassets.concat(['packages/**/public/tests/*.js'])
+      files: aggregatedassets.concat(['packages/**/public/tests/**/*.js', 'packages/**/public/**/*.html'])
     }, function () {
       done();
     });

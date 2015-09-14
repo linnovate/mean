@@ -60,7 +60,7 @@ bower_components
 # App Files
 # --------------------
 data/
-test/coverage/
+tests/results/**
 modules/public/
 modules/views/
 /public/build/
