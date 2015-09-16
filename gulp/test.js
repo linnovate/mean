@@ -20,7 +20,7 @@ gulp.task('stopServer', ['runKarma'], function() {
   process.exit();
 });
 gulp.task('runMocha', ['startServer'], function () {
-  return gulp.src('./packages/**/server/tests/**/*.js', {read: false})
+  return gulp.src('./packages/**/server/tests/**/*.spec.js', {read: false})
     .pipe(plugins.mocha({
       reporter: 'spec'
     }));
