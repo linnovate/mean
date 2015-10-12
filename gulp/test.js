@@ -25,7 +25,7 @@ gulp.task('runMocha', ['startServer'], function () {
       reporter: 'spec'
     }))
     .on('error', function(error){
-      console.error(errro);
+      console.error(error);
       this.emit('end');
     });
 });
