@@ -23,7 +23,11 @@ gulp.task('runMocha', ['startServer'], function () {
   return gulp.src('./packages/**/server/tests/**/*.spec.js', {read: false})
     .pipe(plugins.mocha({
       reporter: 'spec'
-    }));
+    }))
+    .on('error', function(error){
+      console.error(errro);
+      this.emit('end');
+    });
 });
 gulp.task('runKarma', ['runMocha'], function (done) {
   request('http://localhost:3001/api/aggregatedassets', function(error, response, body) {
