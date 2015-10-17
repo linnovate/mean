@@ -241,7 +241,7 @@ The "access" package manages permissions and middleware. It controls the various
 The "theme" package adds some basic CSS and other assets such as images and backgrounds
 #### Articles
 The "articles" package is typically used as an example starting point for managing content that might be used in a blog or cms. The full CRUD is implemented on the server and client.
-### Files structure
+### File structure
 The file structure is similar to that of the mean project itself
 
 `Fundamental` Files at the `root` of the package
