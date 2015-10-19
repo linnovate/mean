@@ -86,7 +86,7 @@ angular.module('mean.admin').controller('UsersController', ['$scope', 'Global', 
         };
 
         $scope.update = function(user, userField) {
-            if (userField && userField === 'roles' && user.roles.indexOf('admin') === -1) {
+            if (userField && userField === 'roles' && user.tmpRoles.indexOf('admin') !== -1 && user.roles.indexOf('admin') === -1) {
                 if (confirm('Are you sure you want to remove "admin" role?')) {
                     user.$update();
                 } else {
