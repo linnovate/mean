@@ -38,14 +38,6 @@ SystemPackage.register(function(app, auth, database, circles) {
   // Adding robots and humans txt
   app.useStatic(__dirname + '/public/assets/static');
 
-  SystemPackage.menus.add({
-    title: 'Log Out',
-    link: 'Log Out',
-    roles: ['authenticated'],
-    menu: 'account'
-  });
-  
-
   return SystemPackage;
 
 });
