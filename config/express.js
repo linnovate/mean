@@ -13,9 +13,13 @@ var mean = require('meanio'),
   flash = require('connect-flash'),
   modRewrite = require('connect-modrewrite'),
   // seo = require('mean-seo'),
-  config = mean.loadConfig();
+  config = mean.loadConfig(),
+  bodyParser = require('body-parser');
 
 module.exports = function(app, db) {
+
+  app.use(bodyParser.json(config.bodyParser.json));
+  app.use(bodyParser.urlencoded(config.bodyParser.urlencoded));
 
   app.set('showStackError', true);
 
