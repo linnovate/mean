@@ -3448,7 +3448,7 @@
       "resolved": "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz"
     },
     "meanio": {
-      "version": "0.8.82",
+      "version": "0.8.83",
       "dependencies": {
         "complex-list": {
           "version": "0.1.4",
