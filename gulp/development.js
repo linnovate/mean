@@ -40,9 +40,7 @@ gulp.task('csslint', function () {
 gulp.task('less', function() {
   return gulp.src(paths.less)
     .pipe(plugins.less())
-    .pipe(gulp.dest(function (vinylFile) {
-      return vinylFile.cwd;
-    }));
+    .pipe(gulp.dest('./packages'));
 });
 
 gulp.task('devServe', ['env:development'], function () {
