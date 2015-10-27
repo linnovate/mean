@@ -3,4 +3,4 @@
 process.env.NODE_ENV = 'test';
 var appRoot = __dirname + '/../../';
 require(appRoot + 'server.js');
-require('meanio/lib/util').preload(appRoot + '/packages/**/server', 'model');
+require('meanio/lib/core_modules/module/util').preload(appRoot + '/packages/**/server', 'model');

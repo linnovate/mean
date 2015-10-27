@@ -1,0 +1,18 @@
+{
+  "name": "i18n",
+  "version": "0.0.1",
+  "description": "Some description of i18n",
+  "author": {
+    "name": "mean scaffold"
+  },
+  "mean": "0.5.0",
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.4.x"
+  },
+  "scripts": {
+    "postinstall": "bower install"
+  },
+  "dependencies": {},
+  "license": "MIT"
+}

@@ -1,3 +1,4 @@
 {
-	"dependencies":{"mean-admin":"latest"}
+    "dependencies": {},
+    "anonymizedData": true
 }

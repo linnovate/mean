@@ -1,0 +1,19 @@
+
+<div ng-controller="ExampleController as vm" id="admin-example-page">
+
+    <h3>Module settings example page</h3>
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">App Name:</label>
+            <div class="col-sm-10">
+                <input type="text" ng-model="vm.app.name">
+            </div>
+        </div>
+        <hr>
+        <button class="btn btn-success" ng-click="vm.save()">
+            <span class="glyphicon glyphicon-save"></span> Save Changes
+        </button>
+    </form>
+
+</div>

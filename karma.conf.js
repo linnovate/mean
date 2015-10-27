@@ -2,9 +2,7 @@
 
 // Karma configuration
 module.exports = function(config) {
-  var _ = require('lodash'),
-    basePath = '.',
-    assets = require(basePath + '/config/assets.json');
+  var basePath = '.';
 
   config.set({
 
@@ -12,37 +10,54 @@ module.exports = function(config) {
     basePath: basePath,
 
     // frameworks to use
-    frameworks: ['jasmine'],
-
-    // list of files / patterns to load in the browser
-    files: _.flatten(_.values(assets.core.js)).concat([
-      'packages/*/public/*.js',
-      'packages/*/public/*/*.js'
-    ]),
+    frameworks: ['jasmine', 'phantomjs-shim'],
 
     // list of files to exclude
     exclude: [],
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['progress', 'coverage'],
+    reporters: ['progress', 'coverage', 'junit'],
+
+    junitReporter: {
+      outputDir: 'tests/results/public/junit/'
+    },
 
     // coverage
     preprocessors: {
       // source files that you want to generate coverage for
       // do not include tests or libraries
       // (these files will be instrumented by Istanbul)
-      'packages/*/public/controllers/*.js': ['coverage'],
-      'packages/*/public/services/*.js': ['coverage']
+      'packages/**/public/controllers/**/*.js': ['coverage'],
+      'packages/**/public/services/**/*.js': ['coverage'],
+      'packages/**/public/directives/**/*.js': ['coverage'],
+
+      'packages/**/public/**/*.html': ['ng-html2js']
     },
 
     coverageReporter: {
       type: 'html',
-      dir: 'test/coverage/'
+      dir: 'tests/results/coverage/'
+    },
+
+    ngHtml2JsPreprocessor: {
+      cacheIdFromPath: function(path){
+        var cacheId = path;
+
+        //Strip packages/custom/ and public/ to match the pattern of URL that mean.io uses
+        cacheId = cacheId.replace('packages/custom/', '');
+        cacheId = cacheId.replace('public/', '');
+
+        return cacheId;
+      }
     },
 
     // web server port
     port: 9876,
+    // Look for server on port 3001 (invoked by mocha) - via @brownman
+    proxies: {
+      '/': 'http://localhost:3001/'
+    },
 
     // enable / disable colors in the output (reporters and logs)
     colors: true,
@@ -52,7 +67,7 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
 
     // Start these browsers, currently available:
     // - Chrome

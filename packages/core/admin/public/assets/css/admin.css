@@ -1,0 +1,138 @@
+#admin-menu {
+    z-index:1;
+    position: fixed;
+    background-color: #176583;
+    height: 100%;
+    top: 50px;
+    width: 60px;
+}
+
+#admin-menu .nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #103c4d;
+}
+
+#admin-menu .nav , #admin-menu .open-icon, #admin-menu .wrapper-ninja {
+    width: 60px;
+    background-color: #176583;
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    -ms-transition-duration: 0.5s;
+}
+#admin-menu .open-icon {
+    padding: 15px 15px;
+    font-size: 1.5em;
+    color: #89D7F3;
+    cursor: pointer;
+    top: 0px;
+}
+#admin-menu .opened .open-icon {
+    text-align: right;
+}
+
+#admin-menu ul li {
+    border-bottom: solid 1px #217D99;
+}
+
+#admin-menu .stable .showbox {
+    position: absolute;
+    top: 0;
+    width: 0;
+    left: 60px;
+    line-height: 44px;
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    -ms-transition-duration: 0.5s;
+    transition-property: width, font-size;
+    font-size: 0;
+    color: #89D7F3;
+    cursor: pointer;
+    background-color: #176583;
+    border-bottom: solid 1px #217D99;
+}
+
+#admin-menu .opened .nav, #admin-menu .opened .wrapper-ninja , #admin-menu .opened .open-icon {
+  width: 250px;
+}
+#admin-menu .opened .showbox {
+    font-size: inherit;
+}
+
+#admin-menu .wrapper-ninja {
+    height: 100%;
+    position: fixed;
+}
+
+#admin-menu .opened .ninja {
+    position:absolute;
+    width: 287px;
+}
+#admin-menu .ninja {
+    width: 0;
+    height: 305px;
+    background: url(/admin/assets/img/ninja/ninja.png) no-repeat;
+    position: absolute;
+    bottom: 60px;
+    left: 0px;
+    -webkit-transition-duration: 0.4s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    -ms-transition-duration: 0.5s;
+}
+
+
+tr.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+span.editable-wrapper input {
+    width: 80%;
+}
+
+#admin-example-page form {
+    margin-top: 85px;
+}
+#modules-tab .wrapper {
+    margin-top: 35px;
+}
+
+
+#modules-tab .wrapper .grid-title.row {
+    background: white;
+    border: solid 1px rgb(232, 228, 225);
+    padding: 10px 0;
+}
+
+#modules-tab .wrapper .module {
+    background: rgb(254, 250, 247);
+    border: solid 1px rgb(232, 228, 225);
+    border-top: none;
+    padding: 10px 0;
+}
+
+#modules-tab .wrapper .module {
+    background: rgb(254, 250, 247);
+    border: solid 1px rgb(232, 228, 225);
+    border-top: none;
+    padding: 10px 0;
+    border-left: solid 3px #176583;
+}
+
+#modules-tab .wrapper .module .name {
+    font-weight: bold;
+}
+#modules-tab .wrapper .module a {
+    color: rgb(34, 134, 173);
+    font-size: 12px;
+}
+
+.users .actions-bar {
+    clear: both;
+    margin: 20px 0;
+}
+
+
+

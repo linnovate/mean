@@ -1,0 +1,60 @@
+<section data-ng-controller="UsersController" class="users">
+
+
+    <form id="user-add-form" class="row-fluid form-horizontal col-sm-6 well" name="addUserForm" ng-show="showForm">
+      <div ng-repeat="error in userError" class="col-sm-12">
+        <div class="alert alert-danger animated fadeIn">{{error.msg}}</div>
+      </div>
+        <div data-ng-repeat="field in userSchema">
+            <div class="form-group row">
+                <label for="user-add-{{field['title']}}" class="col-sm-2 control-label">{{field['title']}}</label>
+                <div class="col-sm-10">
+                    <input data-ng-if="(field['type'] == 'text' || field['type'] == 'email' || field['type'] == 'password')" type="{{field['type']}}" class="span2 form-control" data-ng-model="user[field['schemaKey']]" placeholder="{{field['title']}}" id="user-add-{{field['title']}}" required/>
+                    <select data-ng-if="field['type'] == 'select'" data-ng-model="user[field['schemaKey']]" ng-multiple="true" multiple ng-options="option for option in field['options']" class="form-control" required>
+                        <option value="">-- Choose Role --</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-offset-2 col-sm-4">
+            <button  class="btn" ng-click="add(addUserForm.$valid)">Add</button>
+            <input class="btn" type="button" value="Cancel" ng-click="showForm = false; user= {}"/>
+        </div>
+    </form>
+
+    <div class="loader" data-ng-init="init()" data-ng-hide="users.length"></div>
+       <!--  <div class="col-sm-6 well" ng-show="!showForm" ng-click="showForm=true;">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Add user
+        </div> -->
+
+    <div class="actions-bar" data-ng-show="users.length">
+       <!--  <input type="button" class="btn" data-ng-hide="edit" data-ng-click="edit=!edit" value="Edit">
+        <input type="button" class="btn btn-primary" data-ng-show="edit" data-ng-click="edit=!edit" value="Done"> -->
+        <button class="btn" data-ng-hide="edit" data-ng-click="edit=!edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;Edit</button>
+        <button class="btn btn-primary" data-ng-show="edit" data-ng-click="edit=!edit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp; Done</button>
+        <button class="btn" ng-show="!showForm" ng-click="showForm=true;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add user</button>
+        <!-- <input type="button" class="btn" ng-show="!showForm" ng-click="showForm=true;"/> -->
+    </div>
+
+    <table class="table table-striped table-bordered table-hover editable-table" data-ng-show="users.length">
+        <tr>
+            <th data-ng-show="edit">
+                Edit
+            </th>
+            <th data-ng-repeat="field in userSchema" data-ng-if="field.inTable">{{field.title}}</th>
+        </tr>
+        <tr data-ng-repeat="user in users">
+            <td data-ng-show="edit">
+                <button class="btn btn-danger glyphicon glyphicon-trash" data-ng-click="remove(user)" value="del">
+                    <i class="icon-trash icon-white"></i>
+                </button>
+            </td>
+            <td class="table-editable-cell" data-ng-repeat="field in userSchema" data-ng-if="field.inTable">
+                <span data-ng-if="(field['type'] == 'text' || field['type'] == 'email')" class="editable-span" data-ng-editable="update(user)" data-ng-editable-model="user[field['schemaKey']]"></span>
+                <span data-ng-click="beforeSelect(field['schemaKey'], user)" data-ng-if="(field['type'] == 'select')" class="editable-span" data-ng-editable-select="update(user, field['schemaKey'])" data-ng-editable-select-model="user[field['schemaKey']]" data-ng-editable-select-options="field['options']">
+                </span>
+            </td>
+        </tr>
+    </table>
+</section>

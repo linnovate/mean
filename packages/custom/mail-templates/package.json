@@ -1,0 +1,26 @@
+{
+  "name": "mail-templates",
+  "version": "0.0.1",
+  "description": "Some description of mail-templates",
+  "author": {
+    "name": "mean scaffold"
+  },
+  "mean": "0.5.5",
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.4.x"
+  },
+  "dependencies": {
+    "ejs": "^2.3.4",
+    "email-templates": "^2.0.1",
+    "emblem": "^0.6.1",
+    "handlebars": "^4.0.2",
+    "jade": "^1.11.0",
+    "less": "^2.5.1",
+    "node-sass": "^3.3.2",
+    "styl": "^0.2.9",
+    "stylus": "^0.52.4",
+    "swig": "^1.4.2"
+  },
+  "license": "MIT"
+}

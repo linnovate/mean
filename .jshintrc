@@ -14,7 +14,7 @@
     "noarg"         : true,     // true: Prohibit use of `arguments.caller` and `arguments.callee`
     "noempty"       : true,     // true: Prohibit use of empty blocks
     "nonew"         : true,     // true: Prohibit use of constructors for side-effects (without assignment)
-    "plusplus"      : true,     // true: Prohibit use of `++` & `--`
+    "plusplus"      : false,     // true: Prohibit use of `++` & `--`
     "quotmark"      : "single", // Quotation mark consistency:
                                 //   false    : do nothing (default)
                                 //   true     : ensure whatever is used is consistent
@@ -30,7 +30,7 @@
     "maxlen"        : false,    // {int} Max number of characters per line
 
     // Relaxing
-    "asi"           : false,     // true: Tolerate Automatic Semicolon Insertion (no semicolons)
+    "asi"           : true,     // true: Tolerate Automatic Semicolon Insertion (no semicolons)
     "boss"          : false,     // true: Tolerate assignments where comparisons would be expected
     "debug"         : false,     // true: Allow debugger statements e.g. browser breakpoints.
     "eqnull"        : false,     // true: Tolerate use of `== null`
@@ -72,6 +72,7 @@
 
     // Custom Globals
     "globals": {
+      "$"           : true,
       "angular"     : true,
       "define"      : false,
       "jasmine"     : false,

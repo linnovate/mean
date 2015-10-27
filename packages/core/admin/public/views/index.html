@@ -1,0 +1,17 @@
+<div id="admin-menu" ng-controller="AdminController" ng-show="user.isAdmin">
+    <div data-ng-init="openWide=false" ng-class="{'opened': openWide}">
+        <ul class="nav">
+            <li class="stable" data-ng-repeat="item in menus.admin" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}" ui-sref='{{item.link}}'>
+                <a href="">
+                    <img data-ng-show="item.icon" ng-src="{{item.icon}}">
+                    <img data-ng-show="!item.icon" src="admin/assets/img/icons/settings.png">
+                </a>
+                <div class="showbox" mean-token="item.title">{{item.title}}</div>
+            </li>
+        </ul>
+        <div class="glyphicon open-icon" ng-click="openWide=!openWide" ng-class="{true: 'glyphicon-menu-left', false: 'glyphicon-menu-right'}[openWide]"></div>
+        <div class="wrapper-ninja"> </div>
+            <div class="ninja"></div>
+        </div>
+    </div>
+</div>
