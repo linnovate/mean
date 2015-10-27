@@ -45,7 +45,7 @@ Then, open a browser and go to:
   http://localhost:3000
 ```
 
-#Running on a different port
+### Running on a different port
 If you have a rails, node, or other mean project already running, you may need to use a different port. You can set the port and start your new mean project with one command:
 ```bash
 $ export PORT=3001 && gulp
