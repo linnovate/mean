@@ -179,15 +179,9 @@ $ mean help [command]
   <p>For example, the <i>admin</i> role is required to edit tokens.</p>
 
 ```bash
-<<<<<<< HEAD
   $ mean user <email>
   $ mean user <email> --addRole <role>;
   $ mean user <email> --removeRole <role>;
-=======
-$ mean user <email>
-$ mean user <email> --addRole <role>;
-$ mean user <email> --removeRole <role>;
->>>>>>> upstream/master
 ```
 
 ### Packages
@@ -281,15 +275,9 @@ All of the Server side code resides in the `/server` directory.
 
 All of the Client side code resides in the `/public` directory.
 
-<<<<<<< HEAD
-    public
-    --- assets        # Javascript/Css/Images (not aggregated)
-    --- controllers   # Angular Controllers
-=======
     public            
     --- assets        # JavaScript/CSS/Images (not aggregated)
     --- controllers   # Angular controllers
->>>>>>> upstream/master
     --- config        # Contains routing files
     --- services      # Angular services (also directive and filter folders)
     --- views         # Angular views
@@ -300,11 +288,7 @@ Files within the `public` directory of the package can be accessed externally at
 
 ###Registering a Package
 
-<<<<<<< HEAD
-In order for a Package to work it needs to be registered. By doing this you make package system aware that you are ready and that other packages are able to depend on you. The packages are registered from within `app.js`
-=======
 In order for a Package to work it needs to be registered. By doing this you make the package system aware that you are ready and that other packages are able to depend on you. The packages are registered from within `app.js`.
->>>>>>> upstream/master
 
 When registering you are required to declare all your dependencies in order for the package system to make them available to your package.
 
@@ -312,16 +296,8 @@ When registering you are required to declare all your dependencies in order for 
 // Example of registering the MyPackage
 MyPackage.register(function(app, auth, database) {
   // ...
-
-<<<<<<< HEAD
-    // Example of registering the MyPackage
-    MyPackage.register(function(app, auth, database) {
-
-    });
-=======
 });
 ```
->>>>>>> upstream/master
 
 MEAN has 3 pre registered dependencies:
   - `app` Makes the express app available .
@@ -341,17 +317,11 @@ MEAN has 3 pre registered dependencies:
 
 Dependency injection allows you to declare what dependencies you require and rely on the package system to resolve all dependencies for you. Any package registered is automatically made available to anyone who would like to depend on them.
 
-<<<<<<< HEAD
-Looking again at the registration example we can see that `MyPackage` depends on the `Tokens` and can make use of it full functionality including overriding it.
-
-
-=======
 Looking again at the registration example we can see that `MyPackage` depends on the `Tokens` package and can make use of its full functionality, including overriding it.
  
 ```javascript
 // Example of registering the tokens package
 MyPackage.register(function(app, auth, database, Tokens) {
->>>>>>> upstream/master
 
   // I can make use of the tokens within my module
   MyPackage.someExampleFunction('some parameter');
@@ -389,19 +359,7 @@ All assets such as images, javascript libraries and CSS stylesheets should be wi
 
 Javascript and CSS from `assets` can be aggregated to the global aggregation files. By default all javascript is automatically wrapped within an anonymous function unless given the option `{global:true}` to not enclose the javascript within a contained scope
 
-
-<<<<<<< HEAD
-      //Adding jquery to the mean project
-      MyPackage.aggregateAsset('js','jquery.min.js');
-
-      //Adding another library - global by default is false
-      MyPackage.aggregateAsset('js','jquery.min.js', {global:true});
-
-      //Adding some css to the mean project
-      MyPackage.aggregateAsset('css','default.css');
-=======
 ```javascript
->>>>>>> upstream/master
 
 //Adding jquery to the mean project
 MyPackage.aggregateAsset('js','jquery.min.js');
@@ -431,15 +389,11 @@ MyPackage.aggregateAsset('js','first.js',{global:true,  weight: -4, group: 'head
 The settings object is a persistence object that is stored in the packages collection and allows for saving persistent information per package such as configuration options or admin settings for the package.
 
   Receives two arguments the first being the settings object the second is a callback function
-<<<<<<< HEAD
-
-=======
   
 ```javascript
 MyPackage.settings({'someSetting':'some value'}, function (err, settings) {
     // You will receive the settings object on success
 });
->>>>>>> upstream/master
 
 // Another save settings example this time with no callback
 // This writes over the last settings.
@@ -465,17 +419,6 @@ All routing to server side controllers is handled by express routes. The package
 
 Example from the `server/routes/myPackage.js`
 
-<<<<<<< HEAD
-      // The Package is past automatically as first parameter
-      module.exports = function(MyPackage, app, auth, database) {
-
-      //example route
-      app.get('/myPackage/example/anyone', function (req,res,next) {
-        res.send('Anyone can access this');
-      });
-
-    };
-=======
 ```javascript
 // The Package is past automatically as first parameter
 module.exports = function(MyPackage, app, auth, database) {
@@ -486,7 +429,6 @@ module.exports = function(MyPackage, app, auth, database) {
   });
 };
 ```
->>>>>>> upstream/master
 
 ###Angular Routes
 The angular routes are defined in `public/routes/myPackage.js`. Just like the latest version of mean, the packages  use the `$stateProvider`
@@ -586,18 +528,11 @@ Where "myPackage" is the name of your package.
 ### Contributing your package
 Once your package is in good shape and you want to share it with the world you can start the process of contributing it and submiting it so it can be included in the package repository.
 To contribute your package register to the network (see the section below) and run
-<<<<<<< HEAD
-```bash
-mean register // register to the mean network (see below)
-cd packages/custom/pkgNName>
-mean publish
-=======
 
 ```bash 
 $ mean register # register to the mean network (see below)
 $ cd <packages/custom/pkgName>
 $ mean publish
->>>>>>> upstream/master
 ```
 
 ## MEAN Network
@@ -766,9 +701,4 @@ $ heroku config:set NODE_ENV=production
   * <a href="https://github.com/madhums/">Madhusudhan Srinivasa</a> who inspired us with his great work.
 
 ## License
-<<<<<<< HEAD
-We belive that mean should be free and easy to integrate within your existing projects so we chose the [The MIT License](http://opensource.org/licenses/MIT)
-=======
 We believe that mean should be free and easy to integrate within your existing projects so we chose [The MIT License](http://opensource.org/licenses/MIT)
-
->>>>>>> upstream/master
