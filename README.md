@@ -68,6 +68,17 @@ Then, open a browser and go to:
 http://localhost:3000
 ```
 
+### Running on a different port
+If you have a rails, node, or other mean project already running, you may need to use a different port. You can set the port and start your new mean project with one command:
+```bash
+$ export PORT=3001 && gulp
+```
+
+Then, open a browser and change the port number before you visit:
+```bash
+  http://localhost:3001
+```
+
 ### Troubleshooting
 During installation depending on your os and prerequisite versions you may encounter some issues.
 
@@ -168,9 +179,9 @@ $ mean help [command]
   <p>For example, the <i>admin</i> role is required to edit tokens.</p>
 
 ```bash
-$ mean user <email>
-$ mean user <email> --addRole <role>;
-$ mean user <email> --removeRole <role>;
+  $ mean user <email>
+  $ mean user <email> --addRole <role>;
+  $ mean user <email> --removeRole <role>;
 ```
 
 ### Packages
@@ -248,8 +259,8 @@ The file structure is similar to that of the mean project itself
 
 **Server**
 
-Packages are registered in the **app.js** 
-Defines package name, version and `mean=true` in the **package.json**   
+Packages are registered in the **app.js**
+Defines package name, version and `mean=true` in the **package.json**
 
 All of the Server side code resides in the `/server` directory.
 
@@ -285,7 +296,6 @@ When registering you are required to declare all your dependencies in order for 
 // Example of registering the MyPackage
 MyPackage.register(function(app, auth, database) {
   // ...
-
 });
 ```
 
@@ -349,7 +359,6 @@ All assets such as images, javascript libraries and CSS stylesheets should be wi
 
 Javascript and CSS from `assets` can be aggregated to the global aggregation files. By default all javascript is automatically wrapped within an anonymous function unless given the option `{global:true}` to not enclose the javascript within a contained scope
 
-
 ```javascript
 
 //Adding jquery to the mean project
@@ -373,7 +382,7 @@ MyPackage.aggregateAsset('js','first.js',{global:true,  weight: -4, group: 'head
 ```
 
 >The line that gets loaded in your head.html calls the header group and injects the js you want to include first-
-> in packages/system/server/views/includes/head.html 
+> in packages/system/server/views/includes/head.html
 > <script type="text/javascript" src="/modules/aggregated.js?group=header"></script>
 
 ###Settings Object
@@ -693,4 +702,3 @@ $ heroku config:set NODE_ENV=production
 
 ## License
 We believe that mean should be free and easy to integrate within your existing projects so we chose [The MIT License](http://opensource.org/licenses/MIT)
-
