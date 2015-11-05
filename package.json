@@ -10,6 +10,7 @@
     "type": "git",
     "url": "https://github.com/linnovate/mean.git"
   },
+  "license": "MIT",
   "scripts": {
     "start": "node server",
     "mocha": "node tools/test/run-mocha.js",
