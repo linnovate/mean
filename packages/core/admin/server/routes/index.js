@@ -13,7 +13,7 @@ module.exports = function(Admin, app, auth, database) {
     app.put('/api/admin/users/:userId', auth.requiresAdmin, users.update);
     app.delete('/api/admin/users/:userId', auth.requiresAdmin, users.destroy);
 
-    //Setting up the users api
+    //Setting up the themes api
     var themes = require('../controllers/themes');
     app.get('/api/admin/themes', auth.requiresAdmin, function(req, res) {
         themes.save(req, res, gfs);
