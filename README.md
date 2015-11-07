@@ -538,7 +538,7 @@ $ mean publish
 ## MEAN Network
 Mean is a stand-alone instance that you can install locally or host on your server.
 We want to provide value to developers and are assembling a set of services which will be called the mean network.
-We're building all of this as we speak but we allready have some elements in place.
+We're building all of this as we speak but we already have some elements in place.
 
 ### Network User Management
 
@@ -601,7 +601,7 @@ $ npm test
 
 ### Logging
 
-As from mean-0.4.4 control over the logging format has been delgated to the env configuration files.
+As from mean-0.4.4 control over the logging format has been delegated to the env configuration files.
 The formats and implementation are done using the morgan node module and it's [predefined format](https://github.com/expressjs/morgan#predefined-formats)
 Within each configuration file (config/env/development.js) for instance you state the format in the 'logging' object.
 ```
