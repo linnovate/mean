@@ -1,6 +1,10 @@
 language: node_js
 node_js:
   - "0.10"
+  - "0.12"
+  - "4.0"
+  - "4.2"
+  - "5.0"
 env:
   - NODE_ENV=development
 services:
