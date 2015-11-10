@@ -5,9 +5,9 @@
 2. If that's the case, then add your observations in that same issue
 3. If your issue is unique, add following details in the issue
   1. OS name and version
-  2. NodeJS and NPM version
-  3. MEAN Version
-  4. Tracelog
+  2. NodeJS and NPM version : Output of `node -v` and `npm -v`
+  3. MEAN Status : Output of `mean status` in project directory
+  4. Tracelog : The error that got printed on the console
   5. Any other relevant details
 4. Add `[Feature]` in the title if its a suggestion rather than an issue that you would like to see in MEAN.
 
