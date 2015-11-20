@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" data-role="navigation" ng-controller="HeaderController as hdrctr">
+<nav class="navbar navbar-fixed-top" data-role="navigation" ng-controller="HeaderController as hdrctr">
     <div class="page-header">
         <div class="navbar-header">
             <div class="logo pull-left">
@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" ui-sref="home" mean-token="'site-title'">MEAN</a>
+                <a class="navbar-brand" ui-sref="home" mean-token="'site-title'">Swapy!</a>
             </div>
         </div>
 
@@ -26,7 +26,7 @@
                     <div class="pull-right" mean-token-editable></div>
                     <div class="pull-right" mean-translate></div>
                 </div>
-                <ul class="navbar-nav nav auth-link" ng-show="!hdrctr.hdrvars.authenticated">
+                <ul class="navbar-nav nav auth-link" ng-show="false && !hdrctr.hdrvars.authenticated">
                     <li><a ui-sref='auth.register'>Join</a></li>
                     <li class="divider-vertical"></li>
                     <li><a ui-sref='auth.login'>Log In</a></li>
