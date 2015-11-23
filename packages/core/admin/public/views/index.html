@@ -5,8 +5,8 @@
                 <a href="">
                     <img data-ng-show="item.icon" ng-src="{{item.icon}}">
                     <img data-ng-show="!item.icon" src="admin/assets/img/icons/settings.png">
+                    <div class="showbox" mean-token="item.title">{{item.title}}</div>
                 </a>
-                <div class="showbox" mean-token="item.title">{{item.title}}</div>
             </li>
         </ul>
         <div class="glyphicon open-icon" ng-click="openWide=!openWide" ng-class="{true: 'glyphicon-menu-left', false: 'glyphicon-menu-right'}[openWide]"></div>
