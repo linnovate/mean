@@ -6,7 +6,7 @@ module.exports = function(System, app, auth, database) {
 
     app.route('/api/admin/menu/:name')
         .get(function(req, res) {
-            var roles = req.user ? JSON.parse(JSON.stringify(req.user.roles)) : ['anonymous'],
+            var roles = req.user ? JSON.parse(JSON.stringify(req.acl.user.allowed)) : ['anonymous'],
             menu = req.params.name || 'main',
             defaultMenu = req.query.defaultMenu || [],
             itemsRes = [],
@@ -15,9 +15,9 @@ module.exports = function(System, app, auth, database) {
             if (menu === 'main' && roles.indexOf('admin') !== -1) {
                 roles.splice(roles.indexOf('admin'), 1);
             } else if (menu === 'modules') {
-                menu = 'main'
+                menu = 'main';
                 tmpMenu = 'modules';
-            };
+            }
 
 
             if (!Array.isArray(defaultMenu)) defaultMenu = [defaultMenu];
