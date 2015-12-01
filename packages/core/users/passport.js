@@ -92,7 +92,8 @@ module.exports = function(passport) {
   passport.use(new FacebookStrategy({
       clientID: config.strategies.facebook.clientID,
       clientSecret: config.strategies.facebook.clientSecret,
-      callbackURL: config.strategies.facebook.callbackURL
+      callbackURL: config.strategies.facebook.callbackURL,
+      profileFields: ['id', 'displayName', 'emails']
     },
     function(accessToken, refreshToken, profile, done) {
       User.findOne({
