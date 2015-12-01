@@ -16,9 +16,10 @@ var Circles = new Module('circles');
 
 Circles.register(function(app, auth, database) {
 
+  Circles.registerCircle = registerCircle;
   Circles.routes(app, auth, database);
-
   Circles.aggregateAsset('css', 'circles.css');
+  Circles.angularDependencies(['mean.users']);
 
   Circles.menus.add({
     title: 'Circles',
@@ -29,42 +30,39 @@ Circles.register(function(app, auth, database) {
 
   Circles.models = {};
 
-  ensureCirclesExist();
+  Circles.registerCircle('admin');
+  Circles.registerCircle('can delete content', ['admin']);
+  Circles.registerCircle('can edit content', ['admin']);
+  Circles.registerCircle('can create content', ['admin']);
+  Circles.registerCircle('authenticated');
+  Circles.registerCircle('anonymous');
 
   return Circles;
 });
 
-
-function ensureCirclesExist() {
-
-  var requiredCircles = ['anonymous', 'authenticated', 'can create content', 'can edit content', 'can delete content', 'admin'];
+function registerCircle(name, parents) {
   var Circle = require('mongoose').model('Circle');
-  requiredCircles.forEach(function(circle, index) {
-    var query = {
-      name: circle
+
+  var query = { name: name };
+  var set = {};
+  if(parents) {
+    set.$push = {
+      circles: parents
     };
+  }
 
-    var set = {};
-    if (requiredCircles[index + 1]) {
-
-      set.$push = {
-        circles: requiredCircles[index + 1]
-      };
+  Circle.findOne(query, function(err, data) {
+    if (!err && !data) {
+      Circle.findOneAndUpdate(query, set, {
+        upsert: true
+      }, function(err) {
+        if (err) {
+          console.log(err);
+        }
+      });
     }
-
-    Circle.findOne(query, function(err, data) {
-      if (!err && !data) {
-        Circle.findOneAndUpdate(query, set, {
-          upsert: true
-        }, function(err) {
-          if (err) console.log(err);
-        });
-      }
-    })
-
   });
 }
-
 
 /*
 Y Override queries to check user permisisons
