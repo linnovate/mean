@@ -38,10 +38,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
     function MeanUserKlass(){
       this.name = 'users';
       this.user = {};
-      this.acl = {
-        allowed: ['anonymous'],
-        descendants: []
-      };
+      this.acl = {};
       this.registerForm = false;
       this.loggedin = false;
       this.isAdmin = false;
