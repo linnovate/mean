@@ -25,11 +25,7 @@ angular.module('mean.circles').config(['$stateProvider',
             var requiredCircle = toState.requiredCircles.circles[j];
             if(MeanUser.acl.allowed.indexOf(requiredCircle) === -1) {
               e.preventDefault();
-              if(toState.requiredCircles.denyState) {
-                $state.go(toState.requiredCircles.denyState);
-              } else {
-                $state.go('home');
-              }
+              $state.go(toState.requiredCircles.denyState || 'home');
             }
           }
         }

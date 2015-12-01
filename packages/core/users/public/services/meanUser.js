@@ -79,11 +79,13 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       this.loginError = 0;
       this.registerError = 0;
       this.isAdmin = this.user.roles.indexOf('admin') > -1;
-      self = this;
+      var self = this;
       // Add circles info to user
       $http.get('/api/circles/mine').success(function(acl) {
         self.acl = acl;
-        if (destination) $location.path(destination);
+        if (destination) {
+          $location.path(destination);
+        }
         $rootScope.$emit('loggedin');
       });
     };
@@ -190,7 +192,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       });
 
       return deferred.promise;
-    }
+    };
 
     MeanUserKlass.prototype.checkAdmin = function() {
      var deferred = $q.defer();
