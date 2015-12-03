@@ -33,7 +33,7 @@ $ sudo apt-get install nodejs
 
 ## Prerequisite packages
 
-* Mean currently works with either grunt or gulp..
+* Mean currently uses gulp as a build tool and bower to manage frontend packages.
 ```
 $ npm install -g gulp
 // and bower
@@ -84,7 +84,7 @@ During installation depending on your os and prerequisite versions you may encou
 
 Most issues can be solved by one of the following tips, but if you are unable to find a solution feel free to contact us via the repository issue tracker or the links provided below.
 
-#### Update NPM, Bower or Grunt
+#### Update NPM, Bower or Gulp
 Sometimes you may find there is a weird error during install like npm's *Error: ENOENT*. Usually updating those tools to the latest version solves the issue.
 
 * Updating NPM:
@@ -92,9 +92,9 @@ Sometimes you may find there is a weird error during install like npm's *Error: 
 $ npm update -g npm
 ```
 
-* Updating Grunt:
+* Updating Gulp:
 ```bash
-$ npm update -g grunt-cli
+$ npm update -g gulp
 ```
 
 * Updating Bower:
@@ -585,11 +585,11 @@ Each of these environments has the following configuration options:
 * __emailFrom__ - This is the from email address displayed when sending an email.
 * __mailer__ - This is where you enter your email service provider, username and password.
 
-To run with a different environment, just specify NODE_ENV as you call grunt:
+To run with a different environment, just specify NODE_ENV as you call gulp:
 ```bash
-$ NODE_ENV=test grunt
+$ NODE_ENV=test gulp
 ```
-If you are using node instead of grunt, it is very similar:
+If you are using node instead of gulp, it is very similar:
 ```bash
 $ NODE_ENV=test node server
 ```
@@ -674,7 +674,6 @@ $ git add .
 $ git commit -m "initial version"
 $ heroku apps:create
 $ heroku config:add NODE_ENV=production
-$ heroku config:add BUILDPACK_URL=https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git
 $ git push heroku master
 $ heroku config:set NODE_ENV=production
 ```
