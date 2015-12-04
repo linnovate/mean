@@ -8,7 +8,7 @@ angular.module('mean.admin').controller('ThemesController', ['$scope', 'Global',
         $scope.init = function() {
             $http({
                 method: 'GET',
-                url: 'http://api.bootswatch.com/3/',
+                url: 'https://bootswatch.com/api/3.json',
                 skipAuthorization: true
             }).
             success(function(data, status, headers, config) {
