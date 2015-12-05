@@ -19,7 +19,7 @@ function getPackage(name, callback) {
 
 
     } else {
-      console.log('Package not found.');
+      console.log('Package ' + name + ' not found.');
     }
   });
 }
@@ -29,79 +29,88 @@ function getPackage(name, callback) {
 function install(module, options) {
   options = options || {};
 
-    loadPackageJson('./node_modules/meanio/package.json', function(err, data) {
+  loadPackageJson('./node_modules/meanio/package.json', function(err, data) {
 
-      var destination = 'packages/contrib/';
+    var destination = 'packages/contrib/';
 
-      if (err || data.version < '0.5.18') destination = 'node_modules/'; //what about the version???
+    if (err || data.version < '0.5.18') destination = 'node_modules/'; //what about the version???
 
-      var packageName = module.split('@')[0];
+    var packageName = module.split('@')[0];
 
-      var tag = 'master';
+    var tag = 'master';
 
-      tag = tag === 'latest' ? 'master' : tag;
+    tag = tag === 'latest' ? 'master' : tag;
 
-      getPackage(packageName, function(data) {
-        console.log(     'Installing module: %s:', packageName);
+    // Don't check mean.io network if packages are installed locally in core or custom
+    fs.stat('packages/core/' + packageName, function(err, stat) {
+      if(err) {
+        fs.stat('packages/custom/' + packageName, function(err, stat) {
+          if(err) {
+            getPackage(packageName, function(data) {
+              console.log(     'Installing module: %s:', packageName);
 
-        if (data.repo.indexOf('git.mean.io') === -1) {
-          options.git = true;
-        }
-        
-        var cloneUrl = options.git ? data.repo : 'https://git.mean.io/' + data.repo.split(':')[1];
+              if (data.repo.indexOf('git.mean.io') === -1) {
+                options.git = true;
+              }
 
-        shell.rm('-rf', destination + data.name);
+              var cloneUrl = options.git ? data.repo : 'https://git.mean.io/' + data.repo.split(':')[1];
 
-        console.log('git clone --branch ' + tag + ' ' + cloneUrl + ' ' + destination + data.name);
+              shell.rm('-rf', destination + data.name);
 
-        var silentState = shell.config.silent; // save old silent state
-        shell.config.silent = true;
+              console.log('git clone --branch ' + tag + ' ' + cloneUrl + ' ' + destination + data.name);
 
-        shell.exec('git clone --branch ' + tag + ' --depth 1 ' + cloneUrl + ' ' + destination + data.name, function(code) {
+              var silentState = shell.config.silent; // save old silent state
+              shell.config.silent = true;
 
-          shell.config.silent = silentState;
+              shell.exec('git clone --branch ' + tag + ' --depth 1 ' + cloneUrl + ' ' + destination + data.name, function(code) {
 
-          if (code) return console.log('Failed to clone repo');
+                shell.config.silent = silentState;
+
+                if (code) return console.log('Failed to clone repo: ' + cloneUrl);
 
 
-          var pkgPath = destination + data.name;
+                var pkgPath = destination + data.name;
 
-          shell.rm('-rf', destination + data.name + '/.git');
-          shell.rm('-rf', destination + data.name + '/.gitignore');
+                shell.rm('-rf', destination + data.name + '/.git');
+                shell.rm('-rf', destination + data.name + '/.gitignore');
 
-          // Load mean.json
-          packagesMeanJson(__dirname);
+                // Load mean.json
+                packagesMeanJson(__dirname);
 
-          if (options.skipNpm) return;
+                if (options.skipNpm) return;
 
-          // Load package.json
-          loadPackageJson(pkgPath + '/package.json', function(err, data) {
-            if (err) return console.error(err);
+                // Load package.json
+                loadPackageJson(pkgPath + '/package.json', function(err, data) {
+                  if (err) return console.error(err);
 
-            console.log();
-            if (!data.mean) {
-              console.log();
-              console.log(     'Warning: The module installed is not a valid MEAN module');
-            }
+                  console.log();
+                  if (!data.mean) {
+                    console.log();
+                    console.log(     'Warning: The module installed is not a valid MEAN module');
+                  }
 
-            shell.cd(pkgPath);
+                  shell.cd(pkgPath);
 
-            shell.exec('npm install .', function(code) {
+                  shell.exec('npm install .', function(code) {
 
-              if (code) return console.log(code);
+                    if (code) return console.log(code);
 
-              console.log(     '    Dependencies installed for package ' + data.name);
+                    console.log(     '    Dependencies installed for package ' + data.name);
 
-              require('bower').commands.install().on('error', function(err) {
-                console.log('    ' + err + ' ' + data.name);
+                    require('bower').commands.install().on('error', function(err) {
+                      console.log('    ' + err + ' ' + data.name);
+                    });
+
+                  });
+                });
               });
-
             });
-          });
-        });
-      });
+          }
+        })
+      }
     });
-};
+  });
+}
 
 function packagesMeanJson(source) {
   // Load mean.json
