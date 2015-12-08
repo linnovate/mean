@@ -163,6 +163,14 @@ module.exports = function(Circles, app) {
             };
 
             next();
+        },
+        hasCircle: function(circle) {
+            return function (req, res, next) {
+                if(!req.user || req.acl.user.allowed.indexOf(circle) === -1) {
+                    return res.status(403).send('User is not authorized for this action');
+                }
+                next();
+            };
         }
     }
 
