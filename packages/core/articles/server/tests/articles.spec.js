@@ -78,7 +78,7 @@ describe('<Unit Test>', function() {
 
       it('should be able to show an error when try to save without user', function(done) {
         this.timeout(10000);
-        article.user = {};
+        article.user = null;
 
         return article.save(function(err) {
           expect(err).to.not.be(null);
