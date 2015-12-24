@@ -38,6 +38,8 @@ SystemPackage.register(function(app, auth, database, circles) {
   // Adding robots and humans txt
   app.useStatic(__dirname + '/public/assets/static');
 
-  return SystemPackage;
+  circles.registerCircle('authenticated');
+  circles.registerCircle('anonymous');
 
+  return SystemPackage;
 });
