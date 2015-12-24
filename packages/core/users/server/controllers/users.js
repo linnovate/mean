@@ -160,34 +160,17 @@ module.exports = function(MeanUser) {
          * Send User
          */
         me: function(req, res) {
-            if (!req.user || !req.user.hasOwnProperty('_id')) return res.send(null);
+            if (!req.user) return res.send(null);
 
-            User.findOne({
-                _id: req.user._id
-            }).exec(function(err, user) {
-
-                if (err || !user) return res.send(null);
-
-
-                var dbUser = user.toJSON();
-                var id = req.user._id;
-
-                delete dbUser._id;
-                delete req.user._id;
-
-                var eq = _.isEqual(dbUser, req.user);
-                if (eq) {
-                    req.user._id = id;
-                    return res.json(req.user);
-                }
-
-                var payload = user;
+            if(!req.refreshJWT) {
+                return res.json(req.user);
+            } else {
+                var payload = req.user;
                 var escaped = JSON.stringify(payload);
                 escaped = encodeURI(escaped);
                 var token = jwt.sign(escaped, config.secret, { expiresInMinutes: 60*5 });
                 res.json({ token: token });
-               
-            });
+            }
         },
 
         /**
@@ -201,6 +184,37 @@ module.exports = function(MeanUser) {
                 if (!user) return next(new Error('Failed to load User ' + id));
                 req.profile = user;
                 next();
+            });
+        },
+        /**
+       * Loads a user into the request
+       */
+        loadUser: function(req, res, next) {
+            if (!req.isAuthenticated()) {
+                return next();
+            }
+
+            req.refreshJWT = false;
+
+            User.findOne({
+                _id: req.user._id
+            }, function(err, user) {
+                if (err || !user) {
+                    delete req.user;
+                } else {
+                    var dbUser = user.toJSON();
+                    var id = req.user._id;
+
+                    delete dbUser._id;
+                    delete req.user._id;
+
+                    var eq = _.isEqual(dbUser, req.user);
+                    if (!eq) {
+                        req.refreshJWT = true;
+                    }
+                    req.user = user;
+                }
+                return next();
             });
         },
 

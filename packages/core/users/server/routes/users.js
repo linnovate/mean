@@ -8,6 +8,8 @@ module.exports = function(MeanUser, app, auth, database, passport) {
   // User routes use users controller
   var users = require('../controllers/users')(MeanUser);
 
+  app.use(users.loadUser);
+
   app.route('/api/logout')
     .get(users.signout);
   app.route('/api/users/me')
