@@ -1,15 +1,15 @@
 @font-face {
     font-family: 'futura_bkbook';
-    src: url("/theme/assets/fonts/ufonts.com_futura-book.eot");
-    src: url("/theme/assets/fonts/ufonts.com_futura-book.eot?#iefix") format("embedded-opentype"), url("/theme/assets/fonts/ufonts.com_futura-book.woff") format("woff"), url("/theme/assets/fonts/ufonts.com_futura-book.ttf") format("truetype"), url("/theme/assets/fonts/ufonts.com_futura-book.svg#futura_bkbook") format("svg");
+    src: url("/meanStarter/assets/fonts/ufonts.com_futura-book.eot");
+    src: url("/meanStarter/assets/fonts/ufonts.com_futura-book.eot?#iefix") format("embedded-opentype"), url("/meanStarter/assets/fonts/ufonts.com_futura-book.woff") format("woff"), url("/meanStarter/assets/fonts/ufonts.com_futura-book.ttf") format("truetype"), url("/meanStarter/assets/fonts/ufonts.com_futura-book.svg#futura_bkbook") format("svg");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'open_sans_hebrewregular';
-    src: url("/theme/assets/fonts/opensanshebrew-regular.eot");
-    src: url("/theme/assets/fonts/opensanshebrew-regular.eot?#iefix") format("embedded-opentype"), url("/theme/assets/fonts/opensanshebrew-regular.woff") format("woff"), url("/theme/assets/fonts/opensanshebrew-regular.ttf") format("truetype"), url("/theme/assets/fonts/opensanshebrew-regular.svg#open_sans_hebrewregular") format("svg");
+    src: url("/meanStarter/assets/fonts/opensanshebrew-regular.eot");
+    src: url("/meanStarter/assets/fonts/opensanshebrew-regular.eot?#iefix") format("embedded-opentype"), url("/meanStarter/assets/fonts/opensanshebrew-regular.woff") format("woff"), url("/meanStarter/assets/fonts/opensanshebrew-regular.ttf") format("truetype"), url("/meanStarter/assets/fonts/opensanshebrew-regular.svg#open_sans_hebrewregular") format("svg");
     font-weight: bold;
     font-style: normal;
 }
@@ -175,7 +175,7 @@
   height:53px;
 }
 .welcome-sprite{
-  background-image: url(/theme/assets/img/welcome_sprite.png);
+  background-image: url("/meanStarter/assets/img/welcome_sprite.png");
   background-repeat: no-repeat;
   display: block;
 }
@@ -205,7 +205,7 @@
 
 
 .socialsprite {
-    background-image: url(/theme/assets/img/welcome_social.png);
+    background-image: url("/meanStarter/assets/img/welcome_social.png");
     background-repeat: no-repeat;
     display: block;
     float:left;

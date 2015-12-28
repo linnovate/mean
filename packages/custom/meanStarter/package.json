@@ -1,0 +1,15 @@
+{
+  "name": "meanStarter",
+  "version": "0.0.1",
+  "description": "A starter layout / theme package for MEAN",
+  "author": {
+    "name": "MEAN.io"
+  },
+  "mean": "0.6.0",
+  "engines": {
+    "node": "4.2.x",
+    "npm": "2.14.x"
+  },
+  "dependencies": {},
+  "license": "MIT"
+}

@@ -3,46 +3,46 @@ html {
 }
 
 body.login, body.register,  body.forgot-password {
-background: url("/theme/assets/img/bg.png");
+background: url("/meanStarter/assets/img/bg.png");
     height: 100%;
     position: relative;
 }
 @font-face {
     font-family: 'futura_bkbook';
-    src: url("/theme/assets/fonts/ufonts.com_futura-book.eot");
-    src: url("/theme/assets/fonts/ufonts.com_futura-book.eot?#iefix") format("embedded-opentype"), url("/theme/assets/fonts/ufonts.com_futura-book.woff") format("woff"), url("/theme/assets/fonts/ufonts.com_futura-book.ttf") format("truetype"), url("/theme/assets/fonts/ufonts.com_futura-book.svg#futura_bkbook") format("svg");
+    src: url("/meanStarter/assets/fonts/ufonts.com_futura-book.eot");
+    src: url("/meanStarter/assets/fonts/ufonts.com_futura-book.eot?#iefix") format("embedded-opentype"), url("/meanStarter/assets/fonts/ufonts.com_futura-book.woff") format("woff"), url("/meanStarter/assets/fonts/ufonts.com_futura-book.ttf") format("truetype"), url("/meanStarter/assets/fonts/ufonts.com_futura-book.svg#futura_bkbook") format("svg");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'open_sans_hebrewregular';
-    src: url("/theme/assets/fonts/opensanshebrew-regular.eot");
-    src: url("/theme/assets/fonts/opensanshebrew-regular.eot?#iefix") format("embedded-opentype"), url("/theme/assets/fonts/opensanshebrew-regular.woff") format("woff"), url("/theme/assets/fonts/opensanshebrew-regular.ttf") format("truetype"), url("/theme/assets/fonts/opensanshebrew-regular.svg#open_sans_hebrewregular") format("svg");
+    src: url("/meanStarter/assets/fonts/opensanshebrew-regular.eot");
+    src: url("/meanStarter/assets/fonts/opensanshebrew-regular.eot?#iefix") format("embedded-opentype"), url("/meanStarter/assets/fonts/opensanshebrew-regular.woff") format("woff"), url("/meanStarter/assets/fonts/opensanshebrew-regular.ttf") format("truetype"), url("/meanStarter/assets/fonts/opensanshebrew-regular.svg#open_sans_hebrewregular") format("svg");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'open_sans_hebrewlight';
-    src: url("/theme/assets/fonts/opensanshebrew-light.eot");
-    src: url("/theme/assets/fonts/opensanshebrew-light.eot?#iefix") format("embedded-opentype"), url("/theme/assets/fonts/opensanshebrew-light.woff") format("woff"), url("/theme/assets/fonts/opensanshebrew-light.ttf") format("truetype"), url("/theme/assets/fonts/opensanshebrew-light.svg#open_sans_hebrewlight") format("svg");
+    src: url("/meanStarter/assets/fonts/opensanshebrew-light.eot");
+    src: url("/meanStarter/assets/fonts/opensanshebrew-light.eot?#iefix") format("embedded-opentype"), url("/meanStarter/assets/fonts/opensanshebrew-light.woff") format("woff"), url("/meanStarter/assets/fonts/opensanshebrew-light.ttf") format("truetype"), url("/meanStarter/assets/fonts/opensanshebrew-light.svg#open_sans_hebrewlight") format("svg");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'proxima_nova_rgregular';
-    src: url("/theme/assets/fonts/mark_simonson_-_proxima_nova_regular.eot");
-    src: url("/theme/assets/fonts/mark_simonson_-_proxima_nova_regular.eot?#iefix") format("embedded-opentype"), url("/theme/assets/fonts/mark_simonson_-_proxima_nova_regular.woff") format("woff"), url("/theme/assets/fonts/mark_simonson_-_proxima_nova_regular.ttf") format("truetype"), url("/theme/assets/fonts/mark_simonson_-_proxima_nova_regular.svg#proxima_nova_rgregular") format("svg");
+    src: url("/meanStarter/assets/fonts/mark_simonson_-_proxima_nova_regular.eot");
+    src: url("/meanStarter/assets/fonts/mark_simonson_-_proxima_nova_regular.eot?#iefix") format("embedded-opentype"), url("/meanStarter/assets/fonts/mark_simonson_-_proxima_nova_regular.woff") format("woff"), url("/meanStarter/assets/fonts/mark_simonson_-_proxima_nova_regular.ttf") format("truetype"), url("/meanStarter/assets/fonts/mark_simonson_-_proxima_nova_regular.svg#proxima_nova_rgregular") format("svg");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'proxima_novalight';
-    src: url("/theme/assets/fonts/proximanova-light.eot");
-    src: url("/theme/assets/fonts/proximanova-light.eot?#iefix") format("embedded-opentype"), url("/theme/assets/fonts/proximanova-light.woff") format("woff"), url("/theme/assets/fonts/proximanova-light.ttf") format("truetype"), url("/theme/assets/fonts/proximanova-light.svg#proxima_novalight") format("svg");
+    src: url("/meanStarter/assets/fonts/proximanova-light.eot");
+    src: url("/meanStarter/assets/fonts/proximanova-light.eot?#iefix") format("embedded-opentype"), url("/meanStarter/assets/fonts/proximanova-light.woff") format("woff"), url("/meanStarter/assets/fonts/proximanova-light.ttf") format("truetype"), url("/meanStarter/assets/fonts/proximanova-light.svg#proxima_novalight") format("svg");
     font-weight: normal;
     font-style: normal;
 }
@@ -113,7 +113,7 @@ background: url("/theme/assets/img/bg.png");
 
 .pic.email {
     position: absolute;
-    background: url("/theme/assets/img/mail_login.png") no-repeat;
+    background: url("/meanStarter/assets/img/mail_login.png") no-repeat;
     width: 30px;
     height: 21px;
     top: 18px;
@@ -122,7 +122,7 @@ background: url("/theme/assets/img/bg.png");
 
 .pic.password {
     position: absolute;
-    background: url("/theme/assets/img/eye_password.png") no-repeat 50% 50%;
+    background: url("/meanStarter/assets/img/eye_password.png") no-repeat 50% 50%;
     width: 40px;
     height: 30px;
     top: 16px;
@@ -131,7 +131,7 @@ background: url("/theme/assets/img/bg.png");
 }
 
 .login-form__left .icon_hide_password {
-    background: url("/theme/assets/img/eye_password_disabled.png") no-repeat 50% 50%;
+    background: url("/meanStarter/assets/img/eye_password_disabled.png") no-repeat 50% 50%;
     width: 40px;
     height: 30px;
     top: 16px;
@@ -219,7 +219,7 @@ background: url("/theme/assets/img/bg.png");
     display: inline-block;
     border: none;
     cursor: pointer;
-    background: url("/theme/assets/img/button_login.png") no-repeat 50% 50%;
+    background: url("/meanStarter/assets/img/button_login.png") no-repeat 50% 50%;
     width: 107px;
     height: 47px;
     font-size: 21px;
@@ -228,7 +228,7 @@ background: url("/theme/assets/img/bg.png");
 }
 
 .submit_button:hover {
-    background: url("/theme/assets/img/button_login_hover.png") no-repeat 50% 50%;
+    background: url("/meanStarter/assets/img/button_login_hover.png") no-repeat 50% 50%;
 }
 
 .submit_button:focus {
@@ -270,13 +270,13 @@ background: url("/theme/assets/img/bg.png");
 .login-form__center {
     height: 100%;
     float: left;
-    background: url("/theme/assets/img/devide_line.png") no-repeat 50% 30%;
+    background: url("/meanStarter/assets/img/devide_line.png") no-repeat 50% 30%;
     padding: 0 10px;
 }
 
 .register-form .login-form__center {
     margin-top: 38px;
-    background: url("/theme/assets/img/devide_line_long.png") no-repeat 50% 0;
+    background: url("/meanStarter/assets/img/devide_line_long.png") no-repeat 50% 0;
 }
 
 .login-form__center p {
@@ -374,7 +374,7 @@ background: url("/theme/assets/img/bg.png");
 .login-form__right .social_icon_linkedin .button:before {
     content: '';
     position: absolute;
-    background: url("/theme/assets/img/social_in.png") no-repeat 50% 50%;
+    background: url("/meanStarter/assets/img/social_in.png") no-repeat 50% 50%;
     width: 50px;
     height: 47px;
     top: 10px;
@@ -384,7 +384,7 @@ background: url("/theme/assets/img/bg.png");
 .login-form__right .social_icon_facebook .button:before {
     content: '';
     position: absolute;
-    background: url("/theme/assets/img/social_fb.png") no-repeat 50% 50%;
+    background: url("/meanStarter/assets/img/social_fb.png") no-repeat 50% 50%;
     width: 41px;
     height: 40px;
     top: 10px;
@@ -394,7 +394,7 @@ background: url("/theme/assets/img/bg.png");
 .login-form__right .social_icon_github .button:before {
     content: '';
     position: absolute;
-    background: url("/theme/assets/img/social_github.png") no-repeat 50% 50%;
+    background: url("/meanStarter/assets/img/social_github.png") no-repeat 50% 50%;
     width: 40px;
     height: 40px;
     top: 10px;
@@ -404,7 +404,7 @@ background: url("/theme/assets/img/bg.png");
 .login-form__right .social_icon_twitter .button:before {
     content: '';
     position: absolute;
-    background: url("/theme/assets/img/social_tw.png") no-repeat 50% 50%;
+    background: url("/meanStarter/assets/img/social_tw.png") no-repeat 50% 50%;
     width: 40px;
     height: 41px;
     top: 10px;
@@ -414,7 +414,7 @@ background: url("/theme/assets/img/bg.png");
 .login-form__right .social_icon_google .button:before {
     content: '';
     position: absolute;
-    background: url("/theme/assets/img/social_g+.png") no-repeat 50% 50%;
+    background: url("/meanStarter/assets/img/social_g+.png") no-repeat 50% 50%;
     width: 40px;
     height: 41px;
     top: 10px;
