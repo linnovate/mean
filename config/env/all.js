@@ -50,6 +50,7 @@ module.exports = {
       direction: 'rtl',
     }],
     currentLanguage: 'en',
+    loginPage: '/auth/login',
     cssFramework: 'bootstrap'
   },
   // The session cookie name

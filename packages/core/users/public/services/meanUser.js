@@ -36,9 +36,10 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
     }*/
 
     function MeanUserKlass(){
+      this.aclDefer = $q.defer();
       this.name = 'users';
       this.user = {};
-      this.acl = {};
+      this.acl = this.aclDefer.promise;
       this.registerForm = false;
       this.loggedin = false;
       this.isAdmin = false;
@@ -60,6 +61,10 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
           self.onIdentity.bind(self)(response);
         }
       });
+      this.acl.then(function(response) {
+        self.acl = response;
+        delete self.aclDefer;
+      });
     }
 
     MeanUserKlass.prototype.onIdentity = function(response) {
@@ -71,6 +76,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
         user = JSON.parse(encodedUser); 
       }
       destination = angular.isDefined(response.redirect) ? response.redirect : destination;
+      $cookies.remove('redirect');
       this.user = user || response;
       this.loggedin = true;
       this.loginError = 0;
@@ -79,7 +85,11 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       var self = this;
       // Add circles info to user
       $http.get('/api/circles/mine').success(function(acl) {
-        self.acl = acl;
+        if(self.aclDefer) {
+          self.aclDefer.resolve(acl);
+        } else {
+          self.acl = acl;
+        }
         if (destination) {
           $location.path(destination);
         }
@@ -105,7 +115,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       $http.post('/api/login', {
           email: user.email,
           password: user.password,
-          redirect: destination
+          redirect: $cookies.get('redirect') || destination
         })
         .success(this.onIdentity.bind(this))
         .error(this.onIdFail.bind(this));

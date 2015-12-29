@@ -17,7 +17,7 @@ angular.module('mean.circles').config(['$stateProvider',
     });
   }
 ])
-  .run(['$rootScope', '$state', '$http', 'MeanUser', function($rootScope, $state, $http, MeanUser) {
+  .run(['$rootScope', '$state', '$http', 'MeanUser', '$meanConfig', '$cookies', '$location', function($rootScope, $state, $http, MeanUser, $meanConfig, $cookies, $location) {
       $rootScope.$on('$stateChangeStart', function(e, toState) {
         var acl = MeanUser.acl;
         // If the route has a circle requirement on it validate it
@@ -28,19 +28,25 @@ angular.module('mean.circles').config(['$stateProvider',
             if (acl.allowed) {
               checkCircle(acl, requiredCircle);
             } else {
-              $http.get('/api/circles/mine').success(aclCallBack);
+              acl.then(aclCallback);
             }
           }
         }
 
-        function aclCallBack(response) {
+        function aclCallback(response) {
           checkCircle(response, requiredCircle);
         }
 
         function checkCircle(acl, requiredCircle) {
           if(acl.allowed.indexOf(requiredCircle) === -1) {
             e.preventDefault();
-            $state.go(toState.requiredCircles.denyState || 'home');
+            // Not Authenticated
+            if(acl.allowed.indexOf('anonymous') !== -1) {
+              $cookies.put('redirect', $location.path());
+              $location.url($meanConfig.loginPage);
+            } else { // Authenticated but not authorized
+              $state.go(toState.requiredCircles.denyState || 'home');
+            }
           }
         }
       });

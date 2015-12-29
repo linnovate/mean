@@ -20,7 +20,7 @@ Circles.register(function(app, auth, database) {
   Circles.registerCircle = registerCircle;
   Circles.routes(app, auth, database);
   Circles.aggregateAsset('css', 'circles.css');
-  Circles.angularDependencies(['mean.users']);
+  Circles.angularDependencies(['mean.users', 'mean.system']);
 
   Circles.menus.add({
     title: 'Circles',
