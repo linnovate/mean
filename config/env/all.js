@@ -14,7 +14,8 @@ module.exports = {
     // Paths to key and cert as string
     ssl: {
       key: '',
-      cert: ''
+      cert: '',
+      ca: ''
     }
   },
   hostname: process.env.HOST || process.env.HOSTNAME,
