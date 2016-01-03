@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require('gulp'),
   gulpLoadPlugins = require('gulp-load-plugins'),
   request = require('request'),
