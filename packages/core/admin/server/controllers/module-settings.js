@@ -1,3 +1,5 @@
+'use strict';
+
 var Module = require('meanio').Module;
 
 exports.get = function(req, res) {
