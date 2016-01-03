@@ -1,3 +1,5 @@
+'use strict';
+
 var fs = require('fs'),
     npm = require('npm'),
     path = require('path'),
@@ -139,7 +141,7 @@ function loadPackageJson(path, callback) {
       return callback(err);
     }
   });
-};
+}
 
 
 function packagesNpmInstall(source) {

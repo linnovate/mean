@@ -16,8 +16,8 @@ var hasPermissions = function(req, res, next) {
       var permission = req.body.permissions[i];
       if (req.acl.user.allowed.indexOf(permission) === -1) {
             return res.status(401).send('User not allowed to assign ' + permission + ' permission.');
-        };
-    };
+        }
+    }
 
     next();
 };
