@@ -141,7 +141,7 @@ function loadPackageJson(path, callback) {
       return callback(err);
     }
   });
-};
+}
 
 
 function packagesNpmInstall(source) {
