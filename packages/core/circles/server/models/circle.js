@@ -50,7 +50,7 @@ CircleSchema.statics.buildPermissions = function(callback) {
         //going through each of the containers parents
         containers.forEach(function(container) {
 
-          if (data[container].decendants.indexOf(circle.name) == -1) {
+          if (data[container].decendants.indexOf(circle.name) === -1) {
             data[container].decendants.push(circle.name.toString());
             if (level === 0) {
               data[circle.name].parents.push(container.toString());
@@ -59,7 +59,7 @@ CircleSchema.statics.buildPermissions = function(callback) {
           }
 
           data[container].circles.forEach(function(circ) {
-            if (containers.indexOf(circ) == -1 && circ != circle.name) {
+            if (containers.indexOf(circ) === -1 && circ !== circle.name) {
               data[circle.name].containers.push(circ.toString());
               found = true;
             }
