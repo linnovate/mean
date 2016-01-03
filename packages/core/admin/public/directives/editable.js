@@ -43,7 +43,7 @@ angular.module('mean.admin').directive('ngEditableParagraph', function() {
         replace: true,
         link: function(scope, element, attrs) {
             scope.focus = function() {
-                element.find("input").focus();
+                element.find('input').focus();
             };
             scope.$watch('edit', function(isEditable) {
                 if (isEditable === false) {
