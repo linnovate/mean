@@ -51,7 +51,7 @@ gulp.task('runKarma', ['runMocha'], function (done) {
 function processIncludes(aggregatedAssets) {
   for(var i = 0; i < aggregatedAssets.length; ++i) {
     aggregatedAssets[i] = aggregatedAssets[i].slice(1);
-    if(aggregatedAssets[i].indexOf('bower_components/') == -1) {
+    if(aggregatedAssets[i].indexOf('bower_components/') === -1) {
       var index = aggregatedAssets[i].indexOf('/') + 1;
       aggregatedAssets[i] = aggregatedAssets[i].substring(0, index) + "public/" + aggregatedAssets[i].substring(index);
     }
