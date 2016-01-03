@@ -56,14 +56,14 @@ function processIncludes(aggregatedAssets) {
       aggregatedAssets[i] = aggregatedAssets[i].substring(0, index) + "public/" + aggregatedAssets[i].substring(index);
     }
     try {
-      var stats = fs.lstatSync(__dirname + '/../packages/core/' + aggregatedAssets[i]);
+      fs.lstatSync(__dirname + '/../packages/core/' + aggregatedAssets[i]);
       aggregatedAssets[i] = 'packages/core/' + aggregatedAssets[i];
       continue;
     } catch(e) {
       // Not a file
     }
     try {
-      stats = fs.lstatSync(__dirname + '/../packages/custom/' + aggregatedAssets[i]);
+      fs.lstatSync(__dirname + '/../packages/custom/' + aggregatedAssets[i]);
       aggregatedAssets[i] = 'packages/custom/' + aggregatedAssets[i];
     } catch (e) {
       // Not a file
