@@ -4,9 +4,7 @@ var gulp = require('gulp'),
   gulpLoadPlugins = require('gulp-load-plugins'),
   request = require('request'),
   karmaServer = require('karma').Server,
-  _ = require('lodash'),
-  fs = require('fs'),
-  assets = require('../config/assets.json');
+  fs = require('fs');
 var plugins = gulpLoadPlugins();
 
 process.env.NODE_ENV = 'test';
