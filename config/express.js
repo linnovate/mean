@@ -6,7 +6,6 @@
  */
 var mean = require('meanio'),
   compression = require('compression'),
-  morgan = require('morgan'),
   consolidate = require('consolidate'),
   express = require('express'),
   helpers = require('view-helpers'),
