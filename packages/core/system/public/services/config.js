@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('mean.system').provider('$meanConfig', [function() {
   function MeanConfigProvider() {
     this.config = {};
