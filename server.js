@@ -24,7 +24,7 @@ if ((cluster.isMaster) &&
 
     console.log('for real!');
     // Count the machine's CPUs
-    var cpuCount = require('os').cpus().length;
+    var cpuCount = process.env.CPU_COUNT || require('os').cpus().length;
 
     // Create a worker for each CPU
     for (var i = 0; i < cpuCount; i += 1) {
