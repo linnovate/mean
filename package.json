@@ -22,6 +22,9 @@
   "dependencies": {
     "meanio": "git://github.com/rjVapes/meanio.git#0.9.0/master",
     "meanio-system": "latest",
+    "meanio-admin": "latest",
+    "meanio-users": "latest",
+    "meanio-circles": "latest",
     "assetmanager": "latest",
     "async": "latest",
     "bower": "latest",
