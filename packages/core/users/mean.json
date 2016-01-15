@@ -1,4 +1,7 @@
 {
+  "name": "users",
+  "version": "0.1.0",
+  "mean": "0.6.0",
   "dependencies": {
     "system": "latest"
   }
