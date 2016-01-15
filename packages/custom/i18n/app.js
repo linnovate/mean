@@ -24,8 +24,8 @@ I18n.register(function(app, auth, database) {
     menu: 'main'
   });
 
-  I18n.aggregateAsset('js', '../lib/i18next/i18next.js', { weight: 1 });
-  I18n.aggregateAsset('js', '../lib/ng-i18next/dist/ng-i18next.js', { weight: 2 });
+  I18n.aggregateAsset('js', '../lib/i18next/i18next.min.js', { weight: 1 });
+  I18n.aggregateAsset('js', '../lib/ng-i18next/dist/ng-i18next.min.js', { weight: 2 });
 
   I18n.angularDependencies(['jm.i18next', 'mean.system']);
 
