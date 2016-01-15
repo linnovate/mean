@@ -3,7 +3,7 @@ sudo: false
 node_js:
   - "0.12"
   - "4.2.4"
-  - "5.3.0"
+  - "5.4.1"
 env:
   - NODE_ENV=development
 services:
