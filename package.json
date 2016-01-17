@@ -93,6 +93,7 @@
     "karma-script-launcher": "latest",
     "mocha": "latest",
     "protractor": "latest",
+    "phantomjs": "latest",
     "require-dir": "latest",
     "requirejs": "latest",
     "supertest": "latest",
