@@ -10,6 +10,11 @@
     "node": "4.2.x",
     "npm": "2.14.x"
   },
-  "dependencies": {},
+  "dependencies": {
+    "meanio-system": "latest",
+    "meanio-users": "latest",
+    "meanio-circles": "latest",
+    "meanio-admin": "latest"
+  },
   "license": "MIT"
 }

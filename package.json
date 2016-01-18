@@ -21,10 +21,6 @@
   },
   "dependencies": {
     "meanio": "git://github.com/linnovate/meanio.git#0.9.0",
-    "meanio-system": "latest",
-    "meanio-admin": "latest",
-    "meanio-users": "latest",
-    "meanio-circles": "latest",
     "body-parser": "latest",
     "compression": "latest",
     "connect-flash": "latest",

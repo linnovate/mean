@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "mean": "0.6.0",
   "dependencies": {
-    "system": "latest"
+    "system": "latest",
+    "users": "latest",
+    "circles": "latest",
+    "admin": "latest"
   }
 }

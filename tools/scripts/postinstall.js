@@ -18,7 +18,7 @@ function loadPackageJson(path, callback) {
   });
 }
 
-
+// Installs dependencies from package.json from mean packages into root node_modules
 function packagesNpmInstall(source) {
   var packages = path.join(process.cwd(), source);
   npm.load({
@@ -36,26 +36,37 @@ function packagesNpmInstall(source) {
         loadPackageJson(path.join(pkgPath, 'package.json'), function(err, data) {
           if (err || !data.mean) return;
 
-          npm.commands.install(pkgPath, [pkgPath], function(err) {
-            if (err) {
-              console.log(     'Error: npm install failed');
-              return console.error(err);
-            } else {
-              console.log('    Dependencies installed for package ' + file);
+          var installDeps = [];
+
+          if(data.dependencies) {
+            for(var dep in data.dependencies) {
+              installDeps.push(dep + '@' + data.dependencies[dep]);
             }
-          });
+            if(process.env === 'development' && data.devDependencies) {
+              for(var devDep in data.devDependencies) {
+                installDeps.push(devDep + '@' + data.devDependencies[devDep]);
+              }
+            }
+          }
+          if(installDeps.length) {
+            npm.commands.install(installDeps, function(err) {
+              if (err) {
+                console.log(     'Error: npm install failed');
+                return console.error(err);
+              } else {
+                console.log('    Dependencies installed for package ' + file);
+              }
+            });
+          }
         });
       });
     });
   });
 }
 
-
-
 shell.exec('bower update', function(code) {
   console.log('    Updating Bower dependencies');
 });
-
 
 packagesNpmInstall('packages/contrib');
 packagesNpmInstall('packages/custom');
