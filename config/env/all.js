@@ -14,7 +14,8 @@ module.exports = {
     // Paths to key and cert as string
     ssl: {
       key: '',
-      cert: ''
+      cert: '',
+      ca: ''
     }
   },
   hostname: process.env.HOST || process.env.HOSTNAME,
@@ -50,6 +51,7 @@ module.exports = {
       direction: 'rtl',
     }],
     currentLanguage: 'en',
+    loginPage: '/auth/login',
     cssFramework: 'bootstrap'
   },
   // The session cookie name

@@ -1,7 +1,0 @@
-{
-  "name": "users",
-  "version": "0.0.0",
-  "dependencies": {
-    "angular-jwt" : "latest"
-  }
-}

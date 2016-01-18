@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require('gulp'),
   gulpLoadPlugins = require('gulp-load-plugins'),
   path = require('path'),
