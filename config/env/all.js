@@ -60,5 +60,6 @@ module.exports = {
   bodyParser: {
     json: {limit: '100kb'},
     urlencoded: {limit: '100kb', extended: true}
-  }
+  },
+  clusterSticky: false
 };
