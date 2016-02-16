@@ -47,8 +47,7 @@ function registerCircle(name, parents) {
   var query = { name: name };
   var set = {};
   if(parents) {
-    set.$push = {
-      circles: parents
+      set.circles = parents;
     };
   }
 
