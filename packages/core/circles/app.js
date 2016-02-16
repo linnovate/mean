@@ -47,9 +47,7 @@ function registerCircle(name, parents) {
   var query = { name: name };
   var set = {};
   if(parents) {
-    set.$push = {
-      circles: parents
-    };
+    set.circles = parents;
   }
 
   Circle.findOne(query, function(err, data) {
