@@ -124,7 +124,7 @@ Some of Mean.io dependencies uses [node-gyp](https://github.com/nodejs/node-gyp)
 3. Run NPM update
 
 ```bash
-$ npm update -g
+$ npm update -gc
 ```
 
 #### Git "not found" on Windows
@@ -499,7 +499,6 @@ MyPackage.register(function(system, app) {
 You may override public views used by certain core packages.  To create a custom home page, you would create a custom package and modify the script in it's public folder like so:
 
 ```javascript
-angular.module('mean.mycustompackage', ['mean.system'])
 .config(['$viewPathProvider', function($viewPathProvider) {
   $viewPathProvider.override('system/views/index.html', 'mycustompackage/views/myhomepage.html');
 }]);
