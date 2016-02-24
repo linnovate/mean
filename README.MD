@@ -124,7 +124,7 @@ Some of Mean.io dependencies uses [node-gyp](https://github.com/nodejs/node-gyp)
 3. Run NPM update
 
 ```bash
-$ npm update -gc
+$ npm update -g
 ```
 
 #### Git "not found" on Windows
