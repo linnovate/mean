@@ -40,7 +40,7 @@
     "morgan": "latest",
     "ms": "latest",
     "nodemailer": "latest",
-    "npm": "^2.1.0",
+    "npm": "^3.8.1",
     "passport-facebook": "latest",
     "passport-github": "latest",
     "passport-google-oauth": "latest",
