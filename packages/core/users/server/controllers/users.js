@@ -35,7 +35,7 @@ module.exports = function(MeanUser) {
          */
         authCallback: function(req, res) {
           var payload = req.user;
-          var escaped = JSON.stringify(payload);      
+          var escaped = JSON.stringify(payload);
           escaped = encodeURI(escaped);
           // We are sending the payload inside the token
           var token = jwt.sign(escaped, config.secret, { expiresInMinutes: 60*5 });
@@ -53,7 +53,7 @@ module.exports = function(MeanUser) {
           if (req.isAuthenticated()) {
             return res.redirect('/');
           }
-          res.redirect('/login');
+          res.redirect(config.public.loginPage);
         },
 
         /**
@@ -148,7 +148,7 @@ module.exports = function(MeanUser) {
 
                     // We are sending the payload inside the token
                     var token = jwt.sign(escaped, config.secret, { expiresInMinutes: 60*5 });
-                    res.json({ 
+                    res.json({
                       token: token,
                       redirect: config.strategies.landingPage
                     });
@@ -186,7 +186,7 @@ module.exports = function(MeanUser) {
                 escaped = encodeURI(escaped);
                 var token = jwt.sign(escaped, config.secret, { expiresInMinutes: 60*5 });
                 res.json({ token: token });
-               
+
             });
         },
 
