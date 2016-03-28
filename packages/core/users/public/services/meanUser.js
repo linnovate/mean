@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$location', '$stateParams', '$cookies', '$q', '$timeout', '$meanConfig',
-  function($rootScope, $http, $location, $stateParams, $cookies, $q, $timeout, $meanConfig) {
+angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$location', '$stateParams',
+  '$cookies', '$q', '$timeout', '$meanConfig', 'Global',
+  function($rootScope, $http, $location, $stateParams, $cookies, $q, $timeout, $meanConfig, Global) {
 
     var self;
 
@@ -105,6 +106,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
           $location.path(destination);
         }
         $rootScope.$emit('loggedin', userObj);
+        Global.authenticate(userObj);
       });
     };
 
@@ -171,6 +173,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       $http.get('/api/logout').success(function(data) {
         localStorage.removeItem('JWT');
         $rootScope.$emit('logout');
+        Global.authenticate();
       });
     };
 
