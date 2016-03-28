@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$location', '$stateParams', '$cookies', '$q', '$timeout',
-  function($rootScope, $http, $location, $stateParams, $cookies, $q, $timeout) {
+angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$location', '$stateParams', '$cookies', '$q', '$timeout', '$meanConfig',
+  function($rootScope, $http, $location, $stateParams, $cookies, $q, $timeout, $meanConfig) {
 
     var self;
 
@@ -186,7 +186,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
         else {
           $cookies.put('redirect', $location.path());
           $timeout(deferred.reject);
-          $location.url('/auth/login');
+          $location.url($meanConfig.loginPage);
         }
       });
 
