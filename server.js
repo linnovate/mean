@@ -12,6 +12,7 @@ console.log = function(){
 var mean = require('meanio');
 var cluster = require('cluster');
 var deferred = require('q').defer();
+var config = mean.loadConfig();
 
 
 // Code to run if we're in the master process or if we are not in debug mode/ running tests
@@ -19,7 +20,8 @@ var deferred = require('q').defer();
 if ((cluster.isMaster) &&
   (process.execArgv.indexOf('--debug') < 0) &&
   (process.env.NODE_ENV!=='test') && (process.env.NODE_ENV!=='development') &&
-  (process.execArgv.indexOf('--singleProcess')<0)) {
+  (process.execArgv.indexOf('--singleProcess')<0) &&
+  (!config.clusterSticky)) {
 //if (cluster.isMaster) {
 
     console.log('for real!');
