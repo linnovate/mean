@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <div class="collapse navbar-collapse" ng-class="!isCollapsed && 'in'">
+        <div class="collapse navbar-collapse" ng-class="isCollapsed && 'in'">
             <div class="left pull-left">
                 <ul class="navbar-nav nav">
                     <li ui-route="/{{item.link}}" ng-class="{active: $uiRoute}" ng-repeat="item in hdrctr.menus.main">
