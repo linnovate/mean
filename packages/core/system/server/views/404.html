@@ -1,17 +1,12 @@
 {% extends 'layouts/default.html' %}
-
-{% block main %}
+{% block content %}
 <h1>Oops something went wrong</h1>
 <br>
-<span>404</span>
-{% endblock %}
-
-{% block content %}
 <div id="error-message-box">
-  <div id="error-stack-trace">
-    <pre>
-      <code>{{error}}</code>
-    </pre>
-  </div>
+    <div id="error-stack-trace">
+        <pre>
+            <code>404 {{error}}</code>
+        </pre>
+    </div>
 </div>
 {% endblock %}
