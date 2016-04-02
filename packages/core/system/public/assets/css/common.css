@@ -24,7 +24,7 @@
     margin-left: 0
 }
 .content {
-    margin-top: 70px;
+    transform: translateY(70px);
     width: 100%
 }
 footer {
