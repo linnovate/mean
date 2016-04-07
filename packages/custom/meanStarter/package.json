@@ -6,15 +6,11 @@
     "name": "MEAN.io"
   },
   "mean": "0.6.0",
-  "engines": {
-    "node": "4.2.x",
-    "npm": "2.14.x"
-  },
   "dependencies": {
-    "meanio-system": "latest",
-    "meanio-users": "latest",
-    "meanio-circles": "latest",
-    "meanio-admin": "latest"
+    "meanio-system": "git://github.com/pashist/meanio-system.git",
+    "meanio-users": "git://github.com/pashist/meanio-users.git",
+    "meanio-circles": "git://github.com/pashist/meanio-circles.git",
+    "meanio-admin": "git://github.com/pashist/meanio-admin.git"
   },
   "license": "MIT"
 }

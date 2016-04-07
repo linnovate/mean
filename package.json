@@ -20,7 +20,17 @@
     "postinstall": "node tools/scripts/postinstall.js"
   },
   "dependencies": {
-    "meanio": "git://github.com/linnovate/meanio.git#0.9.0",
+    "meanio": "git://github.com/pashist/meanio.git#0.9.0",
+    "angular-bootstrap": "^0.12.2",
+    "angular-cookies": "^1.5.2",
+    "angular-jwt": "latest",
+    "angular-mocks": "^1.5.2",
+    "angular-resource": "^1.5.2",
+    "angular-route": "^1.5.2",
+    "angular-sanitize": "^1.5.2",
+    "angular-ui-router": "^0.2.18",
+    "angular-ui-select": "^0.12.100",
+    "bootstrap": "latest",
     "body-parser": "latest",
     "compression": "latest",
     "connect-flash": "latest",
@@ -36,10 +46,14 @@
     "view-helpers": "latest"
   },
   "devDependencies": {
+    "babel-core": "^6.7.2",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-stage-1": "^6.5.0",
+    "css-loader": "^0.23.1",
     "del": "latest",
     "expect.js": "latest",
     "gulp": "latest",
-    "gulp-coffee": "latest",
     "gulp-concat": "latest",
     "gulp-csslint": "latest",
     "gulp-cssmin": "latest",
@@ -54,6 +68,8 @@
     "gulp-util": "latest",
     "jasmine": "latest",
     "jasmine-reporters": "latest",
+    "jquery": "latest",
+    "jsonwebtoken": "latest",
     "jshint": "latest",
     "jshint-stylish": "latest",
     "karma": "latest",
@@ -71,10 +87,12 @@
     "karma-script-launcher": "latest",
     "mocha": "latest",
     "protractor": "latest",
-    "phantomjs": "latest",
+    "phantomjs-prebuilt": "latest",
     "require-dir": "latest",
     "requirejs": "latest",
     "supertest": "latest",
-    "through": "latest"
+    "through": "latest",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
   }
 }
