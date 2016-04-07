@@ -23,7 +23,7 @@ module.exports = {
                 loader: "babel?presets[]=es2015&presets[]=stage-1"
             },
             {
-                test: /\.(eot|svg|ttf|woff|woff2)$/,
+                test: /\.(eot|svg|ttf|woff|woff2)$/, //todo fix font paths
                 loader: 'file-loader'
             }
         ]
