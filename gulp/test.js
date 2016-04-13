@@ -4,7 +4,9 @@ var gulp = require('gulp'),
   gulpLoadPlugins = require('gulp-load-plugins'),
   request = require('request'),
   karmaServer = require('karma').Server,
-  fs = require('fs');
+  fs = require('fs'),
+  path = require('path');
+
 var plugins = gulpLoadPlugins();
 
 process.env.NODE_ENV = 'test';
@@ -47,11 +49,41 @@ gulp.task('runKarma', ['runMocha'], function (done) {
 });
 
 function processIncludes(aggregatedAssets) {
+
+  // Process all node_modules, find mean packages, and map directory names
+  var dirmap = [];
+  var nodemods = __dirname + '/../node_modules';
+  fs.readdirSync(nodemods).forEach(function(file) {
+    try {
+      var data = fs.readFileSync(path.join(nodemods, file, 'mean.json'));
+      if (data) {
+        var json = JSON.parse(data.toString());
+        if (json.name) {
+          dirmap[file] = json.name;
+        }
+      }
+    } catch (e) {
+      // not a file
+    }
+  });
+
   for(var i = 0; i < aggregatedAssets.length; ++i) {
     aggregatedAssets[i] = aggregatedAssets[i].slice(1);
     if(aggregatedAssets[i].indexOf('bower_components/') === -1) {
       var index = aggregatedAssets[i].indexOf('/') + 1;
-      aggregatedAssets[i] = aggregatedAssets[i].substring(0, index) + "public/" + aggregatedAssets[i].substring(index);
+      var packageName = aggregatedAssets[i].substring(0, index-1);
+      var nmIndex = -1;
+      for(var dirName in dirmap) {
+        if(dirmap[dirName] == packageName) {
+          nmIndex = dirName;
+          break;
+        }
+      }
+      if(nmIndex === -1) {
+        aggregatedAssets[i] = aggregatedAssets[i].substring(0, index) + "public/" + aggregatedAssets[i].substring(index);
+      } else {
+        aggregatedAssets[i] = 'node_modules/' + nmIndex + '/public/' + aggregatedAssets[i].substring(index);
+      }
     }
     try {
       fs.lstatSync(__dirname + '/../packages/core/' + aggregatedAssets[i]);
@@ -68,4 +100,17 @@ function processIncludes(aggregatedAssets) {
     }
   }
   return aggregatedAssets;
+}
+
+function mapFile(dirmap, promise, file, err, data) {
+  if(!err) {
+    var json = JSON.parse(data.toString());
+    if(json.name) {
+      dirmap[file] = json.name;
+    }
+    promise.resolve();
+  }
+  else {
+    promise.resolve();
+  }
 }
