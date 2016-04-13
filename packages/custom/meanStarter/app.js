@@ -16,9 +16,6 @@ MeanStarter.register(function(app, users, system) {
   // Set views path, template engine and default layout
   app.set('views', __dirname + '/server/views');
 
-  MeanStarter.aggregateAsset('css', 'common.css');
-  MeanStarter.aggregateAsset('css', 'loginForms.css');
-  MeanStarter.aggregateAsset('css', 'starter.css');
   MeanStarter.angularDependencies(['mean.system', 'mean.users']);
 
   return MeanStarter;

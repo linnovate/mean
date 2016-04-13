@@ -22,21 +22,6 @@
 
   <link rel="manifest" href="/system/assets/static/manifest.json">
   
-  <!-- {{locals.config.cssFramework}} -->
-  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-
-  {% for file in aggregatedassets.header.css %}
-    <link rel="stylesheet" href="{{file}}">
-  {% endfor %}
-
-  {% for file in aggregatedassets.footer.css %}
-    <link rel="stylesheet" href="{{file}}">
-  {% endfor %}
-
-  {% for file in aggregatedassets.header.js %}
-    <script type="text/javascript" src="{{file}}"></script>
-  {% endfor %}
-
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
