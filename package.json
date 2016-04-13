@@ -94,6 +94,7 @@
     "style-loader": "^0.13.1",
     "supertest": "latest",
     "through": "latest",
+    "url-loader": "^0.5.7",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
   }
