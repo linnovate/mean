@@ -12,7 +12,7 @@ var mean = require('meanio'),
   flash = require('connect-flash'),
   modRewrite = require('connect-modrewrite'),
   // seo = require('mean-seo'),
-  config = mean.loadConfig(),
+  config = mean.getConfig(),
   bodyParser = require('body-parser');
 
 module.exports = function(app, db) {
