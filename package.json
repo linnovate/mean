@@ -1,11 +1,11 @@
 {
   "name": "mean",
   "description": "MEAN.io: A fullstack JavaScript framework powered by MongoDB, ExpressJS, AngularJS, NodeJS.",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "private": false,
   "author": "Linnovate <mean@linnovate.net>",
   "contributors": "https://github.com/linnovate/mean/graphs/contributors",
-  "mean": "0.6.0",
+  "mean": "0.6.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/linnovate/mean.git"
@@ -20,7 +20,7 @@
     "postinstall": "node tools/scripts/postinstall.js"
   },
   "dependencies": {
-    "meanio": "git://github.com/pashist/meanio.git#0.9.0",
+    "meanio": "^0.9.0",
     "angular-bootstrap": "^0.12.2",
     "angular-cookies": "^1.5.2",
     "angular-jwt": "latest",
