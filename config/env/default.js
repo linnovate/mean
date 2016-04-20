@@ -54,6 +54,12 @@ module.exports = {
     loginPage: '/auth/login',
     cssFramework: 'bootstrap'
   },
+  clusterSticky: false,
+  stickyOptions: {
+    proxy: false, //activate layer 4 patching
+    header: 'x-forwarded-for', //provide here your header containing the users ip
+    num: (process.env.CPU_COUNT || require('os').cpus().length) - 1,
+  },
   // The session cookie name
   sessionName: 'connect.sid',
   // Set bodyParser options
