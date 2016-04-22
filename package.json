@@ -39,7 +39,7 @@
     "express": "latest",
     "lodash": "latest",
     "morgan": "latest",
-    "npm": "^3.x",
+    "npm": "^3.8.7",
     "q": "latest",
     "request": "latest",
     "shelljs": "latest",
