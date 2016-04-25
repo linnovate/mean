@@ -6,16 +6,19 @@
  */
 var mean = require('meanio'),
   compression = require('compression'),
-  morgan = require('morgan'),
   consolidate = require('consolidate'),
   express = require('express'),
   helpers = require('view-helpers'),
   flash = require('connect-flash'),
   modRewrite = require('connect-modrewrite'),
   // seo = require('mean-seo'),
-  config = mean.loadConfig();
+  config = mean.getConfig(),
+  bodyParser = require('body-parser');
 
 module.exports = function(app, db) {
+
+  app.use(bodyParser.json(config.bodyParser.json));
+  app.use(bodyParser.urlencoded(config.bodyParser.urlencoded));
 
   app.set('showStackError', true);
 
@@ -36,6 +39,8 @@ module.exports = function(app, db) {
   // Enable compression on bower_components
   app.use('/bower_components', express.static(config.root + '/bower_components'));
 
+  app.use('/bundle', express.static(config.root + '/bundle'));
+
   // Adds logging based on logging config in config/env/ entry
   require('./middlewares/logging')(app, config.logging);
 
@@ -54,7 +59,7 @@ module.exports = function(app, db) {
 
   app.use(modRewrite([
     
-    '!^/api/.*|\\_getModules|\\.html|\\.js|\\.css|\\.swf|\\.jp(e?)g|\\.png|\\.gif|\\.svg|\\.eot|\\.ttf|\\.woff|\\.pdf$ / [L]'    
+    '!^/api/.*|\\_getModules|\\.html|\\.js|\\.css|\\.swf|\\.jp(e?)g|\\.png|\\.ico|\\.gif|\\.svg|\\.eot|\\.ttf|\\.woff|\\.txt|\\.pdf$ / [L]'    
 
   ]));
 

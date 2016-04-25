@@ -2,9 +2,7 @@
 
 // Karma configuration
 module.exports = function(config) {
-  var _ = require('lodash'),
-    basePath = '.',
-    assets = require(basePath + '/config/assets.json');
+  var basePath = '.';
 
   config.set({
 
@@ -12,39 +10,46 @@ module.exports = function(config) {
     basePath: basePath,
 
     // frameworks to use
-    frameworks: ['jasmine'],
-
-    // list of files / patterns to load in the browser
-    files: _.flatten(_.values(assets.core.js)).concat([
-      'packages/**/public/*.js',
-      'packages/**/public/*/*.js',
-      'packages/core/admin/public/assets/lib/ng-clip/dest/ng-clip.min.js',
-      'packages/core/admin/public/assets/lib/zeroclipboard/dist/ZeroClipboard.js',
-      'packages/custom/i18n/public/assets/lib/angular-sanitize/angular-sanitize.min.js',
-      'packages/custom/i18n/public/assets/lib/i18next/i18next.min.js',
-      'packages/custom/i18n/public/assets/lib/ng-i18next/dist/ng-i18next.min.js',
-      'packages/core/users/public/assets/lib/angular-jwt/dist/angular-jwt.min.js',
-    ]),
+    frameworks: ['jasmine', 'phantomjs-shim'],
 
     // list of files to exclude
     exclude: [],
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['progress', 'coverage'],
+    reporters: ['progress', 'coverage', 'junit'],
+
+    junitReporter: {
+      outputDir: 'tests/results/public/junit/'
+    },
 
     // coverage
     preprocessors: {
       // source files that you want to generate coverage for
       // do not include tests or libraries
       // (these files will be instrumented by Istanbul)
-      'packages/**/public/controllers/*.js': ['coverage'],
-      'packages/**/public/services/*.js': ['coverage']
+      'packages/**/public/controllers/**/*.js': ['coverage'],
+      'packages/**/public/services/**/*.js': ['coverage'],
+      'packages/**/public/directives/**/*.js': ['coverage'],
+
+      'packages/**/public/**/*.html': ['ng-html2js']
     },
 
     coverageReporter: {
       type: 'html',
-      dir: 'test/coverage/'
+      dir: 'tests/results/coverage/'
+    },
+
+    ngHtml2JsPreprocessor: {
+      cacheIdFromPath: function(path){
+        var cacheId = path;
+
+        //Strip packages/custom/ and public/ to match the pattern of URL that mean.io uses
+        cacheId = cacheId.replace('packages/custom/', '');
+        cacheId = cacheId.replace('public/', '');
+
+        return cacheId;
+      }
     },
 
     // web server port
@@ -53,13 +58,13 @@ module.exports = function(config) {
     proxies: {
       '/': 'http://localhost:3001/'
     },
-    
+
     // enable / disable colors in the output (reporters and logs)
     colors: true,
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_DEBUG,
+    logLevel: config.LOG_INFO,
 
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: false,
