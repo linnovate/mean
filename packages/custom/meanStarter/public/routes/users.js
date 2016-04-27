@@ -3,7 +3,7 @@
 //Setting up route
 angular.module('mean.meanStarter').config(['$meanStateProvider',
   function($meanStateProvider) {
-        
+
     // states for users
     $meanStateProvider
       .state('auth', {

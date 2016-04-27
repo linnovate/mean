@@ -1,6 +1,6 @@
 'use strict';
 
-var path = require("path");
+var path = require('path');
 
 //var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
@@ -10,17 +10,17 @@ module.exports = {
         app: ['./app.js']
     },
     output: {
-        path: path.join(__dirname, "./bundle"),
-        publicPath: "/",
-        filename: "app.js"
+        path: path.join(__dirname, './bundle'),
+        publicPath: '/',
+        filename: 'app.js'
     },
     module: {
         loaders: [
-            {test: /\.css$/, loader: "style-loader!css-loader"},
+            {test: /\.css$/, loader: 'style-loader!css-loader'},
             {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components|lib)/,
-                loader: "babel?presets[]=es2015&presets[]=stage-1"
+                loader: 'babel?presets[]=es2015&presets[]=stage-1'
             },
             {
                 test: /(.*)\.(eot|svg|ttf|woff|woff2)$/,
@@ -29,7 +29,7 @@ module.exports = {
         ]
     },
     resolve: {
-        modulesDirectories: ["bower_components", "node_modules"]
+        modulesDirectories: ['bower_components', 'node_modules']
     },
     plugins: [
         /*  new ngAnnotatePlugin({

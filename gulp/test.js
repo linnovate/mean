@@ -3,50 +3,13 @@
 var gulp = require('gulp'),
   gulpLoadPlugins = require('gulp-load-plugins'),
   request = require('request'),
-  karmaServer = require('karma').Server,
+  KarmaServer = require('karma').Server,
   fs = require('fs'),
   path = require('path');
 
 var plugins = gulpLoadPlugins();
 
 process.env.NODE_ENV = 'test';
-
-
-gulp.task('test', ['startServer', 'stopServer']);
-gulp.task('startServer', function(done) {
-  var promise = require('../server.js');
-
-  promise.then(function(app){done();});
-});
-gulp.task('stopServer', ['runKarma'], function() {
-  process.exit();
-});
-gulp.task('runMocha', ['startServer'], function () {
-  return gulp.src('./packages/**/server/tests/**/*.spec.js', {read: false})
-    .pipe(plugins.mocha({
-      reporter: 'spec'
-    }))
-    .on('error', function(error){
-      console.error(error);
-      this.emit('end');
-    });
-});
-gulp.task('runKarma', ['runMocha'], function (done) {
-  request('http://localhost:3001/api/aggregatedassets', function(error, response, body) {
-    var aggregatedassets = JSON.parse(body);
-    aggregatedassets = processIncludes(aggregatedassets.footer.js);
-
-    var karma = new karmaServer({
-      configFile: __dirname + '/../karma.conf.js',
-      singleRun: true,
-      files: aggregatedassets.concat(['packages/**/public/tests/**/*.js', 'packages/**/public/**/*.html'])
-    }, function () {
-      done();
-    });
-
-    karma.start();
-  });
-});
 
 function processIncludes(aggregatedAssets) {
 
@@ -74,13 +37,13 @@ function processIncludes(aggregatedAssets) {
       var packageName = aggregatedAssets[i].substring(0, index-1);
       var nmIndex = -1;
       for(var dirName in dirmap) {
-        if(dirmap[dirName] == packageName) {
+        if(dirmap[dirName] === packageName) {
           nmIndex = dirName;
           break;
         }
       }
       if(nmIndex === -1) {
-        aggregatedAssets[i] = aggregatedAssets[i].substring(0, index) + "public/" + aggregatedAssets[i].substring(index);
+        aggregatedAssets[i] = aggregatedAssets[i].substring(0, index) + 'public/' + aggregatedAssets[i].substring(index);
       } else {
         aggregatedAssets[i] = 'node_modules/' + nmIndex + '/public/' + aggregatedAssets[i].substring(index);
       }
@@ -102,15 +65,51 @@ function processIncludes(aggregatedAssets) {
   return aggregatedAssets;
 }
 
-function mapFile(dirmap, promise, file, err, data) {
-  if(!err) {
-    var json = JSON.parse(data.toString());
-    if(json.name) {
-      dirmap[file] = json.name;
-    }
-    promise.resolve();
-  }
-  else {
-    promise.resolve();
-  }
-}
+gulp.task('test', ['startServer', 'stopServer']);
+gulp.task('startServer', function(done) {
+  var promise = require('../server.js');
+
+  promise.then(function(app){done();});
+});
+gulp.task('stopServer', ['runKarma'], function() {
+  process.exit();
+});
+gulp.task('runMocha', ['startServer'], function () {
+  return gulp.src('./packages/**/server/tests/**/*.spec.js', {read: false})
+    .pipe(plugins.mocha({
+      reporter: 'spec'
+    }))
+    .on('error', function(error){
+      console.error(error);
+      this.emit('end');
+    });
+});
+gulp.task('runKarma', ['runMocha'], function (done) {
+  request('http://localhost:3001/api/aggregatedassets', function(error, response, body) {
+    var aggregatedassets = JSON.parse(body);
+    aggregatedassets = processIncludes(aggregatedassets.footer.js);
+
+    var karma = new KarmaServer({
+      configFile: __dirname + '/../karma.conf.js',
+      singleRun: true,
+      files: aggregatedassets.concat(['packages/**/public/tests/**/*.js', 'packages/**/public/**/*.html'])
+    }, function () {
+      done();
+    });
+
+    karma.start();
+  });
+});
+
+// function mapFile(dirmap, promise, file, err, data) {
+//   if(!err) {
+//     var json = JSON.parse(data.toString());
+//     if(json.name) {
+//       dirmap[file] = json.name;
+//     }
+//     promise.resolve();
+//   }
+//   else {
+//     promise.resolve();
+//   }
+// }
