@@ -35,9 +35,9 @@ function processModules(modules) {
         packageModules.push(mn);
     }
 
-    var req = require.context("./packages", true, /\/public\/(?!tests|assets|views)(.*)\.js$/);
+    var req = require.context('./packages', true, /\/public\/(?!tests|assets|views)(.*)\.js$/);
     req.keys().map(req);
-    var req = require.context("./node_modules", true, /\/meanio-(admin|system|users|circles)\/public\/(?!tests|assets|views)(.*)\.js$/);
+    req = require.context('./node_modules', true, /\/meanio-(admin|system|users|circles)\/public\/(?!tests|assets|views)(.*)\.js$/);
     req.keys().map(req);
 
     angular.module('mean', packageModules);
