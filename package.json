@@ -43,7 +43,7 @@
     "meanio-system": "git://github.com/linnovate/meanio-system.git",
     "meanio-users": "git://github.com/linnovate/meanio-users.git",
     "morgan": "latest",
-    "npm": "^3.x",
+    "npm": "^3.8.8",
     "q": "latest",
     "request": "latest",
     "shelljs": "latest",
