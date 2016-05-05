@@ -1,0 +1,47 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" data-role="navigation" ng-controller="HeaderController as hdrctr">
+  <div class="page-header">
+    <div class="navbar-header">
+      <div class="logo pull-left">
+        <button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" ui-sref="home" mean-token="'site-title'">MEAN</a>
+      </div>
+    </div>
+
+    <div class="collapse navbar-collapse" ng-class="!isCollapsed && 'in'">
+      <div class="left pull-left">
+        <ul class="navbar-nav nav">
+          <li ui-route="/{{item.link}}" ng-class="{active: $uiRoute}" ng-repeat="item in hdrctr.menus.main">
+            <a mean-token="item.link" ui-sref='{{item.link}}'>{{item.title}}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="right pull-right">
+        <div class="text-edit" ng-show="hdrctr.hdrvars.authenticated">
+          <div class="pull-right" mean-token-editable></div>
+          <div class="pull-right" mean-translate></div>
+        </div>
+        <ul class="navbar-nav nav auth-link" ng-show="!hdrctr.hdrvars.authenticated">
+          <li><a ui-sref='auth.register'>Join</a></li>
+          <li class="divider-vertical"></li>
+          <li><a ui-sref='auth.login'>Log In</a></li>
+        </ul>
+        <ul class="navbar-nav nav" ng-show="hdrctr.hdrvars.authenticated">
+          <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+            <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+              <span>{{hdrctr.hdrvars.user.name}}</span> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#" ng-click="hdrctr.logout()">Log Out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
