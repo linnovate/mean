@@ -20,6 +20,7 @@
     "postinstall": "node tools/scripts/postinstall.js"
   },
   "dependencies": {
+    "angular": "^1.5.5",
     "angular-bootstrap": "^0.12.2",
     "angular-cookies": "^1.5.2",
     "angular-jwt": "latest",
@@ -90,6 +91,7 @@
     "karma-phantomjs-shim": "latest",
     "karma-requirejs": "latest",
     "karma-script-launcher": "latest",
+    "karma-webpack": "^1.7.0",
     "mocha": "latest",
     "phantomjs-prebuilt": "latest",
     "protractor": "latest",

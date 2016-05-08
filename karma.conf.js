@@ -10,8 +10,11 @@ module.exports = function(config) {
     basePath: basePath,
 
     // frameworks to use
-    frameworks: ['jasmine', 'phantomjs-shim'],
-
+    frameworks: ['jasmine'],
+    files: [
+      'app.js',
+      'packages/**/public/tests/**/*.js'
+    ],
     // list of files to exclude
     exclude: [],
 
@@ -32,7 +35,15 @@ module.exports = function(config) {
       'packages/**/public/services/**/*.js': ['coverage'],
       'packages/**/public/directives/**/*.js': ['coverage'],
 
-      'packages/**/public/**/*.html': ['ng-html2js']
+      'packages/**/public/**/*.html': ['ng-html2js'],
+
+     // 'packages/**/public/tests/**/*.js': ['webpack', 'babel'],
+      'app.js': ['webpack']
+    },
+
+    webpack: require('./webpack.test.js'),
+    webpackMiddleware: {
+      noInfo:true
     },
 
     coverageReporter: {
@@ -81,9 +92,18 @@ module.exports = function(config) {
 
     // If browser does not capture in given timeout [ms], kill it
     captureTimeout: 60000,
-
+    // How long will Karma wait for a message from a browser before disconnecting from it (in ms).
+    browserNoActivityTimeout: 60000,
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: true
+    singleRun: true,
+    plugins: [
+      'karma-jasmine',
+      'karma-webpack',
+      'karma-ng-html2js-preprocessor',
+      'karma-phantomjs-launcher',
+      'karma-coverage',
+      'karma-junit-reporter'
+    ]
   });
 };
