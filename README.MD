@@ -46,8 +46,9 @@ This will add the *mean* command which lets you interact (install, manage, updat
 
 ### Install the MEAN CLI
 
+In linux install in globally as root
 ```bash
-$ npm install -g mean-cli
+$ sudo npm install -g mean-cli 
 $ mean init <myApp>
 $ cd <myApp> && npm install
 ```
