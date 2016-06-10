@@ -485,7 +485,7 @@ app.get('/myPackage/example/render', function (req,res,next) {
 ###Overriding the default layouts
 One is able to override the default layout of the application through a custom package.
 
-Below is an example overriding the default layout of system and instead using the layourts found locally within the package
+Below is an example overriding the default layout of system and instead using the layouts found locally within the package
 
 ```javascript
 MyPackage.register(function(system, app) {
@@ -527,7 +527,7 @@ Where "myPackage" is the name of your package.
 
 
 ### Contributing your package
-Once your package is in good shape and you want to share it with the world you can start the process of contributing it and submiting it so it can be included in the package repository.
+Once your package is in good shape and you want to share it with the world you can start the process of contributing it and submitting it so it can be included in the package repository.
 To contribute your package register to the network (see the section below) and run
 
 ```bash
