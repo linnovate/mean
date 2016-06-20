@@ -23,3 +23,7 @@ dependencies:
 mounts:
   "/run": "shared:files/run"
 disk: 512
+hooks:
+  build: |
+    npm install
+    bower install
