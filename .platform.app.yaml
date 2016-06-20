@@ -17,7 +17,9 @@ web:
           expires: -1
 dependencies:
   nodejs:
-    pm2: "^0.15.10"
+  pm2: "^0.15.10"
+  bower:
+  gulp:
 mounts:
   "/run": "shared:files/run"
 disk: 512
