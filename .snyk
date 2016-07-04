@@ -1,0 +1,6 @@
+version: v1.5.0
+ignore: {}
+patch:
+  'npm:uglify-js:20151024':
+    - meanio > swig > uglify-js:
+        patched: '2016-07-04T12:18:40.216Z'
