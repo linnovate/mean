@@ -1,0 +1,12 @@
+version: v1.5.0
+ignore: {}
+patch:
+  'npm:minimatch:20160620':
+    - meanio > glob > minimatch:
+        patched: '2016-07-04T08:27:26.098Z'
+  'npm:ms:20151024':
+    - meanio > morgan > debug > ms:
+        patched: '2016-07-04T08:27:26.098Z'
+  'npm:uglify-js:20151024':
+    - meanio > swig > uglify-js:
+        patched: '2016-07-04T08:27:26.098Z'
