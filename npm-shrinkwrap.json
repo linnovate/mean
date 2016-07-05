@@ -2956,9 +2956,9 @@
       "resolved": "https://registry.npmjs.org/lodash/-/lodash-3.9.3.tgz"
     },
     "meanio": {
-      "version": "0.8.76",
+      "version": "0.8.85",
       "from": "meanio@latest",
-      "resolved": "https://registry.npmjs.org/meanio/-/meanio-0.8.76.tgz",
+      "resolved": "https://registry.npmjs.org/meanio/-/meanio-0.8.85.tgz",
       "dependencies": {
         "complex-list": {
           "version": "0.1.4",
