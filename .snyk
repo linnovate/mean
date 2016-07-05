@@ -1,6 +1,61 @@
 version: v1.5.0
-ignore: {}
+ignore:
+  'npm:minimatch:20160620':
+    - npm > read-package-tree > read-package-json > glob > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.419Z'
+    - npm > glob > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.420Z'
+    - npm > init-package-json > read-package-json > glob > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.420Z'
+    - npm > node-gyp > rimraf > glob > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.420Z'
+    - npm > node-gyp > tar > fstream > rimraf > glob > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.421Z'
+    - npm > node-gyp > fstream > rimraf > glob > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.421Z'
+    - npm > npm-registry-client > rimraf > glob > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.422Z'
+    - npm > read-installed > read-package-json > glob > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.422Z'
+    - npm > read-package-json > glob > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.423Z'
+    - npm > init-package-json > glob > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.423Z'
+    - npm > rimraf > glob > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.423Z'
+    - npm > tar > fstream > rimraf > glob > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.424Z'
+    - npm > fs-vacuum > rimraf > glob > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.424Z'
+    - npm > fstream-npm > fstream-ignore > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.424Z'
+    - npm > fstream > rimraf > glob > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.425Z'
+    - npm > fstream-npm > fstream-ignore > fstream > rimraf > glob > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.426Z'
+    - npm > node-gyp > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.426Z'
+    - npm > node-gyp > glob > minimatch:
+        reason: None given
+        expires: '2016-08-04T10:11:51.427Z'
 patch:
   'npm:uglify-js:20151024':
     - meanio > swig > uglify-js:
-        patched: '2016-07-04T12:18:40.216Z'
+        patched: '2016-07-05T10:10:22.183Z'
