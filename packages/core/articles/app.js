@@ -31,13 +31,6 @@ Articles.register(function(app, auth, database, circles, swagger) {
     'link': 'create article'
   });
 
-  Articles.events.design({
-    //http://fontawesome.io/icons
-    icon: 'fa-file-text',
-    color: '#8FD5FF'
-  });
-
-
   /*
     //Uncomment to use. Requires meanio@0.3.7 or above
     // Save settings with callback
