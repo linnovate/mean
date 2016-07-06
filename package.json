@@ -30,7 +30,7 @@
     "angular-resource": "^1.5.2",
     "angular-route": "^1.5.2",
     "angular-sanitize": "^1.5.2",
-    "angular-ui-router": "^0.2.18",
+    "angular-ui-router": "0.3.1",
     "angular-ui-select": "^0.12.100",
     "body-parser": "latest",
     "bootstrap": "latest",
