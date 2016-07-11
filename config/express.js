@@ -24,7 +24,6 @@ module.exports = function(app, db) {
 
   app.use(helmet());
 
-
   app.set('showStackError', true);
 
   // Prettify HTML
