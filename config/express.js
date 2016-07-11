@@ -13,12 +13,17 @@ var mean = require('meanio'),
   modRewrite = require('connect-modrewrite'),
   // seo = require('mean-seo'),
   config = mean.getConfig(),
-  bodyParser = require('body-parser');
+  bodyParser = require('body-parser'),
+  helmet = require('helmet');
+
 
 module.exports = function(app, db) {
 
   app.use(bodyParser.json(config.bodyParser.json));
   app.use(bodyParser.urlencoded(config.bodyParser.urlencoded));
+
+  app.use(helmet());
+
 
   app.set('showStackError', true);
 
