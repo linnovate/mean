@@ -8,3 +8,6 @@ patch:
         patched: '2016-07-05T10:40:06.562Z'
     - npm > node-gyp > glob > minimatch:
         patched: '2016-07-05T10:40:06.562Z'
+  'npm:tough-cookie:20160722':
+    - npm > request > tough-cookie:
+        patched: '2016-07-25T09:58:42.958Z'
