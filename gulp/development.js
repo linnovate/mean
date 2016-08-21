@@ -49,7 +49,7 @@ gulp.task('jshint', function() {
 gulp.task('csslint', function() {
   return gulp.src(paths.css)
     .pipe(plugins.csslint('.csslintrc'))
-    .pipe(plugins.csslint.reporter())
+    // .pipe(plugins.csslint.reporter())
     .pipe(count('csslint', 'files lint free'));
 });
 
