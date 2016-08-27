@@ -1,7 +1,7 @@
 <div layout="column" flex data-ng-controller="IndexController">
   <md-content layout="column" layout-padding flex>
     <p class="md-subhead">
-      MEAN.io makes building apps simpler and faster.<br> With this website framework, you can <a href="https://github.com/linnovate/mean/wiki/CLI#user-management">create members</a>, articles, or <a href="http://mean.io/#!/packages">add more features</a>      with packages from the community.
+    With MEAN framework, you can <a href="https://github.com/linnovate/mean/wiki/CLI#user-management">create members</a>, articles, or <a href="http://mean.io/#!/packages">add more features</a> with packages from the community.
     </p>
     <md-fab-toolbar md-open="false" count="0" md-direction="left">
       <md-fab-trigger class="align-with-text">
@@ -30,7 +30,7 @@
     <div layout="row" layout-align="space-around start" layout-padding flex>
       <div class="left" layout="column" flex>
         <div class="next-steps">
-          <h3>Browse the  Documentation</h3>
+          <p class="md-headline">Browse the  Documentation</p>
           <p>
             Before you jump in it's important to read the documentation and learn about the different aspects of extending and developing MEAN.
           </p>
@@ -48,7 +48,7 @@
         </div>
         <md-divider></md-divider>
         <div class="packages">
-          <h3>Browse our packages <md-button href="http://mean.io/#!/packages">All Packages</md-button></h3>
+          <p class="md-headline">Browse our packages <md-button href="http://mean.io/#!/packages">All Packages</md-button></p>
           <md-card ng-repeat="package in packages">
             <img ng-src="{{package.image}}" class="md-card-image" alt="Site Image">
             <md-card-title>
