@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-var path = require('path'),
-  rootPath = path.normalize(__dirname + '/../..');
+var path = require('path')
+var rootPath = path.join(__dirname, '/../..')
 
 module.exports = {
   root: rootPath,
@@ -45,10 +45,10 @@ module.exports = {
   public: {
     languages: [{
       locale: 'en',
-      direction: 'ltr',
+      direction: 'ltr'
     }, {
       locale: 'he',
-      direction: 'rtl',
+      direction: 'rtl'
     }],
     currentLanguage: 'en',
     loginPage: '/auth/login',
@@ -56,9 +56,9 @@ module.exports = {
   },
   clusterSticky: false,
   stickyOptions: {
-    proxy: false, //activate layer 4 patching
-    header: 'x-forwarded-for', //provide here your header containing the users ip
-    num: (process.env.CPU_COUNT || require('os').cpus().length) - 1,
+    proxy: false, // activate layer 4 patching
+    header: 'x-forwarded-for', // provide here your header containing the users ip
+    num: (process.env.CPU_COUNT || require('os').cpus().length) - 1
   },
   // The session cookie name
   sessionName: 'connect.sid',
@@ -67,4 +67,4 @@ module.exports = {
     json: {limit: '100kb'},
     urlencoded: {limit: '100kb', extended: true}
   }
-};
+}
