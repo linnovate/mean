@@ -16,7 +16,7 @@ var paths = {
 var webpack = require('webpack')
 var webpackConfig = require('../webpack.config.js')
 
-// var defaultTasks = ['clean', 'jshint', 'less', 'csslint', 'devServe', 'watch']
+// var defaultTasks = ['clean', 'standard', 'less', 'csslint', 'devServe', 'watch']
 var defaultTasks = ['webpack:build-dev', 'clean', 'less', 'sass', 'csslint', 'devServe', 'watch']
 
 gulp.task('env:development', function () {
@@ -122,7 +122,7 @@ gulp.task('watch', function () {
     interval: 500
   })
 
-  gulp.watch(paths.js, ['jshint'])
+  gulp.watch(paths.js, ['standard'])
   gulp.watch(paths.css, ['csslint']).on('change', plugins.livereload.changed)
   gulp.watch(paths.less, ['less'])
   gulp.watch(paths.sass, ['sass'])
