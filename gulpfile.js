@@ -12,6 +12,6 @@ if (env === 'test')       { var defaultTasks = ['env:test', 'karma:unit', 'mocha
 require('require-dir')('./gulp');
 console.log('Invoking gulp -',env);
 gulp.task('default', ['clean'], function (defaultTasks) {
-  // run with paramater
+  // run with parameter
   gulp.start(env);
 });
