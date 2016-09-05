@@ -1,0 +1,35 @@
+@mixin animation-duration-override ($delay, $duration) {
+    -webkit-animation-delay: $delay;
+    -webkit-animation-duration: $duration;
+    
+    -moz-animation-delay: $delay;
+    -moz-animation-duration: $duration;
+    
+    -o-animation-delay: $delay;
+    -o-animation-duration: $duration;
+    
+    animation-delay: $delay;
+    animation-duration: $duration;
+}
+
+@mixin animation ($delay, $duration, $animation) {
+    -webkit-animation-delay: $delay;
+    -webkit-animation-duration: $duration;
+    -webkit-animation-name: $animation;
+    -webkit-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+ 
+    -moz-animation-delay: $delay;
+    -moz-animation-duration: $duration;
+    -moz-animation-name: $animation;
+    -moz-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+ 
+    -o-animation-delay: $delay;
+    -o-animation-duration: $duration;
+    -o-animation-name: $animation;
+    -o-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+ 
+    animation-delay: $delay;
+    animation-duration: $duration;
+    animation-name: $animation;
+    animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+}

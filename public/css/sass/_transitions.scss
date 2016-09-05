@@ -1,0 +1,85 @@
+/*
+ * Apply a CSS3 transition
+ *
+ * $property The property you want to animate, eg opacity
+ * $duration The duration of the animation, eg 1s
+ * $ms Include -ms-transition; default is false because IE does not support transitionEnd callback
+ *
+ * @include transition(opacity, 0.5s);
+ */
+
+@mixin transition($property, $duration, $ms: false) {
+	-webkit-transition: $property $duration ease-in-out;
+	-moz-transition: $property $duration ease-in-out;
+	-o-transition: $property $duration ease-in-out;
+	@if ($ms) {
+		-ms-transition: $property $duration ease-in-out;
+	}
+	transition: $property $duration ease-in-out;
+}
+
+@mixin transitionLong($property, $duration, $easing:ease-in-out, $delay:false) {
+	@include transitionProperty($property);
+	@include transitionDuration($duration);
+
+	@if($delay) {
+		@include transitionDelay($delay);
+	}
+
+	@if($easing) {
+		@include transitionTimingFunction($easing);
+	}
+}
+
+/*
+ * Apply a CSS3 transition-delay
+ * @include transitionDelay(2s);
+ */
+@mixin transitionDelay($delay) {
+	-webkit-transition-delay: $delay;
+	-moz-transition-delay: $delay;
+	-o-transition-delay: $delay;
+	-ms-transition-delay: $delay;
+	transition-delay: $delay;
+}
+
+/*
+ * Apply a CSS3 transition-duration
+ * @include transitionDuration(1s);
+ */
+@mixin transitionDuration($duration) {
+	-webkit-transition-duration: $duration;
+	-moz-transition-duration: $duration;
+	-o-transition-duration: $duration;
+	-ms-transition-duration: $duration;
+	transition-duration: $duration;
+}
+
+/*
+ * Apply a CSS3 transition-property
+ * @include transitionProperty(opacity);
+ * @include transitionProperty((height, width)); Multiple properties can be passed in surrounded by brackets
+ */
+@mixin transitionProperty($property) {
+	-webkit-transition-property: $property;
+	-moz-transition-property: $property;
+	-o-transition-property: $property;
+	-ms-transition-property: $property;
+	transition-property: $property;
+}
+
+/*
+ * Apply a CSS3 transition-timing-function
+ * @include transitionTimingFunction(easing);
+ */
+@mixin transitionTimingFunction($easing) {
+	-webkit-transition-timing-function: $easing;
+	-moz-transition-timing-function: $easing;
+	-o-transition-timing-function: $easing;
+	-ms-transition-timing-function: $easing;
+	transition-timing-function: $easing;
+}
+
+
+
+
