@@ -27,7 +27,7 @@
     "angular-cookies": "^1.5.2",
     "angular-jwt": "latest",
     "angular-mocks": "^1.5.2",
-    "angular-resource": "^1.5.2",
+    "angular-resource": "^1.5.5",
     "angular-route": "^1.5.2",
     "angular-sanitize": "^1.5.2",
     "angular-ui-router": "0.3.1",
