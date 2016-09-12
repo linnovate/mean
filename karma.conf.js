@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
 // Karma configuration
-module.exports = function(config) {
-  var basePath = '.';
+module.exports = function (config) {
+  var basePath = '.'
 
   config.set({
 
@@ -37,13 +37,13 @@ module.exports = function(config) {
 
       'packages/**/public/**/*.html': ['ng-html2js'],
 
-     // 'packages/**/public/tests/**/*.js': ['webpack', 'babel'],
+      // 'packages/**/public/tests/**/*.js': ['webpack', 'babel'],
       'app.js': ['webpack']
     },
 
     webpack: require('./webpack.test.js'),
     webpackMiddleware: {
-      noInfo:true
+      noInfo: true
     },
 
     coverageReporter: {
@@ -52,14 +52,14 @@ module.exports = function(config) {
     },
 
     ngHtml2JsPreprocessor: {
-      cacheIdFromPath: function(path){
-        var cacheId = path;
+      cacheIdFromPath: function (path) {
+        var cacheId = path
 
-        //Strip packages/custom/ and public/ to match the pattern of URL that mean.io uses
-        cacheId = cacheId.replace('packages/custom/', '');
-        cacheId = cacheId.replace('public/', '');
+        // Strip packages/custom/ and public/ to match the pattern of URL that mean.io uses
+        cacheId = cacheId.replace('packages/custom/', '')
+        cacheId = cacheId.replace('public/', '')
 
-        return cacheId;
+        return cacheId
       }
     },
 
@@ -105,5 +105,5 @@ module.exports = function(config) {
       'karma-coverage',
       'karma-junit-reporter'
     ]
-  });
-};
+  })
+}
