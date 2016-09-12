@@ -1,47 +1,32 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" data-role="navigation" ng-controller="HeaderController as hdrctr">
-    <div class="page-header">
-        <div class="navbar-header">
-            <div class="logo pull-left">
-                <button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" ui-sref="home" mean-token="'site-title'">MEAN</a>
-            </div>
-        </div>
+<div class="md-toolbar-tools" ng-controller="HeaderController as hdrctr">
+  <div class="MEAN-logo"></div>
+  <h2 class="pressed-text" ui-sref="home" mean-token="'site-title'">&nbsp;MEAN</h2>
+  <md-button class="md-button" aria-label="{{item.link}}" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}" ng-repeat="item in hdrctr.menus.main" ui-sref="{{item.link}}" mean-token="item.link">
+    {{item.title}}
+  </md-button>
+  <span flex></span>
+  <md-button class="md-button" aria-label="Sign Up" ui-sref="auth.register" ng-if="!hdrctr.hdrvars.authenticated">
+    Join
+  </md-button>
+  <md-button class="md-button" aria-label="Login" ui-sref="auth.login" ng-if="!hdrctr.hdrvars.authenticated">
+    Login
+  </md-button>
 
-        <div class="collapse navbar-collapse" ng-class="!isCollapsed && 'in'">
-            <div class="left pull-left">
-                <ul class="navbar-nav nav">
-                    <li ui-route="/{{item.link}}" ng-class="{active: $uiRoute}" ng-repeat="item in hdrctr.menus.main">
-                        <a mean-token="item.link" ui-sref='{{item.link}}'>{{item.title}}</a>
-                    </li>
-                </ul>
-            </div>
+  <md-menu ng-if="hdrctr.hdrvars.authenticated" md-position-mode="target-right target">
+    <md-button aria-label="Account" class="md-button top-link" ng-click="$mdOpenMenu()">
+      <md-tooltip md-direction="left">Account Settings</md-tooltip>
+      <md-icon>account_box</md-icon>
+      <span id="toolbar-username">{{hdrctr.hdrvars.user.name}}</span>
+      <md-icon md-menu-origin>keyboard_arrow_down</md-icon>
+    </md-button>
 
-            <div class="right pull-right">
-                <div class="text-edit" ng-show="hdrctr.hdrvars.authenticated">
-                    <div class="pull-right" mean-token-editable></div>
-                    <div class="pull-right" mean-translate></div>
-                </div>
-                <ul class="navbar-nav nav auth-link" ng-show="!hdrctr.hdrvars.authenticated">
-                    <li><a ui-sref='auth.register'>Join</a></li>
-                    <li class="divider-vertical"></li>
-                    <li><a ui-sref='auth.login'>Log In</a></li>
-                </ul>
-                <ul class="navbar-nav nav" ng-show="hdrctr.hdrvars.authenticated">
-                    <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
-                        <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
-                            <span>{{hdrctr.hdrvars.user.name}}</span> <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" ng-click="hdrctr.logout()">Log Out</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</nav>
+    <md-menu-content width="3">
+      <md-menu-item>
+        <md-button class="md-button" aria-label="Logout" ng-click="hdrctr.logout()">
+          <md-icon>exit_to_app</md-icon>
+          Logout
+        </md-button>
+      </md-menu-item>
+    </md-menu-content>
+  </md-menu>
+</div>

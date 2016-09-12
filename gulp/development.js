@@ -106,7 +106,7 @@ myDevConfig.devtool = 'sourcemap'
 myDevConfig.debug = true
 // create a single instance of the compiler to allow caching
 var devCompiler = webpack(myDevConfig)
-gulp.task('webpack:build-dev', function (callback) {
+gulp.task('webpack:build-dev', ['sass', 'less'], function (callback) {
   // run webpack
   devCompiler.run(function (err, stats) {
     if (err) throw new gutil.PluginError('webpack:build-dev', err)

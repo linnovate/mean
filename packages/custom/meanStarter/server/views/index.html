@@ -1,6 +1,6 @@
 {% extends 'layouts/default.html' %}
 {% block content %}
-  <section data-ui-view ></section>
+  <div data-ui-view flex layout="row"></div>
   <script type="text/javascript">
     window.user = {{user|json|safe}};
     window.modules = null;
