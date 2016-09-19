@@ -59,7 +59,7 @@
     "q": "latest",
     "request": "latest",
     "shelljs": "latest",
-    "snyk": "^1.17.5",
+    "snyk": "^1.19.1",
     "view-helpers": "latest",
     "webpack-dev-server": "^1.15.2"
   },
