@@ -33,7 +33,7 @@
     "angular-resource": "^1.5.2",
     "angular-route": "^1.5.2",
     "angular-sanitize": "^1.5.2",
-    "angular-ui-router": "^1.0.0-beta.2",
+    "angular-ui-router": "0.3.1",
     "angular-ui-select": "^0.12.100",
     "body-parser": "latest",
     "bootstrap": "latest",
@@ -46,7 +46,6 @@
     "file-loader": "^0.9.0",
     "helmet": "^2.2.0",
     "jasmine": "^2.5.2",
-    "karma-requirejs": "^1.1.0",
     "lodash": "latest",
     "meanio": "^0.9.0",
     "meanio-admin": "git://github.com/linnovate/meanio-admin.git",
@@ -60,8 +59,7 @@
     "request": "latest",
     "shelljs": "latest",
     "snyk": "^1.17.5",
-    "view-helpers": "latest",
-    "webpack-dev-server": "^1.15.2"
+    "view-helpers": "latest"
   },
   "devDependencies": {
     "babel-core": "^6.7.2",
