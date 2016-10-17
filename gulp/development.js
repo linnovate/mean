@@ -18,18 +18,18 @@ var webpackConfig = require('../webpack.config.js')
 
 /** General watch/restart flow **/
 // .less / .scss files are watched by less/sass and produce .css files
-// .js / .css files are watched by nodemon, invoke webpack,csslint, and standard as needed before restarting and invoking livereload after
+// .js / .css files are watched by nodemon, invoke webpack,csslint, and jshint as needed before restarting and invoking livereload after
 // .html files are watched by livereload explicitly
 
 var startupTasks = ['devServe']
 
 gulp.task('development', startupTasks)
-gulp.task('devServe', ['env:development', 'webpack:build-dev', 'standard', 'csslint', 'watch'], devServeTask)
+gulp.task('devServe', ['env:development', 'webpack:build-dev', 'jshint', 'csslint', 'watch'], devServeTask)
 gulp.task('env:development', envDevelopmentTask)
 gulp.task('webpack:build-dev', ['sass', 'less'], webpackBuild)
 gulp.task('sass', sassTask)
 gulp.task('less', lessTask)
-gulp.task('standard', standardTask)
+gulp.task('jshint', jshintTask)
 gulp.task('csslint', csslintTask)
 
 gulp.task('webpack:rebuild-dev', webpackBuild)
@@ -56,14 +56,11 @@ function webpackBuild (callback) {
   })
 }
 
-function standardTask (callback) {
+function jshintTask (callback) {
   gulp.src(paths.js)
-    .pipe(plugins.standard())
-    .pipe(plugins.standard.reporter('default', {
-      quiet: false,
-      breakOnError: true,
-      breakOnWarning: true
-    }))
+    .pipe(plugins.jshint())
+    .pipe(plugins.jshint.reporter('jshint-stylish'))
+    .pipe(count('jshint', 'files lint free'))
   callback()
 }
 
@@ -116,7 +113,7 @@ function devServeTask () {
         var tasks = [];
         changedFiles.forEach(function (file) {
           if (path.extname(file) === '.css' && !~tasks.indexOf('csslint')) tasks.push('csslint')
-          if (path.extname(file) === '.js' && !~tasks.indexOf('standard')) tasks.push('standard')
+          if (path.extname(file) === '.js' && !~tasks.indexOf('jshint')) tasks.push('jshint')
           if (path.extname(file) === '.js' || path.extname(file) === '.css' && !~tasks.indexOf('webpack:rebuild-dev')) tasks.push('webpack:rebuild-dev')
         })
         return tasks;
