@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 // Setting up route
 angular.module('mean.meanStarter').config(['$meanStateProvider',
@@ -45,6 +45,6 @@ angular.module('mean.meanStarter').config(['$meanStateProvider',
             return MeanUser.checkLoggedOut()
           }
         }
-      })
+      });
   }
-])
+]);
