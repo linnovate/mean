@@ -1,8 +1,8 @@
-'use strict'
+'use strict';
 
 angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
   function ($scope, Global) {
-    $scope.global = Global
+    $scope.global = Global;
     $scope.sites = [{
       'name': 'makeapoint',
       'text': 'Makeapoint is a platform to craft and fine-tune ideas and messages providing a graphical experience which brough an offline methodlogy online',
@@ -15,7 +15,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
       'author': 'QED42',
       'link': 'http://www.qed42.com',
       'image': '/meanStarter/assets/img/cactus.png'
-    }]
+    }];
     $scope.packages = {
       'gmap': {
         'name': 'gmap',
@@ -38,7 +38,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
         'link': 'http://www.linnovate.net',
         'image': 'http://cdn.designbyhumans.com/pictures/blog/09-2013/pop-culture-cats/Pop_Culture_Cats_Hamilton_Hipster.jpg'
       }
-    }
+    };
 
     $scope.docs = [{
       text: 'Overview',
@@ -58,7 +58,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
     }, {
       text: 'Contribution',
       link: 'http://learn.mean.io/#mean-packages-contributing-your-package'
-    }]
+    }];
 
     $scope.communities = [{
       link: 'https://facebook.com/groups/mean.io/',
@@ -76,18 +76,18 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
       link: 'https://hangout.mean.io/',
       text: 'Video support, shared coding and to meet the people behind mean.io',
       icon: 'hangout'
-    }]
+    }];
 
     $scope.$watch(function () {
       for (var i = 0; i < $scope.sites.length; i += 1) {
         if ($scope.sites[i].active) {
-          return $scope.sites[i]
+          return $scope.sites[i];
         }
       }
     }, function (currentSlide, previousSlide) {
       if (currentSlide !== previousSlide) {
-        console.log('currentSlide:', currentSlide)
+        console.log('currentSlide:', currentSlide);
       }
-    })
+    });
   }
-])
+]);

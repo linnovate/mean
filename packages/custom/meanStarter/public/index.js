@@ -1,3 +1,3 @@
-'use strict'
+'use strict';
 
-import './assets/css/common.css'
+import './assets/css/common.css';
