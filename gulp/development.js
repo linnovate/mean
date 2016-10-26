@@ -43,41 +43,25 @@ gulp.task('livereload', livereloadTask);
 ////////////////////////////////////////////////////////////////////
 
 function webpackTask (callback) {
-  let firstBuildReady = false;
+
   let callbackCalled = false;
-  function done(err, stats) {
-    firstBuildReady = true;
-    if (err) {
-      return;
-    }
-    if (stats.compilation.errors.length) {
-      gutil.log(gutil.colors.red('webpack errors:'), stats.compilation.errors.toString({colors: true}));
-    }
-    if (stats.compilation.warnings.length) {
-      gutil.log(gutil.colors.yellow('webpack warnings:'), stats.compilation.warnings.toString({colors: true}));
-    }
-  }
-
   webpackConfig.watch = true;
-  webpackConfig.debug = true;
-  webpackConfig.progress = true;
-  webpackConfig.devtool = 'cheap-module-inline-source-map';
+  webpackConfig.devtool = '#source-map';
 
-  return gulp.src('../app.js')
-      .pipe(plumber({errorHandler: () => {}}))
-      .pipe(webpackStream(webpackConfig, null, done))
-      .pipe(gulp.dest('bundle/'))
-      .on('data', function(){
-        if (firstBuildReady && !callbackCalled) {
-          callbackCalled = true;
-          callback();
-        } else {
-          plugins.livereload.reload({
-            interval: 500
-          });
-        }
-      });
+  gulp.src('app.js')
+    .pipe(plumber(() => {}))
+    .pipe(webpackStream(webpackConfig))
+    .pipe(gulp.dest('bundle/'))
+    .on('data', function(){
+      if (!callbackCalled) {
+        callbackCalled = true;
+        callback(); // first time build no need reload
+      } else {
+        plugins.livereload.reload(); // reload after build complete
+      }
+    });
 }
+
 function jshintTask (callback) {
   gulp.src(paths.js)
     .pipe(plugins.jshint())
@@ -103,15 +87,16 @@ function devServeTask () {
       script: 'server.js',
       ext: 'js css',
       env: {
-        'NODE_ENV': 'development'
+        'NODE_ENV': 'development',
+        'DEBUG': 'cluster'
       },
       ignore: [
         'node_modules/',
         'bower_components/',
-        'bundle/',                          // handled by webpack
-        'app.js',                           // handled by webpack
+        'bundle/',
+        '../app.js',                           // handled by webpack
         'logs/',
-        'packages/*/*/public/**',
+        'packages/**/public/*',
         '.DS_Store', '**/.DS_Store',
         '.bower-*',
         '**/.bower-*',
@@ -133,19 +118,17 @@ function devServeTask () {
       stdout: false
     })
     .on('readable', function () {
-      this.stdout.on('data', function (chunk) {
-        if (/Mean app started/.test(chunk)) {
+      this.stderr.on('data', function (chunk) {
+        if (/MEAN app started/.test(chunk)) {
           setTimeout(function () {
             plugins.livereload.reload();
           }, 500)
         }
-        process.stdout.write(chunk)
+        process.stderr.write(chunk)
       });
-      this.stderr.pipe(process.stderr)
+      this.stdout.pipe(process.stdout)
     })
-    .on('restart', function () {
-      plugins.livereload.reload();
-    });
+      .on('restart', changed => console.log(changed));
 }
 
 function watchTask (callback) {
