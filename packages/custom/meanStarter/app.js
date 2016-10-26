@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /*
  * Defining the Package
