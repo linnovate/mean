@@ -15,16 +15,13 @@ var webpackConfig = require('../webpack.config.js');
 var paths = {
   js: ['./*.js', 'config/**/*.js', 'gulp/**/*.js', 'tools/**/*.js', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**', '!packages/**/assets/**/js/**'],
   html: ['packages/**/*.html', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
-  css: ['packages/**/*.css', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
-  less: ['packages/**/*.less', '!packages/**/_*.less', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
-  sass: ['packages/**/*.scss', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**']
+  css: ['packages/**/*.css', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**']
 };
 
 /**
  *
  * General watch/restart flow
  *
- * .less / .scss files are watched by less/sass and produce .css files
  * .js / .css files are watched by nodemon, invoke csslint, and jshint as needed before restarting and invoking livereload after
  * .html files are watched by livereload explicitly
  * app.js and dependencies watched by webpack
@@ -157,8 +154,6 @@ function watchTask (callback) {
   });
 
   gulp.watch(paths.html, ['livereload']);
-  gulp.watch(paths.less, ['less']);
-  gulp.watch(paths.sass, ['sass']);
   callback();
 }
 
