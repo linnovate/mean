@@ -102,6 +102,7 @@
     "karma-requirejs": "latest",
     "karma-script-launcher": "latest",
     "karma-webpack": "^1.7.0",
+    "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "mocha": "latest",
     "node-sass": "^3.10.1",
@@ -115,7 +116,8 @@
     "through": "latest",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "webpack-stream": "^3.2.0"
   },
   "snyk": true
 }
