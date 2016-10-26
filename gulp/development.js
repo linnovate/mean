@@ -11,7 +11,6 @@ var path = require('path');
 
 var plumber = require('gulp-plumber');
 var webpackStream = require('webpack-stream');
-var webpack = webpackStream.webpack;
 var webpackConfig = require('../webpack.config.js');
 var paths = {
   js: ['./*.js', 'config/**/*.js', 'gulp/**/*.js', 'tools/**/*.js', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**', '!packages/**/assets/**/js/**'],
@@ -76,11 +75,12 @@ function webpackTask (callback) {
           callbackCalled = true;
           callback();
         } else {
-          plugins.livereload.reload();
+          plugins.livereload.reload({
+            interval: 500
+          });
         }
       });
 }
-
 function jshintTask (callback) {
   gulp.src(paths.js)
     .pipe(plugins.jshint())
