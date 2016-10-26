@@ -1,9 +1,8 @@
 'use strict';
 
-//Setting up route
+// Setting up route
 angular.module('mean.meanStarter').config(['$meanStateProvider',
-  function($meanStateProvider) {
-
+  function ($meanStateProvider) {
     // states for users
     $meanStateProvider
       .state('auth', {
@@ -15,8 +14,8 @@ angular.module('mean.meanStarter').config(['$meanStateProvider',
         url: '/login',
         templateUrl: 'meanStarter/views/users/login.html',
         resolve: {
-          loggedin: function(MeanUser) {
-            return MeanUser.checkLoggedOut();
+          loggedin: function (MeanUser) {
+            return MeanUser.checkLoggedOut()
           }
         }
       })
@@ -24,8 +23,8 @@ angular.module('mean.meanStarter').config(['$meanStateProvider',
         url: '/register',
         templateUrl: 'meanStarter/views/users/register.html',
         resolve: {
-          loggedin: function(MeanUser) {
-            return MeanUser.checkLoggedOut();
+          loggedin: function (MeanUser) {
+            return MeanUser.checkLoggedOut()
           }
         }
       })
@@ -33,8 +32,8 @@ angular.module('mean.meanStarter').config(['$meanStateProvider',
         url: '/forgot-password',
         templateUrl: 'meanStarter/views/users/forgot-password.html',
         resolve: {
-          loggedin: function(MeanUser) {
-            return MeanUser.checkLoggedOut();
+          loggedin: function (MeanUser) {
+            return MeanUser.checkLoggedOut()
           }
         }
       })
@@ -42,8 +41,8 @@ angular.module('mean.meanStarter').config(['$meanStateProvider',
         url: '/reset/:tokenId',
         templateUrl: 'meanStarter/views/users/reset-password.html',
         resolve: {
-          loggedin: function(MeanUser) {
-            return MeanUser.checkLoggedOut();
+          loggedin: function (MeanUser) {
+            return MeanUser.checkLoggedOut()
           }
         }
       });

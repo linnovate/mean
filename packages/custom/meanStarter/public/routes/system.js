@@ -1,8 +1,8 @@
 'use strict';
 
-//Setting up route
+// Setting up route
 angular.module('mean.meanStarter').config(['$meanStateProvider', '$urlRouterProvider',
-  function($meanStateProvider, $urlRouterProvider) {
+  function ($meanStateProvider, $urlRouterProvider) {
     // For unmatched routes:
     $urlRouterProvider.otherwise('/');
 
@@ -14,7 +14,7 @@ angular.module('mean.meanStarter').config(['$meanStateProvider', '$urlRouterProv
       });
   }
 ]).config(['$locationProvider',
-  function($locationProvider) {
+  function ($locationProvider) {
     $locationProvider.html5Mode({
       enabled: true,
       requireBase: false

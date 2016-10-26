@@ -1,18 +1,18 @@
 'use strict';
 
-var gulp = require('gulp'),
-  gulpLoadPlugins = require('gulp-load-plugins'),
-  path = require('path'),
-  _ = require('lodash');
+var gulp = require('gulp');
+var gulpLoadPlugins = require('gulp-load-plugins');
+var path = require('path');
+var _ = require('lodash');
 var plugins = gulpLoadPlugins();
 var defaultTasks = ['clean', 'cssmin', 'uglify', 'prodServe'];
 var assets = require('../config/assets.json');
 
-gulp.task('env:production', function() {
+gulp.task('env:production', function () {
   process.env.NODE_ENV = 'production';
 });
 
-function tokenizeConfig(config) {
+function tokenizeConfig (config) {
   var destTokens = _.keys(config)[0].split('/');
 
   return {
@@ -22,7 +22,7 @@ function tokenizeConfig(config) {
   };
 }
 
-gulp.task('cssmin', function() {
+gulp.task('cssmin', function () {
   console.log('in cssmin');
   var config = tokenizeConfig(assets.core.css);
 
@@ -36,7 +36,7 @@ gulp.task('cssmin', function() {
   }
 });
 
-gulp.task('uglify', function() {
+gulp.task('uglify', function () {
   console.log('in uglify');
   var config = tokenizeConfig(assets.core.js);
 
@@ -50,7 +50,7 @@ gulp.task('uglify', function() {
   }
 });
 
-gulp.task('prodServe', ['env:production'], function() {
+gulp.task('prodServe', ['env:production'], function () {
   plugins.nodemon({
     script: 'server.js',
     ext: 'html js',
@@ -58,6 +58,6 @@ gulp.task('prodServe', ['env:production'], function() {
       'NODE_ENV': 'production'
     },
     ignore: ['./node_modules/**']
-  });
-});
-gulp.task('production', defaultTasks);
+  })
+})
+gulp.task('production', defaultTasks)

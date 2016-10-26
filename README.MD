@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/linnovate/mean.svg)](https://travis-ci.org/linnovate/mean)
 [![Dependencies Status](https://david-dm.org/linnovate/mean.svg)](https://david-dm.org/linnovate/mean)
 [![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/linnovate/mean?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Known Vulnerabilities](https://snyk.io/test/github/linnovate/mean/badge.svg)](https://snyk.io/test/github/linnovate/mean)
 
 # [![MEAN Logo](http://mean.io/system/assets/img/logos/meanlogo.png)](http://mean.io/) MEAN Stack
 
@@ -8,13 +9,13 @@ MEAN is a framework for an easy starting point with [MongoDB](https://www.mongod
 
 ## Prerequisite Technologies
 ### Linux
-* *Node.js* - <a href="http://nodejs.org/download/">Download</a> and Install Node.js, nodeschool has free <a href=" http://nodeschool.io/#workshoppers">node tutorials</a> to get you started.
+* *Node.js* - <a href="http://nodejs.org/download/">Download</a> and Install Node.js, nodeschool has free <a href=" http://nodeschool.io/#workshoppers">node tutorials</a> to get you started. We recommend node-4.x as the preferred node version to run mean.io.
 * *MongoDB* - <a href="https://www.mongodb.org/downloads">Download</a> and Install mongodb - <a href="https://docs.mongodb.org/manual/">Checkout their manual</a> if you're just starting.
 
 If you're using ubuntu, this is the preferred repository to use...
 
 ```bash
-$ curl -sL https://deb.nodesource.com/setup | sudo bash -
+$ curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 $ sudo apt-get update
 $ sudo apt-get install nodejs
 ```
@@ -46,8 +47,9 @@ This will add the *mean* command which lets you interact (install, manage, updat
 
 ### Install the MEAN CLI
 
+In linux install in globally as root
 ```bash
-$ npm install -g mean-cli
+$ sudo npm install -g mean-cli 
 $ mean init <myApp>
 $ cd <myApp> && npm install
 ```
@@ -144,13 +146,13 @@ MEAN is an acronym for *M*ongo, *E*xpress.js , *A*ngular.js and *N*ode.js
 
 <dl class="dl-horizontal">
 <dt>MongoDB</dt>
-<dd>Go through MongoDB Official Website and proceed to its Great Manual, which should help you understand NoSQL and MongoDB better.</dd>
+<dd>Go through <a href="https://www.mongodb.com/">MongoDB Official Website</a> and proceed to its <a href="https://docs.mongodb.com/manual">Great Manual</a>, which should help you understand NoSQL and MongoDB better.</dd>
 <dt>Express</dt>
-<dd>The best way to understand express is through its Official Website, particularly The Express Guide; you can also go through this StackOverflow thread for more resources.</dd>
+<dd>The best way to understand express is through its <a href="http://expressjs.com/">Official Website</a>, particularly <a href="http://expressjs.com/">The Express Guide</a>; you can also go through <a href="http://stackoverflow.com/q/8144214/6115857">this StackOverflow thread</a> for more resources.</dd>
 <dt>AngularJS</dt>
 <dd>Angular's Official Website is a great starting point. CodeSchool and google created a <a href="https://www.codeschool.com/courses/shaping-up-with-angular-js">great tutorial</a> for beginners, and the angular videos by <a href="https://egghead.io/">Egghead</a>.</dd>
 <dt>Node.js</dt>
-<dd>Start by going through Node.js Official Website and this StackOverflow thread, which should get you going with the Node.js platform in no time.</dd>
+<dd>Start by going through <a href="https://nodejs.org">Node.js Official Website</a> and the <a href="https://nodejs.org/en/docs/">documentation page</a> as well as <a href="http://stackoverflow.com/q/2353818/6115857">this StackOverflow thread</a>, which should get you going with the Node.js platform in no time.</dd>
 </dl>
 
 ### Additional Tools
@@ -484,7 +486,7 @@ app.get('/myPackage/example/render', function (req,res,next) {
 ###Overriding the default layouts
 One is able to override the default layout of the application through a custom package.
 
-Below is an example overriding the default layout of system and instead using the layourts found locally within the package
+Below is an example overriding the default layout of system and instead using the layouts found locally within the package
 
 ```javascript
 MyPackage.register(function(system, app) {
@@ -526,7 +528,7 @@ Where "myPackage" is the name of your package.
 
 
 ### Contributing your package
-Once your package is in good shape and you want to share it with the world you can start the process of contributing it and submiting it so it can be included in the package repository.
+Once your package is in good shape and you want to share it with the world you can start the process of contributing it and submitting it so it can be included in the package repository.
 To contribute your package register to the network (see the section below) and run
 
 ```bash

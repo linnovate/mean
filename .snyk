@@ -1,0 +1,122 @@
+version: v1.5.2
+ignore: {}
+patch:
+  'npm:minimatch:20160620':
+    - npm > fstream-npm > fstream-ignore > minimatch:
+        patched: '2016-07-05T10:40:06.562Z'
+      npm > node-gyp > rimraf > glob > minimatch:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > node-gyp > minimatch:
+        patched: '2016-07-05T10:40:06.562Z'
+      npm > node-gyp > tar > fstream > rimraf > glob > minimatch:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > node-gyp > glob > minimatch:
+        patched: '2016-07-05T10:40:06.562Z'
+      npm > node-gyp > fstream > rimraf > glob > minimatch:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > npm-registry-client > rimraf > glob > minimatch:
+        patched: '2016-07-22T12:56:52.773Z'
+      npm > node-gyp > glob > minimatch:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > rimraf > glob > minimatch:
+        patched: '2016-07-22T12:56:52.773Z'
+      npm > npm-registry-client > rimraf > glob > minimatch:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > tar > fstream > rimraf > glob > minimatch:
+        patched: '2016-07-22T12:56:52.773Z'
+      npm > rimraf > glob > minimatch:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > fs-vacuum > rimraf > glob > minimatch:
+        patched: '2016-07-22T12:56:52.773Z'
+      npm > tar > fstream > rimraf > glob > minimatch:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > fstream > rimraf > glob > minimatch:
+        patched: '2016-07-22T12:56:52.773Z'
+      npm > fs-vacuum > rimraf > glob > minimatch:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > fstream-npm > fstream-ignore > fstream > rimraf > glob > minimatch:
+        patched: '2016-07-22T12:56:52.773Z'
+      npm > fstream > rimraf > glob > minimatch:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > glob > minimatch:
+        patched: '2016-07-22T12:56:52.773Z'
+      npm > fstream-npm > fstream-ignore > fstream > rimraf > glob > minimatch:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > read-installed > read-package-json > glob > minimatch:
+        patched: '2016-07-22T12:56:52.773Z'
+      npm > glob > minimatch:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > read-package-json > glob > minimatch:
+        patched: '2016-07-22T12:56:52.773Z'
+      npm > read-installed > read-package-json > glob > minimatch:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > read-package-tree > read-package-json > glob > minimatch:
+        patched: '2016-07-22T13:20:52.696Z'
+      npm > read-package-json > glob > minimatch:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > init-package-json > read-package-json > glob > minimatch:
+        patched: '2016-07-22T12:56:52.773Z'
+      npm > read-package-tree > read-package-json > glob > minimatch:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > init-package-json > glob > minimatch:
+        patched: '2016-07-22T12:56:52.773Z'
+      npm > init-package-json > read-package-json > glob > minimatch:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > fstream-npm > fstream-ignore > minimatch:
+        patched: '2016-07-22T12:56:52.773Z'
+      npm > init-package-json > glob > minimatch:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > node-gyp > minimatch:
+        patched: '2016-07-22T12:56:52.773Z'
+      npm > fstream-npm > fstream-ignore > minimatch:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > node-gyp > glob > minimatch:
+        patched: '2016-07-22T12:56:52.773Z'
+    - npm > node-gyp > rimraf > glob > minimatch:
+        patched: '2016-07-22T12:56:52.773Z'
+    - npm > node-gyp > tar > fstream > rimraf > glob > minimatch:
+        patched: '2016-07-22T12:56:52.773Z'
+    - npm > node-gyp > fstream > rimraf > glob > minimatch:
+        patched: '2016-07-22T12:56:52.773Z'
+    - npm > node-gyp > rimraf > glob > minimatch:
+        patched: '2016-07-22T13:20:52.696Z'
+    - npm > node-gyp > tar > fstream > rimraf > glob > minimatch:
+        patched: '2016-07-22T13:20:52.696Z'
+    - npm > node-gyp > fstream > rimraf > glob > minimatch:
+        patched: '2016-07-22T13:20:52.696Z'
+    - npm > node-gyp > glob > minimatch:
+        patched: '2016-07-22T13:20:52.696Z'
+    - npm > npm-registry-client > rimraf > glob > minimatch:
+        patched: '2016-07-22T13:20:52.696Z'
+    - npm > rimraf > glob > minimatch:
+        patched: '2016-07-22T13:20:52.696Z'
+    - npm > tar > fstream > rimraf > glob > minimatch:
+        patched: '2016-07-22T13:20:52.696Z'
+    - npm > fs-vacuum > rimraf > glob > minimatch:
+        patched: '2016-07-22T13:20:52.696Z'
+    - npm > fstream > rimraf > glob > minimatch:
+        patched: '2016-07-22T13:20:52.696Z'
+    - npm > fstream-npm > fstream-ignore > fstream > rimraf > glob > minimatch:
+        patched: '2016-07-22T13:20:52.696Z'
+    - npm > glob > minimatch:
+        patched: '2016-07-22T13:20:52.696Z'
+    - npm > read-installed > read-package-json > glob > minimatch:
+        patched: '2016-07-22T13:20:52.696Z'
+    - npm > read-package-json > glob > minimatch:
+        patched: '2016-07-22T13:20:52.696Z'
+    - npm > init-package-json > read-package-json > glob > minimatch:
+        patched: '2016-07-22T13:20:52.696Z'
+    - npm > init-package-json > glob > minimatch:
+        patched: '2016-07-22T13:20:52.696Z'
+    - npm > fstream-npm > fstream-ignore > minimatch:
+        patched: '2016-07-22T13:20:52.696Z'
+  'npm:uglify-js:20151024':
+    - meanio > swig > uglify-js:
+        patched: '2016-08-04T11:07:59.126Z'
+  'npm:tough-cookie:20160722':
+    - npm > npm-registry-client > request > tough-cookie:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > request > tough-cookie:
+        patched: '2016-08-04T11:07:59.126Z'
+    - npm > node-gyp > request > tough-cookie:
+        patched: '2016-08-04T11:07:59.126Z'

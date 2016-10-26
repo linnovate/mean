@@ -1,0 +1,29 @@
+name: node
+type: nodejs
+
+web:
+  commands:
+    start: "PM2_HOME=/app/run pm2 start index.js --no-daemon"
+    #in this setup you will find your application stdout and stderr in /app/run/logs
+  locations:
+    "/public":
+      passthru: false
+      root: "public"
+      # Whether to allow files not matching a rule or not.
+      allow: true
+      rules:
+        '\.png$':
+          allow: true
+          expires: -1
+dependencies:
+  nodejs:
+  pm2: "^0.15.10"
+  bower:
+  gulp:
+mounts:
+  "/run": "shared:files/run"
+disk: 512
+hooks:
+  build: |
+    npm install
+    bower install

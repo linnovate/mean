@@ -1,4 +1,5 @@
 {
     "dependencies": {},
-    "anonymizedData": true
+    "anonymizedData": true,
+    "name": "mean"
 }
