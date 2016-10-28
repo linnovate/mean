@@ -9,9 +9,6 @@ var gutil = require('gulp-util');
 var plugins = gulpLoadPlugins();
 var path = require('path');
 
-var plumber = require('gulp-plumber');
-var webpackStream = require('webpack-stream');
-var webpackConfig = require('../webpack.config.js');
 var paths = {
   js: ['./*.js', 'config/**/*.js', 'gulp/**/*.js', 'tools/**/*.js', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**', '!packages/**/assets/**/js/**'],
   html: ['packages/**/*.html', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
@@ -31,9 +28,9 @@ var paths = {
 var startupTasks = ['devServe'];
 
 gulp.task('development', startupTasks);
-gulp.task('devServe', ['env:development', 'jshint', 'csslint', 'webpack', 'watch'], devServeTask);
+gulp.task('devServe', ['env:development', 'jshint', 'csslint', 'watch'], devServeTask);
 gulp.task('env:development', envDevelopmentTask);
-gulp.task('webpack', webpackTask);
+
 gulp.task('jshint', jshintTask);
 gulp.task('csslint', csslintTask);
 
@@ -41,26 +38,6 @@ gulp.task('watch', watchTask);
 gulp.task('livereload', livereloadTask);
 
 ////////////////////////////////////////////////////////////////////
-
-function webpackTask (callback) {
-
-  let callbackCalled = false;
-  webpackConfig.watch = true;
-  webpackConfig.devtool = '#source-map';
-
-  gulp.src('app.js')
-    .pipe(plumber(() => {}))
-    .pipe(webpackStream(webpackConfig))
-    .pipe(gulp.dest('bundle/'))
-    .on('data', function(){
-      if (!callbackCalled) {
-        callbackCalled = true;
-        callback(); // first time build no need reload
-      } else {
-        plugins.livereload.reload(); // reload after build complete
-      }
-    });
-}
 
 function jshintTask (callback) {
   gulp.src(paths.js)
@@ -96,7 +73,7 @@ function devServeTask () {
         'bundle/',
         '../app.js',                           // handled by webpack
         'logs/',
-        'packages/**/public/*',
+        'packages/**/public/',
         '.DS_Store', '**/.DS_Store',
         '.bower-*',
         '**/.bower-*',
@@ -127,8 +104,7 @@ function devServeTask () {
         process.stderr.write(chunk)
       });
       this.stdout.pipe(process.stdout)
-    })
-      .on('restart', changed => console.log(changed));
+    });
 }
 
 function watchTask (callback) {
