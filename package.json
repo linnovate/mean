@@ -79,6 +79,7 @@
     "gulp-load-plugins": "latest",
     "gulp-mocha": "latest",
     "gulp-nodemon": "latest",
+    "gulp-plumber": "^1.1.0",
     "gulp-uglify": "latest",
     "gulp-util": "latest",
     "jasmine": "latest",
@@ -117,7 +118,8 @@
     "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-dev-server": "^1.14.1",
-    "webpack-hot-middleware": "^2.13.1"
+    "webpack-hot-middleware": "^2.13.1",
+    "webpack-stream": "^3.2.0"
   },
   "snyk": true
 }

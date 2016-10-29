@@ -17,7 +17,7 @@ var bodyParser = require('body-parser')
 var helmet = require('helmet')
 
 module.exports = function (app, db) {
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'development' && process.argv.indexOf('--no-wdm') === -1) {
     require('./middlewares/webpack-dev')(app)
   }
   app.use(bodyParser.json(config.bodyParser.json))

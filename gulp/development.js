@@ -8,6 +8,9 @@ var through = require('through');
 var gutil = require('gulp-util');
 var plugins = gulpLoadPlugins();
 var path = require('path');
+var webpack = require('webpack-stream');
+var webpackConfig = require('../webpack.config');
+var plumber = require('gulp-plumber');
 
 var paths = {
   js: ['./*.js', 'config/**/*.js', 'gulp/**/*.js', 'tools/**/*.js', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**', '!packages/**/assets/**/js/**'],
@@ -26,11 +29,16 @@ var paths = {
  */
 
 var startupTasks = ['devServe'];
+var devServeTasks = ['env:development', 'jshint', 'csslint', 'watch'];
+
+if (process.argv.indexOf('--no-wdm') !== -1) {
+  devServeTasks.push('webpack')
+}
 
 gulp.task('development', startupTasks);
-gulp.task('devServe', ['env:development', 'jshint', 'csslint', 'watch'], devServeTask);
+gulp.task('devServe', devServeTasks, devServeTask);
 gulp.task('env:development', envDevelopmentTask);
-
+gulp.task('webpack', webpackTask);
 gulp.task('jshint', jshintTask);
 gulp.task('csslint', csslintTask);
 
@@ -38,6 +46,26 @@ gulp.task('watch', watchTask);
 gulp.task('livereload', livereloadTask);
 
 ////////////////////////////////////////////////////////////////////
+
+function webpackTask(callback) {
+  var callbackDone = false;
+
+  webpackConfig.watch = true;
+  webpackConfig.devtool = 'eval';
+
+  return gulp.src('app.js')
+      .pipe(plumber(function(){ gutil.log('[webpack]', gutil.colors.red('compiler error'))}))
+      .pipe(webpack(webpackConfig))
+      .pipe(gulp.dest('bundle/'))
+      .on('data', function(){
+        if (!callbackDone) {
+          callbackDone = true;
+          callback();
+        } else {
+          plugins.livereload.reload();
+        }
+      });
+}
 
 function jshintTask (callback) {
   gulp.src(paths.js)
@@ -60,40 +88,44 @@ function csslintTask () {
 }
 
 function devServeTask () {
-  plugins.nodemon({
-      script: 'server.js',
-      ext: 'js css',
-      env: {
-        'NODE_ENV': 'development',
-        'DEBUG': 'cluster'
-      },
-      ignore: [
-        'node_modules/',
-        'bower_components/',
-        'bundle/',
-        '../app.js',                           // handled by webpack
-        'logs/',
-        'packages/**/public/',
-        '.DS_Store', '**/.DS_Store',
-        '.bower-*',
-        '**/.bower-*',
-        '**/tests'
-      ],
-      tasks: function (changedFiles) {
-        var tasks = [];
-        changedFiles.forEach(function (file) {
-          if (path.extname(file) === '.css' && tasks.indexOf('csslint') === -1) {
-            tasks.push('csslint');
-          }
-          if (path.extname(file) === '.js' && tasks.indexOf('jshint') === -1) {
-            tasks.push('jshint');
-          }
-        });
-        return tasks;
-      },
-      nodeArgs: ['--debug'],
-      stdout: false
-    })
+  var nodemonConfig = {
+    script: 'server.js',
+    ext: 'js css',
+    env: {
+      'NODE_ENV': 'development',
+      'DEBUG': 'cluster'
+    },
+    ignore: [
+      'bundle/',
+      path.join(process.cwd(), 'app.js'),                           // handled by webpack
+      'logs/',
+      'packages/**/public/',
+      '.DS_Store', '**/.DS_Store',
+      '.bower-*',
+      '**/.bower-*',
+      '**/tests'
+    ],
+    tasks: function (changedFiles) {
+      var tasks = [];
+      changedFiles.forEach(function (file) {
+        if (path.extname(file) === '.css' && tasks.indexOf('csslint') === -1) {
+          tasks.push('csslint');
+        }
+        if (path.extname(file) === '.js' && tasks.indexOf('jshint') === -1) {
+          tasks.push('jshint');
+        }
+      });
+      return tasks;
+    },
+    nodeArgs: ['--debug'],
+    args: [],
+    stdout: false,
+    delay: 500
+  };
+  if (process.argv.indexOf('--no-wdm') !== -1) {
+    nodemonConfig.args.push('--no-wdm')
+  }
+  plugins.nodemon(nodemonConfig)
     .on('readable', function () {
       this.stderr.on('data', function (chunk) {
         if (/MEAN app started/.test(chunk)) {
@@ -104,7 +136,8 @@ function devServeTask () {
         process.stderr.write(chunk)
       });
       this.stdout.pipe(process.stdout)
-    });
+    })
+      .on('restart', function(changed) { console.log(changed)});
 }
 
 function watchTask (callback) {
