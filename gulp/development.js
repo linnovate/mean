@@ -31,7 +31,7 @@ var paths = {
 var startupTasks = ['devServe'];
 var devServeTasks = ['env:development', 'jshint', 'csslint', 'watch'];
 
-if (process.argv.indexOf('--no-wdm') !== -1) {
+if (process.argv.indexOf('--wdm') === -1) {
   devServeTasks.push('webpack')
 }
 
@@ -122,8 +122,8 @@ function devServeTask () {
     stdout: false,
     delay: 500
   };
-  if (process.argv.indexOf('--no-wdm') !== -1) {
-    nodemonConfig.args.push('--no-wdm')
+  if (process.argv.indexOf('--wdm') !== -1) {
+    nodemonConfig.args.push('--wdm')
   }
   plugins.nodemon(nodemonConfig)
     .on('readable', function () {
