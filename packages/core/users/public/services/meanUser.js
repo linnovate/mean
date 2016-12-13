@@ -132,10 +132,10 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
           redirect: $cookies.get('redirect') || destination
         })
         .then(function (response){
-          self.onIdentity.bind(self)
+          self.onIdentity.bind(self);
         })
         .catch(function (response){
-          self.onIdFail.bind(self)
+          self.onIdFail.bind(self);
         });
     };
 
@@ -149,10 +149,10 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
         name: user.name
       })
         .then(function (response){
-          self.onIdentity.bind(self)
+          self.onIdentity.bind(self);
         })
         .catch(function (response){
-          self.onIdFail.bind(self)
+          self.onIdFail.bind(self);
         });
     };
 
@@ -163,10 +163,10 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
         confirmPassword: user.confirmPassword
       })
         .then(function (response){
-          self.onIdentity.bind(self)
+          self.onIdentity.bind(self);
         })
         .catch(function (response){
-          self.onIdFail.bind(self)
+          self.onIdFail.bind(self);
         });
       };
 
