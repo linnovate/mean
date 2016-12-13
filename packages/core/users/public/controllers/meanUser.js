@@ -9,7 +9,8 @@ angular.module('mean.users')
       $scope.$state = $state;
 
       $http.get('/api/get-config')
-        .success(function(config) {
+        .then(function(response) {
+          var config = response.data;
           if(config.hasOwnProperty('local')) delete config.local; // Only non-local passport strategies
           $scope.socialButtons = config;
           $scope.socialButtonsCounter = Object.keys(config).length;
@@ -22,7 +23,7 @@ angular.module('mean.users')
 
       // This object will be filled by the form
       vm.user = {};
-      
+
       vm.input = {
         type: 'password',
         placeholder: 'Password',
@@ -53,7 +54,7 @@ angular.module('mean.users')
       var vm = this;
 
       vm.user = {};
-      
+
       vm.registerForm = MeanUser.registerForm = true;
 
       vm.input = {
@@ -91,7 +92,7 @@ angular.module('mean.users')
   .controller('ForgotPasswordCtrl', ['MeanUser', '$rootScope',
     function(MeanUser, $rootScope) {
       var vm = this;
-      vm.user = {};      
+      vm.user = {};
       vm.registerForm = MeanUser.registerForm = false;
       vm.forgotpassword = function() {
         MeanUser.forgotpassword(this.user);
@@ -104,7 +105,7 @@ angular.module('mean.users')
   .controller('ResetPasswordCtrl', ['MeanUser',
     function(MeanUser) {
       var vm = this;
-      vm.user = {};      
+      vm.user = {};
       vm.registerForm = MeanUser.registerForm = false;
       vm.resetpassword = function() {
         MeanUser.resetpassword(this.user);

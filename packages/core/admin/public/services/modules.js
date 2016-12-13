@@ -4,8 +4,8 @@ angular.module('mean.admin').factory('Modules', ['$http',
         return {
             get: function(callback) {
                 $http.get('/api/admin/modules')
-                    .success(function(data) {
-                        callback(data);
+                    .then(function(response) {
+                        callback(response.data);
                     });
             }
         };
