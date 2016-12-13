@@ -179,7 +179,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
           $rootScope.$emit('forgotmailsent', response.data);
         })
         .catch(function (response){
-          self.onIdFail.bind(self)
+          self.onIdFail.bind(self);
         });
       };
 
