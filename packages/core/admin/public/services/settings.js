@@ -10,8 +10,7 @@ angular.module('mean.admin').factory('Settings', ['$http',
                     success: true,
                     settings: data
                 });
-            }).
-            catch(function(response) {
+            }).catch(function(response) {
                 callback({
                     success: false
                 });
@@ -20,8 +19,7 @@ angular.module('mean.admin').factory('Settings', ['$http',
         var update = function(settings, callback) {
             $http.put('/api/admin/settings', settings).then(function(response) {
                 callback(response.data);
-            }).
-            error(function(response) {
+            }).catch(function(response) {
                 callback(response.data);
             });
         };
