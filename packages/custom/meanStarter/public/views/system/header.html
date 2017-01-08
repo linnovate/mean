@@ -1,4 +1,8 @@
 <div class="md-toolbar-tools" ng-controller="HeaderController as hdrctr">
+  <div ng-controller="AdminController as vm" ng-if="hdrctr.hdrvars.isAdmin">
+    <md-icon class="material-icons ng-binding" ng-click="vm.toggleMenu()">menu</md-icon>
+  </div>
+  <span>&nbsp;&nbsp;</span>
   <img src="/meanStarter/assets/img/logo.png" alt="" class="MEAN-Logo"/>
   <h2 class="pressed-text" ui-sref="home" mean-token="'site-title'">&nbsp;MEAN</h2>
   <md-button class="md-button" aria-label="{{item.link}}" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}" ng-repeat="item in hdrctr.menus.main" ui-sref="{{item.link}}" mean-token="item.link">
