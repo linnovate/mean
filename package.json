@@ -106,7 +106,7 @@
     "karma-webpack": "^1.7.0",
     "mocha": "^3.1.2",
     "phantomjs-prebuilt": "^2.1.13",
-    "protractor": "^4.0.10",
+    "protractor": "^5.0.0",
     "require-dir": "^0.3.1",
     "requirejs": "^2.3.2",
     "style-loader": "^0.13.1",
