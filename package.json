@@ -103,7 +103,7 @@
     "karma-phantomjs-shim": "^1.4.0",
     "karma-requirejs": "^1.1.0",
     "karma-script-launcher": "^1.0.0",
-    "karma-webpack": "^1.7.0",
+    "karma-webpack": "^2.0.1",
     "mocha": "^3.1.2",
     "phantomjs-prebuilt": "^2.1.13",
     "protractor": "^4.0.10",
