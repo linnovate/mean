@@ -30,7 +30,7 @@
     "angular-jwt": "^0.1.7",
     "angular-material": "^1.1.0",
     "angular-mocks": "^1.5.2",
-    "angular-resource": "^1.5.2",
+    "angular-resource": "^1.5.5",
     "angular-route": "^1.5.2",
     "angular-sanitize": "^1.5.2",
     "angular-ui-router": "0.3.1",
