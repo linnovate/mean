@@ -69,7 +69,7 @@
     "css-loader": "^0.25.0",
     "del": "latest",
     "expect.js": "latest",
-    "file-loader": "^0.9.0",
+    "file-loader": "^0.10.0",
     "gulp": "latest",
     "gulp-concat": "latest",
     "gulp-csslint": "latest",
