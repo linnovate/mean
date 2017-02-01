@@ -105,7 +105,7 @@
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "mocha": "latest",
-    "node-sass": "^3.10.1",
+    "node-sass": "^4.5.0",
     "phantomjs-prebuilt": "latest",
     "protractor": "latest",
     "require-dir": "latest",
