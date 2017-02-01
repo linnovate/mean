@@ -54,7 +54,7 @@
     "meanio-users": "git://github.com/linnovate/meanio-users.git",
     "morgan": "^1.7.0",
     "npm": "^3.10.7",
-    "protractor": "^4.0.8",
+    "protractor": "^5.1.0",
     "q": "^1.4.1",
     "request": "^2.76.0",
     "shelljs": "^0.7.5",
