@@ -54,7 +54,7 @@
     "meanio-users": "git://github.com/linnovate/meanio-users.git",
     "morgan": "^1.7.0",
     "npm": "^3.10.7",
-    "protractor": "^4.0.8",
+    "protractor": "^5.1.0",
     "q": "^1.4.1",
     "request": "^2.76.0",
     "shelljs": "^0.7.5",
@@ -111,7 +111,6 @@
     "require-dir": "latest",
     "requirejs": "latest",
     "sass-loader": "^4.0.2",
-
     "style-loader": "^0.13.1",
     "supertest": "^2.0.1",
     "through": "^2.3.8",
@@ -121,7 +120,6 @@
     "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.13.1",
     "webpack-stream": "^3.2.0"
-
   },
   "snyk": true
 }
