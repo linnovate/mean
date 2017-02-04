@@ -3,7 +3,6 @@
 var fs = require('fs')
 var npm = require('npm')
 var path = require('path')
-var shell = require('shelljs')
 
 function loadPackageJson (path, callback) {
   fs.readFile(path, function (err, data) {
@@ -65,11 +64,7 @@ function packagesNpmInstall (source) {
     }
   })
 }
-/*
-shell.exec('bower update', function (code) {
-  console.log('    Updating Bower dependencies')
-})
-*/
+
 packagesNpmInstall('packages/contrib')
 packagesNpmInstall('packages/custom')
 packagesNpmInstall('packages/core')
