@@ -32,7 +32,7 @@ module.exports = {
     }]
   },
   resolve: {
-    modulesDirectories: ['bower_components', 'node_modules']
+    modulesDirectories: ['node_modules']
   },
   plugins: [
     // new ngAnnotatePlugin({

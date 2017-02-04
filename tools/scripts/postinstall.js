@@ -65,11 +65,11 @@ function packagesNpmInstall (source) {
     }
   })
 }
-
+/*
 shell.exec('bower update', function (code) {
   console.log('    Updating Bower dependencies')
 })
-
+*/
 packagesNpmInstall('packages/contrib')
 packagesNpmInstall('packages/custom')
 packagesNpmInstall('packages/core')
