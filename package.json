@@ -1,11 +1,11 @@
 {
   "name": "mean",
   "description": "MEAN.io: A fullstack JavaScript framework powered by MongoDB, ExpressJS, AngularJS, NodeJS.",
-  "version": "0.7.0",
+  "version": "1.0-rc1",
   "private": false,
   "author": "Linnovate <mean@linnovate.net>",
   "contributors": "https://github.com/linnovate/mean/graphs/contributors",
-  "mean": "0.7.0",
+  "mean": "1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/linnovate/mean.git"
@@ -33,7 +33,7 @@
     "angular-material": "^1.1.3",
     "angular-bootstrap": "^0.12.2",
     "angular-jwt": "^0.1.7",
-    "angular-ui-router": "0.3.1",
+    "angular-ui-router": "0.4.2",
     "angular-ui-select": "^0.12.100",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
@@ -48,10 +48,6 @@
     "jasmine": "^2.5.2",
     "lodash": "^4.16.4",
     "meanio": "~0.9.3",
-    "meanio-admin": "git://github.com/linnovate/meanio-admin.git",
-    "meanio-circles": "git://github.com/linnovate/meanio-circles.git",
-    "meanio-system": "git://github.com/linnovate/meanio-system.git",
-    "meanio-users": "git://github.com/linnovate/meanio-users.git",
     "morgan": "^1.7.0",
     "npm": "^3.10.7",
     "protractor": "^5.1.0",
