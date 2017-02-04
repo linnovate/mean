@@ -101,7 +101,7 @@
     "karma-phantomjs-shim": "latest",
     "karma-requirejs": "latest",
     "karma-script-launcher": "latest",
-    "karma-webpack": "^1.7.0",
+    "karma-webpack": "^2.0.2",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "mocha": "latest",
