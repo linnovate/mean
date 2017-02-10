@@ -1,5 +1,5 @@
 <?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata></metadata>
 <defs>
@@ -312,4 +312,4 @@
 <glyph unicode="&#xfb4b;" horiz-adv-x="486" d="M204 1606q73 0 73 -86.5t-73 -86.5q-70 0 -70 86.5t70 86.5zM160 0v1290h166v-1290h-166z" />
 <glyph horiz-adv-x="0" />
 </font>
-</defs></svg> 
+</defs></svg>

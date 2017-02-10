@@ -8,56 +8,63 @@ var through = require('through');
 var gutil = require('gulp-util');
 var plugins = gulpLoadPlugins();
 var path = require('path');
+var webpack = require('webpack-stream');
+var webpackConfig = require('../webpack.config');
+var plumber = require('gulp-plumber');
+
 var paths = {
   js: ['./*.js', 'config/**/*.js', 'gulp/**/*.js', 'tools/**/*.js', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**', '!packages/**/assets/**/js/**'],
   html: ['packages/**/*.html', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
-  css: ['packages/**/*.css', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
-  less: ['packages/**/*.less', '!packages/**/_*.less', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
-  sass: ['packages/**/*.scss', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**']
+  css: ['packages/**/*.css', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**']
 };
-var webpack = require('webpack');
-var webpackConfig = require('../webpack.config.js');
 
-/** General watch/restart flow **/
-// .less / .scss files are watched by less/sass and produce .css files
-// .js / .css files are watched by nodemon, invoke webpack,csslint, and jshint as needed before restarting and invoking livereload after
-// .html files are watched by livereload explicitly
+/**
+ *
+ * General watch/restart flow
+ *
+ * .js / .css files are watched by nodemon, invoke csslint, and jshint as needed before restarting and invoking livereload after
+ * .html files are watched by livereload explicitly
+ * app.js and dependencies watched by webpack
+ *
+ */
 
 var startupTasks = ['devServe'];
+var devServeTasks = ['env:development', 'jshint', 'csslint', 'watch'];
+
+if (process.argv.indexOf('--wdm') === -1) {
+  devServeTasks.push('webpack')
+}
 
 gulp.task('development', startupTasks);
-gulp.task('devServe', ['env:development', 'webpack:build-dev', 'jshint', 'csslint', 'watch'], devServeTask);
+gulp.task('devServe', devServeTasks, devServeTask);
 gulp.task('env:development', envDevelopmentTask);
-gulp.task('webpack:build-dev', ['sass', 'less'], webpackBuild);
-gulp.task('sass', sassTask);
-gulp.task('less', lessTask);
+gulp.task('webpack', webpackTask);
 gulp.task('jshint', jshintTask);
 gulp.task('csslint', csslintTask);
 
-gulp.task('webpack:rebuild-dev', webpackBuild);
 gulp.task('watch', watchTask);
 gulp.task('livereload', livereloadTask);
 
 ////////////////////////////////////////////////////////////////////
 
-// modify some webpack config options
-var devConfig = Object.create(webpackConfig);
-devConfig.devtool = 'sourcemap';
-devConfig.debug = true;
-// create a single instance of the compiler to allow caching
-var devCompiler = webpack(devConfig);
+function webpackTask(callback) {
+  var callbackDone = false;
 
-function webpackBuild (callback) {
-  // run webpack
-  devCompiler.run(function (err, stats) {
-    if (err) {
-      throw new gutil.PluginError('webpackBuild', err);
-    }
-    gutil.log('webpackBuild', stats.toString({
-      colors: true
-    }));
-    callback()
-  })
+  webpackConfig.watch = true;
+  webpackConfig.devtool = 'eval';
+
+  return gulp.src('app.js')
+      .pipe(plumber(function(){ gutil.log('[webpack]', gutil.colors.red('compiler error'))}))
+      .pipe(webpack(webpackConfig))
+      .pipe(gulp.dest('bundle/'))
+      .on('data', function(){
+        if (!callbackDone) {
+          callbackDone = true;
+          callback();
+        } else {
+          plugins.livereload.reload();
+        }
+      });
 }
 
 function jshintTask (callback) {
@@ -80,71 +87,57 @@ function csslintTask () {
     .pipe(count('csslint', 'files lint free'));
 }
 
-function lessTask () {
-  return gulp.src(paths.less)
-    .pipe(plugins.less())
-    .pipe(gulp.dest('./packages'));
-}
-
-function sassTask () {
-  return gulp.src(paths.sass)
-    .pipe(plugins.sass().on('error', plugins.sass.logError))
-    .pipe(gulp.dest('./packages'));
-}
-
 function devServeTask () {
-  plugins.nodemon({
-      script: 'server.js',
-      ext: 'js css',
-      env: {
-        'NODE_ENV': 'development'
-      },
-      ignore: [
-        'node_modules/',
-        'bower_components/',
-        'bundle/',                          // Causes infinite loop since webpack is tasked to run
-        'logs/',
-        'packages/*/*/public/assets/lib/',
-        'packages/*/*/public/**/*.scss',    // Trigger off resulting css files not before scss finishes
-        'packages/*/*/public/**/*.less',    // Trigger off resulting css files not before less finishes
-        'packages/*/*/node_modules/',
-        '.DS_Store', '**/.DS_Store',
-        '.bower-*',
-        '**/.bower-*',
-        '**/tests'
-      ],
-      tasks: function (changedFiles) {
-        var tasks = [];
-        changedFiles.forEach(function (file) {
-          if (path.extname(file) === '.css' && tasks.indexOf('csslint') === -1) {
-            tasks.push('csslint');
-          }
-          if (path.extname(file) === '.js' && tasks.indexOf('jshint') === -1) {
-            tasks.push('jshint');
-          }
-          if (path.extname(file) === '.js' || path.extname(file) === '.css' && tasks.indexOf('webpack:rebuild-dev') === -1) {
-            tasks.push('webpack:rebuild-dev');
-          }
-        });
-        return tasks;
-      },
-      nodeArgs: ['--debug'],
-      stdout: false
-    })
+  var nodemonConfig = {
+    script: 'server.js',
+    ext: 'js css',
+    env: {
+      'NODE_ENV': 'development',
+      'DEBUG': 'cluster'
+    },
+    ignore: [
+      'bundle/',
+      path.join(process.cwd(), 'app.js'),                           // handled by webpack
+      'logs/',
+      'packages/**/public/',
+      '.DS_Store', '**/.DS_Store',
+      '.bower-*',
+      '**/.bower-*',
+      '**/tests'
+    ],
+    tasks: function (changedFiles) {
+      var tasks = [];
+      changedFiles.forEach(function (file) {
+        if (path.extname(file) === '.css' && tasks.indexOf('csslint') === -1) {
+          tasks.push('csslint');
+        }
+        if (path.extname(file) === '.js' && tasks.indexOf('jshint') === -1) {
+          tasks.push('jshint');
+        }
+      });
+      return tasks;
+    },
+    nodeArgs: ['--debug'],
+    args: [],
+    stdout: false,
+    delay: 500
+  };
+  if (process.argv.indexOf('--wdm') !== -1) {
+    nodemonConfig.args.push('--wdm')
+  }
+  plugins.nodemon(nodemonConfig)
     .on('readable', function () {
-      this.stdout.on('data', function (chunk) {
-        if (/Mean app started/.test(chunk)) {
+      this.stderr.on('data', function (chunk) {
+        if (/MEAN app started/.test(chunk)) {
           setTimeout(function () {
             plugins.livereload.reload();
           }, 500)
         }
-        process.stdout.write(chunk)
+        process.stderr.write(chunk)
       });
-      this.stderr.pipe(process.stderr)
+      this.stdout.pipe(process.stdout)
     })
-    .on('restart', function () {
-      plugins.livereload.reload();
-    });
+      .on('restart', function(changed) { console.log(changed)});
 }
 
 function watchTask (callback) {
@@ -153,8 +146,6 @@ function watchTask (callback) {
   });
 
   gulp.watch(paths.html, ['livereload']);
-  gulp.watch(paths.less, ['less']);
-  gulp.watch(paths.sass, ['sass']);
   callback();
 }
 

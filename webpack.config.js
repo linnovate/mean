@@ -15,7 +15,13 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.css$/,
-      loader: 'style-loader!css-loader'
+      loaders: ['style', 'css?sourceMap']
+    }, {
+      test: /\.scss$/,
+      loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
+    }, {
+      test: /\.less$/,
+      loaders: ['style', 'css?sourceMap', 'less?sourceMap']
     }, {
       test: /\.js$/,
       exclude: /(node_modules|bower_components|lib)/,
@@ -26,7 +32,7 @@ module.exports = {
     }]
   },
   resolve: {
-    modulesDirectories: ['bower_components', 'node_modules']
+    modulesDirectories: ['node_modules']
   },
   plugins: [
     // new ngAnnotatePlugin({

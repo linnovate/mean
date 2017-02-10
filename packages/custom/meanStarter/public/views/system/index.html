@@ -1,14 +1,38 @@
 <div layout="column" flex data-ng-controller="IndexController">
   <md-content layout="column" layout-padding flex>
-    <p class="md-subhead">
-      With MEAN framework, you can <a href="https://github.com/linnovate/mean/wiki/CLI#user-management" target="_blank">create members</a>, articles, or <a href="http://mean.io/#!/packages" target="_blank">add more features</a> with packages from the
-      community.
-    </p>
-    <md-fab-toolbar md-open="false" count="0" md-direction="left">
+    <md-divider></md-divider>
+    <div layout="row" layout-align="space-around start" layout-padding flex>
+       
+      <div class="left" layout="column" layout-align="center center" flex="60">
+        <h1>Welcome to the MEAN stack</h2>
+        <p class="md-headline">Daphne (our ninja mascot) says...</p>
+        <div flex>
+        <img src="/meanStarter/assets/img/woman_ninja_forg_pass.png"/>
+        </div>
+      </div>
+      <div class="right" layout="column" flex>
+       <div layout="column" style="margin-top:14%" layout-align="end center"></div>
+            <h2 >Read the docs</h2>
+        <div class="next-steps">
+          <md-list>
+            <md-list-item class="secondary-button-padding" ng-repeat="doc in docs" ng-click="null">
+              <p>
+                {{doc.text}}
+              </p>
+              <md-button class="md-secondary" ng-href="{{doc.link}}" target="_blank">More Info</md-button>
+            </md-list-item>
+          </md-list>
+        </div>
+        <md-divider></md-divider>
+       </div> 
+    </div>
+  </md-content>
+
+   <md-fab-toolbar  md-open="false" count="0" md-direction="left">
       <md-fab-trigger class="align-with-text">
-        <md-button aria-label="menu" class="md-fab md-primary">
+        <md-button  aria-label="menu" class="md-fab md-primary">
           <md-tooltip>community</md-tooltip>
-          <md-icon>group</md-icon>
+          <md-icon class="group-icond">group</md-icon>
         </md-button>
       </md-fab-trigger>
       <md-toolbar>
@@ -32,61 +56,4 @@
         </md-fab-actions>
       </md-toolbar>
     </md-fab-toolbar>
-    <md-divider></md-divider>
-    <div layout="row" layout-align="space-around start" layout-padding flex>
-      <div class="left" layout="column" flex>
-        <div class="next-steps">
-          <p class="md-headline">Browse the Documentation</p>
-          <p>
-            Before you jump in it's important to read the documentation and learn about the different aspects of extending and developing MEAN.
-          </p>
-          <p>
-            Mean is based on MongoDB, Express.js, Angular.js and Node.js and even basic proficiency in these technologies will help you dive in to mean development - luckily there are plenty of <a href="http://learn.mean.io/" target="_blank">tutorials around</a>.
-          </p>
-          <md-list>
-            <md-list-item class="secondary-button-padding" ng-repeat="doc in docs" ng-click="null">
-              <p>
-                {{doc.text}}
-              </p>
-              <md-button class="md-secondary" ng-href="{{doc.link}}" target="_blank">More Info</md-button>
-            </md-list-item>
-          </md-list>
-        </div>
-        <md-divider></md-divider>
-        <div class="packages">
-          <p class="md-headline">Browse our packages
-            <md-button href="http://mean.io/#!/packages">All Packages</md-button>
-          </p>
-          <md-card ng-repeat="package in packages">
-            <img ng-src="{{package.image}}" class="md-card-image" alt="Site Image">
-            <md-card-title>
-              <md-card-title-text>
-                <span class="md-headline">{{package.name}} - {{package.author}}</span>
-                <span class="md-subhead">{{package.text}}</span>
-              </md-card-title-text>
-            </md-card-title>
-            <md-card-actions layout="row" layout-align="end center">
-              <md-button ng-href="{{package.link}}" target="_blank">More Info</md-button>
-            </md-card-actions>
-          </md-card>
-        </div>
-      </div>
-      <div class="right" layout="column" flex>
-        <div class="featured-websites">
-          <md-card ng-repeat="site in sites">
-            <img ng-src="{{site.image}}" class="md-card-image" alt="Site image">
-            <md-card-title>
-              <md-card-title-text>
-                <span class="md-headline">{{site.name}} - {{site.author}}</span>
-                <span class="md-subhead">{{site.text}}</span>
-              </md-card-title-text>
-            </md-card-title>
-            <md-card-actions layout="row" layout-align="end center">
-              <md-button ng-href="{{site.link}}" target="_blank">More Info</md-button>
-            </md-card-actions>
-          </md-card>
-        </div>
-      </div>
-    </div>
-  </md-content>
 </div>
