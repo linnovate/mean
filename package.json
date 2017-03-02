@@ -39,7 +39,7 @@
     "bootstrap": "^3.3.7",
     "compression": "^1.6.2",
     "connect-flash": "^0.1.1",
-    "connect-modrewrite": "^0.9.0",
+    "connect-modrewrite": "^0.10.1",
     "consolidate": "^0.14.1",
     "cross-env": "^3.0.0",
     "debug": "^2.2.0",
