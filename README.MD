@@ -8,7 +8,9 @@
 MEAN is a framework for an easy starting point with [MongoDB](https://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](https://angularjs.org/) based applications. It is designed to give you a quick and organized way to start developing MEAN based web apps with useful modules like Mongoose and Passport pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.
 
 ## Prerequisite Technologies
+
 ### Linux
+
 * *Node.js* - <a href="http://nodejs.org/download/">Download</a> and Install Node.js, nodeschool has free <a href=" http://nodeschool.io/#workshoppers">node tutorials</a> to get you started. We recommend node-4.x as the preferred node version to run mean.io.
 * *MongoDB* - <a href="https://www.mongodb.org/downloads">Download</a> and Install mongodb - <a href="https://docs.mongodb.org/manual/">Checkout their manual</a> if you're just starting.
 
@@ -23,11 +25,13 @@ $ sudo apt-get install nodejs
 * *Git* - Get git using a package manager or <a href="http://git-scm.com/downloads">download</a> it.
 
 ### Windows
+
 * *Node.js* - <a href="http://nodejs.org/download/">Download</a> and Install Node.js, nodeschool has free <a href=" http://nodeschool.io/#workshoppers">node tutorials</a> to get you started.
 * *MongoDB* - Follow the great tutorial from the mongodb site - <a href="https://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/">"Install Mongodb On Windows"</a>
 * *Git* - The easiest way to install git and then run the rest of the commands through the *git bash* application (via command prompt) is by downloading and installing <a href="http://git-scm.com/download/win">Git for Windows</a>
 
 ### OSX
+
 * *Node.js* -  <a href="http://nodejs.org/download/">Download</a> and Install Node.js or use the packages within brew or macports.
 * *MongoDB* - Follow the tutorial here - <a href="https://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/">Install mongodb on OSX</a>
 * *git* - Get git <a href="http://git-scm.com/download/mac">from here</a>.
@@ -42,6 +46,7 @@ $ npm install -g bower
 ```
 
 ## Installation
+
 To start with MEAN install the `mean-cli` package from NPM.
 This will add the *mean* command which lets you interact (install, manage, update ...) your Mean based application.
 
@@ -55,6 +60,7 @@ $ cd <myApp> && npm install
 ```
 
 ### Invoke node with a task manager
+
 Mean supports the gulp task runner for various services which are applied on the code.
 To start your application run -
 ```bash
@@ -71,6 +77,7 @@ http://localhost:3000
 ```
 
 ### Running on a different port
+
 If you have a rails, node, or other MEAN project already running, you may need to use a different port. You can set the port and start your new MEAN project with one command:
 ```bash
 $ export PORT=3001 && gulp
@@ -82,11 +89,13 @@ Then, open a browser and change the port number before you visit:
 ```
 
 ### Troubleshooting
+
 During installation depending on your os and prerequisite versions you may encounter some issues.
 
 Most issues can be solved by one of the following tips, but if you are unable to find a solution feel free to contact us via the repository issue tracker or the links provided below.
 
 #### Update NPM, Bower or Gulp
+
 Sometimes you may find there is a weird error during install like npm's *Error: ENOENT*. Usually updating those tools to the latest version solves the issue.
 
 * Updating NPM:
@@ -105,6 +114,7 @@ $ npm update -g bower
 ```
 
 #### Cleaning NPM and Bower cache
+
 NPM and Bower has a caching system for holding packages that you already installed.
 We found that often cleaning the cache solves some troubles this system creates.
 
@@ -119,6 +129,7 @@ $ bower cache clean
 ```
 
 #### Installation problems on Windows 8 / 8.1
+
 Some of Mean.io dependencies uses [node-gyp](https://github.com/nodejs/node-gyp) with supported Python version 2.7.x. So if you see an error related to node-gyp rebuild follow next steps:
 
 1. install [Python 2.7.x](https://www.python.org/downloads/)
@@ -130,6 +141,7 @@ $ npm update -g
 ```
 
 #### Git "not found" on Windows
+
 If you get this error when trying to `mean init`:
 
 ```text
@@ -156,6 +168,7 @@ MEAN is an acronym for *M*ongo, *E*xpress.js , *A*ngular.js and *N*ode.js
 </dl>
 
 ### Additional Tools
+
 * <a href="http://mongoosejs.com/">Mongoose</a> - The mongodb node.js driver in charge of providing elegant mongodb object modeling for node.js
 * <a href="http://passportjs.org/">Passport</a> - An authentication middleware for Node.js which supports authentication using a username and password, Facebook, Twitter, and more.
 * <a href="http://getbootstrap.com/">Twitter Bootstrap</a> - The most popular HTML, CSS, and JS framework for developing responsive, mobile first projects.
@@ -163,6 +176,7 @@ MEAN is an acronym for *M*ongo, *E*xpress.js , *A*ngular.js and *N*ode.js
 
 
 ## CLI
+
 ### Overview
 
 The MEAN CLI is a simple Command Line Interface for installing and managing MEAN applications. As a core module of the Mean.io project, it provides a number of useful tools to make interaction with your MEAN application easier, with features such as: scaffolding, module creation and admin, status checks, and user management.
@@ -175,6 +189,7 @@ $ mean help
 ```bash
 $ mean help [command]
 ```
+
 ### Users
 
  <p>Information can be display for a specific customer via <code>mean user email</code>. Email is required. User roles can be assigned or removed with the <code>--addRole (or -a)</code> and <code>--removeRole (or -r)</code> options, respectively.</p>
@@ -187,7 +202,9 @@ $ mean help [command]
 ```
 
 ### Packages
+
 #### Management
+
  <p class="alert alert-warning">All of the remaining of the commands must be run from the root folder of your MEAN application.</p>
   <p>Contributed MEAN packages can be installed or uninstalled via the CLI. Also, currently installed modules can be viewed with the <code>list</code> command.</p>
 
@@ -198,7 +215,9 @@ $ mean uninstall <module>
 ```
 
   <p class="alert alert-info">Mean packages installed via the installer are found in <i>/node_modules</i></p>
+
 #### Search
+
 To find new packages run the *mean search* command
 ```bash
 $ mean search [packagename]
@@ -206,6 +225,7 @@ $ mean search [packagename]
 `mean search` will return all of the available packages, `mean search [packagename]` will filter the search results.
 
 #### Scaffolding
+
 To create a new MEAN app, run <code>mean init</code>. Name for the application is optional. If no name is provided, "mean" is used. The MEAN project will be cloned from GitHub into a directory of the application name.
 ```bash
 $ mean init [name]
@@ -214,6 +234,7 @@ $ cd [name] && npm install
   <p class="alert alert-info">Note: <a href="http://git-scm.com/downloads">git</a> must be installed for this command to work properly.</p>
 
 ### Misc
+
 <h4>Status</h4>
 <p>Check the database connection for a particular environment (e.g. development (default), test, production) and make sure that the meanio command line version is up to date.</p>
 ```bash
@@ -245,16 +266,27 @@ All `Core` packages can be overridden by other packages allowing you to extend a
 
 
 #### System
+
 The "system" package creates the basic pages as well as defines the layout of the site and integrates the menu into the page. The system package also allows us to define things such as rendering engines, static files and routing on the client and server side.
+
 #### Users
+
 The "users" package creates the database model of the user, provides validation as well as various login and registration features.
+
 #### Access
+
 The "access" package manages permissions and middleware. It controls the various authentication methods and is dependent on the users package
+
 #### Theme
+
 The "theme" package adds some basic CSS and other assets such as images and backgrounds
+
 #### Articles
+
 The "articles" package is typically used as an example starting point for managing content that might be used in a blog or cms. The full CRUD is implemented on the server and client.
+
 ### File structure
+
 The file structure is similar to that of the MEAN project itself
 
 `Fundamental` Files at the `root` of the package
@@ -288,7 +320,7 @@ All JavaScript within `public` is automatically aggregated with the exception of
 
 Files within the `public` directory of the package can be accessed externally at `/[package-name]/path-to-file-relative-to-public`. For example, to access the `Tokens` Angular controller, `tokens/controllers/tokens.js`.
 
-###Registering a Package
+### Registering a Package
 
 In order for a Package to work it needs to be registered. By doing this you make the package system aware that you are ready and that other packages are able to depend on you. The packages are registered from within `app.js`.
 
@@ -308,7 +340,7 @@ MEAN has 3 pre registered dependencies:
 
 > All dependencies specified must be registered in order to use them
 
-###Dependency Injection
+### Dependency Injection
 
 > An injection is the passing of a dependency (a service) to a dependent
 > object (a client). The service is made part of the client's state.
@@ -337,7 +369,7 @@ MyPackage.register(function(app, auth, database, Tokens) {
 
 > Packages when in code are used in a capitalized form
 
-###Angular Modules and Dependencies
+### Angular Modules and Dependencies
 
 Every package registration automatically creates a corresponding angular module of the form `mean.[package-name]`
 
@@ -355,7 +387,7 @@ MyPackage.angularDependencies(['ngDragDrop']);
 > See the assets section for an example how to add external libraries to
 > the client such as the `gDragDrop `javascript library
 
-###Assets and Aggregation
+### Assets and Aggregation
 
 All assets such as images, javascript libraries and CSS stylesheets should be within `public/assets` of the package file structure.
 
@@ -387,7 +419,8 @@ MyPackage.aggregateAsset('js','first.js',{global:true,  weight: -4, group: 'head
 > in packages/system/server/views/includes/head.html
 > <script type="text/javascript" src="/modules/aggregated.js?group=header"></script>
 
-###Settings Object
+### Settings Object
+
 The settings object is a persistence object that is stored in the packages collection and allows for saving persistent information per package such as configuration options or admin settings for the package.
 
   Receives two arguments the first being the settings object the second is a callback function
@@ -412,7 +445,8 @@ MyPackage.settings(function (err, settings) {
 > and should not be used as a large data store
 
 
-###Express Routes
+### Express Routes
+
 All routing to server side controllers is handled by express routes. The package system uses the typical express approach. The package system has a route function that passes along the package object to the main routing file typically `server/routes/myPackage.js`
 
   By default the Package Object is passed to the routes along with the other arguments
@@ -432,7 +466,8 @@ module.exports = function(MyPackage, app, auth, database) {
 };
 ```
 
-###Angular Routes
+### Angular Routes
+
 The angular routes are defined in `public/routes/myPackage.js`. Just like the latest version of MEAN, the packages  use the `$stateProvider`
 
 ```javascript
@@ -446,7 +481,7 @@ $stateProvider
 > The angular views are publically accessible via templateUrl when
 > prefixed with the package name
 
-###Menu System
+### Menu System
 
 Packages are able to hook into an existing menu system and add links to various menus integrated within Mean.
 
@@ -483,7 +518,8 @@ app.get('/myPackage/example/render', function (req,res,next) {
 });
 ```
 
-###Overriding the default layouts
+### Overriding the default layouts
+
 One is able to override the default layout of the application through a custom package.
 
 Below is an example overriding the default layout of system and instead using the layouts found locally within the package
@@ -498,6 +534,7 @@ MyPackage.register(function(system, app) {
 > evaluated after `System` and can thus override the views folder
 
 ### Overriding views
+
 You may override public views used by certain core packages.  To create a custom home page, you would create a custom package and modify the script in it's public folder like so:
 
 ```javascript
@@ -510,6 +547,7 @@ angular.module('mean.mycustompackage', ['mean.system'])
 This will render *mycustompackage/views/myhomepage.html* as the home page.
 
 ### Creating your own package
+
 To create your own package and scaffold its initial code, run the following command:
 
 ```bash
@@ -519,6 +557,7 @@ $ mean package <packageName>
 This will create a package under */packages/custom/pkgName*
 
 ### Deleting a package
+
 To delete your package, and remove its files:
 
 ```bash
@@ -526,8 +565,8 @@ $ mean uninstall myPackage
 ```
 Where "myPackage" is the name of your package.
 
-
 ### Contributing your package
+
 Once your package is in good shape and you want to share it with the world you can start the process of contributing it and submitting it so it can be included in the package repository.
 To contribute your package register to the network (see the section below) and run
 
@@ -538,6 +577,7 @@ $ mean publish
 ```
 
 ## MEAN Network
+
 Mean is a stand-alone instance that you can install locally or host on your server.
 We want to provide value to developers and are assembling a set of services which will be called the MEAN network.
 We're building all of this as we speak but we already have some elements in place.
@@ -545,17 +585,23 @@ We're building all of this as we speak but we already have some elements in plac
 ### Network User Management
 
 #### Registration
+
 ```bash
 $ mean register
 ```
+
 #### Identity
+
 ```bash
 $ mean whoami
 ```
+
 ### Deploy
+
 Coming soon!
 
 ## Config
+
 All the configuration is specified in the [config](/config/) folder,
 through the [env](config/env/) files, and is orchestrated through the [meanio](https://github.com/linnovate/meanio) NPM module.
 Here you will need to specify your application name, database name, and hook up any social app keys if you want integration with Twitter, Facebook, GitHub, or Google.
@@ -636,6 +682,7 @@ The production uses the widely used [combined format](https://github.com/express
 ```
 
 ## Staying up to date
+
 After initializing a project, you'll see that the root directory of your project is already a git repository. MEAN uses git to download and update its own code. To handle its own operations, MEAN creates a remote called `upstream`. This way you can use git as you would in any other project.
 
 To update your MEAN app to the latest version of MEAN
@@ -654,6 +701,7 @@ $ git push -u origin master
 
 
 ## Hosting MEAN
+
 Since version 0.4.2 MEAN provides a command to easily upload your app to the *mean cloud*.
 To do so all you need to do is the following steps.
 
@@ -664,6 +712,7 @@ To do so all you need to do is the following steps.
 1. To get an idea of whats happening on the mean log (node.js based logging) run `mean logs -n 100` to get the last 100 lines...
 
 ### Heroku
+
 Before you start make sure you have the [Heroku toolbelt](https://toolbelt.heroku.com/)
 installed and an accessible MongoDB instance - you can try [MongoHQ](https://www.compose.io/)
 which has an easy setup).
@@ -707,14 +756,17 @@ You can adjust the CPU_COUNT variable up or down based on how much memory your a
 
 
 ## More Information
+
   * Visit us at [Linnovate.net](http://www.linnovate.net/).
   * Visit our [Ninja's Zone](http://meanleanstartupmachine.com/) for extended support.
 
 ## Credits
+
   * To our awesome <a href="https://github.com/orgs/linnovate/teams/mean">core team</a> with help of our <a href="https://github.com/linnovate/mean/graphs/contributors">contributors</a> which have made this project a success.
   * <a href="https://github.com/vkarpov15">Valeri Karpov</a> for coining the term *mean* and triggering the MEAN stack movement.
   * <a href="https://github.com/amoshaviv">Amos Haviv</a>  for the creation of the initial version of Mean.io while working for us @linnovate.
   * <a href="https://github.com/madhums/">Madhusudhan Srinivasa</a> who inspired us with his great work.
 
 ## License
+
 We believe that MEAN should be free and easy to integrate within your existing projects so we chose [The MIT License](http://opensource.org/licenses/MIT)
