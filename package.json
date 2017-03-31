@@ -41,7 +41,7 @@
     "connect-flash": "^0.1.1",
     "connect-modrewrite": "^0.9.0",
     "consolidate": "^0.14.1",
-    "cross-env": "^3.0.0",
+    "cross-env": "^4.0.0",
     "debug": "^2.2.0",
     "express": "^4.14.0",
     "helmet": "^2.2.0",
