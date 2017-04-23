@@ -719,4 +719,3 @@ You can adjust the CPU_COUNT variable up or down based on how much memory your a
 ## License
 We believe that MEAN should be free and easy to integrate within your existing projects so we chose [The MIT License](http://opensource.org/licenses/MIT)
 
-[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E57DB5Y73H49J)
