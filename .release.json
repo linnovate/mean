@@ -1,0 +1,6 @@
+{
+  "dist": {
+    "repo": "git@github.com:linnovate/mean.git#gh-pages",
+    "beforeStageCommand": "cat front.yml ../README.md > index.md"
+  }
+}
