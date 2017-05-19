@@ -288,7 +288,7 @@ All JavaScript within `public` is automatically aggregated with the exception of
 
 Files within the `public` directory of the package can be accessed externally at `/[package-name]/path-to-file-relative-to-public`. For example, to access the `Tokens` Angular controller, `tokens/controllers/tokens.js`.
 
-###Registering a Package
+### Registering a Package
 
 In order for a Package to work it needs to be registered. By doing this you make the package system aware that you are ready and that other packages are able to depend on you. The packages are registered from within `app.js`.
 
@@ -308,7 +308,7 @@ MEAN has 3 pre registered dependencies:
 
 > All dependencies specified must be registered in order to use them
 
-###Dependency Injection
+### Dependency Injection
 
 > An injection is the passing of a dependency (a service) to a dependent
 > object (a client). The service is made part of the client's state.
@@ -387,7 +387,8 @@ MyPackage.aggregateAsset('js','first.js',{global:true,  weight: -4, group: 'head
 > in packages/system/server/views/includes/head.html
 > <script type="text/javascript" src="/modules/aggregated.js?group=header"></script>
 
-###Settings Object
+
+### Settings Object
 The settings object is a persistence object that is stored in the packages collection and allows for saving persistent information per package such as configuration options or admin settings for the package.
 
   Receives two arguments the first being the settings object the second is a callback function
@@ -412,7 +413,7 @@ MyPackage.settings(function (err, settings) {
 > and should not be used as a large data store
 
 
-###Express Routes
+### Express Routes
 All routing to server side controllers is handled by express routes. The package system uses the typical express approach. The package system has a route function that passes along the package object to the main routing file typically `server/routes/myPackage.js`
 
   By default the Package Object is passed to the routes along with the other arguments
@@ -432,7 +433,7 @@ module.exports = function(MyPackage, app, auth, database) {
 };
 ```
 
-###Angular Routes
+### Angular Routes
 The angular routes are defined in `public/routes/myPackage.js`. Just like the latest version of MEAN, the packages  use the `$stateProvider`
 
 ```javascript
@@ -446,7 +447,7 @@ $stateProvider
 > The angular views are publically accessible via templateUrl when
 > prefixed with the package name
 
-###Menu System
+### Menu System
 
 Packages are able to hook into an existing menu system and add links to various menus integrated within Mean.
 
@@ -483,7 +484,7 @@ app.get('/myPackage/example/render', function (req,res,next) {
 });
 ```
 
-###Overriding the default layouts
+### Overriding the default layouts
 One is able to override the default layout of the application through a custom package.
 
 Below is an example overriding the default layout of system and instead using the layouts found locally within the package
