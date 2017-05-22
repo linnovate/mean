@@ -197,12 +197,14 @@ $ mean install <module>
 $ mean uninstall <module>
 ```
 
-  <p class="alert alert-info">Mean packages installed via the installer are found in <i>/node_modules</i></p>
+<p class="alert alert-info">Mean packages installed via the installer are found in <i>/node_modules</i></p>
 #### Search
 To find new packages run the *mean search* command
+
 ```bash
 $ mean search [packagename]
 ```
+
 `mean search` will return all of the available packages, `mean search [packagename]` will filter the search results.
 
 #### Scaffolding
