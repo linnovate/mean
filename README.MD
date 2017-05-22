@@ -228,6 +228,7 @@ $ mean status
 
 <h4>Docs</h4>
 <p>A simple shortcut to open the MEAN documentation in your default browser.</p>
+
 ```bash
 $ mean docs
 ```
