@@ -197,30 +197,38 @@ $ mean install <module>
 $ mean uninstall <module>
 ```
 
-  <p class="alert alert-info">Mean packages installed via the installer are found in <i>/node_modules</i></p>
+<p class="alert alert-info">Mean packages installed via the installer are found in <i>/node_modules</i></p>
+
 #### Search
 To find new packages run the *mean search* command
+
 ```bash
 $ mean search [packagename]
 ```
+
 `mean search` will return all of the available packages, `mean search [packagename]` will filter the search results.
 
 #### Scaffolding
 To create a new MEAN app, run <code>mean init</code>. Name for the application is optional. If no name is provided, "mean" is used. The MEAN project will be cloned from GitHub into a directory of the application name.
+
 ```bash
 $ mean init [name]
 $ cd [name] && npm install
 ```
-  <p class="alert alert-info">Note: <a href="http://git-scm.com/downloads">git</a> must be installed for this command to work properly.</p>
+
+<p class="alert alert-info">Note: <a href="http://git-scm.com/downloads">git</a> must be installed for this command to work properly.</p>
 
 ### Misc
 <h4>Status</h4>
 <p>Check the database connection for a particular environment (e.g. development (default), test, production) and make sure that the meanio command line version is up to date.</p>
+
 ```bash
 $ mean status
 ```
+
 <h4>Docs</h4>
 <p>A simple shortcut to open the MEAN documentation in your default browser.</p>
+
 ```bash
 $ mean docs
 ```
