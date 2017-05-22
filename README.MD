@@ -210,18 +210,22 @@ $ mean search [packagename]
 
 #### Scaffolding
 To create a new MEAN app, run <code>mean init</code>. Name for the application is optional. If no name is provided, "mean" is used. The MEAN project will be cloned from GitHub into a directory of the application name.
+
 ```bash
 $ mean init [name]
 $ cd [name] && npm install
 ```
-  <p class="alert alert-info">Note: <a href="http://git-scm.com/downloads">git</a> must be installed for this command to work properly.</p>
+
+<p class="alert alert-info">Note: <a href="http://git-scm.com/downloads">git</a> must be installed for this command to work properly.</p>
 
 ### Misc
 <h4>Status</h4>
 <p>Check the database connection for a particular environment (e.g. development (default), test, production) and make sure that the meanio command line version is up to date.</p>
+
 ```bash
 $ mean status
 ```
+
 <h4>Docs</h4>
 <p>A simple shortcut to open the MEAN documentation in your default browser.</p>
 ```bash
