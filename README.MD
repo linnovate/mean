@@ -198,6 +198,7 @@ $ mean uninstall <module>
 ```
 
 <p class="alert alert-info">Mean packages installed via the installer are found in <i>/node_modules</i></p>
+
 #### Search
 To find new packages run the *mean search* command
 
