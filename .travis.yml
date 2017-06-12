@@ -1,0 +1,44 @@
+sudo: false
+dist: trusty
+language: node_js
+
+cache:
+  directories:
+    - node_modules
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+node_js:
+  - "6"
+  - "7"
+  - "node"
+
+matrix:
+  fast_finish: true
+
+before_install:
+  - npm install npm@5 -g
+  - npm cache verify
+  - npm prune
+  - npm update
+
+install:
+  - npm install
+
+after_install:
+  - npm rebuild node-sass
+  - ./node_modules/protractor/bin/webdriver-manager update
+
+before_script:
+  - npm rebuild node-sass
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3
+
+script:
+  - npm run ci:travis

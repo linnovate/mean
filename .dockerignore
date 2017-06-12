@@ -1,0 +1,39 @@
+.git
+.github
+.vscode
+coverage
+
+# OS generated files #
+.DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Node Files #
+node_modules
+npm-debug.log
+npm-debug.log.*
+
+# Typing #
+src/typings/tsd
+typings
+tsd_typings
+
+# Dist #
+dist
+.awcache
+.webpack.json
+compiled
+dll
+
+# IDE #
+.idea
+*.swp
+
+
+# Angular #
+*.ngfactory.ts
+*.css.shim.ts
+*.ngsummary.json
+*.shim.ngstyle.ts
+
