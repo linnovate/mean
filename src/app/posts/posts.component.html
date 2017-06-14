@@ -1,7 +1,8 @@
-<div>
-    <div>posts</div>
-    <ul>
-        <li>post 1</li>
-        <li>post 2</li>
-    </ul>
+<div class="posts">
+    <div>My posts</div>
+    <md-card *ngFor="let post of posts">
+        <md-card-header>
+            <md-card-title>{{ post.title }}</md-card-title>
+        </md-card-header>
+    </md-card>
 </div>

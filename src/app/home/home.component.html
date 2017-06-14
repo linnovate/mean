@@ -1,3 +1,16 @@
-<div>
+<h1>Hello World</h1>
 
-</div>
+<h2>Add new</h2>
+<input type="text" placeholder="First name" #firstName />
+<input type="text" placeholder="Last name" [(ngModel)]="lastName" />
+<input type="submit" value="Add user" (click)="newUser(firstName.value)" />
+
+<h2>List</h2>
+
+<input type="search" placeholder="Type name..." [formControl]="nameControl" />
+
+<ul>
+  <li *ngFor="let user of users | async">
+    {{user.firstName}} {{user.lastName}}
+  </li>
+</ul>

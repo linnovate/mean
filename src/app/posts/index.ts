@@ -1,1 +1,1 @@
-export * from './posts.component';
+export { PostsModule } from './posts.module';

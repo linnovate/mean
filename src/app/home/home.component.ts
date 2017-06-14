@@ -1,57 +1,80 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Apollo, ApolloQueryObservable } from 'apollo-angular';
+import { ApolloQueryResult } from 'apollo-client';
+import { Subject } from 'rxjs/Subject';
+import { DocumentNode } from 'graphql';
 
-import { AppState } from '../app.service';
-import { Title } from './title';
-import { XLargeDirective } from './x-large';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/take';
+
+import { AddUserMutation, UsersQuery } from '../graphql/schema';
+const UsersQueryNode: DocumentNode = require('graphql-tag/loader!../graphql/Users.graphql');
+const AddUserMutationNode: DocumentNode = require('graphql-tag/loader!../graphql/AddUser.graphql');
 
 @Component({
-  /**
-   * The selector is what angular internally uses
-   * for `document.querySelectorAll(selector)` in our index.html
-   * where, in this case, selector is the string 'home'.
-   */
   selector: 'home',  // <home></home>
-  /**
-   * We need to tell Angular's Dependency Injection which providers are in our app.
-   */
-  providers: [
-    Title
-  ],
-  /**
-   * Our list of styles in our component. We may add more to compose many styles together.
-   */
   styleUrls: [ './home.component.css' ],
-  /**
-   * Every Angular template is first compiled by the browser before Angular runs it's compiler.
-   */
   templateUrl: './home.component.html'
 })
-export class HomeComponent implements OnInit {
-  /**
-   * Set our default values
-   */
-  public localState = { value: '' };
-  /**
-   * TypeScript public modifiers
-   */
-  constructor(
-    public appState: AppState,
-    public title: Title
-  ) {}
+export class HomeComponent implements OnInit, AfterViewInit {
+  // Observable with GraphQL result
+  public users: ApolloQueryObservable<UsersQuery>;
+  public firstName: string;
+  public lastName: string;
+  public nameControl = new FormControl();
+  // Observable variable of the graphql query
+  public nameFilter: Subject<string> = new Subject<string>();
+  private apollo: Apollo;
 
-  public ngOnInit() {
-    console.log('hello `Home` component');
-    /**
-     * this.title.getData().subscribe(data => this.data = data);
-     */
+  // Inject Angular2Apollo service
+  constructor(apollo: Apollo) {
+    this.apollo = apollo;
   }
 
-  public submitState(value: string) {
-    console.log('submitState', value);
-    this.appState.set('value', value);
-    this.localState.value = '';
+  public ngOnInit() {
+    // Query users data with observable variables
+    this.users = this.apollo.watchQuery<UsersQuery>({
+      query: UsersQueryNode,
+      variables: {
+        name: this.nameFilter,
+      },
+    })
+      // Return only users, not the whole ApolloQueryResult
+      .map(result => result.data.users) as any;
+
+    // Add debounce time to wait 300 ms for a new change instead of keep hitting the server
+    this.nameControl.valueChanges.debounceTime(300).subscribe(name => {
+      this.nameFilter.next(name);
+    });
+  }
+
+  public ngAfterViewInit() {
+    // Set nameFilter to null after NgOnInit happend and the view has been initated
+    this.nameFilter.next(null);
+  }
+
+  public newUser(firstName: string) {
+    // Call the mutation called addUser
+    this.apollo.mutate<AddUserMutation>({
+      mutation: AddUserMutationNode,
+      variables: {
+        firstName,
+        lastName: this.lastName,
+      },
+    })
+      .take(1)
+      .subscribe({
+        next: ({data}) => {
+          console.log('got a new user', data.addUser);
+
+          // get new data
+          this.users.refetch();
+        },
+        error: (errors) => {
+          console.log('there was an error sending the query', errors);
+        }
+      });
   }
 }

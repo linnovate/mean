@@ -1,0 +1,10 @@
+<div>
+    <h5>{{ title }}</h5>
+    <form [formGroup]="form" (ngSubmit)="save()">
+        <md-input-container>
+        <input mdInput formControlName="title" placeholder="title">
+        <md-error>This field is required</md-error>
+        </md-input-container>
+        <button md-raised-button type="submit">Save</button>
+    </form>
+</div>
