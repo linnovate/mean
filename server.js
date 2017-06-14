@@ -1,3 +1,4 @@
+require('babel-register');
 import mongoose from 'mongoose';
 import util from 'util';
 
@@ -27,14 +28,12 @@ if (config.MONGOOSE_DEBUG) {
     debug(`${collectionName}.${method}`, util.inspect(query, false, 20), doc);
   });
 }
-
 // module.parent check is required to support mocha watch
 // src: https://github.com/mochajs/mocha/issues/1912
-if (!module.parent) {
+
   // listen on port config.port
   app.listen(3001, () => {
     console.info(`server started on port ${3001} (${config.env})`); // eslint-disable-line no-console
   });
-}
 
 export default app;
