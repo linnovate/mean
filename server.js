@@ -1,4 +1,3 @@
-require('babel-register');
 import mongoose from 'mongoose';
 import util from 'util';
 
