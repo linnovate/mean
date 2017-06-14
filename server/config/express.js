@@ -1,0 +1,129 @@
+import express from 'express';
+import logger from 'morgan';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import compress from 'compression';
+import methodOverride from 'method-override';
+import cors from 'cors';
+import httpStatus from 'http-status';
+import expressWinston from 'express-winston';
+import expressValidation from 'express-validation';
+import helmet from 'helmet';
+import winstonInstance from './winston';
+import routes from '../server/routes/index.route';
+import config from './config';
+import APIError from '../server/helpers/APIError';
+import path from 'path';
+import appRoot from 'app-root-path';
+import graphqlHTTP from 'express-graphql';
+import schema from '../graphql';
+// import { apolloExpress, graphiqlExpress } from 'apollo-server';
+// import { makeExecutableSchema } from 'graphql-tools';
+
+// import { schema, resolvers } from './schema';
+
+
+const app = express();
+
+if (config.env === 'development') {
+  app.use(logger('dev'));
+}
+
+// parse body params and attache them to req.body
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cookieParser());
+app.use(compress());
+app.use(methodOverride());
+
+// secure apps by setting various HTTP headers
+app.use(helmet());
+
+// enable CORS - Cross Origin Resource Sharing
+app.use(cors());
+
+// enable detailed API logging in dev env
+if (config.env === 'development') {
+  expressWinston.requestWhitelist.push('body');
+  expressWinston.responseWhitelist.push('body');
+  app.use(expressWinston.logger({
+    winstonInstance,
+    meta: true, // optional: log meta data about request (defaults to true)
+    msg: 'HTTP {{req.method}} {{req.url}} {{res.statusCode}} {{res.responseTime}}ms',
+    colorStatus: true // Color the status code (default green, 3XX cyan, 4XX yellow, 5XX red).
+  }));
+}
+app.use(express.static(path.join(appRoot.path, 'dist')));
+// mount all routes on /api path
+app.use('/api', routes);
+
+app.use('/api/graphql', graphqlHTTP(req => ({
+  schema,
+  pretty: true,
+  graphiql: true
+})));
+
+// app.use('/api/graphql', apolloExpress((req) => {
+//   // Get the query, the same way express-graphql does it
+//   // https://github.com/graphql/express-graphql/blob/3fa6e68582d6d933d37fa9e841da5d2aa39261cd/src/index.js#L257
+//   const query = req.query.query || req.body.query;
+//   if (query && query.length > 2000) {
+//     // None of our app's queries are this long
+//     // Probably indicates someone trying to send an overly expensive query
+//     throw new Error('Query too large.');
+//   }
+
+//   return {
+//     schema: executableSchema
+//   };
+// }));
+
+// app.use('/graphiql', graphiqlExpress({
+//   endpointURL: '/api/graphql',
+// }));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(appRoot.path, 'dist/index.html'));
+});
+
+// if error is not an instanceOf APIError, convert it.
+app.use((err, req, res, next) => {
+  if (err instanceof expressValidation.ValidationError) {
+    // validation error contains errors which is an array of error each containing message[]
+    const unifiedErrorMessage = err.errors.map(error => error.messages.join('. ')).join(' and ');
+    const error = new APIError(unifiedErrorMessage, err.status, true);
+    return next(error);
+  } else if (!(err instanceof APIError)) {
+    const apiError = new APIError(err.message, err.status, err.isPublic);
+    return next(apiError);
+  }
+  return next(err);
+});
+
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+  const err = new APIError('API not found', httpStatus.NOT_FOUND);
+  return next(err);
+});
+
+// log error in winston transports except when executing test suite
+if (config.env !== 'test') {
+  app.use(expressWinston.errorLogger({
+    winstonInstance
+  }));
+}
+
+// error handler, send stacktrace only during development
+app.use((err, req, res, next) => // eslint-disable-line no-unused-vars
+  res.status(err.status).json({
+    message: err.isPublic ? err.message : httpStatus[err.status],
+    stack: config.env === 'development' ? err.stack : {}
+  })
+);
+
+export default app;
+// const executableSchema = makeExecutableSchema({
+//   typeDefs: schema,
+//   resolvers,
+// });

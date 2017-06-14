@@ -1,0 +1,25 @@
+verbose: false
+instrumentation:
+  excludes: ['dist/**', 'coverage/**', 'gulpfile.babel.js']
+  include-all-sources: true
+reporting:
+    print: summary
+    reports:
+        - lcov
+    dir: ./coverage
+    watermarks:
+        statements: [50, 80]
+        lines: [50, 80]
+        functions: [50, 80]
+        branches: [50, 80]
+check:
+    global:
+        statements: 50
+        lines: 50
+        branches: 50
+        functions: 50
+    each:
+        statements: 50
+        lines: 50
+        branches: 30
+        functions: 20
