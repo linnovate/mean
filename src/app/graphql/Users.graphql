@@ -1,10 +1,5 @@
-query Users($name: String) {
-  users(name: $name) {
-    firstName
-    lastName
-    emails {
-      address
-      verified
-    }
+query Posts {
+  posts {
+    title
   }
 }

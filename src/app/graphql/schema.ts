@@ -18,17 +18,12 @@ export interface AddUserMutation {
 }
 
 export interface UsersQueryVariables {
-  name: string | null;
+  title: string | null;
 }
 
 export interface UsersQuery {
-  users: Array< {
-    firstName: string | null,
-    lastName: string | null,
-    emails: Array< {
-      address: string | null,
-      verified: boolean | null,
-    } > | null,
+  posts: Array< {
+    title: string | null,
   } > | null;
 }
 /* tslint:enable */

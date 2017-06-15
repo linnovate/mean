@@ -38,11 +38,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.users = this.apollo.watchQuery<UsersQuery>({
       query: UsersQueryNode,
       variables: {
-        name: this.nameFilter,
+        title: 'pop',
       },
     })
       // Return only users, not the whole ApolloQueryResult
-      .map(result => result.data.users) as any;
+      .map(result => result.data.posts) as any;
 
     // Add debounce time to wait 300 ms for a new change instead of keep hitting the server
     this.nameControl.valueChanges.debounceTime(300).subscribe(name => {
