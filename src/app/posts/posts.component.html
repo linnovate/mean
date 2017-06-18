@@ -1,8 +1,27 @@
-<div class="posts">
+<!--<div class="posts">
     <div>My posts</div>
     <md-card *ngFor="let post of posts">
         <md-card-header>
             <md-card-title>{{ post.title }}</md-card-title>
         </md-card-header>
     </md-card>
-</div>
+</div>-->
+
+<h1>POSTS:</h1>
+
+
+<!--<h2>Add new</h2>
+<input type="text" placeholder="First name" #firstName />
+<input type="text" placeholder="Last name" [(ngModel)]="lastName" />
+<input type="submit" value="Add post" (click)="newPsot(firstName.value)" />-->
+<!--<div *ngIf="posts && posts.length">-->
+<h2>List</h2>
+
+<input  type="search" [(ngModel)]='listPostFilter' placeholder="search post..." [formControl]="nameControl"/>
+<ul>
+  <li *ngFor="let post of posts | async | postsFilter:listPostFilter" >
+      <!--| listPostFilter-->
+    {{post.title}}
+  </li>
+</ul>
+<!--</div>-->

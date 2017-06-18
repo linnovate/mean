@@ -1,8 +1,13 @@
 html, body{
   height: 100%;
   font-family: Arial, Helvetica, sans-serif
+header{
+  background-color: primary
 }
-
+}
+a{
+  color: #111; font-family: 'Helvetica Neue', sans-serif; font-size: 30px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; 
 a.active {
   background-color: gray;
+}
 }
