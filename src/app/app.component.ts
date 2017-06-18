@@ -19,9 +19,10 @@ import { AppState } from './app.service';
     './app.component.scss'
   ],
   template: `
-    <main>
+    <header>
+        <a [routerLink]="['/posts']">Posts</a>
+    </header>
       <router-outlet></router-outlet>
-    </main>
     <footer>
     </footer>
   `

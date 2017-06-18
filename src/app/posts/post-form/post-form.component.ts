@@ -12,7 +12,6 @@ import { PostsService } from '../shared/posts.service';
   styleUrls: ['./post-form.component.scss']
 })
 export class PostFormComponent implements OnInit {
-
   form: FormGroup;
   title: string;
   post: Post = new Post();

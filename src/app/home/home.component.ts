@@ -18,7 +18,7 @@ const AddUserMutationNode: DocumentNode = require('graphql-tag/loader!../graphql
   styleUrls: [ './home.component.css' ],
   templateUrl: './home.component.html'
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
   // Observable with GraphQL result
   public users: ApolloQueryObservable<UsersQuery>;
   public firstName: string;
@@ -50,10 +50,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
   }
 
-  public ngAfterViewInit() {
-    // Set nameFilter to null after NgOnInit happend and the view has been initated
-    this.nameFilter.next(null);
-  }
+  // public ngAfterViewInit() {
+  //   // Set nameFilter to null after NgOnInit happend and the view has been initated
+  //   this.nameFilter.next(null);
+  // }
 
   public newUser(firstName: string) {
     // Call the mutation called addUser
