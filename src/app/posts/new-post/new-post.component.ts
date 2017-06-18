@@ -78,7 +78,6 @@ export class NewPostComponent implements OnInit {
   }
 
   public save() {
-    debugger
     this.apollo.mutate({
       mutation: AddUserMutationNode,
       variables: {
