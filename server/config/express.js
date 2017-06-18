@@ -17,10 +17,8 @@ import path from 'path';
 import appRoot from 'app-root-path';
 import graphqlHTTP from 'express-graphql';
 import schema from '../graphql';
-// import { apolloExpress, graphiqlExpress } from 'apollo-server';
-// import { makeExecutableSchema } from 'graphql-tools';
 
-// import { schema, resolvers } from './schema';
+import postCtrl from '../server/controllers/post.controller';
 
 
 const app = express();
@@ -55,33 +53,26 @@ if (config.env === 'development') {
   // }));
 }
 app.use(express.static(path.join(appRoot.path, 'dist')));
-// mount all routes on /api path
+
 app.use('/api', routes);
 
-app.use('/api/graphql', graphqlHTTP(req => ({
-  schema,
-  pretty: true,
-  graphiql: true
-})));
 
-// app.use('/api/graphql', apolloExpress((req) => {
-//   // Get the query, the same way express-graphql does it
-//   // https://github.com/graphql/express-graphql/blob/3fa6e68582d6d933d37fa9e841da5d2aa39261cd/src/index.js#L257
-//   const query = req.query.query || req.body.query;
-//   if (query && query.length > 2000) {
-//     // None of our app's queries are this long
-//     // Probably indicates someone trying to send an overly expensive query
-//     throw new Error('Query too large.');
-//   }
+app.use('/api/graphql', (req, res) => {
+  const ctrl = {
+    post: {
+      load: postCtrl.load,
+      list: postCtrl.list,
+      create: postCtrl.create,
+      remove: postCtrl.remove,
+    }
+  };
+  graphqlHTTP({
+    schema,
+    graphiql: true,
+    context: { ctrl }
+  })(req, res);
+});
 
-//   return {
-//     schema: executableSchema
-//   };
-// }));
-
-// app.use('/graphiql', graphiqlExpress({
-//   endpointURL: '/api/graphql',
-// }));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(appRoot.path, 'dist/index.html'));
@@ -123,7 +114,3 @@ app.use((err, req, res, next) => // eslint-disable-line no-unused-vars
 );
 
 export default app;
-// const executableSchema = makeExecutableSchema({
-//   typeDefs: schema,
-//   resolvers,
-// });

@@ -1,21 +1,24 @@
 import {
-  GraphQLList
+  GraphQLList,
+  GraphQLInt
 } from 'graphql';
 
 import postType from '../../types/post';
-import getProjection from '../../get-projection';
-import Post from '../../../server/models/post.model';
 
 export default {
   type: new GraphQLList(postType),
-  args: {},
-  resolve (root, params, options) {
-    console.log('oooooo', options.fieldASTs);
-    //const projection = getProjection(options.fieldASTs[0]);
-
-    return Post
-      .find()
-      .exec();
+  args: {
+    limit: {
+      name: 'limit',
+      type: GraphQLInt 
+    },
+    skip: {
+      name: 'skip',
+      type:GraphQLInt
+    }
+  },
+  resolve (root, params, { ctrl }) {
+    return ctrl.post.list(params)
   }
 };
 

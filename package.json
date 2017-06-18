@@ -137,6 +137,7 @@
     "babel-plugin-syntax-async-functions": "^6.13.0",
     "babel-plugin-transform-es2015-destructuring": "^6.23.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
     "babel-preset-es2017": "^6.24.1",
     "babel-register": "^6.24.1",
     "codelyzer": "~2.1.1",

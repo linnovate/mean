@@ -14,13 +14,8 @@ export default {
       type: new GraphQLNonNull(postInputType)
     }
   },
-  async resolve (root, params, options) {
-    const post = new Post(params.data);
-    const newPost = await post.save();
-
-    if (!newPost) {
-      throw new Error('Error adding new post');
-    }
-    return true;
+  resolve (root, params, { ctrl }) {
+    return ctrl.post.create(params);
   }
 };
+
