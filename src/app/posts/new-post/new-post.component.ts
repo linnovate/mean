@@ -41,41 +41,61 @@ export class NewPostComponent implements OnInit {
         Validators.required,
       ]],
     });
-        this.apollo = apollo;
+    this.apollo = apollo;
   }
 
   ngOnInit() {
-    var id = this.route.params.subscribe(params => {
-      var id = params['id'];
+     // Query users data with observable variables
+    this.posts = this.apollo.watchQuery<UsersQuery>({
+      query: UsersQueryNode,
+    })
+      // Return only users, not the whole ApolloQueryResult
+      .map(result => result.data.posts) as any;
+  console.log('posts:');
+  console.log(this.posts);
 
-     //  this.title = id ? 'Edit Post' : 'New Post';
+    // Add debounce time to wait 300 ms for a new change instead of keep hitting the server
+    // this.nameControl.valueChanges.debounceTime(300).subscribe(name => {
+    //   this.nameFilter.next(name);
+    // });
+    // var id = this.route.params.subscribe(params => {
+    //   var id = params['id'];
 
-      if (!id)
-        return;
+    //   //  this.title = id ? 'Edit Post' : 'New Post';
 
-      this.postsService.getPost(id)
-        .subscribe(
-          post => this.post = post,
-          response => {
-            if (response.status == 404) {
-              this.router.navigate(['NotFound']);
-            }
-          });
-    });
+    //   if (!id)
+    //     return;
+
+    //   this.postsService.getPost(id)
+    //     .subscribe(
+    //     post => this.post = post,
+    //     response => {
+    //       if (response.status == 404) {
+    //         this.router.navigate(['NotFound']);
+    //       }
+    //     });
+    // });
   }
 
-   public save() {
+  public save() {
+    debugger
     this.apollo.mutate({
-          mutation: AddUserMutationNode,
-          variables: {
-            "data": {
-              "title": this.title
-            }
-          }
-        }).subscribe(({ data }) => {
-          console.log('got data', data, this.posts);
-        },(error) => {
-          console.log('there was an error sending the query', error);
-        })
+      mutation: AddUserMutationNode,
+      variables: {
+        "data": {
+          "title": this.title
+        }
+      }
+    })
+    .take(1)
+      .subscribe({
+        next: ({ data }) => {
+          console.log('got a new post', data);
+          // get new data      
+          this.posts.refetch();
+        }, error: (errors) => {
+          console.log('there was an error sending the query', errors);
+        }
+      });
   }
 }
