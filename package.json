@@ -111,6 +111,7 @@
     "http-server": "^0.9.0",
     "http-status": "^1.0.1",
     "ie-shim": "^0.1.0",
+    "innograph": "git+ssh://git@github.com/linnovate/innograph.git",
     "joi": "^10.5.2",
     "material": "^0.1.1",
     "method-override": "^2.3.9",

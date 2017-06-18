@@ -64,6 +64,7 @@ app.use('/api/graphql', (req, res) => {
       list: postCtrl.list,
       create: postCtrl.create,
       remove: postCtrl.remove,
+      update: postCtrl.update
     }
   };
   graphqlHTTP({
