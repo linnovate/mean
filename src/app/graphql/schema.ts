@@ -8,14 +8,10 @@ export interface AddUserMutationVariables {
 
 export interface AddUserMutation {
   addUser: {
-    firstName: string | null,
-    lastName: string | null,
-    emails: Array< {
-      address: string | null,
-      verified: boolean | null,
-    } > | null,
-  } | null;
+    title: string
+  }
 }
+
 
 export interface UsersQueryVariables {
   title: string | null;
@@ -25,5 +21,11 @@ export interface UsersQuery {
   posts: Array< {
     title: string | null,
   } > | null;
+}
+
+export interface deleteQuery {
+  
+}
+export interface updateQuery {
 }
 /* tslint:enable */

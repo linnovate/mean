@@ -1,0 +1,6 @@
+mutation updatePost($id: ID!, $data: PostInput) { 
+ updatePost(id: $id, data: $data) { 
+    id  
+     title 
+   }
+ }

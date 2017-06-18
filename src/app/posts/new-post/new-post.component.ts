@@ -48,7 +48,7 @@ export class NewPostComponent implements OnInit {
     var id = this.route.params.subscribe(params => {
       var id = params['id'];
 
-      this.title = id ? 'Edit Post' : 'New Post';
+     //  this.title = id ? 'Edit Post' : 'New Post';
 
       if (!id)
         return;
@@ -64,26 +64,18 @@ export class NewPostComponent implements OnInit {
     });
   }
 
-   public save(firstName: string) {
-    // Call the mutation called addUser
-    this.apollo.mutate<AddUserMutation>({
-      mutation: AddUserMutationNode,
-      variables: {
-        firstName,
-        lastName: this.lastName,
-      },
-    })
-      .take(1)
-      .subscribe({
-        next: ({data}) => {
-          console.log('got a new post', data.addUser);
-
-          // get new data
-          this.posts.refetch();
-        },
-        error: (errors) => {
-          console.log('there was an error sending the query', errors);
-        }
-      });
+   public save() {
+    this.apollo.mutate({
+          mutation: AddUserMutationNode,
+          variables: {
+            "data": {
+              "title": this.title
+            }
+          }
+        }).subscribe(({ data }) => {
+          console.log('got data', data, this.posts);
+        },(error) => {
+          console.log('there was an error sending the query', error);
+        })
   }
 }

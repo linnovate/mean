@@ -1,16 +1,3 @@
-mutation addUser(
-  $firstName: String!
-  $lastName: String!
-) {
-  addUser(
-    firstName: $firstName
-    lastName: $lastName
-  ) {
-    firstName
-    lastName
-    emails {
-      address
-      verified
-    }
-  }
+mutation addPost($data: PostInput!) {
+addPost(data: $data)
 }
