@@ -16,12 +16,12 @@ function create(params) {
   return post.save();
 }
 
-function update(req, res, next) {
-  const post = req.post;
-  post.title = req.body.title;
-  post.save()
-    .then(savedPost => res.json(savedPost))
-    .catch(e => next(e));
+function update(params) {
+  return load(params).then(post => {
+    const tmp = post;
+    post.title = params.data.title;
+    return post.save()
+  });
 }
 
 function list(params) {

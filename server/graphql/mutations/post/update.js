@@ -4,6 +4,7 @@ import {
 } from 'graphql';
 
 import postType from '../../types/post';
+import postInputType from '../../types/post-input';
 
 export default {
   type: postType,
@@ -11,9 +12,13 @@ export default {
     id: {
       name: 'id',
       type: new GraphQLNonNull(GraphQLID)
+    },
+    data: {
+      name: 'data',
+      type: postInputType
     }
   },
   resolve (root, params, { ctrl }) {
-    return ctrl.post.remove(params);
+    return ctrl.post.update(params);
   }
 };

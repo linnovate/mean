@@ -4,7 +4,6 @@ import {
 } from 'graphql';
 
 import postInputType from '../../types/post-input';
-import Post from '../../../server/models/post.model';
 
 export default {
   type: GraphQLBoolean,
