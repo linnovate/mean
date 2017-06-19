@@ -10,6 +10,8 @@ MEAN is based on the next technologies
 * Innograph (uses GraphQL for schema standartization)
 * Bit - manages components, services and schemas
 
+If you're looking for the classic angular-1.x version of mean it has moved to this [1.x branch](https://github.com/linnovate/mean/tree/1.x) 
+
 # Angular4 Webpack Starter [![Join Slack](https://img.shields.io/badge/slack-join-brightgreen.svg)](https://angularclass.com/slack-join) [![Join the chat at https://gitter.im/angularclass/angular2-webpack-starter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angularclass/angular2-webpack-starter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
