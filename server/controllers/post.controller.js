@@ -10,6 +10,7 @@ function get(req, res) {
 }
 
 function create(params) {
+  console.log('===================', params);
   const post = new Post({
     title: params.data.title,
     content: params.data.content
