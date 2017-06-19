@@ -10,16 +10,14 @@ import expressWinston from 'express-winston';
 import expressValidation from 'express-validation';
 import helmet from 'helmet';
 import winstonInstance from './winston';
-import routes from '../server/routes/index.route';
+import routes from '../routes/index.route';
 import config from './config';
-import APIError from '../server/helpers/APIError';
+import APIError from '../helpers/APIError';
 import path from 'path';
 import appRoot from 'app-root-path';
-import graphqlHTTP from 'express-graphql';
-import schema from '../graphql';
 import innograph from 'innograph'
 
-import postCtrl from '../server/controllers/post.controller';
+import postCtrl from '../controllers/post.controller';
 
 
 const app = express();
@@ -58,23 +56,6 @@ app.use(express.static(path.join(appRoot.path, 'dist')));
 app.use('/api', routes);
 
 innograph.init('/api/graphql', app, {post: postCtrl});
-// app.use('/api/graphql', (req, res) => {
-//   const ctrl = {
-//     post: {
-//       load: postCtrl.load,
-//       list: postCtrl.list,
-//       create: postCtrl.create,
-//       remove: postCtrl.remove,
-//       update: postCtrl.update
-//     }
-//   };
-//   graphqlHTTP({
-//     schema,
-//     graphiql: true,
-//     context: { ctrl }
-//   })(req, res);
-// });
-
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(appRoot.path, 'dist/index.html'));
