@@ -17,6 +17,7 @@ import path from 'path';
 import appRoot from 'app-root-path';
 import graphqlHTTP from 'express-graphql';
 import schema from '../graphql';
+import innograph from 'innograph'
 
 import postCtrl from '../server/controllers/post.controller';
 
@@ -56,23 +57,23 @@ app.use(express.static(path.join(appRoot.path, 'dist')));
 
 app.use('/api', routes);
 
-
-app.use('/api/graphql', (req, res) => {
-  const ctrl = {
-    post: {
-      load: postCtrl.load,
-      list: postCtrl.list,
-      create: postCtrl.create,
-      remove: postCtrl.remove,
-      update: postCtrl.update
-    }
-  };
-  graphqlHTTP({
-    schema,
-    graphiql: true,
-    context: { ctrl }
-  })(req, res);
-});
+innograph.init('/api/graphql', app, {post: postCtrl});
+// app.use('/api/graphql', (req, res) => {
+//   const ctrl = {
+//     post: {
+//       load: postCtrl.load,
+//       list: postCtrl.list,
+//       create: postCtrl.create,
+//       remove: postCtrl.remove,
+//       update: postCtrl.update
+//     }
+//   };
+//   graphqlHTTP({
+//     schema,
+//     graphiql: true,
+//     context: { ctrl }
+//   })(req, res);
+// });
 
 
 app.get('*', (req, res) => {

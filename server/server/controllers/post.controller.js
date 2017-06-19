@@ -12,6 +12,7 @@ function get(req, res) {
 function create(params) {
   const post = new Post({
     title: params.data.title,
+    content: params.data.content
   });
   return post.save();
 }
@@ -20,6 +21,7 @@ function update(params) {
   return load(params).then(post => {
     const tmp = post;
     post.title = params.data.title;
+    post.contemt = params.data.content;
     return post.save()
   });
 }

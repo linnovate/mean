@@ -1,12 +1,13 @@
 import {
   GraphQLInputObjectType,
   GraphQLString,
-  GraphQLID
+  GraphQLNonNull
 } from 'graphql';
 
 export default new GraphQLInputObjectType({
   name: 'PostInput',
   fields: () => ({
-    title: {type: GraphQLString},
+    title: {type: new GraphQLNonNull(GraphQLString)},
+    content: {type: GraphQLString}
   })
 });

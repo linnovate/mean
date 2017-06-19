@@ -12,8 +12,11 @@ export default new GraphQLObjectType({
       type: new GraphQLNonNull(GraphQLID)
     },
     title: {
-      type: GraphQLString
+      type: new GraphQLNonNull(GraphQLString)
     },
+    content: {
+      type: GraphQLString
+    }
 
   })
 });
