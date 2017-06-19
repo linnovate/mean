@@ -1,10 +1,14 @@
-<div>
-    <h5></h5>
+<div class="postDetail">
+    <h5>{{ title }}</h5>
     <form [formGroup]="form" (ngSubmit)="save()">
         <md-input-container>
-        <input mdInput formControlName="type your post name.." [(ngModel)]="title"  placeholder="title">
+        <input mdInput formControlName="title" placeholder="Title" [(ngModel)]="title">
         <md-error>This field is required</md-error>
+        </md-input-container><br>
+        <md-input-container>
+             <textarea mdInput md-autosize minRows="6" placeholder="Your post content..." formControlName="content" [(ngModel)]="content"></textarea>
+        <!--<input mdInput formControlName="content" placeholder="Your post content..." [(ngModel)]="content">-->
         </md-input-container>
-        <button md-raised-button type="submit">Save</button>
+                <button md-raised-button type="submit">Save</button>
     </form>
 </div>

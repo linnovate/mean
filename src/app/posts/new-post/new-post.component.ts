@@ -27,6 +27,7 @@ export class NewPostComponent implements OnInit {
 
   form: FormGroup;
   title: string;
+  content:string;
   post: Post = new Post();
 
   constructor(
@@ -40,6 +41,7 @@ export class NewPostComponent implements OnInit {
       title: ['', [
         Validators.required,
       ]],
+      content: ['']
     });
     this.apollo = apollo;
   }
@@ -82,7 +84,8 @@ export class NewPostComponent implements OnInit {
       mutation: AddUserMutationNode,
       variables: {
         "data": {
-          "title": this.title
+          "title": this.title,
+          "content" :this.content
         }
       }
     })
