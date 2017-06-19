@@ -1,8 +1,8 @@
 <div>
-    <h5>{{ title }}</h5>
+    <h5></h5>
     <form [formGroup]="form" (ngSubmit)="save()">
         <md-input-container>
-        <input mdInput formControlName="title" [(ngModel)]="title"  placeholder="title">
+        <input mdInput formControlName="type your post name.." [(ngModel)]="title"  placeholder="title">
         <md-error>This field is required</md-error>
         </md-input-container>
         <button md-raised-button type="submit">Save</button>

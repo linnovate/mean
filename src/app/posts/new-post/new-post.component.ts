@@ -76,7 +76,7 @@ export class NewPostComponent implements OnInit {
     //     });
     // });
   }
-
+//save new post
   public save() {
     this.apollo.mutate({
       mutation: AddUserMutationNode,

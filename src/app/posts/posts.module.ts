@@ -9,6 +9,7 @@ import { MaterialModule } from '@angular/material';
 
 import { routes } from './posts.routes';
 import { PostsComponent } from './posts.component';
+import { postDetailComponent } from './post-detail.component';
 import { PostsService } from './shared/posts.service';
 import { PostFormComponent } from './post-form';
 import { NewPostComponent } from './new-post/new-post.component';
@@ -22,7 +23,8 @@ import {PostsFilterPipe} from './posts-filter.pipe'
     PostsComponent,
     PostFormComponent,
     NewPostComponent,
-    PostsFilterPipe
+    PostsFilterPipe,
+    postDetailComponent,
   ],
   imports: [
     CommonModule,

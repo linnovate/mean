@@ -7,27 +7,34 @@
     </md-card>
 </div>-->
 
-<h1>POSTS:</h1>
-
 
 <!--<h2>Add new</h2>
 <input type="text" placeholder="First name" #firstName />
 <input type="text" placeholder="Last name" [(ngModel)]="lastName" />
 <input type="submit" value="Add post" (click)="newPsot(firstName.value)" />-->
 <!--<div *ngIf="posts && posts.length">-->
-<div>
+<div class="posts">
     <div aria-flowto="<left></left>">
-        <h2>List</h2>
-                <button md-raised-button [routerLink]="['/posts/new']"> <md-icon>add-circle</md-icon></button>
-                 <!--(click)='addNewPost()'-->
+        <h2>Posts list</h2>
+        <button class="addBtn" md-fab [routerLink]="['/posts/new']"> <md-icon>add</md-icon></button>
+        <br>
     </div>
-    <input type="search" [(ngModel)]='listPostFilter' placeholder="search post..." [formControl]="nameControl" />
-    <ul>
-        <li *ngFor="let post of posts | async | postsFilter:listPostFilter">
-            <md-icon (click)='deletePost(post.id)'>delete</md-icon>
-            <md-icon (click)='editPost(post.id)'>edit</md-icon>
-            {{post.title}}
-        </li>
-    </ul>
+    <!--to do: autocomplete?-->
+    <md-input-container>
+        <input mdInput type="search" [(ngModel)]='listPostFilter' [formControl]="nameControl" placeholder="search...">
+    </md-input-container>
+    <md-card *ngFor="let post of posts | async | postsFilter:listPostFilter">
+        <md-list>
+            <md-list-item>
+                <!--<img md-list-avatar src="..." alt="Desc 1">-->
+                <a md-line [routerLink]="['/post', post.id]"> {{post.title}} </a>
+                <p md-line>
+                    <span>An awesome description....</span>
+                </p>
+                <span><button md-button (click)='deletePost(post.id)'><md-icon>delete</md-icon></button></span>
+                <span><button md-button (click)='editPost(post.id)'><md-icon>edit</md-icon></button></span>
+            </md-list-item>
+        </md-list>
+    </md-card>
 </div>
 <!--</div>-->

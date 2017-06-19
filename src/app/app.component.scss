@@ -4,10 +4,25 @@ html, body{
 header{
   background-color: primary
 }
+.example-fill-remaining-space {
+  // This fills the remaining space, by using flexbox. 
+  // Every toolbar row uses a flexbox row layout.
+  flex: 2 2 auto;
 }
-a{
-  color: #111; font-family: 'Helvetica Neue', sans-serif; font-size: 30px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; 
-a.active {
-  background-color: gray;
+header{
+  width:100%;
+
+.logotTxt{
+  color: white; font-family: 'Helvetica Neue', sans-serif; font-size: 20px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center;
+  padding: 15px;
+ 
+}
+.links
+{
+    color: white; font-family: 'Helvetica Neue', sans-serif; font-size: 15px; font-weight:initial; letter-spacing: -1px; line-height: 1; text-align: center; 
+    padding: 15px;
+
 }
 }
+}
+

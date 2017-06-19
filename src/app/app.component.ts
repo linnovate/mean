@@ -20,7 +20,11 @@ import { AppState } from './app.service';
   ],
   template: `
     <header>
-        <a [routerLink]="['/posts']">Posts</a>
+    <md-toolbar color="primary">
+     <a [routerLink]="['/']" class="logotTxt">MEAN</a>
+   <a class="links" [routerLink]="['/posts']">Posts</a>
+     <span class="links">more...</span>
+    </md-toolbar>
     </header>
       <router-outlet></router-outlet>
     <footer>
@@ -34,7 +38,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     public appState: AppState
-  ) {}
+  ) { }
 
   public ngOnInit() {
     console.log('Initial App State', this.appState.state);
