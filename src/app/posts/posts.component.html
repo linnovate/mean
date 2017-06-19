@@ -15,13 +15,19 @@
 <input type="text" placeholder="Last name" [(ngModel)]="lastName" />
 <input type="submit" value="Add post" (click)="newPsot(firstName.value)" />-->
 <!--<div *ngIf="posts && posts.length">-->
-<h2>List</h2>
-
-<input  type="search" [(ngModel)]='listPostFilter' placeholder="search post..." [formControl]="nameControl"/>
-<ul>
-  <li *ngFor="let post of posts | async | postsFilter:listPostFilter" >
-      <!--| listPostFilter-->
-    {{post.title}}
-  </li>
-</ul>
+<div>
+    <div aria-flowto="<left></left>">
+        <h2>List</h2>
+                <button md-raised-button [routerLink]="['/posts/new']"> <md-icon>add-circle</md-icon></button>
+                 <!--(click)='addNewPost()'-->
+    </div>
+    <input type="search" [(ngModel)]='listPostFilter' placeholder="search post..." [formControl]="nameControl" />
+    <ul>
+        <li *ngFor="let post of posts | async | postsFilter:listPostFilter">
+            <md-icon (click)='deletePost(post.id)'>delete</md-icon>
+            <md-icon (click)='editPost(post.id)'>edit</md-icon>
+            {{post.title}}
+        </li>
+    </ul>
+</div>
 <!--</div>-->

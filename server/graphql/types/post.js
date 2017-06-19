@@ -7,12 +7,13 @@ import {
 
 export default new GraphQLObjectType({
   name: 'Post',
-  fields: {
+  fields: () => ({
     id: {
       type: new GraphQLNonNull(GraphQLID)
     },
     title: {
       type: GraphQLString
     },
-  }
+
+  })
 });

@@ -11,9 +11,10 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 
-import { AddUserMutation, UsersQuery } from '../graphql/schema';
+import { AddUserMutation, UsersQuery,deleteQuery,updateQuery } from '../graphql/schema';
 const UsersQueryNode: DocumentNode = require('graphql-tag/loader!../graphql/Users.graphql');
-const AddUserMutationNode: DocumentNode = require('graphql-tag/loader!../graphql/AddUser.graphql');
+const DeletePostMutationNode: DocumentNode = require('graphql-tag/loader!../graphql/AddUser.graphql');
+const UpdatePostMutationNode: DocumentNode = require('graphql-tag/loader!../graphql/AddUser.graphql');
 
 @Component({
   selector: 'posts',
@@ -40,9 +41,6 @@ export class PostsComponent implements OnInit {
     // Query users data with observable variables
     this.posts = this.apollo.watchQuery<UsersQuery>({
       query: UsersQueryNode,
-      variables: {
-        title: 'pop',
-      },
     })
       // Return only users, not the whole ApolloQueryResult
       .map(result => result.data.posts) as any;
@@ -58,26 +56,56 @@ export class PostsComponent implements OnInit {
   //   this.nameFilter.next(null);
   // }
 
-  public newPsot(firstName: string) {
-    // Call the mutation called addUser
-    this.apollo.mutate<AddUserMutation>({
-      mutation: AddUserMutationNode,
-      variables: {
-        firstName,
-        lastName: this.lastName,
-      },
-    })
-      .take(1)
-      .subscribe({
-        next: ({data}) => {
-          console.log('got a new post', data.addUser);
+ 
+  public addNewPost(){
+    //open modal or something else...
+  //meantime go to posts/new. 
+  }
+  public deletePost(id:string){
+ // Call the mutation called deletePost
+  //   this.apollo.mutate<DeletePostMutation>({
+  //     mutation: DeletePostMutationNode,
+  //     variables: {
+  //     "data": {
+  //     "id": id
+    
+  // }
+  //     },
+  //   })
+  //     .take(1)
+  //     .subscribe({
+  //       next: ({data}) => {
+  //         console.log('delete post', data.addUser);
 
-          // get new data
-          this.posts.refetch();
-        },
-        error: (errors) => {
-          console.log('there was an error sending the query', errors);
-        }
-      });
+  //         // get new data
+  //         this.posts.refetch();
+  //       },
+  //       error: (errors) => {
+  //         console.log('there was an error sending the query', errors);
+  //       }
+  //     });
+  }
+  public editPost(id:string){
+  // this.apollo.mutate<UpdatePostMutation>({
+  //     mutation: UpdatePostMutationNode,
+  //     variables: {
+  //     "data": {
+  //     "id": id
+    
+  // }
+  //     },
+  //   })
+  //     .take(1)
+  //     .subscribe({
+  //       next: ({data}) => {
+  //         console.log('update post', data.addUser);
+
+  //         // get new data
+  //         this.posts.refetch();
+  //       },
+  //       error: (errors) => {
+  //         console.log('there was an error sending the query', errors);
+  //       }
+  //     });
   }
 }
