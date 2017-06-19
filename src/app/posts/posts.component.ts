@@ -4,17 +4,12 @@ import { Apollo, ApolloQueryObservable } from 'apollo-angular';
 import { ApolloQueryResult } from 'apollo-client';
 import { Subject } from 'rxjs/Subject';
 import { DocumentNode } from 'graphql';
-import { client } from '../graphql.client';
-
 
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 
-import { AddUserMutation,DeletePostMutation,UpdatePostMutation,UsersQuery,deleteQuery,updateQuery } from '../graphql/schema';
-const UsersQueryNode: DocumentNode = require('graphql-tag/loader!../graphql/Users.graphql');
-const DeletePostMutationNode: DocumentNode = require('graphql-tag/loader!../graphql/DeletePost.graphql');
-const UpdatePostMutationNode: DocumentNode = require('graphql-tag/loader!../graphql/UpdatePost.graphql');
+import { DeletePostInterface, UpdatePostInterface, PostsInterface, GetPostsQuery, RemovePostMutation, UpdatePostMutation } from './posts.graphql';
 
 @Component({
   selector: 'posts',
@@ -23,11 +18,9 @@ const UpdatePostMutationNode: DocumentNode = require('graphql-tag/loader!../grap
 })
 export class PostsComponent implements OnInit {
   // Observable with GraphQL result
-  public posts: ApolloQueryObservable<UsersQuery>;
-  public firstName: string;
-  public lastName: string;
+  public posts: ApolloQueryObservable<PostsInterface>;
   public listPostFilter:string;
-  public nameControl = new FormControl();
+  public postControl = new FormControl();
   // Observable variable of the graphql query
   public nameFilter: Subject<string> = new Subject<string>();
   private apollo: Apollo;
@@ -38,25 +31,19 @@ export class PostsComponent implements OnInit {
   }
 
   public ngOnInit() {
-    // Query users data with observable variables
-    this.posts = this.apollo.watchQuery<UsersQuery>({
-      query: UsersQueryNode,
+    // Query posts data with observable variables
+    this.posts = this.apollo.watchQuery<PostsInterface>({
+      query: GetPostsQuery,
     })
-      // Return only users, not the whole ApolloQueryResult
+      // Return only posts, not the whole ApolloQueryResult
       .map(result => result.data.posts) as any;
 
     // Add debounce time to wait 300 ms for a new change instead of keep hitting the server
-    this.nameControl.valueChanges.debounceTime(300).subscribe(name => {
+    this.postControl.valueChanges.debounceTime(300).subscribe(name => {
       this.nameFilter.next(name);
     });
    
   }
-
-  // public ngAfterViewInit() {
-  //   // Set nameFilter to null after NgOnInit happend and the view has been initated
-  //   this.nameFilter.next(null);
-  // }
-
  
   public addNewPost(){
     //open modal or something else...
@@ -65,8 +52,8 @@ export class PostsComponent implements OnInit {
   public deletePost(id:string){
     debugger;
  // Call the mutation called deletePost
-    this.apollo.mutate<DeletePostMutation>({
-      mutation: DeletePostMutationNode,
+    this.apollo.mutate<DeletePostInterface>({
+      mutation: RemovePostMutation,
       variables: {
       "id": id
       },
@@ -85,8 +72,8 @@ export class PostsComponent implements OnInit {
   }
   public editPost(id:string){
     debugger;
-  this.apollo.mutate<UpdatePostMutation>({
-      mutation: UpdatePostMutationNode,
+  this.apollo.mutate<UpdatePostInterface>({
+      mutation: UpdatePostMutation,
       variables: {
       "id": id
       },

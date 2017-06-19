@@ -1,5 +1,3 @@
-//  This file was automatically generated and should not be edited.
-/* tslint:disable */
 
 export interface AddUserMutationVariables {
   firstName: string;
@@ -56,4 +54,3 @@ export interface updateQuery {
   title: string | null,
  id:string 
 }
-/* tslint:enable */

@@ -4,14 +4,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpModule }  from '@angular/http';
 import { MaterialModule } from '@angular/material';
-// import { ApolloModule } from 'apollo-angular';
-// import { client } from '../../graphql.client';
 
 import { routes } from './posts.routes';
 import { PostsComponent } from './posts.component';
 import { postDetailComponent } from './post-detail.component';
-import { PostsService } from './shared/posts.service';
-import { PostFormComponent } from './post-form';
 import { NewPostComponent } from './new-post/new-post.component';
 import {PostsFilterPipe} from './posts-filter.pipe'
 
@@ -21,7 +17,6 @@ import {PostsFilterPipe} from './posts-filter.pipe'
      * Components / Directives/ Pipes
      */
     PostsComponent,
-    PostFormComponent,
     NewPostComponent,
     PostsFilterPipe,
     postDetailComponent,
@@ -36,9 +31,6 @@ import {PostsFilterPipe} from './posts-filter.pipe'
     MaterialModule,
     // ApolloModule.forRoot(client)
   ],
-  providers: [
-    PostsService
-  ]
 })
 export class PostsModule {
   public static routes = routes;
