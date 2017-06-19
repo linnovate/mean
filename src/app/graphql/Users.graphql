@@ -2,5 +2,6 @@ query Posts {
   posts {
     id
     title
+    content
   }
 }

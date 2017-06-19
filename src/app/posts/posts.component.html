@@ -12,7 +12,7 @@
             <md-list-item>
                 <a md-line [routerLink]="['/post', post.id]"> {{post.title}} </a>
                 <p md-line>
-                    <span>An awesome description....</span>
+                    <span>{{post.content}}</span>
                 </p>
                 <span><button md-button (click)='deletePost(post.id)'><md-icon>delete</md-icon></button></span>
                 <span><button md-button (click)='editPost(post.id)'><md-icon>edit</md-icon></button></span>

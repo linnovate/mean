@@ -42,9 +42,11 @@ export class PostsComponent implements OnInit {
     this.postControl.valueChanges.debounceTime(300).subscribe(name => {
       this.nameFilter.next(name);
     });
+    console.log('all posts');
+        console.log(this.posts);
+
    
   }
- 
   public addNewPost(){
     //open modal or something else...
   //meantime go to posts/new. 
