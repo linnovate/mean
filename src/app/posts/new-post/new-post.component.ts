@@ -6,10 +6,7 @@ import { DocumentNode } from 'graphql';
 import { Apollo, ApolloQueryObservable } from 'apollo-angular';
 import { ApolloQueryResult } from 'apollo-client';
 
-import { Post } from '../shared/post';
 import { GetPostsQuery, AddPostMutation, PostsInterface } from './new-post.graphql.ts';
-
-//import { BasicValidators } from '../../shared/basic-validators';
 
 @Component({
   selector: 'new-post',
@@ -25,7 +22,6 @@ export class NewPostComponent implements OnInit {
   form: FormGroup;
   title: string;
   content:string;
-  post: Post = new Post();
 
   constructor(
     formBuilder: FormBuilder,

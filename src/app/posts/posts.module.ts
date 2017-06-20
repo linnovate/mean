@@ -9,7 +9,7 @@ import { routes } from './posts.routes';
 import { PostsComponent } from './posts.component';
 import { postDetailComponent } from './post-detail/post-detail.component';
 import { NewPostComponent } from './new-post/new-post.component';
-import {PostsFilterPipe} from './posts-filter.pipe'
+import {PostsFilterPipe} from './posts-filter/posts-filter.pipe'
 
 @NgModule({
   declarations: [
