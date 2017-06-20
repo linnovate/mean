@@ -1,11 +1,10 @@
-import { PostsComponent } from './posts.component';
-import { PostFormComponent } from './post-form';
+import { PostListComponent } from './post-list/post-list.component';
 import { NewPostComponent } from './new-post/new-post.component';
 
 
 export const routes = [
   { path: '', children: [
-    { path: '', component: PostsComponent },
+    { path: '', component: PostListComponent },
     // { path: 'new', component: PostFormComponent }
     { path: 'new', component: NewPostComponent }
   ]},

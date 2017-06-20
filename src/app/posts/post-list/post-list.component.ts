@@ -9,14 +9,16 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 
-import { DeletePostInterface, UpdatePostInterface, PostsInterface, GetPostsQuery, RemovePostMutation, UpdatePostMutation } from './posts.graphql';
+import { DeletePostInterface, UpdatePostInterface, PostsInterface } from '../graphql/schema';
+import { GetPostsQuery } from '../graphql/queries';
+import { RemovePostMutation, UpdatePostMutation } from '../graphql/mutations';
 
 @Component({
-  selector: 'posts',
-  templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.scss']
+  selector: 'post-list',
+  templateUrl: './post-list.component.html',
+  styleUrls: ['./post-list.component.scss']
 })
-export class PostsComponent implements OnInit {
+export class PostListComponent implements OnInit {
   // Observable with GraphQL result
   public posts: ApolloQueryObservable<PostsInterface>;
   public listPostFilter:string;
@@ -42,17 +44,9 @@ export class PostsComponent implements OnInit {
     this.postControl.valueChanges.debounceTime(300).subscribe(name => {
       this.nameFilter.next(name);
     });
-    console.log('all posts');
-        console.log(this.posts);
-
    
   }
-  public addNewPost(){
-    //open modal or something else...
-  //meantime go to posts/new. 
-  }
   public deletePost(id:string){
-    debugger;
  // Call the mutation called deletePost
     this.apollo.mutate<DeletePostInterface>({
       mutation: RemovePostMutation,

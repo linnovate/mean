@@ -1,32 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { Apollo } from 'apollo-angular';
 
-import { DocumentNode } from 'graphql';
-import { Apollo, ApolloQueryObservable } from 'apollo-angular';
-import { ApolloQueryResult } from 'apollo-client';
-
-import { GetPostsQuery, AddPostMutation, PostsInterface } from './new-post.graphql.ts';
+import { GetPostsQuery } from '../graphql/queries';
+import { AddPostMutation } from '../graphql/mutations';
 
 
 @Component({
   selector: 'new-post',
-  // moduleId:module.id,
   templateUrl: './new-post.component.html',
   styleUrls: ['./new-post.component.scss']
 })
-export class NewPostComponent implements OnInit {
-  public firstName: string;
-  public lastName: string;
-
+export class NewPostComponent {
   form: FormGroup;
-  title: string;
-  content:string;
 
   constructor(
     formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute,
     private apollo: Apollo
   ) {
     this.form = formBuilder.group({
@@ -38,12 +29,13 @@ export class NewPostComponent implements OnInit {
     this.apollo = apollo;
   }
   public save() {
+    if (!this.form.valid) return;
     this.apollo.mutate({
       mutation: AddPostMutation,
       variables: {
         "data": {
-          "title": this.title,
-          "content" :this.content
+          "title": this.form.value.title,
+          "content" :this.form.value.content
         }
       },
       refetchQueries: [{

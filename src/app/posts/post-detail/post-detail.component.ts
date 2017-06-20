@@ -11,14 +11,15 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 
-import { getPostDataByIdInterface, GetPostsQuery } from './post-detail.graphql';
+import { PostByIdInterface } from '../graphql/schema';
+import { GetPostsQuery } from '../graphql/queries';
 
 @Component({
     templateUrl: './post-detail.component.html'
 })
 export class postDetailComponent implements OnInit {
     public pageTitle: string = 'post Detail';
-    public post: ApolloQueryObservable<getPostDataByIdInterface>;
+    public post: ApolloQueryObservable<PostByIdInterface>;
     public errorMessage: string;
     private apollo: Apollo;
     public nameControl = new FormControl();
@@ -31,7 +32,7 @@ export class postDetailComponent implements OnInit {
 
     ngOnInit(): void {
         // Query users data with observable variables
-        this.post = this.apollo.watchQuery<getPostDataByIdInterface>({
+        this.post = this.apollo.watchQuery<PostByIdInterface>({
             query: GetPostsQuery,
         })
             // Return only users, not the whole ApolloQueryResult
