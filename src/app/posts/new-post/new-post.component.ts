@@ -8,6 +8,7 @@ import { ApolloQueryResult } from 'apollo-client';
 
 import { GetPostsQuery, AddPostMutation, PostsInterface } from './new-post.graphql.ts';
 
+
 @Component({
   selector: 'new-post',
   // moduleId:module.id,
@@ -15,7 +16,6 @@ import { GetPostsQuery, AddPostMutation, PostsInterface } from './new-post.graph
   styleUrls: ['./new-post.component.scss']
 })
 export class NewPostComponent implements OnInit {
-  public posts: ApolloQueryObservable<PostsInterface>;
   public firstName: string;
   public lastName: string;
 
@@ -37,16 +37,6 @@ export class NewPostComponent implements OnInit {
     });
     this.apollo = apollo;
   }
-
-  ngOnInit() {
-     // Query users data with observable variables
-    this.posts = this.apollo.watchQuery<PostsInterface>({
-      query: GetPostsQuery,
-    })
-      // Return only users, not the whole ApolloQueryResult
-      .map(result => result.data.posts) as any;
-  }
-//save new post
   public save() {
     this.apollo.mutate({
       mutation: AddPostMutation,
@@ -55,14 +45,17 @@ export class NewPostComponent implements OnInit {
           "title": this.title,
           "content" :this.content
         }
-      }
+      },
+      refetchQueries: [{
+        query: GetPostsQuery,
+      }],
     })
     .take(1)
       .subscribe({
         next: ({ data }) => {
           console.log('got a new post', data);
           // get new data      
-          this.posts.refetch();
+          this.router.navigate(['/posts']);
         }, error: (errors) => {
           console.log('there was an error sending the query', errors);
         }
