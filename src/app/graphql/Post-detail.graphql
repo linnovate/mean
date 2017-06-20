@@ -1,7 +1,0 @@
-mutation getPostDataById($id:ID!){
-  post (id: $id){
-    id
-    title
-    content
-  }
-}

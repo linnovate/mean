@@ -1,3 +1,0 @@
-mutation addPost($data: PostInput!) {
-addPost(data: $data)
-}

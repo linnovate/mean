@@ -11,18 +11,14 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 
-import { AddUserMutation, DeletePostMutation, UpdatePostMutation, getPostDataByIdMutation, getPostDataByIdQuery, UsersQuery, deleteQuery, updateQuery } from '../graphql/schema';
-const UsersQueryNode: DocumentNode = require('graphql-tag/loader!../graphql/Users.graphql');
-const DeletePostMutationNode: DocumentNode = require('graphql-tag/loader!../graphql/DeletePost.graphql');
-const UpdatePostMutationNode: DocumentNode = require('graphql-tag/loader!../graphql/UpdatePost.graphql');
-const getPostDataByIdMutationNode: DocumentNode = require('graphql-tag/loader!../graphql/Post-detail.graphql');
+import { getPostDataByIdInterface, GetPostsQuery } from './post-detail.graphql';
 
 @Component({
     templateUrl: './post-detail.component.html'
 })
 export class postDetailComponent implements OnInit {
     public pageTitle: string = 'post Detail';
-    public post: ApolloQueryObservable<getPostDataByIdQuery>;
+    public post: ApolloQueryObservable<getPostDataByIdInterface>;
     public errorMessage: string;
     private apollo: Apollo;
     public nameControl = new FormControl();
@@ -35,8 +31,8 @@ export class postDetailComponent implements OnInit {
 
     ngOnInit(): void {
         // Query users data with observable variables
-        this.post = this.apollo.watchQuery<getPostDataByIdQuery>({
-            query: UsersQueryNode,
+        this.post = this.apollo.watchQuery<getPostDataByIdInterface>({
+            query: GetPostsQuery,
         })
             // Return only users, not the whole ApolloQueryResult
             .map(result => result.data) as any;

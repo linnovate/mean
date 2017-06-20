@@ -11,6 +11,7 @@ export const GetPostsQuery = gql`
     posts {
         id
         title
+        content
     }
   }
 `;

@@ -7,7 +7,7 @@ import { Apollo, ApolloQueryObservable } from 'apollo-angular';
 import { ApolloQueryResult } from 'apollo-client';
 
 import { Post } from '../shared/post';
-import { PostsInterface, GetPostsQuery, AddPostMutation } from './new-post.graphql.ts';
+import { GetPostsQuery, AddPostMutation, PostsInterface } from './new-post.graphql.ts';
 
 //import { BasicValidators } from '../../shared/basic-validators';
 
