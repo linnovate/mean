@@ -1,5 +1,5 @@
 <div class="postDetail">
-    <h5>{{ title }}</h5>
+    <h5>Add new post:</h5>
     <form [formGroup]="form" (ngSubmit)="save()">
         <md-input-container>
             <input mdInput formControlName="title" placeholder="Title" [(ngModel)]="title">
