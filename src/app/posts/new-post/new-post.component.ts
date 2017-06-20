@@ -7,10 +7,7 @@ import { Apollo, ApolloQueryObservable } from 'apollo-angular';
 import { ApolloQueryResult } from 'apollo-client';
 
 import { Post } from '../shared/post';
-import { PostsService } from '../shared/posts.service';
-import { AddUserMutation, UsersQuery } from '../../graphql/schema';
-const UsersQueryNode: DocumentNode = require('graphql-tag/loader!../../graphql/Users.graphql');
-const AddUserMutationNode: DocumentNode = require('graphql-tag/loader!../../graphql/AddUser.graphql');
+import { PostsInterface, GetPostsQuery, AddPostMutation } from './new-post.graphql.ts';
 
 //import { BasicValidators } from '../../shared/basic-validators';
 
@@ -21,7 +18,7 @@ const AddUserMutationNode: DocumentNode = require('graphql-tag/loader!../../grap
   styleUrls: ['./new-post.component.scss']
 })
 export class NewPostComponent implements OnInit {
-  public posts: ApolloQueryObservable<UsersQuery>;
+  public posts: ApolloQueryObservable<PostsInterface>;
   public firstName: string;
   public lastName: string;
 
@@ -34,7 +31,6 @@ export class NewPostComponent implements OnInit {
     formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private postsService: PostsService,
     private apollo: Apollo
   ) {
     this.form = formBuilder.group({
@@ -48,40 +44,16 @@ export class NewPostComponent implements OnInit {
 
   ngOnInit() {
      // Query users data with observable variables
-    this.posts = this.apollo.watchQuery<UsersQuery>({
-      query: UsersQueryNode,
+    this.posts = this.apollo.watchQuery<PostsInterface>({
+      query: GetPostsQuery,
     })
       // Return only users, not the whole ApolloQueryResult
       .map(result => result.data.posts) as any;
-  console.log('posts:');
-  console.log(this.posts);
-
-    // Add debounce time to wait 300 ms for a new change instead of keep hitting the server
-    // this.nameControl.valueChanges.debounceTime(300).subscribe(name => {
-    //   this.nameFilter.next(name);
-    // });
-    // var id = this.route.params.subscribe(params => {
-    //   var id = params['id'];
-
-    //   //  this.title = id ? 'Edit Post' : 'New Post';
-
-    //   if (!id)
-    //     return;
-
-    //   this.postsService.getPost(id)
-    //     .subscribe(
-    //     post => this.post = post,
-    //     response => {
-    //       if (response.status == 404) {
-    //         this.router.navigate(['NotFound']);
-    //       }
-    //     });
-    // });
   }
 //save new post
   public save() {
     this.apollo.mutate({
-      mutation: AddUserMutationNode,
+      mutation: AddPostMutation,
       variables: {
         "data": {
           "title": this.title,
