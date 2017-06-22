@@ -9,6 +9,7 @@ import { routes } from './posts.routes';
 import { PostListComponent } from './post-list/post-list.component';
 import { postDetailComponent } from './post-detail/post-detail.component';
 import { NewPostComponent } from './new-post/new-post.component';
+import { EditPostComponent } from './edit-post/edit-post.component';
 import {PostsFilterPipe} from './posts-filter/posts-filter.pipe'
 
 @NgModule({
@@ -18,6 +19,7 @@ import {PostsFilterPipe} from './posts-filter/posts-filter.pipe'
      */
     PostListComponent,
     NewPostComponent,
+    EditPostComponent,
     PostsFilterPipe,
     postDetailComponent,
   ],

@@ -21,7 +21,7 @@ import { RemovePostMutation, UpdatePostMutation } from '../graphql/mutations';
 export class PostListComponent implements OnInit {
   // Observable with GraphQL result
   public posts: ApolloQueryObservable<PostsInterface>;
-  public listPostFilter:string;
+  public listPostFilter: string;
   public postControl = new FormControl();
   // Observable variable of the graphql query
   public nameFilter: Subject<string> = new Subject<string>();
@@ -51,12 +51,12 @@ export class PostListComponent implements OnInit {
     this.apollo.mutate<DeletePostInterface>({
       mutation: RemovePostMutation,
       variables: {
-      "id": id
+        "id": id
       },
     })
       .take(1)
       .subscribe({
-        next: ({data}) => {
+        next: ({ data }) => {
           console.log('delete post', data.removePost);
           // get new data
           this.posts.refetch();
@@ -66,25 +66,9 @@ export class PostListComponent implements OnInit {
         }
       });
   }
-  public editPost(id:string){
-    debugger;
-  this.apollo.mutate<UpdatePostInterface>({
-      mutation: UpdatePostMutation,
-      variables: {
-      "id": id
-      },
-    })
-      .take(1)
-      .subscribe({
-        next: ({data}) => {
-          console.log('update post', data.updatePost);
 
-          // get new data
-          this.posts.refetch();
-        },
-        error: (errors) => {
-          console.log('there was an error sending the query', errors);
-        }
-      });
+
+  public editPost(id: string) {
+
   }
 }

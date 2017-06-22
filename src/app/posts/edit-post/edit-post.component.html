@@ -1,0 +1,15 @@
+<div class="postDetail">
+    <div *ngIf="post">
+        <h5>Edit post:</h5>
+        <form [formGroup]="form" (ngSubmit)="save()">
+            <md-input-container>
+                <input mdInput formControlName="title" [value]="post.title" placeholder="Title">
+                <md-error>This field is required</md-error>
+            </md-input-container><br>
+            <md-input-container>
+                <textarea mdInput md-autosize minRows="6" [value]="post.content" placeholder="Your post content..." formControlName="content"></textarea>
+            </md-input-container>
+            <button md-raised-button type="submit">Save</button>
+        </form>
+    </div>
+</div>

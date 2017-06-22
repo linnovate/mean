@@ -1,10 +1,12 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Apollo, ApolloQueryObservable } from 'apollo-angular';
 import { ApolloQueryResult } from 'apollo-client';
 import { Subject } from 'rxjs/Subject';
 import { DocumentNode } from 'graphql';
 import { client } from '../graphql.client';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 
 import 'rxjs/add/operator/debounceTime';
@@ -12,54 +14,42 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 
 import { PostByIdInterface } from '../graphql/schema';
-import { GetPostsQuery } from '../graphql/queries';
+import { GetPostDetailQuery } from '../graphql/queries';
+
 
 @Component({
-    templateUrl: './post-detail.component.html'
+    templateUrl: './post-detail.component.html',
+      styleUrls: ['./post-detail.component.scss']
+
 })
-export class postDetailComponent implements OnInit {
-    public pageTitle: string = 'post Detail';
-    public post: ApolloQueryObservable<PostByIdInterface>;
+
+export class postDetailComponent implements OnInit, OnDestroy {
+    public pageTitle: string = 'Post detail:';
+    public post: any;
     public errorMessage: string;
     private apollo: Apollo;
-    public nameControl = new FormControl();
+    public postControl = new FormControl();
     // Observable variable of the graphql query
     public nameFilter: Subject<string> = new Subject<string>();
+    private sub: Subscription;
+    public id;
     // Inject Angular2Apollo service
-    constructor(apollo: Apollo) {
+    constructor(apollo: Apollo, private route: ActivatedRoute) {
         this.apollo = apollo;
     }
 
-    ngOnInit(): void {
-        // Query users data with observable variables
-        this.post = this.apollo.watchQuery<PostByIdInterface>({
-            query: GetPostsQuery,
-        })
-            // Return only users, not the whole ApolloQueryResult
-            .map(result => result.data) as any;
-
-        // Add debounce time to wait 300 ms for a new change instead of keep hitting the server
-        this.nameControl.valueChanges.debounceTime(300).subscribe(name => {
-            this.nameFilter.next(name);
+    public ngOnInit(): void {
+        this.sub = this.route.params.subscribe(params => {
+            this.id = params['id'];
         });
-        console.log('post detail');
-        console.log(this.post);
-
+        this.apollo.watchQuery<PostByIdInterface>({
+            query: GetPostDetailQuery,
+            variables: { "id": this.id }
+        }).subscribe(({ data }) => {
+            this.post = data.post;
+        });
     }
-
-
-
-    // getpost(id: number) {
-    //     this._postService.getpost(id).subscribe(
-    //         post => this.post = post,
-    //         error => this.errorMessage = <any>error);
-    // }
-
-    // onBack(): void {
-    //     this._router.navigate(['/posts']);
-    // }
-
-    onRatingClicked(message: string): void {
-        this.pageTitle = 'post Detail: ' + message;
+    ngOnDestroy() {
+        this.sub.unsubscribe();
     }
 }
