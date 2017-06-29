@@ -22,7 +22,7 @@ export class EditPostComponent {
   public post: any;
 
   constructor(
-     formBuilder: FormBuilder,
+  formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private apollo: Apollo
@@ -46,8 +46,7 @@ export class EditPostComponent {
       variables: { "id": this.id }
     }).subscribe(({ data }) => {
       that.post = data.post;
-      that.form.value.title = data.post.title;
-      that.form.value.content = data.post.content;
+       this.form.setValue({title: data.post.title, content: data.post.content});
     });
   }
 
@@ -59,8 +58,8 @@ export class EditPostComponent {
       variables: {
         "id": this.post.id,
         "data": {
-          "title": this.form.value.title || this.post.title,
-          "content": this.form.value.content || this.post.content
+          "title": this.form.value.title,
+          "content": this.form.value.content
         }
       },
     })
