@@ -9,6 +9,7 @@ MEAN is based on the next technologies
 * Angular4 web starter
 * Innograph (uses GraphQL for schema standartization)
 * Bit - manages components, services and schemas
+* Express & mongoose REST API - Read more docs in folder [Server](https://github.com/linnovate/mean/tree/master/server) 
 
 If you're looking for the classic angular-1.x version of mean it has moved to this [1.x branch](https://github.com/linnovate/mean/tree/1.x) 
 
