@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 
 import { PostByIdInterface } from '../graphql/schema';
 import { GetPostDetailQuery } from '../graphql/queries';
-import { UpdatePostQuery } from '../graphql/queries';
 import { UpdatePostMutation } from '../graphql/mutations';
 
 
@@ -17,13 +16,13 @@ import { UpdatePostMutation } from '../graphql/mutations';
   styleUrls: ['./edit-post.component.scss']
 })
 export class EditPostComponent {
-  form: FormGroup;
+ form: FormGroup;
   private sub: Subscription;
   public id;
   public post: any;
 
   constructor(
-    formBuilder: FormBuilder,
+     formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private apollo: Apollo
@@ -38,6 +37,7 @@ export class EditPostComponent {
   }
 
   public ngOnInit(): void {
+    const that = this
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
     });
@@ -45,23 +45,24 @@ export class EditPostComponent {
       query: GetPostDetailQuery,
       variables: { "id": this.id }
     }).subscribe(({ data }) => {
-      this.post = data.post;
+      that.post = data.post;
+      that.form.value.title = data.post.title;
+      that.form.value.content = data.post.content;
     });
   }
 
   public save() {
-    if (!this.form.valid) return;
+    if (!this.form.valid) 
+      return;
     this.apollo.mutate({
       mutation: UpdatePostMutation,
       variables: {
+        "id": this.post.id,
         "data": {
-          "title": this.form.value.title,
-          "content": this.form.value.content
+          "title": this.form.value.title || this.post.title,
+          "content": this.form.value.content || this.post.content
         }
       },
-      refetchQueries: [{
-        query: UpdatePostQuery,
-      }],
     })
       .take(1)
       .subscribe({

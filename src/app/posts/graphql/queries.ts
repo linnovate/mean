@@ -19,10 +19,3 @@ export const GetPostsQuery = gql`
     }
   }
 `;
-
-export const UpdatePostQuery = gql`
-  query UpdatePost($id: ID!, $data: data) {
-        id
-        title
-  }
-`;

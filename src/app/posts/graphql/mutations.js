@@ -11,9 +11,10 @@ export const RemovePostMutation = gql`
 
 export const UpdatePostMutation = gql`
     mutation updatePost($id: ID!, $data: PostInput) { 
-        updatePost(id: $id) { 
+        updatePost(id: $id, data: $data) { 
             id  
             title 
+            content
         }
     }
 `;

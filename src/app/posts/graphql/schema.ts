@@ -1,7 +1,8 @@
 export interface UpdatePostInterface {
   updatePost: {
     id:string,
-    title:string | null
+    title:string | null,
+    content:string
   }
 }
 
