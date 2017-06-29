@@ -22,7 +22,7 @@ EXPOSE 3000
 
 
 #How to build:
-# git clone https://github.com/linnovate/mean
+# git clone https://github.com/linnovate/mean/tree/1.x
 # cd mean
 # docker build -t mean .
 
