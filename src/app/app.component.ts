@@ -7,7 +7,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { AppState } from './app.service';
-
+import { PostsService } from './posts/posts.service';
 /**
  * App Component
  * Top Level Component
@@ -29,7 +29,8 @@ import { AppState } from './app.service';
       <router-outlet></router-outlet>
     <footer>
     </footer>
-  `
+  `,
+  providers: [PostsService]
 })
 export class AppComponent implements OnInit {
   public angularclassLogo = 'assets/img/angularclass-avatar.png';

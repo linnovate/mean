@@ -4,15 +4,15 @@ import { Apollo, ApolloQueryObservable } from 'apollo-angular';
 import { ApolloQueryResult } from 'apollo-client';
 import { Subject } from 'rxjs/Subject';
 import { DocumentNode } from 'graphql';
+import { PostsService } from '../posts.service';
+import { MdSnackBar } from '@angular/material';
+
 
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 
-import { DeletePostInterface, UpdatePostInterface, PostsInterface } from '../graphql/schema';
-import { GetPostsQuery } from '../graphql/queries';
-import { RemovePostMutation, UpdatePostMutation } from '../graphql/mutations';
-
+import { PostsInterface } from '../graphql/schema';
 @Component({
   selector: 'post-list',
   templateUrl: './post-list.component.html',
@@ -23,52 +23,33 @@ export class PostListComponent implements OnInit {
   public posts: ApolloQueryObservable<PostsInterface>;
   public listPostFilter: string;
   public postControl = new FormControl();
-  // Observable variable of the graphql query
-  public nameFilter: Subject<string> = new Subject<string>();
-  private apollo: Apollo;
+  private nameFilter: Subject<string> = new Subject<string>();
 
   // Inject Angular2Apollo service
-  constructor(apollo: Apollo) {
-    this.apollo = apollo;
+  constructor(private _postService: PostsService, public snackBar: MdSnackBar) {
   }
 
   public ngOnInit() {
-    // Query posts data with observable variables
-    this.posts = this.apollo.watchQuery<PostsInterface>({
-      query: GetPostsQuery,
-    })
-      // Return only posts, not the whole ApolloQueryResult
-      .map(result => result.data.posts) as any;
-
+    this.posts = this._postService.get();
     // Add debounce time to wait 300 ms for a new change instead of keep hitting the server
     this.postControl.valueChanges.debounceTime(300).subscribe(name => {
       this.nameFilter.next(name);
     });
-   
   }
-  public deletePost(id:string){
- // Call the mutation called deletePost
-    this.apollo.mutate<DeletePostInterface>({
-      mutation: RemovePostMutation,
-      variables: {
-        "id": id
-      },
-    })
-      .take(1)
-      .subscribe({
-        next: ({ data }) => {
-          console.log('delete post', data.removePost);
-          // get new data
-          this.posts.refetch();
-        },
-        error: (errors) => {
-          console.log('there was an error sending the query', errors);
-        }
-      });
+  public deletePost(id: string) {
+    this._postService.delete(id)
+      .then((response) => {
+        this.openSnackBar(response.message, 'Delete');
+        this.posts.refetch();
+      })
+      .catch((error) => {
+        this.openSnackBar(error.message, 'Delete');
+
+      })
   }
-
-
-  public editPost(id: string) {
-
+  public openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 4000,
+    });
   }
 }

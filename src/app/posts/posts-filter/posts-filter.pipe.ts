@@ -1,5 +1,5 @@
 import {PipeTransform,Pipe} from '@angular/core';
-import {IPost} from './post.interface'
+import {IPost} from '../post.interface'
 @Pipe({
     name:'postsFilter'
 })
