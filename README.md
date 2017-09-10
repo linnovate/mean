@@ -11,7 +11,7 @@ If you're looking for the classic angular-1.x version of mean it has moved to th
 ## Installation
 
 ``
-git clone --depth 1 https://github.com/linnovate/mean.git
-npm install
-npm start
+git clone --depth 1 https://github.com/linnovate/mean.git  
+npm install  
+npm start  
 ``
