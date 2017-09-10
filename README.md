@@ -1,5 +1,5 @@
 
-MEAN^2 is based on the next technologies  
+MEAN<sup>2</sup> is based on the next technologies  
 * [Angular4 web starter](https://github.com/AngularClass/angular-starter)
 * [MongoDB](https://www.mongodb.com)
 * [Express](https://expressjs.com/)
