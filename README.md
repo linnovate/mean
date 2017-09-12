@@ -34,3 +34,24 @@ cd mean
 npm install  
 npm start  
 ```
+If all the packages and modules installed successfully, default web browser will open and you can see default MEAN application at `http://localhost:3000`. This is the default port unless you change that manually.
+
+## Additional Tools used in MEAN
+
+`Need to add all the tools like Passport , Mongoose , etc`
+
+## How to configure MEAN modules
+
+`In here, we need to tell user how to change database credentials and also all other instances they need to change. Ex : MongoDB Instance , Innograph details , possible errors when running first time. As I got error in Innograph. :-)`
+
+## How to customize MEAN application
+
+`We need to add information on how to customize application according to user's requirments`
+
+## Debug
+
+`Information on testing and checking the application`
+
+## Deploy
+
+`We need to give some ways to deploy the application. Using docker, Azure and all`
