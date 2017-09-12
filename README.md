@@ -2,7 +2,7 @@
 
 # [![MEAN Logo](http://mean.io/wp-content/themes/twentysixteen-child/images/meanlogo.png)](http://mean.io/) MEAN<sup>2</sup>
 
-## Introduction
+#### The Next Generation JavaScript Full Stack Framework.
 
 
 
