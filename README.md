@@ -1,5 +1,11 @@
+[![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/linnovate/mean?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-MEAN<sup>2</sup> is based on the next technologies  
+# [![MEAN Logo](http://mean.io/wp-content/themes/twentysixteen-child/images/meanlogo.png)](http://mean.io/) MEAN<sup>2</sup>
+
+## Introduction
+
+
+
 * [Angular4 web starter](https://github.com/AngularClass/angular-starter)
 * [MongoDB](https://www.mongodb.com)
 * [Express](https://expressjs.com/)
