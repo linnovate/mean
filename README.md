@@ -26,8 +26,11 @@ If you're looking for the classic angular-1.x version of mean it has moved to th
 
 ## Installation
 
+To start your application with MEAN, you need to clone the base MEAN repository from Github. This repository contains all the packages, modules and also sample code base in order to start and make it easy to develop your application. Following steps will guide you to install latest MEAN version.
+
 ```
 git clone --depth 1 https://github.com/linnovate/mean.git  
+cd mean
 npm install  
 npm start  
 ```
