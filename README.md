@@ -15,12 +15,14 @@ Basically MEAN is a combination of MongoDB , ExpressJS , AngularJS and Node.js. 
 
 If you're looking for the classic angular-1.x version of mean it has moved to this [1.x branch](https://github.com/linnovate/mean/tree/1.x) 
 
-## Prerequisites
+## Prerequisite Technologies
 
-* Git
-* MongoDB
-* Node 6.x
+* [Git](https://git-scm.com/downloads)
+* [MongoDB](https://www.mongodb.org/downloads)
+* [Node 6.x](https://nodejs.org/en/download/)
 * npm 3.x ( or yarn)
+
+> If you have an older version of Node.js and NPM , you can use Node Version Manager [NVM](https://github.com/creationix/nvm) to use multiple node versions on your system. MEAN<sup>2</sup> only supports Node 6.x or higher versions.
 
 ## Installation
 
