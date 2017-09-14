@@ -112,6 +112,14 @@ module.exports = function (options) {
          * See: https://github.com/shlomiassaf/ng-router-loader
          */
         {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader',
+          query: {
+              presets: ['es2015', 'react']
+          }
+        },
+        {
           test: /\.ts$/,
           use: [
             {
