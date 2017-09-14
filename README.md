@@ -38,20 +38,24 @@ If all the packages and modules installed successfully, default web browser will
 
 ## Additional Tools used in MEAN
 
-`Need to add all the tools like Passport , Mongoose , etc`
+1. [Mongoose](http://mongoosejs.com/)
+2. [Bootstrap](http://getbootstrap.com/)
+3. [Karma](https://karma-runner.github.io/1.0/index.html)
+4. [Protractor](http://www.protractortest.org/#/)
+5. [Jasmine](https://jasmine.github.io/)
+6. [Istanbul](https://istanbul.js.org/)
+7. [TypeScript](https://www.typescriptlang.org/)
+8. [Webpack](https://webpack.js.org/)
 
 ## How to configure MEAN modules
 
-`In here, we need to tell user how to change database credentials and also all other instances they need to change. Ex : MongoDB Instance , Innograph details , possible errors when running first time. As I got error in Innograph. :-)`
+.......................
 
-## How to customize MEAN application
-
-`We need to add information on how to customize application according to user's requirments`
 
 ## Debug
 
-`Information on testing and checking the application`
+........................
 
 ## Deploy
 
-`We need to give some ways to deploy the application. Using docker, Azure and all`
+........................
