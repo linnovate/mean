@@ -50,16 +50,3 @@ If all the packages and modules installed successfully, default web browser will
 6. [Istanbul](https://istanbul.js.org/)
 7. [TypeScript](https://www.typescriptlang.org/)
 8. [Webpack](https://webpack.js.org/)
-
-## How to configure MEAN modules
-
-.......................
-
-
-## Debug
-
-........................
-
-## Deploy
-
-........................
