@@ -4,8 +4,8 @@
 
 #### The Full Stack Javascript Framework.
 
-MEAN started out as a combination of MongoDB , ExpressJS , AngularJS and Node.js. 
-With MEAN<sup>2</sup> we are providing the ability to mix and match additional frontend frameworks, databases and technologies.
+MEAN started out as a combination of MongoDB , ExpressJS , AngularJS and Node.js.   
+With <strong>MEAN<sup>2</sup></strong> we are providing the ability to mix and match additional frontend frameworks, databases and technologies.
 We aim to create a robust, flexible and scalable fullstack javascript solution
 
 The default MEAN stack you get out of the box can work either with Angular or React and is built with the next technologies...
