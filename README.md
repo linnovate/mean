@@ -4,7 +4,11 @@
 
 #### The Next Generation JavaScript Full Stack Framework.
 
-Basically MEAN is a combination of MongoDB , ExpressJS , AngularJS and Node.js. The specialty is all these 4 components are based on JavaSscript and this is the success of MEAN stack. One all rounder and all the requirments are there. MEAN is designed to create well organized, scalable and robust web application from the scratch. Apart from these main 4 components, there are many more components, packages and modules to help you to build your web application.
+MEAN started out as a combination of MongoDB , ExpressJS , AngularJS and Node.js. 
+With MEAN<sup>2</sup> we are providing the ability to mix and match additional frontend frameworks, databases and technologies.
+We aim to create a robust, flexible and scalable fullstack javascript solution
+
+The default MEAN stack you get out of the box can work either with Angular or React and is built with the next technologies...
 
 * [Node.js](https://nodejs.org/en/)
 * [Angular4 web starter](https://github.com/AngularClass/angular-starter)
