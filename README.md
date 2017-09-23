@@ -2,7 +2,7 @@
 
 # [![MEAN Logo](http://mean.io/wp-content/themes/twentysixteen-child/images/meanlogo.png)](http://mean.io/) MEAN<sup>2</sup>
 
-#### The Next Generation JavaScript Full Stack Framework.
+#### The Full Stack Javascript Framework.
 
 MEAN started out as a combination of MongoDB , ExpressJS , AngularJS and Node.js. 
 With MEAN<sup>2</sup> we are providing the ability to mix and match additional frontend frameworks, databases and technologies.
