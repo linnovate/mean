@@ -42,11 +42,11 @@ If all the packages and modules installed successfully, default web browser will
 
 ## Additional Tools used in MEAN
 
-1. [Mongoose](http://mongoosejs.com/)
-2. [Bootstrap](http://getbootstrap.com/)
-3. [Karma](https://karma-runner.github.io/1.0/index.html)
-4. [Protractor](http://www.protractortest.org/#/)
-5. [Jasmine](https://jasmine.github.io/)
-6. [Istanbul](https://istanbul.js.org/)
-7. [TypeScript](https://www.typescriptlang.org/)
-8. [Webpack](https://webpack.js.org/)
+* [Mongoose](http://mongoosejs.com/)
+* [Bootstrap](http://getbootstrap.com/)
+* [Karma](https://karma-runner.github.io/1.0/index.html)
+* [Protractor](http://www.protractortest.org/#/)
+* [Jasmine](https://jasmine.github.io/)
+* [Istanbul](https://istanbul.js.org/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Webpack](https://webpack.js.org/)
