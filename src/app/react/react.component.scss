@@ -1,4 +1,4 @@
-/*styles for home content only*/
+/*styles for react content only*/
 body {
   margin: 0;
   font-family: Roboto, sans-serif;
@@ -7,19 +7,11 @@ body {
 md-card {
   max-width: 80%;
   margin: 2em auto;
+  text-align: center;
 }
 
 md-toolbar-row {
   justify-content: space-between;
-}
-
-#home {
-  margin:0 auto;
-  display:flex;
-  flex-direction:row-reverse;
-}
-#daphne {
-  margin-top:5%;
 }
 
 .done {

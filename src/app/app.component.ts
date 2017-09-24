@@ -23,7 +23,7 @@ import { PostsService } from './posts/posts.service';
     <md-toolbar color="primary">
      <a [routerLink]="['/']" class="logotTxt">MEAN</a>
    <a class="links" [routerLink]="['/posts']">Posts</a>
-     <span class="links">more...</span>
+   <a class="links" [routerLink]="['/react']">react</a>
     </md-toolbar>
     </header>
       <router-outlet></router-outlet>
@@ -34,8 +34,8 @@ import { PostsService } from './posts/posts.service';
 })
 export class AppComponent implements OnInit {
   public angularclassLogo = 'assets/img/angularclass-avatar.png';
-  public name = 'Angular 2 Webpack Starter';
-  public url = 'https://twitter.com/AngularClass';
+  public name = 'Mean stack starter';
+  public url = 'https://mean.io';
 
   constructor(
     public appState: AppState

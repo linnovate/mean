@@ -24,7 +24,7 @@ nav a {
 
 @include mat-core();
 
-$primary: mat-palette($mat-deep-purple);
+$primary: mat-palette($mat-light-blue);
 $accent:  mat-palette($mat-amber, A200, A100, A400);
 
 $theme: mat-light-theme($primary, $accent);
