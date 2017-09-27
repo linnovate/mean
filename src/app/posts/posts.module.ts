@@ -3,7 +3,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpModule }  from '@angular/http';
-import { MaterialModule } from '@angular/material';
+import { 
+  MdCardModule,
+  MdListModule,
+  MdInputModule,
+  MdButtonModule,
+  MdSnackBarModule
+ } from '@angular/material';
 
 import { routes } from './posts.routes';
 import { PostListComponent } from './post-list/post-list.component';
@@ -30,7 +36,11 @@ import {PostsFilterPipe} from './posts-filter/posts-filter.pipe'
     ReactiveFormsModule,
     RouterModule,
     HttpModule,
-    MaterialModule,
+    MdCardModule,
+    MdListModule,
+    MdInputModule,
+    MdButtonModule,
+    MdSnackBarModule
     // ApolloModule.forRoot(client)
   ],
 })
