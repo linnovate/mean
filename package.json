@@ -1,7 +1,7 @@
 {
   "name": "Mean",
   "version": "2.0.1",
-  "description": "An MEAN stack framework using Angular Webpack Starter kit - featuring Angular (Router, Http, Forms, Services, Tests, E2E, Coverage), Karma, Protractor, Jasmine, Istanbul, TypeScript, and Webpack",
+  "description": "A MEAN stack framework using Angular Webpack Starter kit - featuring Angular (Router, Http, Forms, Services, Tests, E2E, Coverage), Karma, Protractor, Jasmine, Istanbul, TypeScript, and Webpack",
   "keywords": [
     "angular",
     "angular2",
