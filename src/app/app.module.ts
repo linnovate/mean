@@ -17,10 +17,10 @@ import {
   PreloadAllModules
 } from '@angular/router';
 import {
-  MdToolbarModule,
-  MdCardModule,
-  MdListModule,
-  MdGridListModule
+  MatToolbarModule,
+  MatCardModule,
+  MatListModule,
+  MatGridListModule
 } from '@angular/material';
 import 'hammerjs';
 
@@ -76,10 +76,10 @@ type StoreType = {
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    MdToolbarModule,
-    MdCardModule,
-    MdListModule,
-    MdGridListModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatListModule,
+    MatGridListModule,
     RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules }),
     ApolloModule.forRoot(client),
   ],
