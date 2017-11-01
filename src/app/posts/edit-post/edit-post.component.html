@@ -2,14 +2,14 @@
     <div *ngIf="post">
         <h5>Edit post:</h5>
         <form [formGroup]="form" (ngSubmit)="save()">
-            <md-input-container>
-                <input mdInput formControlName="title"  placeholder="Title">
-                <md-error>This field is required</md-error>
-            </md-input-container><br>
-            <md-input-container>
-                <textarea mdInput md-autosize minRows="6" placeholder="Your post content..." formControlName="content"></textarea>
-            </md-input-container>
-            <button md-raised-button type="submit">Save</button>
+            <mat-input-container>
+                <input matInput formControlName="title"  placeholder="Title">
+                <mat-error>This field is required</mat-error>
+            </mat-input-container><br>
+            <mat-input-container>
+                <textarea matInput mat-autosize minRows="6" placeholder="Your post content..." formControlName="content"></textarea>
+            </mat-input-container>
+            <button mat-raised-button type="submit">Save</button>
         </form>
     </div>
 </div>
