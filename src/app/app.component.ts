@@ -20,13 +20,13 @@ import { PostsService } from './posts/posts.service';
   ],
   template: `
     <header>
-    <mat-toolbar color="primary">
-     <a [routerLink]="['/']" class="logotTxt">MEAN</a>
-   <a class="links" [routerLink]="['/posts']">Posts</a>
-   <a class="links" [routerLink]="['/react']">react</a>
-    </mat-toolbar>
+      <mat-toolbar color="primary">
+        <a [routerLink]="['/']" class="logotTxt">MEAN</a>
+        <a class="links" [routerLink]="['/posts']">Posts</a>
+        <a class="links" [routerLink]="['/react']">react</a>
+      </mat-toolbar>
     </header>
-      <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
     <footer>
     </footer>
   `,

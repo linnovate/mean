@@ -1,15 +1,15 @@
 <div class="postDetail">
-    <div *ngIf="post">
-        <h5>Edit post:</h5>
-        <form [formGroup]="form" (ngSubmit)="save()">
-            <mat-input-container>
-                <input matInput formControlName="title"  placeholder="Title">
-                <mat-error>This field is required</mat-error>
-            </mat-input-container><br>
-            <mat-input-container>
-                <textarea matInput mat-autosize minRows="6" placeholder="Your post content..." formControlName="content"></textarea>
-            </mat-input-container>
-            <button mat-raised-button type="submit">Save</button>
-        </form>
-    </div>
+  <div *ngIf="post">
+    <h5>Edit post:</h5>
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <mat-input-container>
+        <input matInput formControlName="title"  placeholder="Title">
+        <mat-error>This field is required</mat-error>
+      </mat-input-container><br>
+      <mat-input-container>
+        <textarea matInput mat-autosize minRows="6" placeholder="Your post content..." formControlName="content"></textarea>
+      </mat-input-container>
+      <button mat-raised-button type="submit">Save</button>
+    </form>
+  </div>
 </div>
