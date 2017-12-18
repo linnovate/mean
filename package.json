@@ -108,7 +108,7 @@
     "graphql-tools": "^1.0.0",
     "hammerjs": "^2.0.8",
     "helmet": "^3.6.1",
-    "http-server": "^0.9.0",
+    "http-server": "^0.10.0",
     "http-status": "^1.0.1",
     "ie-shim": "^0.1.0",
     "innograph": "git://github.com/linnovate/innograph.git#devel",
