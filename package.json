@@ -112,7 +112,7 @@
     "http-status": "^1.0.1",
     "ie-shim": "^0.1.0",
     "innograph": "git://github.com/linnovate/innograph.git#devel",
-    "joi": "^10.5.2",
+    "joi": "^13.0.0",
     "material": "^0.1.1",
     "method-override": "^2.3.9",
     "mongoose": "^4.10.6",
