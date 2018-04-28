@@ -7,7 +7,6 @@ import { DocumentNode } from 'graphql';
 import { PostsService } from '../posts.service';
 import { MatSnackBar } from '@angular/material';
 
-
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
@@ -32,7 +31,7 @@ export class PostListComponent implements OnInit {
   public ngOnInit() {
     this.posts = this._postService.get();
     // Add debounce time to wait 300 ms for a new change instead of keep hitting the server
-    this.postControl.valueChanges.debounceTime(300).subscribe(name => {
+    this.postControl.valueChanges.debounceTime(300).subscribe((name) => {
       this.nameFilter.next(name);
     });
   }
@@ -45,7 +44,7 @@ export class PostListComponent implements OnInit {
       .catch((error) => {
         this.openSnackBar(error.message, 'Delete');
 
-      })
+      });
   }
   public openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {

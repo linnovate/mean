@@ -8,14 +8,12 @@ import { client } from '../graphql.client';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 
 import { PostByIdInterface } from '../graphql/schema';
 import { GetPostDetailQuery } from '../graphql/queries';
-
 
 @Component({
     templateUrl: './post-detail.component.html',
@@ -39,12 +37,12 @@ export class postDetailComponent implements OnInit, OnDestroy {
     }
 
     public ngOnInit(): void {
-        this.sub = this.route.params.subscribe(params => {
+        this.sub = this.route.params.subscribe((params) => {
             this.id = params['id'];
         });
         this.apollo.watchQuery<PostByIdInterface>({
             query: GetPostDetailQuery,
-            variables: { "id": this.id }
+            variables: { id: this.id }
         }).subscribe(({ data }) => {
             this.post = data.post;
         });

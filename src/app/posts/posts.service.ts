@@ -22,7 +22,7 @@ export class PostsService {
             query: GetPostsQuery,
         })
             // Return only posts, not the whole ApolloQueryResult
-            .map(result => result.data.posts) as any;
+            .map((result) => result.data.posts) as any;
         return this.posts;
     }
     delete(id: string): Promise<any> {
@@ -31,7 +31,7 @@ export class PostsService {
             this.apollo.mutate<DeletePostInterface>({
                 mutation: RemovePostMutation,
                 variables: {
-                    "id": id
+                    id
                 },
             })
                 .take(1)
@@ -49,11 +49,10 @@ export class PostsService {
                         reject({
                             success: false,
                             message: errors
-                        })
+                        });
                     }
                 });
         });
     }
-
 
 }

@@ -3,8 +3,6 @@ import { NewPostComponent } from './new-post/new-post.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { postDetailComponent } from './post-detail/post-detail.component';
 
-
-
 export const routes = [
     {
         path: '', children: [

@@ -1,16 +1,16 @@
 export interface UpdatePostInterface {
   updatePost: {
-    id:string,
-    title:string | null,
-    content:string
-  }
+    id: string,
+    title: string | null,
+    content: string
+  };
 }
 
 export interface DeletePostInterface {
   removePost: {
-    id:string,
-    title:string | null
-  }
+    id: string,
+    title: string | null
+  };
 }
 
 export interface PostsInterface {
@@ -21,9 +21,9 @@ export interface PostsInterface {
 }
 
 export interface PostByIdInterface {
-    post:{
+    post: {
       id: string,
       title: string | null,
       content: string | null
-  }
+  };
 }
