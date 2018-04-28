@@ -8,7 +8,7 @@ import HelloReact from './hello-react';
   templateUrl: './react.component.html'
 })
 export class ReactComponent implements OnInit {
-    public ngOnInit(){
+    public ngOnInit() {
         ReactView.render(HelloReact, 'react-root');
     }
 }

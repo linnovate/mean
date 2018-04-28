@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
@@ -14,17 +14,17 @@ import { UpdatePostMutation } from '../graphql/mutations';
   templateUrl: './edit-post.component.html',
   styleUrls: ['./edit-post.component.scss']
 })
-export class EditPostComponent {
- form: FormGroup;
-  private sub: Subscription;
+export class EditPostComponent implements OnInit {
+  public form: FormGroup;
   public id;
   public post: any;
+  private sub: Subscription;
 
   constructor(
-  formBuilder: FormBuilder,
-  private route: ActivatedRoute,
-  private router: Router,
-  private apollo: Apollo
+    formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private apollo: Apollo
   ) {
     this.form = formBuilder.group({
       title: ['', [
@@ -45,13 +45,14 @@ export class EditPostComponent {
       variables: { id: this.id }
     }).subscribe(({ data }) => {
       that.post = data.post;
-      this.form.setValue({title: data.post.title, content: data.post.content});
+      this.form.setValue({ title: data.post.title, content: data.post.content });
     });
   }
 
   public save() {
-    if (!this.form.valid)
+    if (!this.form.valid) {
       return;
+    }
     this.apollo.mutate({
       mutation: UpdatePostMutation,
       variables: {

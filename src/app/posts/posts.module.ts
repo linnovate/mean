@@ -13,10 +13,10 @@ import {
 
 import { routes } from './posts.routes';
 import { PostListComponent } from './post-list/post-list.component';
-import { postDetailComponent } from './post-detail/post-detail.component';
+import { PostDetailComponent } from './post-detail/post-detail.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
-import {PostsFilterPipe} from './posts-filter/posts-filter.pipe';
+import { PostsFilterPipe } from './posts-filter/posts-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import {PostsFilterPipe} from './posts-filter/posts-filter.pipe';
     NewPostComponent,
     EditPostComponent,
     PostsFilterPipe,
-    postDetailComponent,
+    PostDetailComponent,
   ],
   imports: [
     CommonModule,

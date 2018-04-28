@@ -12,7 +12,7 @@ import { AddPostMutation } from '../graphql/mutations';
   styleUrls: ['./new-post.component.scss']
 })
 export class NewPostComponent {
-  form: FormGroup;
+  public form: FormGroup;
 
   constructor(
     formBuilder: FormBuilder,
@@ -28,7 +28,9 @@ export class NewPostComponent {
     this.apollo = apollo;
   }
   public save() {
-    if (!this.form.valid) return;
+    if (!this.form.valid) {
+      return;
+    }
     this.apollo.mutate({
       mutation: AddPostMutation,
       variables: {

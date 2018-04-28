@@ -21,16 +21,16 @@ import { GetPostDetailQuery } from '../graphql/queries';
 
 })
 
-export class postDetailComponent implements OnInit, OnDestroy {
+export class PostDetailComponent implements OnInit, OnDestroy {
     public pageTitle: string = 'Post detail:';
     public post: any;
     public errorMessage: string;
-    private apollo: Apollo;
     public postControl = new FormControl();
     // Observable variable of the graphql query
     public nameFilter: Subject<string> = new Subject<string>();
-    private sub: Subscription;
     public id;
+    private apollo: Apollo;
+    private sub: Subscription;
     // Inject Angular2Apollo service
     constructor(apollo: Apollo, private route: ActivatedRoute) {
         this.apollo = apollo;
@@ -47,7 +47,8 @@ export class postDetailComponent implements OnInit, OnDestroy {
             this.post = data.post;
         });
     }
-    ngOnDestroy() {
+
+    public ngOnDestroy() {
         this.sub.unsubscribe();
     }
 }

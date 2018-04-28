@@ -8,7 +8,7 @@
   <mat-input-container>
     <input matInput type="search" [(ngModel)]='listPostFilter' [formControl]="postControl" placeholder="search...">
   </mat-input-container>
-  <mat-card *ngFor="let post of posts | async | postsFilter:listPostFilter">
+  <mat-card *ngFor="let post of posts | async | myPostsFilter:listPostFilter">
     <mat-list>
       <mat-list-item>
         <a mat-line [routerLink]="['/posts/post-detail', post.id]"> {{post.title}} </a>
