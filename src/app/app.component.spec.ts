@@ -1,66 +1,27 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import {
-  inject,
-  async,
-  TestBed,
-  ComponentFixture
-} from '@angular/core/testing';
-
-/**
- * Load the implementations that should be tested
- */
+import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { AppState } from './app.service';
-
-describe(`App`, () => {
-  let comp: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
-
-  /**
-   * async beforeEach
-   */
+describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppComponent ],
-      schemas: [NO_ERRORS_SCHEMA],
-      providers: [AppState]
-    })
-    /**
-     * Compile template and css
-     */
-    .compileComponents();
+      declarations: [
+        AppComponent
+      ],
+    }).compileComponents();
   }));
-
-  /**
-   * Synchronous beforeEach
-   */
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
-    comp    = fixture.componentInstance;
-
-    /**
-     * Trigger initial data binding
-     */
+  it('should create the app', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  }));
+  it(`should have as title 'app'`, async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.title).toEqual('app');
+  }));
+  it('should render title in a h1 tag', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-  });
-
-  it(`should be readly initialized`, () => {
-    expect(fixture).toBeDefined();
-    expect(comp).toBeDefined();
-  });
-
-  it(`should be @AngularClass`, () => {
-    expect(comp.url).toEqual('https://twitter.com/AngularClass');
-    expect(comp.angularclassLogo).toEqual('assets/img/angularclass-avatar.png');
-    expect(comp.name).toEqual('Angular 2 Webpack Starter');
-  });
-
-  it('should log ngOnInit', () => {
-    spyOn(console, 'log');
-    expect(console.log).not.toHaveBeenCalled();
-
-    comp.ngOnInit();
-    expect(console.log).toHaveBeenCalled();
-  });
-
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
+  }));
 });
