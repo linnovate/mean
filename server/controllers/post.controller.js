@@ -1,6 +1,4 @@
 import Post from '../models/post.model';
-import User from "../models/user.model";
-
 
 /**
  * Load post and append to req.
