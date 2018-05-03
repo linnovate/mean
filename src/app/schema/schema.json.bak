@@ -1,0 +1,111 @@
+{
+  "name": "platformMode",
+  "label": "Platform Mode",
+  "properties": {
+    "name": {
+      "type": "text",
+      "label": "Name",
+      "placeholder": "Enter platform-mode name"
+    },
+    "description": {
+      "type": "textarea",
+      "label": "Description"
+    },
+    "class": {
+      "type": "select",
+      "label": "Class",
+      "options": [{
+        "label": "ABT",
+        "value": "abt"
+      },{
+        "label": "Rocket",
+        "value": "rocket"
+      },{
+        "label": "Ground",
+        "value": "ground"
+      },{
+        "label": "Naval",
+        "value": "naval"
+      }]
+    },
+    "tabs": {
+      "type": "tabs",
+      "tabs": [{
+        "label": "Maneuver",
+        "properties": {
+          "profile": {
+            "type": "select",
+            "label": "Profile",
+            "options": [{
+              "label": "Fast",
+              "value": "fast"
+            }, {
+              "label": "Slow",
+              "value": "slow"
+            }]
+          },
+          "minimalRouteRadius": {
+            "type": "number",
+            "label": "Minimal route radius [km]"
+          },
+          "maximalRouteRadius": {
+            "type": "number",
+            "label": "Maximal route radius [km]"
+          },
+          "minimalRange": {
+            "type": "number",
+            "label": "Minimal range [km]"
+          },
+          "maximalRange": {
+            "type": "number",
+            "label": "Maximal range [km]"
+          },
+          "minimalRangeFromBorderline": {
+            "type": "number",
+            "label": "Minimal range from borderline [km]"
+          },
+          "maximalRangeFromBorderline": {
+            "type": "number",
+            "label": "Maximal range from borderline [km]"
+          }
+        }
+      }, {
+        "label": "RCS",
+        "properties": {
+          "nominalRcs": {
+            "type": "number",
+            "label": "Nominal RCS [m^2]"
+          },
+          "deltaGlimpseRcs": {
+            "type": "number",
+            "label": "Delta glimpse RCS [m^2]"
+          },
+          "rcsSchema": {
+            "type": "select",
+            "label": "RCS schema",
+            "source": {
+              "type": "rcs",
+              "key": "name"
+            }
+          }
+        }
+      }, {
+        "label": "Altitude",
+        "properties": {
+          "minimalAlt": {
+            "type": "number",
+            "label": "Minimal altitude [m]"
+          },
+          "maximalAlt": {
+            "type": "number",
+            "label": "Maximal altitude [m]"
+          },
+          "nominalAlt": {
+            "type": "number",
+            "label": "Nominal altitude [m]"
+          }
+        }
+      }]
+    }
+  }
+}

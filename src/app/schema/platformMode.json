@@ -1,0 +1,108 @@
+{
+  "map": "platformMode",
+  "label": "Platform Mode",
+  "fields": [{
+    "map": "name",
+    "type": "text",
+    "label": "Name"
+  }, {
+    "map": "description",
+    "type": "textarea",
+    "label": "Description"
+  }, {
+    "map": "class",
+    "type": "select",
+    "label": "Class",
+    "options": [{
+      "label": "ABT",
+      "value": "abt"
+    },{
+      "label": "Rocket",
+      "value": "rocket"
+    },{
+      "label": "Ground",
+      "value": "ground"
+    },{
+      "label": "Naval",
+      "value": "naval"
+    }]
+  }, {
+    "type": "tabs",
+    "tabs": [{
+      "label": "Maneuver",
+      "fields": [{
+        "map": "maneuver.profile",
+        "type": "select",
+        "label": "Profile",
+        "options": [{
+          "label": "Fast",
+          "value": "fast"
+        }, {
+          "label": "Slow",
+          "value": "slow"
+        }]
+      }, {
+        "map": "maneuver.minimalRouteRadius",
+        "type": "number",
+        "label": "Minimal route radius [km]"
+      }, {
+        "map": "maneuver.maximalRouteRadius",
+        "type": "number",
+        "label": "Maximal route radius [km]"
+      }, {
+        "map": "maneuver.minimalRange",
+        "type": "number",
+        "label": "Minimal range [km]"
+      }, {
+        "map": "maneuver.maximalRange",
+        "type": "number",
+        "label": "Maximal range [km]"
+      }, {
+        "map": "maneuver.minimalRangeFromBorderline",
+        "type": "number",
+        "label": "Minimal range from borderline [km]"
+      }, {
+        "map": "maneuver.maximalRangeFromBorderline",
+        "type": "number",
+        "label": "Maximal range from borderline [km]"
+      }]
+    }, {
+      "label": "RCS",
+      "fields": [{
+        "map": "rcs.nominalRcs",
+        "type": "number",
+        "label": "Nominal RCS [m^2]"
+      }, {
+        "map": "rcs.deltaGlimpseRcs",
+        "type": "number",
+        "label": "Delta glimpse RCS [m^2]"
+      }, {
+        "map": "rcs.rcsSchema",
+        "type": "select",
+        "label": "RCS schema",
+        "source": {
+          "type": "rcs",
+          "key": "name"
+        },
+        "view": {
+          "label": "View"
+        }
+      }]
+    }, {
+      "label": "Altitude",
+      "fields": [{
+        "map": "altitude.minimalAlt",
+        "type": "number",
+        "label": "Minimal altitude [m]"
+      }, {
+        "map": "altitude.maximalAlt",
+        "type": "number",
+        "label": "Maximal altitude [m]"
+      }, {
+        "map": "altitude.nominalAlt",
+        "type": "number",
+        "label": "Nominal altitude [m]"
+      }]
+    }]
+  }]
+}
