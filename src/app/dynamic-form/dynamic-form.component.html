@@ -1,0 +1,68 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <h1>{{schema.label}}</h1>
+  </mat-card-header>
+  <mat-card-content *ngFor="let field of schema.fields" [ngSwitch]="field.type">
+    <ng-container *ngSwitchCase="'select'">
+      <ng-container *ngTemplateOutlet="select; context: field"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'text'">
+      <ng-container *ngTemplateOutlet="text; context: field"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'number'">
+      <ng-container *ngTemplateOutlet="number; context: field"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'textarea'">
+      <ng-container *ngTemplateOutlet="textarea; context: field"></ng-container>
+    </ng-container>
+    <mat-tab-group *ngSwitchCase="'tabs'">
+      <mat-tab *ngFor="let tab of field.tabs" [label]="tab.label" [disabled]="evaluate(tab.disabled)">
+        <div *ngFor="let field of tab.fields" [ngSwitch]="field.type">
+          <ng-container *ngSwitchCase="'select'">
+            <ng-container *ngTemplateOutlet="select; context: field"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="'text'">
+            <ng-container *ngTemplateOutlet="text; context: field"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="'number'">
+            <ng-container *ngTemplateOutlet="number; context: field"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="'textarea'">
+            <ng-container *ngTemplateOutlet="textarea; context: field"></ng-container>
+          </ng-container>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+  <button mat-button (click)="save()">Save</button>
+</mat-card>
+
+<ng-template #select let-label="label" let-options="options" let-map="map" let-view="view" let-source="source">
+  <mat-form-field>
+    <mat-select [placeholder]="label" [(ngModel)]="json[map]">
+      <mat-option *ngFor="let option of options" [value]="option.value">
+        {{ option.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button *ngIf="view" mat-button>{{view.label}}</button>
+  <div *ngIf="source">{{source.type}}</div>
+</ng-template>
+
+<ng-template #text let-label="label" let-map="map">
+  <mat-form-field>
+    <input matInput type="text" [placeholder]="label" [(ngModel)]="json[map]">
+  </mat-form-field>
+</ng-template>
+
+<ng-template #number let-label="label" let-map="map">
+  <mat-form-field>
+    <input matInput type="number" [placeholder]="label" [(ngModel)]="json[map]">
+  </mat-form-field>
+</ng-template>
+
+<ng-template #textarea let-label="label" let-map="map">
+  <mat-form-field>
+    <textarea matInput [placeholder]="label" [(ngModel)]="json[map]"></textarea>
+  </mat-form-field>
+</ng-template>
