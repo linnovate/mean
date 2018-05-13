@@ -1,1 +1,16 @@
-<dynamic-form [schema]="schema" [json]="json"></dynamic-form>
+<header>
+  <mat-toolbar color="primary">
+    <span class="example-spacer"></span>
+    <a class="links side" [routerLink]="['/login']" *ngIf="!user">Login</a>
+    <div>
+      <a class="links side" *ngIf="user" [matMenuTriggerFor]="menu">Hello {{user.fullname}}</a>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item *ngIf="user && user.isAdmin" (click)="navigate('admin')">admin</button>
+        <button mat-menu-item (click)="logout()">logout</button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+</header>
+<router-outlet></router-outlet>
+<footer>
+</footer>

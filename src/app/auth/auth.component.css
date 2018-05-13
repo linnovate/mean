@@ -1,0 +1,17 @@
+.example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .example-card {
+    width: 400px;
+    margin: 10% auto;
+  }
+  
+  .mat-card-title {
+    font-size: 16px;
+  }
+  
