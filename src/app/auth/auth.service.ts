@@ -50,11 +50,17 @@ export class AuthService {
     return this.$userSource.asObservable();
   }
 
-  // me(): Observable<any> {
-  //   return this.apollo.query<LoginInterface>({
-  //     query: MeQuery
-  //   });
-  // }
+  me(): Observable<any> {
+    return Observable.create(observer => {
+      const tokenVal = this.token.getToken();
+      if (!tokenVal) return  observer.complete();
+      this.http.get('/api/me').subscribe((data : any) => {
+        observer.next({user: data.user});
+        this.setUser(data.user);
+        observer.complete();
+      })
+    });
+  }
 
   signOut(): void {
     this.setUser(null);
