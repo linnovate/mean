@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, PreloadAllModules } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import {
   MatToolbarModule,
   MatMenuModule,
@@ -10,6 +11,7 @@ import {
 import { AppComponent } from './app.component';
 import { DynamicFormModule } from './dynamic-form';
 import { AuthModule } from './auth';
+import { AddHeaderInterceptor } from './header-interceptor';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
@@ -27,7 +29,11 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     AuthModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AddHeaderInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
