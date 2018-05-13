@@ -49,10 +49,6 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(fullname, email, password, repeatPassword)
     .subscribe(data => {
-      console.log(data)
-      // if (data.data.register.error) return alert(data.data.register.error);
-      // this.token.saveToken(data.data.register.token);
-      // this.authService.setUser(data.data.register.user);
       this.router.navigate(['']);
     })
   }

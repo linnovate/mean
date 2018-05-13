@@ -1,19 +1,28 @@
 const express = require('express');
-const validate = require('express-validation');
-const expressJwt = require('express-jwt');
-const paramValidation = require('../config/param-validation');
+const asyncHandler = require('express-async-handler')
+const passport = require('passport');
+const userCtrl = require('../controllers/user.controller');
 const authCtrl = require('../controllers/auth.controller');
 const config = require('../config/config');
 
-const router = express.Router(); // eslint-disable-line new-cap
-
-/** POST /api/auth/login - Returns token if correct username and password is provided */
-router.route('/login')
-  .post(validate(paramValidation.login), authCtrl.login);
-
-/** GET /api/auth/random-number - Protected route,
- * needs token returned by the above as header. Authorization: Bearer {token} */
-router.route('/random-number')
-  .get(expressJwt({ secret: config.jwtSecret }), authCtrl.getRandomNumber);
-
+const router = express.Router();
 module.exports = router;
+
+router.post('/register', asyncHandler(register), login);
+router.post('/login', passport.authenticate('local', { session: false }), login);
+router.post('/me', passport.authenticate('jwt', { session: false }), login);
+
+
+async function register(req, res, next) {
+  let user = await userCtrl.insert(req.body);
+  user = user.toObject();
+  delete user.hashedPassword;
+  req.user = user;
+  next()
+}
+
+function login(req, res) {
+  let user = req.user;
+  let token = authCtrl.generateToken(user);
+  res.json({ user, token });
+}
