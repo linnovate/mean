@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const httpError = require('http-errors');
 const logger = require('morgan');
@@ -30,8 +31,14 @@ app.use(helmet());
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors());
 
-app.use('/', express.static(__dirname + '/../../dist'))
+// API router
 app.use('/api', routes);
+
+// Angular 5 server
+app.use(express.static(path.join(__dirname, '../../dist')))
+app.use('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../dist/index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
