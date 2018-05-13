@@ -34,12 +34,6 @@ app.use(cors());
 // API router
 app.use('/api', routes);
 
-// Angular 5 server
-app.use(express.static(path.join(__dirname, '../../dist')))
-app.use('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../dist/index.html'));
-});
-
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new httpError(404)
@@ -48,10 +42,23 @@ app.use((req, res, next) => {
 
 // error handler, send stacktrace only during development
 app.use((err, req, res, next) => {
+
+  // customize Joi validation errors
+  if (err.isJoi) {
+    err.message = err.details.map(e => e.message).join("; ");
+    err.status = 400;
+  }
+
   res.status(err.status || 500).json({
     message: err.message
   });
   next(err);
+});
+
+// Angular 5 server
+app.use(express.static(path.join(__dirname, '../../dist')))
+app.use('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../dist/index.html'));
 });
 
 module.exports = app;
