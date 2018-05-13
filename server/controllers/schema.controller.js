@@ -1,4 +1,3 @@
-const config = require('../config/config');
 const Schema = require('../models/schema.model');
 
 module.exports = {
@@ -14,9 +13,6 @@ async function insert(schema) {
 }
 
 async function update(schemaId, schema) {
-/*  schema = await get(schemaId);
-  schema.set(schema);
-  return await Schema.save();*/
   return await Schema.findByIdAndUpdate(schemaId, schema);
 }
 

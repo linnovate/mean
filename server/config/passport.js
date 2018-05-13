@@ -1,52 +1,38 @@
-const passport = require('passport'),
-  User = require('../models/user.model'),
-  JwtStrategy = require('passport-jwt').Strategy,
-  ExtractJwt = require('passport-jwt').ExtractJwt,
-  LocalStrategy = require('passport-local');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
+const bcrypt = require('bcrypt');
 
-import config from './config';
-// Setting username field to email rather than username
-const localOptions = {
+const User = require('../models/user.model');
+const config = require('./config');
+
+const localLogin = new LocalStrategy({
   usernameField: 'email'
-};
-
-// Setting up local login strategy
-const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
-  User.findOne({ email }, (err, user) => {
-    if (err) { return done(err); }
-    if (!user) { return done(null, false, { error: 'Your login details could not be verified. Please try again.' }); }
-
-    user.comparePassword(password, (err, isMatch) => {
-      if (err) { return done(err); }
-      if (!isMatch) { return done(null, false, { error: 'Your login details could not be verified. Please try again.' }); }
-
-      return done(null, user);
-    });
-  });
+}, async (email, password, done) => {
+  let user = await User.findOne({ email });
+  if (!user || !bcrypt.compareSync(password, user.hashedPassword)) {
+    return done(null, false, { error: 'Your login details could not be verified. Please try again.' });
+  }
+  user = user.toObject();
+  delete user.hashedPassword;
+  done(null, user);
 });
-// Setting JWT strategy options
-const jwtOptions = {
-  // Telling Passport to check authorization headers for JWT
-  jwtFromRequest: ExtractJwt.fromAuthHeader(),
-  // Telling Passport where to find the secret
+
+const jwtLogin = new JwtStrategy({
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: config.jwtSecret
-
-  // TO-DO: Add issuer and audience checks
-};
-
-
-// Setting up JWT login strategy
-const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
-  User.findById(payload._id, (err, user) => {
-    if (err) { return done(err, false); }
-
-    if (user) {
-      done(null, user);
-    } else {
-      done(null, false);
-    }
-  });
+}, async (payload, done) => {
+  let user = await User.findById(payload._id);
+  if (!user) {
+    return done(null, false);
+  }
+  user = user.toObject();
+  delete user.hashedPassword;
+  done(null, user);
 });
 
 passport.use(jwtLogin);
 passport.use(localLogin);
+
+module.exports = passport;

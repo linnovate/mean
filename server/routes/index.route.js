@@ -10,8 +10,8 @@ router.get('/health-check', (req, res) =>
   res.send('OK')
 );
 
-router.use('/users', userRoutes);
 router.use('/auth', authRoutes);
+router.use('/user', userRoutes);
 router.use('/schema', schemaRoutes);
 
 module.exports = router;
