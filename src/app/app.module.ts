@@ -11,6 +11,7 @@ import {
 import { AppComponent } from './app.component';
 import { DynamicFormModule } from './dynamic-form';
 import { AuthModule } from './auth';
+import { AdminModule } from './admin/admin.module';
 import { AddHeaderInterceptor } from './header-interceptor';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -28,6 +29,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     DynamicFormModule,
     AuthModule,
     AppRoutingModule,
+    AdminModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

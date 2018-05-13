@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { AuthService } from './auth/auth.service';
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private router: Router
   ) {}
 
   public ngOnInit() {
@@ -29,6 +31,14 @@ export class AppComponent implements OnInit {
     this.userSubscription = this.authService.$userSource.subscribe((user) => {
       this.user = user;
     });
+  }
+
+  logout(): void {
+    this.authService.signOut();
+  }
+
+  navigate(link): void {
+    this.router.navigate(['admin']);
   }
 
 }
