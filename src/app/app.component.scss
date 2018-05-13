@@ -1,44 +1,29 @@
-html,
-body {
-    background-color: red;
-  height: 100%;
-  font-family: Arial, Helvetica, sans-serif header;
-}
-html .example-fill-remaining-space,
-body .example-fill-remaining-space {
-  flex: 2 2 auto;
-}
-html header,
-body header {
-  width: 100%;
-}
-html header .logotTxt,
-body header .logotTxt {
-  color: white;
-  font-family: "Helvetica Neue", sans-serif;
-  font-size: 20px;
-  font-weight: bold;
-  letter-spacing: -1px;
-  line-height: 1;
-  text-align: center;
-  padding: 15px;
-}
-html header .example-spacer,
-body header .example-spacer {
-  flex: 1 1 auto;
-}
-html header .links,
-body header .links {
-  color: white;
-  font-family: "Helvetica Neue", sans-serif;
-  font-size: 15px;
-  font-weight: initial;
-  letter-spacing: -1px;
-  line-height: 1;
-  text-align: center;
-  padding: 15px;
-}
-html header .links.side,
-body header .links.side {
-  padding: 0 14px;
-}
+ header {
+   width: 100%;
+   .logotTxt {
+     color: white;
+     font-family: 'Helvetica Neue', sans-serif;
+     font-size: 20px;
+     font-weight: bold;
+     letter-spacing: -1px;
+     line-height: 1;
+     text-align: center;
+     padding: 15px;
+   }
+   .example-spacer {
+     flex: 1 1 auto;
+   }
+   .links {
+     color: white;
+     font-family: 'Helvetica Neue', sans-serif;
+     font-size: 15px;
+     font-weight: initial;
+     letter-spacing: -1px;
+     line-height: 1;
+     text-align: center;
+     padding: 15px;
+     &.side {
+       padding: 0 14px;
+     }
+   }
+ }
