@@ -20,6 +20,7 @@ export class AuthService {
         password: password
       }).subscribe((data : any) => {
           observer.next({user: data.user});
+          this.setUser(data.user);
           this.token.saveToken(data.token);
           observer.complete();
       })
@@ -43,6 +44,7 @@ export class AuthService {
   }
 
   setUser(user): void {
+    if (user) user.isAdmin = (user.roles.indexOf('admin') > -1);
     this.$userSource.next(user);
   }
 
