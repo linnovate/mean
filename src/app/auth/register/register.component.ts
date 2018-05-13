@@ -8,7 +8,7 @@ import {AuthService} from '../auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['../auth.component.css']
+  styleUrls: ['../auth.component.scss']
 })
 export class RegisterComponent implements OnInit {
 
@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
       // if (data.data.register.error) return alert(data.data.register.error);
       // this.token.saveToken(data.data.register.token);
       // this.authService.setUser(data.data.register.user);
-      // this.router.navigate(['home']);
+      this.router.navigate(['']);
     })
   }
 
