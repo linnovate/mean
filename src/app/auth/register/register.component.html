@@ -1,0 +1,45 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Register</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form">
+      <table cellspacing="0" [formGroup]="userForm">
+        <tr>
+          <td>
+            <mat-form-field>
+              <input matInput placeholder="Fullname" formControlName="fullname" name="fullname" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field>
+              <input matInput placeholder="Email" formControlName="email" name="email" required>
+              <mat-error *ngIf="email.invalid && email.errors.email">Invalid email address</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field>
+              <input matInput placeholder="Password" formControlName="password" type="password" name="password" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field>
+              <input matInput placeholder="Reapet Password" formControlName="repeatPassword" type="password" name="repeatPassword" required>
+              <mat-error *ngIf="repeatPassword.invalid && repeatPassword.errors.passwordMatch">Password mismatch</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="register()" color="primary">Register</button>
+    <span>Allrady have an account ? <a [routerLink]="['/login']">login</a> here</span>
+  </mat-card-actions>
+</mat-card>
