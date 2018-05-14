@@ -1,16 +1,16 @@
 {
-  "map": "platformMode",
+  "type": "platformMode",
   "label": "Platform Mode",
   "fields": [{
-    "map": "name",
+    "key": "name",
     "type": "text",
     "label": "Name"
   }, {
-    "map": "description",
+    "key": "description",
     "type": "textarea",
     "label": "Description"
   }, {
-    "map": "class",
+    "key": "class",
     "type": "select",
     "label": "Class",
     "options": [{
@@ -31,7 +31,7 @@
     "tabs": [{
       "label": "Maneuver",
       "fields": [{
-        "map": "maneuver.profile",
+        "key": "maneuver.profile",
         "type": "select",
         "label": "Profile",
         "options": [{
@@ -42,42 +42,42 @@
           "value": "slow"
         }]
       }, {
-        "map": "maneuver.minimalRouteRadius",
+        "key": "maneuver.minimalRouteRadius",
         "type": "number",
         "label": "Minimal route radius [km]"
       }, {
-        "map": "maneuver.maximalRouteRadius",
+        "key": "maneuver.maximalRouteRadius",
         "type": "number",
         "label": "Maximal route radius [km]"
       }, {
-        "map": "maneuver.minimalRange",
+        "key": "maneuver.minimalRange",
         "type": "number",
         "label": "Minimal range [km]"
       }, {
-        "map": "maneuver.maximalRange",
+        "key": "maneuver.maximalRange",
         "type": "number",
         "label": "Maximal range [km]"
       }, {
-        "map": "maneuver.minimalRangeFromBorderline",
+        "key": "maneuver.minimalRangeFromBorderline",
         "type": "number",
         "label": "Minimal range from borderline [km]"
       }, {
-        "map": "maneuver.maximalRangeFromBorderline",
+        "key": "maneuver.maximalRangeFromBorderline",
         "type": "number",
         "label": "Maximal range from borderline [km]"
       }]
     }, {
       "label": "RCS",
       "fields": [{
-        "map": "rcs.nominalRcs",
+        "key": "rcs.nominalRcs",
         "type": "number",
         "label": "Nominal RCS [m^2]"
       }, {
-        "map": "rcs.deltaGlimpseRcs",
+        "key": "rcs.deltaGlimpseRcs",
         "type": "number",
         "label": "Delta glimpse RCS [m^2]"
       }, {
-        "map": "rcs.rcsSchema",
+        "key": "rcs.rcsSchema",
         "type": "select",
         "label": "RCS schema",
         "source": {
@@ -91,15 +91,15 @@
     }, {
       "label": "Altitude",
       "fields": [{
-        "map": "altitude.minimalAlt",
+        "key": "altitude.minimalAlt",
         "type": "number",
         "label": "Minimal altitude [m]"
       }, {
-        "map": "altitude.maximalAlt",
+        "key": "altitude.maximalAlt",
         "type": "number",
         "label": "Maximal altitude [m]"
       }, {
-        "map": "altitude.nominalAlt",
+        "key": "altitude.nominalAlt",
         "type": "number",
         "label": "Nominal altitude [m]"
       }]
