@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import * as schema from '../schema/equipment.json';
 
 @Component({
   selector: 'dynamic-form',
@@ -9,9 +8,8 @@ import * as schema from '../schema/equipment.json';
 
 export class DynamicFormComponent implements OnInit {
 
-  public title;
-  public json;
-  public schema;
+  @Input() schema: any;
+  @Input() json: any = {};
 
   evaluate(string) {
     return Boolean(eval(string));
@@ -24,11 +22,6 @@ export class DynamicFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.schema = schema;
-    this.json = {
-      name: 'something'
-    };
-    this.title = 'app';
-      this.evaluate = this.evaluate.bind(this.json);
-    }
+    this.evaluate = this.evaluate.bind(this.json);
+  }
 }

@@ -41,4 +41,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(['admin']);
   }
 
+  ngOnDestroy() { 
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+  }
+
 }
