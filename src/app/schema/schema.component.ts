@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SchemaService } from '../schema/schema.service';
+import { EntityDataService } from '../schema/entity-data.service';
 
 @Component({
   selector: 'app-schema',
@@ -8,18 +9,37 @@ import { SchemaService } from '../schema/schema.service';
 })
 export class SchemaComponent implements OnInit {
 
-  constructor(private schemaService: SchemaService) {}
+  constructor(private schemaService: SchemaService, private entityDataService: EntityDataService) {}
 
   schemas:Array<any>;
-  json: Object;
-
-  public ngOnInit() {
+  data: Object;
+  json: Object = {};
+  schemaName: Object = {};
+  
+  getSchemas() {
     this.schemaService.find().subscribe(schemas => {
       this.schemas = schemas;
+      schemas.forEach(schema => {
+        this.schemaName[schema._id] = schema.label;
+      });
+      this.getData();
     });
-    this.json = {
-      name: 'something'
-    };
+  }
+
+
+  getData() {
+    this.entityDataService.find().subscribe(data => {
+      this.data = data;
+      console.log(data);
+    });
+  }
+
+  setJson(schemaIndex, dataIndex) {
+    this.json = this.data[schemaIndex].data[dataIndex];
+  }
+
+  public ngOnInit() {
+    this.getSchemas();
   }
 
 }

@@ -3,16 +3,15 @@ const EntityData = require('../models/entity-data.model');
 module.exports = {
   insert,
   update,
-//   remove,
   get,
-//   list
+  list
 }
 
 async function insert(userId, schemaId, entityData) {
   return await new EntityData({
-      _schema: schemaId,
-      user: userId,
-      data: entityData
+    _schema: schemaId,
+    user: userId,
+    data: entityData
   }).save();
 }
 
@@ -24,6 +23,11 @@ async function get(entityDataId) {
   return await EntityData.findById(entityDataId);
 }
 
-// async function list() {
-//   return await Schema.find();
-// }
+async function list(userId) {
+  return await EntityData.aggregate([{
+    $match: {
+      user: userId
+    }},{$group: {
+      _id: "$_schema", data: {$push: "$data"}, entityDataId: {$first: "$_id"}}}
+  ]);
+}
