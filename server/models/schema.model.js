@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const crypto = require('crypto');
 
 const SchemaSchema = new mongoose.Schema({
   map: {

@@ -1,90 +1,23 @@
+const bcrypt = require('bcrypt');
+const Joi = require('joi');
 const User = require('../models/user.model');
-const { generateToken } = require('./token.controller');
 
-/**
-* Load user and append to req.
-*/
-function load(req, res, next, id) {
-  User.get(id)
-  .then((user) => {
-    req.user = user; // eslint-disable-line no-param-reassign
-    return next();
-  })
-  .catch(e => next(e));
+const userSchema = Joi.object({
+  fullname: Joi.string().required(),
+  email: Joi.string().email(),
+  mobileNumber: Joi.string().regex(/^[1-9][0-9]{9}$/),
+  password: Joi.string().required(),
+  repeatPassword: Joi.string().required().valid(Joi.ref('password'))
+})
+
+
+module.exports = {
+  insert
 }
 
-/**
-* Get user
-* @returns {User}
-*/
-function get(req, res) {
-  return res.json(req.user);
+async function insert(user) {
+  user = await Joi.validate(user, userSchema, { abortEarly: false });
+  user.hashedPassword = bcrypt.hashSync(user.password, 10);
+  delete user.password;
+  return await new User(user).save();
 }
-
-/**
-* Create new user
-* @property {string} req.body.username - The username of user.
-* @property {string} req.body.mobileNumber - The mobileNumber of user.
-* @returns {User}
-*/
-function create(params) {
-  
-  const user = new User({
-    fullname: params.data.fullname,
-    username: params.data.username,
-    email: params.data.email,
-    password: params.data.password,
-    mobileNumber: params.data.mobileNumber
-  });
-  return new Promise((resolve, reject) => {
-    user.save(() => {
-      const token = generateToken(user);
-      return resolve({
-        user: user.clean(),
-        token: token,
-      });
-    });
-  });
-}
-
-/**
-* Update existing user
-* @property {string} req.body.username - The username of user.
-* @property {string} req.body.mobileNumber - The mobileNumber of user.
-* @returns {User}
-*/
-function update(req, res, next) {
-  const user = req.user;
-  user.username = req.body.username;
-  user.mobileNumber = req.body.mobileNumber;
-  
-  user.save()
-  .then(savedUser => res.json(savedUser))
-  .catch(e => next(e));
-}
-
-/**
-* Get user list.
-* @property {number} req.query.skip - Number of users to be skipped.
-* @property {number} req.query.limit - Limit number of users to be returned.
-* @returns {User[]}
-*/
-function list(req, res, next) {
-  const { limit = 50, skip = 0 } = req.query;
-  User.list({ limit, skip })
-  .then(users => res.json(users))
-  .catch(e => next(e));
-}
-
-/**
-* Delete user.
-* @returns {User}
-*/
-function remove(req, res, next) {
-  const user = req.user;
-  user.remove()
-  .then(deletedUser => res.json(deletedUser))
-  .catch(e => next(e));
-}
-
-module.exports = { load, get, create, update, list, remove };

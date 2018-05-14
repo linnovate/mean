@@ -10,6 +10,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const routes = require('../routes/index.route');
 const config = require('./config');
+const passport = require('./passport')
 
 const app = express();
 
@@ -17,7 +18,12 @@ if (config.env === 'development') {
   app.use(logger('dev'));
 }
 
-// parse body params and attache them to req.body
+// Angular 5 server
+app.use(express.static(path.join(__dirname, '../../dist')))
+app.use(/^((?!(api)).)*/, (req, res) => {
+  res.sendFile(path.join(__dirname, '../../dist/index.html'));
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -31,8 +37,10 @@ app.use(helmet());
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors());
 
+app.use(passport.initialize());
+
 // API router
-app.use('/api', routes);
+app.use('/api/', routes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -53,12 +61,6 @@ app.use((err, req, res, next) => {
     message: err.message
   });
   next(err);
-});
-
-// Angular 5 server
-app.use(express.static(path.join(__dirname, '../../dist')))
-app.use('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../dist/index.html'));
 });
 
 module.exports = app;
