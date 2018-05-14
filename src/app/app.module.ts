@@ -7,6 +7,11 @@ import {
   MatToolbarModule,
   MatMenuModule,
   MatTabsModule,
+  MatDividerModule,
+  MatCardModule,
+  MatListModule,
+  MatExpansionModule,
+  MatButtonModule,
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -32,6 +37,11 @@ import { SchemaComponent } from './schema/schema.component';
     MatToolbarModule,
     MatMenuModule,
     MatTabsModule,
+    MatDividerModule,
+    MatCardModule,
+    MatListModule,
+    MatExpansionModule,
+    MatButtonModule,
     DynamicFormModule,
     AuthModule,
     AppRoutingModule,

@@ -1,6 +1,39 @@
-<mat-tab-group>
-  <mat-tab *ngFor="let schema of schemas" [label]="schema.label">
-    <ng-template mat-tab-label>{{schema.label}}</ng-template>
-    <dynamic-form [schema]="schema" [json]="json"></dynamic-form>
-  </mat-tab>
-</mat-tab-group>
+<div class="wrapper">
+  <!-- dynamic form -->
+  <mat-tab-group>
+    <mat-tab *ngFor="let schema of schemas" [label]="schema.label">
+      <ng-template mat-tab-label>{{schema.label}}</ng-template>
+      <dynamic-form [schema]="schema" [json]="json"></dynamic-form>
+    </mat-tab>
+  </mat-tab-group>
+  <!-- end of dynamic form -->
+  <!-- view data json -->
+  <mat-divider [vertical]="true"></mat-divider>
+   <!-- end of view data json -->
+  <pre>{{json | json}}</pre>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>
+        <h3>Saved data</h3>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let dataArray of data; let schemaIndex = index;">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{schemaName[dataArray._id]}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div *ngFor="let json of dataArray.data;let dataIndex = index">
+            <button mat-button (click)="setJson(schemaIndex, dataIndex)">{{dataIndex + 1}}</button>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+    </mat-card-content>
+  </mat-card>
+ 
+
+</div>

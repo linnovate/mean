@@ -21,6 +21,9 @@ export class EntityDataService {
     return this
       .http
       .get(`/api/entity-data/${id}`);
-  } 
+  }
+  find() {
+    return this.http.get(`/api/entity-data`);
+  }
 
 }
