@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { EntityDataService } from '../schema/entity-data.service';
 
 @Component({
   selector: 'dynamic-form',
@@ -11,15 +12,18 @@ export class DynamicFormComponent implements OnInit {
   @Input() schema: any;
   @Input() json: any = {};
 
+  constructor(private entityDataService: EntityDataService) {}
+
   evaluate(string) {
     return Boolean(eval(string));
   }
 
   save() {
-    console.log(this.json);
+    this.entityDataService.save(this.schema._id, this.json)
+      .subscribe(data => {
+        console.log(data, 'schema data');
+      });
   }
-
-  constructor() { }
 
   ngOnInit() {
     this.evaluate = this.evaluate.bind(this.json);

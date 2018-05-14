@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
 
   logout(): void {
     this.authService.signOut();
+    this.navigate('');
   }
 
   navigate(link): void {
