@@ -13,6 +13,7 @@ export class OnlyAdminUsersGuard implements CanActivate {
         .authService
         .getUser()
         .subscribe(user => {
+          if (!user) observer.next(false);
           observer.next(user.isAdmin)
         })
     });

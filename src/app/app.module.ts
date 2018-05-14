@@ -9,6 +9,7 @@ import {
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 import { DynamicFormModule } from './dynamic-form';
 import { AuthModule } from './auth';
 import { AdminModule } from './admin/admin.module';
@@ -19,6 +20,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
