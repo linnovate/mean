@@ -13,6 +13,7 @@ import {
 
 import { DynamicFormComponent } from './dynamic-form.component';
 import { SchemaService } from '../schema/schema.service';
+import { EntityDataService } from '../schema/entity-data.service';
 
 
 @NgModule({
@@ -32,6 +33,9 @@ import { SchemaService } from '../schema/schema.service';
   exports: [
     DynamicFormComponent
   ],
-  providers: [SchemaService]
+  providers: [
+    SchemaService,
+    EntityDataService
+  ]
 })
 export class DynamicFormModule { }
