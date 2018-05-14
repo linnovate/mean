@@ -37,9 +37,9 @@
   <button mat-button (click)="save()">Save</button>
 </mat-card>
 
-<ng-template #select let-label="label" let-options="options" let-map="map" let-view="view" let-source="source">
+<ng-template #select let-label="label" let-options="options" let-key="key" let-view="view" let-source="source">
   <mat-form-field>
-    <mat-select [placeholder]="label" [(ngModel)]="json[map]">
+    <mat-select [placeholder]="label" [(ngModel)]="json[key]">
       <mat-option *ngFor="let option of options" [value]="option.value">
         {{ option.label }}
       </mat-option>
@@ -49,20 +49,20 @@
   <div *ngIf="source">{{source.type}}</div>
 </ng-template>
 
-<ng-template #text let-label="label" let-map="map">
+<ng-template #text let-label="label" let-key="key">
   <mat-form-field>
-    <input matInput type="text" [placeholder]="label" [(ngModel)]="json[map]">
+    <input matInput type="text" [placeholder]="label" [(ngModel)]="json[key]">
   </mat-form-field>
 </ng-template>
 
-<ng-template #number let-label="label" let-map="map">
+<ng-template #number let-label="label" let-key="key">
   <mat-form-field>
-    <input matInput type="number" [placeholder]="label" [(ngModel)]="json[map]">
+    <input matInput type="number" [placeholder]="label" [(ngModel)]="json[key]">
   </mat-form-field>
 </ng-template>
 
-<ng-template #textarea let-label="label" let-map="map">
+<ng-template #textarea let-label="label" let-key="key">
   <mat-form-field>
-    <textarea matInput [placeholder]="label" [(ngModel)]="json[map]"></textarea>
+    <textarea matInput [placeholder]="label" [(ngModel)]="json[key]"></textarea>
   </mat-form-field>
 </ng-template>

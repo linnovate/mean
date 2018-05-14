@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const SchemaSchema = new mongoose.Schema({
-  map: {
+  type: {
     type: String,
     unique: true
   },

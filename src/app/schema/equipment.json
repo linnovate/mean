@@ -1,16 +1,16 @@
 {
-  "map": "equipment",
+  "type": "equipment",
   "label": "Equipment",
   "fields": [{
-    "map": "name",
+    "key": "name",
     "type": "text",
     "label": "Name"
   }, {
-    "map": "description",
+    "key": "description",
     "type": "textarea",
     "label": "Description"
   }, {
-    "map": "sensorType",
+    "key": "sensorType",
     "type": "select",
     "label": "Sensor type",
     "options": [{
@@ -25,43 +25,43 @@
     "tabs": [{
       "label": "Transceiver & Antenna",
       "fields": [{
-        "map": "transceiver.startFrequency",
+        "key": "transceiver.startFrequency",
         "type": "number",
         "label": "Start frequency [MHz]"
       }, {
-        "map": "transceiver.stopFrequency",
+        "key": "transceiver.stopFrequency",
         "type": "number",
         "label": "Stop frequency [MHz]"
       }, {
-        "map": "transceiver.referenceFrequency",
+        "key": "transceiver.referenceFrequency",
         "type": "number",
         "label": "Reference frequency [MHz]"
       }, {
-        "map": "transceiver.txPower",
+        "key": "transceiver.txPower",
         "type": "number",
         "label": "Tx power [Watt]"
       }, {
-        "map": "transceiver.sensitivity",
+        "key": "transceiver.sensitivity",
         "type": "number",
         "label": "Sensitivity [dBm]"
       }, {
-        "map": "transceiver.noiseFigure",
+        "key": "transceiver.noiseFigure",
         "type": "number",
         "label": "Noise figure [dB]"
       }, {
-        "map": "transceiver.bandWidth",
+        "key": "transceiver.bandWidth",
         "type": "number",
         "label": "Band width [kHz]"
       }, {
-        "map": "transceiver.averageScanPeriod",
+        "key": "transceiver.averageScanPeriod",
         "type": "number",
         "label": "Average scan period [s]"
       }, {
-        "map": "transceiver.patternType",
+        "key": "transceiver.patternType",
         "type": "number",
         "label": "Pattern type"
       }, {
-        "map": "transceiver.isOmnidirectionalAntenna",
+        "key": "transceiver.isOmnidirectionalAntenna",
         "type": "select",
         "label": "Is omnidirectional antenna",
         "options": [{
@@ -72,7 +72,7 @@
           "value": false
         }]
       }, {
-        "map": "transceiver.antennaPattern",
+        "key": "transceiver.antennaPattern",
         "type": "select",
         "label": "Antenna pattern",
         "source": {
@@ -83,7 +83,7 @@
           "label": "View"
         }
       }, {
-        "map": "transceiver.antennaGain",
+        "key": "transceiver.antennaGain",
         "type": "number",
         "label": "Antenna Gain [dB]"
       }]
@@ -91,19 +91,19 @@
       "label": "Working Point",
       "disabled": "this.sensorType === 'elint'",
       "fields": [{
-        "map": "workingPoint.rcsReference",
+        "key": "workingPoint.rcsReference",
         "type": "number",
         "label": "RCS reference [m^2]"
       }, {
-        "map": "workingPoint.rangeReference",
+        "key": "workingPoint.rangeReference",
         "type": "number",
         "label": "Range reference [m]"
       }, {
-        "map": "workingPoint.snrReference",
+        "key": "workingPoint.snrReference",
         "type": "number",
         "label": "SNR reference [dB]"
       }, {
-        "map": "workingPoint.pfa",
+        "key": "workingPoint.pfa",
         "type": "number",
         "label": "Pfa"
       }]
@@ -111,7 +111,7 @@
       "label": "PD",
       "disabled": "this.sensorType === 'elint'",
       "fields": [{
-        "map": "pd.pdAnalysisMode",
+        "key": "pd.pdAnalysisMode",
         "type": "select",
         "label": "PD analysis mode",
         "options": [{
@@ -122,7 +122,7 @@
           "value": "analog"
         }]
       }, {
-        "map": "pd.isCoherentIntegration",
+        "key": "pd.isCoherentIntegration",
         "type": "select",
         "label": "Is coherent integration",
         "options": [{
@@ -133,27 +133,27 @@
           "value": false
         }]
       }, {
-        "map": "pd.angularDetectionSector",
+        "key": "pd.angularDetectionSector",
         "type": "number",
         "label": "Angular detection sector [deg]"
       }, {
-        "map": "pd.scanTime",
+        "key": "pd.scanTime",
         "type": "number",
         "label": "Scan time (full sweep) [s]"
       }, {
-        "map": "pd.numberOfPulsesInBatch",
+        "key": "pd.numberOfPulsesInBatch",
         "type": "number",
         "label": "Number of pulses in batch"
       }, {
-        "map": "pd.pri",
+        "key": "pd.pri",
         "type": "number",
         "label": "PRI [s]"
       }, {
-        "map": "pd.pulseDuration",
+        "key": "pd.pulseDuration",
         "type": "number",
         "label": "Pulse duration [s]"
       }, {
-        "map": "pd.isFreqPulseCompression",
+        "key": "pd.isFreqPulseCompression",
         "type": "select",
         "label": "Is Freq pulse compression",
         "options": [{
@@ -164,11 +164,11 @@
           "value": false
         }]
       }, {
-        "map": "pd.pulseCompressionBW",
+        "key": "pd.pulseCompressionBW",
         "type": "number",
         "label": "Pulse compression BW [Hz]"
       }, {
-        "map": "pd.isPhasePulseCompression",
+        "key": "pd.isPhasePulseCompression",
         "type": "select",
         "label": "Is Phase pulse compression",
         "options": [{
@@ -179,11 +179,11 @@
           "value": false
         }]
       }, {
-        "map": "pd.pulseCompressionBinWidth",
+        "key": "pd.pulseCompressionBinWidth",
         "type": "number",
         "label": "Pulse compression bin width [s]"
       }, {
-        "map": "pd.lScansForCumulativePD",
+        "key": "pd.lScansForCumulativePD",
         "type": "number",
         "label": "L - scans for cumulative PD"
       }]
@@ -191,43 +191,43 @@
       "label": "Thresholds",
       "disabled": "this.sensorType === 'radar'",
       "fields": [{
-        "map": "thresholds.minSnrDetectionFF",
+        "key": "thresholds.minSnrDetectionFF",
         "type": "number",
         "label": "Min. SNR Detection FF [dB]"
       }, {
-        "map": "thresholds.minSnrDetectionFH",
+        "key": "thresholds.minSnrDetectionFH",
         "type": "number",
         "label": "Min. SNR Detection FH [dB]"
       }, {
-        "map": "thresholds.minSnrDTOAFF",
+        "key": "thresholds.minSnrDTOAFF",
         "type": "number",
         "label": "Min. SNR DTOA FF [dB]"
       }, {
-        "map": "thresholds.minSnrDTOAFH",
+        "key": "thresholds.minSnrDTOAFH",
         "type": "number",
         "label": "Min. SNR DTOA FH [dB"
       }, {
-        "map": "thresholds.minSnrDDOPFF",
+        "key": "thresholds.minSnrDDOPFF",
         "type": "number",
         "label": "Min. SNR DDOP FF [dB]"
       }, {
-        "map": "thresholds.minSnrDDOPFh",
+        "key": "thresholds.minSnrDDOPFh",
         "type": "number",
         "label": "Min. SNR DDOP FH [dB]"
       }, {
-        "map": "thresholds.minSnrDOAFF",
+        "key": "thresholds.minSnrDOAFF",
         "type": "number",
         "label": "Min. SNR DOA FF [dB]"
       }, {
-        "map": "thresholds.minSnrDOAFH",
+        "key": "thresholds.minSnrDOAFH",
         "type": "number",
         "label": "Min. SNR DOA FH [dB]"
       }, {
-        "map": "thresholds.minSnrTOAFF",
+        "key": "thresholds.minSnrTOAFF",
         "type": "number",
         "label": "Min. SNR TOA FF [dB]:"
       }, {
-        "map": "thresholds.minSnrTOAFH",
+        "key": "thresholds.minSnrTOAFH",
         "type": "number",
         "label": "Min. SNR TOA FH [dB]:"
       }]
@@ -235,39 +235,39 @@
       "label": "Errors",
       "disabled": "this.sensorType === 'radar'",
       "fields": [{
-        "map": "errors.frequencyError",
+        "key": "errors.frequencyError",
         "type": "number",
         "label": "Frequency error [Hz]"
       }, {
-        "map": "errors.DTOAErrorBias",
+        "key": "errors.DTOAErrorBias",
         "type": "number",
         "label": "DTOA error - Bias [ns]"
       }, {
-        "map": "errors.DTOAErrorSTD",
+        "key": "errors.DTOAErrorSTD",
         "type": "number",
         "label": "DTOA error - STD [ns]"
       }, {
-        "map": "errors.DDOPErrorBias",
+        "key": "errors.DDOPErrorBias",
         "type": "number",
         "label": "DDOP error - Bias [mHz]"
       }, {
-        "map": "errors.DDOPErrorSTD",
+        "key": "errors.DDOPErrorSTD",
         "type": "number",
         "label": "DDOP error – STD [mHz]"
       }, {
-        "map": "errors.DOAErrorBias",
+        "key": "errors.DOAErrorBias",
         "type": "number",
         "label": "DOA error – Bias [deg]"
       }, {
-        "map": "errors.DOAErrorSTD",
+        "key": "errors.DOAErrorSTD",
         "type": "number",
         "label": "DOA error – STD [deg]"
       }, {
-        "map": "errors.TOAErrorBias",
+        "key": "errors.TOAErrorBias",
         "type": "number",
         "label": "TOA error – Bias [ns]"
       }, {
-        "map": "errors.TOAErrorSTD",
+        "key": "errors.TOAErrorSTD",
         "type": "number",
         "label": "TOA error – STD [ns]"
       }]
