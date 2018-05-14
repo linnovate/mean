@@ -3,6 +3,7 @@ const passport = require('passport');
 const httpError = require('http-errors');
 const asyncHandler = require('express-async-handler')
 const schemaCtrl = require('../controllers/schema.controller');
+const requireAdmin = require('../middleware/require-admin');
 
 const router = express.Router();
 module.exports = router;
@@ -11,7 +12,7 @@ router.use(passport.authenticate('jwt', { session: false }))
 
 router.route('/')
   .get(asyncHandler(list))
-  .post(asyncHandler(insert));
+  .post(requireAdmin, asyncHandler(insert));
 
 router.route('/:schemaId')
   .get(asyncHandler(get))

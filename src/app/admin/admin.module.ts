@@ -20,7 +20,10 @@ import {MatTabsModule } from '@angular/material';
     CommonModule,
     MatTabsModule,
     DynamicFormModule
-  ]})
+  ],
+providers: [
+  OnlyAdminUsersGuard
+]})
 export class AdminModule {
   constructor() {
     console.log('`AdminModule` module initialized');
