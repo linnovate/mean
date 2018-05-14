@@ -12,6 +12,7 @@ import {
  } from '@angular/material';
 
 import { DynamicFormComponent } from './dynamic-form.component';
+import { SchemaService } from '../schema/schema.service';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { DynamicFormComponent } from './dynamic-form.component';
   ],
   exports: [
     DynamicFormComponent
-  ]
+  ],
+  providers: [SchemaService]
 })
 export class DynamicFormModule { }
