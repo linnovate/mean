@@ -1,0 +1,6 @@
+<mat-tab-group>
+  <mat-tab *ngFor="let schema of schemas" [label]="schema.label">
+    <ng-template mat-tab-label>{{schema.label}}</ng-template>
+    <dynamic-form [schema]="schema" [json]="json"></dynamic-form>
+  </mat-tab>
+</mat-tab-group>

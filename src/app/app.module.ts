@@ -6,6 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {
   MatToolbarModule,
   MatMenuModule,
+  MatTabsModule,
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -16,11 +17,13 @@ import { AdminModule } from './admin/admin.module';
 import { AddHeaderInterceptor } from './header-interceptor';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { SchemaComponent } from './schema/schema.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    SchemaComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +31,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     RouterModule,
     MatToolbarModule,
     MatMenuModule,
+    MatTabsModule,
     DynamicFormModule,
     AuthModule,
     AppRoutingModule,
