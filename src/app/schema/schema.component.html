@@ -3,7 +3,7 @@
   <mat-tab-group>
     <mat-tab *ngFor="let schema of schemas" [label]="schema.label">
       <ng-template mat-tab-label>{{schema.label}}</ng-template>
-      <dynamic-form [schema]="schema" [json]="json"></dynamic-form>
+      <dynamic-form [schema]="schema" [json]="json" [options]="options"></dynamic-form>
     </mat-tab>
   </mat-tab-group>
   <!-- end of dynamic form -->
@@ -23,7 +23,7 @@
         <mat-expansion-panel *ngFor="let dataArray of data; let schemaIndex = index;">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{schemaName[dataArray._id]}}
+              {{schemaName[dataArray.schemaId]}}
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div *ngFor="let json of dataArray.data;let dataIndex = index">

@@ -6,7 +6,7 @@ const EntityDataSchema = new mongoose.Schema({
     ref: 'Schema',
     required: true
   },
-  data: {},
+  data: String,
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
