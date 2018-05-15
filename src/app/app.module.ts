@@ -13,6 +13,7 @@ import {
   MatExpansionModule,
   MatButtonModule,
   MatIconModule,
+  MatDialogModule,
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -25,6 +26,8 @@ import { AddHeaderInterceptor } from './header-interceptor';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { SchemaComponent } from './schema/schema.component';
 import { HeaderComponent } from './header/header.component';
+import { SchemaEntitiesComponent } from './schema-entities/schema-entities.component';
+import { NewSchemaEntityComponent } from './new-schema-entity/new-schema-entity.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,8 @@ import { HeaderComponent } from './header/header.component';
     HomeComponent,
     SchemaComponent,
     HeaderComponent,
+    SchemaEntitiesComponent,
+    NewSchemaEntityComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,7 @@ import { HeaderComponent } from './header/header.component';
     MatExpansionModule,
     MatButtonModule,
     MatIconModule,
+    MatDialogModule,
     DynamicFormModule,
     AuthModule,
     AppRoutingModule,
@@ -56,6 +62,7 @@ import { HeaderComponent } from './header/header.component';
     useClass: AddHeaderInterceptor,
     multi: true,
   }],
+  entryComponents: [NewSchemaEntityComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
