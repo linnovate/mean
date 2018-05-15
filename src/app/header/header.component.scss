@@ -9,6 +9,7 @@ header {
       line-height: 1;
       text-align: center;
       padding: 15px;
+      font-weight: bold;
     }
     .example-spacer {
       flex: 1 1 auto;
@@ -27,7 +28,10 @@ header {
       }
     }
     .mat-toolbar {
-        background: black;
+      background: black;
+    }
+    .mat-icon {
+      vertical-align: middle;
     }
   }
  

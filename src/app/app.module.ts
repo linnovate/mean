@@ -12,6 +12,7 @@ import {
   MatListModule,
   MatExpansionModule,
   MatButtonModule,
+  MatIconModule,
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -44,6 +45,7 @@ import { HeaderComponent } from './header/header.component';
     MatListModule,
     MatExpansionModule,
     MatButtonModule,
+    MatIconModule,
     DynamicFormModule,
     AuthModule,
     AppRoutingModule,
