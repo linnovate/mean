@@ -16,6 +16,7 @@ export class SchemaComponent implements OnInit {
   json: Object = {};
   schemaName: Object = {};
   options: any = {};
+  activeSchema: Object = {};
   
   getSchemas() {
     this.schemaService.find().subscribe(schemas => {
@@ -25,6 +26,11 @@ export class SchemaComponent implements OnInit {
       });
       this.getData();
     });
+  }
+
+  setActiveSchema(schema) {
+    alert("hi");
+    this.activeSchema = schema;
   }
 
 

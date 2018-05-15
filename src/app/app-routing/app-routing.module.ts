@@ -7,6 +7,7 @@ import {RegisterComponent} from '../auth/register/register.component';
 import {SchemaComponent} from '../schema/schema.component';
 import {AdminComponent} from '../admin/admin.component';
 import {OnlyAdminUsersGuard} from '../admin/admin-user-guard';
+import {SchemaEntitiesComponent} from '../schema-entities/schema-entities.component';
 
 const routes : Routes = [
   {
@@ -25,7 +26,10 @@ const routes : Routes = [
      path: 'admin', component: AdminComponent, canActivate: [OnlyAdminUsersGuard]
   }, {
     path: 'schemas',
-    component: SchemaComponent
+    component: SchemaComponent,
+    children: [
+      { path: ':type', component: SchemaEntitiesComponent },
+    ]
   }
 
 ];
