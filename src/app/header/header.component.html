@@ -1,0 +1,14 @@
+<header>
+    <mat-toolbar color="primary">
+      <a [routerLink]="['/']" class="logotTxt">MEAN</a>
+      <span class="example-spacer"></span>
+      <a class="links side" [routerLink]="['/login']" *ngIf="!user">Login</a>
+      <div>
+        <a class="links side" *ngIf="user" [matMenuTriggerFor]="menu">Hello {{user.fullname}}</a>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item *ngIf="user && user.isAdmin" [routerLink]="['/admin']">admin</button>
+          <button mat-menu-item (click)="logout()">logout</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+  </header>

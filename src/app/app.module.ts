@@ -23,12 +23,14 @@ import { AddHeaderInterceptor } from './header-interceptor';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { SchemaComponent } from './schema/schema.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SchemaComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
