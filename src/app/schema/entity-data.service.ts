@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+import {map} from 'rxjs/operators'
 
 @Injectable()
 export class EntityDataService {
@@ -22,8 +23,22 @@ export class EntityDataService {
       .http
       .get(`/api/entity-data/${id}`);
   }
-  find() {
-    return this.http.get(`/api/entity-data`);
+  find() : Observable <any> {
+    return Observable.create(observer => {
+     this.http.get(`/api/entity-data`).subscribe((result: any) => {
+      const _result = result.map(res => {
+        return {
+          schemaId: res._id,
+          data: res.data.map((d:any) => {
+            d.data = JSON.parse(d.data);
+            return d;
+          })
+        }
+      });
+      observer.next(_result);
+      observer.complete();
+     });
+    })
   }
 
 }

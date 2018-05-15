@@ -11,6 +11,7 @@ export class DynamicFormComponent implements OnInit {
 
   @Input() schema: any;
   @Input() json: any = {};
+  @Input() options: any = {};
 
   constructor(private entityDataService: EntityDataService) {}
 
@@ -19,9 +20,17 @@ export class DynamicFormComponent implements OnInit {
   }
 
   save() {
+    if (this.options.entityDataId) return this.update();
     this.entityDataService.save(this.schema._id, this.json)
       .subscribe(data => {
         console.log(data, 'schema data');
+      });
+  }
+
+  update() {
+    this.entityDataService.update(this.options.entityDataId, this.json)
+      .subscribe(data => {
+        console.log(data, 'schema updated data');
       });
   }
 

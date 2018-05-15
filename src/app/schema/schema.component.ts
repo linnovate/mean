@@ -15,6 +15,7 @@ export class SchemaComponent implements OnInit {
   data: Object;
   json: Object = {};
   schemaName: Object = {};
+  options: any = {};
   
   getSchemas() {
     this.schemaService.find().subscribe(schemas => {
@@ -30,13 +31,14 @@ export class SchemaComponent implements OnInit {
   getData() {
     this.entityDataService.find().subscribe(data => {
       this.data = data;
-      console.log(data);
     });
   }
 
   setJson(schemaIndex, dataIndex) {
-    this.json = this.data[schemaIndex].data[dataIndex];
+    this.json = this.data[schemaIndex].data[dataIndex].data;
+    this.options.entityDataId = this.data[schemaIndex].data[dataIndex]._id;
   }
+
 
   public ngOnInit() {
     this.getSchemas();
