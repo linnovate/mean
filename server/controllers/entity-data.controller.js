@@ -23,11 +23,9 @@ async function get(entityDataId) {
   return await EntityData.findById(entityDataId);
 }
 
-async function list(userId) {
-  return await EntityData.aggregate([{
-    $match: {
-      user: userId
-    }},{$group: {
-      _id: "$_schema", data: {$push: "$$ROOT"}}}
-  ]);
+async function list(userId, schemaId) {
+  return await EntityData.find({
+    user: userId,
+    _schema: schemaId
+  });
 }

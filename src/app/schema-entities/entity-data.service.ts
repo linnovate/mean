@@ -23,16 +23,14 @@ export class EntityDataService {
       .http
       .get(`/api/entity-data/${id}`);
   }
-  find() : Observable <any> {
+  find(schemaId) : Observable <any> {
     return Observable.create(observer => {
-     this.http.get(`/api/entity-data`).subscribe((result: any) => {
+     this.http.get(`/api/entity-data/schema/${schemaId}`).subscribe((result: any) => {
       const _result = result.map(res => {
         return {
-          schemaId: res._id,
-          data: res.data.map((d:any) => {
-            d.data = JSON.parse(d.data);
-            return d;
-          })
+          schemaId: schemaId,
+          _id: res._id,
+          data: JSON.parse(res.data)
         }
       });
       observer.next(_result);

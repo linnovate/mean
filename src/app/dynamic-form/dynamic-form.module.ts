@@ -13,7 +13,7 @@ import {
 
 import { DynamicFormComponent } from './dynamic-form.component';
 import { SchemaService } from '../schema/schema.service';
-import { EntityDataService } from '../schema/entity-data.service';
+import { EntityDataService } from '../schema-entities/entity-data.service';
 
 
 @NgModule({
