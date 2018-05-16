@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SchemaService } from '../schema/schema.service';
-import { EntityDataService } from '../schema/entity-data.service';
+import { EntityDataService } from '../schema-entities/entity-data.service';
 
 @Component({
   selector: 'app-schema',
@@ -21,23 +21,15 @@ export class SchemaComponent implements OnInit {
   getSchemas() {
     this.schemaService.find().subscribe(schemas => {
       this.schemas = schemas;
+      this.schemaService.setActive(schemas[0]);
       schemas.forEach(schema => {
         this.schemaName[schema._id] = schema.label;
       });
-      this.getData();
     });
   }
 
   setActiveSchema(schema) {
-    alert("hi");
-    this.activeSchema = schema;
-  }
-
-
-  getData() {
-    this.entityDataService.find().subscribe(data => {
-      this.data = data;
-    });
+    this.schemaService.setActive(schema);
   }
 
   setJson(schemaIndex, dataIndex) {
