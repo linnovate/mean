@@ -25,7 +25,7 @@ async function get(id) {
 }
 
 async function list(userId) {
-  return await LoadedPlatform.find({user: userId});
+  return await LoadedPlatform.find({user: userId}).populate('platform').populate('equipment');
 }
 
 async function remove(id) {
