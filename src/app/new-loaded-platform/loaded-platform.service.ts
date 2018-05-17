@@ -12,4 +12,10 @@ export class LoadedPlatformService {
       .http
       .post(`/api/loaded-platform`, data);
   }
+
+  find() {
+    return this
+      .http
+      .get(`/api/loaded-platform`);
+  }
 }
