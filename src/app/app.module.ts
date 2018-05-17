@@ -28,6 +28,9 @@ import { SchemaComponent } from './schema/schema.component';
 import { HeaderComponent } from './header/header.component';
 import { SchemaEntitiesComponent } from './schema-entities/schema-entities.component';
 import { NewSchemaEntityComponent } from './new-schema-entity/new-schema-entity.component';
+import { NewLoadedPlatformComponent } from './new-loaded-platform/new-loaded-platform.component';
+
+import { LoadedPlatformService } from './new-loaded-platform/loaded-platform.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,7 @@ import { NewSchemaEntityComponent } from './new-schema-entity/new-schema-entity.
     HeaderComponent,
     SchemaEntitiesComponent,
     NewSchemaEntityComponent,
+    NewLoadedPlatformComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,8 +65,9 @@ import { NewSchemaEntityComponent } from './new-schema-entity/new-schema-entity.
     provide: HTTP_INTERCEPTORS,
     useClass: AddHeaderInterceptor,
     multi: true,
-  }],
-  entryComponents: [NewSchemaEntityComponent],
+  },
+  LoadedPlatformService],
+  entryComponents: [NewSchemaEntityComponent, NewLoadedPlatformComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -19,17 +19,19 @@ export class SchemaComponent implements OnInit {
   activeSchema: Object = {};
   
   getSchemas() {
+    let equipmentSchemaId;
     this.schemaService.find().subscribe(schemas => {
       this.schemas = schemas;
-      this.schemaService.setActive(schemas[0]);
       schemas.forEach(schema => {
+        if (schema.type === 'equipment') equipmentSchemaId = schema._id;
         this.schemaName[schema._id] = schema.label;
       });
+      this.schemaService.setSharedData({activeSchema :schemas[0], equipmentSchemaId});
     });
   }
 
   setActiveSchema(schema) {
-    this.schemaService.setActive(schema);
+    this.schemaService.setSharedData({activeSchema: schema});
   }
 
   setJson(schemaIndex, dataIndex) {

@@ -12,8 +12,12 @@ export class SchemaService {
   private activeSchema:Subject<any> = new BehaviorSubject<any>(1);
   activeSchema$ = this.activeSchema.asObservable();
 
-  setActive(activeSchema) {
-    this.activeSchema.next(activeSchema);
+  private equipmentSchemaId:Subject<any> = new BehaviorSubject<any>(1);
+  equipmentSchemaId$ = this.equipmentSchemaId.asObservable();
+
+  setSharedData(data) {
+    if (data.activeSchema) this.activeSchema.next(data.activeSchema);
+    if (data.equipmentSchemaId) this.equipmentSchemaId.next(data.equipmentSchemaId);
   }
 
   find() : Observable <any> {
