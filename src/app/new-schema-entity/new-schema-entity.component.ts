@@ -14,7 +14,7 @@ export class NewSchemaEntityComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<NewSchemaEntityComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
 
     ngOnInit() {
       console.log(this.data , 'this data in dialog component');
