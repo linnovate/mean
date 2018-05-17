@@ -1,15 +1,28 @@
 const Schema = require('../models/schema.model');
+const fs = require('fs');
+const IncomingForm = require('formidable').IncomingForm;
 
 module.exports = {
   insert,
   update,
   remove,
   get,
-  list
+  list,
+  upload
 }
 
 async function insert(schema) {
   return await new Schema(schema).save();
+}
+
+async function upload(request) {
+  return await new Promise(resolve => {
+    const form = new IncomingForm();
+    let schema;
+    form.on('file', (field, file) => schema = JSON.parse(fs.readFileSync(file.path, 'utf8')));
+    form.on('end', () => resolve(new Schema(schema).save()));
+    form.parse(request);
+  });
 }
 
 async function update(schemaId, schema) {
