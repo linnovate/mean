@@ -21,6 +21,7 @@ import { HomeComponent } from './home/home.component';
 import { DynamicFormModule } from './dynamic-form';
 import { AuthModule } from './auth';
 import { AdminModule } from './admin/admin.module';
+import { UploadModule } from './upload/upload.module';
 import { AddHeaderInterceptor } from './header-interceptor';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -59,7 +60,8 @@ import { LoadedPlatformService } from './new-loaded-platform/loaded-platform.ser
     DynamicFormModule,
     AuthModule,
     AppRoutingModule,
-    AdminModule
+    AdminModule,
+    UploadModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

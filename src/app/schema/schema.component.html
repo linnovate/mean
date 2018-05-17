@@ -1,13 +1,6 @@
 <div>
-  <!-- dynamic form -->
-  <!-- <mat-tab-group>
-    <mat-tab *ngFor="let schema of schemas" [label]="schema.label">
-      <ng-template mat-tab-label>{{schema.label}}</ng-template>
-      <dynamic-form [schema]="schema" [json]="json" [options]="options"></dynamic-form>
-    </mat-tab>
-  </mat-tab-group> -->
-  <!-- end of dynamic form -->
 
+  <button mat-raised-button (click)="openUploadDialog()">Upload new schema</button>
   <nav mat-tab-nav-bar>
       <a mat-tab-link
           *ngFor="let schema of schemas"

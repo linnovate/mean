@@ -1,7 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 const httpError = require('http-errors');
-const asyncHandler = require('express-async-handler')
+const asyncHandler = require('express-async-handler');
 const schemaCtrl = require('../controllers/schema.controller');
 const requireAdmin = require('../middleware/require-admin');
 
@@ -13,6 +13,9 @@ router.use(passport.authenticate('jwt', { session: false }))
 router.route('/')
   .get(asyncHandler(list))
   .post(requireAdmin, asyncHandler(insert));
+
+router.route('/upload')
+  .post(requireAdmin, asyncHandler(upload));
 
 router.route('/:schemaId')
   .get(asyncHandler(get))
@@ -27,6 +30,11 @@ async function list(req, res) {
 
 async function insert(req, res) {
   let schema = await schemaCtrl.insert(req.body);
+  res.json(schema);
+}
+
+async function upload(req, res) {
+  let schema = await schemaCtrl.upload(req);
   res.json(schema);
 }
 
