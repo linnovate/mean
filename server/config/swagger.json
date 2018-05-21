@@ -1,0 +1,236 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "ODMP Application API",
+      "description": "ODMP Application API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:4040",
+    "basePath": "/api/",
+    "tags": [
+      {
+        "name": "Users",
+        "description": "API for users in the system"
+      },
+      {
+        "name": "Auth",
+        "description": "API for auth in the system"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "securityDefinitions": {
+      "AuthHeader": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    },
+    "paths": {
+      "/auth/login": {
+        "post": {
+          "tags": ["Auth"],
+          "description": "Login to the system",
+        "parameters": [{
+          "name": "auth",
+          "in": "body",
+          "description": "User auth details",
+          "schema": {
+            "type": "object",
+            "required": ["email", "password"],
+            "properties": {
+              "email": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              }
+            }
+          }
+        }],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "User is loggedin",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+      },
+      "/loaded-platform": {
+        "get": {
+          "tags":[
+            "Loaded Platform"
+          ],
+          "description": "list of loaded platforms",
+          "security": [{
+            "AuthHeader": []
+          }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Loaded Platforms"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "User": {
+        "required": [
+          "email",
+          "fullname"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "email": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "fullname": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Users": {
+        "type": "array",
+        "$ref": "#/definitions/User"
+      },
+      "Auth": {
+        "type": "object",
+        "properties": [{
+          "token": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/definitions/User"
+          }
+        }]
+      },
+      "Schema": {
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "type": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "label": {
+            "type": "string"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "key": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "options": {
+                  "type": "array",
+                  "items": {
+                    "properties": {
+                      "label": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type" :"string"
+                      }
+                    }
+                  }
+                }
+              }
+
+            }
+
+          }
+      }
+    },
+    "Entity Data": {
+      "required":[
+        "_schema",
+        "user",
+        "data"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "_schema": {
+          "$ref": "#/definitions/Schema"},
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "data": {
+          "type": "json"
+        }
+      }
+    },
+    "Loaded Platform": {
+      "required":[
+        "platform",
+        "user"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "platform": {
+          "$ref": "#/definitions/Entity Data"
+        },
+        "equipment": {
+          "$ref": "#/definitions/Entity Data"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        }
+      }
+    },
+    "Loaded Platforms": {
+      "type": "array",
+      "$ref": "#/definitions/Loaded Platform"
+    }
+  }
+}
