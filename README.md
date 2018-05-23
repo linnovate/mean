@@ -35,7 +35,8 @@ To start your application with MEAN, you need to clone the base MEAN repository 
 ```
 git clone --depth 1 https://github.com/linnovate/mean.git  
 cd mean
-npm install  
+npm install
+npm run build
 npm start  
 ```
 If all the packages and modules installed successfully, your default web browser will open and you can see the default MEAN application at `http://localhost:3000`. This is the default port unless you change that manually.
