@@ -4,6 +4,7 @@ import { SchemaService } from '../schema/schema.service';
 import { EntityDataService } from '../schema-entities/entity-data.service';
 import { DialogComponent } from '../upload/dialog/dialog.component';
 import { UploadService } from '../upload/upload.service';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-schema',
@@ -12,7 +13,7 @@ import { UploadService } from '../upload/upload.service';
 })
 export class SchemaComponent implements OnInit {
 
-  constructor(private schemaService: SchemaService, private entityDataService: EntityDataService, public dialog: MatDialog, public uploadService: UploadService) {}
+  constructor(private schemaService: SchemaService, private entityDataService: EntityDataService, public dialog: MatDialog, public uploadService: UploadService, private authService: AuthService) {}
 
   schemas:Array<any>;
   data: Object;
@@ -20,6 +21,7 @@ export class SchemaComponent implements OnInit {
   schemaName: Object = {};
   options: any = {};
   activeSchema: Object = {};
+  user: Object;
   
   getSchemas() {
     let equipmentSchemaId;
@@ -48,6 +50,9 @@ export class SchemaComponent implements OnInit {
 
 
   public ngOnInit() {
+    this.authService.getUser().subscribe(user => {
+      this.user = user;
+    });
     this.getSchemas();
   }
 
