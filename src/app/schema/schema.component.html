@@ -1,6 +1,5 @@
 <div>
-
-  <button mat-raised-button (click)="openUploadDialog()">Upload new schema</button>
+  <button mat-raised-button (click)="openUploadDialog()" [disabled]="user && !user.isAdmin">Upload new schema</button>
   <nav mat-tab-nav-bar>
       <a mat-tab-link
           *ngFor="let schema of schemas"
