@@ -1,6 +1,6 @@
 {
-  "type": "equipment",
-  "label": "Equipment",
+  "type": "platform",
+  "label": "Platform",
   "fields": [{
     "key": "name",
     "type": "text",
