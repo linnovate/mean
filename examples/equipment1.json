@@ -1,0 +1,276 @@
+{
+  "type": "equipment1",
+  "label": "Equipment1",
+  "fields": [{
+    "key": "name",
+    "type": "text",
+    "label": "Name"
+  }, {
+    "key": "description",
+    "type": "textarea",
+    "label": "Description"
+  }, {
+    "key": "sensorType",
+    "type": "select",
+    "label": "Sensor type",
+    "options": [{
+      "label": "Radar",
+      "value": "radar"
+    },{
+      "label": "Comint / Elint",
+      "value": "elint"
+    }]
+  }, {
+    "type": "tabs",
+    "tabs": [{
+      "label": "Transceiver & Antenna",
+      "fields": [{
+        "key": "transceiver.startFrequency",
+        "type": "number",
+        "label": "Start frequency [MHz]"
+      }, {
+        "key": "transceiver.stopFrequency",
+        "type": "number",
+        "label": "Stop frequency [MHz]"
+      }, {
+        "key": "transceiver.referenceFrequency",
+        "type": "number",
+        "label": "Reference frequency [MHz]"
+      }, {
+        "key": "transceiver.txPower",
+        "type": "number",
+        "label": "Tx power [Watt]"
+      }, {
+        "key": "transceiver.sensitivity",
+        "type": "number",
+        "label": "Sensitivity [dBm]"
+      }, {
+        "key": "transceiver.noiseFigure",
+        "type": "number",
+        "label": "Noise figure [dB]"
+      }, {
+        "key": "transceiver.bandWidth",
+        "type": "number",
+        "label": "Band width [kHz]"
+      }, {
+        "key": "transceiver.averageScanPeriod",
+        "type": "number",
+        "label": "Average scan period [s]"
+      }, {
+        "key": "transceiver.patternType",
+        "type": "number",
+        "label": "Pattern type"
+      }, {
+        "key": "transceiver.isOmnidirectionalAntenna",
+        "type": "select",
+        "label": "Is omnidirectional antenna",
+        "options": [{
+          "label": "True",
+          "value": true
+        }, {
+          "label": "False",
+          "value": false
+        }]
+      }, {
+        "key": "transceiver.antennaPattern",
+        "type": "select",
+        "label": "Antenna pattern",
+        "source": {
+          "type": "antennaPattern",
+          "key": "name"
+        },
+        "view": {
+          "label": "View"
+        }
+      }, {
+        "key": "transceiver.antennaGain",
+        "type": "number",
+        "label": "Antenna Gain [dB]"
+      }]
+    }, {
+      "label": "Working Point",
+      "disabled": "this.sensorType === 'elint'",
+      "fields": [{
+        "key": "workingPoint.rcsReference",
+        "type": "number",
+        "label": "RCS reference [m^2]"
+      }, {
+        "key": "workingPoint.rangeReference",
+        "type": "number",
+        "label": "Range reference [m]"
+      }, {
+        "key": "workingPoint.snrReference",
+        "type": "number",
+        "label": "SNR reference [dB]"
+      }, {
+        "key": "workingPoint.pfa",
+        "type": "number",
+        "label": "Pfa"
+      }]
+    }, {
+      "label": "PD",
+      "disabled": "this.sensorType === 'elint'",
+      "fields": [{
+        "key": "pd.pdAnalysisMode",
+        "type": "select",
+        "label": "PD analysis mode",
+        "options": [{
+          "label": "Digital",
+          "value": "digital"
+        }, {
+          "label": "Analog",
+          "value": "analog"
+        }]
+      }, {
+        "key": "pd.isCoherentIntegration",
+        "type": "select",
+        "label": "Is coherent integration",
+        "options": [{
+          "label": "True",
+          "value": true
+        }, {
+          "label": "False",
+          "value": false
+        }]
+      }, {
+        "key": "pd.angularDetectionSector",
+        "type": "number",
+        "label": "Angular detection sector [deg]"
+      }, {
+        "key": "pd.scanTime",
+        "type": "number",
+        "label": "Scan time (full sweep) [s]"
+      }, {
+        "key": "pd.numberOfPulsesInBatch",
+        "type": "number",
+        "label": "Number of pulses in batch"
+      }, {
+        "key": "pd.pri",
+        "type": "number",
+        "label": "PRI [s]"
+      }, {
+        "key": "pd.pulseDuration",
+        "type": "number",
+        "label": "Pulse duration [s]"
+      }, {
+        "key": "pd.isFreqPulseCompression",
+        "type": "select",
+        "label": "Is Freq pulse compression",
+        "options": [{
+          "label": "True",
+          "value": true
+        }, {
+          "label": "False",
+          "value": false
+        }]
+      }, {
+        "key": "pd.pulseCompressionBW",
+        "type": "number",
+        "label": "Pulse compression BW [Hz]"
+      }, {
+        "key": "pd.isPhasePulseCompression",
+        "type": "select",
+        "label": "Is Phase pulse compression",
+        "options": [{
+          "label": "True",
+          "value": true
+        }, {
+          "label": "False",
+          "value": false
+        }]
+      }, {
+        "key": "pd.pulseCompressionBinWidth",
+        "type": "number",
+        "label": "Pulse compression bin width [s]"
+      }, {
+        "key": "pd.lScansForCumulativePD",
+        "type": "number",
+        "label": "L - scans for cumulative PD"
+      }]
+    }, {
+      "label": "Thresholds",
+      "disabled": "this.sensorType === 'radar'",
+      "fields": [{
+        "key": "thresholds.minSnrDetectionFF",
+        "type": "number",
+        "label": "Min. SNR Detection FF [dB]"
+      }, {
+        "key": "thresholds.minSnrDetectionFH",
+        "type": "number",
+        "label": "Min. SNR Detection FH [dB]"
+      }, {
+        "key": "thresholds.minSnrDTOAFF",
+        "type": "number",
+        "label": "Min. SNR DTOA FF [dB]"
+      }, {
+        "key": "thresholds.minSnrDTOAFH",
+        "type": "number",
+        "label": "Min. SNR DTOA FH [dB"
+      }, {
+        "key": "thresholds.minSnrDDOPFF",
+        "type": "number",
+        "label": "Min. SNR DDOP FF [dB]"
+      }, {
+        "key": "thresholds.minSnrDDOPFh",
+        "type": "number",
+        "label": "Min. SNR DDOP FH [dB]"
+      }, {
+        "key": "thresholds.minSnrDOAFF",
+        "type": "number",
+        "label": "Min. SNR DOA FF [dB]"
+      }, {
+        "key": "thresholds.minSnrDOAFH",
+        "type": "number",
+        "label": "Min. SNR DOA FH [dB]"
+      }, {
+        "key": "thresholds.minSnrTOAFF",
+        "type": "number",
+        "label": "Min. SNR TOA FF [dB]:"
+      }, {
+        "key": "thresholds.minSnrTOAFH",
+        "type": "number",
+        "label": "Min. SNR TOA FH [dB]:"
+      }]
+    }, {
+      "label": "Errors",
+      "disabled": "this.sensorType === 'radar'",
+      "fields": [{
+        "key": "errors.frequencyError",
+        "type": "number",
+        "label": "Frequency error [Hz]"
+      }, {
+        "key": "errors.DTOAErrorBias",
+        "type": "number",
+        "label": "DTOA error - Bias [ns]"
+      }, {
+        "key": "errors.DTOAErrorSTD",
+        "type": "number",
+        "label": "DTOA error - STD [ns]"
+      }, {
+        "key": "errors.DDOPErrorBias",
+        "type": "number",
+        "label": "DDOP error - Bias [mHz]"
+      }, {
+        "key": "errors.DDOPErrorSTD",
+        "type": "number",
+        "label": "DDOP error – STD [mHz]"
+      }, {
+        "key": "errors.DOAErrorBias",
+        "type": "number",
+        "label": "DOA error – Bias [deg]"
+      }, {
+        "key": "errors.DOAErrorSTD",
+        "type": "number",
+        "label": "DOA error – STD [deg]"
+      }, {
+        "key": "errors.TOAErrorBias",
+        "type": "number",
+        "label": "TOA error – Bias [ns]"
+      }, {
+        "key": "errors.TOAErrorSTD",
+        "type": "number",
+        "label": "TOA error – STD [ns]"
+      }]
+    }]
+  }]
+}
