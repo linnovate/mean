@@ -17,15 +17,15 @@ import {NewLoadedPlatformComponent} from '../new-loaded-platform/new-loaded-plat
 export class SchemaEntitiesComponent implements OnInit {
 
   type: string;
-  activeSchems: any;
-  entities: any;
+  entities: Array<object> = [];
   equipmentSchemaId: string;
-  schemas: Array<object>
+  schemas: Array<object>;
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog, private schemaService: SchemaService, private entityDataService: EntityDataService) {
     this.route.params.subscribe( params => {
       this.type = params.type
       this.getSchemas(this.type);
+      this.getData(this.type);
     });
    }
    
@@ -33,9 +33,8 @@ export class SchemaEntitiesComponent implements OnInit {
   ngOnInit() {
   }
 
-  getData() {
-    if (!this.activeSchems || !this.activeSchems._id) return;
-    this.entityDataService.find(this.activeSchems._id).subscribe(data => {
+  getData(type) {
+    this.entityDataService.find(type).subscribe(data => {
       this.entities = data;
     });
   }
