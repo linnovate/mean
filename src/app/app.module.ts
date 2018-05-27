@@ -3,18 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import {
-  MatToolbarModule,
-  MatMenuModule,
-  MatTabsModule,
-  MatDividerModule,
-  MatCardModule,
-  MatListModule,
-  MatExpansionModule,
-  MatButtonModule,
-  MatIconModule,
-  MatDialogModule,
-} from '@angular/material';
+import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -47,16 +36,7 @@ import { SystemService } from './system/system.service';
     BrowserModule,
     HttpClientModule,
     RouterModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatTabsModule,
-    MatDividerModule,
-    MatCardModule,
-    MatListModule,
-    MatExpansionModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDialogModule,
+    SharedModule,
     DynamicFormModule,
     AuthModule,
     AppRoutingModule,
