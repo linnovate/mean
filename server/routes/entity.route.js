@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const httpError = require('http-errors');
 const asyncHandler = require('express-async-handler')
-const entityDataCtrl = require('../controllers/entity-data.controller');
+const entityCtrl = require('../controllers/entity.controller');
 const requireAdmin = require('../middleware/require-admin');
 
 const router = express.Router();
@@ -19,24 +19,24 @@ router.route('/:entityDataId')
   .put(asyncHandler(update))
 
 async function insert(req, res) {
-  let entityData = await entityDataCtrl.insert(req.user, req.params.schemaId, req.body);
+  let entityData = await entityCtrl.insert(req.user, req.params.schemaId, req.body);
   res.json(entityData);
 }
 
 async function get(req, res) {
-  let entityData = await entityDataCtrl.get(req.params.entityDataId);
+  let entityData = await entityCtrl.get(req.params.entityDataId);
   if(!entityData) throw new httpError(404);
   res.json(entityData);
 }
 
 async function update(req, res) {
-  let entityData = await entityDataCtrl.update(req.params.entityDataId, req.body);
+  let entityData = await entityCtrl.update(req.params.entityDataId, req.body);
   if(!entityData) throw new httpError(404);
   res.json(entityData);
 }
 
 async function list(req, res) {
-    let entities = await entityDataCtrl.list(req.user._id, req.params.schemaId);
+    let entities = await entityCtrl.list(req.user._id, req.params.schemaId);
     if(!entities) throw new httpError(404);
     res.json(entities);
   }

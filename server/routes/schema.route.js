@@ -24,7 +24,7 @@ router.route('/:schemaId')
 
 
 async function list(req, res) {
-  let schemaArray = await schemaCtrl.list();
+  let schemaArray = await schemaCtrl.list(req.query);
   res.json(schemaArray);
 }
 

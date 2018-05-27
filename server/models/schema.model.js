@@ -1,15 +1,31 @@
 const mongoose = require('mongoose');
 
 const SchemaSchema = new mongoose.Schema({
-  type: {
+  category: {
     type: String,
-    unique: true,
     required: true
   },
+  name: {
+    type: String,
+    required: true,
+    unique: true
+  },
   label: String,
+  description: {
+    type: String
+  },
+  type: {
+    type: String,
+    required: true,
+    enum: ['platform', 'equipment'],
+  },
+  modes: Boolean,
   fields: Array
 }, {
   versionKey: false
 });
+
+//pre save check the type, if type is platform - modes = true
+// else model = false
 
 module.exports = mongoose.model('Schema', SchemaSchema);
