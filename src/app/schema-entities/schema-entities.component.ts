@@ -20,15 +20,15 @@ export class SchemaEntitiesComponent implements OnInit {
   activeSchems: any;
   entities: any;
   equipmentSchemaId: string;
+  schemas: Array<object>
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog, private schemaService: SchemaService, private entityDataService: EntityDataService) {
-    this.route.params.subscribe( params => this.type = params.type );
-    this.schemaService.activeSchema$.subscribe(active => {
-      this.activeSchems = active;
-      this.getData();
+    this.route.params.subscribe( params => {
+      this.type = params.type
+      this.getSchemas(this.type);
     });
-    this.schemaService.equipmentSchemaId$.subscribe(id => this.equipmentSchemaId = id);
    }
+   
 
   ngOnInit() {
   }
@@ -40,10 +40,16 @@ export class SchemaEntitiesComponent implements OnInit {
     });
   }
 
+  getSchemas(type) {
+    this.schemaService.find(type).subscribe(schemas => {
+      this.schemas = schemas;
+    });
+  }
+
   openEntityDialog(entity): void {
 
     let data:any = {};
-    data.schema =  this.activeSchems;
+    data.schemas = this.schemas;
     data.entity = entity;
 
     let dialogRef = this.dialog.open(NewSchemaEntityComponent, {

@@ -11,21 +11,27 @@ export class EntityDataService {
   save(schemaId, data) {
     return this
       .http
-      .post(`/api/entity-data/schema/${schemaId}`, data);
+      .post(`/api/entity/schema/${schemaId}`, {
+        name: data.name,
+        description: data.description,
+        modes: [{
+          data
+        }]
+      });
   }
   update(id, data) {
     return this
       .http
-      .put(`/api/entity-data/${id}`, data);
+      .put(`/api/entity/${id}`, data);
   }
   findOne(id) {
     return this
       .http
-      .get(`/api/entity-data/${id}`);
+      .get(`/api/entity/${id}`);
   }
   find(schemaId) : Observable <any> {
     return Observable.create(observer => {
-     this.http.get(`/api/entity-data/schema/${schemaId}`).subscribe((result: any) => {
+     this.http.get(`/api/entity/schema/${schemaId}`).subscribe((result: any) => {
       const _result = result.map(res => {
         return {
           schemaId: schemaId,

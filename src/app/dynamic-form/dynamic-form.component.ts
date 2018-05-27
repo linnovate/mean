@@ -25,8 +25,8 @@ export class DynamicFormComponent implements OnInit {
   }
 
   save() {
-    console.log('============', this.options);
-    if (this.options.entityDataId) return this.update();
+    // console.log('============', this.options, this.json, this.schema);
+    // if (this.options.entityDataId) return this.update();
     this.entityDataService.save(this.schema._id, this.json)
       .subscribe(data => {
         console.log(data, 'schema data');

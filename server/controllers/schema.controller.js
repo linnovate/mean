@@ -37,6 +37,19 @@ async function get(schemaId) {
   return await Schema.findById(schemaId);
 }
 
-async function list() {
-  return await Schema.find();
+async function list(params) {
+  return await Schema.aggregate([
+    {
+      $match: {
+        type: params.type
+      }
+    }, {
+      $group: {
+        _id: "$category",
+        data: {
+          $push: "$$ROOT"
+        }
+      }
+    }
+  ]);
 }

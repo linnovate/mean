@@ -2,12 +2,11 @@
   <button mat-raised-button (click)="openUploadDialog()" [disabled]="user && !user.isAdmin">Upload new schema</button>
   <nav mat-tab-nav-bar>
       <a mat-tab-link
-          *ngFor="let schema of schemas"
-         [routerLink]="['/schemas', schema.type]"
+          *ngFor="let schemaType of schemaTypes"
+         [routerLink]="['/schemas', schemaType.type]"
          routerLinkActive #rla="routerLinkActive"
-         [active]="rla.isActive"
-         (click)="setActiveSchema(schema)">
-        {{schema.label}}
+         [active]="rla.isActive">
+        {{schemaType.label}}
       </a>
     </nav>
     

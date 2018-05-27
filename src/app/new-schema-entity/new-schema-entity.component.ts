@@ -11,6 +11,7 @@ export class NewSchemaEntityComponent implements OnInit {
 
   json: Object = {};
   options: any = {};
+  public schema;
 
   constructor(
     public dialogRef: MatDialogRef<NewSchemaEntityComponent>,
@@ -18,10 +19,10 @@ export class NewSchemaEntityComponent implements OnInit {
 
     ngOnInit() {
       console.log(this.data , 'this data in dialog component');
-      if (this.data.entity) {
-        this.json = this.data.entity.data;
-        this.options.entityDataId = this.data.entity._id;
-      }
+      // if (this.data.entity) {
+      //   this.json = this.data.entity.data;
+      //   this.options.entityDataId = this.data.entity._id;
+      // }
     }
 
 }

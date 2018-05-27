@@ -20,8 +20,8 @@ export class SchemaService {
     if (data.equipmentSchemaId) this.equipmentSchemaId.next(data.equipmentSchemaId);
   }
 
-  find() : Observable <any> {
-    return this.http.get('/api/schema');
+  find(type) : Observable <any> {
+    return this.http.get(`/api/schema?type=${type}`);
   }
   
 }
