@@ -1,21 +1,21 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {EntityDataService} from '../schema-entities/entity-data.service';
-import {LoadedPlatformService} from './loaded-platform.service';
+import {SystemService} from './system.service';
 
 @Component({
-  selector: 'app-new-loaded-platform',
-  templateUrl: './new-loaded-platform.component.html',
-  styleUrls: ['./new-loaded-platform.component.scss']
+  selector: 'app-system',
+  templateUrl: './system.component.html',
+  styleUrls: ['./system.component.scss']
 })
-export class NewLoadedPlatformComponent implements OnInit {
+export class NewSystemComponent implements OnInit {
 
   equipment:Array<any>;
 
   constructor(
-    public dialogRef: MatDialogRef<NewLoadedPlatformComponent>,
+    public dialogRef: MatDialogRef<NewSystemComponent>,
     private entityDataService: EntityDataService,
-    private loadedDataService: LoadedPlatformService,
+    private systemService: SystemService,
     @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   ngOnInit() {
@@ -23,13 +23,13 @@ export class NewLoadedPlatformComponent implements OnInit {
   }
 
   getEquipment() {
-    this.entityDataService.find(this.data.equipmentSchemaId).subscribe(data => {
+    this.entityDataService.find('equipment').subscribe(data => {
       this.equipment = data;
     });
   }
 
   save(equipment) {
-    this.loadedDataService.save({
+    this.systemService.save({
       platform: this.data.platform._id,
       equipment: equipment.map(i => i.value)
     }).subscribe(res => {

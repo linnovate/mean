@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const httpError = require('http-errors');
 const asyncHandler = require('express-async-handler')
-const loadedPlatformCtrl = require('../controllers/loaded-platform.controller');
+const systemCtrl = require('../controllers/system.controller');
 const requireAdmin = require('../middleware/require-admin');
 
 const router = express.Router();
@@ -22,33 +22,33 @@ router
   .delete(asyncHandler(remove))
 
 async function insert(req, res) {
-  let loadedPlatform = await loadedPlatformCtrl.insert(req.user._id, req.body);
-  res.json(loadedPlatform);
+  let system = await systemCtrl.insert(req.user._id, req.body);
+  res.json(system);
 }
 
 async function get(req, res) {
-  let loadedPlatform = await loadedPlatformCtrl.get(req.params.id);
-  if (!loadedPlatform) 
+  let system = await systemCtrl.get(req.params.id);
+  if (!system) 
     throw new httpError(404);
-  res.json(loadedPlatform);
+  res.json(system);
 }
 
 async function update(req, res) {
-  let loadedPlatform = await loadedPlatformCtrl.update(req.params.id, req.body);
-  if (!loadedPlatform) 
+  let system = await systemCtrl.update(req.params.id, req.body);
+  if (!system) 
     throw new httpError(404);
-  res.json(loadedPlatform);
+  res.json(system);
 }
 
 async function list(req, res) {
-  let loadedPlatforms = await loadedPlatformCtrl.list(req.user._id);
-  if (!loadedPlatforms) 
+  let systems = await systemCtrl.list(req.user._id);
+  if (!systems) 
     throw new httpError(404);
-  res.json(loadedPlatforms);
+  res.json(systems);
 }
 
 async function remove(req, res) {
-  let loadedPlatform = await loadedPlatformCtrl.remove(req.params.id);
-  if(!loadedPlatform) throw new httpError(404);
-  res.json(loadedPlatform);
+  let system = await systemCtrl.remove(req.params.id);
+  if(!system) throw new httpError(404);
+  res.json(system);
 }

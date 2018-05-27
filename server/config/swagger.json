@@ -72,12 +72,12 @@
         }
       }
       },
-      "/loaded-platform": {
+      "/system": {
         "get": {
           "tags":[
-            "Loaded Platform"
+            "System"
           ],
-          "description": "list of loaded platforms",
+          "description": "list of system",
           "security": [{
             "AuthHeader": []
           }
@@ -86,7 +86,7 @@
             "200": {
               "description": "OK",
               "schema": {
-                "$ref": "#/definitions/Loaded Platforms"
+                "$ref": "#/definitions/System"
               }
             }
           }
@@ -207,7 +207,7 @@
         }
       }
     },
-    "Loaded Platform": {
+    "System": {
       "required":[
         "platform",
         "user"
@@ -228,9 +228,9 @@
         }
       }
     },
-    "Loaded Platforms": {
+    "Systems": {
       "type": "array",
-      "$ref": "#/definitions/Loaded Platform"
+      "$ref": "#/definitions/System"
     }
   }
 }
