@@ -1,0 +1,16 @@
+<mat-dialog-content>
+  <h4>Equip the {{this.data.platform.name}} platform</h4>
+  <mat-selection-list #shoes>
+    <div *ngFor="let category of equipment"> 
+      <span style="font-weight: bold">{{category.category}}</span>
+      <mat-list-option *ngFor="let entity of category.entities" [value]="entity._id">
+      {{entity.name}}
+    </mat-list-option>
+    </div>
+    
+  </mat-selection-list>
+
+  <p>
+    <button mat-raised-button color="primary" (click)="save(shoes.selectedOptions.selected);">Save</button>
+  </p>
+</mat-dialog-content>

@@ -6,7 +6,7 @@ import {SchemaService} from '../schema/schema.service';
 import {EntityDataService} from '../schema-entities/entity-data.service';
 
 import {NewSchemaEntityComponent} from '../new-schema-entity/new-schema-entity.component';
-import {NewLoadedPlatformComponent} from '../new-loaded-platform/new-loaded-platform.component';
+import {NewSystemComponent} from '../system/system.component';
 
 
 @Component({
@@ -64,9 +64,8 @@ export class SchemaEntitiesComponent implements OnInit {
   openEquipDialog(platform) {
     let data:any = {};
     data.platform = platform;
-    data.equipmentSchemaId = this.equipmentSchemaId;
 
-    let dialogRef = this.dialog.open(NewLoadedPlatformComponent, {
+    let dialogRef = this.dialog.open(NewSystemComponent, {
       width: '1000px',
       data
     });
@@ -75,5 +74,4 @@ export class SchemaEntitiesComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
-
 }

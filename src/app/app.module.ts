@@ -29,9 +29,9 @@ import { SchemaComponent } from './schema/schema.component';
 import { HeaderComponent } from './header/header.component';
 import { SchemaEntitiesComponent } from './schema-entities/schema-entities.component';
 import { NewSchemaEntityComponent } from './new-schema-entity/new-schema-entity.component';
-import { NewLoadedPlatformComponent } from './new-loaded-platform/new-loaded-platform.component';
+import { NewSystemComponent } from './system/system.component';
 
-import { LoadedPlatformService } from './new-loaded-platform/loaded-platform.service';
+import { SystemService } from './system/system.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { LoadedPlatformService } from './new-loaded-platform/loaded-platform.ser
     HeaderComponent,
     SchemaEntitiesComponent,
     NewSchemaEntityComponent,
-    NewLoadedPlatformComponent,
+    NewSystemComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,8 +68,8 @@ import { LoadedPlatformService } from './new-loaded-platform/loaded-platform.ser
     useClass: AddHeaderInterceptor,
     multi: true,
   },
-  LoadedPlatformService],
-  entryComponents: [NewSchemaEntityComponent, NewLoadedPlatformComponent],
+  SystemService],
+  entryComponents: [NewSchemaEntityComponent, NewSystemComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

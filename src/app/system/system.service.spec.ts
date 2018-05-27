@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { LoadedPlatformService } from './loaded-platform.service';
+import { SystemService } from './system.service';
 
 describe('LoadedPlatformService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [LoadedPlatformService]
+      providers: [SystemService]
     });
   });
 
-  it('should be created', inject([LoadedPlatformService], (service: LoadedPlatformService) => {
+  it('should be created', inject([SystemService], (service: SystemService) => {
     expect(service).toBeTruthy();
   }));
 });

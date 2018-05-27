@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewLoadedPlatformComponent } from './new-loaded-platform.component';
+import { NewSystemComponent } from './system.component';
 
 describe('NewLoadedPlatformComponent', () => {
-  let component: NewLoadedPlatformComponent;
-  let fixture: ComponentFixture<NewLoadedPlatformComponent>;
+  let component: NewSystemComponent;
+  let fixture: ComponentFixture<NewSystemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewLoadedPlatformComponent ]
+      declarations: [ NewSystemComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NewLoadedPlatformComponent);
+    fixture = TestBed.createComponent(NewSystemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

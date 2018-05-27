@@ -3,19 +3,19 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
-export class LoadedPlatformService {
+export class SystemService {
 
   constructor(private http : HttpClient) { }
 
   save(data) {
     return this
       .http
-      .post(`/api/loaded-platform`, data);
+      .post(`/api/system`, data);
   }
 
   find() {
     return this
       .http
-      .get(`/api/loaded-platform`);
+      .get(`/api/system`);
   }
 }

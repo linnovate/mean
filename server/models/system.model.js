@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const SystemSchema = new mongoose.Schema({
   platform: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'EntityData',
+    ref: 'Entity',
     required: true
   },
   equipment: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'EntityData',
+    ref: 'Entity',
   }],
   user: {
     type: mongoose.Schema.Types.ObjectId,
