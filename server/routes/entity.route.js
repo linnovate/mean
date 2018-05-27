@@ -11,8 +11,10 @@ module.exports = router;
 router.use(passport.authenticate('jwt', { session: false }))
 
 router.route('/schema/:schemaId')
-  .get(asyncHandler(list))
   .post(asyncHandler(insert));
+
+router.route('/type/:type')
+  .get(asyncHandler(list))
 
 router.route('/:entityDataId')
   .get(asyncHandler(get))
@@ -36,7 +38,7 @@ async function update(req, res) {
 }
 
 async function list(req, res) {
-    let entities = await entityCtrl.list(req.user._id, req.params.schemaId);
+    let entities = await entityCtrl.list(req.user._id, req.params.type);
     if(!entities) throw new httpError(404);
     res.json(entities);
   }

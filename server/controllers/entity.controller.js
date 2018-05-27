@@ -27,9 +27,14 @@ async function get(entityId) {
   return await Entity.findById(entityId);
 }
 
-async function list(userId, schemaId) {
-  return await Entity.find({
-    user: userId,
-    _schema: schemaId
-  });
+async function list(userId, type) {
+  return await new Promise((resolve, reject) => {
+    Entity.find({
+      }).populate({
+        path: '_schema',
+        match: {type}
+      }).exec((err, data) => {
+        resolve(data.filter(d => d._schema));
+      });
+    })
 }

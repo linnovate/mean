@@ -1,27 +1,25 @@
 .wrapper-cards {
-  display: flex;
-    flex-wrap: wrap;
-    .mat-card {
-      .mat-card-header {
-        .mat-card-title {
-          font-weight: bold;
-        }
-      }
-      .mat-card-footer {
-        .mat-divider {
-          bottom: auto;
-        }
-        text-align: right;
-        padding: 10px;
-        color: grey;
-        font-size: 12px;
-        .mat-icon {
-          font-size: 16px;
-        }
+  .mat-card {
+    display: inline-block;
+    .mat-card-header {
+      .mat-card-title {
+        font-weight: bold;
       }
     }
+    .mat-card-footer {
+      .mat-divider {
+        bottom: auto;
+      }
+      text-align: right;
+      padding: 10px;
+      color: grey;
+      font-size: 12px;
+      .mat-icon {
+        font-size: 16px;
+      }
+    }
+  }
 }
-
 
 .example-card {
   max-width: 400px;

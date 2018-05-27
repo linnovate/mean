@@ -29,17 +29,22 @@ export class EntityDataService {
       .http
       .get(`/api/entity/${id}`);
   }
-  find(schemaId) : Observable <any> {
+  find(type) : Observable <any> {
     return Observable.create(observer => {
-     this.http.get(`/api/entity/schema/${schemaId}`).subscribe((result: any) => {
-      const _result = result.map(res => {
-        return {
-          schemaId: schemaId,
-          _id: res._id,
-          data: JSON.parse(res.data)
-        }
+     this.http.get(`/api/entity/type/${type}`).subscribe((result: any) => {
+       let _entities = {}, entities = [];
+      result.forEach(entity => {
+        const category = entity._schema.category;
+        if (!_entities[category]) _entities[category] = [];
+        _entities[category].push(entity);
       });
-      observer.next(_result);
+      for (let index in _entities) {
+        entities.push({
+          category: index,
+          entities: _entities[index]
+        });
+      }
+      observer.next(entities);
       observer.complete();
      });
     })

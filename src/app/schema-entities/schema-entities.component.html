@@ -1,25 +1,37 @@
 <div>
   <button mat-raised-button color="primary" (click)="openEntityDialog()">New {{type}}</button>
   <div class="wrapper-cards">
-    <mat-card class="example-card" *ngFor="let entity of entities">
-      <mat-card-header>
-        <div>
-          <mat-icon>autorenew</mat-icon>
-        </div>
-        <mat-card-title>{{entity.data.name}}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>{{entity.data.description}}</p>
-      </mat-card-content>
-      <mat-divider></mat-divider>
 
-      <mat-card-footer>
-        <span><mat-icon>build</mat-icon>3</span>&nbsp;&nbsp;
-        <span><mat-icon>zoom_out_map</mat-icon>20</span>
-        <mat-icon (click)="openEntityDialog(entity)">edit</mat-icon>
-        <mat-icon *ngIf="type === 'platform'" (click)="openEquipDialog(entity)">sort</mat-icon>
-      </mat-card-footer>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let category of entities">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{category.category}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card class="example-card" *ngFor="let entity of category.entities">
+          <mat-card-header>
+            <div>
+              <mat-icon>autorenew</mat-icon>
+            </div>
+            <mat-card-title>{{entity.name}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{entity.description}}</p>
+          </mat-card-content>
+          <mat-divider></mat-divider>
 
-    </mat-card>
+          <mat-card-footer>
+            <span>
+              <mat-icon>build</mat-icon>3</span>&nbsp;&nbsp;
+            <span>
+              <mat-icon>zoom_out_map</mat-icon>20</span>
+            <mat-icon (click)="openEntityDialog(entity)">edit</mat-icon>
+            <mat-icon *ngIf="type === 'platform'" (click)="openEquipDialog(entity)">sort</mat-icon>
+          </mat-card-footer>
+
+        </mat-card>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
 </div>
