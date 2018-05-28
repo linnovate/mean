@@ -16,9 +16,12 @@ router.route('/schema/:schemaId')
 router.route('/type/:type')
   .get(asyncHandler(list))
 
-router.route('/:entityDataId')
+router.route('/:entityId')
   .get(asyncHandler(get))
   .put(asyncHandler(update))
+
+router.route('/:entityId/clone')
+  .get(asyncHandler(clone))
 
 async function insert(req, res) {
   let entityData = await entityCtrl.insert(req.user, req.params.schemaId, req.body);
@@ -26,19 +29,25 @@ async function insert(req, res) {
 }
 
 async function get(req, res) {
-  let entityData = await entityCtrl.get(req.params.entityDataId);
+  let entityData = await entityCtrl.get(req.params.entityId);
   if(!entityData) throw new httpError(404);
   res.json(entityData);
 }
 
 async function update(req, res) {
-  let entityData = await entityCtrl.update(req.params.entityDataId, req.body);
+  let entityData = await entityCtrl.update(req.params.entityId, req.body);
   if(!entityData) throw new httpError(404);
   res.json(entityData);
 }
 
 async function list(req, res) {
-    let entities = await entityCtrl.list(req.user._id, req.params.type);
-    if(!entities) throw new httpError(404);
-    res.json(entities);
-  }
+  let entities = await entityCtrl.list(req.user._id, req.params.type);
+  if(!entities) throw new httpError(404);
+  res.json(entities);
+}
+
+async function clone(req, res) {
+  let clonedEntity = await entityCtrl.clone(req.params.entityId);
+  if (!clonedEntity) throw new httpError(404);
+  res.json(clonedEntity);
+}

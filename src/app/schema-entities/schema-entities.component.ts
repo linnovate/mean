@@ -45,6 +45,12 @@ export class SchemaEntitiesComponent implements OnInit {
     });
   }
 
+  clone(entity) {
+    this.entityDataService.clone(entity._id).subscribe(data => {
+      console.log('cloned entity', data);
+    });
+  }
+
   openEntityDialog(entity): void {
 
     let data:any = {};
