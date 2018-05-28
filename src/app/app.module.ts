@@ -11,7 +11,7 @@ import { DynamicFormModule } from './dynamic-form';
 import { AuthModule } from './auth';
 import { AdminModule } from './admin/admin.module';
 import { UploadModule } from './upload/upload.module';
-import { AddHeaderInterceptor } from './header-interceptor';
+import { AuthHeaderInterceptor } from './header-interceptor';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { SchemaComponent } from './schema/schema.component';
@@ -45,7 +45,7 @@ import { SystemService } from './system/system.service';
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
-    useClass: AddHeaderInterceptor,
+    useClass: AuthHeaderInterceptor,
     multi: true,
   },
   SystemService],
