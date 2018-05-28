@@ -20,7 +20,11 @@ const EntitySchema = new mongoose.Schema({
       ref: 'User',
       required: true
     }
-  }]
+  }],
+  status: {
+    type: String,
+    enum: ['draft', 'reviewed', 'needs review', 'active']
+  }
 }, {
   versionKey: false
 });

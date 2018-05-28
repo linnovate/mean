@@ -22,10 +22,9 @@
           <mat-divider></mat-divider>
 
           <mat-card-footer>
-            <span>
-              <mat-icon>build</mat-icon>3</span>&nbsp;&nbsp;
-            <span>
-              <mat-icon>zoom_out_map</mat-icon>20</span>
+            <span><mat-icon>build</mat-icon>3</span>&nbsp;&nbsp;
+            <span><mat-icon>zoom_out_map</mat-icon>20</span>
+            <mat-icon (click)="clone(entity)">file_copy</mat-icon>
             <mat-icon (click)="openEntityDialog(entity)">edit</mat-icon>
             <mat-icon *ngIf="type === 'platform'" (click)="openEquipDialog(entity)">sort</mat-icon>
           </mat-card-footer>
