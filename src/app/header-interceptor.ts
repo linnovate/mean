@@ -2,7 +2,7 @@ import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest} from '@angular/com
 import {Observable} from 'rxjs/Observable';
 import {TokenStorage} from './auth/token.storage';
 
-export class AddHeaderInterceptor implements HttpInterceptor {
+export class AuthHeaderInterceptor implements HttpInterceptor {
 	intercept(req : HttpRequest <any>, next : HttpHandler) : Observable <HttpEvent<any>> {
 			// Clone the request to add the new header
       const token = new TokenStorage();
