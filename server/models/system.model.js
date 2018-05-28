@@ -19,4 +19,4 @@ const SystemSchema = new mongoose.Schema({
   versionKey: false
 });
 
-module.exports = mongoose.model('LoadedPlatform', SystemSchema);
+module.exports = mongoose.model('System', SystemSchema);

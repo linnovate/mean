@@ -32,6 +32,9 @@ export class EntityDataService {
   clone(id) {
     return this.http.get(`/api/entity/${id}/clone`);
   }
+  delete(id) {
+    return this.http.delete(`/api/entity/${id}`);
+  }
   find(type) : Observable <any> {
     return Observable.create(observer => {
      this.http.get(`/api/entity/type/${type}`).subscribe((result: any) => {

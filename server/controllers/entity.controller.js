@@ -6,6 +6,7 @@ module.exports = {
   get,
   list,
   clone,
+  remove,
 }
 
 async function insert(userId, schemaId, entity) {
@@ -26,6 +27,10 @@ async function update(entityId, entity) {
 
 async function get(entityId) {
   return await Entity.findById(entityId);
+}
+
+async function remove(entityId) {
+  return await Entity.findByIdAndDelete(entityId);
 }
 
 async function clone(entityId) {

@@ -19,6 +19,7 @@ router.route('/type/:type')
 router.route('/:entityId')
   .get(asyncHandler(get))
   .put(asyncHandler(update))
+  .delete(asyncHandler(remove));
 
 router.route('/:entityId/clone')
   .get(asyncHandler(clone))
@@ -50,4 +51,10 @@ async function clone(req, res) {
   let clonedEntity = await entityCtrl.clone(req.params.entityId);
   if (!clonedEntity) throw new httpError(404);
   res.json(clonedEntity);
+}
+
+async function remove(req, res) {
+  let entity = await entityCtrl.remove(req.params.entityId);
+  if(!entity) throw new httpError(404);
+  res.json(entity);
 }

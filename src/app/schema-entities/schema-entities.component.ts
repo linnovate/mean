@@ -51,6 +51,12 @@ export class SchemaEntitiesComponent implements OnInit {
     });
   }
 
+  delete(entity) {
+    this.entityDataService.delete(entity._id).subscribe(data => {
+      console.log('deleted entity', data);
+    })
+  }
+
   openEntityDialog(entity): void {
 
     let data:any = {};
