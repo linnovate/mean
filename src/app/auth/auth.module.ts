@@ -3,17 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-
-import { 
-  MatCardModule,
-  MatListModule,
-  MatInputModule,
-  MatButtonModule,
-  MatSnackBarModule,
-  MatToolbarModule,
-  MatDialogModule,
- } from '@angular/material';
-
+import { SharedModule } from '../shared/shared.module';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -27,13 +17,7 @@ import { TokenStorage } from './token.storage';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    MatCardModule,
-    MatListModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatToolbarModule,
-    MatDialogModule
+    SharedModule,
   ],
   declarations: [
     LoginComponent,
