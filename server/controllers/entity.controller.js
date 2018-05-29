@@ -1,4 +1,5 @@
 const Entity = require('../models/entity.model');
+const utils = require('../utils');
 
 module.exports = {
   insert,
@@ -10,23 +11,34 @@ module.exports = {
 }
 
 async function insert(userId, schemaId, entity) {
+  entity.modes = [{
+    user: userId,
+    data: {}
+  }];
   return await new Entity({
     _schema: schemaId,
     user: userId,
     name: entity.name,
     description: entity.description,
-    modes: [{
-      data: JSON.stringify(entity),
-      user: userId }]
+    modes: utils.stringifyModesData(entity.modes)
   }).save();
 }
 
 async function update(entityId, entity) {
-  return await Entity.findByIdAndUpdate(entityId, {$set: {data: JSON.stringify(entity)}}, {new: true});
+  if (entity.modes) utils.stringifyModesData(entity.modes);
+  return await Entity.findByIdAndUpdate(entityId, {$set: 
+    {modes: entity.modes}}, {new: true});
 }
 
 async function get(entityId) {
-  return await Entity.findById(entityId);
+  return await new Promise((resolve, reject) => {
+    Entity.findById(entityId).populate('_schema').exec((err, doc) => {
+      if (err) return reject(err);
+      doc = doc.toObject();
+      utils.parseModesData(doc.modes);
+      resolve(doc);
+    })
+  });
 }
 
 async function remove(entityId) {

@@ -4,20 +4,14 @@ import {Observable} from 'rxjs/Observable';
 import {map} from 'rxjs/operators'
 
 @Injectable()
-export class EntityDataService {
+export class EntityService {
 
   constructor(private http : HttpClient) {}
 
   save(schemaId, data) {
     return this
       .http
-      .post(`/api/entity/schema/${schemaId}`, {
-        name: data.name,
-        description: data.description,
-        modes: [{
-          data
-        }]
-      });
+      .post(`/api/entity/schema/${schemaId}`, data);
   }
   update(id, data) {
     return this

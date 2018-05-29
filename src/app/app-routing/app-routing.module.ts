@@ -8,6 +8,7 @@ import {SchemaComponent} from '../schema/schema.component';
 import {AdminComponent} from '../admin/admin.component';
 import {OnlyAdminUsersGuard} from '../admin/admin-user-guard';
 import {SchemaEntitiesComponent} from '../schema-entities/schema-entities.component';
+import { EntityComponent } from '../entity/entity.component';
 
 const routes : Routes = [
   {
@@ -27,9 +28,12 @@ const routes : Routes = [
   }, {
     path: 'schemas',
     component: SchemaComponent,
-    children: [
-      { path: ':type', component: SchemaEntitiesComponent },
+    children: [{ 
+      path: ':type', component: SchemaEntitiesComponent }
     ]
+  }, {
+    path: ':type/:entityId',
+    component: EntityComponent
   }
 
 ];

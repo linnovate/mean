@@ -12,9 +12,6 @@ import {
  } from '@angular/material';
 
 import { DynamicFormComponent } from './dynamic-form.component';
-import { SchemaService } from '../schema/schema.service';
-import { EntityDataService } from '../schema-entities/entity-data.service';
-
 
 @NgModule({
   declarations: [
@@ -34,8 +31,6 @@ import { EntityDataService } from '../schema-entities/entity-data.service';
     DynamicFormComponent
   ],
   providers: [
-    SchemaService,
-    EntityDataService
   ]
 })
 export class DynamicFormModule { }
