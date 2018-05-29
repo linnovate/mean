@@ -23,5 +23,9 @@ export class SchemaService {
   find(type) : Observable <any> {
     return this.http.get(`/api/schema?type=${type}`);
   }
+
+  findOne(id) : Observable <any> {
+    return this.http.get(`/api/schema/${id}`);
+  }
   
 }

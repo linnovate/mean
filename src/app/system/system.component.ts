@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {EntityDataService} from '../schema-entities/entity-data.service';
+import {EntityService} from '../entity/entity.service';
 import {SystemService} from './system.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class NewSystemComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<NewSystemComponent>,
-    private entityDataService: EntityDataService,
+    private entityService: EntityService,
     private systemService: SystemService,
     @Inject(MAT_DIALOG_DATA) public data: any) {}
 
@@ -23,7 +23,7 @@ export class NewSystemComponent implements OnInit {
   }
 
   getEquipment() {
-    this.entityDataService.find('equipment').subscribe(data => {
+    this.entityService.find('equipment').subscribe(data => {
       this.equipment = data;
     });
   }

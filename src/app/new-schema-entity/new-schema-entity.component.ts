@@ -1,5 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { EntityService } from '../entity/entity.service';
 
 
 @Component({
@@ -14,16 +17,22 @@ export class NewSchemaEntityComponent implements OnInit {
   public schema;
 
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private entityService: EntityService,
     public dialogRef: MatDialogRef<NewSchemaEntityComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {}
 
     ngOnInit() {
       console.log(this.data , 'this data in dialog component');
-      // if (this.data.entity) {
-      //   this.json = this.data.entity.data;
-      //   this.options.entityDataId = this.data.entity._id;
-      // }
     }
 
+    moveToEntityPage(schemaId, name, description) {
+      this.entityService.save(schemaId, {name, description})
+      .subscribe(data => {
+        this.dialogRef.close();
+        this.router.navigate([`../../platform/${(<any>data)._id}`], { relativeTo: this.route });
+      });
+    }
 }
 

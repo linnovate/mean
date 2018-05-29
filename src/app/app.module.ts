@@ -20,7 +20,10 @@ import { SchemaEntitiesComponent } from './schema-entities/schema-entities.compo
 import { NewSchemaEntityComponent } from './new-schema-entity/new-schema-entity.component';
 import { NewSystemComponent } from './system/system.component';
 
+import { SchemaService } from './schema/schema.service';
+import { EntityService } from './entity/entity.service';
 import { SystemService } from './system/system.service';
+import { EntityComponent } from './entity/entity.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,7 @@ import { SystemService } from './system/system.service';
     SchemaEntitiesComponent,
     NewSchemaEntityComponent,
     NewSystemComponent,
+    EntityComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,9 @@ import { SystemService } from './system/system.service';
     useClass: AuthHeaderInterceptor,
     multi: true,
   },
-  SystemService],
+  SystemService,
+  SchemaService,
+  EntityService],
   entryComponents: [NewSchemaEntityComponent, NewSystemComponent],
   bootstrap: [AppComponent]
 })

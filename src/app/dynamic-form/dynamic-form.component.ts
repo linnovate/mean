@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { EntityDataService } from '../schema-entities/entity-data.service';
 
 @Component({
   selector: 'dynamic-form',
@@ -14,7 +13,7 @@ export class DynamicFormComponent implements OnInit {
   @Input() options: any = {};
   @Input() dialogRef: any;
 
-  constructor(private entityDataService: EntityDataService) {}
+  constructor() {}
 
   evaluate(string) {
     return Boolean(eval(string));
@@ -22,24 +21,6 @@ export class DynamicFormComponent implements OnInit {
 
   closeDialog() {
      this.dialogRef.close();
-  }
-
-  save() {
-    // console.log('============', this.options, this.json, this.schema);
-    // if (this.options.entityDataId) return this.update();
-    this.entityDataService.save(this.schema._id, this.json)
-      .subscribe(data => {
-        console.log(data, 'schema data');
-        this.closeDialog();
-      });
-  }
-
-  update() {
-    this.entityDataService.update(this.options.entityDataId, this.json)
-      .subscribe(data => {
-        console.log(data, 'schema updated data');
-        this.closeDialog();
-      });
   }
 
   ngOnInit() {

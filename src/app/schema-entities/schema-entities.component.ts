@@ -3,7 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {Overlay} from '@angular/cdk/overlay';
 import {SchemaService} from '../schema/schema.service';
-import {EntityDataService} from '../schema-entities/entity-data.service';
+import {EntityService} from '../entity/entity.service';
 
 import {NewSchemaEntityComponent} from '../new-schema-entity/new-schema-entity.component';
 import {NewSystemComponent} from '../system/system.component';
@@ -21,7 +21,7 @@ export class SchemaEntitiesComponent implements OnInit {
   equipmentSchemaId: string;
   schemas: Array<object>;
 
-  constructor(private route: ActivatedRoute, public dialog: MatDialog, private schemaService: SchemaService, private entityDataService: EntityDataService) {
+  constructor(private route: ActivatedRoute, public dialog: MatDialog, private schemaService: SchemaService, private entityService: EntityService) {
     this.route.params.subscribe( params => {
       this.type = params.type
       this.getSchemas(this.type);
@@ -34,7 +34,7 @@ export class SchemaEntitiesComponent implements OnInit {
   }
 
   getData(type) {
-    this.entityDataService.find(type).subscribe(data => {
+    this.entityService.find(type).subscribe(data => {
       this.entities = data;
     });
   }
@@ -46,13 +46,13 @@ export class SchemaEntitiesComponent implements OnInit {
   }
 
   clone(entity) {
-    this.entityDataService.clone(entity._id).subscribe(data => {
+    this.entityService.clone(entity._id).subscribe(data => {
       console.log('cloned entity', data);
     });
   }
 
   delete(entity) {
-    this.entityDataService.delete(entity._id).subscribe(data => {
+    this.entityService.delete(entity._id).subscribe(data => {
       console.log('deleted entity', data);
     })
   }
