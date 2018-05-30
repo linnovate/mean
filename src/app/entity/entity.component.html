@@ -1,10 +1,11 @@
 <div *ngIf="entity">
 
-  <div *ngFor="let mode of entity.modes; let i = index" [attr.data-index]="i">
-    <span (click)="setCurrentMode(i)">{{mode.name || 'mode ' + i}}</span>
+  <div class="modes" *ngIf="schema.type === 'platform'">
+    <div *ngFor="let mode of entity.modes; let i = index" [attr.data-index]="i">
+      <span (click)="setCurrentMode(i)">{{mode.name || 'mode ' + i}}</span>
+    </div>
+    <button mat-raised-button color="primary" (click)="addMode()">add mode</button>
   </div>
-
-  <button mat-raised-button color="primary" (click)="addMode()">add mode</button>
 
   <dynamic-form [schema]="schema" [json]="json" [options]="options"></dynamic-form>
 

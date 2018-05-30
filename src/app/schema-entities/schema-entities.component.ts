@@ -62,6 +62,7 @@ export class SchemaEntitiesComponent implements OnInit {
     let data:any = {};
     data.schemas = this.schemas;
     data.entity = entity;
+    data.type = this.type;
 
     let dialogRef = this.dialog.open(NewSchemaEntityComponent, {
       width: '1000px',

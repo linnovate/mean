@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import {
   MatToolbarModule,
   MatMenuModule,
@@ -30,6 +32,8 @@ import {
     MatDialogModule,
     MatInputModule,
     MatSnackBarModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     MatToolbarModule,
@@ -44,6 +48,8 @@ import {
     MatDialogModule,
     MatInputModule,
     MatSnackBarModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: []
 })
