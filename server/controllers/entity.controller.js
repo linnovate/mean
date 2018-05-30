@@ -26,8 +26,11 @@ async function insert(userId, schemaId, entity) {
 
 async function update(entityId, entity) {
   if (entity.modes) utils.stringifyModesData(entity.modes);
-  return await Entity.findByIdAndUpdate(entityId, {$set: 
-    {modes: entity.modes}}, {new: true});
+  return await Entity.findByIdAndUpdate(entityId, {
+    $set: {
+      modes: entity.modes,
+      updated: new Date()
+    }}, {new: true});
 }
 
 async function get(entityId) {

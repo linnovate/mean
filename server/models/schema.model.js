@@ -20,7 +20,15 @@ const SchemaSchema = new mongoose.Schema({
     enum: ['platform', 'equipment'],
   },
   modes: Boolean,
-  fields: Array
+  fields: Array,
+  created: {
+    type: Date,
+    default: Date.now
+  },
+  updated: {
+    type: Date,
+    default: Date.now
+  }
 }, {
   versionKey: false
 });

@@ -23,7 +23,15 @@ const EntitySchema = new mongoose.Schema({
   status: {
     type: String,
     enum: ['draft', 'reviewed', 'needs review', 'active']
-  }
+  },
+  created: {
+    type: Date,
+    default: Date.now
+  },
+  updated: {
+    type: Date,
+    default: Date.now
+  },
 }, {
   versionKey: false
 });
