@@ -15,7 +15,8 @@ async function insert(userId, data) {
 async function update(id, data) {
   return await System.findByIdAndUpdate(id, {
     $set: {
-      equipment: data.equipment
+      equipment: data.equipment,
+      updtaed: new Date()
     }
   }, {new: true});
 }

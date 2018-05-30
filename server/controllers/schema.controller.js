@@ -20,13 +20,21 @@ async function upload(request) {
     const form = new IncomingForm();
     let schema;
     form.on('file', (field, file) => schema = JSON.parse(fs.readFileSync(file.path, 'utf8')));
-    form.on('end', () => resolve(new Schema(schema).save()));
+    form.on('end', () => {
+      schema.updated = new Date();
+      resolve(Schema.findOneAndUpdate({
+        name: schema.name
+      }, schema, {upsert : true}))
+    });
     form.parse(request);
   });
 }
 
-async function update(schemaId, schema) {
-  return await Schema.findByIdAndUpdate(schemaId, schema);
+async function update(name, schema) {
+  schema.updated = new Date();
+  return await Schema.findOneAndUpdate({
+    name: name
+  }, schema);
 }
 
 async function remove(schemaId) {

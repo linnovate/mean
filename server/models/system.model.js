@@ -14,7 +14,15 @@ const SystemSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
-  }
+  },
+  created: {
+    type: Date,
+    default: Date.now
+  },
+  updated: {
+    type: Date,
+    default: Date.now
+  },
 }, {
   versionKey: false
 });
