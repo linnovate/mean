@@ -1,6 +1,9 @@
 {
   "type": "platform",
-  "label": "Platform",
+  "category": "car",
+  "name": "car1",
+  "description": "description of car1",
+  "label": "Platform Type Car1",
   "fields": [{
     "key": "name",
     "type": "text",
