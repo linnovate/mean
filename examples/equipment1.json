@@ -1,6 +1,8 @@
 {
-  "type": "equipment1",
-  "label": "Equipment1",
+  "type": "equipment",
+  "category": "door",
+  "name": "door 2",
+  "description": "description of door2",
   "fields": [{
     "key": "name",
     "type": "text",
