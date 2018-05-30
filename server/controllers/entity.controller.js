@@ -36,7 +36,7 @@ async function update(entityId, entity) {
 async function get(entityId) {
   return await new Promise((resolve, reject) => {
     Entity.findById(entityId).populate('_schema').exec((err, doc) => {
-      if (err) return reject(err);
+      if (err || !doc) return reject(err);
       doc = doc.toObject();
       utils.parseModesData(doc.modes);
       resolve(doc);
@@ -51,7 +51,7 @@ async function remove(entityId) {
 async function clone(entityId) {
   return await new Promise((resolve, reject) => {
     Entity.findById(entityId).exec((err, doc) => {
-      if (err) return reject();
+      if (err || !doc) return reject();
       delete doc._doc._id;
       doc.isNew = true;
       return resolve(new Entity(doc).save());
@@ -66,6 +66,12 @@ async function list(userId, type) {
         path: '_schema',
         match: {type}
       }).exec((err, data) => {
+        data = data.filter(d => d._schema);
+        data = data.map(d => {
+          d = d.toObject();
+          utils.parseModesData(d.modes);
+          return d;
+        });
         resolve(data.filter(d => d._schema));
       });
     })

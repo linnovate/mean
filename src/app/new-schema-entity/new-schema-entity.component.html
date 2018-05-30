@@ -7,7 +7,7 @@
       </mat-option>
     </mat-optgroup>
   </mat-select> -->
-  <mat-list role="list">
+  <mat-list role="list" *ngIf="!data.entity">
     <div *ngFor="let category of data.schemas">
       <mat-list-item role="listitem" style="font-weight: bold;">{{category._id}}</mat-list-item>
       <mat-list role="list" style="margin-left:30px; cursor: pointer">
@@ -20,13 +20,13 @@
 
   <div *ngIf="schema">
     <mat-form-field>
-      <input matInput #name placeholder="Name"  name="name" required>
+      <input matInput #name placeholder="Name"  name="name" required [(ngModel)]="entity.name">
     </mat-form-field>
     <mat-form-field>
-      <input matInput #description placeholder="Description"  name="description">
+      <input matInput #description placeholder="Description"  name="description" [(ngModel)]="entity.description">
     </mat-form-field>
 
-    <button mat-raised-button color="primary" (click)="moveToEntityPage(schema._id, name.value, description.value)">Continue</button>
+    <button mat-raised-button color="primary" (click)="moveToEntityPage(schema._id)">Continue</button>
 
   </div>
 
