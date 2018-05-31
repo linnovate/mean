@@ -1,4 +1,4 @@
-<div>
+<div class="dynamic-form">
   <div *ngFor="let field of fields" [ngSwitch]="field.type">
     <ng-container *ngSwitchCase="'select'">
       <ng-container *ngTemplateOutlet="select; context: field"></ng-container>
@@ -11,6 +11,12 @@
     </ng-container>
     <ng-container *ngSwitchCase="'textarea'">
       <ng-container *ngTemplateOutlet="textarea; context: field"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'checkbox'">
+      <ng-container *ngTemplateOutlet="checkbox; context: field"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'radio'">
+      <ng-container *ngTemplateOutlet="radio; context: field"></ng-container>
     </ng-container>
     <mat-tab-group *ngSwitchCase="'tabs'">
       <mat-tab *ngFor="let tab of field.tabs" [label]="tab.label" [disabled]="evaluate(tab.disabled)">
@@ -61,4 +67,17 @@
   <mat-form-field>
     <textarea matInput [placeholder]="label" [(ngModel)]="values[key]"></textarea>
   </mat-form-field>
+</ng-template>
+
+<ng-template #checkbox let-label="label" let-key="key">
+  <mat-checkbox matInput [(ngModel)]="values[key]">{{label}}</mat-checkbox>
+</ng-template>
+
+<ng-template #radio let-label="label" let-key="key" let-options="options">
+  <mat-radio-group [(ngModel)]="values[key]">
+    <label>{{label}}</label>
+    <mat-radio-button *ngFor="let option of options" [value]="option.value">
+      {{option.label}}
+    </mat-radio-button>
+  </mat-radio-group>
 </ng-template>
