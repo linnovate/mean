@@ -16,6 +16,7 @@ import {
   MatInputModule,
   MatSnackBarModule,
 } from '@angular/material';
+import { SearchPipe } from './search.pipe';
 
 @NgModule({
   imports: [
@@ -51,6 +52,6 @@ import {
     FormsModule,
     ReactiveFormsModule,
   ],
-  declarations: []
+  declarations: [SearchPipe]
 })
 export class SharedModule { }
