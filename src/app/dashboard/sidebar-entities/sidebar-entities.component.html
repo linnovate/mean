@@ -1,0 +1,7 @@
+<div>
+  <mat-tab-group (selectedTabChange)="selectedTabChangeHandler($event)">
+    <mat-tab *ngFor="let tab of tabs" label="{{tab.label}}">
+    </mat-tab>
+  </mat-tab-group>
+  <app-tree activeTab="{{activeTab}}"></app-tree>
+</div>

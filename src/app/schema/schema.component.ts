@@ -14,13 +14,6 @@ export class SchemaComponent implements OnInit {
   constructor(public dialog: MatDialog, public uploadService: UploadService, private authService: AuthService) {}
 
   user: Object;
-  schemaTypes: Array<Object> = [{
-    type: 'platform',
-    label: 'Platforms'
-  },{
-    type: 'equipment',
-    label: 'Equipment'
-  }];
 
   public openUploadDialog() {
     let dialogRef = this.dialog.open(DialogComponent, { width: '50%', height: '50%' });
