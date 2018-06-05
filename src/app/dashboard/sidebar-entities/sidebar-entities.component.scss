@@ -1,0 +1,8 @@
+::ng-deep .mat-tab-label-container {
+  justify-content: space-between;
+  .mat-tab-label {
+    padding: 0 !important;
+    font-size: 12px;
+    min-width: 81px;
+  }
+}

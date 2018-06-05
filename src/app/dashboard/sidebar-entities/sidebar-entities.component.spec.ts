@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SchemaEntitiesComponent } from './schema-entities.component';
+import { SidebarEntitiesComponent } from './sidebar-entities.component';
 
-describe('SchemaEntitiesComponent', () => {
-  let component: SchemaEntitiesComponent;
-  let fixture: ComponentFixture<SchemaEntitiesComponent>;
+describe('SidebarEntitiesComponent', () => {
+  let component: SidebarEntitiesComponent;
+  let fixture: ComponentFixture<SidebarEntitiesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SchemaEntitiesComponent ]
+      declarations: [ SidebarEntitiesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SchemaEntitiesComponent);
+    fixture = TestBed.createComponent(SidebarEntitiesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

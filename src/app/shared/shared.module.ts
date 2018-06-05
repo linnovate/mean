@@ -15,6 +15,9 @@ import {
   MatDialogModule,
   MatInputModule,
   MatSnackBarModule,
+  MatSidenavModule,
+  MatTreeModule,
+  MatProgressBarModule,
 } from '@angular/material';
 import { SearchPipe } from './search.pipe';
 
@@ -35,6 +38,9 @@ import { SearchPipe } from './search.pipe';
     MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSidenavModule,
+    MatTreeModule,
+    MatProgressBarModule,
   ],
   exports: [
     MatToolbarModule,
@@ -51,6 +57,9 @@ import { SearchPipe } from './search.pipe';
     MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSidenavModule,
+    MatTreeModule,
+    MatProgressBarModule,
   ],
   declarations: [SearchPipe]
 })
