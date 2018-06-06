@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+
+
 const EntitySchema = new mongoose.Schema({
   name: {
     type: String,
@@ -11,27 +13,32 @@ const EntitySchema = new mongoose.Schema({
     ref: 'Schema',
     required: true
   },
+  icon: {
+    type: String,
+    default: 'default'
+  },
   modes: [{
-    name: String,
-    description: String,
-    data: String,
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-    },
-    status: {
+    name: {
       type: String,
+      required: true
+    },
+    description: String,
+    data: {},
+    status: {
+      required: true,
+      type: String,
+      default: 'draft',
       enum: ['draft', 'reviewed', 'needs review', 'active']
+    },
+    created: {
+      type: Date,
+      default: Date.now
+    },
+    updated: {
+      type: Date,
+      default: Date.now
     }
-  }],
-  created: {
-    type: Date,
-    default: Date.now
-  },
-  updated: {
-    type: Date,
-    default: Date.now
-  },
+  }]
 }, {
   versionKey: false
 });
