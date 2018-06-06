@@ -18,12 +18,12 @@ const EntitySchema = new mongoose.Schema({
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
+    },
+    status: {
+      type: String,
+      enum: ['draft', 'reviewed', 'needs review', 'active']
     }
   }],
-  status: {
-    type: String,
-    enum: ['draft', 'reviewed', 'needs review', 'active']
-  },
   created: {
     type: Date,
     default: Date.now

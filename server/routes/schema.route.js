@@ -14,6 +14,9 @@ router.route('/')
   .get(asyncHandler(list))
   .post(requireAdmin, asyncHandler(insert));
 
+router.route('/tree')
+  .get(asyncHandler(tree));
+
 router.route('/upload')
   .post(requireAdmin, asyncHandler(upload));
 
@@ -26,6 +29,11 @@ router.route('/:schemaId')
 async function list(req, res) {
   let schemaArray = await schemaCtrl.list(req.query);
   res.json(schemaArray);
+}
+
+async function tree(req, res) {
+  let tree = await schemaCtrl.tree(req.query);
+  res.json(tree);
 }
 
 async function insert(req, res) {

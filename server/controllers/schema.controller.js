@@ -1,6 +1,7 @@
 const Schema = require('../models/schema.model');
 const fs = require('fs');
 const IncomingForm = require('formidable').IncomingForm;
+const entitiesCtrl = require('./entity.controller');
 
 module.exports = {
   insert,
@@ -8,7 +9,8 @@ module.exports = {
   remove,
   get,
   list,
-  upload
+  upload,
+  tree,
 }
 
 async function insert(schema) {
@@ -45,19 +47,19 @@ async function get(schemaId) {
   return await Schema.findById(schemaId);
 }
 
+async function tree(params) {
+  let schemas = await Schema.find({type: params.type}, {category: 1}).lean();
+  const ids = schemas.map(s => s._id);
+  const entities = await entitiesCtrl.tree(ids);
+  schemas = schemas.map(s => {
+    const result = entities.filter(obj => JSON.stringify(obj._id) === JSON.stringify(s._id));
+    s.children = result;
+    return s;
+  })
+
+  return schemas;
+}
+
 async function list(params) {
-  return await Schema.aggregate([
-    {
-      $match: {
-        type: params.type
-      }
-    }, {
-      $group: {
-        _id: "$category",
-        data: {
-          $push: "$$ROOT"
-        }
-      }
-    }
-  ]);
+  return await Schema.find({type: params.type});
 }
