@@ -8,10 +8,11 @@ module.exports = {
   list,
   clone,
   remove,
+  tree,
 }
 
 async function insert(userId, schemaId, entity) {
-  entity.modes = [{
+  entity.modes = entity.modes || [{
     user: userId,
     data: {}
   }];
@@ -75,4 +76,27 @@ async function list(userId, type) {
         resolve(data.filter(d => d._schema));
       });
     })
+}
+
+async function tree(schemas) {
+  return await Entity.aggregate([
+    {$match: {_schema: {$in: schemas}}},
+    {$group:{
+    _id: "$_schema",
+    name: {$first: "$name"},
+    modes: {$first: "$modes"}}},
+     { $project:
+        { 
+          children:
+           {
+             $map:
+                {
+                  input: "$modes",
+                  as: "mode",
+                  in:  {name: "$$mode.name", _id: "$$mode._id"}
+                }
+           },
+           name: '$name'
+        }
+     }])
 }

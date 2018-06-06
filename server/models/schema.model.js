@@ -3,23 +3,14 @@ const mongoose = require('mongoose');
 const SchemaSchema = new mongoose.Schema({
   category: {
     type: String,
-    required: true
-  },
-  name: {
-    type: String,
     required: true,
     unique: true
-  },
-  label: String,
-  description: {
-    type: String
   },
   type: {
     type: String,
     required: true,
     enum: ['platform', 'equipment'],
   },
-  modes: Boolean,
   fields: Array,
   created: {
     type: Date,
