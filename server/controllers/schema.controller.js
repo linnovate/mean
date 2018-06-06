@@ -54,6 +54,7 @@ async function tree(params) {
   schemas = schemas.map(s => {
     const result = entities.filter(obj => JSON.stringify(obj._id) === JSON.stringify(s._id));
     s.children = result;
+    s.name = s.category;
     return s;
   })
 
