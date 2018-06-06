@@ -93,7 +93,7 @@ async function tree(schemas) {
                 {
                   input: "$modes",
                   as: "mode",
-                  in:  {name: "$$mode.name", _id: "$$mode._id"}
+                  in:  {name: "$$mode.name", _id: "$$mode._id", type: 'ts'}
                 }
            },
            name: '$name'
