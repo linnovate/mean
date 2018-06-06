@@ -438,6 +438,14 @@ amqplib@^0.5.2:
     readable-stream "1.x >=1.1.9"
     safe-buffer "^5.0.1"
 
+angular-tree-component@^7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/angular-tree-component/-/angular-tree-component-7.2.0.tgz#6587cecb31286d93d556b2bb1eaf13a9585eae63"
+  dependencies:
+    lodash "^4.17.5"
+    mobx "^3.6.2"
+    mobx-angular "2.1.1"
+
 ansi-align@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ansi-align/-/ansi-align-2.0.0.tgz#c36aeccba563b89ceb556f3690f0b1d9e3547f7f"
@@ -4526,6 +4534,14 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
+
+mobx-angular@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/mobx-angular/-/mobx-angular-2.1.1.tgz#d5e36539acb200186dd5a1170806b4776b9a8b88"
+
+mobx@^3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-3.6.2.tgz#fb9f5ff5090539a1ad54e75dc4c098b602693320"
 
 mongodb-core@3.0.8:
   version "3.0.8"

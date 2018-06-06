@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TreeModule } from 'angular-tree-component';
 
 /* Modules */
 import { SharedModule } from '../shared/shared.module';
@@ -20,6 +21,7 @@ import { TreeComponent } from './sidebar-entities/tree/tree.component';
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
+    TreeModule,
   ],
   declarations: [DashboardComponent, SidebarEntitiesComponent, SidebarActionsComponent, TreeComponent],
   providers: [SchemaService]
