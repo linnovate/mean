@@ -19,7 +19,6 @@ import {
   MatTreeModule,
   MatProgressBarModule,
 } from '@angular/material';
-import { SearchPipe } from './search.pipe';
 
 @NgModule({
   imports: [
@@ -61,6 +60,6 @@ import { SearchPipe } from './search.pipe';
     MatTreeModule,
     MatProgressBarModule,
   ],
-  declarations: [SearchPipe]
+  declarations: []
 })
 export class SharedModule { }

@@ -1,39 +1,54 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {NestedTreeControl} from '@angular/cdk/tree';
-import {MatTreeNestedDataSource} from '@angular/material/tree';
+import { TreeModel, TreeNode } from 'angular-tree-component';
 
-import {BehaviorSubject, of as observableOf} from 'rxjs';
-
-
-import {EntityNode, EntityData} from './tree.utils';
 import { SchemaService } from '../../../schema/schema.service';
 
 @Component({
   selector: 'app-tree',
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
-  providers: [EntityData]
+  providers: []
 })
 export class TreeComponent {
   @Input() set activeTab(value: string) {
-    // if (value) this.getSchemas(value);
   }
-  nestedTreeControl: NestedTreeControl<EntityNode>;
+  options = {};
+  data = [];
 
-  nestedDataSource: MatTreeNestedDataSource<EntityNode>;
-
-  constructor(entityData: EntityData, schemaSvc: SchemaService) {
-    this.nestedTreeControl = new NestedTreeControl<EntityNode>(this._getChildren);
-    this.nestedDataSource = new MatTreeNestedDataSource();
+  constructor(schemaSvc: SchemaService) {
 
     schemaSvc.tree('platform').subscribe(data => {
-      entityData.dataChange.next(data);
+      this.data = data;
     });
-    
-    entityData.dataChange.subscribe(data => this.nestedDataSource.data = data);
   }
 
-  private _getChildren = (node: EntityNode) => { return observableOf(node.children); };
+  filterFn(value: string, treeModel: TreeModel) {
+    treeModel.filterNodes((node: TreeNode) => this.fuzzysearch(value, node.data.name));
+  }
 
-  hasNestedChild = (_: number, nodeData: EntityNode) => {return !(nodeData.type); };
+  fuzzysearch (needle: string, haystack: string) {
+    const haystackLC = haystack.toLowerCase();
+    const needleLC = needle.toLowerCase();
+  
+    const hlen = haystack.length;
+    const nlen = needleLC.length;
+  
+    if (nlen > hlen) {
+      return false;
+    }
+    if (nlen === hlen) {
+      return needleLC === haystackLC;
+    }
+    outer: for (let i = 0, j = 0; i < nlen; i++) {
+      const nch = needleLC.charCodeAt(i);
+  
+      while (j < hlen) {
+        if (haystackLC.charCodeAt(j++) === nch) {
+          continue outer;
+        }
+      }
+      return false;
+    }
+    return true;
+  }
 }

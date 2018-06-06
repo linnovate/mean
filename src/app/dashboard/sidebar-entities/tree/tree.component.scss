@@ -1,11 +1,23 @@
-.example-tree-invisible {
-    display: none;
+::ng-deep .angular-tree-component {
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-size: 14px;
+  .tree-node-level-1 > tree-node-wrapper > .node-wrapper > .node-content-wrapper {
+    font-weight: bold;
+    text-transform: uppercase;
   }
-  
-  .example-tree ul,
-  .example-tree li {
-    margin-top: 0;
-    margin-bottom: 0;
-    list-style-type: none;
+  .toggle-children-wrapper {
+    .toggle-children {
+      height: 6px;
+    }
   }
-  
+}
+#filter {
+  width: 100%;
+  padding: 10px;
+  border: solid 1px;
+  border-right: none;
+  border-left: none;
+  &:focus {
+    outline: none;
+  }
+}
