@@ -1,3 +1,8 @@
 
 <input id="filter" #filter (keyup)="tree.treeModel.filterNodes(filter.value)" placeholder="Search..." />
-<tree-root #tree [focused]="true" [options]="options" [nodes]="data"></tree-root>
+<tree-root #tree [focused]="true" [options]="options" [nodes]="data">
+    <ng-template #treeNodeTemplate let-node let-index="index">
+        <span>{{ node.data.name }}</span>
+        <button (click)="go($event)">Custom Action</button>
+      </ng-template>
+</tree-root>

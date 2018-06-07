@@ -4,3 +4,6 @@
 body {
   margin: 0;
 }
+app-root {
+  font-family: 'Exo', sans-serif;
+}

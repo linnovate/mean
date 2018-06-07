@@ -1,23 +1,44 @@
-::ng-deep .angular-tree-component {
-  font-family: Roboto,"Helvetica Neue",sans-serif;
-  font-size: 14px;
-  .tree-node-level-1 > tree-node-wrapper > .node-wrapper > .node-content-wrapper {
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  .toggle-children-wrapper {
-    .toggle-children {
-      height: 6px;
+@import '~_settings.scss';
+
+::ng-deep app-tree {
+  width: 100%;
+  display: block;
+  tree-viewport {
+    margin-left: 7px;
+    .angular-tree-component {
+      font-family: Roboto, "Helvetica Neue", sans-serif;
+      font-size: 14px;
+      .tree-node-level-1>tree-node-wrapper>.node-wrapper>.node-content-wrapper {
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      .node-content-wrapper {
+        &.node-content-wrapper-active {
+          background: none;
+          box-shadow: none;
+        }
+        &:hover {
+          background: none;
+          box-shadow: none;
+        }
+      }
+      .toggle-children-wrapper {
+        .toggle-children {
+          height: 6px;
+        }
+      }
     }
   }
-}
-#filter {
-  width: 100%;
-  padding: 10px;
-  border: solid 1px;
-  border-right: none;
-  border-left: none;
-  &:focus {
-    outline: none;
+  
+  #filter {
+    width: 93%;
+    padding: 3.5%;
+    border: solid 1px $linesColor;
+    border-right: none;
+    border-left: none;
+    height: 17px;
+    &:focus {
+      outline: none;
+    }
   }
 }
