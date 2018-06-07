@@ -20,8 +20,20 @@ export class TreeComponent {
   constructor(schemaSvc: SchemaService, router: ActivatedRoute) {
 
     schemaSvc.tree('platform').subscribe(data => {
+      data.forEach(d => {
+        if (d.children)
+          d.children.map(entity => {
+            entity.children = entity.modes;
+            delete entity.modes;
+            return entity;
+          });
+      });
       this.data = data;
     });
+  }
+
+  activateNode(event) {
+    console.log(event);
   }
 
   filterFn(value: string, treeModel: TreeModel) {
