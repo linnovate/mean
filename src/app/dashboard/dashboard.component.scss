@@ -2,8 +2,9 @@
   display: flex;
   justify-content: space-between;
   >div:nth-child(1) , div:nth-child(3) {
-		width: 18%;
+		width: 19%;
 		min-height: 100%;
+		background-color: white;
 	}
 	>div:nth-child(2) {
 		width: 60%;

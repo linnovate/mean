@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TreeModel, TreeNode } from 'angular-tree-component';
+import { ActivatedRoute } from '@angular/router';
 
 import { SchemaService } from '../../../schema/schema.service';
 
@@ -11,11 +12,12 @@ import { SchemaService } from '../../../schema/schema.service';
 })
 export class TreeComponent {
   @Input() set activeTab(value: string) {
+    // alert(value);
   }
   options = {};
   data = [];
 
-  constructor(schemaSvc: SchemaService) {
+  constructor(schemaSvc: SchemaService, router: ActivatedRoute) {
 
     schemaSvc.tree('platform').subscribe(data => {
       this.data = data;

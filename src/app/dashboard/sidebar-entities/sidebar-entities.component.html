@@ -1,5 +1,5 @@
 <div>
-  <mat-tab-group (selectedTabChange)="selectedTabChangeHandler($event)">
+  <mat-tab-group (selectedTabChange)="selectedTabChangeHandler($event)" [selectedIndex]="selectedIndex">
     <mat-tab *ngFor="let tab of tabs" label="{{tab.label}}">
     </mat-tab>
   </mat-tab-group>
