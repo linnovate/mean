@@ -53,7 +53,7 @@ async function tree(params) {
   const entities = await entitiesCtrl.tree(ids);
   schemas = schemas.map(s => {
     const result = entities.filter(obj => JSON.stringify(obj._id) === JSON.stringify(s._id));
-    s.children = result[0].children;
+    s.children = (result.length) ? result[0].children : [];
     s.name = s.category;
     return s;
   });

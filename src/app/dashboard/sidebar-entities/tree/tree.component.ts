@@ -11,15 +11,23 @@ import { SchemaService } from '../../../schema/schema.service';
   providers: []
 })
 export class TreeComponent {
+
   @Input() set activeTab(value: string) {
-    // alert(value);
+    this.getTreeData(value);
   }
   options = {};
   data = [];
 
-  constructor(schemaSvc: SchemaService, router: ActivatedRoute) {
+  constructor(private schemaSvc: SchemaService, router: ActivatedRoute) {
+    this.getTreeData('platform');
+  }
 
-    schemaSvc.tree('platform').subscribe(data => {
+  activateNode(event) {
+    console.log(event);
+  }
+
+  getTreeData(type) {
+    this.schemaSvc.tree(type).subscribe(data => {
       data.forEach(d => {
         if (d.children)
           d.children.map(entity => {
@@ -30,10 +38,6 @@ export class TreeComponent {
       });
       this.data = data;
     });
-  }
-
-  activateNode(event) {
-    console.log(event);
   }
 
   filterFn(value: string, treeModel: TreeModel) {
