@@ -1,16 +1,41 @@
 @import '~_settings.scss';
 
+$sctiveSignColor: #2264ac;
+
 ::ng-deep app-tree {
   width: 100%;
   display: block;
   tree-viewport {
     margin-left: 7px;
+    margin-top: 8px;
     .angular-tree-component {
       font-family: Roboto, "Helvetica Neue", sans-serif;
       font-size: 14px;
+      .tree-node-focused {
+        &.tree-node-level-2 {
+          .node-wrapper {
+            border-left: solid 2px $sctiveSignColor;
+          }
+        }
+        .tree-node-level-3 {
+          .node-wrapper {
+            border: none;
+          }
+        }
+        &.tree-node-level-3::before {
+          content: '';
+          display: inline-block;
+          width: 5px;
+          height: 5px;
+          border-radius: 2.5px;
+          -moz-border-radius: 2.5px;
+          -webkit-border-radius: 2.5px;
+          background-color: $sctiveSignColor;
+        }
+      }
       .tree-node-level-1>tree-node-wrapper>.node-wrapper>.node-content-wrapper {
-        font-weight: bold;
-        text-transform: uppercase;
+        font-weight: 500;
+        // text-transform: uppercase;
       }
       .node-content-wrapper {
         &.node-content-wrapper-active {
@@ -20,6 +45,20 @@
         &:hover {
           background: none;
           box-shadow: none;
+          .actions {
+            display: inline-block;
+          }
+        }
+        // &.node-content-wrapper-focused {
+        //   color: red;
+        // }
+        .actions {
+          display: none;
+          button {
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+          }
         }
       }
       .toggle-children-wrapper {

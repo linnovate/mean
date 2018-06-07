@@ -11,7 +11,7 @@ $custom-typography: mat-typography-config(
 
 body {
   margin: 0;
-  app-root {
+  app-root * {
     font-family: 'Exo', sans-serif;
   }
 }

@@ -83,20 +83,6 @@ async function tree(schemas) {
     {$match: {_schema: {$in: schemas}}},
     {$group:{
     _id: "$_schema",
-    name: {$first: "$name"},
-    modes: {$first: "$modes"}}},
-     { $project:
-        { 
-          children:
-           {
-             $map:
-                {
-                  input: "$modes",
-                  as: "mode",
-                  in:  {name: "$$mode.name", _id: "$$mode._id", type: 'ts'}
-                }
-           },
-           name: '$name'
-        }
+    children: {$push: "$$ROOT"}}
      }])
 }
