@@ -5,14 +5,6 @@
   "description": "description of car1",
   "label": "Platform Type Car1",
   "fields": [{
-    "key": "name",
-    "type": "text",
-    "label": "Name"
-  }, {
-    "key": "description",
-    "type": "textarea",
-    "label": "Description"
-  }, {
     "key": "sensorType",
     "type": "select",
     "label": "Sensor type",

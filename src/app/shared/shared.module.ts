@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { DynamicFormModule } from '../dynamic-form';
 
 import {
   MatToolbarModule,
@@ -18,6 +20,8 @@ import {
   MatSidenavModule,
   MatTreeModule,
   MatProgressBarModule,
+  MatFormFieldModule,
+  MatSelectModule,
 } from '@angular/material';
 
 @NgModule({
@@ -40,6 +44,10 @@ import {
     MatSidenavModule,
     MatTreeModule,
     MatProgressBarModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    FlexLayoutModule,
+    DynamicFormModule,
   ],
   exports: [
     MatToolbarModule,
@@ -59,6 +67,10 @@ import {
     MatSidenavModule,
     MatTreeModule,
     MatProgressBarModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    FlexLayoutModule,
+    DynamicFormModule,
   ],
   declarations: []
 })

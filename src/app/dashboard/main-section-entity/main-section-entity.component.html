@@ -1,0 +1,59 @@
+<header>
+  <div fxLayout="row">
+    <mat-icon fxFlex="10" class="material-icons" style="font-size: 42px;">
+      airplanemode_active
+    </mat-icon>
+    <div fxFlex="55">
+      <mat-form-field>
+        <input matInput type="text" placeholder="enter name" [(ngModel)]="name" />
+      </mat-form-field>
+      <span> - </span>
+      <mat-form-field>
+        <input matInput type="text" placeholder="enter mode name" [(ngModel)]="modeName" />
+      </mat-form-field>
+    </div>
+    <div fxFlex="15" fxFlexAlign="center">
+      <button mat-button (click)="toggleCase()">
+        <span *ngFor="let case of cases; index as i">
+          <span *ngIf="i === activeCase">
+            {{case}}
+          </span>
+        </span>
+      </button>
+    </div>
+    <mat-form-field fxFlex="20">
+      <mat-select [(ngModel)]="status">
+        <mat-option value="draft">DRAFT</mat-option>
+        <mat-option value="waiting">WAITING APPROVAL</mat-option>
+        <mat-option value="approved">APPROVED</mat-option>
+        <mat-option value="rejected">REJECTED</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row">
+    <mat-form-field fxFlex="100">
+      <textarea matInput placeholder="enter description" [(ngModel)]="description"></textarea>
+    </mat-form-field>
+  </div>
+</header>
+
+<dynamic-form [fields]="formFields" [values]="formValues"></dynamic-form>
+
+<footer fxLayout="row">
+
+  <div fxFlex="15">
+    <button fxFill mat-button (click)="cancel()">Cancel</button>
+  </div>
+
+  <div fxFlex="15">
+    <button fxFill mat-button (click)="delete()">Delete</button>
+  </div>
+
+  <!-- partition -->
+  <div fxFlex="55"></div>
+
+  <div fxFlex="15">
+    <button fxFill mat-button (click)="save()">Save</button>
+  </div>
+
+</footer>

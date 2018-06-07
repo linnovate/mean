@@ -1,34 +1,36 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
-import {map} from 'rxjs/operators'
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class EntityService {
 
   constructor(private http : HttpClient) {}
 
-  save(schemaId, data) {
-    return this
-      .http
-      .post(`/api/entity/schema/${schemaId}`, data);
+  save(data) {
+    console.log('save:', data)
   }
+
   update(id, data) {
-    return this
-      .http
-      .put(`/api/entity/${id}`, data);
+    console.log('update:', id, data)
   }
+
   findOne(id) {
     return this
       .http
       .get(`/api/entity/${id}`);
   }
+
   clone(id) {
     return this.http.get(`/api/entity/${id}/clone`);
   }
+
   delete(id) {
-    return this.http.delete(`/api/entity/${id}`);
+    console.log('delete:', id)
   }
+
   find(type) : Observable <any> {
     return Observable.create(observer => {
      this.http.get(`/api/entity/type/${type}`).subscribe((result: any) => {
