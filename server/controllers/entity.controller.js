@@ -79,10 +79,11 @@ async function list(userId, type) {
 }
 
 async function tree(schemas) {
-  return await Entity.aggregate([
-    {$match: {_schema: {$in: schemas}}},
-    {$group:{
-    _id: "$_schema",
-    children: {$push: "$$ROOT"}}
-     }])
+  return await Entity.aggregate([{
+    $match: {_schema: {$in: schemas}}},
+    {
+      $group: {
+        _id: "$_schema",
+        children: {$push: "$$ROOT"}}
+  }]);
 }

@@ -1,15 +1,18 @@
 
-<input id="filter" #filter (keyup)="tree.treeModel.filterNodes(filter.value)" placeholder="Search..." />
+
+<div class="wrapper-search">
+  <input id="filter" #filter (keyup)="tree.treeModel.filterNodes(filter.value)" placeholder="Search..." />
+  <mat-icon>search</mat-icon>
+</div>
+
 <tree-root #tree [focused]="true" [options]="options" [nodes]="data" (activate)="activateNode($event)">
     <ng-template #treeNodeTemplate let-node let-index="index">
-        <div class="name">{{ node.data.name }}
-          
-        </div>
+        <div class="name">{{ node.data.name }}</div>
         <div class="actions"> 
-            <button mat-icon-button>
+            <button mat-icon-button (click)="delete(node)" *ngIf="!node.isRoot">
                 <mat-icon>delete_outline</mat-icon>
               </button>
-              <button mat-icon-button>
+              <button mat-icon-button (click)="clone(node)">
                 <mat-icon>file_copy</mat-icon>
               </button>
         </div>

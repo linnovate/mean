@@ -39,6 +39,12 @@ export class TreeComponent {
       this.data = data;
     });
   }
+  delete(node) {
+    console.log(node);
+  }
+  clone(node) {
+    console.log(node);
+  }
 
   filterFn(value: string, treeModel: TreeModel) {
     treeModel.filterNodes((node: TreeNode) => this.fuzzysearch(value, node.data.name));
