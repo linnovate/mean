@@ -8,8 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 
 export class DynamicFormComponent implements OnInit {
 
-  @Input() schema: any;
-  @Input() json: any = {};
+  @Input() fields: any;
+  @Input() values: any = {};
   @Input() options: any = {};
   @Input() dialogRef: any;
 
@@ -24,6 +24,6 @@ export class DynamicFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.evaluate = this.evaluate.bind(this.json);
+    this.evaluate = this.evaluate.bind(this.values);
   }
 }

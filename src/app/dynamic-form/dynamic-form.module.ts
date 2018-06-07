@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   MatCardModule,
@@ -18,8 +18,8 @@ import { DynamicFormComponent } from './dynamic-form.component';
     DynamicFormComponent
   ],
   imports: [
+    CommonModule,
     FormsModule,
-    BrowserAnimationsModule,
     MatCardModule,
     MatFormFieldModule,
     MatSelectModule,

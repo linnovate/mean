@@ -1,8 +1,5 @@
 <mat-card class="example-card">
-  <mat-card-header>
-    <h1>{{schema.label}}</h1>
-  </mat-card-header>
-  <mat-card-content *ngFor="let field of schema.fields" [ngSwitch]="field.type">
+  <mat-card-content *ngFor="let field of fields" [ngSwitch]="field.type">
     <ng-container *ngSwitchCase="'select'">
       <ng-container *ngTemplateOutlet="select; context: field"></ng-container>
     </ng-container>
@@ -39,7 +36,7 @@
 
 <ng-template #select let-label="label" let-options="options" let-key="key" let-view="view" let-source="source">
   <mat-form-field>
-    <mat-select [placeholder]="label" [(ngModel)]="json[key]">
+    <mat-select [placeholder]="label" [(ngModel)]="values[key]">
       <mat-option *ngFor="let option of options" [value]="option.value">
         {{ option.label }}
       </mat-option>
@@ -51,18 +48,18 @@
 
 <ng-template #text let-label="label" let-key="key">
   <mat-form-field>
-    <input matInput type="text" [placeholder]="label" [(ngModel)]="json[key]">
+    <input matInput type="text" [placeholder]="label" [(ngModel)]="values[key]">
   </mat-form-field>
 </ng-template>
 
 <ng-template #number let-label="label" let-key="key">
   <mat-form-field>
-    <input matInput type="number" [placeholder]="label" [(ngModel)]="json[key]">
+    <input matInput type="number" [placeholder]="label" [(ngModel)]="values[key]">
   </mat-form-field>
 </ng-template>
 
 <ng-template #textarea let-label="label" let-key="key">
   <mat-form-field>
-    <textarea matInput [placeholder]="label" [(ngModel)]="json[key]"></textarea>
+    <textarea matInput [placeholder]="label" [(ngModel)]="values[key]"></textarea>
   </mat-form-field>
 </ng-template>
