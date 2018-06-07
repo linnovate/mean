@@ -2,7 +2,9 @@
 <input id="filter" #filter (keyup)="tree.treeModel.filterNodes(filter.value)" placeholder="Search..." />
 <tree-root #tree [focused]="true" [options]="options" [nodes]="data" (activate)="activateNode($event)">
     <ng-template #treeNodeTemplate let-node let-index="index">
-        <span>{{ node.data.name }}</span>
+        <div class="name">{{ node.data.name }}
+          
+        </div>
         <div class="actions"> 
             <button mat-icon-button>
                 <mat-icon>delete_outline</mat-icon>

@@ -1,7 +1,5 @@
 @import '~_settings.scss';
-
 $sctiveSignColor: #2264ac;
-
 ::ng-deep app-tree {
   width: 100%;
   display: block;
@@ -11,6 +9,21 @@ $sctiveSignColor: #2264ac;
     .angular-tree-component {
       font-family: Roboto, "Helvetica Neue", sans-serif;
       font-size: 14px;
+      .tree-node {
+        position: relative; // margin-bottom: 13px;
+        .node-wrapper {
+          margin: 2px 0;
+          &:hover {
+            .actions {
+              display: inline-block;
+            }
+          }
+
+        }
+      }
+      .tree-node-level-1 {
+        margin-bottom: 5px;
+      }
       .tree-node-focused {
         &.tree-node-level-2 {
           .node-wrapper {
@@ -31,11 +44,13 @@ $sctiveSignColor: #2264ac;
           -moz-border-radius: 2.5px;
           -webkit-border-radius: 2.5px;
           background-color: $sctiveSignColor;
+          position: absolute;
+          top: 50%;
+          transform: translate(-50%, -50%);
         }
       }
       .tree-node-level-1>tree-node-wrapper>.node-wrapper>.node-content-wrapper {
-        font-weight: 500;
-        // text-transform: uppercase;
+        font-weight: 500; // text-transform: uppercase;
       }
       .node-content-wrapper {
         &.node-content-wrapper-active {
@@ -45,19 +60,19 @@ $sctiveSignColor: #2264ac;
         &:hover {
           background: none;
           box-shadow: none;
-          .actions {
-            display: inline-block;
-          }
         }
-        // &.node-content-wrapper-focused {
-        //   color: red;
-        // }
+        .name {
+          display: inline-block;
+        }
         .actions {
           display: none;
+          position: absolute;
+          right: 10px;
+          margin-top: -10px;
           button {
-            width: 25px;
-            height: 25px;
-            line-height: 25px;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
           }
         }
       }
@@ -68,7 +83,6 @@ $sctiveSignColor: #2264ac;
       }
     }
   }
-  
   #filter {
     width: 93%;
     padding: 3.5%;
