@@ -10,17 +10,21 @@ export class EntityService {
   constructor(private http : HttpClient) {}
 
   save(data) {
-    console.log('save:', data)
-  }
-
-  update(id, data) {
-    console.log('update:', id, data)
-  }
-
-  findOne(id) {
     return this
       .http
-      .get(`/api/entity/${id}`);
+      .post(`/api/entity`, data);
+  }
+
+  update(id, modeName, data) {
+    return this
+      .http
+      .put(`/api/entity/${id}${modeName ? `/${modeName}`: ''}`, data);
+  }
+
+  findOne(id, modeName) {
+    return this
+      .http
+      .get(`/api/entity/${id}${modeName ? `/${modeName}`: ''}`);
   }
 
   clone(id) {
@@ -30,26 +34,4 @@ export class EntityService {
   delete(id) {
     console.log('delete:', id)
   }
-
-  find(type) : Observable <any> {
-    return Observable.create(observer => {
-     this.http.get(`/api/entity/type/${type}`).subscribe((result: any) => {
-       let _entities = {}, entities = [];
-      result.forEach(entity => {
-        const category = entity._schema.category;
-        if (!_entities[category]) _entities[category] = [];
-        _entities[category].push(entity);
-      });
-      for (let index in _entities) {
-        entities.push({
-          category: index,
-          entities: _entities[index]
-        });
-      }
-      observer.next(entities);
-      observer.complete();
-     });
-    })
-  }
-
 }

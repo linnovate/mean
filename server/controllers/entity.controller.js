@@ -11,35 +11,43 @@ module.exports = {
   tree,
 }
 
-async function insert(userId, schemaId, entity) {
-  entity.modes = entity.modes || [{
-    user: userId,
-    data: {}
-  }];
-  return await new Entity({
-    _schema: schemaId,
-    user: userId,
-    name: entity.name,
+async function insert(userId, entity) {
+  const schemaId = entity.schema;
+  entity._schema = schemaId;
+  entity.user = userId;
+  return await new Entity(entity).save();
+}
+
+async function update(entityId, modeName, entity) {
+  const query = {
+    _id: entityId,
+    'modes.name' : modeName
+  };
+  console.log(JSON.stringify(query))
+  const _entity = {
+    name: entity.name, 
     description: entity.description,
-    modes: utils.stringifyModesData(entity.modes)
-  }).save();
+    'modes.$': entity.modes[0],
+    updated: new Date()
+  }
+  return await Entity.findOneAndUpdate(query, {
+    $set: _entity}, {new: true});
 }
 
-async function update(entityId, entity) {
-  if (entity.modes) utils.stringifyModesData(entity.modes);
-  return await Entity.findByIdAndUpdate(entityId, {
-    $set: {
-      modes: entity.modes,
-      updated: new Date()
-    }}, {new: true});
-}
-
-async function get(entityId) {
+async function get(entityId, modeName) {
   return await new Promise((resolve, reject) => {
-    Entity.findById(entityId).populate('_schema').exec((err, doc) => {
+    let query = {_id: entityId };
+    let fields = {
+      name: 1,
+      description: 1,
+      icon: 1
+    }
+    if (modeName) {
+      query['modes.name'] = modeName;
+      fields['modes.$'] = 1;
+    }
+    Entity.findOne(query, fields).populate('_schema').exec((err, doc) => {
       if (err || !doc) return reject(err);
-      doc = doc.toObject();
-      utils.parseModesData(doc.modes);
       resolve(doc);
     })
   });

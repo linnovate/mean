@@ -15,6 +15,9 @@
               <button mat-icon-button (click)="clone(node)">
                 <mat-icon>file_copy</mat-icon>
               </button>
+              <button mat-icon-button (click)="newEntity(node)" *ngIf="node.isRoot">
+                <mat-icon>add</mat-icon>
+              </button>
         </div>
         <div class="add-mode" (click)="addMode(node); $event.preventDefault(); $event.stopPropagation();">ADD MODE</div>
       </ng-template>

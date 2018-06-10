@@ -25,7 +25,7 @@ async function upload(request) {
     form.on('end', () => {
       schema.updated = new Date();
       resolve(Schema.findOneAndUpdate({
-        name: schema.name
+        category: schema.category
       }, schema, {upsert : true}))
     });
     form.parse(request);
@@ -62,5 +62,9 @@ async function tree(params) {
 }
 
 async function list(params) {
-  return await Schema.find({type: params.type});
+  let query = {
+    type: params.type
+  };
+  if (params.category) query.category = params.category;
+  return await Schema.find(query);
 }
