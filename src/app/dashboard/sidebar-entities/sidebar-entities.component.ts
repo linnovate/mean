@@ -13,25 +13,25 @@ export class SidebarEntitiesComponent implements OnInit {
 
   public tabs = [{
     label: 'SYSTEMS',
-    link: 'system',
-    active: false
+    link: 'system'
   },{
     label: 'PLATFORMS',
-    link: 'platform',
-    active: true
+    link: 'platform'
   },{
     label: 'EQUIPMENT',
-    link: 'equipment',
-    active: false
+    link: 'equipment'
   }];
   
-  public activeTab: string = 'platform';
   public selectedIndex = 1;
+  public activeTab;
 
   constructor(
     private location: Location,
     private route: ActivatedRoute,
-  ) {}
+  ) {
+    this.activeTab = this.location.path().split('/')[1];
+    this.selectedIndex = this.tabs.findIndex(elem => elem.link === this.activeTab);
+  }
 
   selectedTabChangeHandler(tab) {
     const activeTab = this.tabs[tab.index].link;
