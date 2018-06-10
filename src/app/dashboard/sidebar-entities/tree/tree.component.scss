@@ -17,6 +17,20 @@ $sctiveSignColor: #2264ac;
         &.tree-node-level-1 {
           margin-bottom: 5px;
         }
+        &.tree-node-level-2 {
+          .tree-children {
+            tree-node:last-child {
+              .tree-node-level-3 {
+                margin-bottom: 35px;
+              }
+              .add-mode {
+                display: block !important;
+                position: absolute;
+                top: 24px;
+              }
+            }
+          }
+        }
         & .tree-node-focused {
           &.tree-node-level-2 {
             .node-wrapper {
@@ -74,6 +88,13 @@ $sctiveSignColor: #2264ac;
                 height: 35px;
                 line-height: 35px;
               }
+            }
+            .add-mode {
+              display: none;
+              margin: 10px 0px;
+              font-weight: bold;
+              color: #40C2F3;
+              font-size: 12px;
             }
           }
           tree-node-expander {
