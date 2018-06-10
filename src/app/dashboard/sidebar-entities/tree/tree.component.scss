@@ -63,7 +63,7 @@ $sctiveSignColor: #2264ac;
           margin: 2px 0;
           &:hover {
             .actions {
-              display: inline-block;
+              display: inline-block !important;
             }
           }
           .node-content-wrapper {
