@@ -54,6 +54,10 @@ export class TreeComponent {
     console.log(node);
   }
 
+  newEntity(node) {
+    this.router.navigate([this._activeTab , 'new', node.data.name]);
+  }
+
   addMode(node) {
     this.router.navigate([this._activeTab , node.parent.data._id, 'new']);
   }

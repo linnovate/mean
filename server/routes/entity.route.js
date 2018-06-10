@@ -10,33 +10,30 @@ module.exports = router;
 
 router.use(passport.authenticate('jwt', { session: false }))
 
-router.route('/schema/:schemaId')
+router.route('/')
   .post(asyncHandler(insert));
-
-router.route('/type/:type')
-  .get(asyncHandler(list))
-
-router.route('/:entityId')
-  .get(asyncHandler(get))
-  .put(asyncHandler(update))
-  .delete(asyncHandler(remove));
 
 router.route('/:entityId/clone')
   .get(asyncHandler(clone))
 
+router.route('/:entityId/:modeName')
+  .get(asyncHandler(get))
+  .put(asyncHandler(update))
+  .delete(asyncHandler(remove));
+
 async function insert(req, res) {
-  let entityData = await entityCtrl.insert(req.user, req.params.schemaId, req.body);
+  let entityData = await entityCtrl.insert(req.user, req.body);
   res.json(entityData);
 }
 
 async function get(req, res) {
-  let entityData = await entityCtrl.get(req.params.entityId);
+  let entityData = await entityCtrl.get(req.params.entityId, req.params.modeName);
   if(!entityData) throw new httpError(404);
   res.json(entityData);
 }
 
 async function update(req, res) {
-  let entityData = await entityCtrl.update(req.params.entityId, req.body);
+  let entityData = await entityCtrl.update(req.params.entityId, req.params.modeName, req.body);
   if(!entityData) throw new httpError(404);
   res.json(entityData);
 }

@@ -8,6 +8,9 @@ const routes: Routes = [{
   path: ':type',
   component: DashboardComponent,
   children: [{
+    path: 'new/:category',
+    component: MainSectionEntityComponent
+  }, {
     path: ':entityId/new',
     component: MainSectionEntityComponent
   },{

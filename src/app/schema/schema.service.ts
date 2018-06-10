@@ -7,8 +7,8 @@ export class SchemaService {
 
   constructor(private http : HttpClient) {}
 
-  find(type) : Observable <any> {
-    return this.http.get(`/api/schema?type=${type}`);
+  find(type, category?) : Observable <any> {
+    return this.http.get(`/api/schema?type=${type}${category ? `&category=${category}`: ''}`);
   }
 
   findOne(id) : Observable <any> {

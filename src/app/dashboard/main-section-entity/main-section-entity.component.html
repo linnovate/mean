@@ -37,7 +37,7 @@
   </div>
 </header>
 
-<dynamic-form [fields]="formFields" [values]="formValues"></dynamic-form>
+<dynamic-form *ngIf="formValues" [fields]="formFields" [values]="formValues"></dynamic-form>
 
 <footer fxLayout="row">
 
