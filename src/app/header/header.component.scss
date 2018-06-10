@@ -1,15 +1,9 @@
 header {
     width: 100%;
-    .logotTxt {
-      color: white;
-      font-family: 'Helvetica Neue', sans-serif;
-      font-size: 20px;
-      font-weight: bold;
-      letter-spacing: -1px;
-      line-height: 1;
-      text-align: center;
-      padding: 15px;
-      font-weight: bold;
+    .logo {
+      width: 110px;
+      height: 52.3px;
+      background-image: url('assets/logo.png')
     }
     .example-spacer {
       flex: 1 1 auto;
