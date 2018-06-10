@@ -2,14 +2,17 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
-import { TreeComponent } from './sidebar-entities/tree/tree.component';
+import { MainSectionEntityComponent } from '../dashboard/main-section-entity/main-section-entity.component';
 
 const routes: Routes = [{
-  path: '',
+  path: ':type',
   component: DashboardComponent,
   children: [{
-    path: ':schema',
-    // component: TreeComponent,
+    path: ':entityId/new',
+    component: MainSectionEntityComponent
+  },{
+    path: ':entityId/:modeName',
+    component: MainSectionEntityComponent
   }]
 }];
 
