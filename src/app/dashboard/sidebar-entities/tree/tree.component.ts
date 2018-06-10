@@ -54,6 +54,10 @@ export class TreeComponent {
     console.log(node);
   }
 
+  addMode(node) {
+    this.router.navigate([this._activeTab , node.parent.data._id, 'new']);
+  }
+
   filterFn(value: string, treeModel: TreeModel) {
     treeModel.filterNodes((node: TreeNode) => this.fuzzysearch(value, node.data.name));
   }
