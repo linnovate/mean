@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TreeModel, TreeNode } from 'angular-tree-component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { SchemaService } from '../../../schema/schema.service';
 
@@ -13,17 +13,25 @@ import { SchemaService } from '../../../schema/schema.service';
 export class TreeComponent {
 
   @Input() set activeTab(value: string) {
+    this._activeTab = value;
     this.getTreeData(value);
   }
+
   options = {};
   data = [];
+  _activeTab;
 
-  constructor(private schemaSvc: SchemaService, router: ActivatedRoute) {
-    this.getTreeData('platform');
+  constructor(private schemaSvc: SchemaService, private router: Router, private route: ActivatedRoute) {
+  }
+
+  get activeTab(): string {
+    return this._activeTab;
   }
 
   activateNode(event) {
-    console.log(event);
+    const node = event.node;
+    if (!node.isRoot && !node.hasChildren) // this is a mode node
+      this.router.navigate([this._activeTab , node.parent.data._id, node.data.name]);
   }
 
   getTreeData(type) {
