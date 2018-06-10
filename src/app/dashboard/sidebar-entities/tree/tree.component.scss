@@ -11,6 +11,40 @@ $sctiveSignColor: #2264ac;
       font-size: 14px;
       .tree-node {
         position: relative; // margin-bottom: 13px;
+        &.tree-node-level-1>tree-node-wrapper>.node-wrapper>.node-content-wrapper {
+          font-weight: 500; // text-transform: uppercase;
+        }
+        &.tree-node-level-1 {
+          margin-bottom: 5px;
+        }
+        & .tree-node-focused {
+          &.tree-node-level-2 {
+            .node-wrapper {
+              border-left: solid 3px $sctiveSignColor;
+              .toggle-children {
+                background: transparent;
+              }
+            }
+          }
+          .tree-node-level-3 {
+            .node-wrapper {
+              border: none;
+            }
+          }
+          &.tree-node-level-3::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            border-radius: 2.5px;
+            -moz-border-radius: 2.5px;
+            -webkit-border-radius: 2.5px;
+            background-color: $sctiveSignColor;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
         .node-wrapper {
           margin: 2px 0;
           &:hover {
@@ -18,69 +52,37 @@ $sctiveSignColor: #2264ac;
               display: inline-block;
             }
           }
-        }
-      }
-      .tree-node-level-1 {
-        margin-bottom: 5px;
-      }
-      .tree-node-focused {
-        &.tree-node-level-2 {
-          .node-wrapper {
-            border-left: solid 3px $sctiveSignColor;
-            .toggle-children {
-              background: transparent;
+          .node-content-wrapper {
+            &.node-content-wrapper-active {
+              background: none;
+              box-shadow: none;
+            }
+            &:hover {
+              background: none;
+              box-shadow: none;
+            }
+            .name {
+              display: inline-block;
+            }
+            .actions {
+              display: none;
+              position: absolute;
+              right: 10px;
+              margin-top: -10px;
+              button {
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+              }
             }
           }
-        }
-        .tree-node-level-3 {
-          .node-wrapper {
-            border: none;
+          tree-node-expander {
+            .toggle-children-wrapper {
+              .toggle-children {
+                height: 6px;
+              }
+            }
           }
-        }
-        &.tree-node-level-3::before {
-          content: '';
-          display: inline-block;
-          width: 5px;
-          height: 5px;
-          border-radius: 2.5px;
-          -moz-border-radius: 2.5px;
-          -webkit-border-radius: 2.5px;
-          background-color: $sctiveSignColor;
-          position: absolute;
-          top: 50%;
-          transform: translate(-50%, -50%);
-        }
-      }
-      .tree-node-level-1>tree-node-wrapper>.node-wrapper>.node-content-wrapper {
-        font-weight: 500; // text-transform: uppercase;
-      }
-      .node-content-wrapper {
-        &.node-content-wrapper-active {
-          background: none;
-          box-shadow: none;
-        }
-        &:hover {
-          background: none;
-          box-shadow: none;
-        }
-        .name {
-          display: inline-block;
-        }
-        .actions {
-          display: none;
-          position: absolute;
-          right: 10px;
-          margin-top: -10px;
-          button {
-            width: 35px;
-            height: 35px;
-            line-height: 35px;
-          }
-        }
-      }
-      .toggle-children-wrapper {
-        .toggle-children {
-          height: 6px;
         }
       }
     }
