@@ -15,8 +15,9 @@ export class MainSectionEntityComponent implements OnInit {
   name: string;
   modeName: string;
   description: string;
+  statuses: string[] = ['draft', 'waiting', 'approved', 'rejected'];
   status: string;
-  cases: string[];
+  cases: string[] = ['foe', 'friend', 'neutral'];
   activeCase: number;
   formFields: any;
   formValues: any;
@@ -111,7 +112,6 @@ export class MainSectionEntityComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.cases = ['foe', 'friend', 'neutral'];
     this.activeCase = 0;
     this.route.parent.params.subscribe(pParams => {
       this.schemaType = pParams.type;

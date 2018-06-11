@@ -110,8 +110,8 @@
     tslib "^1.9.0"
 
 "@angular/cdk@^6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-6.0.0.tgz#0e1736eca8900ce1c4e66699d09e91d4ce151f56"
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-6.2.1.tgz#6ac6e58e8557623e6615ebcb673d74bcc575641c"
   dependencies:
     tslib "^1.7.1"
 
@@ -159,9 +159,9 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/flex-layout@^5.0.0-beta.14":
-  version "5.0.0-beta.14"
-  resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-5.0.0-beta.14.tgz#300e1cba2ef1a70f43fe7ea68ea78267cb4241e4"
+"@angular/flex-layout@^6.0.0-beta.16":
+  version "6.0.0-beta.16"
+  resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-6.0.0-beta.16.tgz#e2749c2609743ff4655b09ae8873709c7a62aeae"
   dependencies:
     tslib "^1.7.1"
 
@@ -182,8 +182,8 @@
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-6.0.3.tgz#7182f3824520fd5f5f6173fdee80284356d29d08"
 
 "@angular/material@^6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@angular/material/-/material-6.0.0.tgz#9704ced8ba2eca59b04c6c6ed032a1f36f685667"
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-6.2.1.tgz#aec3387db755145b80d66d8497d4a834f88b61be"
   dependencies:
     tslib "^1.7.1"
 
