@@ -9,7 +9,7 @@
     <ng-template #treeNodeTemplate let-node let-index="index">
         <div class="name">{{ node.data.name }}</div>
         <div class="actions"> 
-            <button mat-icon-button (click)="delete(node)" *ngIf="!node.isRoot">
+            <button mat-icon-button (click)="delete(node); $event.preventDefault(); $event.stopPropagation();" *ngIf="!node.isRoot">
                 <mat-icon>delete_outline</mat-icon>
               </button>
               <button mat-icon-button (click)="clone(node)" *ngIf="!node.isRoot">

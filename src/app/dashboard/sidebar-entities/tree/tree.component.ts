@@ -56,7 +56,8 @@ export class EntitiesTreeComponent {
     const entityId = node.data._schema ? node.data._id : node.parent.data._id;
     const modeName = node.data._schema ? '' : node.data.name;
     this.entityService.delete(entityId, modeName).subscribe(entity => {
-      console.log('deleted entity', entity);
+      node.parent.data.children.splice(node.parent.data.children.findIndex(e => e.name === node.data.name), 1)
+      this.tree.treeModel.update()
     });
   }
 
