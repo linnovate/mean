@@ -74,7 +74,7 @@ export class MainSectionEntityComponent implements OnInit {
   }
 
   cancel() {
-    console.log('cancel() was invoked')
+    this.initInitialValues(this.schema, this.entity)
   }
 
   delete() {
@@ -88,14 +88,14 @@ export class MainSectionEntityComponent implements OnInit {
     this.schema = schema;
     entity = entity || {};
     entity.modes = entity.modes || [{}];
-    const mode = entity.modes[0];
+    let mode = entity.modes[0];
     this.name = entity.name || '';
     this.modeName = mode.name || '';
     this.originalModeName = this.modeName;
     this.description = entity.description || '';
     this.status = mode.status || 'draft';
     this.formFields = schema.fields;
-    this.formValues = mode.data || {};
+    this.formValues = Object.assign({}, mode.data);
   }
 
   initExistsEntity(params) {
