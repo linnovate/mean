@@ -49,19 +49,19 @@ export class TreeComponent {
     });
   }
   delete(node) {
-    let entityId, modeName;
-    if (node.data._schema) entityId = node.data._id;
-    else {
-      entityId = node.parent.data._id;
-      modeName = node.data.name;
-    }
+    const entityId = node.data._schema ? node.data._id : node.parent.data._id;
+    const modeName = node.data._schema ? '' : node.data.name;
     this.entityService.delete(entityId, modeName).subscribe(entity => {
       console.log('deleted entity', entity);
     });
   }
 
   clone(node) {
-    console.log(node);
+    const entityId = node.data._schema ? node.data._id : node.parent.data._id;
+    const modeName = node.data._schema ? '' : node.data.name;
+    this.entityService.clone(entityId, modeName).subscribe(entity => {
+      console.log('deleted entity', entity);
+    });
   }
 
   newEntity(node) {

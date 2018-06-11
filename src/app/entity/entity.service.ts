@@ -27,8 +27,8 @@ export class EntityService {
       .get(`/api/entity/${id}${modeName ? `/${modeName}`: ''}`);
   }
 
-  clone(id) {
-    return this.http.get(`/api/entity/${id}/clone`);
+  clone(id, modeName) {
+    return this.http.get(`/api/entity/clone/${id}${modeName ? `/${modeName}`: ''}`);
   }
 
   delete(id, modeName) {
