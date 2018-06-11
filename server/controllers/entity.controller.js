@@ -66,8 +66,10 @@ async function get(entityId, modeName) {
   });
 }
 
-async function remove(entityId) {
-  return await Entity.findByIdAndDelete(entityId);
+async function remove(entityId, modeName) {
+  // system must have no this entity as a dependency
+  if (!modeName) return await Entity.findByIdAndDelete(entityId);
+  return await Entity.findOneAndUpdate({_id: entityId}, {$pull: {modes: {name: modeName}}}, {new: true});
 }
 
 async function clone(entityId) {
