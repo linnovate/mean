@@ -1,59 +1,74 @@
-<header>
-  <div fxLayout="row">
-    <mat-icon fxFlex="10" class="material-icons" style="font-size: 42px;">
-      airplanemode_active
-    </mat-icon>
-    <div fxFlex="55">
-      <mat-form-field>
-        <input matInput type="text" placeholder="enter name" [(ngModel)]="name" />
-      </mat-form-field>
-      <span> - </span>
-      <mat-form-field>
-        <input matInput type="text" placeholder="enter mode name" [(ngModel)]="modeName" />
-      </mat-form-field>
-    </div>
-    <div fxFlex="15" fxFlexAlign="center">
-      <button mat-button (click)="toggleCase()">
-        <span *ngFor="let case of cases; index as i">
-          <span *ngIf="i === activeCase">
-            {{case}}
+<div class="main-section">
+  <header>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+      <div fxFlex="10" class="main-section-icon">
+        <mat-icon class="material-icons">
+          airplanemode_active
+        </mat-icon>
+      </div>
+      <div fxFlex="25">
+        <input type="text" placeholder="enter name" [(ngModel)]="name" />
+      </div>
+      <div fxFlex="5">
+        <span>&ndash;</span>
+      </div>
+      <div fxFlex="25">
+        <input type="text" placeholder="enter mode name" [(ngModel)]="modeName" />
+      </div>
+      <div fxFlex="15" class="toggle-case-wrapper">
+        <div (click)="toggleCase()" [ngClass]="cases[activeCase]" class="toggle-case">
+          <span *ngFor="let case of cases; index as i">
+            <span *ngIf="i === activeCase">
+              {{case | uppercase}}
+            </span>
           </span>
-        </span>
-      </button>
+        </div>
+      </div>
+      <mat-form-field fxFlex="15">
+        <mat-select [(ngModel)]="status" class="main-section-select">
+          <mat-option *ngFor="let status of statuses" [value]="status" class="main-section-select-options">
+            {{status | uppercase}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div fxFlex="5" class="main-section-menu">
+        <button mat-button [matMenuTriggerFor]="menu">
+          <mat-icon class="material-icons">
+            more_vert
+          </mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>IMPORT VALUES</button>
+          <button mat-menu-item>EXPORT VALUES</button>
+        </mat-menu>
+      </div>
     </div>
-    <mat-form-field fxFlex="20">
-      <mat-select [(ngModel)]="status">
-        <mat-option value="draft">DRAFT</mat-option>
-        <mat-option value="waiting">WAITING APPROVAL</mat-option>
-        <mat-option value="approved">APPROVED</mat-option>
-        <mat-option value="rejected">REJECTED</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div fxLayout="row">
-    <mat-form-field fxFlex="100">
-      <textarea matInput placeholder="enter description" [(ngModel)]="description"></textarea>
-    </mat-form-field>
-  </div>
-</header>
+    <div fxLayout="row">
+      <mat-form-field fxFlex="100">
+        <textarea matInput placeholder="enter description" [(ngModel)]="description"></textarea>
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+  </header>
 
-<dynamic-form *ngIf="formValues" [fields]="formFields" [values]="formValues"></dynamic-form>
+  <dynamic-form *ngIf="formValues" [fields]="formFields" [values]="formValues"></dynamic-form>
 
-<footer fxLayout="row">
+  <footer fxLayout="row">
 
-  <div fxFlex="15">
-    <button fxFill mat-button (click)="cancel()">Cancel</button>
-  </div>
+    <div fxFlex="15">
+      <button fxFill mat-button (click)="cancel()">CANCEL</button>
+    </div>
 
-  <div fxFlex="15">
-    <button fxFill mat-button (click)="delete()">Delete</button>
-  </div>
+    <div fxFlex="15">
+      <button fxFill mat-button (click)="delete()" style="color: #ed401e;">DELETE</button>
+    </div>
 
-  <!-- partition -->
-  <div fxFlex="55"></div>
+    <!-- partition -->
+    <div fxFlex="55"></div>
 
-  <div fxFlex="15">
-    <button fxFill mat-button (click)="save()">Save</button>
-  </div>
+    <div fxFlex="15">
+      <button fxFill mat-button (click)="save()" style="color: #4bc1f2;">SAVE</button>
+    </div>
 
-</footer>
+  </footer>
+</div>

@@ -1,5 +1,5 @@
-<mat-card class="example-card">
-  <mat-card-content *ngFor="let field of fields" [ngSwitch]="field.type">
+<div>
+  <div *ngFor="let field of fields" [ngSwitch]="field.type">
     <ng-container *ngSwitchCase="'select'">
       <ng-container *ngTemplateOutlet="select; context: field"></ng-container>
     </ng-container>
@@ -30,9 +30,8 @@
         </div>
       </mat-tab>
     </mat-tab-group>
-  </mat-card-content>
-  <!-- <button mat-button (click)="save()">Save</button> -->
-</mat-card>
+  </div>
+</div>
 
 <ng-template #select let-label="label" let-options="options" let-key="key" let-view="view" let-source="source">
   <mat-form-field>
