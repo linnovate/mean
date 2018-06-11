@@ -16,7 +16,7 @@ router.route('/')
 router.route('/:entityId/clone')
   .get(asyncHandler(clone))
 
-router.route('/:entityId/:modeName')
+router.route('/:entityId/:modeName?')
   .get(asyncHandler(get))
   .put(asyncHandler(update))
   .delete(asyncHandler(remove));
