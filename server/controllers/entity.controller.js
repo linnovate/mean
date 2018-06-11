@@ -78,7 +78,7 @@ async function cloneMode(entityId, modeName) {
       if (err || !doc) return reject();
       const mode = doc.modes[0];
       mode.name = `${mode.name} (copy)`;
-      return resolve(Entity.findByIdAndUpdate(entityId, {$push: {modes: mode}}));
+      return resolve(Entity.findOneAndUpdate({_id: entityId}, {$push: {modes: mode}}, {new: true}));
     });
   });
 }

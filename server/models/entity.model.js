@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const EntitySchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   description: String,
   _schema: {
@@ -20,7 +20,7 @@ const EntitySchema = new mongoose.Schema({
   modes: [{
     name: {
       type: String,
-      required: true
+      required: true,
     },
     description: String,
     data: {},
@@ -43,4 +43,6 @@ const EntitySchema = new mongoose.Schema({
   versionKey: false
 });
 
+EntitySchema.index({ _schema: 1, name: 1 }, { unique: true });
+EntitySchema.index({ 'modes.name': 1, name: 1, _schema: 1 }, { unique: true });
 module.exports = mongoose.model('Entity', EntitySchema);

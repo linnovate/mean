@@ -11,7 +11,7 @@ import { DashboardComponent } from './dashboard.component';
 import { MainSectionEntityComponent } from './main-section-entity/main-section-entity.component';
 import { SidebarEntitiesComponent } from './sidebar-entities/sidebar-entities.component';
 import { SidebarActionsComponent } from './sidebar-actions/sidebar-actions.component';
-import { TreeComponent } from './sidebar-entities/tree/tree.component';
+import { EntitiesTreeComponent } from './sidebar-entities/tree/tree.component';
 
 /* Services */
 import { EntityService } from '../entity/entity.service';
@@ -30,7 +30,7 @@ import { SchemaService } from '../schema/schema.service';
     MainSectionEntityComponent,
     SidebarEntitiesComponent,
     SidebarActionsComponent,
-    TreeComponent,
+    EntitiesTreeComponent,
   ],
   providers: [
     EntityService,
