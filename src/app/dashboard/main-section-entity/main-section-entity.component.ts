@@ -22,7 +22,7 @@ export class MainSectionEntityComponent implements OnInit {
   formValues: any;
   schema: any;
   entity: any;
-  type: string;
+  schemaType: string;
   originalModeName: string;
 
   toggleCase() {
@@ -32,6 +32,7 @@ export class MainSectionEntityComponent implements OnInit {
   }
 
   update() {
+    // if originalModeName === '' it is a new mode
     this.entityService.update(this.entity._id, this.originalModeName, {
       name: this.name,
       description: this.description,
@@ -42,9 +43,7 @@ export class MainSectionEntityComponent implements OnInit {
         data: this.formValues
       }]
     }).subscribe((entity: any) => {
-      //check how to get the type here
-      if (this.originalModeName !== this.modeName)
-        this.router.navigate(['entity', entity._id, entity.modes[0].name])
+      this.router.navigate([this.schemaType, entity._id, this.modeName]);
     });
   }
 
@@ -61,7 +60,7 @@ export class MainSectionEntityComponent implements OnInit {
         data: this.formValues
       }]
     }).subscribe((entity: any) => {
-      this.router.navigate([this.type, entity._id, entity.modes[0].name])
+      this.router.navigate([this.schemaType, entity._id, entity.modes[0].name])
     });
   }
 
@@ -97,26 +96,21 @@ export class MainSectionEntityComponent implements OnInit {
     });
   }
 
-  initNewEntity() {
-    //get parent params to find entity type (platform or equipment)
-    this.route.parent.params.subscribe(pParams => {
-      // get current params to get the entity category
-      this.route.params.subscribe(params => {
-        this.type = params.type;
-        this.schemaService.find(pParams.type, params.category).subscribe(schema => {
-        this.initInitialValues(schema[0]);
-        })
-      });
+  initNewEntity(category) {
+    this.schemaService.find(this.schemaType, category).subscribe(schema => {
+      this.initInitialValues(schema[0]);
     });
   }
   
   ngOnInit() {
     this.cases = ['foe', 'friend', 'neutral'];
     this.activeCase = 0;
-    this.route.params.subscribe(params => {
-      if (params.entityId) return this.initExistsEntity(params);
-      this.initNewEntity();
+    this.route.parent.params.subscribe(pParams => {
+      this.schemaType = pParams.type;
+      this.route.params.subscribe(params => {
+        if (params.entityId) return this.initExistsEntity(params);
+        this.initNewEntity(params.category);
+      });
     });
   }
-
 }
