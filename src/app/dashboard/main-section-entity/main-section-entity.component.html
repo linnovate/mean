@@ -7,13 +7,19 @@
         </mat-icon>
       </div>
       <div fxFlex="25">
-        <input type="text" placeholder="enter name" [(ngModel)]="name" />
+        <mat-form-field>
+          <input matInput type="text" placeholder="enter name" [(ngModel)]="name" required />
+          <mat-error>name is required</mat-error>
+        </mat-form-field>
       </div>
       <div fxFlex="5">
         <span>&ndash;</span>
       </div>
       <div fxFlex="25">
-        <input type="text" placeholder="enter mode name" [(ngModel)]="modeName" />
+        <mat-form-field>
+          <input matInput type="text" placeholder="enter mode name" [(ngModel)]="modeName" required />
+          <mat-error>mode name is required</mat-error>
+        </mat-form-field>
       </div>
       <div fxFlex="15" class="toggle-case-wrapper">
         <div (click)="toggleCase()" [ngClass]="cases[activeCase]" class="toggle-case">
@@ -45,7 +51,8 @@
     </div>
     <div fxLayout="row">
       <mat-form-field fxFlex="100">
-        <textarea matInput placeholder="enter description" [(ngModel)]="description"></textarea>
+        <textarea matInput placeholder="enter description" [(ngModel)]="description" required></textarea>
+        <mat-error>description is required</mat-error>
       </mat-form-field>
     </div>
     <mat-divider></mat-divider>

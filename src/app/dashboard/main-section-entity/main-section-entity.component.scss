@@ -11,12 +11,6 @@
 
   header {
     margin-top: 16px;
-    input {
-      font-size: 26px;
-      border: none;
-      outline: 0;
-      width: 100%;
-    }
   }
 
   footer {
@@ -78,7 +72,6 @@
 
 .toggle-case,
 .main-section-select,
-.main-section-select-options,
-.main-section {
+.main-section-select-options {
   font-weight: bold;
 }
