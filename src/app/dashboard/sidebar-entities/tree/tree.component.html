@@ -12,7 +12,7 @@
             <button mat-icon-button (click)="delete(node)" *ngIf="!node.isRoot">
                 <mat-icon>delete_outline</mat-icon>
               </button>
-              <button mat-icon-button (click)="clone(node)">
+              <button mat-icon-button (click)="clone(node)" *ngIf="!node.isRoot">
                 <mat-icon>file_copy</mat-icon>
               </button>
               <button mat-icon-button (click)="newEntity(node)" *ngIf="node.isRoot">

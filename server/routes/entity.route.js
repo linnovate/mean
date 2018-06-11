@@ -13,7 +13,7 @@ router.use(passport.authenticate('jwt', { session: false }))
 router.route('/')
   .post(asyncHandler(insert));
 
-router.route('/:entityId/clone')
+router.route('/clone/:entityId/:modeName?')
   .get(asyncHandler(clone))
 
 router.route('/:entityId/:modeName?')
@@ -45,7 +45,7 @@ async function list(req, res) {
 }
 
 async function clone(req, res) {
-  let clonedEntity = await entityCtrl.clone(req.params.entityId);
+  let clonedEntity = await entityCtrl.clone(req.params.entityId, req.params.modeName);
   if (!clonedEntity) throw new httpError(404);
   res.json(clonedEntity);
 }

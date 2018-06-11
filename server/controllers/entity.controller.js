@@ -72,10 +72,23 @@ async function remove(entityId, modeName) {
   return await Entity.findOneAndUpdate({_id: entityId}, {$pull: {modes: {name: modeName}}}, {new: true});
 }
 
-async function clone(entityId) {
+async function cloneMode(entityId, modeName) {
+  return await new Promise((resolve, reject) => {
+    Entity.findOne({_id: entityId, 'modes.name': modeName}, {'modes.$' : 1}).exec((err, doc) => {
+      if (err || !doc) return reject();
+      const mode = doc.modes[0];
+      mode.name = `${mode.name} (copy)`;
+      return resolve(Entity.findByIdAndUpdate(entityId, {$push: {modes: mode}}));
+    });
+  });
+}
+
+async function clone(entityId, modeName) {
+  if (modeName) return cloneMode(entityId, modeName);
   return await new Promise((resolve, reject) => {
     Entity.findById(entityId).exec((err, doc) => {
       if (err || !doc) return reject();
+      doc.name = `${doc.name} (copy)`;
       delete doc._doc._id;
       doc.isNew = true;
       return resolve(new Entity(doc).save());
