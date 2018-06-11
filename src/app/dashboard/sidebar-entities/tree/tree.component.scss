@@ -30,6 +30,11 @@ $sctiveSignColor: #2264ac;
               }
             }
           }
+          .toggle-children-wrapper {
+            .toggle-children {
+              background: transparent;
+            }
+          }
         }
         & .tree-node-focused {
           &.tree-node-level-2 {

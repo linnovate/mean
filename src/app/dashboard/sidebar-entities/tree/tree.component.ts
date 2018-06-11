@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
 import { TreeModel, TreeNode, TreeComponent } from 'angular-tree-component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 import { SchemaService } from '../../../schema/schema.service';
 import { EntityService } from '../../../entity/entity.service';
@@ -25,8 +26,17 @@ export class EntitiesTreeComponent {
   options = {};
   data = [];
   _activeTab;
+  subscription: Subscription;
 
   constructor(private schemaSvc: SchemaService, private router: Router, private route: ActivatedRoute, private entityService: EntityService) {
+    this.subscription = this.entityService.subject.subscribe(data => {
+      this.getTreeData(this._activeTab);
+      // if (!this.tree.treeModel.focusedNode) return;
+      // if (data.action === 'new entity') this.tree.treeModel.focusedNode.data.children.push(data.entity);
+      // if (data.action === 'update mode') this.tree.treeModel.focusedNode.data = data.mode;
+      // if (data.action === 'new mode') this.tree.treeModel.focusedNode.data.children.push(data.mode);
+      // this.tree.treeModel.update();
+    });
   }
 
   get activeTab(): string {
@@ -35,7 +45,8 @@ export class EntitiesTreeComponent {
 
   activateNode(event) {
     const node = event.node;
-    if (!node.isRoot && !node.hasChildren) // this is a mode node
+    if (node.level === 2) node.expandAll();
+    if (node.level === 3) // this is a mode node
       this.router.navigate([this._activeTab , node.parent.data._id, node.data.name]);
   }
 
@@ -65,8 +76,7 @@ export class EntitiesTreeComponent {
     const entityId = node.data._schema ? node.data._id : node.parent.data._id;
     const modeName = node.data._schema ? '' : node.data.name;
     this.entityService.clone(entityId, modeName).subscribe((entity: any) => {
-      if (node.level === 2 /* entity */) this.data[node.parent.index].children.push(entity);
-      else if (node.level === 3 /* mode */) this.data[node.parent.parent.index].children[node.parent.index].children.push(entity.modes.pop())
+      node.parent.data.children.push((node.level === 2) ? entity : entity.modes.pop());
       this.tree.treeModel.update();
     });
   }
@@ -107,5 +117,9 @@ export class EntitiesTreeComponent {
       return false;
     }
     return true;
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
