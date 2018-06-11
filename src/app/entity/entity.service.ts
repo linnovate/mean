@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EntityService {
 
+  public subject = new Subject<any>();
+
   constructor(private http : HttpClient) {}
+
 
   save(data) {
     return this

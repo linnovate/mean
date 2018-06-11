@@ -44,6 +44,10 @@ export class MainSectionEntityComponent implements OnInit {
       }]
     }).subscribe((entity: any) => {
       this.router.navigate([this.schemaType, entity._id, this.modeName]);
+      this.entityService.subject.next({
+        action: this.originalModeName === '' ? 'new mode' : 'update mode',
+        mode: entity.modes.find(e => e.name === this.modeName)
+      });
     });
   }
 
@@ -60,7 +64,11 @@ export class MainSectionEntityComponent implements OnInit {
         data: this.formValues
       }]
     }).subscribe((entity: any) => {
-      this.router.navigate([this.schemaType, entity._id, entity.modes[0].name])
+      this.router.navigate([this.schemaType, entity._id, entity.modes[0].name]);
+      this.entityService.subject.next({
+        action: 'new entity',
+        entity: entity
+      });
     });
   }
 
