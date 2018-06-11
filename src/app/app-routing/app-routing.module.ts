@@ -8,7 +8,7 @@ const routes : Routes = [
     path: '',
     loadChildren: 'app/dashboard/dashboard.module#DashboardModule'
   }, {
-    path: 'schemas',
+    path: 'upload/schema',
     component: SchemaComponent,
     // canActivate: [OnlyAdminUsersGuard]
   }, {

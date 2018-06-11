@@ -28,7 +28,7 @@ const EntitySchema = new mongoose.Schema({
       required: true,
       type: String,
       default: 'draft',
-      enum: ['draft', 'reviewed', 'needs review', 'active']
+      enum: ['draft', 'reviewed', 'needs review', 'active', 'waiting', 'approved', 'rejected']
     },
     created: {
       type: Date,

@@ -20,7 +20,7 @@ export class MainSectionEntityComponent implements OnInit {
   activeCase: number;
   formFields: any;
   formValues: any;
-  schema: string;
+  schema: any;
   entity: any;
   type: string;
   originalModeName: string;
@@ -51,7 +51,7 @@ export class MainSectionEntityComponent implements OnInit {
   save() {
     if (this.entity) return this.update(); 
     this.entityService.save({
-      schema: this.schema,
+      schema: this.schema._id,
       name: this.name,
       description: this.description,
       case: this.cases[this.activeCase],
@@ -77,15 +77,13 @@ export class MainSectionEntityComponent implements OnInit {
 
 
   initInitialValues(schema, entity?) {
-    this.schema = schema._id;
-    entity = entity|| {
-      modes: []
-    };
-    const mode = entity.modes[0] || {};
+    this.schema = schema;
+    entity = entity || {};
+    entity.modes = entity.modes || [{}];
+    const mode = entity.modes[0];
     this.name = entity.name || '';
     this.modeName = mode.name || '';
     this.originalModeName = this.modeName;
-    console.log(this.modeName);
     this.description = entity.description || '';
     this.status = mode.status || 'draft';
     this.formFields = schema.fields;
@@ -100,7 +98,9 @@ export class MainSectionEntityComponent implements OnInit {
   }
 
   initNewEntity() {
+    //get parent params to find entity type (platform or equipment)
     this.route.parent.params.subscribe(pParams => {
+      // get current params to get the entity category
       this.route.params.subscribe(params => {
         this.type = params.type;
         this.schemaService.find(pParams.type, params.category).subscribe(schema => {

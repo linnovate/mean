@@ -12,26 +12,39 @@ module.exports = {
 }
 
 async function insert(userId, entity) {
-  const schemaId = entity.schema;
-  entity._schema = schemaId;
+  entity._schema = entity.schema;
   entity.user = userId;
   return await new Entity(entity).save();
 }
 
 async function update(entityId, modeName, entity) {
-  const query = {
+  let query, update, _entity;
+
+  query = {
     _id: entityId,
-    'modes.name' : modeName
   };
-  console.log(JSON.stringify(query))
-  const _entity = {
+
+  _entity = {
     name: entity.name, 
     description: entity.description,
-    'modes.$': entity.modes[0],
     updated: new Date()
+  };
+
+  update = {
+    $set: _entity
+  };
+
+  if (modeName) { // update existing mode
+    query['modes.name'] = modeName;
+    _entity['modes.$'] = entity.modes[0];
   }
-  return await Entity.findOneAndUpdate(query, {
-    $set: _entity}, {new: true});
+  else { // push new mode
+    update['$push'] = {
+      modes: entity.modes[0]
+    }
+  }
+
+  return await Entity.findOneAndUpdate(query, update, {new: true});
 }
 
 async function get(entityId, modeName) {
