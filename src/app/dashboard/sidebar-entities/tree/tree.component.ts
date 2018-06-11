@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { TreeModel, TreeNode } from 'angular-tree-component';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { TreeModel, TreeNode, TreeComponent } from 'angular-tree-component';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { SchemaService } from '../../../schema/schema.service';
@@ -11,7 +11,11 @@ import { EntityService } from '../../../entity/entity.service';
   styleUrls: ['./tree.component.scss'],
   providers: []
 })
-export class TreeComponent {
+export class EntitiesTreeComponent {
+
+
+  @ViewChild(TreeComponent)
+  private tree: TreeComponent;
 
   @Input() set activeTab(value: string) {
     this._activeTab = value;
@@ -59,8 +63,10 @@ export class TreeComponent {
   clone(node) {
     const entityId = node.data._schema ? node.data._id : node.parent.data._id;
     const modeName = node.data._schema ? '' : node.data.name;
-    this.entityService.clone(entityId, modeName).subscribe(entity => {
-      console.log('deleted entity', entity);
+    this.entityService.clone(entityId, modeName).subscribe((entity: any) => {
+      if (node.level === 2 /* entity */) this.data[node.parent.index].children.push(entity);
+      else if (node.level === 3 /* mode */) this.data[node.parent.parent.index].children[node.parent.index].children.push(entity.modes.pop())
+      this.tree.treeModel.update();
     });
   }
 

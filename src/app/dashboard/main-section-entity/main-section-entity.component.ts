@@ -69,7 +69,7 @@ export class MainSectionEntityComponent implements OnInit {
   }
 
   delete() {
-    this.entityService.delete('1')
+    // this.entityService.delete('1')
   }
 
   constructor(private entityService: EntityService, private route: ActivatedRoute, private schemaService: SchemaService, private router: Router) { }
