@@ -31,7 +31,9 @@ export class EntityService {
     return this.http.get(`/api/entity/${id}/clone`);
   }
 
-  delete(id) {
-    console.log('delete:', id)
+  delete(id, modeName) {
+    return this
+      .http
+      .delete(`/api/entity/${id}${modeName ? `/${modeName}`: ''}`);
   }
 }

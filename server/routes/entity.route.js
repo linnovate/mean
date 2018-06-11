@@ -51,7 +51,7 @@ async function clone(req, res) {
 }
 
 async function remove(req, res) {
-  let entity = await entityCtrl.remove(req.params.entityId);
+  let entity = await entityCtrl.remove(req.params.entityId, req.params.modeName);
   if(!entity) throw new httpError(404);
   res.json(entity);
 }

@@ -3,6 +3,7 @@ import { TreeModel, TreeNode } from 'angular-tree-component';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { SchemaService } from '../../../schema/schema.service';
+import { EntityService } from '../../../entity/entity.service';
 
 @Component({
   selector: 'app-tree',
@@ -21,7 +22,7 @@ export class TreeComponent {
   data = [];
   _activeTab;
 
-  constructor(private schemaSvc: SchemaService, private router: Router, private route: ActivatedRoute) {
+  constructor(private schemaSvc: SchemaService, private router: Router, private route: ActivatedRoute, private entityService: EntityService) {
   }
 
   get activeTab(): string {
@@ -48,8 +49,17 @@ export class TreeComponent {
     });
   }
   delete(node) {
-    console.log(node);
+    let entityId, modeName;
+    if (node.data._schema) entityId = node.data._id;
+    else {
+      entityId = node.parent.data._id;
+      modeName = node.data.name;
+    }
+    this.entityService.delete(entityId, modeName).subscribe(entity => {
+      console.log('deleted entity', entity);
+    });
   }
+
   clone(node) {
     console.log(node);
   }
