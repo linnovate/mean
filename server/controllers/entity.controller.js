@@ -27,6 +27,7 @@ async function update(entityId, modeName, entity) {
   _entity = {
     name: entity.name, 
     description: entity.description,
+    iff: entity.iff,
     updated: new Date()
   };
 
@@ -53,7 +54,8 @@ async function get(entityId, modeName) {
     let fields = {
       name: 1,
       description: 1,
-      icon: 1
+      icon: 1,
+      iff: 1,
     }
     if (modeName) {
       query['modes.name'] = modeName;

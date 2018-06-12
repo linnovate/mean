@@ -17,8 +17,8 @@ export class MainSectionEntityComponent implements OnInit {
   description: string;
   statuses: string[] = ['draft', 'waiting', 'approved', 'rejected'];
   status: string;
-  cases: string[] = ['foe', 'friend', 'neutral'];
-  activeCase: number;
+  iff: string[] = ['foe', 'friend', 'neutral'];
+  activeIff: number;
   formFields: any;
   formValues: any;
   schema: any;
@@ -27,9 +27,9 @@ export class MainSectionEntityComponent implements OnInit {
   originalModeName: string;
 
   toggleCase() {
-    let active = this.activeCase;
-    let maxLength = this.cases.length - 2;
-    this.activeCase = active > maxLength ? 0: active + 1;
+    let active = this.activeIff;
+    let maxLength = this.iff.length - 2;
+    this.activeIff = active > maxLength ? 0: active + 1;
   }
 
   update() {
@@ -37,7 +37,7 @@ export class MainSectionEntityComponent implements OnInit {
     this.entityService.update(this.entity._id, this.originalModeName, {
       name: this.name,
       description: this.description,
-      case: this.cases[this.activeCase],
+      iff: this.iff[this.activeIff],
       modes: [{
         name: this.modeName,
         status: this.status,
@@ -58,7 +58,7 @@ export class MainSectionEntityComponent implements OnInit {
       schema: this.schema._id,
       name: this.name,
       description: this.description,
-      case: this.cases[this.activeCase],
+      iff: this.iff[this.activeIff],
       modes: [{
         name: this.modeName,
         status: this.status,
@@ -94,6 +94,7 @@ export class MainSectionEntityComponent implements OnInit {
     this.originalModeName = this.modeName;
     this.description = entity.description || '';
     this.status = mode.status || 'draft';
+    this.activeIff = this.entity.iff ? this.iff.indexOf(entity.iff) : 0;
     this.formFields = schema.fields;
     this.formValues = Object.assign({}, mode.data);
   }
@@ -112,7 +113,6 @@ export class MainSectionEntityComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.activeCase = 0;
     this.route.parent.params.subscribe(pParams => {
       this.schemaType = pParams.type;
       this.route.params.subscribe(params => {
