@@ -5,9 +5,6 @@ import { DashboardComponent } from './dashboard.component';
 import { MainSectionEntityComponent } from '../dashboard/main-section-entity/main-section-entity.component';
 
 const routes: Routes = [{
-  path: '',
-  redirectTo: 'platform',
-},{
   path: ':type',
   component: DashboardComponent,
   children: [{
