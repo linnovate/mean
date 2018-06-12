@@ -16,6 +16,9 @@ $activeSignColor: #2264ac;
         }
         &.tree-node-level-1 {
           margin-bottom: 5px;
+          > tree-node-children > .tree-children {
+            padding-left: 0;
+          }
         }
         &.tree-node-level-2 {
           .tree-children {
