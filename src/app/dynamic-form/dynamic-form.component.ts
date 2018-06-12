@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'dynamic-form',
   templateUrl: './dynamic-form.component.html',
-  styleUrls: ['./dynamic-form.component.css']
+  styleUrls: ['./dynamic-form.component.scss']
 })
 
 export class DynamicFormComponent implements OnInit {
