@@ -1,7 +1,7 @@
 
 
 <div class="wrapper-search">
-  <input id="filter" #filter (keyup)="tree.treeModel.filterNodes(filter.value)" placeholder="Search..." />
+  <input id="filter" #filter (keyup)="filterFn(filter.value, tree.treeModel)" placeholder="Search..." />
   <mat-icon>search</mat-icon>
 </div>
 

@@ -91,7 +91,11 @@ export class EntitiesTreeComponent {
   }
 
   filterFn(value: string, treeModel: TreeModel) {
-    treeModel.filterNodes((node: TreeNode) => this.fuzzysearch(value, node.data.name));
+    treeModel.filterNodes((node: TreeNode) => {
+      let returnVal = this.fuzzysearch(value, node.data.name);
+      returnVal = (node.level === 3 && !returnVal && this.fuzzysearch(value, node.parent.data.name)) ? true : returnVal;
+      return returnVal;
+    });
   }
 
   fuzzysearch (needle: string, haystack: string) {
