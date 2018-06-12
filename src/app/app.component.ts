@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import { MatIconRegistry } from "@angular/material";
+import { DomSanitizer } from "@angular/platform-browser";
+
 
 import { AuthService } from './auth/auth.service';
 import * as schema from './schema/equipment.json';
@@ -17,8 +20,12 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private domSanitizer: DomSanitizer,
+    public matIconRegistry: MatIconRegistry
+  ) {
+    ['delete', 'clone', 'add'].forEach(icon => matIconRegistry.addSvgIcon(icon, domSanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${icon}.svg`)));
+  }
 
   public ngOnInit() {
 
