@@ -76,6 +76,7 @@ export class EntitiesTreeComponent {
     const entityId = node.data._schema ? node.data._id : node.parent.data._id;
     const modeName = node.data._schema ? '' : node.data.name;
     this.entityService.clone(entityId, modeName).subscribe((entity: any) => {
+      entity.children = entity.modes;
       node.parent.data.children.push((node.level === 2) ? entity : entity.modes.pop());
       this.tree.treeModel.update();
     });
