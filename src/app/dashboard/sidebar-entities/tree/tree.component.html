@@ -10,13 +10,13 @@
         <div class="name">{{ node.data.name }}</div>
         <div class="actions"> 
             <button mat-icon-button (click)="delete(node); $event.preventDefault(); $event.stopPropagation();" *ngIf="!node.isRoot">
-                <mat-icon>delete_outline</mat-icon>
+                <mat-icon svgIcon="delete"></mat-icon>
               </button>
               <button mat-icon-button (click)="clone(node)" *ngIf="!node.isRoot">
-                <mat-icon>file_copy</mat-icon>
+                <mat-icon svgIcon="clone"></mat-icon>
               </button>
               <button mat-icon-button (click)="newEntity(node)" *ngIf="node.isRoot">
-                <mat-icon>add</mat-icon>
+                <mat-icon svgIcon="add"></mat-icon>
               </button>
         </div>
         <div class="add-mode" (click)="addMode(node); $event.preventDefault(); $event.stopPropagation();">ADD MODE</div>
