@@ -1,5 +1,5 @@
 @import '~_settings.scss';
-$sctiveSignColor: #2264ac;
+$activeSignColor: #2264ac;
 ::ng-deep app-tree {
   width: 100%;
   display: block;
@@ -39,7 +39,7 @@ $sctiveSignColor: #2264ac;
         & .tree-node-focused {
           &.tree-node-level-2 {
             .node-wrapper {
-              border-left: solid 3px $sctiveSignColor;
+              border-left: solid 3px $activeSignColor;
               .toggle-children {
                 background: transparent;
               }
@@ -58,7 +58,7 @@ $sctiveSignColor: #2264ac;
             border-radius: 2.5px;
             -moz-border-radius: 2.5px;
             -webkit-border-radius: 2.5px;
-            background-color: $sctiveSignColor;
+            background-color: $activeSignColor;
             position: absolute;
             top: 50%;
             transform: translate(-50%, -50%);
@@ -92,6 +92,10 @@ $sctiveSignColor: #2264ac;
                 width: 35px;
                 height: 35px;
                 line-height: 35px;
+                mat-icon[svgicon=add] {
+                  height: 20px;
+                  width: 20px;
+                }
               }
             }
             .add-mode {
