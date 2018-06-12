@@ -4,7 +4,6 @@ $activeSignColor: #2264ac;
   width: 100%;
   display: block;
   tree-viewport {
-    margin-left: 7px;
     margin-top: 8px;
     .angular-tree-component {
       font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -56,11 +55,11 @@ $activeSignColor: #2264ac;
           &.tree-node-level-3::before {
             content: '';
             display: inline-block;
-            width: 5px;
-            height: 5px;
-            border-radius: 2.5px;
-            -moz-border-radius: 2.5px;
-            -webkit-border-radius: 2.5px;
+            width: 6px;
+            height: 6px;
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
             background-color: $activeSignColor;
             position: absolute;
             top: 50%;
