@@ -22,9 +22,9 @@
         </mat-form-field>
       </div>
       <div fxFlex="15" class="toggle-case-wrapper">
-        <div (click)="toggleCase()" [ngClass]="cases[activeCase]" class="toggle-case">
-          <span *ngFor="let case of cases; index as i">
-            <span *ngIf="i === activeCase">
+        <div (click)="toggleCase()" [ngClass]="iff[activeIff]" class="toggle-case">
+          <span *ngFor="let case of iff; index as i">
+            <span *ngIf="i === activeIff">
               {{case | uppercase}}
             </span>
           </span>
