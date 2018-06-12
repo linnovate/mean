@@ -3,13 +3,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import {
+  MatButtonModule,
   MatCardModule,
+  MatCheckboxModule,
   MatFormFieldModule,
-  MatSelectModule,
   MatInputModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatSlideToggleModule,
   MatTabsModule,
-  MatButtonModule
- } from '@angular/material';
+} from '@angular/material';
 
 import { DynamicFormComponent } from './dynamic-form.component';
 
@@ -20,12 +23,15 @@ import { DynamicFormComponent } from './dynamic-form.component';
   imports: [
     CommonModule,
     FormsModule,
+    MatButtonModule,
     MatCardModule,
+    MatCheckboxModule,
     MatFormFieldModule,
-    MatSelectModule,
     MatInputModule,
-    MatTabsModule,
-    MatButtonModule
+    MatRadioModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatTabsModule
   ],
   exports: [
     DynamicFormComponent

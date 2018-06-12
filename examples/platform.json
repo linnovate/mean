@@ -3,6 +3,21 @@
   "category": "car",
   "description": "description of car1",
   "fields": [{
+    "key": "checkboxExample",
+    "type": "checkbox",
+    "label": "Checkbox Example"
+  }, {
+    "key": "radioExample",
+    "type": "radio",
+    "label": "Radio Example",
+    "options": [{
+      "label": "Option 1",
+      "value": "opt1"
+    }, {
+      "label": "Option 2",
+      "value": "opt2"
+    }]
+  }, {
     "key": "sensorType",
     "type": "select",
     "label": "Sensor type",

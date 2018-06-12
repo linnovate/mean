@@ -1,3 +1,18 @@
 :host {
   display: block;
 }
+
+.dynamic-form {
+  mat-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  mat-radio-group label {
+    margin: 10px 0;
+  }
+
+  mat-radio-button {
+    margin: 5px 0;
+  }
+}

@@ -94,7 +94,7 @@ export class MainSectionEntityComponent implements OnInit {
     this.originalModeName = this.modeName;
     this.description = entity.description || '';
     this.status = mode.status || 'draft';
-    this.activeIff = this.entity.iff ? this.iff.indexOf(entity.iff) : 0;
+    this.activeIff = entity.iff ? this.iff.indexOf(entity.iff) : 0;
     this.formFields = schema.fields;
     this.formValues = Object.assign({}, mode.data);
   }
