@@ -113,7 +113,7 @@ async function clone(entity) {
 async function tree(schemas, field) {
   let group = {_id: "$_schema"};
   if (field === 'all') group.children = {$push: "$$ROOT"}
-  if (field === 'name') group.children = {$push: "$name"};
+  if (field === 'name') group.children = {$push: {name: "$name", _id: "$_id"}};
   return await Entity.aggregate([{
     $match: {_schema: {$in: schemas}}},
     {
