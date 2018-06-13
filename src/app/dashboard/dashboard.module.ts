@@ -13,6 +13,7 @@ import { MainSectionSystemComponent } from './main-section-system/main-section-s
 import { SidebarEntitiesComponent } from './sidebar-entities/sidebar-entities.component';
 import { SidebarActionsComponent } from './sidebar-actions/sidebar-actions.component';
 import { EntitiesTreeComponent } from './sidebar-entities/tree/tree.component';
+import { InlineEditComponent } from '../inline-edit/inline-edit.component';
 
 /* Services */
 import { EntityService } from '../entity/entity.service';
@@ -33,6 +34,7 @@ import { SchemaService } from '../schema/schema.service';
     SidebarEntitiesComponent,
     SidebarActionsComponent,
     EntitiesTreeComponent,
+    InlineEditComponent,
   ],
   providers: [
     EntityService,
