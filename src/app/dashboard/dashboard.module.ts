@@ -21,6 +21,9 @@ import { EntityService } from '../entity/entity.service';
 import { SchemaService } from '../schema/schema.service';
 import { SystemSidebarComponent } from './system-sidebar/system-sidebar.component';
 
+/* Pipes */
+import { TitlecasePipe } from '../titlecase.pipe';
+
 
 @NgModule({
   imports: [
@@ -39,6 +42,7 @@ import { SystemSidebarComponent } from './system-sidebar/system-sidebar.componen
     EntitiesTreeComponent,
     InlineEditComponent,
     SystemSidebarComponent,
+    TitlecasePipe
   ],
   providers: [
     EntityService,

@@ -1,3 +1,15 @@
-<div>
-  sidebar1
+<div class="wrapper-search">
+  <input
+    #input
+    (keyup)="filterIcons(input)"
+    placeholder="Search icons" />
+  <mat-icon>search</mat-icon>
+</div>
+
+<div class="icons-lib">
+  <mat-icon
+    *ngFor="let icon of iconsToDisplay"
+    [svgIcon]="icon"
+    [title]="icon | titlecase">
+  </mat-icon>
 </div>
