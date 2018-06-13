@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Subject } from 'rxjs/Subject';
 
@@ -28,6 +28,7 @@ export class SidebarEntitiesComponent implements OnInit {
   constructor(
     private location: Location,
     private route: ActivatedRoute,
+    private router: Router,
   ) {
     this.activeTab = this.location.path().split('/')[1];
     this.selectedIndex = this.tabs.findIndex(elem => elem.link === this.activeTab);
@@ -35,7 +36,7 @@ export class SidebarEntitiesComponent implements OnInit {
 
   selectedTabChangeHandler(tab) {
     const activeTab = this.tabs[tab.index].link;
-    this.location.replaceState(activeTab);
+    this.router.navigate([this.tabs[tab.index].link])
     this.activeTab = activeTab;
   }
 

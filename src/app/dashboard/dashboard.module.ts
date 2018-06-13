@@ -18,6 +18,7 @@ import { InlineEditComponent } from '../inline-edit/inline-edit.component';
 /* Services */
 import { EntityService } from '../entity/entity.service';
 import { SchemaService } from '../schema/schema.service';
+import { SystemSidebarComponent } from './system-sidebar/system-sidebar.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { SchemaService } from '../schema/schema.service';
     SidebarActionsComponent,
     EntitiesTreeComponent,
     InlineEditComponent,
+    SystemSidebarComponent,
   ],
   providers: [
     EntityService,
