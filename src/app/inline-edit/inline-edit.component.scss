@@ -1,0 +1,27 @@
+:host {
+  display: inline-block;
+}
+
+.inline-edit {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+
+  span, input {
+    height: inherit;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    font-size: inherit;
+    outline: none;
+    padding: 5px;
+    max-width: 100%;
+  }
+  span {
+    white-space: pre;
+    visibility: hidden;
+  }
+  input {
+    text-overflow: ellipsis;
+  }
+}

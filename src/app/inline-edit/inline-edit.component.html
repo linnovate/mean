@@ -1,0 +1,10 @@
+<div
+  #input
+  class="inline-edit">
+  <span></span>
+  <input
+    type="text"
+    [placeholder]="placeholder"
+    [(ngModel)]="value"
+    (input)="resize(input)" />
+</div>
