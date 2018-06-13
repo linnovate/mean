@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, UrlSegment } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
 import { MainSectionEntityComponent } from '../dashboard/main-section-entity/main-section-entity.component';
+import { MainSectionSystemComponent } from '../dashboard/main-section-system/main-section-system.component';
+import { SidebarActionsComponent } from '../dashboard/sidebar-actions/sidebar-actions.component';
+
+export function entities(url: UrlSegment[]) {
+  return url.length === 1 && ['platform', 'equipment'].indexOf(url[0].path) > -1 ? ({ consumed: url }) : null;
+}
 
 const routes: Routes = [{
-  path: ':type',
+  matcher: entities,
   component: DashboardComponent,
   children: [{
     path: 'new/:category',
@@ -16,6 +22,16 @@ const routes: Routes = [{
   },{
     path: ':entityId/:modeName',
     component: MainSectionEntityComponent
+  }, {
+    path: ':entityId/:modeName',
+    component: SidebarActionsComponent,
+    outlet: 'sidebar'
+  }]}, {
+  path: 'system',
+  component: DashboardComponent,
+  children: [{
+    path: '',
+    component: MainSectionSystemComponent
   }]
 }];
 
