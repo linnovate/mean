@@ -1,0 +1,22 @@
+.system-sidebar {
+  .wrapper-category {
+    margin-bottom: 30px;
+    .title {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+    .items {
+      div {
+        font-size: 14px;
+        width: 85%;
+        background-color: white;
+        margin: 5px 0;
+        border: solid 1px #DBDBDB;
+        padding: 10px;
+        max-width: 227px;
+      }
+    }
+  }
+}

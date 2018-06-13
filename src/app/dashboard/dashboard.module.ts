@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TreeModule } from 'angular-tree-component';
+import { DragulaModule } from 'ng2-dragula';
 
 /* Modules */
 import { SharedModule } from '../shared/shared.module';
@@ -27,6 +28,7 @@ import { SystemSidebarComponent } from './system-sidebar/system-sidebar.componen
     DashboardRoutingModule,
     SharedModule,
     TreeModule,
+    DragulaModule,
   ],
   declarations: [
     DashboardComponent,

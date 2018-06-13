@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SchemaService } from '../../schema/schema.service';
 
 @Component({
   selector: 'app-system-sidebar',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SystemSidebarComponent implements OnInit {
 
-  constructor() { }
+  data: any = {};
+
+  constructor(private schemaService: SchemaService) {
+    this.schemaService.tree('platform', 'name').subscribe(data => this.data.platforms = data);
+    this.schemaService.tree('equipment', 'name').subscribe(data => this.data.equipment = data);
+  }
 
   ngOnInit() {
   }
