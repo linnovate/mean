@@ -54,12 +54,6 @@ async function update(req, res) {
   res.json(entityData);
 }
 
-async function list(req, res) {
-  let entities = await entityCtrl.list(req.user._id, req.params.type);
-  if(!entities) throw new httpError(404);
-  res.json(entities);
-}
-
 async function cloneEntity(req, res) {
   let clonedEntity = await entityCtrl.clone(req.entity);
   if (!clonedEntity) throw new httpError(404);

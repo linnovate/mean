@@ -15,8 +15,8 @@ export class SchemaService {
     return this.http.get(`/api/schema/${id}`);
   }
 
-  tree(type): Observable <any> {
-    return this.http.get(`/api/schema/tree?type=${type}`);
+  tree(type, field?): Observable <any> {
+    return this.http.get(`/api/schema/tree?type=${type}${field ? `&field=${field}`: ''}`);
   }
   
 }
