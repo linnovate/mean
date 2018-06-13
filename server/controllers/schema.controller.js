@@ -48,11 +48,12 @@ async function get(schemaId) {
 }
 
 async function tree(params) {
+  let field = (params.field) ? params.field : 'all';
   let schemas = await Schema.find({type: params.type}, {category: 1}).lean();
-  const ids = schemas.map(s => s._id);
-  const entities = await entitiesCtrl.tree(ids);
+  let ids = schemas.map(s => s._id);
+  let entities = await entitiesCtrl.tree(ids, field);
   schemas = schemas.map(s => {
-    const result = entities.filter(obj => JSON.stringify(obj._id) === JSON.stringify(s._id));
+    let result = entities.filter(obj => JSON.stringify(obj._id) === JSON.stringify(s._id));
     s.children = (result.length) ? result[0].children : [];
     s.name = s.category;
     return s;

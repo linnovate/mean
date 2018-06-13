@@ -5,7 +5,6 @@ module.exports = {
   insert,
   update,
   get,
-  list,
   clone,
   cloneMode,
   remove,
@@ -111,30 +110,13 @@ async function clone(entity) {
   return await new Entity(entity).save();
 }
 
-async function list(userId, type) {
-  return await new Promise((resolve, reject) => {
-    Entity.find({
-      }).populate({
-        path: '_schema',
-        match: {type}
-      }).exec((err, data) => {
-        data = data.filter(d => d._schema);
-        data = data.map(d => {
-          d = d.toObject();
-          utils.parseModesData(d.modes);
-          return d;
-        });
-        resolve(data.filter(d => d._schema));
-      });
-    })
-}
-
-async function tree(schemas) {
+async function tree(schemas, field) {
+  let group = {_id: "$_schema"};
+  if (field === 'all') group.children = {$push: "$$ROOT"}
+  if (field === 'name') group.children = {$push: "$name"};
   return await Entity.aggregate([{
     $match: {_schema: {$in: schemas}}},
     {
-      $group: {
-        _id: "$_schema",
-        children: {$push: "$$ROOT"}}
+      $group: group
   }]);
 }
