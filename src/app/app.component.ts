@@ -22,9 +22,9 @@ export class AppComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private domSanitizer: DomSanitizer,
-    public matIconRegistry: MatIconRegistry
+    private matIconRegistry: MatIconRegistry
   ) {
-    ['delete', 'clone', 'add'].forEach(icon => matIconRegistry.addSvgIcon(icon, domSanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${icon}.svg`)));
+    this.registerSvgIcons()
   }
 
   public ngOnInit() {
@@ -53,6 +53,43 @@ export class AppComponent implements OnInit {
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }
+  }
+
+  registerSvgIcons() {
+    [
+      'add',
+      'airplane-front-view',
+      'air-station',
+      'balloon',
+      'boat',
+      'cargo-ship',
+      'car',
+      'catamaran',
+      'clone',
+      'convertible',
+      'delete',
+      'drone',
+      'fighter-plane',
+      'fire-truck',
+      'horseback-riding',
+      'motorcycle',
+      'railcar',
+      'railroad-train',
+      'rocket-boot',
+      'sailing-boat',
+      'segway',
+      'shuttle',
+      'space-shuttle',
+      'steam-engine',
+      'suv',
+      'tour-bus',
+      'tow-truck',
+      'transportation',
+      'trolleybus',
+      'water-transportation',
+    ].forEach((icon) => {
+      this.matIconRegistry.addSvgIcon(icon, this.domSanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${icon}.svg`))
+    });
   }
 
 }
