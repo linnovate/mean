@@ -11,7 +11,8 @@ export function entities(url: UrlSegment[]) {
 }
 
 const routes: Routes = [{
-  matcher: entities,
+  // matcher: entities,
+  path: ':type',
   component: DashboardComponent,
   children: [{
     path: 'new/:category',
@@ -32,6 +33,10 @@ const routes: Routes = [{
   children: [{
     path: '',
     component: MainSectionSystemComponent
+  }, {
+    path: '',
+    component: SidebarActionsComponent,
+    outlet: 'sidebar'
   }]
 }];
 
