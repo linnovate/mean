@@ -1,0 +1,43 @@
+@import '~_settings.scss';
+
+:host {
+  display: block;
+  margin-top: 16px;
+}
+
+.wrapper-search {
+  position: relative;
+  input {
+    width: 93%;
+    padding: 3.5%;
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 1px $linesColor;
+    height: 17px;
+    &:focus {
+      outline: none;
+    }
+  }
+  .mat-icon {
+    color: #b5b5b4;
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+  }
+}
+
+.icons-lib {
+/*   text-align: center;
+  text-align-last: start; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+
+  mat-icon {
+    height: 45px;
+    width: 45px;
+    margin: 10px;
+  }
+}
