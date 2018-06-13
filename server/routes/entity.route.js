@@ -13,12 +13,15 @@ router.use(passport.authenticate('jwt', { session: false }))
 router.route('/')
   .post(asyncHandler(insert));
 
-router.route('/clone/:entityId/:modeName?')
-  .get(asyncHandler(clone))
+router.route('/clone/:entityId')
+  .get(asyncHandler(findOne), asyncHandler(cloneEntity));
+
+router.route('/clone/:entityId/:modeName')
+  .get(asyncHandler(findOne), asyncHandler(checkUniqueMode), asyncHandler(cloneMode));
 
 router.route('/:entityId/:modeName?')
   .get(asyncHandler(get))
-  .put(asyncHandler(update))
+  .put(asyncHandler(findOne), asyncHandler(checkUniqueMode), asyncHandler(update))
   .delete(asyncHandler(remove));
 
 async function insert(req, res) {
@@ -30,6 +33,19 @@ async function get(req, res) {
   let entityData = await entityCtrl.get(req.params.entityId, req.params.modeName);
   if(!entityData) throw new httpError(404);
   res.json(entityData);
+}
+
+async function findOne(req, res, next) {
+  let entityData = await entityCtrl.findById(req.params.entityId);
+  if(!entityData) throw new httpError(404);
+  req.entity = entityData;
+  next();
+}
+
+async function checkUniqueMode(req, res, next) {
+  let uniqueMode = await entityCtrl.checkUniqueMode(req.entity, req.body, req.params);
+  if (!uniqueMode) throw new httpError(403);
+  next();
 }
 
 async function update(req, res) {
@@ -44,8 +60,14 @@ async function list(req, res) {
   res.json(entities);
 }
 
-async function clone(req, res) {
-  let clonedEntity = await entityCtrl.clone(req.params.entityId, req.params.modeName);
+async function cloneEntity(req, res) {
+  let clonedEntity = await entityCtrl.clone(req.entity);
+  if (!clonedEntity) throw new httpError(404);
+  res.json(clonedEntity);
+}
+
+async function cloneMode(req, res) {
+  let clonedEntity = await entityCtrl.cloneMode(req.params.entityId, req.params.modeName);
   if (!clonedEntity) throw new httpError(404);
   res.json(clonedEntity);
 }

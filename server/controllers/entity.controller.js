@@ -7,14 +7,33 @@ module.exports = {
   get,
   list,
   clone,
+  cloneMode,
   remove,
   tree,
+  checkUniqueMode,
+  findById,
 }
 
 async function insert(userId, entity) {
   entity._schema = entity.schema;
   entity.user = userId;
   return await new Entity(entity).save();
+}
+
+async function checkUniqueMode(entity, body, params) {
+  // body for update mode name
+  // params for clone mode
+  let modeName = body.modes ? body.modes[0].name : `${params.modeName} (copy)`
+
+  let result = entity.modes.find(e => {
+    return e.name === modeName
+  });
+  if (result) return await false;
+  return await true;
+}
+
+async function findById(entityId) {
+  return await Entity.findById(entityId);
 }
 
 async function update(entityId, modeName, entity) {
@@ -85,17 +104,11 @@ async function cloneMode(entityId, modeName) {
   });
 }
 
-async function clone(entityId, modeName) {
-  if (modeName) return cloneMode(entityId, modeName);
-  return await new Promise((resolve, reject) => {
-    Entity.findById(entityId).exec((err, doc) => {
-      if (err || !doc) return reject();
-      doc.name = `${doc.name} (copy)`;
-      delete doc._doc._id;
-      doc.isNew = true;
-      return resolve(new Entity(doc).save());
-    });
-  });
+async function clone(entity) {
+  entity.name = `${entity.name} (copy)`;
+  delete entity._doc._id;
+  entity.isNew = true;
+  return await new Entity(entity).save();
 }
 
 async function list(userId, type) {
