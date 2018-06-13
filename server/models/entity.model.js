@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-// const arrayUniquePlugin = require('mongoose-unique-array');
 
 const EntitySchema = new mongoose.Schema({
   name: {
@@ -47,7 +46,5 @@ const EntitySchema = new mongoose.Schema({
   versionKey: false
 });
 
-// EntitySchema.plugin(arrayUniquePlugin);
 EntitySchema.index({ _schema: 1, name: 1 }, { unique: true });
-EntitySchema.index({ 'modes.name': 1, name: 1, _schema: 1 }, { unique: true });
 module.exports = mongoose.model('Entity', EntitySchema);
