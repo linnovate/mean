@@ -4,7 +4,6 @@ import {Routes, RouterModule, UrlSegment} from '@angular/router';
 import {DashboardComponent} from './dashboard.component';
 import {MainSectionEntityComponent} from '../dashboard/main-section-entity/main-section-entity.component';
 import {MainSectionSystemComponent} from '../dashboard/main-section-system/main-section-system.component';
-import {SystemSidebarComponent} from '../dashboard/system-sidebar/system-sidebar.component';
 
 const routes : Routes = [
   {
@@ -14,10 +13,10 @@ const routes : Routes = [
       {
         path: '',
         component: MainSectionSystemComponent
-      }, {
-        path: '',
-        component: SystemSidebarComponent,
-        outlet: 'sidebar'
+      },
+      {
+        path: 'new',
+        component: MainSectionSystemComponent
       }
     ]
   }, {

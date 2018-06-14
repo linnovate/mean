@@ -1,4 +1,23 @@
-.main-section , .container{
-    width: 100%;
-    height: 100%;
+@import '~_settings.scss';
+
+.main-section {
+  width: 100%;
+  .container {
+    height: 100px;
+  }
+  .container {
+    div {
+      color: $categoryEntityColor;
+      font-size: 14px;
+      width: 85%;
+      background-color: white;
+      margin: 5px 0;
+      border: solid 1px #DBDBDB;
+      padding: 10px;
+      max-width: 227px;
+      .hidden {
+        display: none;
+      }
+    }
+  }
 }
