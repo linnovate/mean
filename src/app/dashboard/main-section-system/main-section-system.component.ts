@@ -36,9 +36,9 @@ export class MainSectionSystemComponent implements OnInit {
    }
 
    invalidHandler(el, handle) {
-    // let draggedFromMain = el;
-    // while ((draggedFromMain = draggedFromMain.parentElement) && !draggedFromMain.classList.contains('main-section'));
-    // if ((this as any).containers[0].childElementCount === 1 && !draggedFromMain) return true;
+    let draggedFromMain = el;
+    while ((draggedFromMain = draggedFromMain.parentElement) && !draggedFromMain.classList.contains('main-section'));
+    if ((this as any).containers[0].childElementCount === 1 && !draggedFromMain) return true;
     return false;
   }
 
