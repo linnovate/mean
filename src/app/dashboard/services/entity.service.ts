@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
 
@@ -41,3 +40,4 @@ export class EntityService {
       .delete(`/api/entity/${id}${modeName ? `/${modeName}`: ''}`);
   }
 }
+

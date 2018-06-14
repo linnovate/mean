@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SchemaService } from '../../schema/schema.service';
+import { SchemaService } from '../services/schema.service';
 import { DragulaService } from 'ng2-dragula';
 
 @Component({

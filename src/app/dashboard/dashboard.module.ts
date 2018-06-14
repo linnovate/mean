@@ -17,8 +17,8 @@ import { EntitiesTreeComponent } from './sidebar-entities/tree/tree.component';
 import { InlineEditComponent } from '../inline-edit/inline-edit.component';
 
 /* Services */
-import { EntityService } from '../entity/entity.service';
-import { SchemaService } from '../schema/schema.service';
+import { EntityService } from './services/entity.service';
+import { SchemaService } from './services/schema.service';
 import { SystemSidebarComponent } from './system-sidebar/system-sidebar.component';
 
 /* Pipes */
