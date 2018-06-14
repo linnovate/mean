@@ -3,8 +3,8 @@ import { TreeModel, TreeNode, TreeComponent } from 'angular-tree-component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-import { SchemaService } from '../../../schema/schema.service';
-import { EntityService } from '../../../entity/entity.service';
+import { SchemaService } from '../../services/schema.service';
+import { EntityService } from '../../services/entity.service';
 
 @Component({
   selector: 'app-tree',
