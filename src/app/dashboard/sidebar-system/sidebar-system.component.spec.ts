@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SystemSidebarComponent } from './system-sidebar.component';
+import { SidebarSystemComponent } from './sidebar-system.component';
 
-describe('SystemSidebarComponent', () => {
-  let component: SystemSidebarComponent;
-  let fixture: ComponentFixture<SystemSidebarComponent>;
+describe('SidebarSystemComponent', () => {
+  let component: SidebarSystemComponent;
+  let fixture: ComponentFixture<SidebarSystemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SystemSidebarComponent ]
+      declarations: [ SidebarSystemComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SystemSidebarComponent);
+    fixture = TestBed.createComponent(SidebarSystemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

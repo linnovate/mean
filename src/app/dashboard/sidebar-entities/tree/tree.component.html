@@ -6,7 +6,7 @@
 <tree-root #tree [focused]="true" [options]="options" [nodes]="data" (activate)="activateNode($event)">
   <ng-template #treeNodeTemplate let-node let-index="index">
     <div class="name">{{ node.data.name }}</div>
-    <div class="actions">
+    <div class="actions" *ngIf="this._activeTab !== 'system'">
       <button mat-icon-button (click)="delete(node); $event.preventDefault(); $event.stopPropagation();" *ngIf="!node.isRoot">
         <mat-icon svgIcon="delete"></mat-icon>
       </button>
@@ -20,3 +20,5 @@
     <div class="add-mode" (click)="addMode(node); $event.preventDefault(); $event.stopPropagation();">ADD MODE</div>
   </ng-template>
 </tree-root>
+
+

@@ -19,10 +19,10 @@ import { InlineEditComponent } from '../inline-edit/inline-edit.component';
 /* Services */
 import { EntityService } from './services/entity.service';
 import { SchemaService } from './services/schema.service';
-import { SystemSidebarComponent } from './system-sidebar/system-sidebar.component';
 
 /* Pipes */
 import { TitlecasePipe } from '../titlecase.pipe';
+import { SidebarSystemComponent } from './sidebar-system/sidebar-system.component';
 
 
 @NgModule({
@@ -41,8 +41,8 @@ import { TitlecasePipe } from '../titlecase.pipe';
     SidebarActionsComponent,
     EntitiesTreeComponent,
     InlineEditComponent,
-    SystemSidebarComponent,
-    TitlecasePipe
+    TitlecasePipe,
+    SidebarSystemComponent
   ],
   providers: [
     EntityService,

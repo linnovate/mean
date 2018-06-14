@@ -4,4 +4,9 @@
     </mat-tab>
   </mat-tab-group>
   <app-tree activeTab="{{activeTab}}"></app-tree>
+  <div class="bottom">
+    <button mat-button *ngIf="activeTab === 'system'">
+      <a routerLink="/system/new">ADD SYSTEM</a>
+    </button>
+  </div>
 </div>
