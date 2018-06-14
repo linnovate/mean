@@ -1,7 +1,34 @@
+@import '~_settings.scss';
+
 .system-sidebar {
+  .wrapper-search {
+    position: relative;
+    margin: 15px 0;
+    input {
+      width: 85%;
+      padding: 3.5%;
+      border-right: none;
+      border-left: none;
+      border-top: none;
+      height: 17px;
+      background: transparent;
+      &:focus {
+        outline: none;
+      }
+    }
+    .mat-icon {
+      color: #b5b5b4;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+    }
+  }
   .wrapper-category {
     margin-bottom: 30px;
     .title {
+      color: $categoryTitleColor;
       text-transform: uppercase;
       font-weight: bold;
       font-size: 13px;
@@ -9,6 +36,7 @@
     }
     .items {
       div {
+        color: $categoryEntityColor;
         font-size: 14px;
         width: 85%;
         background-color: white;

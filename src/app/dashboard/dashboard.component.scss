@@ -7,9 +7,13 @@
     min-height: 100%;
   }
   >div:nth-child(2) {
-    width: 63%;
+    background-color: white;
+    width: 64%;
+    margin-bottom: 36px;
+    box-shadow: 0px 0px 12px #d8d8d8;
+    margin: 16px 0;
   }
   >div:nth-child(3) {
-	width: 18%;
+	width: 16%;
   }
 }
