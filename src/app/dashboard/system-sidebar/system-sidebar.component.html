@@ -3,14 +3,10 @@
     <input id="filter" #filter placeholder="Search..." />
     <mat-icon>search</mat-icon>
   </div>
-  <div>
-    <div>
-      <div class="wrapper-category" *ngFor="let category of data.platforms">
-        <div class="title">{{category.name}}</div>
-        <div class="items" [dragula]='"platform"'>
-          <div *ngFor="let item of category.children">{{item.name}}</div>
-        </div>
-      </div>
+  <div class="wrapper-category" *ngFor="let category of data.platforms">
+    <div class="title">{{category.name}}</div>
+    <div class="items" [dragula]="category.name">
+      <div *ngFor="let item of category.children">{{item.name}}</div>
     </div>
   </div>
 </div>

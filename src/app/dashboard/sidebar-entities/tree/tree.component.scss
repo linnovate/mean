@@ -9,9 +9,14 @@ $activeSignColor: #2264ac;
       font-family: Roboto, "Helvetica Neue", sans-serif;
       font-size: 14px;
       .tree-node {
+        .node-content-wrapper {
+          color: $categoryEntityColor;
+        }
+        
         position: relative; // margin-bottom: 13px;
         &.tree-node-level-1>tree-node-wrapper>.node-wrapper>.node-content-wrapper {
-          font-weight: 500; // text-transform: uppercase;
+          color: $categoryTitleColor;
+          font-weight: bold; // text-transform: uppercase;
         }
         &.tree-node-level-1 {
           margin-bottom: 5px;
