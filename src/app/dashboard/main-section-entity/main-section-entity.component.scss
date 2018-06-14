@@ -1,4 +1,8 @@
+@import '~_settings.scss';
+
 .main-section {
+  box-shadow: 0px 0px 12px #d8d8d8;
+
   header,
   dynamic-form,
   footer {
@@ -17,6 +21,7 @@
 .main-section-icon mat-icon {
   height: 60px;
   width: 60px;
+  cursor: pointer;
 }
 
 .main-section-menu {
@@ -67,4 +72,58 @@
 .main-section-select,
 .main-section-select-options {
   font-weight: bold;
+}
+
+
+.icons-bar {
+  display: block;
+
+  &.hidden {
+    visibility: hidden;
+  }
+
+  .wrapper-search {
+    position: relative;
+    input {
+      width: 93%;
+      padding: 3.5%;
+      background-color: transparent;
+      border: none;
+      border-bottom: solid 1px $linesColor;
+      height: 17px;
+      &:focus {
+        outline: none;
+      }
+    }
+    .mat-icon {
+      color: #b5b5b4;
+      position: absolute;
+      right: -10px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+    }
+  }
+
+  .icons-lib {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-top: 10px;
+
+    .icon-wrapper {
+      padding: 10px;
+      border-radius: 50%;
+      &.active {
+        background-color: white;
+      }
+
+      mat-icon {
+        height: 45px;
+        width: 45px;
+        cursor: pointer;
+      }
+    }
+  }
+
 }
