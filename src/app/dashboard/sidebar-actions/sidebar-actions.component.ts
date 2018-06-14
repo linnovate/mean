@@ -44,6 +44,7 @@ export class SidebarActionsComponent implements OnInit {
   ]; // empty icons are to align last flexbox row to the left
 
   iconsToDisplay: string[] = this.icons;
+  dashRegex: RegExp = new RegExp(/-/g);
 
   filterIcons(input) {
     this.iconsToDisplay = this.icons.filter(icon => {
