@@ -5,11 +5,8 @@
   </div>
   <div class="wrapper-category" *ngFor="let category of data.platforms">
     <div class="title">{{category.name}}</div>
-    <div class="items" [dragula]="'platform'">
-      <div *ngFor="let item of category.children">
-        <span>{{item.name}}</span>
-        <span class="hidden" platformId="item._id">{{item._id}}</span>
-      </div>
+    <div class='container' [dragula]='"platform"' [dragulaModel]='category.children'>
+      <div *ngFor='let item of category.children' [innerHtml]='item.name'></div>
     </div>
   </div>
 </div>
