@@ -1,24 +1,22 @@
-
-
 <div class="wrapper-search">
   <input id="filter" #filter (keyup)="filterFn(filter.value, tree.treeModel)" placeholder="Search..." />
   <mat-icon>search</mat-icon>
 </div>
 
 <tree-root #tree [focused]="true" [options]="options" [nodes]="data" (activate)="activateNode($event)">
-    <ng-template #treeNodeTemplate let-node let-index="index">
-        <div class="name">{{ node.data.name }}</div>
-        <div class="actions"> 
-            <button mat-icon-button (click)="delete(node); $event.preventDefault(); $event.stopPropagation();" *ngIf="!node.isRoot">
-                <mat-icon svgIcon="delete"></mat-icon>
-              </button>
-              <button mat-icon-button (click)="clone(node)" *ngIf="!node.isRoot">
-                <mat-icon svgIcon="clone"></mat-icon>
-              </button>
-              <button mat-icon-button (click)="newEntity(node)" *ngIf="node.isRoot">
-                <mat-icon svgIcon="add"></mat-icon>
-              </button>
-        </div>
-        <div class="add-mode" (click)="addMode(node); $event.preventDefault(); $event.stopPropagation();">ADD MODE</div>
-      </ng-template>
+  <ng-template #treeNodeTemplate let-node let-index="index">
+    <div class="name">{{ node.data.name }}</div>
+    <div class="actions">
+      <button mat-icon-button (click)="delete(node); $event.preventDefault(); $event.stopPropagation();" *ngIf="!node.isRoot">
+        <mat-icon svgIcon="delete"></mat-icon>
+      </button>
+      <button mat-icon-button (click)="clone(node)" *ngIf="!node.isRoot">
+        <mat-icon svgIcon="clone"></mat-icon>
+      </button>
+      <button mat-icon-button (click)="newEntity(node)" *ngIf="node.isRoot">
+        <mat-icon svgIcon="add"></mat-icon>
+      </button>
+    </div>
+    <div class="add-mode" (click)="addMode(node); $event.preventDefault(); $event.stopPropagation();">ADD MODE</div>
+  </ng-template>
 </tree-root>

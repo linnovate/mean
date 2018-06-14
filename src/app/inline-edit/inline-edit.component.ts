@@ -25,7 +25,7 @@ export class InlineEditComponent implements OnInit {
     let span = el.querySelector('span');
     span.innerHTML = this.value || this.placeholder;
     let width = getComputedStyle(span).getPropertyValue('width')
-    input.style.width = parseFloat(width) + 1 + 'px';
+    input.style.width = parseFloat(width) + 2 + 'px';
     input.style.marginLeft = '-' + width;
     this.valueChange.emit(this.value);
   }
