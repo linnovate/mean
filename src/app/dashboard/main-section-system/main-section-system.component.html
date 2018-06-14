@@ -1,4 +1,5 @@
 <div class="main-section">
-  <ul class="container" [dragula]="'platform'">
-  </ul>
+  <div class='container' [dragula]='"platform"' [dragulaModel]='system.platform'>
+    <div *ngFor='let item of system.platform' [innerHtml]='item.name'></div>
+  </div>
 </div>
