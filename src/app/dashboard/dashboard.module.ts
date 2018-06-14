@@ -15,15 +15,14 @@ import { SidebarEntitiesComponent } from './sidebar-entities/sidebar-entities.co
 import { SidebarActionsComponent } from './sidebar-actions/sidebar-actions.component';
 import { EntitiesTreeComponent } from './sidebar-entities/tree/tree.component';
 import { InlineEditComponent } from '../inline-edit/inline-edit.component';
+import { SidebarSystemComponent } from './sidebar-system/sidebar-system.component';
 
 /* Services */
 import { EntityService } from './services/entity.service';
 import { SchemaService } from './services/schema.service';
 
 /* Pipes */
-import { TitlecasePipe } from '../titlecase.pipe';
-import { SidebarSystemComponent } from './sidebar-system/sidebar-system.component';
-
+import { ReplacePipe } from 'angular-pipes';
 
 @NgModule({
   imports: [
@@ -41,8 +40,8 @@ import { SidebarSystemComponent } from './sidebar-system/sidebar-system.componen
     SidebarActionsComponent,
     EntitiesTreeComponent,
     InlineEditComponent,
-    TitlecasePipe,
-    SidebarSystemComponent
+    SidebarSystemComponent,
+    ReplacePipe,
   ],
   providers: [
     EntityService,

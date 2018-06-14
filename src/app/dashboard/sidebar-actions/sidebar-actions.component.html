@@ -10,6 +10,6 @@
   <mat-icon
     *ngFor="let icon of iconsToDisplay"
     [svgIcon]="icon"
-    [title]="icon | titlecase">
+    [title]="icon | replace: dashRegex: ' ' | titlecase ">
   </mat-icon>
 </div>
