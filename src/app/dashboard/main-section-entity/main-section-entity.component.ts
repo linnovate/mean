@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { EntityService } from '../../entity/entity.service';
-import { SchemaService } from '../../schema/schema.service';
+import { EntityService } from '../services/entity.service';
+import { SchemaService } from '../services/schema.service';
 
 @Component({
   selector: 'app-main-section-entity',
