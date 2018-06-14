@@ -1,6 +1,10 @@
 <div class="main-section">
   <div class='container' [dragula]='"platform"' [dragulaModel]='system.platform'>
-    <div *ngFor='let item of system.platform' [innerHtml]='item.name' class="item"></div>
+    <div *ngFor='let item of system.platform' class="item">
+        <span>{{item.category}}-</span>
+        <span>{{item.name}}</span>
+        <mat-icon svgIcon="close"></mat-icon>
+    </div>
   </div>
   <div class='container' [dragula]='"equipment"' [dragulaModel]='system.equipment'>
     <div *ngFor='let item of system.equipment' [innerHtml]='item.name' class="item"></div>

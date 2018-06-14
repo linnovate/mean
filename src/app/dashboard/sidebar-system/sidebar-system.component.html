@@ -4,7 +4,7 @@
       <mat-icon>search</mat-icon>
     </div>
     <div *ngIf="showPlatform">
-      <div class="wrapper-category" *ngFor="let category of data.platforms" >
+      <div class="wrapper-category" *ngFor="let category of data.platform" >
       <div class="title">{{category.name}}</div>
       <div class='container' [dragula]='"platform"' [dragulaModel]='category.children'>
         <div *ngFor='let item of category.children' [innerHtml]='item.name'></div>

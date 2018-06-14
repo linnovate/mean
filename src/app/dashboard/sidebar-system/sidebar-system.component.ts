@@ -15,8 +15,19 @@ export class SidebarSystemComponent implements OnInit {
   constructor(
     private schemaService: SchemaService,
     private dragulaService: DragulaService) {
-    this.schemaService.tree('platform', 'name').subscribe(data => this.data.platforms = data);
-    this.schemaService.tree('equipment', 'name').subscribe(data => this.data.equipment = data);
+      
+      ['platform', 'equipment'].forEach(type => {
+        this.schemaService.tree(type, 'name').subscribe(data => {
+          data.map(category => {
+            category.children.map(child => {
+              child.category = category.name;
+              return child;
+            });
+            return category;
+          });
+          this.data[type] = data
+        });
+      });
 
     dragulaService.dragend.subscribe((value) => {
       if (value[0] === 'platform') this.showPlatform = false;
