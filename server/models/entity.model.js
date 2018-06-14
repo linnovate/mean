@@ -17,8 +17,7 @@ const EntitySchema = new mongoose.Schema({
     required: true
   },
   icon: {
-    type: String,
-    default: 'default'
+    type: String
   },
   modes: [{
     name: {

@@ -1,11 +1,8 @@
-<div class="wrapper-dashboard">
-  <div>
+<div fxLayout="row">
+  <div fxFlex="20" class="sidebar">
     <app-sidebar-entities></app-sidebar-entities>
   </div>
-  <div>
+  <div fxFlex="80" class="main-section">
     <router-outlet></router-outlet>
-  </div>
-  <div>
-      <router-outlet name="sidebar"></router-outlet>
   </div>
 </div>

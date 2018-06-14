@@ -11,6 +11,7 @@ import { SchemaService } from '../services/schema.service';
 })
 export class MainSectionEntityComponent implements OnInit {
 
+  icon: string;
   name: string;
   modeName: string;
   description: string;
@@ -24,6 +25,61 @@ export class MainSectionEntityComponent implements OnInit {
   entity: any;
   schemaType: string;
   originalModeName: string;
+  icons: string[] = [
+    'airplane-front-view',
+    'air-station',
+    'balloon',
+    'boat',
+    'cargo-ship',
+    'car',
+    'catamaran',
+    'convertible',
+    'drone',
+    'fighter-plane',
+    'fire-truck',
+    'horseback-riding',
+    'motorcycle',
+    'railcar',
+    'railroad-train',
+    'rocket-boot',
+    'sailing-boat',
+    'segway',
+    'shuttle',
+    'space-shuttle',
+    'steam-engine',
+    'suv',
+    'tour-bus',
+    'tow-truck',
+    'transportation',
+    'trolleybus',
+    'water-transportation',
+    '',
+    '',
+    '',
+    '',
+    '',
+    ''
+  ]; // empty icons are to align last flexbox row to the left
+
+  iconsToDisplay: string[] = this.icons;
+  dashRegex: RegExp = new RegExp(/-/g);
+  showIconsBar: Boolean = false;
+
+  filterIcons(input) {
+    this.iconsToDisplay = this.icons.filter(icon => {
+      // don't filter out empty icons (`!icon`)
+      return !icon || icon.includes(input.value);
+    })
+  }
+
+  setIcon(icon) {
+    console.log('prev icon:', this.icon);
+    this.icon = icon;
+  }
+
+  toggleIconsBar() {
+    this.showIconsBar = !this.showIconsBar;
+  }
 
   toggleCase() {
     let active = this.activeIff;
@@ -80,7 +136,12 @@ export class MainSectionEntityComponent implements OnInit {
     // this.entityService.delete('1')
   }
 
-  constructor(private entityService: EntityService, private route: ActivatedRoute, private schemaService: SchemaService, private router: Router) { }
+  constructor(
+    private entityService: EntityService,
+    private route: ActivatedRoute,
+    private schemaService: SchemaService,
+    private router: Router
+   ) { }
 
 
   initInitialValues(schema, entity?) {
@@ -88,14 +149,16 @@ export class MainSectionEntityComponent implements OnInit {
     entity = entity || {};
     entity.modes = entity.modes || [{}];
     let mode = entity.modes[0];
+    this.icon = entity.icon || 'drone';
     this.name = entity.name || '';
     this.modeName = mode.name || '';
     this.originalModeName = this.modeName;
-    this.description = entity.description || '';
-    this.status = mode.status || 'draft';
     this.activeIff = entity.iff ? this.iff.indexOf(entity.iff) : 0;
+    this.status = mode.status || 'draft';
+    this.description = entity.description || '';
     this.formFields = schema.fields;
     this.formValues = Object.assign({}, mode.data);
+    console.log('icon:', this.icon)
   }
 
   initExistsEntity(params) {
