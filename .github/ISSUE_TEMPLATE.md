@@ -1,9 +1,9 @@
 **Note: for support questions, please use one of these channels:** [Chat: AngularClass.slack](http://angularclass.com/member-join/) or [Twitter: @AngularClass](https://twitter.com/AngularClass)
 
 * **I'm submitting a ...**
-[ ] bug report
-[ ] feature request
-[ ] question about the decisions made in the repository
+- [ ] bug report
+- [ ] feature request
+- [ ] question about the decisions made in the repository
 
 * **Do you want to request a *feature* or report a *bug*?**
 
