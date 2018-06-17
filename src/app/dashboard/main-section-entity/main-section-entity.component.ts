@@ -25,52 +25,47 @@ export class MainSectionEntityComponent implements OnInit {
   entity: any;
   schemaType: string;
   originalModeName: string;
-  icons: string[] = [
-    'airplane-front-view',
-    'air-station',
-    'balloon',
-    'boat',
-    'cargo-ship',
-    'car',
-    'catamaran',
-    'convertible',
-    'drone',
-    'fighter-plane',
-    'fire-truck',
-    'horseback-riding',
-    'motorcycle',
-    'railcar',
-    'railroad-train',
-    'rocket-boot',
-    'sailing-boat',
-    'segway',
-    'shuttle',
-    'space-shuttle',
-    'steam-engine',
-    'suv',
-    'tour-bus',
-    'tow-truck',
-    'transportation',
-    'trolleybus',
-    'water-transportation',
-  ];
+  icons: any[] = [{
+    groupName: 'vehicles',
+    list: ['airplane-front-view', 'air-station', 'balloon', 'boat', 'cargo-ship', 'car',
+      'catamaran', 'convertible', 'drone', 'fighter-plane', 'fire-truck',
+      'horseback-riding', 'motorcycle', 'railcar', 'railroad-train', 'rocket-boot',
+      'sailing-boat', 'segway', 'shuttle', 'space-shuttle', 'steam-engine', 'suv',
+      'tour-bus', 'tow-truck', 'transportation', 'trolleybus', 'water-transportation']
+  }, {
+    groupName: 'vehicles',
+    list: ['airplane-front-view', 'air-station', 'balloon', 'boat', 'cargo-ship', 'car',
+      'catamaran', 'convertible', 'drone', 'fighter-plane', 'fire-truck',
+      'horseback-riding', 'motorcycle', 'railcar', 'railroad-train', 'rocket-boot',
+      'sailing-boat', 'segway', 'shuttle', 'space-shuttle', 'steam-engine', 'suv',
+      'tour-bus', 'tow-truck', 'transportation', 'trolleybus', 'water-transportation']
+  }];
 
-  iconsToDisplay: string[] = this.icons;
+  iconsToDisplay: any[] = this.icons;
   dashRegex: RegExp = new RegExp(/-/g);
   showIconsBar: Boolean = false;
 
   filterIcons(input) {
-    this.iconsToDisplay = this.icons.filter(icon => {
-      return icon.includes(input.value);
+    this.iconsToDisplay = this.icons.map(group => {
+      let { groupName, list } = group;
+      return {
+        groupName,
+        list: list.filter(icon => {
+          return icon.includes(input.value);
+        })
+      };
     })
   }
 
   setIcon(icon) {
     this.icon = icon;
+    this.showIconsBar = false;
   }
 
-  toggleIconsBar() {
-    this.showIconsBar = !this.showIconsBar;
+  toggleIconsBar(show) {
+    setTimeout(() => {
+      this.showIconsBar = show || document.activeElement.closest('.icons-bar');
+    }, 0)
   }
 
   autosizeTextarea(textarea) {

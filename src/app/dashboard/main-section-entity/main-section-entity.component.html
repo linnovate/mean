@@ -1,9 +1,14 @@
-<div fxLayout="row">
+<div fxLayout="row" fxLayoutGap="7px">
   <div class="main-section" fxFlex="0 0 85">
     <header>
       <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
-        <div fxFlex="5" class="main-section-icon">
-          <mat-icon [svgIcon]="icon" (click)="toggleIconsBar()"></mat-icon>
+        <div fxFlex="5" class="icon">
+          <mat-icon
+            [svgIcon]="icon"
+            tabindex="0"
+            [class.active]="showIconsBar"
+            (focusin)="toggleIconsBar(true)"
+            (focusout)="toggleIconsBar(false)"></mat-icon>
         </div>
         <div fxFlex="75" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
           <app-inline-edit
@@ -77,7 +82,12 @@
     </footer>
   </div>
 
-  <div class="icons-bar" fxFlex="0 0 15" [class.hidden]="!showIconsBar">
+  <div
+    class="icons-bar"
+    tabindex="0"
+    fxFlex="0 0 15"
+    [class.hidden]="!showIconsBar"
+    (focusout)="toggleIconsBar(false)">
     <div class="wrapper-search">
       <input
         #input
@@ -86,20 +96,23 @@
       <mat-icon>search</mat-icon>
     </div>
 
-    <div class="icons-lib">
-      <div
-        [class.active]="iconName === icon"
-        class="icon-wrapper"
-        *ngFor="let iconName of iconsToDisplay">
-        <mat-icon
-          [svgIcon]="iconName"
-          [title]="iconName | replace: dashRegex: ' ' | titlecase "
-          (click)="setIcon(iconName)">
-        </mat-icon>
+    <div
+      class="icons-group"
+      *ngFor="let group of iconsToDisplay">
+      <div class="icons-header">
+        {{group.groupName | uppercase}}
       </div>
-      <div class="icon-wrapper" *ngFor="let icon of ['','','','','']">
-        <mat-icon class="empty">
-        </mat-icon>
+      <div class="icons-list">
+        <div
+          [class.active]="iconName === icon"
+          class="icon-wrapper"
+          *ngFor="let iconName of group.list">
+          <mat-icon
+            [svgIcon]="iconName"
+            [title]="iconName | replace: dashRegex: ' ' | titlecase "
+            (click)="setIcon(iconName)">
+          </mat-icon>
+        </div>
       </div>
     </div>
   </div>
