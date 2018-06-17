@@ -16,6 +16,19 @@
       font-weight: bold;
     }
   }
+
+  header {
+    .description {
+      margin: 15px 0;
+      textarea {
+        width: 100%;
+        border: none;
+        resize: none;
+        outline: none;
+        height: auto;
+      }
+    }
+  }
 }
 
 .main-section-icon mat-icon {
