@@ -49,6 +49,7 @@ export class SidebarSystemComponent implements OnInit {
         case 'item.deleted': {
           let categoryIndex = this.data[event.data.type].findIndex(e => e.category === event.data.item.category);
           this.data[event.data.type][categoryIndex].children.push(event.data.item);
+          if (event.data.type === 'platform') this.showPlatform = true;
           break;
         }
       }
