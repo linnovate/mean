@@ -31,13 +31,6 @@ export class SidebarSystemComponent implements OnInit {
   init() {
     ['platform', 'equipment'].forEach(type => {
       this.schemaService.tree(type, 'name').subscribe(data => {
-        data.map(category => {
-          category.children.map(child => {
-            child.category = category.name;
-            return child;
-          });
-          return category;
-        });
         this.data[type] = data
       });
     });

@@ -16,6 +16,10 @@ const EntitySchema = new mongoose.Schema({
     ref: 'Schema',
     required: true
   },
+  category: {
+    type: String,
+    required: true
+  },
   icon: {
     type: String
   },
