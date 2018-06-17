@@ -53,12 +53,6 @@ export class MainSectionEntityComponent implements OnInit {
     'transportation',
     'trolleybus',
     'water-transportation',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ''
   ]; // empty icons are to align last flexbox row to the left
 
   iconsToDisplay: string[] = this.icons;
