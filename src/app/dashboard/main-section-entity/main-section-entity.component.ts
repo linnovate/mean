@@ -53,7 +53,7 @@ export class MainSectionEntityComponent implements OnInit {
     'transportation',
     'trolleybus',
     'water-transportation',
-  ]; // empty icons are to align last flexbox row to the left
+  ];
 
   iconsToDisplay: string[] = this.icons;
   dashRegex: RegExp = new RegExp(/-/g);
@@ -61,13 +61,11 @@ export class MainSectionEntityComponent implements OnInit {
 
   filterIcons(input) {
     this.iconsToDisplay = this.icons.filter(icon => {
-      // don't filter out empty icons (`!icon`)
-      return !icon || icon.includes(input.value);
+      return icon.includes(input.value);
     })
   }
 
   setIcon(icon) {
-    console.log('prev icon:', this.icon);
     this.icon = icon;
   }
 
@@ -84,6 +82,7 @@ export class MainSectionEntityComponent implements OnInit {
   update() {
     // if originalModeName === '' it is a new mode
     this.entityService.update(this.entity._id, this.originalModeName, {
+      icon: this.icon,
       name: this.name,
       description: this.description,
       iff: this.iff[this.activeIff],
@@ -104,6 +103,7 @@ export class MainSectionEntityComponent implements OnInit {
   save() {
     if (this.entity) return this.update(); 
     this.entityService.save({
+      icon: this.icon,
       schema: this.schema._id,
       name: this.name,
       description: this.description,
@@ -152,7 +152,6 @@ export class MainSectionEntityComponent implements OnInit {
     this.description = entity.description || '';
     this.formFields = schema.fields;
     this.formValues = Object.assign({}, mode.data);
-    console.log('icon:', this.icon)
   }
 
   initExistsEntity(params) {
