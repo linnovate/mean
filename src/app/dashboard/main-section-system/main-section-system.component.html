@@ -39,7 +39,7 @@
           <div *ngFor='let item of system.platform' class="item">
             <div class="item-title">{{item.category}}</div>
             <div class="item-content">{{item.name}}</div>
-            <mat-icon svgIcon="close"></mat-icon>
+            <mat-icon svgIcon="close" (click)="removeItem('platform', item)"></mat-icon>
           </div>
         </div>
         <div class="placeholder">
@@ -53,7 +53,7 @@
           <div class="items">
             <div *ngFor='let item of system.equipment' class="item">
               <div class="item-content">{{item.name}}</div>
-              <mat-icon svgIcon="close"></mat-icon>
+              <mat-icon svgIcon="close" (click)="removeItem('equipment', item)"></mat-icon>
             </div>
           </div>
         </div>
