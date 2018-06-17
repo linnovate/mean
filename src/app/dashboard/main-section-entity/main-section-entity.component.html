@@ -2,10 +2,10 @@
   <div class="main-section" fxFlex="0 0 85">
     <header>
       <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
-        <div fxFlex="10" class="main-section-icon">
+        <div fxFlex="5" class="main-section-icon">
           <mat-icon [svgIcon]="icon" (click)="toggleIconsBar()"></mat-icon>
         </div>
-        <div fxFlex="55" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
+        <div fxFlex="75" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
           <app-inline-edit
             style="max-width: 35%;"
             placeholder="enter name"
@@ -16,7 +16,7 @@
             placeholder="enter mode name"
             [(value)]="modeName"></app-inline-edit>
         </div>
-        <div fxFlex="15" class="toggle-case-wrapper">
+        <div fxFlex="8" class="toggle-case-wrapper">
           <div (click)="toggleCase()" [ngClass]="iff[activeIff]" class="toggle-case">
             <span *ngFor="let case of iff; index as i">
               <span *ngIf="i === activeIff">
@@ -25,14 +25,14 @@
             </span>
           </div>
         </div>
-        <mat-form-field fxFlex="15">
+        <mat-form-field fxFlex="10">
           <mat-select [(ngModel)]="status" class="main-section-select">
             <mat-option *ngFor="let status of statuses" [value]="status" class="main-section-select-options">
               {{status | uppercase}}
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <div fxFlex="5" class="main-section-menu">
+        <div fxFlex="3" class="main-section-menu">
           <button mat-button [matMenuTriggerFor]="menu">
             <mat-icon class="material-icons">
               more_vert
