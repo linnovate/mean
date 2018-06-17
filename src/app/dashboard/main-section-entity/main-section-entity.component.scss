@@ -77,7 +77,6 @@
 
 .icons-bar {
   display: block;
-  padding-left: 10px;
 
   &.hidden {
     visibility: hidden;
@@ -85,9 +84,12 @@
 
   .wrapper-search {
     position: relative;
+    margin: 0 10px;
+
     input {
-      width: 93%;
-      padding: 3.5%;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 18px 10px;
       background-color: transparent;
       border: none;
       border-bottom: solid 1px $linesColor;
@@ -110,18 +112,19 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    margin-top: 10px;
+    margin: 5px;
 
     .icon-wrapper {
-      padding: 10px;
+      padding: 11px;
       border-radius: 50%;
       &.active {
         background-color: white;
       }
 
       mat-icon {
-        height: 45px;
-        width: 45px;
+        display: block;
+        height: 35px;
+        width: 35px;
         cursor: pointer;
 
         &.empty {
