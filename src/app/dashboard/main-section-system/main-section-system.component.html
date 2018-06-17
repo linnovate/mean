@@ -1,12 +1,92 @@
-<div class="main-section">
-  <div class='container' [dragula]='"platform"' [dragulaModel]='system.platform'>
-    <div *ngFor='let item of system.platform' class="item">
-        <span>{{item.category}}-</span>
-        <span>{{item.name}}</span>
-        <mat-icon svgIcon="close"></mat-icon>
-    </div>
+<div fxLayout="row" fxLayoutGap="10px">
+  <div class="main-section" fxFlex="75">
+    <header>
+      <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+        <div fxFlex="10" class="main-section-icon">
+          <mat-icon [svgIcon]="icon"></mat-icon>
+        </div>
+        <div fxFlex="55" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
+          <app-inline-edit style="max-width: 35%;" placeholder="enter name" [(value)]="name"></app-inline-edit>
+        </div>
+        <div fxFlex="15" class="toggle-case-wrapper">
+          <div class="toggle-case foe">
+            foe
+          </div>
+        </div>
+        <mat-form-field fxFlex="15">
+          <mat-select [(ngModel)]="system.status" class="main-section-select">
+            <mat-option *ngFor="let status of statuses" [value]="status" class="main-section-select-options">
+              {{status | uppercase}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div fxFlex="5" class="">
+        </div>
+      </div>
+      <div fxLayout="row">
+        <mat-form-field fxFlex="100">
+          <textarea matInput placeholder="enter description" [(ngModel)]="description" required></textarea>
+          <mat-error>description is required</mat-error>
+        </mat-form-field>
+      </div>
+      <mat-divider></mat-divider>
+    </header>
+
+    <section>
+      <div class="platform container" [dragula]='"platform"' [dragulaModel]='system.platform' [ngClass]="{'filled': system.platform.length > 0}">
+        <div class="content">
+          <div>platform</div>
+          <div *ngFor='let item of system.platform' class="item">
+            <div class="item-title">{{item.category}}</div>
+            <div class="item-content">{{item.name}}</div>
+            <mat-icon svgIcon="close"></mat-icon>
+          </div>
+        </div>
+        <div class="placeholder">
+          <div>select the platform for this system</div>
+          <div>drag a platform from the list on the right</div>
+        </div>
+      </div>
+      <div class="equipment container" [dragula]='"equipment"' [dragulaModel]='system.equipment' [ngClass]="{'filled': system.equipment.length > 0 || system.platform.length > 0}">
+        <div class="content">
+          <div [ngStyle]="{'display': (system.equipment.length > 0 ? 'block': 'none')}">equipment</div>
+          <div class="items">
+            <div *ngFor='let item of system.equipment' class="item">
+              <div class="item-content">{{item.name}}</div>
+              <mat-icon svgIcon="close"></mat-icon>
+            </div>
+          </div>
+        </div>
+        <div class="placeholder" [ngStyle]="{'display': displayEquipmentPlaceHolder}">
+          <div>add equipment for this system</div>
+          <div>drag equipment from the list on the right</div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <footer fxLayout="row">
+
+      <div fxFlex="15">
+        <button fxFill mat-button (click)="cancel()">CANCEL</button>
+      </div>
+
+      <div fxFlex="15">
+        <button fxFill mat-button (click)="delete()" style="color: #ed401e;">DELETE</button>
+      </div>
+
+      <!-- partition -->
+      <div fxFlex="55"></div>
+
+      <div fxFlex="15">
+        <button fxFill mat-button (click)="save()" style="color: #4bc1f2;">SAVE</button>
+      </div>
+
+    </footer>
   </div>
-  <div class='container' [dragula]='"equipment"' [dragulaModel]='system.equipment'>
-    <div *ngFor='let item of system.equipment' [innerHtml]='item.name' class="item"></div>
+
+  <div fxFlex="25">
+    <app-sidebar-system></app-sidebar-system>
   </div>
 </div>
