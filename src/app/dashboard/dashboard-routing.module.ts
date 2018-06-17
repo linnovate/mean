@@ -13,6 +13,10 @@ const routes : Routes = [
       {
         path: 'new',
         component: MainSectionSystemComponent
+      },
+      {
+        path: ':systemId',
+        component: MainSectionSystemComponent
       }
     ]
   }, {
