@@ -8,21 +8,22 @@ module.exports = {
   remove
 }
 
-async function insert(userId, data) {
-  return await new System({platform: data.platform[0], user: userId, equipment: data.equipment, status: data.status}).save();
+async function insert(userId, system) {
+  system.platform = system.platform[0];
+  system.user = userId;
+  return await new System(system).save();
 }
 
-async function update(id, data) {
+async function update(id, system) {
+  system.platform = system.platform[0];
+  system.updtaed = new Date();
   return await System.findByIdAndUpdate(id, {
-    $set: {
-      equipment: data.equipment,
-      updtaed: new Date()
-    }
+    $set: system
   }, {new: true});
 }
 
 async function get(id) {
-  return await System.findById(id);
+  return await System.findById(id).populate('platform').populate('equipment');
 }
 
 async function list(userId) {

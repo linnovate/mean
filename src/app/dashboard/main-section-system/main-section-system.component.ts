@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DragulaService } from 'ng2-dragula';
 import { SystemService } from '../services/system.service';
 
@@ -16,18 +17,15 @@ export class MainSectionSystemComponent implements OnInit {
   platform: any;
   equipment: Array<any>;
   platforms: Array<any> = [];
-  system = {
-    name: '',
-    description: '',
-    platform: [],
-    equipment: [],
-    status: 'draft'
-  };
+  system: any;
   statuses: string[] = ['draft', 'waiting', 'approved', 'rejected'];
   status: string;
   displayEquipmentPlaceHolder: string = 'flex';
 
-  constructor(private dragulaService: DragulaService, private systemService: SystemService) {
+  constructor(private dragulaService: DragulaService,
+              private systemService: SystemService,
+              private router: Router,
+              private route: ActivatedRoute) {
 
     this.dragulaEvents();
    }
@@ -64,23 +62,58 @@ export class MainSectionSystemComponent implements OnInit {
 
   cancel() {}
 
-  save() {
+  update() {
     this.system.name = this.name;
     this.system.description = this.description;
     if (this.valid())
-      this.systemService.save(this.system).subscribe(data => {
+      this.systemService.update(this.system._id, this.system).subscribe((data: any) => {
         console.log('saved system', data);
+        this.router.navigate([`/system/${data._id}`]);
+      });
+  }
+
+  save() {
+    if (this.system._id) return this.update();
+    this.system.name = this.name;
+    this.system.description = this.description;
+    if (this.valid())
+      this.systemService.save(this.system).subscribe((data: any) => {
+        console.log('saved system', data);
+        this.router.navigate([`/system/${data._id}`]);
       });
   }
 
   valid() {
-    if (this.system.platform.length === 1 && this.system.equipment.length > 0) return true;
-    return false;
+    return this.system.platform.length === 1 && this.system.equipment.length > 0
   }
 
   delete() {}
 
-  ngOnInit() {}
+  initExistsSystem(systemId) {
+    this.systemService.findOne(systemId).subscribe((system: any) => {
+      this.system = system;
+      this.system.platform = [system.platform];
+      this.name = system.name;
+      this.description = system.description;
+    })
+  }
+
+  initNewSystem() {
+    this.system = {
+      name: '',
+      description: '',
+      platform: [],
+      equipment: [],
+      status: 'draft'
+    };
+  }
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params.systemId) return this.initExistsSystem(params.systemId)
+      this.initNewSystem();
+    });
+  }
 
   ngOnDestroy() {
     this.dragulaService.destroy('platform');

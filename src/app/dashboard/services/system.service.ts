@@ -19,10 +19,22 @@ export class SystemService {
       .post(`/api/system`, data);
   }
 
+  update(id, data) {
+    return this
+      .http
+      .put(`/api/system/${id}`, data);
+  }
+
   find() {
     return this
       .http
       .get(`/api/system`);
+  }
+
+  findOne(id) {
+    return this
+      .http
+      .get(`/api/system/${id}`);
   }
 }
 
