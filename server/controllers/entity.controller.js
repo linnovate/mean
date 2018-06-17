@@ -79,7 +79,6 @@ async function get(entityId, modeName) {
       description: 1,
       icon: 1,
       iff: 1,
-      icon: 1
     }
     if (modeName) {
       query['modes.name'] = modeName;
@@ -119,7 +118,7 @@ async function clone(entity) {
 async function tree(schemas, field) {
   let group = {_id: "$_schema"};
   if (field === 'all') group.children = {$push: "$$ROOT"}
-  if (field === 'name') group.children = {$push: {name: "$name", _id: "$_id"}};
+  if (field === 'name') group.children = {$push: {name: "$name", _id: "$_id", category: "$category"}};
   return await Entity.aggregate([{
     $match: {_schema: {$in: schemas}}},
     {

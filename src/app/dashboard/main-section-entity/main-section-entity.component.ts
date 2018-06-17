@@ -105,6 +105,7 @@ export class MainSectionEntityComponent implements OnInit {
     this.entityService.save({
       icon: this.icon,
       schema: this.schema._id,
+      category: this.schema.category,
       name: this.name,
       description: this.description,
       iff: this.iff[this.activeIff],
