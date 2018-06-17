@@ -22,7 +22,11 @@ async function insert(userId, entity) {
 async function checkUniqueMode(entity, body, params) {
   // body for update mode name
   // params for clone mode
-  let modeName = body.modes ? body.modes[0].name : `${params.modeName} (copy)`
+  
+  // update fields in existing mode
+  if (body.modes && body.modes[0].name === params.modeName) return await true;
+  
+  let modeName = body.modes ? body.modes[0].name : `${params.modeName} (copy)`;
 
   let result = entity.modes.find(e => {
     return e.name === modeName
