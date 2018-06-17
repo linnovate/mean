@@ -16,7 +16,7 @@ import * as schema from './schema/equipment.json';
 export class AppComponent implements OnInit {
 
   private userSubscription: Subscription;
-  private user: any;
+  public user: any;
 
   constructor(
     private authService: AuthService,
@@ -57,6 +57,7 @@ export class AppComponent implements OnInit {
 
   registerSvgIcons() {
     [
+      'close',
       'add',
       'airplane-front-view',
       'air-station',

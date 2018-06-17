@@ -9,7 +9,7 @@ module.exports = {
 }
 
 async function insert(userId, data) {
-  return await new System({platform: data.platform, user: userId, equipment: data.equipment}).save();
+  return await new System({platform: data.platform[0], user: userId, equipment: data.equipment, status: data.status}).save();
 }
 
 async function update(id, data) {

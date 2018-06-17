@@ -11,10 +11,6 @@ const routes : Routes = [
     component: DashboardComponent,
     children: [
       {
-        path: '',
-        component: MainSectionSystemComponent
-      },
-      {
         path: 'new',
         component: MainSectionSystemComponent
       }

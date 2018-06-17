@@ -1,22 +1,130 @@
 @import '~_settings.scss';
-
 .main-section {
-  width: 100%;
-  .container {
-    height: 100px;
+  box-shadow: 0px 0px 12px #d8d8d8;
+  header,
+  section,
+  footer {
+    background-color: white;
+    padding: 18px 32px;
+  }
+  footer {
+    margin-top: 2px;
+    margin-bottom: 16px;
+    button {
+      font-weight: bold;
+    }
+  }
+}
+
+.toggle-case-wrapper {
+  text-align: center;
+  .toggle-case {
+    color: white;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-radius: 20px;
+    line-height: 31px;
+    display: inline-block;
+    padding: 0 14px;
+    &.foe {
+      background-color: #e75657;
+    }
+    &.friend {
+      background-color: #38ad61;
+    }
+    &.neutral {
+      background-color: #4bc1f2;
+    }
+  }
+}
+
+section {
+  background-color: white;
+  >span {
+    font-weight: bold;
+    color: $categoryTitleColor;
   }
   .container {
-    div {
-      color: $categoryEntityColor;
-      font-size: 14px;
-      width: 85%;
-      background-color: white;
-      margin: 5px 0;
-      border: solid 1px #DBDBDB;
-      padding: 10px;
-      max-width: 227px;
-      .hidden {
+    position: relative;
+    width: 100%;
+    min-height: 155px;
+    &.filled {
+      .placeholder {
         display: none;
+      }
+      .content {
+        display: block;
+      }
+    }
+    .placeholder {
+      border: dashed 1.5px $linesColor;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      line-height: 25px;
+      min-height: 155px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      div:first-child {
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+      div:last-child {
+        font-size: 15px;
+      }
+    }
+    .content {
+      display: none;
+      >div:first-child {
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+      .item {
+        position: relative;
+        max-width: 320px;
+        max-height: 70px;
+        border: solid 1px $linesColor;
+        padding: 15px;
+        .item-title {
+          text-transform: uppercase;
+          font-weight: bold;
+          color: $categoryTitleColor;
+          font-size: 14px;
+        }
+        .item-content {
+          font-size: 15px;
+          color: $categoryEntityColor;
+        }
+        .mat-icon {
+          position: absolute;
+          top: 50%;
+          right: 0;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+    &.platform {}
+    &.equipment {
+      display: none;
+      &.filled {
+        display: block;
+        .placeholder {
+          display: flex;
+        }
+        .content {
+          display: block;
+          .items {
+            padding: 20px;
+            border: dashed 1.5px $linesColor;
+          }
+        }
       }
     }
   }

@@ -10,6 +10,12 @@ const SystemSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Entity',
   }],
+  status: {
+    required: true,
+    type: String,
+    default: 'draft',
+    enum: ['draft', 'reviewed', 'needs review', 'active', 'waiting', 'approved', 'rejected']
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
