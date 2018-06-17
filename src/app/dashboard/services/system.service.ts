@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +10,8 @@ import {Observable} from 'rxjs/Observable';
 export class SystemService {
 
   constructor(private http : HttpClient) { }
+
+  public events = new Subject<any>();
 
   save(data) {
     return this

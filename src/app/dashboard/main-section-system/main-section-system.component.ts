@@ -28,18 +28,23 @@ export class MainSectionSystemComponent implements OnInit {
   displayEquipmentPlaceHolder: string = 'flex';
 
   constructor(private dragulaService: DragulaService, private systemService: SystemService) {
-    dragulaService.dropModel.subscribe((value) => {
+
+    this.dragulaEvents();
+   }
+
+   dragulaEvents() {
+    this.dragulaService.dropModel.subscribe((value) => {
       if (value[0] === 'equipment') this.displayEquipmentPlaceHolder = 'none';
       console.log(this.system);
     });
-    dragulaService.removeModel.subscribe((value) => {
+    this.dragulaService.removeModel.subscribe((value) => {
       console.log(this.system);
     });
-    dragulaService.drag.subscribe((value) => {
+    this.dragulaService.drag.subscribe((value) => {
       if (value[0] === 'equipment') this.displayEquipmentPlaceHolder = 'flex';
       console.log(value,  'orit');
     });
-    dragulaService.setOptions('platform', {
+    this.dragulaService.setOptions('platform', {
       //invalid: this.invalidHandler
     });
    }
@@ -49,6 +54,27 @@ export class MainSectionSystemComponent implements OnInit {
     while ((draggedFromMain = draggedFromMain.parentElement) && !draggedFromMain.classList.contains('main-section'));
     if ((this as any).containers[0].childElementCount === 1 && !draggedFromMain) return true;
     return false;
+  }
+
+  removeItem(type, item) {
+    this.removeByKey(this.system[type], {
+      key: '_id',
+      value: item._id
+    });
+    this.systemService.events.next({
+      name: 'item.deleted',
+      data: {
+        type: type,
+        item: item
+      }
+    })
+  }
+
+  removeByKey(array, params){
+    array.some(function(item, index) {
+      return (array[index][params.key] === params.value) ? !!(array.splice(index, 1)) : false;
+    });
+    return array;
   }
 
   cancel() {}
