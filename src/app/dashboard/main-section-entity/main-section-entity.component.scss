@@ -18,6 +18,27 @@
   }
 
   header {
+    .icon {
+      position: relative;
+      mat-icon {
+        height: 45px;
+        width: 45px;
+        cursor: pointer;
+        display: block;
+        outline: none;
+        position: absolute;
+        left: -16px;
+        top: -39px;
+        padding: 15px;
+        border: 1px solid transparent;
+        &.active {
+          border: 1px #399bda;
+          border-style: dashed;
+          border-radius: 50%;
+        }
+      }
+    }
+
     .description {
       margin: 15px 0;
       textarea {
@@ -29,12 +50,6 @@
       }
     }
   }
-}
-
-.main-section-icon mat-icon {
-  height: 60px;
-  width: 60px;
-  cursor: pointer;
 }
 
 .main-section-menu {
@@ -90,6 +105,7 @@
 
 .icons-bar {
   display: block;
+  outline: none;
 
   &.hidden {
     visibility: hidden;
@@ -97,16 +113,19 @@
 
   .wrapper-search {
     position: relative;
-    margin: 0 10px;
+    margin: 0 3px;
 
     input {
       width: 100%;
       box-sizing: border-box;
       padding: 18px 10px;
+      padding-bottom: 16px;
+      padding-top: 20px;
       background-color: transparent;
       border: none;
       border-bottom: solid 1px $linesColor;
       height: 17px;
+      font-size: 12px;
       &:focus {
         outline: none;
       }
@@ -114,37 +133,44 @@
     .mat-icon {
       color: #b5b5b4;
       position: absolute;
-      right: -10px;
-      top: 50%;
-      transform: translate(-50%, -50%);
+      right: -1px;
+      top: 9px;
       font-size: 20px;
     }
   }
 
-  .icons-lib {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    margin: 5px;
+  .icons-group {
+    margin-top: 20px;
 
-    .icon-wrapper {
-      padding: 11px;
-      border-radius: 50%;
-      &.active {
-        background-color: white;
-      }
+    .icons-header {
+      margin: 0 6px;
+      font-weight: bold;
+      font-size: 14px;
+      color: #686868;
+    }
 
-      mat-icon {
-        display: block;
-        height: 35px;
-        width: 35px;
-        cursor: pointer;
+    .icons-list {
+      display: flex;
+      flex-flow: row wrap;
 
-        &.empty {
-          cursor: initial;
+      .icon-wrapper {
+        padding: 9px;
+        border-radius: 50%;
+        &.active {
+          background-color: white;
+        }
+
+        mat-icon {
+          display: block;
+          height: 40px;
+          width: 40px;
+          cursor: pointer;
+
+          &.empty {
+            cursor: initial;
+          }
         }
       }
     }
   }
-
 }
