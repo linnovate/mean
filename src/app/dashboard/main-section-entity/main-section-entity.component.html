@@ -44,11 +44,13 @@
           </mat-menu>
         </div>
       </div>
-      <div fxLayout="row">
-        <mat-form-field fxFlex="100">
-          <textarea matInput placeholder="enter description" [(ngModel)]="description" required></textarea>
-          <mat-error>description is required</mat-error>
-        </mat-form-field>
+      <div fxLayout="row" class="description">
+        <textarea
+          #textarea
+          placeholder="enter description"
+          [(ngModel)]="description"
+          rows="1"
+          (input)="autosizeTextarea(textarea)"></textarea>
       </div>
       <mat-divider></mat-divider>
     </header>
