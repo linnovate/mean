@@ -35,26 +35,11 @@ export class MainSectionSystemComponent implements OnInit {
    dragulaEvents() {
     this.dragulaService.dropModel.subscribe((value) => {
       if (value[0] === 'equipment') this.displayEquipmentPlaceHolder = 'none';
-      console.log(this.system);
-    });
-    this.dragulaService.removeModel.subscribe((value) => {
-      console.log(this.system);
     });
     this.dragulaService.drag.subscribe((value) => {
       if (value[0] === 'equipment') this.displayEquipmentPlaceHolder = 'flex';
-      console.log(value,  'orit');
-    });
-    this.dragulaService.setOptions('platform', {
-      //invalid: this.invalidHandler
     });
    }
-
-   invalidHandler(el, handle) {
-    let draggedFromMain = el;
-    while ((draggedFromMain = draggedFromMain.parentElement) && !draggedFromMain.classList.contains('main-section'));
-    if ((this as any).containers[0].childElementCount === 1 && !draggedFromMain) return true;
-    return false;
-  }
 
   removeItem(type, item) {
     this.removeByKey(this.system[type], {
