@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { DynamicFormModule } from '../dynamic-form';
 
 import {
   MatToolbarModule,
@@ -47,7 +46,6 @@ import {
     MatFormFieldModule,
     MatSelectModule,
     FlexLayoutModule,
-    DynamicFormModule,
   ],
   exports: [
     MatToolbarModule,
@@ -70,7 +68,6 @@ import {
     MatFormFieldModule,
     MatSelectModule,
     FlexLayoutModule,
-    DynamicFormModule,
   ],
   declarations: []
 })
