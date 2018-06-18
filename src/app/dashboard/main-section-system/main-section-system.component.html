@@ -50,12 +50,10 @@
       <div class="equipment container" [dragula]='"equipment"' [dragulaModel]='system.equipment' [ngClass]="{'filled': system.equipment.length > 0 || system.platform.length > 0}">
         <div class="content">
           <div [ngStyle]="{'display': (system.equipment.length > 0 ? 'block': 'none')}">equipment</div>
-          <!-- <div class="items"> -->
             <div *ngFor='let item of system.equipment' class="item">
               <div class="item-content">{{item.name}}</div>
               <mat-icon svgIcon="close" (click)="removeItem('equipment', item)"></mat-icon>
             </div>
-          <!-- </div> -->
         </div>
         <div class="placeholder" [ngStyle]="{'display': displayEquipmentPlaceHolder}">
           <div>add equipment for this system</div>
