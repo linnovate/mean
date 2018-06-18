@@ -50,12 +50,9 @@
         </div>
       </div>
       <div fxLayout="row" class="description">
-        <textarea
-          #textarea
+        <app-inline-edit-textarea
           placeholder="enter description"
-          [(ngModel)]="description"
-          rows="1"
-          (input)="autosizeTextarea(textarea)"></textarea>
+          [(value)]="description"></app-inline-edit-textarea>
       </div>
       <mat-divider></mat-divider>
     </header>

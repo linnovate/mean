@@ -17,11 +17,10 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div fxLayout="row">
-        <mat-form-field fxFlex="100">
-          <textarea matInput placeholder="enter description" [(ngModel)]="description" required></textarea>
-          <mat-error>description is required</mat-error>
-        </mat-form-field>
+      <div fxLayout="row" class="description">
+        <app-inline-edit-textarea
+          placeholder="enter system description"
+          [(value)]="description"></app-inline-edit-textarea>
       </div>
       <mat-divider></mat-divider>
     </header>
