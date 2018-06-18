@@ -18,6 +18,7 @@ import {
   DynamicFormModule,
   InlineEditComponent,
   InlineEditTextareaComponent,
+  SearchBoxComponent
 } from './components';
 
 /* Services */
@@ -46,6 +47,7 @@ import { ReplacePipe } from 'angular-pipes';
     SidebarSystemComponent,
     ReplacePipe,
     InlineEditTextareaComponent,
+    SearchBoxComponent,
   ],
   providers: [
     EntityService,

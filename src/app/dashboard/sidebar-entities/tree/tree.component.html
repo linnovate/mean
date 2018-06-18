@@ -1,7 +1,7 @@
-<div class="wrapper-search">
-  <input id="filter" #filter (keyup)="filterFn(filter.value, tree.treeModel)" placeholder="Search..." />
-  <mat-icon>search</mat-icon>
-</div>
+<app-search-box
+  (search)="filterFn($event, tree.treeModel)"
+  placeholder="Search...">
+</app-search-box>
 
 <tree-root #tree [focused]="true" [options]="options" [nodes]="data" (activate)="activateNode($event)">
   <ng-template #treeNodeTemplate let-node let-index="index">

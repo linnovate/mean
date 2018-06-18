@@ -1,25 +1,25 @@
 <div class="system-sidebar">
-    <div class="wrapper-search">
-      <input id="filter" #filter placeholder="Search..." />
-      <mat-icon>search</mat-icon>
-    </div>
-    <div *ngIf="showPlatform">
-      <div class="wrapper-category" *ngFor="let category of data.platform" >
+  <app-search-box
+    (search)="filterFn($event, tree.treeModel)"
+    placeholder="Search...">
+  </app-search-box>
+
+  <div *ngIf="showPlatform">
+    <div class="wrapper-category" *ngFor="let category of data.platform" >
       <div class="title">{{category.name}}</div>
       <div class='container' [dragula]='"platform"' [dragulaModel]='category.children'>
         <div *ngFor='let item of category.children' [innerHtml]='item.name'></div>
       </div>
     </div>
-    </div>
-    
-    <div *ngIf="!showPlatform">
-      <div class="wrapper-category" *ngFor="let category of data.equipment">
-        <div class="title">{{category.name}}</div>
-        <div class='container' [dragula]='"equipment"' [dragulaModel]='category.children'>
-          <div *ngFor='let item of category.children' [innerHtml]='item.name'></div>
-        </div>
+  </div>
+
+  <div *ngIf="!showPlatform">
+    <div class="wrapper-category" *ngFor="let category of data.equipment">
+      <div class="title">{{category.name}}</div>
+      <div class='container' [dragula]='"equipment"' [dragulaModel]='category.children'>
+        <div *ngFor='let item of category.children' [innerHtml]='item.name'></div>
       </div>
     </div>
-    
   </div>
-  
+
+</div>

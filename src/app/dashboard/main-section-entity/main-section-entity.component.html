@@ -102,13 +102,10 @@
     fxFlex="0 0 15"
     [class.hidden]="!showIconsBar"
     (focusout)="toggleIconsBar(false)">
-    <div class="wrapper-search">
-      <input
-        #input
-        (keyup)="filterIcons(input)"
-        placeholder="Search icons" />
-      <mat-icon>search</mat-icon>
-    </div>
+    <app-search-box
+      (search)="filterIcons($event)"
+      placeholder="Search icons">
+    </app-search-box>
 
     <div
       class="icons-group"

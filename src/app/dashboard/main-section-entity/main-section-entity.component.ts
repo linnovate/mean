@@ -45,13 +45,13 @@ export class MainSectionEntityComponent implements OnInit {
   dashRegex: RegExp = new RegExp(/-/g);
   showIconsBar: Boolean = false;
 
-  filterIcons(input) {
+  filterIcons(str) {
     this.iconsToDisplay = this.icons.map(group => {
       let { groupName, list } = group;
       return {
         groupName,
         list: list.filter(icon => {
-          return icon.includes(input.value);
+          return icon.includes(str);
         })
       };
     })
