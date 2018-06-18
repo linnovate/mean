@@ -66,6 +66,10 @@ export class MainSectionSystemComponent implements OnInit {
 
   cancel() {
     this.initInitialValues(this.originalSystem);
+    this.systemService.events.next({
+      name: 'init.exists.system',
+      data: this.system
+    });
   }
 
   update() {
@@ -135,5 +139,4 @@ export class MainSectionSystemComponent implements OnInit {
   ngOnDestroy() {
     this.dragulaService.destroy('platform');
   }
-
 }
