@@ -47,7 +47,6 @@ async function tree() {
 async function updateTreeNames(platforms, tree) {
   console.log(platforms, tree);
   return await tree.map(category => {
-    console.log('orit', category, 'orit', platforms[0]);
     category.name = platforms.find(e => JSON.stringify(e._id) === JSON.stringify(category._id)).name;
     return category;
   });
