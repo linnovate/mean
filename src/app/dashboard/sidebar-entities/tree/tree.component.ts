@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { SchemaService } from '../../services/schema.service';
 import { EntityService } from '../../services/entity.service';
+import { SystemService } from '../../services/system.service';
 
 @Component({
   selector: 'app-tree',
@@ -20,7 +21,8 @@ export class EntitiesTreeComponent {
 
   @Input() set activeTab(value: string) {
     this._activeTab = value;
-    this.getTreeData(value);
+    if (value === 'system') this.getSystemTreeData();
+    else this.getTreeData(value);
   }
 
   options = {};
@@ -28,7 +30,11 @@ export class EntitiesTreeComponent {
   _activeTab;
   subscription: Subscription;
 
-  constructor(private schemaSvc: SchemaService, private router: Router, private route: ActivatedRoute, private entityService: EntityService) {
+  constructor(private schemaSvc: SchemaService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private entityService: EntityService,
+    private systemService: SystemService) {
     this.subscription = this.entityService.subject.subscribe(data => {
       this.getTreeData(this._activeTab);
       // if (!this.tree.treeModel.focusedNode) return;
@@ -48,6 +54,8 @@ export class EntitiesTreeComponent {
     if (node.level === 2) node.expandAll();
     if (node.level === 3) // this is a mode node
       this.router.navigate([this._activeTab , node.parent.data._id, node.data.name]);
+    if (node.data.type && node.data.type === 'system')
+    this.router.navigate([this._activeTab , node.data._id]);
   }
 
   getTreeData(type) {
@@ -63,6 +71,13 @@ export class EntitiesTreeComponent {
       this.data = data;
     });
   }
+
+  getSystemTreeData() {
+    this.systemService.tree().subscribe((data: any) => {
+      this.data = data;
+    });
+  }
+
   delete(node) {
     const entityId = node.data._schema ? node.data._id : node.parent.data._id;
     const modeName = node.data._schema ? '' : node.data.name;

@@ -38,7 +38,7 @@ async function remove(id) {
 
 async function tree() {
   let group = {_id: "$platform"};
-  group.children = {$push: {name: "$name", _id: "$_id"}};
+  group.children = {$push: {name: "$name", _id: "$_id", type: "system"}};
   return await System.aggregate([{
       $group: group
   }]);
