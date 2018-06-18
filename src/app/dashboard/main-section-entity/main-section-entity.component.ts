@@ -58,13 +58,15 @@ export class MainSectionEntityComponent implements OnInit {
   }
 
   setIcon(icon) {
-    this.icon = icon;
-    this.showIconsBar = false;
+    setTimeout(() => {
+      this.icon = icon;
+      this.showIconsBar = false;
+    }, 0)
   }
 
   toggleIconsBar(show) {
     setTimeout(() => {
-      this.showIconsBar = show || document.activeElement.closest('.icons-bar');
+      this.showIconsBar = show || Boolean(document.activeElement.closest('.icons-bar'));
     }, 0)
   }
 

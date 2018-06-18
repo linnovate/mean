@@ -46,7 +46,7 @@ $activeSignColor: #2264ac;
         & .tree-node-focused {
           &.tree-node-level-2 {
             .node-wrapper {
-              border-left: solid 3px $activeSignColor;
+              border-color: $activeSignColor;
               .toggle-children {
                 background: transparent;
               }
@@ -73,6 +73,7 @@ $activeSignColor: #2264ac;
         }
         .node-wrapper {
           margin: 2px 0;
+          border-left: 3px solid transparent;
           &:hover {
             .actions {
               display: inline-block !important;
