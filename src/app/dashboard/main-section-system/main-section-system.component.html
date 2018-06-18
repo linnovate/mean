@@ -1,18 +1,14 @@
 <div fxLayout="row" fxLayoutGap="10px" >
-  <div class="main-section" fxFlex="75">
+  <div class="main-section" fxFlex="80">
     <header>
       <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
-        <!-- <div fxFlex="10" class="main-section-icon">
-          <mat-icon [svgIcon]="icon"></mat-icon>
-        </div> -->
-        <div fxFlex="65" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
-          <app-inline-edit style="max-width: 35%;" placeholder="enter name" [(value)]="name"></app-inline-edit>
+        <div fxFlex="5" class="icon">
+          <mat-icon svgIcon="drone"></mat-icon>
         </div>
-        <div fxFlex="15" class="toggle-case-wrapper">
-          <!-- <div class="toggle-case foe">
-            foe
-          </div> -->
+        <div fxFlex="80" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
+          <app-inline-edit placeholder="enter system name" [(value)]="name"></app-inline-edit>
         </div>
+        <div fxFlex="15" class="toggle-case-wrapper"></div>
         <mat-form-field fxFlex="15">
           <mat-select [(ngModel)]="system.status" class="main-section-select">
             <mat-option *ngFor="let status of statuses" [value]="status" class="main-section-select-options">
@@ -20,8 +16,6 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <div fxFlex="5" class="">
-        </div>
       </div>
       <div fxLayout="row">
         <mat-form-field fxFlex="100">
@@ -84,7 +78,7 @@
     </footer>
   </div>
 
-  <div fxFlex="25">
+  <div fxFlex="20">
     <app-sidebar-system></app-sidebar-system>
   </div>
 </div>
