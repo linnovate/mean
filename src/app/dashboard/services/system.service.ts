@@ -36,5 +36,11 @@ export class SystemService {
       .http
       .get(`/api/system/${id}`);
   }
+
+  tree() {
+    return this
+      .http
+      .get(`/api/system/tree`);
+  }
 }
 
