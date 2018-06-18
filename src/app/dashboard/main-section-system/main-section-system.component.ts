@@ -19,7 +19,7 @@ export class MainSectionSystemComponent implements OnInit {
   platforms: Array<any> = [];
   statuses: string[] = ['draft', 'waiting', 'approved', 'rejected'];
   status: string;
-  displayEquipmentPlaceHolder: string = 'flex';
+  displayEquipmentPlaceHolder: string = 'none';
   system: any = {
     name: '',
     description: '',
@@ -39,7 +39,7 @@ export class MainSectionSystemComponent implements OnInit {
    dragulaEvents() {
     this.dragulaService.dropModel.subscribe((value) => {
       if (value[0] === 'equipment') this.displayEquipmentPlaceHolder = 'none';
-      if (value[0] === 'platform') this.displayEquipmentPlaceHolder = 'flex';
+      if (value[0] === 'platform' && !this.system.equipment.length) this.displayEquipmentPlaceHolder = 'flex';
     });
     this.dragulaService.drag.subscribe((value) => {
       if (value[0] === 'equipment') this.displayEquipmentPlaceHolder = 'flex';
@@ -75,7 +75,6 @@ export class MainSectionSystemComponent implements OnInit {
     this.system.description = this.description;
     if (this.valid())
       this.systemService.update(this.system._id, this.system).subscribe((data: any) => {
-        console.log('saved system', data);
         this.router.navigate([`/system/${data._id}`]);
       });
   }
@@ -86,7 +85,6 @@ export class MainSectionSystemComponent implements OnInit {
     this.system.description = this.description;
     if (this.valid())
       this.systemService.save(this.system).subscribe((data: any) => {
-        console.log('saved system', data);
         this.router.navigate([`/system/${data._id}`]);
       });
   }
@@ -104,7 +102,8 @@ export class MainSectionSystemComponent implements OnInit {
       this.name = system.name;
       this.description = system.description;
       this.systemService.events.next({
-        name: 'init.exists.system'
+        name: 'init.exists.system',
+        data: this.system
       });
     })
   }

@@ -30,9 +30,18 @@ export class SidebarSystemComponent implements OnInit {
 
   init() {
     ['platform', 'equipment'].forEach(type => {
-      this.schemaService.tree(type, 'name').subscribe(data => {
-        this.data[type] = data
-      });
+      this.schemaService.tree(type, 'name').subscribe(data => this.data[type] = data);
+    });
+  }
+
+  cleanTree(system) {
+    ['platform', 'equipment'].forEach(type => {
+        this.data[type].forEach(category => {
+          system[type].forEach(child => {
+            let existChildIndex = category.children.findIndex(e => e._id === child._id);
+            if (existChildIndex !== -1) category.children.splice(existChildIndex, 1);
+          })
+        });
     });
   }
 
@@ -47,6 +56,7 @@ export class SidebarSystemComponent implements OnInit {
         }
         case 'init.exists.system' : {
           this.showPlatform = false;
+          this.cleanTree(event.data);
           break;
         }
       }

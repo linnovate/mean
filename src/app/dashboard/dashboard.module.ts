@@ -12,7 +12,6 @@ import { DashboardComponent } from './dashboard.component';
 import { MainSectionEntityComponent } from './main-section-entity/main-section-entity.component';
 import { MainSectionSystemComponent } from './main-section-system/main-section-system.component';
 import { SidebarEntitiesComponent } from './sidebar-entities/sidebar-entities.component';
-import { SidebarActionsComponent } from './sidebar-actions/sidebar-actions.component';
 import { EntitiesTreeComponent } from './sidebar-entities/tree/tree.component';
 import { InlineEditComponent } from '../inline-edit/inline-edit.component';
 import { SidebarSystemComponent } from './sidebar-system/sidebar-system.component';
@@ -37,7 +36,6 @@ import { ReplacePipe } from 'angular-pipes';
     MainSectionEntityComponent,
     MainSectionSystemComponent,
     SidebarEntitiesComponent,
-    SidebarActionsComponent,
     EntitiesTreeComponent,
     InlineEditComponent,
     SidebarSystemComponent,

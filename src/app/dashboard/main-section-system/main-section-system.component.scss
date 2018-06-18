@@ -40,6 +40,11 @@
   }
 }
 
+.main-section-icon mat-icon {
+  height: 60px;
+  width: 60px;
+}
+
 section {
   background-color: white;
   >span {
@@ -88,7 +93,7 @@ section {
       }
       .item {
         position: relative;
-        max-width: 320px;
+        width: 320px;
         max-height: 70px;
         border: solid 1px $linesColor;
         padding: 15px;
@@ -121,9 +126,12 @@ section {
         }
         .content {
           display: block;
-          .items {
-            padding: 20px;
-            border: dashed 1.5px $linesColor;
+          .item {
+            width: 250px;
+            max-height: 43px;
+            padding: 11px;
+            margin: 7.5px;
+            display: inline-block;
           }
         }
       }
