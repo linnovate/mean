@@ -11,6 +11,7 @@ import { DragulaService } from 'ng2-dragula';
 export class SidebarSystemComponent implements OnInit {
 
   data: any = {};
+  originalData: any = {};
   showPlatform: Boolean = true;
 
   constructor(
@@ -30,11 +31,15 @@ export class SidebarSystemComponent implements OnInit {
 
   init() {
     ['platform', 'equipment'].forEach(type => {
-      this.schemaService.tree(type, 'name').subscribe(data => this.data[type] = data);
+      this.schemaService.tree(type, 'name').subscribe(data => {
+        this.originalData[type] = data;
+        this.data[type] = data
+      });
     });
   }
 
   cleanTree(system) {
+    this.data = JSON.parse(JSON.stringify(this.originalData));
     ['platform', 'equipment'].forEach(type => {
         this.data[type].forEach(category => {
           system[type].forEach(child => {
