@@ -3,6 +3,7 @@ const passport = require('passport');
 const httpError = require('http-errors');
 const asyncHandler = require('express-async-handler')
 const systemCtrl = require('../controllers/system.controller');
+const entityCtrl = require('../controllers/entity.controller');
 const requireAdmin = require('../middleware/require-admin');
 
 const router = express.Router();
@@ -14,6 +15,10 @@ router
   .route('/')
   .get(asyncHandler(list))
   .post(asyncHandler(insert));
+
+router
+  .route('/tree')
+  .get(asyncHandler(tree));
 
 router
   .route('/:id')
@@ -31,6 +36,14 @@ async function get(req, res) {
   if (!system) 
     throw new httpError(404);
   res.json(system);
+}
+
+async function tree(req, res) {
+  let tree = await systemCtrl.tree();
+  if (!tree) throw new httpError(404);
+  let platforms = await entityCtrl.findByIds(tree.map(p => p._id));
+  let completeTree = await systemCtrl.updateTreeNames(platforms, tree);
+  res.json(completeTree);
 }
 
 async function update(req, res) {

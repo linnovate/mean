@@ -5,7 +5,9 @@ module.exports = {
   update,
   get,
   list,
-  remove
+  remove,
+  tree,
+  updateTreeNames,
 }
 
 async function insert(userId, system) {
@@ -32,4 +34,21 @@ async function list(userId) {
 
 async function remove(id) {
   return await System.deleteById(id);
+}
+
+async function tree() {
+  let group = {_id: "$platform"};
+  group.children = {$push: {name: "$name", _id: "$_id"}};
+  return await System.aggregate([{
+      $group: group
+  }]);
+}
+
+async function updateTreeNames(platforms, tree) {
+  console.log(platforms, tree);
+  return await tree.map(category => {
+    console.log('orit', category, 'orit', platforms[0]);
+    category.name = platforms.find(e => JSON.stringify(e._id) === JSON.stringify(category._id)).name;
+    return category;
+  });
 }

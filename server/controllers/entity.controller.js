@@ -11,6 +11,7 @@ module.exports = {
   tree,
   checkUniqueMode,
   findById,
+  findByIds,
 }
 
 async function insert(userId, entity) {
@@ -124,4 +125,12 @@ async function tree(schemas, field) {
     {
       $group: group
   }]);
+}
+
+async function findByIds(ids) {
+  return await Entity.find({
+    _id: {
+      $in: ids
+    }
+  })
 }
