@@ -1,3 +1,9 @@
+:host {
+  position: relative;
+  display: block;
+  height: 100%;
+}
+
 ::ng-deep .mat-tab-group.mat-primary {
   .mat-tab-header {
     border-bottom: 0;
@@ -24,12 +30,21 @@
 }
 
 .bottom {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  box-sizing: border-box;
   text-align: center;
+  padding: 15px;
+
   button {
-    width: 90%;
+    width: 100%;
     background-color: #40C2F3;
+    height: 50px;
     a {
       color: white;
+      text-decoration: none;
+      font-weight: bold;
     }
   }
 }
