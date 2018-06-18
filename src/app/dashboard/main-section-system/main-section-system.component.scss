@@ -120,6 +120,7 @@ section {
     &.equipment {
       display: none;
       &.filled {
+        margin-top: 20px;
         display: block;
         .placeholder {
           display: flex;

@@ -20,19 +20,15 @@ export class MainSectionSystemComponent implements OnInit {
   statuses: string[] = ['draft', 'waiting', 'approved', 'rejected'];
   status: string;
   displayEquipmentPlaceHolder: string = 'none';
-  system: any = {
-    name: '',
-    description: '',
-    platform: [],
-    equipment: [],
-    status: 'draft'
-  };
+  system: any;
+  originalSystem: any;
 
   constructor(private dragulaService: DragulaService,
               private systemService: SystemService,
               private router: Router,
               private route: ActivatedRoute) {
 
+    this.initInitialValues();
     this.dragulaEvents();
    }
 
@@ -68,7 +64,9 @@ export class MainSectionSystemComponent implements OnInit {
     return array;
   }
 
-  cancel() {}
+  cancel() {
+    this.initInitialValues(this.originalSystem);
+  }
 
   update() {
     this.system.name = this.name;
@@ -93,14 +91,33 @@ export class MainSectionSystemComponent implements OnInit {
     return this.system.platform.length === 1 && this.system.equipment.length > 0
   }
 
-  delete() {}
+  delete() {
+    
+
+  }
+
+
+  initInitialValues(system?) {
+    system = system || {};
+    system.platform = system.platform;
+    system.equipment = system.equipment || [];
+    system.name = system.name || '';
+    system.description = system.description || '';
+    system.status = system.status || 'draft';
+    this.name = system.name;
+    this.description = system.description;
+    this.system = system;
+    this.originalSystem = JSON.parse(JSON.stringify(this.system));
+    this.system.platform = this.system.platform ? [this.system.platform] : [];
+  }
+
+  initNewSystem() {
+    this.initInitialValues();
+  }
 
   initExistsSystem(systemId) {
     this.systemService.findOne(systemId).subscribe((system: any) => {
-      this.system = system;
-      this.system.platform = [system.platform];
-      this.name = system.name;
-      this.description = system.description;
+      this.initInitialValues(system);
       this.systemService.events.next({
         name: 'init.exists.system',
         data: this.system
@@ -110,7 +127,8 @@ export class MainSectionSystemComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      if (params.systemId) this.initExistsSystem(params.systemId)
+      if (params.systemId) return this.initExistsSystem(params.systemId);
+      this.initNewSystem();
     });
   }
 
