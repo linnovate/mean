@@ -47,12 +47,8 @@
 
     .description {
       margin: 15px 0;
-      textarea {
+      app-inline-edit-textarea {
         width: 100%;
-        border: none;
-        resize: none;
-        outline: none;
-        height: auto;
       }
     }
   }

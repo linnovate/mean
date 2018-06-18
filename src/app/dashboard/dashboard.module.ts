@@ -15,6 +15,7 @@ import { SidebarEntitiesComponent } from './sidebar-entities/sidebar-entities.co
 import { EntitiesTreeComponent } from './sidebar-entities/tree/tree.component';
 import { InlineEditComponent } from '../inline-edit/inline-edit.component';
 import { SidebarSystemComponent } from './sidebar-system/sidebar-system.component';
+import { InlineEditTextareaComponent } from '../inline-edit-textarea/inline-edit-textarea.component';
 
 /* Services */
 import { EntityService } from './services/entity.service';
@@ -40,6 +41,7 @@ import { ReplacePipe } from 'angular-pipes';
     InlineEditComponent,
     SidebarSystemComponent,
     ReplacePipe,
+    InlineEditTextareaComponent,
   ],
   providers: [
     EntityService,

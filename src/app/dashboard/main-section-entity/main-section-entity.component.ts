@@ -70,11 +70,6 @@ export class MainSectionEntityComponent implements OnInit {
     }, 0)
   }
 
-  autosizeTextarea(textarea) {
-    textarea.style.height = 'auto';
-    textarea.style.height = textarea.scrollHeight + 'px';
-  }
-
   toggleCase() {
     let active = this.activeIff;
     let maxLength = this.iff.length - 2;
@@ -171,7 +166,6 @@ export class MainSectionEntityComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.autosizeTextarea(document.querySelector('.description textarea'));
     this.route.parent.params.subscribe(pParams => {
       this.schemaType = pParams.type;
       this.route.params.subscribe(params => {

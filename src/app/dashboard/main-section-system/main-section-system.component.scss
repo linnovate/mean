@@ -20,6 +20,12 @@
       width: 45px;
       display: block;
     }
+    .description {
+      margin: 15px 0;
+      app-inline-edit-textarea {
+        width: 100%;
+      }
+    }
   }
 }
 
