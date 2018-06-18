@@ -14,6 +14,13 @@
       font-weight: bold;
     }
   }
+  header {
+    .icon mat-icon {
+      height: 45px;
+      width: 45px;
+      display: block;
+    }
+  }
 }
 
 .toggle-case-wrapper {
