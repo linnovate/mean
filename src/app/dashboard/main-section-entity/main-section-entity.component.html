@@ -1,11 +1,16 @@
-<div fxLayout="row">
+<div fxLayout="row" fxLayoutGap="7px">
   <div class="main-section" fxFlex="0 0 85">
     <header>
       <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
-        <div fxFlex="10" class="main-section-icon">
-          <mat-icon [svgIcon]="icon" (click)="toggleIconsBar()"></mat-icon>
+        <div fxFlex="5" class="icon">
+          <mat-icon
+            [svgIcon]="icon"
+            tabindex="0"
+            [class.active]="showIconsBar"
+            (focusin)="toggleIconsBar(true)"
+            (focusout)="toggleIconsBar(false)"></mat-icon>
         </div>
-        <div fxFlex="55" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
+        <div fxFlex="75" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
           <app-inline-edit
             style="max-width: 35%;"
             placeholder="enter name"
@@ -16,7 +21,7 @@
             placeholder="enter mode name"
             [(value)]="modeName"></app-inline-edit>
         </div>
-        <div fxFlex="15" class="toggle-case-wrapper">
+        <div fxFlex="8" class="toggle-case-wrapper">
           <div (click)="toggleCase()" [ngClass]="iff[activeIff]" class="toggle-case">
             <span *ngFor="let case of iff; index as i">
               <span *ngIf="i === activeIff">
@@ -25,14 +30,14 @@
             </span>
           </div>
         </div>
-        <mat-form-field fxFlex="15">
+        <mat-form-field fxFlex="10">
           <mat-select [(ngModel)]="status" class="main-section-select">
             <mat-option *ngFor="let status of statuses" [value]="status" class="main-section-select-options">
               {{status | uppercase}}
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <div fxFlex="5" class="main-section-menu">
+        <div fxFlex="3" class="main-section-menu">
           <button mat-button [matMenuTriggerFor]="menu">
             <mat-icon class="material-icons">
               more_vert
@@ -44,11 +49,13 @@
           </mat-menu>
         </div>
       </div>
-      <div fxLayout="row">
-        <mat-form-field fxFlex="100">
-          <textarea matInput placeholder="enter description" [(ngModel)]="description" required></textarea>
-          <mat-error>description is required</mat-error>
-        </mat-form-field>
+      <div fxLayout="row" class="description">
+        <textarea
+          #textarea
+          placeholder="enter description"
+          [(ngModel)]="description"
+          rows="1"
+          (input)="autosizeTextarea(textarea)"></textarea>
       </div>
       <mat-divider></mat-divider>
     </header>
@@ -75,7 +82,12 @@
     </footer>
   </div>
 
-  <div class="icons-bar" fxFlex="0 0 15" [class.hidden]="!showIconsBar">
+  <div
+    class="icons-bar"
+    tabindex="0"
+    fxFlex="0 0 15"
+    [class.hidden]="!showIconsBar"
+    (focusout)="toggleIconsBar(false)">
     <div class="wrapper-search">
       <input
         #input
@@ -84,20 +96,23 @@
       <mat-icon>search</mat-icon>
     </div>
 
-    <div class="icons-lib">
-      <div
-        [class.active]="iconName === icon"
-        class="icon-wrapper"
-        *ngFor="let iconName of iconsToDisplay">
-        <mat-icon
-          [svgIcon]="iconName"
-          [title]="iconName | replace: dashRegex: ' ' | titlecase "
-          (click)="setIcon(iconName)">
-        </mat-icon>
+    <div
+      class="icons-group"
+      *ngFor="let group of iconsToDisplay">
+      <div class="icons-header">
+        {{group.groupName | uppercase}}
       </div>
-      <div class="icon-wrapper" *ngFor="let icon of ['','','','','']">
-        <mat-icon class="empty">
-        </mat-icon>
+      <div class="icons-list">
+        <div
+          [class.active]="iconName === icon"
+          class="icon-wrapper"
+          *ngFor="let iconName of group.list">
+          <mat-icon
+            [svgIcon]="iconName"
+            [title]="iconName | replace: dashRegex: ' ' | titlecase "
+            (click)="setIcon(iconName)">
+          </mat-icon>
+        </div>
       </div>
     </div>
   </div>
