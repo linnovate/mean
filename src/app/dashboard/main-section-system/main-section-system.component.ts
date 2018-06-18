@@ -17,10 +17,16 @@ export class MainSectionSystemComponent implements OnInit {
   platform: any;
   equipment: Array<any>;
   platforms: Array<any> = [];
-  system: any;
   statuses: string[] = ['draft', 'waiting', 'approved', 'rejected'];
   status: string;
   displayEquipmentPlaceHolder: string = 'flex';
+  system: any = {
+    name: '',
+    description: '',
+    platform: [],
+    equipment: [],
+    status: 'draft'
+  };
 
   constructor(private dragulaService: DragulaService,
               private systemService: SystemService,
@@ -33,6 +39,7 @@ export class MainSectionSystemComponent implements OnInit {
    dragulaEvents() {
     this.dragulaService.dropModel.subscribe((value) => {
       if (value[0] === 'equipment') this.displayEquipmentPlaceHolder = 'none';
+      if (value[0] === 'platform') this.displayEquipmentPlaceHolder = 'flex';
     });
     this.dragulaService.drag.subscribe((value) => {
       if (value[0] === 'equipment') this.displayEquipmentPlaceHolder = 'flex';
@@ -50,7 +57,8 @@ export class MainSectionSystemComponent implements OnInit {
         type: type,
         item: item
       }
-    })
+    });
+    if (!this.system.equipment.length) this.displayEquipmentPlaceHolder = 'flex';
   }
 
   removeByKey(array, params){
@@ -95,23 +103,15 @@ export class MainSectionSystemComponent implements OnInit {
       this.system.platform = [system.platform];
       this.name = system.name;
       this.description = system.description;
+      this.systemService.events.next({
+        name: 'init.exists.system'
+      });
     })
-  }
-
-  initNewSystem() {
-    this.system = {
-      name: '',
-      description: '',
-      platform: [],
-      equipment: [],
-      status: 'draft'
-    };
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      if (params.systemId) return this.initExistsSystem(params.systemId)
-      this.initNewSystem();
+      if (params.systemId) this.initExistsSystem(params.systemId)
     });
   }
 
