@@ -13,9 +13,12 @@ import { MainSectionEntityComponent } from './main-section-entity/main-section-e
 import { MainSectionSystemComponent } from './main-section-system/main-section-system.component';
 import { SidebarEntitiesComponent } from './sidebar-entities/sidebar-entities.component';
 import { EntitiesTreeComponent } from './sidebar-entities/tree/tree.component';
-import { InlineEditComponent } from '../inline-edit/inline-edit.component';
 import { SidebarSystemComponent } from './sidebar-system/sidebar-system.component';
-import { InlineEditTextareaComponent } from '../inline-edit-textarea/inline-edit-textarea.component';
+import {
+  DynamicFormModule,
+  InlineEditComponent,
+  InlineEditTextareaComponent,
+} from './components';
 
 /* Services */
 import { EntityService } from './services/entity.service';
@@ -31,6 +34,7 @@ import { ReplacePipe } from 'angular-pipes';
     SharedModule,
     TreeModule,
     DragulaModule,
+    DynamicFormModule,
   ],
   declarations: [
     DashboardComponent,
