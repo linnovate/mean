@@ -1,17 +1,17 @@
-<div fxLayout="row" fxLayoutGap="10px">
+<div fxLayout="row" fxLayoutGap="10px" >
   <div class="main-section" fxFlex="75">
     <header>
       <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
-        <div fxFlex="10" class="main-section-icon">
+        <!-- <div fxFlex="10" class="main-section-icon">
           <mat-icon [svgIcon]="icon"></mat-icon>
-        </div>
-        <div fxFlex="55" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
+        </div> -->
+        <div fxFlex="65" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
           <app-inline-edit style="max-width: 35%;" placeholder="enter name" [(value)]="name"></app-inline-edit>
         </div>
         <div fxFlex="15" class="toggle-case-wrapper">
-          <div class="toggle-case foe">
+          <!-- <div class="toggle-case foe">
             foe
-          </div>
+          </div> -->
         </div>
         <mat-form-field fxFlex="15">
           <mat-select [(ngModel)]="system.status" class="main-section-select">
@@ -50,12 +50,12 @@
       <div class="equipment container" [dragula]='"equipment"' [dragulaModel]='system.equipment' [ngClass]="{'filled': system.equipment.length > 0 || system.platform.length > 0}">
         <div class="content">
           <div [ngStyle]="{'display': (system.equipment.length > 0 ? 'block': 'none')}">equipment</div>
-          <div class="items">
+          <!-- <div class="items"> -->
             <div *ngFor='let item of system.equipment' class="item">
               <div class="item-content">{{item.name}}</div>
               <mat-icon svgIcon="close" (click)="removeItem('equipment', item)"></mat-icon>
             </div>
-          </div>
+          <!-- </div> -->
         </div>
         <div class="placeholder" [ngStyle]="{'display': displayEquipmentPlaceHolder}">
           <div>add equipment for this system</div>

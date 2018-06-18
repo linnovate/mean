@@ -45,6 +45,10 @@ export class SidebarSystemComponent implements OnInit {
           if (event.data.type === 'platform') this.showPlatform = true;
           break;
         }
+        case 'init.exists.system' : {
+          this.showPlatform = false;
+          break;
+        }
       }
     });
   }
