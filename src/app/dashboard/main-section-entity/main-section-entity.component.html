@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutGap="7px">
+<div fxLayout="row" fxLayoutGap="7px" fxLayoutAlign="start start">
   <div class="main-section" fxFlex="0 0 85">
     <header>
       <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
@@ -65,18 +65,35 @@
     <footer fxLayout="row">
 
       <div fxFlex="15">
-        <button fxFill mat-button (click)="cancel()">CANCEL</button>
+        <button
+          fxFill
+          mat-button
+          (click)="cancel()">
+          CANCEL
+        </button>
       </div>
 
       <div fxFlex="15">
-        <button fxFill mat-button (click)="delete()" style="color: #ed401e;">DELETE</button>
+        <button
+          fxFill
+          mat-button
+          (click)="delete()"
+          class="delete">
+          DELETE
+        </button>
       </div>
 
       <!-- partition -->
       <div fxFlex="55"></div>
 
       <div fxFlex="15">
-        <button fxFill mat-button (click)="save()" style="color: #4bc1f2;">SAVE</button>
+        <button
+        fxFill
+        mat-button
+        (click)="save()"
+        class="save">
+        SAVE
+      </button>
       </div>
 
     </footer>

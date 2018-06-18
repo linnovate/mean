@@ -11,9 +11,15 @@
   }
   footer {
     margin-top: 2px;
-    margin-bottom: 16px;
     button {
       font-weight: bold;
+      &.delete {
+        color: #ed401e;
+      }
+      &.save {
+        color: #4bc1f2;
+        border: 1px solid #4fc2f2;
+      }
     }
   }
 
@@ -108,7 +114,7 @@
   outline: none;
 
   &.hidden {
-    visibility: hidden;
+    display: none;
   }
 
   .wrapper-search {
