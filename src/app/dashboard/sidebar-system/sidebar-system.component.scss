@@ -1,5 +1,4 @@
 @import '~_settings.scss';
-
 .system-sidebar {
   .wrapper-category {
     margin-top: 30px;
@@ -12,18 +11,40 @@
     }
     .container {
       div {
+        cursor: pointer;
+        transition: opacity 0.4s ease-in-out;
         color: $categoryEntityColor;
         font-size: 14px;
-        width: 85%;
         background-color: white;
         margin: 5px 0;
         border: solid 1px #DBDBDB;
         padding: 10px;
         max-width: 227px;
+        min-height: 43px;
+        width: 90%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
         &.hidden {
           display: none;
         }
       }
     }
   }
+}
+
+.gu-mirror {
+  color: $categoryEntityColor;
+  font-size: 14px;
+  background-color: white;
+  border: solid 1px #DBDBDB;
+  max-width: 227px; // padding: 10px;
+  -webkit-box-shadow: 3px 5px 6px 0px rgba(219, 219, 219, 1);
+  -moz-box-shadow: 3px 5px 6px 0px rgba(219, 219, 219, 1);
+  box-shadow: 3px 5px 6px 0px rgba(219, 219, 219, 1);
+  font-family: 'Exo', sans-serif;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
 }
