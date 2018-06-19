@@ -17,14 +17,13 @@ export class MainSectionEntityComponent implements OnInit {
   description: string;
   statuses: string[] = ['draft', 'waiting', 'approved', 'rejected'];
   status: string;
-  iff: string[] = ['foe', 'friend', 'neutral'];
-  activeIff: number;
   formFields: any;
   formValues: any;
   schema: any;
   entity: any;
   schemaType: string;
   originalModeName: string;
+  iff: string;
   icons: any[] = [{
     groupName: 'vehicles',
     list: ['airplane-front-view', 'air-station', 'balloon', 'boat', 'cargo-ship', 'car',
@@ -70,19 +69,13 @@ export class MainSectionEntityComponent implements OnInit {
     }, 0)
   }
 
-  toggleCase() {
-    let active = this.activeIff;
-    let maxLength = this.iff.length - 2;
-    this.activeIff = active > maxLength ? 0: active + 1;
-  }
-
   update() {
     // if originalModeName === '' it is a new mode
     this.entityService.update(this.entity._id, this.originalModeName, {
       icon: this.icon,
       name: this.name,
       description: this.description,
-      iff: this.iff[this.activeIff],
+      iff: this.iff,
       modes: [{
         name: this.modeName,
         status: this.status,
@@ -105,7 +98,7 @@ export class MainSectionEntityComponent implements OnInit {
       category: this.schema.category,
       name: this.name,
       description: this.description,
-      iff: this.iff[this.activeIff],
+      iff: this.iff,
       modes: [{
         name: this.modeName,
         status: this.status,
@@ -145,7 +138,7 @@ export class MainSectionEntityComponent implements OnInit {
     this.name = entity.name || '';
     this.modeName = mode.name || '';
     this.originalModeName = this.modeName;
-    this.activeIff = entity.iff ? this.iff.indexOf(entity.iff) : 0;
+    this.iff = entity.iff || 'foe';
     this.status = mode.status || 'draft';
     this.description = entity.description || '';
     this.formFields = schema.fields;
