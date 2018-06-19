@@ -22,13 +22,7 @@
             [(value)]="modeName"></app-inline-edit>
         </div>
         <div fxFlex="8" class="toggle-case-wrapper">
-          <div (click)="toggleCase()" [ngClass]="iff[activeIff]" class="toggle-case">
-            <span *ngFor="let case of iff; index as i">
-              <span *ngIf="i === activeIff">
-                {{case | uppercase}}
-              </span>
-            </span>
-          </div>
+            <app-toggle-case [(iff)]="iff"></app-toggle-case>
         </div>
         <mat-form-field fxFlex="10">
           <mat-select [(ngModel)]="status" class="main-section-select">
