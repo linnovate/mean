@@ -45,7 +45,7 @@ export class EntitiesTreeComponent {
       // this.tree.treeModel.update();
     });
     this.systemSubscription = this.systemService.subject.subscribe(data => {
-      if (['new node', 'update node'].indexOf(data.action) > -1) this.getSystemTreeData();
+      if (['new node', 'update node', 'delete node'].indexOf(data.action) > -1) this.getSystemTreeData();
     })
   }
 
