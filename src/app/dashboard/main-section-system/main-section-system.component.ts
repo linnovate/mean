@@ -46,6 +46,9 @@ export class MainSectionSystemComponent implements OnInit {
     this.dragulaService.drag.subscribe((value) => {
       if (value[0] === 'equipment') this.displayEquipmentPlaceHolder = 'flex';
     });
+    this.dragulaService.dragend.subscribe((value) => {
+      if (value[0] === 'equipment') this.displayEquipmentPlaceHolder = 'none';
+    });
    }
 
   removeItem(type, item) {
