@@ -15,6 +15,7 @@ export class SidebarSystemComponent implements OnInit {
   originalData: any = {};
   showPlatform: Boolean = true;
   subscription: Subscription;
+  filterText: string = '';
 
 
   constructor(
@@ -69,6 +70,10 @@ export class SidebarSystemComponent implements OnInit {
         }
       }
     });
+  }
+
+  filterFn(text) {
+    this.filterText = text;
   }
 
   ngOnInit() {}
