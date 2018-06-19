@@ -125,26 +125,4 @@ $activeSignColor: #2264ac;
       }
     }
   }
-  .wrapper-search {
-    position: relative;
-    input {
-      width: 93%;
-      padding: 3.5%;
-      border: solid 1px $linesColor;
-      border-right: none;
-      border-left: none;
-      height: 17px;
-      &:focus {
-        outline: none;
-      }
-    }
-    .mat-icon {
-      color: #b5b5b4;
-      position: absolute;
-      right: -10px;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 20px;
-    }
-  }
 }
