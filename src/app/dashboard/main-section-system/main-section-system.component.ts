@@ -22,11 +22,17 @@ export class MainSectionSystemComponent implements OnInit {
   displayEquipmentPlaceHolder: string = 'none';
   system: any;
   originalSystem: any;
+  options: any = {};
 
   constructor(private dragulaService: DragulaService,
               private systemService: SystemService,
               private router: Router,
               private route: ActivatedRoute) {
+
+
+    this.options = {
+      moves: (el, source, handle, sibling) => JSON.parse(source.getAttribute('draggable'))
+    }
 
     this.initInitialValues();
     this.dragulaEvents();
