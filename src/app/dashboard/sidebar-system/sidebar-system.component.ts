@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { SchemaService } from '../services/schema.service';
 import { SystemService } from '../services/system.service';
 import { DragulaService } from 'ng2-dragula';
@@ -10,6 +10,8 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./sidebar-system.component.scss']
 })
 export class SidebarSystemComponent implements OnInit {
+
+  @Input() system;
 
   data: any = {};
   originalData: any = {};
@@ -29,7 +31,7 @@ export class SidebarSystemComponent implements OnInit {
 
   dragulaEvents() {
     this.dragulaService.dragend.subscribe((value) => {
-      if (value[0] === 'platform') this.showPlatform = false;
+      if (value[0] === 'platform' && this.system.platform.length) this.showPlatform = false;
     });
   }
 
