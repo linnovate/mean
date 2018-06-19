@@ -53,7 +53,7 @@
       </header>
 
     <section>
-      <div class="platform container" [dragula]='"platform"' [dragulaModel]='system.platform' [ngClass]="{'filled': system.platform.length > 0}">
+      <div class="platform container" [dragula]='"platform"' [dragulaModel]='system.platform' [ngClass]="{'filled': system.platform.length > 0}" [dragulaOptions]="options" draggable="false">
         <div class="content">
           <div>platform</div>
           <div *ngFor='let item of system.platform' class="item">
@@ -67,7 +67,7 @@
           <div>drag a platform from the list on the right</div>
         </div>
       </div>
-      <div class="equipment container" [dragula]='"equipment"' [dragulaModel]='system.equipment' [ngClass]="{'filled': system.equipment.length > 0 || system.platform.length > 0}">
+      <div class="equipment container" [dragula]='"equipment"' [dragulaModel]='system.equipment' [ngClass]="{'filled': system.equipment.length > 0 || system.platform.length > 0}" [dragulaOptions]="options" draggable="false">
         <div class="content">
           <div [ngStyle]="{'display': (system.equipment.length > 0 ? 'block': 'none')}">equipment</div>
             <div *ngFor='let item of system.equipment' class="item">
