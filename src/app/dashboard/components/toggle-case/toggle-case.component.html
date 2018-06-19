@@ -1,0 +1,7 @@
+<div (click)="toggleCase()" [ngClass]="cases[activeCase]" class="toggle-case">
+  <span *ngFor="let case of cases; index as i">
+    <span *ngIf="i === activeCase">
+      {{case | uppercase}}
+    </span>
+  </span>
+</div>

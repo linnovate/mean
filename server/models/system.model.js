@@ -21,6 +21,12 @@ const SystemSchema = new mongoose.Schema({
     default: 'draft',
     enum: ['draft', 'reviewed', 'needs review', 'active', 'waiting', 'approved', 'rejected']
   },
+  iff: {
+    type: String,
+    enum: ['foe', 'friend', 'neutral'],
+    default: 'foe'
+  },
+  icon: String,
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
