@@ -113,34 +113,6 @@
     display: none;
   }
 
-  .wrapper-search {
-    position: relative;
-    margin: 0 3px;
-
-    input {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 18px 10px;
-      padding-bottom: 16px;
-      padding-top: 20px;
-      background-color: transparent;
-      border: none;
-      border-bottom: solid 1px $linesColor;
-      height: 17px;
-      font-size: 12px;
-      &:focus {
-        outline: none;
-      }
-    }
-    .mat-icon {
-      color: #b5b5b4;
-      position: absolute;
-      right: -1px;
-      top: 9px;
-      font-size: 20px;
-    }
-  }
-
   .icons-group {
     margin-top: 20px;
 
