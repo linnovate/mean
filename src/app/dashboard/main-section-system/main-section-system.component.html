@@ -1,38 +1,36 @@
 <div fxLayout="row" fxLayoutGap="7px" fxLayoutAlign="start start">
-    <div class="main-section" fxFlex="0 0 85">
-      <header>
-        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
-          <div fxFlex="5" class="icon">
-            <!-- <mat-icon
+  <div class="main-section" fxFlex="0 0 85">
+    <header>
+      <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+        <div fxFlex="5" class="icon">
+          <!-- <mat-icon
               [svgIcon]="icon"
               tabindex="0"
               [class.active]="showIconsBar"
               (focusin)="toggleIconsBar(true)"
               (focusout)="toggleIconsBar(false)"></mat-icon> -->
-          </div>
-          <div fxFlex="75" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
-            <app-inline-edit
-              placeholder="enter system name"
-              [(value)]="name"></app-inline-edit>
-          </div>
-          <div fxFlex="8" class="toggle-case-wrapper">
-            <!-- <div (click)="toggleCase()" [ngClass]="iff[activeIff]" class="toggle-case">
+        </div>
+        <div fxFlex="75" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
+          <app-inline-edit placeholder="enter system name" [(value)]="name"></app-inline-edit>
+        </div>
+        <div fxFlex="8" class="toggle-case-wrapper">
+          <!-- <div (click)="toggleCase()" [ngClass]="iff[activeIff]" class="toggle-case">
               <span *ngFor="let case of iff; index as i">
                 <span *ngIf="i === activeIff">
                   {{case | uppercase}}
                 </span>
               </span>
             </div> -->
-          </div>
-          <mat-form-field fxFlex="10">
-            <mat-select [(ngModel)]="system.status" class="main-section-select">
-              <mat-option *ngFor="let status of statuses" [value]="status" class="main-section-select-options">
-                {{status | uppercase}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <div fxFlex="3" class="main-section-menu">
-            <!-- <button mat-button [matMenuTriggerFor]="menu">
+        </div>
+        <mat-form-field fxFlex="10">
+          <mat-select [(ngModel)]="system.status" class="main-section-select">
+            <mat-option *ngFor="let status of statuses" [value]="status" class="main-section-select-options">
+              {{status | uppercase}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div fxFlex="3" class="main-section-menu">
+          <!-- <button mat-button [matMenuTriggerFor]="menu">
               <mat-icon class="material-icons">
                 more_vert
               </mat-icon>
@@ -41,18 +39,17 @@
               <button mat-menu-item>IMPORT VALUES</button>
               <button mat-menu-item>EXPORT VALUES</button>
             </mat-menu> -->
-          </div>
         </div>
-        <div fxLayout="row" class="description">
-          <app-inline-edit-textarea
-            placeholder="enter system description"
-            [(value)]="description"></app-inline-edit-textarea>
-        </div>
-        <mat-divider></mat-divider>
-      </header>
+      </div>
+      <div fxLayout="row" class="description">
+        <app-inline-edit-textarea placeholder="enter system description" [(value)]="description"></app-inline-edit-textarea>
+      </div>
+      <mat-divider></mat-divider>
+    </header>
 
     <section>
-      <div class="platform container" [dragula]='"platform"' [dragulaModel]='system.platform' [ngClass]="{'filled': system.platform.length > 0}" [dragulaOptions]="options" draggable="false">
+      <div class="platform container" [dragula]='"platform"' [dragulaModel]='system.platform' [ngClass]="{'filled': system.platform.length > 0}"
+        [dragulaOptions]="options" draggable="false">
         <div class="content">
           <div>platform</div>
           <div *ngFor='let item of system.platform' class="item">
@@ -66,13 +63,14 @@
           <div>drag a platform from the list on the right</div>
         </div>
       </div>
-      <div class="equipment container" [dragula]='"equipment"' [dragulaModel]='system.equipment' [ngClass]="{'filled': system.equipment.length > 0 || system.platform.length > 0}" [dragulaOptions]="options" draggable="false">
-        <div class="content">
+      <div class="equipment container" [dragula]='"equipment"' [dragulaModel]='system.equipment' [ngClass]="{'filled': system.equipment.length > 0 || system.platform.length > 0}"
+        [dragulaOptions]="options" draggable="false">
+        <div class="content" [ngClass]="{droppable: displayEquipmentPlaceHolder === 'flex'}">
           <div [ngStyle]="{'display': (system.equipment.length > 0 ? 'block': 'none')}">equipment</div>
-            <div *ngFor='let item of system.equipment' class="item">
-              <div class="item-content">{{item.name}}</div>
-              <mat-icon svgIcon="close" (click)="removeItem('equipment', item)"></mat-icon>
-            </div>
+          <div *ngFor='let item of system.equipment' class="item">
+            <div class="item-content">{{item.name}}</div>
+            <mat-icon svgIcon="close" (click)="removeItem('equipment', item)"></mat-icon>
+          </div>
         </div>
         <div class="placeholder" [ngStyle]="{'display': displayEquipmentPlaceHolder}">
           <div>add equipment for this system</div>
@@ -85,39 +83,28 @@
 
     <footer fxLayout="row">
 
-        <div fxFlex="15">
-          <button
-            fxFill
-            mat-button
-            (click)="cancel()">
-            CANCEL
-          </button>
-        </div>
-  
-        <div fxFlex="15">
-          <button
-            fxFill
-            mat-button
-            (click)="delete()"
-            class="delete">
-            DELETE
-          </button>
-        </div>
-  
-        <!-- partition -->
-        <div fxFlex="55"></div>
-  
-        <div fxFlex="15">
-          <button
-          fxFill
-          mat-button
-          (click)="save()"
-          class="save">
+      <div fxFlex="15">
+        <button fxFill mat-button (click)="cancel()">
+          CANCEL
+        </button>
+      </div>
+
+      <div fxFlex="15">
+        <button fxFill mat-button (click)="delete()" class="delete">
+          DELETE
+        </button>
+      </div>
+
+      <!-- partition -->
+      <div fxFlex="55"></div>
+
+      <div fxFlex="15">
+        <button fxFill mat-button (click)="save()" class="save">
           SAVE
         </button>
-        </div>
-  
-      </footer>
+      </div>
+
+    </footer>
   </div>
 
   <div fxFlex="15">

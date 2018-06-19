@@ -192,6 +192,9 @@ section {
             margin: 7.5px;
             display: inline-block;
           }
+          &.droppable {
+            opacity: 0.3;
+          }
         }
       }
     }
