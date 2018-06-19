@@ -11,6 +11,7 @@ export class SystemService {
 
   constructor(private http : HttpClient) { }
 
+  public subject = new Subject<any>();
   public events = new Subject<any>();
 
   save(data) {

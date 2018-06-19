@@ -29,6 +29,7 @@ export class EntitiesTreeComponent {
   data = [];
   _activeTab;
   subscription: Subscription;
+  systemSubscription: Subscription;
 
   constructor(private schemaSvc: SchemaService,
     private router: Router,
@@ -36,13 +37,16 @@ export class EntitiesTreeComponent {
     private entityService: EntityService,
     private systemService: SystemService) {
     this.subscription = this.entityService.subject.subscribe(data => {
-      this.getTreeData(this._activeTab);
+      if (['new entity', 'update mode', 'new mode'].indexOf(data.action) > -1) this.getTreeData(this._activeTab);
       // if (!this.tree.treeModel.focusedNode) return;
       // if (data.action === 'new entity') this.tree.treeModel.focusedNode.data.children.push(data.entity);
       // if (data.action === 'update mode') this.tree.treeModel.focusedNode.data = data.mode;
       // if (data.action === 'new mode') this.tree.treeModel.focusedNode.data.children.push(data.mode);
       // this.tree.treeModel.update();
     });
+    this.systemSubscription = this.systemService.subject.subscribe(data => {
+      if (['new node', 'update node'].indexOf(data.action) > -1) this.getSystemTreeData();
+    })
   }
 
   get activeTab(): string {
@@ -141,5 +145,6 @@ export class EntitiesTreeComponent {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.systemSubscription.unsubscribe();
   }
 }
