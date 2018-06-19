@@ -33,7 +33,7 @@ async function list(userId) {
 }
 
 async function remove(id) {
-  return await System.deleteById(id);
+  return await System.findByIdAndRemove(id);
 }
 
 async function tree() {
