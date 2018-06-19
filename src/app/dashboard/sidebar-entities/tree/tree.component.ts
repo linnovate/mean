@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
-import { TreeModel, TreeNode, TreeComponent } from 'angular-tree-component';
+import { TreeModel, TreeNode, TreeComponent, TREE_ACTIONS } from 'angular-tree-component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -25,7 +25,15 @@ export class EntitiesTreeComponent {
     else this.getTreeData(value);
   }
 
-  options = {};
+  options = {
+    // disable default deactivate event
+    // see https://github.com/500tech/angular-tree-component/issues/481
+    actionMapping: {
+      mouse: {
+        click: TREE_ACTIONS.ACTIVATE // instead of the default TOGGLE_ACTIVE
+      }
+    }
+  };
   data = [];
   _activeTab;
   subscription: Subscription;
@@ -54,10 +62,20 @@ export class EntitiesTreeComponent {
   }
 
   activateNode(event) {
-    const node = event.node;
-    if (node.level === 2) node.expandAll();
-    if (node.level === 3) // this is a mode node
+    let { node } = event;
+
+    node.toggleExpanded();
+
+    // leave parent nodes expanded, collapse all the other
+    node.treeModel.expandedNodes.forEach(expandedNode => {
+      if(!node.isDescendantOf(expandedNode)) {
+        expandedNode.collapse();
+      }
+    })
+
+    if (node.level === 3) { // this is a mode node
       this.router.navigate([this._activeTab , node.parent.data._id, node.data.name]);
+    }
     if (node.data.type && node.data.type === 'system')
     this.router.navigate([this._activeTab , node.data._id]);
   }
