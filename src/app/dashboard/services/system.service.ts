@@ -43,5 +43,11 @@ export class SystemService {
       .http
       .get(`/api/system/tree`);
   }
+
+  delete(id) {
+    return this
+      .http
+      .delete(`/api/system/${id}`);
+  }
 }
 

@@ -104,7 +104,14 @@ export class MainSectionSystemComponent implements OnInit {
   }
 
   delete() {
-    
+    if (!this.system._id) return this.cancel();
+    this.systemService.delete(this.system._id).subscribe(data => {
+      this.systemService.subject.next({
+        action: 'delete node',
+        data: data
+      });
+      this.router.navigate(['system']);
+    })
 
   }
 
