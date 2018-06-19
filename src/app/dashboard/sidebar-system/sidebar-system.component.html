@@ -1,7 +1,7 @@
 <div class="system-sidebar">
   <app-search-box
     (search)="filterFn($event)"
-    placeholder="Search...">
+    [placeholder]="showPlatform ? 'Search Platform' : 'Search Equipment'">
   </app-search-box>
 
   <div *ngIf="showPlatform">
