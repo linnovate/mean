@@ -132,6 +132,7 @@ export class MainSectionSystemComponent implements OnInit {
     system.name = system.name || '';
     system.description = system.description || '';
     system.status = system.status || 'draft';
+    system.iff = system.iff || 'foe';
     this.name = system.name;
     this.description = system.description;
     this.system = system;

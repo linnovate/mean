@@ -28,6 +28,7 @@ import { SchemaService } from './services/schema.service';
 /* Pipes */
 import { ReplacePipe } from 'angular-pipes';
 import { FilterDragulaListPipe } from './pipes/filter-dragula-list.pipe';
+import { ToggleCaseComponent } from './components/toggle-case/toggle-case.component';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { FilterDragulaListPipe } from './pipes/filter-dragula-list.pipe';
     InlineEditTextareaComponent,
     SearchBoxComponent,
     FilterDragulaListPipe,
+    ToggleCaseComponent,
   ],
   providers: [
     EntityService,
