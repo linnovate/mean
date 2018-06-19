@@ -73,12 +73,18 @@ export class EntitiesTreeComponent {
           });
       });
       this.data = data;
+      setTimeout(() => {
+        this.expandTreeNode()
+      }, 0);
     });
   }
 
   getSystemTreeData() {
     this.systemService.tree().subscribe((data: any) => {
       this.data = data;
+      setTimeout(() => {
+        this.expandTreeNode()
+      }, 0);
     });
   }
 
@@ -141,6 +147,20 @@ export class EntitiesTreeComponent {
       return false;
     }
     return true;
+  }
+
+  expandTreeNode() {
+    let i = location.href.lastIndexOf('/');
+    let nodeName = location.href.slice(i+1);
+    nodeName = decodeURIComponent(nodeName);
+    let node = this.tree.treeModel.getNodeBy((node) => {
+      let { name, _id } = node.data;
+      return name === nodeName || _id === nodeName;
+    })
+    if(node) {
+      console.log(node)
+      node.setActiveAndVisible();
+    }
   }
 
   ngOnDestroy() {
