@@ -76,7 +76,7 @@ export class MainSectionSystemComponent implements OnInit {
   cancel() {
     this.initInitialValues(this.originalSystem);
     this.systemService.events.next({
-      name: 'init.exists.system',
+      name: 'init.system',
       data: this.system
     });
   }
@@ -147,7 +147,7 @@ export class MainSectionSystemComponent implements OnInit {
     this.systemService.findOne(systemId).subscribe((system: any) => {
       this.initInitialValues(system);
       this.systemService.events.next({
-        name: 'init.exists.system',
+        name: 'init.system',
         data: this.system
       });
     })
