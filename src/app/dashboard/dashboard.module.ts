@@ -27,6 +27,7 @@ import { SchemaService } from './services/schema.service';
 
 /* Pipes */
 import { ReplacePipe } from 'angular-pipes';
+import { FilterDragulaListPipe } from './pipes/filter-dragula-list.pipe';
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import { ReplacePipe } from 'angular-pipes';
     ReplacePipe,
     InlineEditTextareaComponent,
     SearchBoxComponent,
+    FilterDragulaListPipe,
   ],
   providers: [
     EntityService,
