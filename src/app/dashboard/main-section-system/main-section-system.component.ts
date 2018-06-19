@@ -77,6 +77,10 @@ export class MainSectionSystemComponent implements OnInit {
     this.system.description = this.description;
     if (this.valid())
       this.systemService.update(this.system._id, this.system).subscribe((data: any) => {
+        this.systemService.subject.next({
+          action: 'update node',
+          data: this.system
+        });
         this.router.navigate([`/system/${data._id}`]);
       });
   }
@@ -87,6 +91,10 @@ export class MainSectionSystemComponent implements OnInit {
     this.system.description = this.description;
     if (this.valid())
       this.systemService.save(this.system).subscribe((data: any) => {
+        this.systemService.subject.next({
+          action: 'new node',
+          data: this.system
+        });
         this.router.navigate([`/system/${data._id}`]);
       });
   }

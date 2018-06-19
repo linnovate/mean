@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SchemaService } from '../services/schema.service';
 import { SystemService } from '../services/system.service';
 import { DragulaService } from 'ng2-dragula';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-sidebar-system',
@@ -13,6 +14,8 @@ export class SidebarSystemComponent implements OnInit {
   data: any = {};
   originalData: any = {};
   showPlatform: Boolean = true;
+  subscription: Subscription;
+
 
   constructor(
     private schemaService: SchemaService,
@@ -51,7 +54,7 @@ export class SidebarSystemComponent implements OnInit {
   }
 
   subscribeEvents() {
-    this.systemService.events.subscribe(event => {
+    this.subscription = this.systemService.events.subscribe(event => {
       switch(event.name) {
         case 'item.deleted': {
           let categoryIndex = this.data[event.data.type].findIndex(e => e.category === event.data.item.category);
@@ -71,7 +74,7 @@ export class SidebarSystemComponent implements OnInit {
   ngOnInit() {}
 
   ngOnDestroy() {
-    
+    this.subscription.unsubscribe();
     // this.dragulaService.destroy('platform');
   }
 
