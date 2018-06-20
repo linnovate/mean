@@ -10,7 +10,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() user: Object = {};
+  @Input() user: any = {};
 
   constructor(
     private authService: AuthService,
