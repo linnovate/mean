@@ -24,10 +24,6 @@ export class MainSectionEntityComponent implements OnInit {
   schemaType: string;
   originalModeName: string;
   iff: string;
-  iconsBarData: any = {
-    icon: 'drone',
-    show: false
-  };
 
   update() {
     // if originalModeName === '' it is a new mode
@@ -35,7 +31,7 @@ export class MainSectionEntityComponent implements OnInit {
       name: this.name,
       description: this.description,
       iff: this.iff,
-      icon: this.iconsBarData.icon,
+      icon: this.icon,
       modes: [{
         name: this.modeName,
         status: this.status,
@@ -58,7 +54,7 @@ export class MainSectionEntityComponent implements OnInit {
       name: this.name,
       description: this.description,
       iff: this.iff,
-      icon: this.iconsBarData.icon,
+      icon: this.icon,
       modes: [{
         name: this.modeName,
         status: this.status,
@@ -94,7 +90,7 @@ export class MainSectionEntityComponent implements OnInit {
     entity = entity || {};
     entity.modes = entity.modes || [{}];
     let mode = entity.modes[0];
-    this.iconsBarData.icon = entity.icon || 'drone';
+    this.icon = entity.icon || 'drone';
     this.name = entity.name || '';
     this.modeName = mode.name || '';
     this.originalModeName = this.modeName;

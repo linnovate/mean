@@ -1,43 +1,46 @@
-.icons-bar {
+:host {
+  display: none;
+
+  &.visible {
     display: block;
-    outline: none;
-  
-    &.hidden {
-      display: none;
+  }
+}
+
+.icons-bar {
+  outline: none;
+
+  .icons-group {
+    margin-top: 20px;
+
+    .icons-header {
+      margin: 0 6px;
+      font-weight: bold;
+      font-size: 14px;
+      color: #686868;
     }
-  
-    .icons-group {
-      margin-top: 20px;
-  
-      .icons-header {
-        margin: 0 6px;
-        font-weight: bold;
-        font-size: 14px;
-        color: #686868;
-      }
-  
-      .icons-list {
-        display: flex;
-        flex-flow: row wrap;
-  
-        .icon-wrapper {
-          padding: 9px;
-          border-radius: 50%;
-          &.active {
-            background-color: white;
-          }
-  
-          mat-icon {
-            display: block;
-            height: 40px;
-            width: 40px;
-            cursor: pointer;
-  
-            &.empty {
-              cursor: initial;
-            }
+
+    .icons-list {
+      display: flex;
+      flex-flow: row wrap;
+
+      .icon-wrapper {
+        padding: 9px;
+        border-radius: 50%;
+        &.active {
+          background-color: white;
+        }
+
+        mat-icon {
+          display: block;
+          height: 40px;
+          width: 40px;
+          cursor: pointer;
+
+          &.empty {
+            cursor: initial;
           }
         }
       }
     }
   }
+}

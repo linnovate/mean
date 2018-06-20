@@ -3,7 +3,13 @@
     <header>
       <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
         <div fxFlex="5" class="icon">
-          <mat-icon [svgIcon]="iconsBarData.icon" tabindex="0" [class.active]="iconsBarData.show" (focusin)="iconsBarData.show = !iconsBarData.show"></mat-icon>
+          <mat-icon
+            tabindex="0"
+            [svgIcon]="icon"
+            [class.active]="iconsBar.isVisible"
+            (focusin)="iconsBar.show()"
+            (focusout)="iconsBar.hide()">
+          </mat-icon>
         </div>
         <div fxFlex="72" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
           <app-inline-edit placeholder="enter system name" [(value)]="name"></app-inline-edit>
@@ -86,7 +92,13 @@
   </div>
 
   <div tabindex="0" fxFlex="0 0 15">
-    <app-sidebar-system [system]="system" [hidden]="iconsBarData.show"></app-sidebar-system>
-    <app-icons-bar [data]="iconsBarData" [hidden]="!iconsBarData.show"></app-icons-bar>
+    <app-sidebar-system
+      [system]="system"
+      [hidden]="iconsBar.isVisible">
+    </app-sidebar-system>
+    <app-icons-bar
+      #iconsBar
+      [(icon)]="icon">
+    </app-icons-bar>
   </div>
 </div>
