@@ -1,8 +1,21 @@
 @import '~_settings.scss';
 .system-sidebar {
   .wrapper-category {
-    margin-top: 30px;
+    height: calc(100vh - 154px);
+    overflow-y: scroll;
+    margin-top: 20px;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #c9c9c9;
+      border-radius: 10px;
+    }
+
     .title {
+      margin: 0 6px;
       color: $categoryTitleColor;
       text-transform: uppercase;
       font-weight: bold;
@@ -16,14 +29,10 @@
         color: $categoryEntityColor;
         font-size: 14px;
         background-color: white;
-        margin: 5px 0;
-        border: solid 1px #DBDBDB;
+        margin: 4px;
         padding: 10px;
-        max-width: 227px;
-        min-height: 43px;
-        width: 90%;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
+        line-height: 22px;
+        border: solid 1px $linesColor;
         box-sizing: border-box;
         &.hidden {
           display: none;
@@ -44,7 +53,7 @@
   color: $categoryEntityColor;
   font-size: 14px;
   background-color: white;
-  border: solid 1px #DBDBDB;
+  border: solid 1px $linesColor;
   max-width: 227px; // padding: 10px;
   -webkit-box-shadow: 3px 5px 6px 0px rgba(219, 219, 219, 1);
   -moz-box-shadow: 3px 5px 6px 0px rgba(219, 219, 219, 1);
