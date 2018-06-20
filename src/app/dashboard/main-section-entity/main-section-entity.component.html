@@ -3,26 +3,15 @@
     <header>
       <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
         <div fxFlex="5" class="icon">
-          <mat-icon
-            [svgIcon]="icon"
-            tabindex="0"
-            [class.active]="showIconsBar"
-            (focusin)="toggleIconsBar(true)"
-            (focusout)="toggleIconsBar(false)"></mat-icon>
+          <mat-icon [svgIcon]="iconsBarData.icon" tabindex="0" [class.active]="iconsBarData.show" (focusin)="iconsBarData.show = !iconsBarData.show"></mat-icon>
         </div>
         <div fxFlex="75" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
-          <app-inline-edit
-            style="max-width: 35%;"
-            placeholder="enter name"
-            [(value)]="name"></app-inline-edit>
+          <app-inline-edit style="max-width: 35%;" placeholder="enter name" [(value)]="name"></app-inline-edit>
           <span> - </span>
-          <app-inline-edit
-            style="max-width: 55%;"
-            placeholder="enter mode name"
-            [(value)]="modeName"></app-inline-edit>
+          <app-inline-edit style="max-width: 55%;" placeholder="enter mode name" [(value)]="modeName"></app-inline-edit>
         </div>
         <div fxFlex="8" class="toggle-case-wrapper">
-            <app-toggle-case [(iff)]="iff"></app-toggle-case>
+          <app-toggle-case [(iff)]="iff"></app-toggle-case>
         </div>
         <mat-form-field fxFlex="10">
           <mat-select [(ngModel)]="status" class="main-section-select">
@@ -44,9 +33,7 @@
         </div>
       </div>
       <div fxLayout="row" class="description">
-        <app-inline-edit-textarea
-          placeholder="enter description"
-          [(value)]="description"></app-inline-edit-textarea>
+        <app-inline-edit-textarea placeholder="enter description" [(value)]="description"></app-inline-edit-textarea>
       </div>
       <mat-divider></mat-divider>
     </header>
@@ -56,20 +43,13 @@
     <footer fxLayout="row">
 
       <div fxFlex="15">
-        <button
-          fxFill
-          mat-button
-          (click)="cancel()">
+        <button fxFill mat-button (click)="cancel()">
           CANCEL
         </button>
       </div>
 
       <div fxFlex="15">
-        <button
-          fxFill
-          mat-button
-          (click)="delete()"
-          class="delete">
+        <button fxFill mat-button (click)="delete()" class="delete">
           DELETE
         </button>
       </div>
@@ -78,47 +58,14 @@
       <div fxFlex="55"></div>
 
       <div fxFlex="15">
-        <button
-        fxFill
-        mat-button
-        (click)="save()"
-        class="save">
-        SAVE
-      </button>
+        <button fxFill mat-button (click)="save()" class="save">
+          SAVE
+        </button>
       </div>
 
     </footer>
   </div>
 
-  <div
-    class="icons-bar"
-    tabindex="0"
-    fxFlex="0 0 15"
-    [class.hidden]="!showIconsBar"
-    (focusout)="toggleIconsBar(false)">
-    <app-search-box
-      (search)="filterIcons($event)"
-      placeholder="Search icons">
-    </app-search-box>
-
-    <div
-      class="icons-group"
-      *ngFor="let group of iconsToDisplay">
-      <div class="icons-header">
-        {{group.groupName | uppercase}}
-      </div>
-      <div class="icons-list">
-        <div
-          [class.active]="iconName === icon"
-          class="icon-wrapper"
-          *ngFor="let iconName of group.list">
-          <mat-icon
-            [svgIcon]="iconName"
-            [title]="iconName | replace: dashRegex: ' ' | titlecase "
-            (click)="setIcon(iconName)">
-          </mat-icon>
-        </div>
-      </div>
-    </div>
+  <div tabindex="0" fxFlex="0 0 15">
+    <app-icons-bar [data]="iconsBarData" [hidden]="!iconsBarData.show"></app-icons-bar>
   </div>
-</div>

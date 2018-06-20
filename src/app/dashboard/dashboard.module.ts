@@ -14,6 +14,9 @@ import { MainSectionSystemComponent } from './main-section-system/main-section-s
 import { SidebarEntitiesComponent } from './sidebar-entities/sidebar-entities.component';
 import { EntitiesTreeComponent } from './sidebar-entities/tree/tree.component';
 import { SidebarSystemComponent } from './sidebar-system/sidebar-system.component';
+import { ToggleCaseComponent } from './components/toggle-case/toggle-case.component';
+import { IconsBarComponent } from './components/icons-bar/icons-bar.component';
+
 import {
   DynamicFormModule,
   InlineEditComponent,
@@ -28,7 +31,6 @@ import { SchemaService } from './services/schema.service';
 /* Pipes */
 import { ReplacePipe } from 'angular-pipes';
 import { FilterDragulaListPipe } from './pipes/filter-dragula-list.pipe';
-import { ToggleCaseComponent } from './components/toggle-case/toggle-case.component';
 
 @NgModule({
   imports: [
@@ -52,6 +54,7 @@ import { ToggleCaseComponent } from './components/toggle-case/toggle-case.compon
     SearchBoxComponent,
     FilterDragulaListPipe,
     ToggleCaseComponent,
+    IconsBarComponent,
   ],
   providers: [
     EntityService,
