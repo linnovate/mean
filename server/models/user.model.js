@@ -27,4 +27,11 @@ const UserSchema = new mongoose.Schema({
   versionKey: false
 });
 
+UserSchema.pre("save",function(next) {
+  if (this.roles.length === 0) {
+    this.roles.push('admin');
+  }
+  next();
+});
+
 module.exports = mongoose.model('User', UserSchema);
