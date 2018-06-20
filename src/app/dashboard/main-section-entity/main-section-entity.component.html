@@ -5,12 +5,12 @@
         <div fxFlex="5" class="icon">
           <mat-icon [svgIcon]="iconsBarData.icon" tabindex="0" [class.active]="iconsBarData.show" (focusin)="iconsBarData.show = !iconsBarData.show"></mat-icon>
         </div>
-        <div fxFlex="75" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
+        <div fxFlex="70" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
           <app-inline-edit style="max-width: 35%;" placeholder="enter name" [(value)]="name"></app-inline-edit>
           <span> - </span>
           <app-inline-edit style="max-width: 55%;" placeholder="enter mode name" [(value)]="modeName"></app-inline-edit>
         </div>
-        <div fxFlex="8" class="toggle-case-wrapper">
+        <div fxFlex="13" class="toggle-case-wrapper">
           <app-toggle-case [(iff)]="iff"></app-toggle-case>
         </div>
         <mat-form-field fxFlex="10">
@@ -20,7 +20,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <div fxFlex="3" class="main-section-menu">
+        <div fxFlex="2" class="main-section-menu">
           <button mat-button [matMenuTriggerFor]="menu">
             <mat-icon class="material-icons">
               more_vert
