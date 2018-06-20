@@ -176,7 +176,6 @@ export class EntitiesTreeComponent {
       return name === nodeName || _id === nodeName;
     })
     if(node) {
-      console.log(node)
       node.setActiveAndVisible();
     }
   }

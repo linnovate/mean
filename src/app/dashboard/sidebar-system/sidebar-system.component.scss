@@ -28,6 +28,13 @@
         &.hidden {
           display: none;
         }
+        &:hover {
+          border-color: #2D9CDB;
+          background-color: #E4F5FF;
+          background-image: url('assets/icons/add-blue.svg');
+          background-repeat: no-repeat;
+          background-position: 95% center;
+        }
       }
     }
   }

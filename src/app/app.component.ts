@@ -59,6 +59,7 @@ export class AppComponent implements OnInit {
     [
       'close',
       'add',
+      'add-blue',
       'airplane-front-view',
       'air-station',
       'balloon',
