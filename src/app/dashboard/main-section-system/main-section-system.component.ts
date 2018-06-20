@@ -110,7 +110,9 @@ export class MainSectionSystemComponent implements OnInit {
   }
 
   valid() {
-    return this.system.platform.length === 1 && this.system.equipment.length > 0
+    let isValid = this.system.platform.length === 1 && this.system.equipment.length > 0;
+    if (!isValid) (<any>window).globalEvents.emit('open error dialog', 'choose platform and equipment');
+    return isValid;
   }
 
   delete() {
