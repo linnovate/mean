@@ -24,58 +24,18 @@ export class MainSectionEntityComponent implements OnInit {
   schemaType: string;
   originalModeName: string;
   iff: string;
-  icons: any[] = [{
-    groupName: 'vehicles',
-    list: ['airplane-front-view', 'air-station', 'balloon', 'boat', 'cargo-ship', 'car',
-      'catamaran', 'convertible', 'drone', 'fighter-plane', 'fire-truck',
-      'horseback-riding', 'motorcycle', 'railcar', 'railroad-train', 'rocket-boot',
-      'sailing-boat', 'segway', 'shuttle', 'space-shuttle', 'steam-engine', 'suv',
-      'tour-bus', 'tow-truck', 'transportation', 'trolleybus', 'water-transportation']
-  }, {
-    groupName: 'vehicles',
-    list: ['airplane-front-view', 'air-station', 'balloon', 'boat', 'cargo-ship', 'car',
-      'catamaran', 'convertible', 'drone', 'fighter-plane', 'fire-truck',
-      'horseback-riding', 'motorcycle', 'railcar', 'railroad-train', 'rocket-boot',
-      'sailing-boat', 'segway', 'shuttle', 'space-shuttle', 'steam-engine', 'suv',
-      'tour-bus', 'tow-truck', 'transportation', 'trolleybus', 'water-transportation']
-  }];
-
-  iconsToDisplay: any[] = this.icons;
-  dashRegex: RegExp = new RegExp(/-/g);
-  showIconsBar: Boolean = false;
-
-  filterIcons(str) {
-    this.iconsToDisplay = this.icons.map(group => {
-      let { groupName, list } = group;
-      return {
-        groupName,
-        list: list.filter(icon => {
-          return icon.includes(str);
-        })
-      };
-    })
-  }
-
-  setIcon(icon) {
-    setTimeout(() => {
-      this.icon = icon;
-      this.showIconsBar = false;
-    }, 0)
-  }
-
-  toggleIconsBar(show) {
-    setTimeout(() => {
-      this.showIconsBar = show || Boolean(document.activeElement.closest('.icons-bar'));
-    }, 0)
-  }
+  iconsBarData: any = {
+    icon: 'drone',
+    show: false
+  };
 
   update() {
     // if originalModeName === '' it is a new mode
     this.entityService.update(this.entity._id, this.originalModeName, {
-      icon: this.icon,
       name: this.name,
       description: this.description,
       iff: this.iff,
+      icon: this.iconsBarData.icon,
       modes: [{
         name: this.modeName,
         status: this.status,
@@ -93,12 +53,12 @@ export class MainSectionEntityComponent implements OnInit {
   save() {
     if (this.entity) return this.update(); 
     this.entityService.save({
-      icon: this.icon,
       schema: this.schema._id,
       category: this.schema.category,
       name: this.name,
       description: this.description,
       iff: this.iff,
+      icon: this.iconsBarData.icon,
       modes: [{
         name: this.modeName,
         status: this.status,
@@ -125,7 +85,7 @@ export class MainSectionEntityComponent implements OnInit {
     private entityService: EntityService,
     private route: ActivatedRoute,
     private schemaService: SchemaService,
-    private router: Router
+    private router: Router,
    ) { }
 
 
@@ -134,7 +94,7 @@ export class MainSectionEntityComponent implements OnInit {
     entity = entity || {};
     entity.modes = entity.modes || [{}];
     let mode = entity.modes[0];
-    this.icon = entity.icon || 'drone';
+    this.iconsBarData.icon = entity.icon || 'drone';
     this.name = entity.name || '';
     this.modeName = mode.name || '';
     this.originalModeName = this.modeName;
