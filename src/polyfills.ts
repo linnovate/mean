@@ -79,3 +79,7 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
  */
 
 (window as any).global = window;
+
+import { EventEmitter } from 'events';
+
+(window as any).globalEvents = new EventEmitter();

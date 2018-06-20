@@ -23,8 +23,6 @@ import {
   MatSelectModule,
 } from '@angular/material';
 
-import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -71,6 +69,6 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
     MatSelectModule,
     FlexLayoutModule,
   ],
-  declarations: [ErrorDialogComponent]
+  declarations: [],
 })
 export class SharedModule { }
