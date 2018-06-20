@@ -5,10 +5,10 @@
         <div fxFlex="5" class="icon">
           <mat-icon [svgIcon]="iconsBarData.icon" tabindex="0" [class.active]="iconsBarData.show" (focusin)="iconsBarData.show = !iconsBarData.show"></mat-icon>
         </div>
-        <div fxFlex="75" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
+        <div fxFlex="72" style="font-size: 30px; white-space: nowrap; overflow: hidden;">
           <app-inline-edit placeholder="enter system name" [(value)]="name"></app-inline-edit>
         </div>
-        <div fxFlex="8" class="toggle-case-wrapper">
+        <div fxFlex="13" class="toggle-case-wrapper">
           <app-toggle-case [(iff)]="system.iff"></app-toggle-case>
         </div>
         <mat-form-field fxFlex="10">
@@ -18,17 +18,6 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <div fxFlex="3" class="main-section-menu">
-          <!-- <button mat-button [matMenuTriggerFor]="menu">
-              <mat-icon class="material-icons">
-                more_vert
-              </mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item>IMPORT VALUES</button>
-              <button mat-menu-item>EXPORT VALUES</button>
-            </mat-menu> -->
-        </div>
       </div>
       <div fxLayout="row" class="description">
         <app-inline-edit-textarea placeholder="enter system description" [(value)]="description"></app-inline-edit-textarea>
