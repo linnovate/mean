@@ -3,6 +3,8 @@ const fs = require('fs');
 const IncomingForm = require('formidable').IncomingForm;
 const entitiesCtrl = require('./entity.controller');
 
+const updateOpts = { new: true, runValidators: true };
+
 module.exports = {
   insert,
   update,
@@ -26,7 +28,7 @@ async function upload(request) {
       schema.updated = new Date();
       resolve(Schema.findOneAndUpdate({
         category: schema.category
-      }, schema, {upsert : true}))
+      }, schema, {upsert : true, runValidators: true}))
     });
     form.parse(request);
   });
@@ -35,8 +37,8 @@ async function upload(request) {
 async function update(name, schema) {
   schema.updated = new Date();
   return await Schema.findOneAndUpdate({
-    name: name
-  }, schema);
+    category: category
+  }, schema, updateOpts);
 }
 
 async function remove(schemaId) {

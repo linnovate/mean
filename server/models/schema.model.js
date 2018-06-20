@@ -25,7 +25,10 @@ const SchemaSchema = new mongoose.Schema({
   versionKey: false
 });
 
-//pre save check the type, if type is platform - modes = true
-// else model = false
+SchemaSchema.path('category').validate(function (value) {
+  if (!value) return false;
+  return true;
+}, 'Category is required');
+
 
 module.exports = mongoose.model('Schema', SchemaSchema);

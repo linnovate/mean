@@ -38,11 +38,13 @@ async function tree(req, res) {
 
 async function insert(req, res) {
   let schema = await schemaCtrl.insert(req.body);
+  if(!schema) throw new httpError(403);
   res.json(schema);
 }
 
 async function upload(req, res) {
   let schema = await schemaCtrl.upload(req);
+  if(!schema) throw new httpError(403);
   res.json(schema);
 }
 
