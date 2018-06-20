@@ -28,7 +28,11 @@ export class UploadService {
       const progress = new Subject<number>();
 
       // send the http-request and subscribe for progress-updates
-      this.http.request(req).subscribe(event => {
+      this.http.request(req).subscribe((event: any) => {
+
+        if (event.constructor.name === 'HttpHeaderResponse' && !event.ok)
+        (<any>window).globalEvents.emit('open error dialog', event.statusText);
+
         if (event.type === HttpEventType.UploadProgress) {
 
           // calculate the progress percentage

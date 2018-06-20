@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { UploadService } from '../upload.service';
 import { forkJoin } from 'rxjs/observable/forkJoin';
+import { MatSnackBar } from '@angular/material';
+
 
 @Component({
   selector: 'app-dialog',
@@ -20,7 +22,13 @@ export class DialogComponent implements OnInit {
   uploading = false;
   uploadSuccessful = false;
 
-  constructor(public dialogRef: MatDialogRef<DialogComponent>, public uploadService: UploadService) {}
+  constructor(public dialogRef: MatDialogRef<DialogComponent>, public uploadService: UploadService, public snackBar: MatSnackBar) {
+    (<any>window).globalEvents.on('open error dialog', (data) => {
+      this.snackBar.open(data, 'close', {
+        duration: 2000,
+      });
+    });
+  }
 
   ngOnInit() {
   }
