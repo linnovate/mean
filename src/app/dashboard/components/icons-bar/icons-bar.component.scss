@@ -9,35 +9,50 @@
 .icons-bar {
   outline: none;
 
-  .icons-group {
+  .icons-panel {
+    height: calc(100vh - 154px);
+    overflow-y: scroll;
     margin-top: 20px;
 
-    .icons-header {
-      margin: 0 6px;
-      font-weight: bold;
-      font-size: 14px;
-      color: #686868;
+    &::-webkit-scrollbar {
+      width: 6px;
     }
 
-    .icons-list {
-      display: flex;
-      flex-flow: row wrap;
+    &::-webkit-scrollbar-thumb {
+      background: #c9c9c9;
+      border-radius: 10px;
+    }
 
-      .icon-wrapper {
-        padding: 9px;
-        border-radius: 50%;
-        &.active {
-          background-color: white;
-        }
+    .icons-group {
+      margin-bottom: 15px;
 
-        mat-icon {
-          display: block;
-          height: 40px;
-          width: 40px;
-          cursor: pointer;
+      .icons-header {
+        margin: 0 6px;
+        font-weight: bold;
+        font-size: 13px;
+        color: #686868;
+      }
 
-          &.empty {
-            cursor: initial;
+      .icons-list {
+        display: flex;
+        flex-flow: row wrap;
+
+        .icon-wrapper {
+          padding: 9px;
+          border-radius: 50%;
+          &.active {
+            background-color: white;
+          }
+
+          mat-icon {
+            display: block;
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+
+            &.empty {
+              cursor: initial;
+            }
           }
         }
       }
