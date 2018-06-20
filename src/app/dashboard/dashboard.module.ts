@@ -6,6 +6,7 @@ import { DragulaModule } from 'ng2-dragula';
 /* Modules */
 import { SharedModule } from '../shared/shared.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { NgStringPipesModule } from 'angular-pipes';
 
 /* Components */
 import { DashboardComponent } from './dashboard.component';
@@ -29,7 +30,6 @@ import { EntityService } from './services/entity.service';
 import { SchemaService } from './services/schema.service';
 
 /* Pipes */
-import { ReplacePipe } from 'angular-pipes';
 import { FilterDragulaListPipe } from './pipes/filter-dragula-list.pipe';
 
 @NgModule({
@@ -40,6 +40,7 @@ import { FilterDragulaListPipe } from './pipes/filter-dragula-list.pipe';
     TreeModule,
     DragulaModule,
     DynamicFormModule,
+    NgStringPipesModule,
   ],
   declarations: [
     DashboardComponent,
@@ -49,7 +50,6 @@ import { FilterDragulaListPipe } from './pipes/filter-dragula-list.pipe';
     EntitiesTreeComponent,
     InlineEditComponent,
     SidebarSystemComponent,
-    ReplacePipe,
     InlineEditTextareaComponent,
     SearchBoxComponent,
     FilterDragulaListPipe,
