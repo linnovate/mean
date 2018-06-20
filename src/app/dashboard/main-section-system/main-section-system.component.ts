@@ -11,7 +11,7 @@ import { SystemService } from '../services/system.service';
 })
 export class MainSectionSystemComponent implements OnInit {
 
-
+  icon: string;
   name: string = '';
   description: string = '';
   platform: any;
@@ -23,10 +23,6 @@ export class MainSectionSystemComponent implements OnInit {
   system: any;
   originalSystem: any;
   options: any = {};
-  iconsBarData: any = {
-    icon: 'drone',
-    show: false
-  };
 
   constructor(private dragulaService: DragulaService,
               private systemService: SystemService,
@@ -87,7 +83,7 @@ export class MainSectionSystemComponent implements OnInit {
   update() {
     this.system.name = this.name;
     this.system.description = this.description;
-    this.system.icon = this.iconsBarData.icon;
+    this.system.icon = this.icon;
     if (this.valid())
       this.systemService.update(this.system._id, this.system).subscribe((data: any) => {
         this.systemService.subject.next({
@@ -102,7 +98,7 @@ export class MainSectionSystemComponent implements OnInit {
     if (this.system._id) return this.update();
     this.system.name = this.name;
     this.system.description = this.description;
-    this.system.icon = this.iconsBarData.icon;
+    this.system.icon = this.icon;
     if (this.valid())
       this.systemService.save(this.system).subscribe((data: any) => {
         this.systemService.subject.next({
@@ -140,7 +136,7 @@ export class MainSectionSystemComponent implements OnInit {
     system.iff = system.iff || 'foe';
     this.name = system.name;
     this.description = system.description;
-    this.iconsBarData.icon = system.icon || 'drone';
+    this.icon = system.icon || 'drone';
     this.system = system;
     this.originalSystem = JSON.parse(JSON.stringify(this.system));
     this.system.platform = this.system.platform ? [this.system.platform] : [];
