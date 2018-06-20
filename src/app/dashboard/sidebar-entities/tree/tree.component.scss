@@ -3,20 +3,33 @@ $activeSignColor: #2264ac;
 ::ng-deep tree-root {
   width: 100%;
   display: block;
-  font-size: 13px;
+  font-size: 14px;
   .tree-node {
     &.tree-node-level-1 {
       > tree-node-wrapper {
         height: 25px;
         font-weight: bold;
+        font-size: 12px;
         text-transform: uppercase;
+        color: $categoryTitleColor;
         tree-node-expander .toggle-children-wrapper {
           display: inline;
-          padding: 0 9px;
-          .toggle-children {
-            margin: 4px 0;
-            height: 5px;
-            width: 5px;
+          padding: 0 8px;
+          > .toggle-children {
+            background: none;
+            border: 3px solid transparent;
+            height: 0;
+            width: 0;
+            transform: none;
+          }
+          &.toggle-children-wrapper-expanded > .toggle-children {
+            border-top-color: $categoryTitleColor;
+            top: -1px;
+          }
+          &.toggle-children-wrapper-collapsed > .toggle-children {
+            border-left-color: $categoryTitleColor;
+            left: 2px;
+            top: -2px;
           }
         }
       }
@@ -37,6 +50,7 @@ $activeSignColor: #2264ac;
       }
       .tree-children {
         overflow: visible;
+        padding-left: 24px;
         tree-node:last-child .add-mode {
           display: block;
         }
@@ -60,6 +74,7 @@ $activeSignColor: #2264ac;
   tree-node-wrapper {
     line-height: 25px;
     display: flex;
+    color: $categoryEntityColor;
     &:hover {
       .actions {
         display: inline-block;
