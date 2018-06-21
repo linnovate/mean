@@ -6,7 +6,10 @@
   <app-tree activeTab="{{activeTab}}"></app-tree>
 </div>
 <div class="bottom">
-  <button mat-button *ngIf="activeTab === 'system'">
-    <a routerLink="/system/new">ADD SYSTEM</a>
+  <button
+    mat-button
+    *ngIf="activeTab === 'system'"
+    routerLink="/system/new">
+    ADD SYSTEM
   </button>
 </div>
