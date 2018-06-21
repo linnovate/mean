@@ -1,5 +1,7 @@
 const System = require('../models/system.model');
 
+const updateOpts = { new: true, runValidators: true, context: 'query' };
+
 module.exports = {
   insert,
   update,
@@ -21,7 +23,7 @@ async function update(id, system) {
   system.updtaed = new Date();
   return await System.findByIdAndUpdate(id, {
     $set: system
-  }, {new: true});
+  }, updateOpts);
 }
 
 async function get(id) {
