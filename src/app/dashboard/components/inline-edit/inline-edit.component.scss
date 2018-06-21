@@ -23,5 +23,8 @@
   }
   input {
     text-overflow: ellipsis;
+    &::placeholder {
+      color: #bcbcbc;
+    }
   }
 }

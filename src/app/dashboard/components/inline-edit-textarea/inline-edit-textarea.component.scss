@@ -4,4 +4,7 @@ textarea {
   resize: none;
   outline: none;
   height: auto;
+  &::placeholder {
+    color: #bcbcbc;
+  }
 }
