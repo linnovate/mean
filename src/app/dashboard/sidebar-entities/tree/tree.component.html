@@ -80,7 +80,10 @@
         <mat-icon svgIcon="add"></mat-icon>
       </button>
     </div>
-    <div class="add-mode" (click)="addMode(node); $event.preventDefault(); $event.stopPropagation();">ADD MODE</div>
+    <div
+      class="add-mode"
+      *ngIf="node.level === 3 && index === node.parent.children.length - 1"
+      (click)="addMode(node); $event.preventDefault(); $event.stopPropagation();">ADD MODE</div>
   </ng-template>
 
 </tree-root>
