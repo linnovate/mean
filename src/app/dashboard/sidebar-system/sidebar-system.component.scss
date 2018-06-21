@@ -1,7 +1,7 @@
 @import '~_settings.scss';
 .system-sidebar {
   .wrapper-category {
-    height: calc(100vh - 154px);
+    max-height: calc(100vh - 154px);
     overflow-y: scroll;
     margin-top: 20px;
 
@@ -14,38 +14,44 @@
       border-radius: 10px;
     }
 
-    .title {
-      margin: 0 6px;
-      color: $categoryTitleColor;
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: 13px;
-      margin-bottom: 10px;
-    }
-    .container {
-      div {
-        cursor: pointer;
-        transition: opacity 0.4s ease-in-out;
-        color: $categoryEntityColor;
-        font-size: 14px;
-        background-color: white;
-        margin: 4px;
-        padding: 10px;
-        line-height: 22px;
-        border: solid 1px $linesColor;
-        box-sizing: border-box;
-        &.hidden {
-          display: none;
-        }
-        &:hover {
-          border-color: #2D9CDB;
-          background-color: #E4F5FF;
-          background-image: url('../../../assets/icons/add-blue.svg');
-          background-repeat: no-repeat;
-          background-position: 95% center;
+    .group {
+      margin-bottom: 25px;
+
+      .title {
+        margin: 0 6px;
+        color: $categoryTitleColor;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 13px;
+        margin-bottom: 10px;
+      }
+
+      .container {
+        div {
+          cursor: pointer;
+          transition: opacity 0.4s ease-in-out;
+          color: $categoryEntityColor;
+          font-size: 14px;
+          background-color: white;
+          margin: 4px;
+          padding: 10px;
+          line-height: 21px;
+          border: solid 1px $linesColor;
+          box-sizing: border-box;
+          &.hidden {
+            display: none;
+          }
+          &:hover {
+            border-color: #2D9CDB;
+            background-color: #E4F5FF;
+            background-image: url('../../../assets/icons/add-blue.svg');
+            background-repeat: no-repeat;
+            background-position: 95% center;
+          }
         }
       }
     }
+
   }
 }
 
