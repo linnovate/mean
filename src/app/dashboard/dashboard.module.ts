@@ -32,6 +32,9 @@ import { SchemaService } from './services/schema.service';
 /* Pipes */
 import { FilterDragulaListPipe } from './pipes/filter-dragula-list.pipe';
 
+/* Guards */
+import { AuthGuard } from '../auth/auth-guard.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -59,6 +62,7 @@ import { FilterDragulaListPipe } from './pipes/filter-dragula-list.pipe';
   providers: [
     EntityService,
     SchemaService,
+    AuthGuard,
   ]
 })
 export class DashboardModule { }

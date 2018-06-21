@@ -5,12 +5,15 @@ import { DashboardComponent } from './dashboard.component';
 import { MainSectionEntityComponent } from '../dashboard/main-section-entity/main-section-entity.component';
 import { MainSectionSystemComponent } from '../dashboard/main-section-system/main-section-system.component';
 
+import { AuthGuard } from '../auth/auth-guard.service';
+
 const routes : Routes = [{
   path: '',
   redirectTo: '/system',
   pathMatch: 'full'
 }, {
   path: 'system',
+  canActivate: [AuthGuard],
   component: DashboardComponent,
   children: [{
     path: 'new',
@@ -22,6 +25,7 @@ const routes : Routes = [{
 }, {
   path: ':type',
   component: DashboardComponent,
+  canActivate: [AuthGuard],
   children: [{
     path: 'new/:category',
     component: MainSectionEntityComponent
