@@ -15,7 +15,7 @@ export class SidebarSystemComponent implements OnInit {
 
   data: any = {};
   originalData: any = {};
-  showPlatform: Boolean = true;
+  activeType: string = 'platform';
   subscription: Subscription;
   filterText: string = '';
 
@@ -31,7 +31,7 @@ export class SidebarSystemComponent implements OnInit {
 
   dragulaEvents() {
     this.dragulaService.dragend.subscribe((value) => {
-      if (value[0] === 'platform' && this.system.platform.length) this.showPlatform = false;
+      if (value[0] === 'platform' && this.system.platform.length) this.activeType = 'equipment';
     });
   }
 
@@ -59,18 +59,16 @@ export class SidebarSystemComponent implements OnInit {
   subscribeEvents() {
     this.subscription = this.systemService.events.subscribe(event => {
       switch(event.name) {
-        case 'item.deleted': {
+        case 'item.deleted':
           let categoryIndex = this.data[event.data.type].findIndex(e => e.category === event.data.item.category);
           this.data[event.data.type][categoryIndex].children.push(event.data.item);
-          if (event.data.type === 'platform') this.showPlatform = true;
+          if (event.data.type === 'platform') this.activeType = 'platform';
           break;
-        }
-        case 'init.system' : {
-          if (event.data.platform.length) this.showPlatform = false;
-          else this.showPlatform = true;
+        case 'init.system' :
+          if (event.data.platform.length) this.activeType = 'equipment';
+          else this.activeType = 'platform';
           this.cleanTree(event.data);
           break;
-        }
       }
     });
   }

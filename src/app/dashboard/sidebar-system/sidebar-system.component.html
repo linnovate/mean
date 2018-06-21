@@ -1,22 +1,13 @@
 <div class="system-sidebar">
   <app-search-box
     (search)="filterFn($event)"
-    [placeholder]="showPlatform ? 'Search Platform' : 'Search Equipment'">
+    [placeholder]="'Search ' + activeType">
   </app-search-box>
 
-  <div *ngIf="showPlatform">
-    <div class="wrapper-category" *ngFor="let category of data.platform" >
+  <div class="wrapper-category">
+    <div class="group" *ngFor="let category of data[activeType]" >
       <div class="title">{{category.name}}</div>
-      <div class='container' [dragula]='"platform"' [dragulaModel]='category.children' draggable="true">
-        <div *ngFor='let item of category.children | filterDragulaList: filterText' [innerHtml]='item.name' [ngClass]="{hidden: item.hide}"></div>
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="!showPlatform">
-    <div class="wrapper-category" *ngFor="let category of data.equipment">
-      <div class="title">{{category.name}}</div>
-      <div class='container' [dragula]='"equipment"' [dragulaModel]='category.children' draggable="true">
+      <div class='container' [dragula]="activeType" [dragulaModel]='category.children' draggable="true">
         <div *ngFor='let item of category.children | filterDragulaList: filterText' [innerHtml]='item.name' [ngClass]="{hidden: item.hide}"></div>
       </div>
     </div>
