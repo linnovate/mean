@@ -1,6 +1,4 @@
 const Schema = require('../models/schema.model');
-const fs = require('fs');
-const IncomingForm = require('formidable').IncomingForm;
 const entitiesCtrl = require('./entity.controller');
 
 const updateOpts = { new: true, runValidators: true };
@@ -11,30 +9,22 @@ module.exports = {
   remove,
   get,
   list,
-  upload,
   tree,
+  findByUniqueField,
 }
 
 async function insert(schema) {
   return await new Schema(schema).save();
 }
 
-async function upload(request) {
-  return await new Promise(resolve => {
-    const form = new IncomingForm();
-    let schema;
-    form.on('file', (field, file) => schema = JSON.parse(fs.readFileSync(file.path, 'utf8')));
-    form.on('end', () => {
-      schema.updated = new Date();
-      resolve(Schema.findOneAndUpdate({
-        category: schema.category
-      }, schema, {upsert : true, runValidators: true}))
-    });
-    form.parse(request);
-  });
+async function findByUniqueField(field, data) {
+  let query = {};
+  query[field] = data[field];
+  query.type = data.type;
+  return await Schema.findOne(query);
 }
 
-async function update(name, schema) {
+async function update(category, schema) {
   schema.updated = new Date();
   return await Schema.findOneAndUpdate({
     category: category

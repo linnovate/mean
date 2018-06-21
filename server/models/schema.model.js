@@ -25,10 +25,4 @@ const SchemaSchema = new mongoose.Schema({
   versionKey: false
 });
 
-SchemaSchema.path('category').validate(function (value) {
-  if (!value) return false;
-  return true;
-}, 'Category is required');
-
-
 module.exports = mongoose.model('Schema', SchemaSchema);

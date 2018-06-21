@@ -1,5 +1,6 @@
 const Entity = require('../models/entity.model');
-const utils = require('../utils');
+
+const updateOpts = { new: true, runValidators: true, context: 'query' };
 
 module.exports = {
   insert,
@@ -69,7 +70,7 @@ async function update(entityId, modeName, entity) {
     }
   }
 
-  return await Entity.findOneAndUpdate(query, update, {new: true});
+  return await Entity.findOneAndUpdate(query, update, updateOpts);
 }
 
 async function get(entityId, modeName) {
@@ -95,7 +96,7 @@ async function get(entityId, modeName) {
 async function remove(entityId, modeName) {
   // system must have no this entity as a dependency
   if (!modeName) return await Entity.findByIdAndDelete(entityId);
-  return await Entity.findOneAndUpdate({_id: entityId}, {$pull: {modes: {name: modeName}}}, {new: true});
+  return await Entity.findOneAndUpdate({_id: entityId}, {$pull: {modes: {name: modeName}}}, updateOpts);
 }
 
 async function cloneMode(entityId, modeName) {
@@ -104,7 +105,7 @@ async function cloneMode(entityId, modeName) {
       if (err || !doc) return reject();
       const mode = doc.modes[0];
       mode.name = `${mode.name} (copy)`;
-      return resolve(Entity.findOneAndUpdate({_id: entityId}, {$push: {modes: mode}}, {new: true}));
+      return resolve(Entity.findOneAndUpdate({_id: entityId}, {$push: {modes: mode}}, updateOpts));
     });
   });
 }

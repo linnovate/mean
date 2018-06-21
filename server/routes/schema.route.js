@@ -4,6 +4,7 @@ const httpError = require('http-errors');
 const asyncHandler = require('express-async-handler');
 const schemaCtrl = require('../controllers/schema.controller');
 const requireAdmin = require('../middleware/require-admin');
+const readFile = require('../middleware/read-file');
 
 const router = express.Router();
 module.exports = router;
@@ -18,7 +19,7 @@ router.route('/tree')
   .get(asyncHandler(tree));
 
 router.route('/upload')
-  .post(requireAdmin, asyncHandler(upload));
+  .post(requireAdmin, readFile, asyncHandler(createOrUpdate));
 
 router.route('/:schemaId')
   .get(asyncHandler(get))
@@ -42,10 +43,11 @@ async function insert(req, res) {
   res.json(schema);
 }
 
-async function upload(req, res) {
-  let schema = await schemaCtrl.upload(req);
-  if(!schema) throw new httpError(403);
-  res.json(schema);
+async function createOrUpdate(req, res, next) {
+  let schema = await schemaCtrl.findByUniqueField('category', req.fileData);
+  req.body = req.fileData;
+  if (!schema) return insert(req, res, next);
+  update(req, res);
 }
 
 async function get(req, res) {
@@ -55,8 +57,8 @@ async function get(req, res) {
 }
 
 async function update(req, res) {
-  let schema = await schemaCtrl.update(req.params.schemaId, req.body);
-  if(!schema) throw new httpError(404);
+  let schema = await schemaCtrl.update(req.body.category, req.body);
+  if(!schema) throw new httpError(403);
   res.json(schema);
 }
 

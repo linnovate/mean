@@ -4,6 +4,7 @@ const EntitySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    minlength: 2
   },
   iff: {
     type: String,
