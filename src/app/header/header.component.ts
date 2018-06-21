@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.authService.signOut();
-    this.navigate('');
+    this.navigate('/auth/login');
   }
 
   navigate(link): void {
