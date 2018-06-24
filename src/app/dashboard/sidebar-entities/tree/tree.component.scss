@@ -1,5 +1,5 @@
 @import '~_settings.scss';
-$activeSignColor: #2264ac;
+$activeSignColor: #005EA8;
 ::ng-deep tree-root {
   width: 100%;
   display: block;
@@ -8,7 +8,6 @@ $activeSignColor: #2264ac;
   .tree-node {
     &.tree-node-level-1 {
       > tree-node-wrapper {
-        height: 25px;
         font-weight: bold;
         font-size: 12px;
         text-transform: uppercase;
@@ -52,9 +51,6 @@ $activeSignColor: #2264ac;
       .tree-children {
         overflow: visible;
         padding-left: 24px;
-        tree-node:last-child .add-mode {
-          display: block;
-        }
       }
 
     }
@@ -73,22 +69,32 @@ $activeSignColor: #2264ac;
   }
 
   tree-node-wrapper {
-    line-height: 25px;
+    line-height: 27px;
     display: flex;
     color: $categoryEntityColor;
     &:hover {
+      .name {
+        width: calc(100% - 52px);
+      }
       .actions {
         display: inline-block;
       }
     }
     tree-node-content {
-      width: 100%;
       position: relative;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      overflow-x: hidden;
+      margin-right: 5px;
+      .name {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 100%;
+      }
       .actions {
         display: none;
-        position: absolute;
-        top: 0;
-        right: 3px;
         button {
           height: 26px;
           width: 26px;
@@ -104,8 +110,7 @@ $activeSignColor: #2264ac;
         }
       }
       .add-mode {
-        display: none;
-        margin: 10px 0px;
+        margin-top: 3px;
         font-weight: bold;
         color: #40C2F3;
         font-size: 12px;
