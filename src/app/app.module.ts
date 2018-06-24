@@ -9,19 +9,18 @@ import { AuthModule } from './auth/auth.module';
 
 import { AppComponent } from './app.component';
 import { AdminModule } from './admin/admin.module';
-import { UploadModule } from './upload/upload.module';
 import { AuthHeaderInterceptor } from './interceptors/header.interceptor';
 import { CatchErrorInterceptor } from './interceptors/http-error.interceptor';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
-import { SchemaComponent } from './schema/schema.component';
 import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SchemaComponent,
     HeaderComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +31,6 @@ import { HeaderComponent } from './header/header.component';
     AuthModule,
     AppRoutingModule,
     AdminModule,
-    UploadModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

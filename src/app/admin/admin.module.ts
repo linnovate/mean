@@ -12,7 +12,7 @@ import {OnlyAdminUsersGuard} from './admin-user-guard';
 @NgModule({
   declarations: [
     AdminComponent
-  ], 
+  ],
   imports: [
     CommonModule,
   ],
