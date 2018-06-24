@@ -2,8 +2,8 @@
     "swagger": "2.0",
     "info": {
       "version": "1.0.0",
-      "title": "ODMP Application API",
-      "description": "ODMP Application API",
+      "title": "Mean Application API",
+      "description": "Mean Application API",
       "license": {
         "name": "MIT",
         "url": "https://opensource.org/licenses/MIT"
@@ -71,26 +71,6 @@
           }
         }
       }
-      },
-      "/system": {
-        "get": {
-          "tags":[
-            "System"
-          ],
-          "description": "list of system",
-          "security": [{
-            "AuthHeader": []
-          }
-          ],
-          "responses": {
-            "200": {
-              "description": "OK",
-              "schema": {
-                "$ref": "#/definitions/System"
-              }
-            }
-          }
-        }
       }
     },
     "definitions": {
@@ -136,101 +116,6 @@
             "$ref": "#/definitions/User"
           }
         }]
-      },
-      "Schema": {
-        "required": [
-          "type"
-        ],
-        "properties": {
-          "_id": {
-            "type": "string",
-            "uniqueItems": true
-          },
-          "type": {
-            "type": "string",
-            "uniqueItems": true
-          },
-          "label": {
-            "type": "string"
-          },
-          "fields": {
-            "type": "array",
-            "items": {
-              "properties": {
-                "key": {
-                  "type": "string"
-                },
-                "type": {
-                  "type": "string"
-                },
-                "label": {
-                  "type": "string"
-                },
-                "options": {
-                  "type": "array",
-                  "items": {
-                    "properties": {
-                      "label": {
-                        "type": "string"
-                      },
-                      "value": {
-                        "type" :"string"
-                      }
-                    }
-                  }
-                }
-              }
-
-            }
-
-          }
       }
-    },
-    "Entity Data": {
-      "required":[
-        "_schema",
-        "user",
-        "data"
-      ],
-      "properties": {
-        "_id": {
-          "type": "string",
-          "uniqueItems": true
-        },
-        "_schema": {
-          "$ref": "#/definitions/Schema"},
-        "user": {
-          "$ref": "#/definitions/User"
-        },
-        "data": {
-          "type": "json"
-        }
-      }
-    },
-    "System": {
-      "required":[
-        "platform",
-        "user"
-      ],
-      "properties": {
-        "_id": {
-          "type": "string",
-          "uniqueItems": true
-        },
-        "platform": {
-          "$ref": "#/definitions/Entity Data"
-        },
-        "equipment": {
-          "$ref": "#/definitions/Entity Data"
-        },
-        "user": {
-          "$ref": "#/definitions/User"
-        }
-      }
-    },
-    "Systems": {
-      "type": "array",
-      "$ref": "#/definitions/System"
-    }
   }
 }

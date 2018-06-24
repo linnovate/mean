@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 
+import { AdminRoutingModule } from './admin-routing.module';
 import {AdminComponent} from './admin.component';
 import {OnlyAdminUsersGuard} from './admin-user-guard';
 
@@ -15,6 +16,7 @@ import {OnlyAdminUsersGuard} from './admin-user-guard';
   ],
   imports: [
     CommonModule,
+    AdminRoutingModule,
   ],
   providers: [
     OnlyAdminUsersGuard
