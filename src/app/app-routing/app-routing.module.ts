@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SchemaComponent } from '../schema/schema.component';
 import { AuthGuard } from '../auth/auth-guard.service';
+import { HomeComponent } from '../home/home.component';
 
-const routes : Routes = [{
+const routes: Routes = [{
   path: '',
-  loadChildren: 'app/dashboard/dashboard.module#DashboardModule'
-}, {
-  path: 'upload/schema',
-  component: SchemaComponent,
-  canActivate: [AuthGuard]
+  component: HomeComponent
 }, {
   path: 'auth',
   loadChildren: 'app/auth/auth.module#AuthModule'
