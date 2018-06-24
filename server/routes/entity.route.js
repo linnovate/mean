@@ -3,6 +3,7 @@ const passport = require('passport');
 const httpError = require('http-errors');
 const asyncHandler = require('express-async-handler')
 const entityCtrl = require('../controllers/entity.controller');
+const systemCtrl = require('../controllers/system.controller');
 const requireAdmin = require('../middleware/require-admin');
 
 const router = express.Router();
@@ -22,7 +23,7 @@ router.route('/clone/:entityId/:modeName')
 router.route('/:entityId/:modeName?')
   .get(asyncHandler(get))
   .put(asyncHandler(findOne), asyncHandler(checkUniqueMode), asyncHandler(update))
-  .delete(asyncHandler(remove));
+  .delete(asyncHandler(validateRemove), asyncHandler(remove));
 
 async function insert(req, res) {
   let entityData = await entityCtrl.insert(req.user, req.body);
@@ -70,4 +71,10 @@ async function remove(req, res) {
   let entity = await entityCtrl.remove(req.params.entityId, req.params.modeName);
   if(!entity) throw new httpError(404);
   res.json(entity);
+}
+
+async function validateRemove(req, res, next) {
+  let systems = await systemCtrl.findEntity(req.params.entityId);
+  if(systems && systems.length) throw new httpError(403, `This entity exists in ${systems[0].name} system.`);
+  next();
 }

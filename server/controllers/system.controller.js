@@ -10,6 +10,7 @@ module.exports = {
   remove,
   tree,
   updateTreeNames,
+  findEntity,
 }
 
 async function insert(userId, system) {
@@ -50,5 +51,11 @@ async function updateTreeNames(platforms, tree) {
   return await tree.map(category => {
     category.name = platforms.find(e => JSON.stringify(e._id) === JSON.stringify(category._id)).name;
     return category;
+  });
+}
+
+async function findEntity(entityId) {
+  return await System.find({
+     $or: [{platform: entityId}, {equipment: {$in: [entityId]}}]
   });
 }
