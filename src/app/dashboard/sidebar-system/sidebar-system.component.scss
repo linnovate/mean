@@ -28,7 +28,7 @@
 
       .container {
         div {
-          cursor: pointer;
+          position: relative;
           transition: opacity 0.4s ease-in-out;
           color: $categoryEntityColor;
           font-size: 14px;
@@ -41,12 +41,21 @@
           &.hidden {
             display: none;
           }
+          mat-icon {
+            position: absolute;
+            cursor: pointer;
+            display: none;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            right: 10px;
+          }
           &:hover {
+            mat-icon {
+              display: block;
+            }
             border-color: #2D9CDB;
             background-color: #E4F5FF;
-            background-image: url('../../../assets/icons/add-blue.svg');
-            background-repeat: no-repeat;
-            background-position: 95% center;
           }
         }
       }
@@ -60,7 +69,7 @@
   font-size: 14px;
   background-color: white;
   border: solid 1px $linesColor;
-  max-width: 227px; // padding: 10px;
+  max-width: 227px;
   -webkit-box-shadow: 3px 5px 6px 0px rgba(219, 219, 219, 1);
   -moz-box-shadow: 3px 5px 6px 0px rgba(219, 219, 219, 1);
   box-shadow: 3px 5px 6px 0px rgba(219, 219, 219, 1);
@@ -69,4 +78,7 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 10px;
+  mat-icon {
+    display: none;
+  }
 }
