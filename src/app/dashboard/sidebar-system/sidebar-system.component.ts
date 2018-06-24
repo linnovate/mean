@@ -77,6 +77,16 @@ export class SidebarSystemComponent implements OnInit {
     this.filterText = text;
   }
 
+  add(type, item) {
+    this.systemService.events.next({
+      action: 'add item',
+      data: {
+        type: type,
+        item : item
+      }
+    });
+  }
+
   ngOnInit() {}
 
   ngOnDestroy() {
