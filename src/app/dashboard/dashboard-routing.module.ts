@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes} from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
 import { MainSectionEntityComponent } from '../dashboard/main-section-entity/main-section-entity.component';
@@ -7,7 +7,7 @@ import { MainSectionSystemComponent } from '../dashboard/main-section-system/mai
 
 import { AuthGuard } from '../auth/auth-guard.service';
 
-const routes : Routes = [{
+const routes: Routes = [{
   path: '',
   redirectTo: '/system',
   pathMatch: 'full'

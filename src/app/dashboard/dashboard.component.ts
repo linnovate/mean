@@ -10,9 +10,9 @@ import { MatSnackBar } from '@angular/material';
 export class DashboardComponent implements OnInit {
 
   constructor(public snackBar: MatSnackBar) {
-    (<any>window).globalEvents.on('open error dialog', (data) => {
+    (window as any).globalEvents.on('open error dialog', data => {
       this.snackBar.open(data, 'close', {
-        duration: 2000,
+        duration: 2000
       });
     });
   }
