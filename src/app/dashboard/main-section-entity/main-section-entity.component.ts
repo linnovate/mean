@@ -15,7 +15,7 @@ export class MainSectionEntityComponent implements OnInit {
   name: string;
   modeName: string;
   description: string;
-  statuses: string[] = ['draft', 'waiting', 'approved', 'rejected'];
+  statuses: string[] = ['draft', 'pending approval', 'approved', 'rejected'];
   status: string;
   formFields: any;
   formValues: any;

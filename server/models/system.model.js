@@ -19,7 +19,7 @@ const SystemSchema = new mongoose.Schema({
     required: true,
     type: String,
     default: 'draft',
-    enum: ['draft', 'reviewed', 'needs review', 'active', 'waiting', 'approved', 'rejected']
+    enum: ['draft', 'reviewed', 'needs review', 'active', 'pending approval', 'approved', 'rejected']
   },
   iff: {
     type: String,
