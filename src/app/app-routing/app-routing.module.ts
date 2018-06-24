@@ -9,6 +9,9 @@ const routes: Routes = [{
 }, {
   path: 'auth',
   loadChildren: 'app/auth/auth.module#AuthModule'
+}, {
+  path: 'admin',
+  loadChildren: 'app/admin/admin.module#AdminModule'
 }];
 
 @NgModule({
