@@ -35,6 +35,7 @@ export class MainSectionSystemComponent implements OnInit {
 
     this.initInitialValues();
     this.dragulaEvents();
+    this.subscribeEvents();
    }
 
    dragulaEvents() {
@@ -48,6 +49,24 @@ export class MainSectionSystemComponent implements OnInit {
     this.dragulaService.dragend.subscribe((value) => {
       if (value[0] === 'equipment') this.displayEquipmentPlaceHolder = 'none';
     });
+   }
+
+   subscribeEvents() {
+     this.systemService.events.subscribe(event => {
+        switch(event.action) {
+          case 'add item' : {
+            if (event.data.type === 'platform' && this.system.platform.lengt) break;
+            this.system[event.data.type].push(event.data.item);
+            this.systemService.events.next({
+              name: 'init.system',
+              data: this.system
+            });
+            if (!this.system.equipment.length) this.displayEquipmentPlaceHolder = 'flex';
+            else this.displayEquipmentPlaceHolder = 'none';
+            break;
+          }
+        }
+     })
    }
 
   removeItem(type, item) {

@@ -8,7 +8,7 @@
     <div class="group" *ngFor="let category of data[activeType]" >
       <div class="title">{{category.name}}</div>
       <div class='container' [dragula]="activeType" [dragulaModel]='category.children' draggable="true">
-        <div *ngFor='let item of category.children | filterDragulaList: filterText' [innerHtml]='item.name' [ngClass]="{hidden: item.hide}"></div>
+        <div *ngFor='let item of category.children | filterDragulaList: filterText' [innerHtml]='item.name' [ngClass]="{hidden: item.hide}" (dblclick)="add(activeType, item)"></div>
       </div>
     </div>
   </div>
