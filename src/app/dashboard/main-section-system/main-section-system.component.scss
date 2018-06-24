@@ -68,41 +68,6 @@
   }
 }
 
-.toggle-case-wrapper {
-  text-align: center;
-
-  .toggle-case {
-    color: white;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    cursor: pointer;
-    border-radius: 20px;
-    line-height: 31px;
-    display: inline-block;
-    padding: 0 14px;
-
-    &.foe {
-      background-color: #e75657;
-    }
-
-    &.friend {
-      background-color: #38ad61;
-    }
-
-    &.neutral {
-      background-color: #4bc1f2;
-    }
-  }
-}
-
-.toggle-case,
-.main-section-select,
-.main-section-select-options {
-  font-weight: bold;
-}
-
 section {
   background-color: white;
   >span {
