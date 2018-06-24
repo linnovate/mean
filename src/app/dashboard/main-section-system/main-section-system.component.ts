@@ -17,7 +17,7 @@ export class MainSectionSystemComponent implements OnInit {
   platform: any;
   equipment: Array<any>;
   platforms: Array<any> = [];
-  statuses: string[] = ['draft', 'waiting', 'approved', 'rejected'];
+  statuses: string[] = ['draft', 'pending approval', 'approved', 'rejected'];
   status: string;
   displayEquipmentPlaceHolder: string = 'none';
   system: any;
