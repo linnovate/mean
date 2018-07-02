@@ -29,8 +29,8 @@ import { HomeComponent } from './home/home.component';
     RouterModule,
     SharedModule,
     AuthModule,
-    AppRoutingModule,
     AdminModule,
+    AppRoutingModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -7,7 +7,7 @@ export class AuthGuard implements CanActivate {
   constructor(public router: Router) {}
 
     canActivate() {
-      let user = (<any>window).user;
+      const user = (<any>window).user;
       if (user) return true;
 
       // not logged in so redirect to login page with the return url

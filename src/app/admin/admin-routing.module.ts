@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AdminComponent } from './admin.component';
 import { OnlyAdminUsersGuard } from './admin-user-guard';
 
 const routes: Routes = [{
-  path: '',
+  path: 'admin',
   canActivate: [OnlyAdminUsersGuard],
-  component: AdminComponent,
+  children: [{
+    path: '',
+    component: AdminComponent,
+  }]
 }];
 
 @NgModule({
