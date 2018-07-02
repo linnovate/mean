@@ -5,17 +5,10 @@ import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class OnlyAdminUsersGuard implements CanActivate {
-  constructor(private authService : AuthService) {};
+  constructor() {}
 
   canActivate() {
-    return new Observable<boolean> (observer => {
-      this
-        .authService
-        .getUser()
-        .subscribe(user => {
-          if (!user) observer.next(false);
-          observer.next(user.isAdmin)
-        })
-    });
+    const user = (<any>window).user;
+    return user && user.isAdmin;
   }
 }
