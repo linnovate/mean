@@ -21,7 +21,9 @@ mongoose.connection.on('error', () => {
 });
 
 // print mongoose logs in dev env
-if (config.MONGOOSE_DEBUG) {
+// MONGOOSE_DEBUG is the env var, not a property in the 'config' object.
+// config.MONGOOSE_DEBUG is always undefined, so in the original project, it would never print mongoose logs, even if MONGOOSE_DEBUG was set to true.
+if (config.mongooseDebug) {
   mongoose.set('debug', (collectionName, method, query, doc) => {
     debug(`${collectionName}.${method}`, util.inspect(query, false, 20), doc);
   });
