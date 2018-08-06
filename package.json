@@ -119,7 +119,7 @@
     "morgan": "^1.8.2",
     "preboot": "^5.0.0-rc.10",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react-dom": "^16.0.1",
     "reflect-metadata": "^0.1.10",
     "rxjs": "~5.0.2",
     "winston": "^2.3.1",
