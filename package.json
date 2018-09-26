@@ -55,6 +55,7 @@
     "rxjs": "6.2.0",
     "rxjs-compat": "^6.0.0-rc.0",
     "swagger-ui-express": "^3.0.9",
+    "material-dashboard-react":"latest",
     "zone.js": "0.8.26"
   },
   "devDependencies": {
