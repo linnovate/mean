@@ -4,8 +4,11 @@ The mean stack is intended to provide a simple and fun starting point for cloud 
 
 ### Installation 
 ``` 
-cp env-example .env
-npm start
+cp .env-example .env
+yarn install
+yarn build
+yarn start (for development)
+yarn serve (for production)
 ```
 
 # AngularMaterial
