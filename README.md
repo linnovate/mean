@@ -10,6 +10,11 @@ yarn build
 yarn start (for development)
 yarn serve (for production)
 ```
+### Docker based 
+``` 
+cp .env-example .env
+docker-compose up -d
+```
 
 # AngularMaterial
 
