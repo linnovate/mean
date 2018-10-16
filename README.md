@@ -1,5 +1,7 @@
 ## Welcome to the mean stack
 
+[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
+
 The mean stack is intended to provide a simple and fun starting point for cloud native fullstack javascript applications.
 
 ### Installation 
