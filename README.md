@@ -4,9 +4,9 @@ The mean stack is intended to provide a simple and fun starting point for cloud 
 
 ### Pre-requisites
 * git - [Installation guide](https://www.linode.com/docs/development/version-control/how-to-install-git-on-linux-mac-and-windows/)
-* node.js
-* yarn
-* mongo
+* node.js - [Download page](https://nodejs.org/en/download/)
+* yarn - [Download page](https://yarnpkg.com/lang/en/docs/install)
+* mongodb - [Download page])https://www.mongodb.com/download-center/community)
 
 ### Installation 
 ``` 
