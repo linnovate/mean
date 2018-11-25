@@ -2,6 +2,12 @@
 
 The mean stack is intended to provide a simple and fun starting point for cloud native fullstack javascript applications.
 
+### Pre-requisites
+* git
+* node.js
+* yarn
+* mongo
+
 ### Installation 
 ``` 
 git clone https://github.com/linnovate/mean
