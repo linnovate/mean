@@ -3,7 +3,7 @@
 The mean stack is intended to provide a simple and fun starting point for cloud native fullstack javascript applications.
 
 ### Pre-requisites
-* git
+* git - [Installation guide](https://www.linode.com/docs/development/version-control/how-to-install-git-on-linux-mac-and-windows/)
 * node.js
 * yarn
 * mongo
