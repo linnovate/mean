@@ -22,6 +22,6 @@ yarn serve (for production)
 ``` 
 git clone https://github.com/linnovate/mean
 cd mean
-cp .env-example .env
+cp .env.example .env
 docker-compose up -d
 ```
