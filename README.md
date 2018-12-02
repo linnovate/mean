@@ -11,7 +11,7 @@ MEAN is a set of Open Source components that together, provide an end-to-end fra
 ### Pre-requisites
 * git - [Installation guide](https://www.linode.com/docs/development/version-control/how-to-install-git-on-linux-mac-and-windows/) .  
 * node.js - [Download page](https://nodejs.org/en/download/) .  
-* yarn - [Download page](https://yarnpkg.com/lang/en/docs/install) .  
+* npm - comes with node or download yarn - [Download page](https://yarnpkg.com/lang/en/docs/install) .  
 * mongodb - [Download page](https://www.mongodb.com/download-center/community) .  
 
 ### Installation 
@@ -19,10 +19,8 @@ MEAN is a set of Open Source components that together, provide an end-to-end fra
 git clone https://github.com/linnovate/mean
 cd mean
 cp .env.example .env
-yarn install
-yarn build
-yarn start (for development)
-yarn serve (for production)
+npm install
+npm start (for development)
 ```
 ### Docker based 
 ``` 
