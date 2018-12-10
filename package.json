@@ -45,7 +45,7 @@
     "jsonwebtoken": "^8.2.1",
     "method-override": "^2.3.10",
     "mongoose": "^5.1.0",
-    "morgan": "^1.9.0",
+    "morgan": "^1.9.1",
     "ng2-dragula": "^1.5.0",
     "nodemon": "^1.17.5",
     "passport": "^0.4.0",
