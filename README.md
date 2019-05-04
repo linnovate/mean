@@ -1,6 +1,6 @@
 ## Welcome to the mean stack
 
-The mean stack is intended to provide a simple and fun starting point for cloud native fullstack javascript applications.   
+The mean stack is intended to provide a simple and fun starting point for cloud native front-end typescript and back-end javascipt applications.
 MEAN is a set of Open Source components that together, provide an end-to-end framework for building dynamic web applications; starting from the top (code running in the browser) to the bottom (database). The stack is made up of:
 
 - **M**ongoDB : Document database – used by your back-end application to store its data as JSON (JavaScript Object Notation) documents
