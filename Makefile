@@ -13,7 +13,7 @@ clean:
 .PHONY: get_repository
 get_repository:
 	@echo "Getting public repository"
-	git clone https://github.com/liorkesos/linnovate.github.io.git public
+	git clone https://github.com/liorkesos/linnovate.github.io.git public gh-pages
 
 .PHONY: build
 build:
