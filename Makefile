@@ -13,7 +13,7 @@ clean:
 .PHONY: get_repository
 get_repository:
 	@echo "Getting public repository"
-	git clone https://github.com/gh-username/gh-username.github.io.git public
+	git clone https://github.com/liorkesos/linnovate.github.io.git public
 
 .PHONY: build
 build:
@@ -24,11 +24,11 @@ build:
 deploy:
 	@echo "Preparing commit"
 	@cd $(OUTPUTDIR) \
-	&& git config user.email "you@youremail.com" \
-	&& git config user.name "Your Name" \
+	&& git config user.email "lior@linnovate.net" \
+	&& git config user.name "Lior Kesos" \
 	&& git add . \
 	&& git status \
 	&& git commit -m "Deploy via Makefile" \
-	&& git push -f -q https://$(GITHUB_TOKEN)@github.com/gh-username/gh-username.github.io.git master
+	&& git push -f -q https://$(GITHUB_TOKEN)@github.com/liorkesos/linnovate.github.io.git gh-pages
 
 	@echo "Pushed to remote"
