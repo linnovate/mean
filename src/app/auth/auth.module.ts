@@ -9,7 +9,6 @@ import { AuthService } from './auth.service';
 import { TokenStorage } from './token.storage';
 import { AuthRoutingModule } from './auth-routing.module';
 
-
 @NgModule({
   imports: [
     CommonModule,

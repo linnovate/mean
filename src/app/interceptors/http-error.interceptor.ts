@@ -1,20 +1,27 @@
-import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import {
+  HttpEvent,
+  HttpInterceptor,
+  HttpHandler,
+  HttpRequest,
+  HttpErrorResponse
+} from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
-import 'rxjs/add/operator/do';
-
+@Injectable()
 export class CatchErrorInterceptor implements HttpInterceptor {
-  intercept(request : HttpRequest < any >, next : HttpHandler) : Observable < HttpEvent < any >> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    return next.handle(request).pipe(
+      catchError(error => {
+        if (error instanceof HttpErrorResponse) {
+          const text =
+            error.error && error.error.message ? error.error.message : error.statusText;
+          (<any>window).globalEvents.emit('open error dialog', text);
+        }
 
-    return next
-      .handle(request)
-      .do 
-        ((event : HttpEvent < any >) => {}, (err : any) => {
-          if (err instanceof HttpErrorResponse) {
-            let text = (err.error && err.error.message) ? err.error.message : err.statusText;
-            (<any>window).globalEvents.emit('open error dialog', text);
-          }
-        });
-
-      }
+        return throwError(error);
+      })
+    );
   }
+}

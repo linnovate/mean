@@ -19,8 +19,8 @@ MEAN is a set of Open Source components that together, provide an end-to-end fra
 git clone https://github.com/linnovate/mean
 cd mean
 cp .env.example .env
-npm install
-npm start (for development)
+yarn
+yarn start (for development)
 ```
 ### Docker based 
 ``` 
