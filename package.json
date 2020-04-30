@@ -9,21 +9,21 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^8.2.14",
-    "@angular/cdk": "^8.2.3",
-    "@angular/common": "^8.2.14",
-    "@angular/compiler": "^8.2.14",
-    "@angular/core": "^8.2.14",
-    "@angular/flex-layout": "^8.0.0-beta.27",
-    "@angular/forms": "^8.2.14",
-    "@angular/material": "^8.2.3",
-    "@angular/platform-browser": "^8.2.14",
-    "@angular/platform-browser-dynamic": "^8.2.14",
-    "@angular/router": "^8.2.14",
+    "@angular/animations": "^9.1.4",
+    "@angular/cdk": "^9.2.1",
+    "@angular/common": "^9.1.4",
+    "@angular/compiler": "^9.1.4",
+    "@angular/core": "^9.1.4",
+    "@angular/forms": "^9.1.4",
+    "@angular/material": "^9.2.1",
+    "@angular/platform-browser": "^9.1.4",
+    "@angular/platform-browser-dynamic": "^9.1.4",
+    "@angular/router": "^9.1.4",
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.2",
     "compression": "^1.7.2",
@@ -47,15 +47,15 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-    "rxjs": "^6.5.3",
+    "rxjs": "^6.5.5",
     "swagger-ui-express": "^3.0.9",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.10.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.803.20",
-    "@angular/cli": "^8.3.20",
-    "@angular/compiler-cli": "^8.2.14",
-    "@angular/language-service": "^8.2.14",
+    "@angular-devkit/build-angular": "~0.901.4",
+    "@angular/cli": "^9.1.4",
+    "@angular/compiler-cli": "^9.1.4",
+    "@angular/language-service": "^9.1.4",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~12.12.14",
@@ -70,6 +70,6 @@
     "karma-jasmine-html-reporter": "1.1.0",
     "ts-node": "~6.1.0",
     "tslint": "^5.20.1",
-    "typescript": "~3.5.3"
+    "typescript": "3.8.3"
   }
 }
