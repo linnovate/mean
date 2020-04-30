@@ -14,7 +14,9 @@
       "ESNext",
       "DOM"
     ],
+    "module": "ESNext",
     "moduleResolution": "node",
+    "strict": true,
     "sourceMap": true,
     "declaration": false,
     "importHelpers": true,

@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { AuthService } from '@app/shared/services';
+
 @Injectable()
 export class OnlyAdminUsersGuard implements CanActivate {
-  canActivate() {
-    const user = (<any>window).user;
-    return user && user.isAdmin;
+  constructor(private authService: AuthService) {}
+
+  canActivate(): Observable<boolean> {
+    return this.authService.getUser().pipe(map(user => !!user?.isAdmin));
   }
 }

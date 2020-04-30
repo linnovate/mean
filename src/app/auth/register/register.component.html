@@ -16,7 +16,7 @@
           <td>
             <mat-form-field>
               <input matInput placeholder="Email" formControlName="email" name="email" required>
-              <mat-error *ngIf="email.invalid && email.errors.email">Invalid email address</mat-error>
+              <mat-error *ngIf="email.invalid && email.hasError('email')">Invalid email address</mat-error>
             </mat-form-field>
           </td>
         </tr>
@@ -31,7 +31,7 @@
           <td>
             <mat-form-field>
               <input matInput placeholder="Repeat Password" formControlName="repeatPassword" type="password" name="repeatPassword" required>
-              <mat-error *ngIf="repeatPassword.invalid && repeatPassword.errors.passwordMatch">Password mismatch</mat-error>
+              <mat-error *ngIf="repeatPassword.invalid && repeatPassword.hasError('passwordMatch')">Password mismatch</mat-error>
             </mat-form-field>
           </td>
         </tr>
