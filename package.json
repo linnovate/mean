@@ -9,7 +9,9 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "private": true,
   "dependencies": {
@@ -49,7 +51,8 @@
     "passport-local": "^1.0.0",
     "rxjs": "^6.5.3",
     "swagger-ui-express": "^3.0.9",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "snyk": "^1.317.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.803.20",
@@ -71,5 +74,6 @@
     "ts-node": "~6.1.0",
     "tslint": "^5.20.1",
     "typescript": "~3.5.3"
-  }
+  },
+  "snyk": true
 }
