@@ -1,6 +1,5 @@
-<app-header [user]="user"></app-header>
+<app-header [user]="user$ | async"></app-header>
 <div class="wrapper-app">
   <router-outlet></router-outlet>
 </div>
-<footer>
-</footer>
+<footer></footer>

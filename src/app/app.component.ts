@@ -1,54 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { AuthService } from './auth/auth.service';
+import { merge, Observable } from 'rxjs';
+
+import { User } from './shared/interfaces';
+import { AuthService } from './shared/services';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  private userSubscription: Subscription;
-  public user: any;
+export class AppComponent {
+  user$: Observable<User | null> = merge(
+    // Init on startup
+    this.authService.me(),
+    // Update after login/register/logout
+    this.authService.getUser()
+  );
 
   constructor(
-    private authService: AuthService,
-    private router: Router,
     private domSanitizer: DomSanitizer,
-    private matIconRegistry: MatIconRegistry
+    private matIconRegistry: MatIconRegistry,
+    private authService: AuthService
   ) {
     this.registerSvgIcons();
-  }
-
-  public ngOnInit() {
-    // init this.user on startup
-    this.authService.me().subscribe(data => {
-      this.user = data.user;
-    });
-
-    // update this.user after login/register/logout
-    this.userSubscription = this.authService.$userSource.subscribe(user => {
-      this.user = user;
-    });
-  }
-
-  logout(): void {
-    this.authService.signOut();
-    this.navigate('');
-  }
-
-  navigate(link): void {
-    this.router.navigate([link]);
-  }
-
-  ngOnDestroy() {
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
-    }
   }
 
   registerSvgIcons() {
@@ -84,7 +61,7 @@ export class AppComponent implements OnInit {
       'tow-truck',
       'transportation',
       'trolleybus',
-      'water-transportation'
+      'water-transportation',
     ].forEach(icon => {
       this.matIconRegistry.addSvgIcon(
         icon,
