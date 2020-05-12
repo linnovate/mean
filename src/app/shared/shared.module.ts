@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -21,32 +20,28 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-const SHARED_MODULES = [
-  FormsModule,
-  ReactiveFormsModule,
-  CommonModule,
-  FlexLayoutModule,
-  MatMenuModule,
-  MatTabsModule,
-  MatCardModule,
-  MatListModule,
-  MatIconModule,
-  MatTreeModule,
-  MatInputModule,
-  MatSelectModule,
-  MatDialogModule,
-  MatButtonModule,
-  MatDividerModule,
-  MatToolbarModule,
-  MatSidenavModule,
-  MatSnackBarModule,
-  MatExpansionModule,
-  MatFormFieldModule,
-  MatProgressBarModule
-];
-
 @NgModule({
-  imports: SHARED_MODULES,
-  exports: SHARED_MODULES
+  exports: [
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    MatMenuModule,
+    MatTabsModule,
+    MatCardModule,
+    MatListModule,
+    MatIconModule,
+    MatTreeModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatSnackBarModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatProgressBarModule,
+  ],
 })
 export class SharedModule {}
