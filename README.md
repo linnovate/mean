@@ -1,3 +1,6 @@
+##Note 
+
+I have cloned this application to test it in my company. I will modify it according to the convenience of me and my company
 ## Welcome to the mean stack
 
 The mean stack is intended to provide a simple and fun starting point for cloud native fullstack javascript applications.   
