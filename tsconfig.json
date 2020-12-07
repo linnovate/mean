@@ -14,7 +14,7 @@
       "ESNext",
       "DOM"
     ],
-    "module": "ESNext",
+    "module": "es2020",
     "moduleResolution": "node",
     "strict": true,
     "sourceMap": true,
