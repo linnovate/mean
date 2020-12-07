@@ -59,7 +59,6 @@ export class AuthService {
     }
 
     this.user$.next(user);
-    window.user = user;
   }
 
   getUser(): Observable<User | null> {
@@ -82,7 +81,6 @@ export class AuthService {
   signOut(): void {
     this.tokenStorage.signOut();
     this.setUser(null);
-    delete window.user;
   }
 
   getAuthorizationHeaders() {
