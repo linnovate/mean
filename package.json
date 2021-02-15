@@ -18,7 +18,7 @@
     "@angular/cdk": "^11.0.2",
     "@angular/common": "^11.0.3",
     "@angular/compiler": "^11.0.3",
-    "@angular/core": "^11.0.3",
+    "@angular/core": "^11.0.5",
     "@angular/forms": "^11.0.3",
     "@angular/material": "^11.0.2",
     "@angular/platform-browser": "^11.0.3",
