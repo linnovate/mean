@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable, BehaviorSubject, EMPTY } from 'rxjs';
+import { Observable, BehaviorSubject, EMPTY, firstValueFrom } from 'rxjs';
 import { tap, pluck } from 'rxjs/operators';
 
 import { User } from '@app/shared/interfaces';
@@ -93,6 +93,6 @@ export class AuthService {
    * thus we can ensure that the user is able to access the `/` (home) page.
    */
   checkTheUserOnTheFirstLoad(): Promise<User> {
-    return this.me().toPromise();
+    return firstValueFrom(this.me());
   }
 }
