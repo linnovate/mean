@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable, BehaviorSubject, EMPTY, firstValueFrom } from 'rxjs';
-import { tap, pluck } from 'rxjs/operators';
+import { Observable, BehaviorSubject, firstValueFrom, of } from 'rxjs';
+import { tap, pluck, catchError } from 'rxjs/operators';
 
 import { User } from '@app/shared/interfaces';
 
@@ -65,16 +65,11 @@ export class AuthService {
     return this.user$.asObservable();
   }
 
-  me(): Observable<User> {
-    const token: string | null = this.tokenStorage.getToken();
-
-    if (token === null) {
-      return EMPTY;
-    }
-
+  me(): Observable<User | null> {
     return this.http.get<AuthResponse>('/api/auth/me').pipe(
       tap(({ user }) => this.setUser(user)),
-      pluck('user')
+      pluck('user'),
+      catchError(() => of(null)),
     );
   }
 
@@ -92,7 +87,7 @@ export class AuthService {
    * Let's try to get user's information if he was logged in previously,
    * thus we can ensure that the user is able to access the `/` (home) page.
    */
-  checkTheUserOnTheFirstLoad(): Promise<User> {
+  checkTheUserOnTheFirstLoad(): Promise<User | null> {
     return firstValueFrom(this.me());
   }
 }
