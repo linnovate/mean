@@ -1,17 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import '~@angular/material/theming';
+@use "~@angular/material" as mat;
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
-$custom-typography: mat-typography-config(
-    $font-family: 'Exo'
+$custom-typography: mat.define-typography-config(
+  $font-family: "Exo",
 );
 
-@include mat-core($custom-typography);
+@include mat.core($custom-typography);
 
 body {
   background-color: #f4f3f3;
   margin: 0;
   app-root * {
-    font-family: 'Exo', sans-serif;
+    font-family: "Exo", sans-serif;
   }
 }
