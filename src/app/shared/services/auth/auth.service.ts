@@ -69,7 +69,7 @@ export class AuthService {
     return this.http.get<AuthResponse>('/api/auth/me').pipe(
       tap(({ user }) => this.setUser(user)),
       pluck('user'),
-      catchError(() => of(null)),
+      catchError(() => of(null))
     );
   }
 

@@ -65,7 +65,9 @@ export class AppComponent {
     ].forEach(icon => {
       this.matIconRegistry.addSvgIcon(
         icon,
-        this.domSanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${icon}.svg`)
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          `assets/icons/${icon}.svg`
+        )
       );
     });
   }

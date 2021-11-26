@@ -8,30 +8,64 @@
         <tr>
           <td>
             <mat-form-field>
-              <input matInput placeholder="Fullname" formControlName="fullname" name="fullname" required>
+              <input
+                matInput
+                placeholder="Fullname"
+                formControlName="fullname"
+                name="fullname"
+                required
+              />
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>
             <mat-form-field>
-              <input matInput placeholder="Email" formControlName="email" name="email" required>
-              <mat-error *ngIf="email.invalid && email.hasError('email')">Invalid email address</mat-error>
+              <input
+                matInput
+                placeholder="Email"
+                formControlName="email"
+                name="email"
+                required
+              />
+              <mat-error *ngIf="email.invalid && email.hasError('email')"
+                >Invalid email address</mat-error
+              >
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>
             <mat-form-field>
-              <input matInput placeholder="Password" formControlName="password" type="password" name="password" required>
+              <input
+                matInput
+                placeholder="Password"
+                formControlName="password"
+                type="password"
+                name="password"
+                required
+              />
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>
             <mat-form-field>
-              <input matInput placeholder="Repeat Password" formControlName="repeatPassword" type="password" name="repeatPassword" required>
-              <mat-error *ngIf="repeatPassword.invalid && repeatPassword.hasError('passwordMatch')">Password mismatch</mat-error>
+              <input
+                matInput
+                placeholder="Repeat Password"
+                formControlName="repeatPassword"
+                type="password"
+                name="repeatPassword"
+                required
+              />
+              <mat-error
+                *ngIf="
+                  repeatPassword.invalid &&
+                  repeatPassword.hasError('passwordMatch')
+                "
+                >Password mismatch</mat-error
+              >
             </mat-form-field>
           </td>
         </tr>
@@ -39,7 +73,12 @@
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button (click)="register()" color="primary">Register</button>
-    <span>Allrady have an account ? <a [routerLink]="['/auth/login']">login</a> here</span>
+    <button mat-raised-button (click)="register()" color="primary">
+      Register
+    </button>
+    <span
+      >Allrady have an account ?
+      <a [routerLink]="['/auth/login']">login</a> here</span
+    >
   </mat-card-actions>
 </mat-card>
