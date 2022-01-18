@@ -15,12 +15,16 @@ import { catchError } from 'rxjs/operators';
 export class CatchErrorInterceptor implements HttpInterceptor {
   constructor(private snackBar: MatSnackBar) {}
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(catchError(this.showSnackBar));
   }
 
   private showSnackBar = (response: HttpErrorResponse): Observable<never> => {
-    const text: string | undefined = response.error?.message ?? response.error.statusText;
+    const text: string | undefined =
+      response.error?.message ?? response.error.statusText;
 
     if (text) {
       this.snackBar.open(text, 'Close', {
@@ -28,6 +32,6 @@ export class CatchErrorInterceptor implements HttpInterceptor {
       });
     }
 
-    return throwError(response);
+    return throwError(() => response);
   };
 }

@@ -20,7 +20,6 @@
     "sourceMap": true,
     "declaration": false,
     "importHelpers": true,
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "suppressImplicitAnyIndexErrors": true
   }

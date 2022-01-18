@@ -1,10 +1,11 @@
-FROM node:8
+FROM node:14.18-alpine
 
 WORKDIR /usr/src/app
-ADD . /usr/src/app
+COPY . /usr/src/app
 
-RUN yarn
-RUN yarn build
+ENV HUSKY_SKIP_INSTALL=true
+RUN yarn --pure-lockfile --non-interactive --no-progress
+RUN yarn build:prod
 
 EXPOSE 4040
 

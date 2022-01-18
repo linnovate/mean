@@ -1,11 +1,9 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config/config');
 
-
 module.exports = {
-  generateToken
-}
-
+  generateToken,
+};
 
 function generateToken(user) {
   const payload = JSON.stringify(user);

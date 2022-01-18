@@ -8,14 +8,27 @@
         <tr>
           <td>
             <mat-form-field>
-              <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
+              <input
+                matInput
+                placeholder="Email"
+                [(ngModel)]="email"
+                name="email"
+                required
+              />
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>
             <mat-form-field>
-              <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+              <input
+                matInput
+                placeholder="Password"
+                [(ngModel)]="password"
+                type="password"
+                name="password"
+                required
+              />
             </mat-form-field>
           </td>
         </tr>
@@ -24,6 +37,9 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button (click)="login()" color="primary">Login</button>
-    <span>Don't have an account ? <a [routerLink]="['/auth/register']" >register</a> here</span>
+    <span
+      >Don't have an account ?
+      <a [routerLink]="['/auth/register']">register</a> here</span
+    >
   </mat-card-actions>
 </mat-card>
