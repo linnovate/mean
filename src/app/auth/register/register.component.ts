@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
   ValidationErrors,
   AbstractControl,
@@ -18,7 +18,9 @@ import { AuthService } from '@app/shared/services';
 export class RegisterComponent {
   constructor(private router: Router, private authService: AuthService) {}
 
-  passwordsMatchValidator(control: FormControl): ValidationErrors | null {
+  passwordsMatchValidator(
+    control: UntypedFormControl
+  ): ValidationErrors | null {
     const password = control.root.get('password');
     return password && control.value !== password.value
       ? {
@@ -27,11 +29,11 @@ export class RegisterComponent {
       : null;
   }
 
-  userForm = new FormGroup({
-    fullname: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-    repeatPassword: new FormControl('', [
+  userForm = new UntypedFormGroup({
+    fullname: new UntypedFormControl('', [Validators.required]),
+    email: new UntypedFormControl('', [Validators.required, Validators.email]),
+    password: new UntypedFormControl('', [Validators.required]),
+    repeatPassword: new UntypedFormControl('', [
       Validators.required,
       this.passwordsMatchValidator,
     ]),
