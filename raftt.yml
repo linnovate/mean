@@ -1,0 +1,5 @@
+envDefinition: ./raftt/raftt.star
+data:
+  - service: mongo
+    type: mongodb
+    dump: raftt/dump.archive

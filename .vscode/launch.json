@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch via NPM Raftt",
+      "request": "launch",
+      "runtimeArgs": ["run", "start"],
+      "runtimeExecutable": "yarn",
+      "skipFiles": ["<node_internals>/**"],
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "type": "node",
+      "raftt": {
+        "service": "app"
+      },
+      "console": "integratedTerminal"
+    }
+  ]
+}

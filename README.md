@@ -36,6 +36,36 @@ cp .env.example .env
 docker-compose up -d
 ```
 
+### Alternative - Develop with Raftt
+
+#### What is Raftt?
+
+Raftt is a cloud-based development infrastructure that lets you spawn remote dev envs without the need for any local setup and while keeping the tools and experience of local environments.
+
+#### Pre-requisites
+
+- git - [Installation guide](https://www.linode.com/docs/development/version-control/how-to-install-git-on-linux-mac-and-windows/) .
+- Raftt [installation guide](https://docs.raftt.io/docs/basics/quickstart#step-1---install-raftt)
+
+That's all. No need to install Node.js, MongoDB etc..
+
+#### Interactive debugging
+
+Using Raftt allows interactively debugging microservices with minimal configuration.  
+See [here](https://docs.raftt.io/docs/debugging/JetBrains) documentation about configuring debugging.
+
+#### How to start development
+
+```
+git clone https://github.com/linnovate/mean
+cd mean
+cp .env.example .env
+Mac OS  - brew install rafttio/tap/raftt or curl -fsSL get.raftt.io/install | bash
+Linux   - sudo snap install raftt --classic or curl -fsSL get.raftt.io/install | bash
+Windows - Download and run (https://get.raftt.io/windowsinstall)
+raftt up
+```
+
 ### Credits
 
 - The MEAN name was coined by Valeri Karpov.

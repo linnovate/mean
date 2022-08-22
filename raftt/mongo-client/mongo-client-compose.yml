@@ -1,0 +1,17 @@
+version: "3"
+services:
+  mongo-client:
+    x-pre-build: ./raftt/mongo-client/pre-build.sh
+    image: mongo-express
+    ports:
+    - 8484:8081
+    environment:
+      - ME_CONFIG_MONGODB_URL="mongodb://mongo/mean?ssl=false"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules # Don't override node modules
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O/dev/null app:4040"]
+      interval: 2s
+      timeout: 60s
+      retries: 40

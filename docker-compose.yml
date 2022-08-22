@@ -4,6 +4,12 @@ services:
   app:
     build: ./
     image: mean
+    command:
+      - yarn
+      - start
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules # Don't override node modules
     ports:
       - 4040:4040
     environment:
