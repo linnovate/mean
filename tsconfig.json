@@ -10,10 +10,10 @@
     "module": "es2020",
     "moduleResolution": "node",
     "strict": true,
-    "sourceMap": true,
     "declaration": false,
     "importHelpers": true,
     "experimentalDecorators": true,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "inlineSourceMap": true
   }
 }

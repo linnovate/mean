@@ -1,0 +1,28 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Raftt" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="start" />
+    </scripts>
+    <node-interpreter value="$USER_HOME$/.raftt/plugins/node/jetbrains/node" />
+    <package-manager value="$USER_HOME$/.raftt/plugins/node/jetbrains/npm" />
+    <envs>
+      <env name="RAFTT_SERVICE" value="app" />
+    </envs>
+    <method v="2">
+      <option name="NpmBeforeRunTask" enabled="true">
+        <package-json value="$PROJECT_DIR$/package.json" />
+        <command value="run" />
+        <scripts>
+          <script value="build:dev" />
+        </scripts>
+        <node-interpreter value="$USER_HOME$/.raftt/plugins/node/jetbrains/node" />
+        <package-manager value="$USER_HOME$/.raftt/plugins/node/jetbrains/npm" />
+        <envs>
+          <env name="RAFTT_SERVICE" value="app" />
+        </envs>
+      </option>
+    </method>
+  </configuration>
+</component>
