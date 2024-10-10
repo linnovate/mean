@@ -39,5 +39,5 @@ docker-compose up -d
 ### Credits
 
 - The MEAN name was coined by Valeri Karpov.
-- Initial concept and development was done by Amos Haviv and sponsered by Linnovate.
+- Initial concept and development were done by Amos Haviv and sponsored by Linnovate.
 - Inspired by the great work of Madhusudhan Srinivasa.
