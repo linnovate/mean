@@ -1,0 +1,10 @@
+apiVersion: v1 
+kind: Service 
+metadata: 
+  name: angular-app-service 
+spec: 
+  selector:
+    app: angular-app
+  ports: 
+    - port: 4040
+      targetPort: 4040

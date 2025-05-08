@@ -1,0 +1,37 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+  name: angular-app 
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: angular-app
+  template: 
+    metadata:
+      labels:
+        app: angular-app
+    spec: 
+      containers:
+        - name: angular-app
+          image: sharmaaakash170/angular-app:latest 
+          ports:
+            - containerPort: 4040 
+          resources: 
+            requests:
+              cpu: "100m" 
+              memory: "128Mi"
+            limits:
+              cpu: "200m" 
+              memory: "256Mi"
+          env: 
+            - name: SERVER_PORT
+              value: "4040"
+            - name: "NODE_ENV"
+              value: "production" 
+            - name: JWT_SECRET
+              value: "0a6b944d-d2fb-46fc-a85e-0295c986cd9f"
+            - name: MONGO_HOST
+              value: mongodb://mongo-service.default.svc.cluster.local:27017/mean
+          imagePullPolicy: IfNotPresent
+          
