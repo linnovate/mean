@@ -24,7 +24,7 @@
     "@angular/platform-browser": "^15.2.9",
     "@angular/platform-browser-dynamic": "^15.2.9",
     "@angular/router": "^15.2.9",
-    "bcrypt": "^5.0.1",
+    "bcrypt": "^6.0.0",
     "body-parser": "^1.18.2",
     "compression": "^1.7.2",
     "cookie-parser": "^1.4.3",
