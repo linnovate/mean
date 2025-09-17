@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { merge, Observable } from 'rxjs';
+import { merge, Observable, of, iif, defer } from 'rxjs';
 
 import { User } from './shared/interfaces';
 import { AuthService } from './shared/services';
+import { TokenStorage } from './shared/services/auth/token.storage';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ import { AuthService } from './shared/services';
 export class AppComponent {
   user$: Observable<User | null> = merge(
     // Init on startup
-    this.authService.me(),
+    this.tokenStorage.getToken() ? this.authService.me() : of(null),
     // Update after login/register/logout
     this.authService.getUser()
   );
@@ -23,7 +24,8 @@ export class AppComponent {
   constructor(
     private domSanitizer: DomSanitizer,
     private matIconRegistry: MatIconRegistry,
-    private authService: AuthService
+    private authService: AuthService,
+    private tokenStorage: TokenStorage
   ) {
     this.registerSvgIcons();
   }

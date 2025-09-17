@@ -2,3 +2,8 @@
 dist/
 examples/
 node_modules/
+*.log
+.env*
+.angular/
+Dockerfile
+docker-compose.yml

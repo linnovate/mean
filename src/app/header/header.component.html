@@ -2,6 +2,29 @@
   <mat-toolbar color="primary">
     <a routerLink="/" class="logo"></a>
     <span class="example-spacer"></span>
+
+    <!-- Navigation Links -->
+    <nav class="nav-links" *ngIf="user">
+      <a
+        mat-button
+        routerLink="/blog"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon>article</mat-icon>
+        Blog
+      </a>
+      <a
+        mat-button
+        routerLink="/blog/create"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon>create</mat-icon>
+        Write
+      </a>
+    </nav>
+
     <a class="links side" routerLink="/auth/login" *ngIf="!user">Login</a>
     <div>
       <a class="links side" *ngIf="user" [matMenuTriggerFor]="menu">
@@ -9,9 +32,22 @@
       </a>
       <mat-menu #menu="matMenu">
         <button mat-menu-item *ngIf="user?.isAdmin" routerLink="/admin">
-          admin
+          <mat-icon>admin_panel_settings</mat-icon>
+          <span>Admin</span>
         </button>
-        <button mat-menu-item (click)="logout()">logout</button>
+        <button mat-menu-item routerLink="/blog">
+          <mat-icon>article</mat-icon>
+          <span>Blog</span>
+        </button>
+        <button mat-menu-item routerLink="/blog/create">
+          <mat-icon>create</mat-icon>
+          <span>Write Post</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
       </mat-menu>
     </div>
   </mat-toolbar>

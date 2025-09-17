@@ -6,7 +6,7 @@
     },
     "target": "ES2022",
     "typeRoots": ["node_modules/@types"],
-    "lib": ["ESNext", "DOM"],
+    "lib": ["ES2022", "DOM"],
     "module": "es2020",
     "moduleResolution": "node",
     "strict": true,
@@ -14,7 +14,7 @@
     "declaration": false,
     "importHelpers": true,
     "experimentalDecorators": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "skipLibCheck": true
   }
 }

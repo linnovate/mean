@@ -24,15 +24,26 @@ const UserSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
-    roles: [
-      {
-        type: String,
-      },
-    ],
+    roles: {
+      type: [
+        {
+          type: String,
+        },
+      ],
+      default: [],
+    },
   },
   {
     versionKey: false,
   }
 );
+
+// Virtual property to check if user is admin
+UserSchema.virtual('isAdmin').get(function () {
+  return this.roles && this.roles.includes('admin');
+});
+
+// Ensure virtual fields are serialized
+UserSchema.set('toJSON', { virtuals: true });
 
 module.exports = mongoose.model('User', UserSchema);

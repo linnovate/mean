@@ -1,0 +1,156 @@
+.blog-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  }
+
+  .card-image {
+    position: relative;
+
+    img {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ff6b35;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      mat-icon {
+        font-size: 14px;
+        height: 14px;
+        width: 14px;
+      }
+    }
+  }
+
+  mat-card-header {
+    padding-bottom: 8px;
+
+    mat-card-title {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 8px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .meta-info {
+      font-size: 12px;
+      color: #666;
+
+      .separator {
+        margin: 0 6px;
+      }
+    }
+  }
+
+  mat-card-content {
+    flex: 1;
+    padding-top: 0;
+
+    .excerpt {
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .categories,
+    .tags {
+      margin-bottom: 12px;
+
+      mat-chip-set {
+        mat-chip {
+          font-size: 11px;
+          height: 24px;
+          cursor: pointer;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+
+  .card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px 16px;
+
+    .stats {
+      display: flex;
+      gap: 16px;
+
+      .stat {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        color: #666;
+
+        mat-icon {
+          font-size: 16px;
+          height: 16px;
+          width: 16px;
+        }
+      }
+    }
+
+    .actions {
+      button {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        mat-icon {
+          font-size: 18px;
+          height: 18px;
+          width: 18px;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 480px) {
+  .blog-card {
+    .card-image img {
+      height: 160px;
+    }
+
+    mat-card-header mat-card-title {
+      font-size: 16px;
+    }
+
+    .card-actions {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  }
+}

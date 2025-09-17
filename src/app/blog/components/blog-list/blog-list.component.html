@@ -1,0 +1,105 @@
+<div class="blog-list-container">
+  <div class="blog-header">
+    <div class="header-top">
+      <h1>{{ pageTitle }}</h1>
+      <button
+        mat-raised-button
+        color="primary"
+        routerLink="/blog/create"
+        class="create-button"
+      >
+        <mat-icon>add</mat-icon>
+        Create New Post
+      </button>
+    </div>
+
+    <!-- Filters -->
+    <app-blog-filters
+      [currentFilters]="filters$ | async"
+      (filtersChange)="onFiltersChange($event)"
+    >
+    </app-blog-filters>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading$ | async" class="loading-container">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    <p>Loading blogs...</p>
+  </div>
+
+  <!-- Blog List -->
+  <div *ngIf="!(loading$ | async)" class="blog-content">
+    <ng-container *ngIf="blogs$ as response">
+      <!-- Results Info -->
+      <div class="results-info" *ngIf="response.pagination">
+        <p>
+          Showing
+          {{
+            (response.pagination.page - 1) * response.pagination.limit + 1
+          }}
+          to
+          {{
+            Math.min(
+              response.pagination.page * response.pagination.limit,
+              response.pagination.total
+            )
+          }}
+          of {{ response.pagination.total }} results
+        </p>
+      </div>
+
+      <!-- Blog Cards Grid -->
+      <div
+        class="blog-grid"
+        *ngIf="response.blogs && response.blogs.length > 0"
+      >
+        <app-blog-card
+          *ngFor="let blog of response.blogs; trackBy: trackByBlog"
+          [blog]="blog"
+        >
+        </app-blog-card>
+      </div>
+
+      <!-- No Results -->
+      <div
+        class="no-results"
+        *ngIf="!response.blogs || response.blogs.length === 0"
+      >
+        <mat-icon>article</mat-icon>
+        <h3>No blog posts found</h3>
+        <p>Try adjusting your filters or search terms.</p>
+        <button mat-raised-button color="primary" routerLink="/blog/create">
+          Create New Post
+        </button>
+      </div>
+
+      <!-- Pagination -->
+      <div
+        class="pagination-container"
+        *ngIf="response.pagination && response.pagination.pages > 1"
+      >
+        <mat-paginator
+          [length]="response.pagination.total"
+          [pageSize]="response.pagination.limit"
+          [pageIndex]="response.pagination.page - 1"
+          [pageSizeOptions]="[5, 10, 20, 50]"
+          (page)="onPageChange($event.pageIndex + 1)"
+          showFirstLastButtons
+        >
+        </mat-paginator>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- Floating Action Button -->
+  <button
+    mat-fab
+    color="primary"
+    class="fab-create"
+    routerLink="/blog/create"
+    matTooltip="Create New Post"
+    aria-label="Create New Post"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

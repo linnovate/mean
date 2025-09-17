@@ -1,0 +1,72 @@
+.filters-panel {
+  margin-bottom: 20px;
+
+  mat-expansion-panel-header {
+    mat-panel-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      mat-icon {
+        color: #666;
+      }
+    }
+  }
+}
+
+.filters-form {
+  .filter-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    mat-form-field {
+      min-width: 180px;
+      flex: 1;
+    }
+
+    .featured-checkbox {
+      flex: 1;
+    }
+
+    .clear-button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .filters-form {
+    .filter-row {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+
+      mat-form-field {
+        min-width: unset;
+        width: 100%;
+      }
+
+      .clear-button {
+        align-self: flex-start;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .filters-form {
+    .filter-row {
+      gap: 8px;
+    }
+  }
+}

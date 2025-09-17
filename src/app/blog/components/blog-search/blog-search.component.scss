@@ -1,0 +1,15 @@
+.search-container {
+  .search-field {
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+// Responsive design
+@media (max-width: 480px) {
+  .search-container {
+    .search-field {
+      max-width: 100%;
+    }
+  }
+}

@@ -1,0 +1,224 @@
+<div class="blog-form-container">
+  <mat-card class="blog-form-card">
+    <mat-card-header>
+      <mat-card-title>
+        {{ isEditing ? 'Edit Blog Post' : 'Create New Blog Post' }}
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="blogForm" (ngSubmit)="onSubmit()" class="blog-form">
+        <!-- Title -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Title</mat-label>
+          <input
+            matInput
+            formControlName="title"
+            placeholder="Enter blog post title"
+          />
+          <mat-error
+            *ngIf="
+              blogForm.get('title')?.invalid && blogForm.get('title')?.touched
+            "
+          >
+            Title is required and must be at least 3 characters long
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Slug -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>URL Slug</mat-label>
+          <input
+            matInput
+            formControlName="slug"
+            placeholder="auto-generated-slug"
+          />
+          <mat-hint>Leave empty to auto-generate from title</mat-hint>
+          <mat-error
+            *ngIf="
+              blogForm.get('slug')?.invalid && blogForm.get('slug')?.touched
+            "
+          >
+            Slug must contain only lowercase letters, numbers, and hyphens
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Excerpt -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Excerpt</mat-label>
+          <textarea
+            matInput
+            formControlName="excerpt"
+            rows="3"
+            placeholder="Brief description of the blog post (optional)"
+          ></textarea>
+        </mat-form-field>
+
+        <!-- Categories -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Categories</mat-label>
+          <mat-select formControlName="categories" multiple>
+            <mat-option
+              *ngFor="let category of categories"
+              [value]="category._id"
+            >
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+          <mat-hint>Select one or more categories</mat-hint>
+        </mat-form-field>
+
+        <!-- Tags -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Tags</mat-label>
+          <mat-chip-grid #chipList aria-label="Blog tags">
+            <mat-chip-row
+              *ngFor="let tag of tags"
+              [removable]="true"
+              (removed)="removeTag(tag)"
+            >
+              {{ tag }}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip-row>
+            <input
+              placeholder="Add tags..."
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="addTag($event)"
+            />
+          </mat-chip-grid>
+        </mat-form-field>
+
+        <!-- Content -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Content</mat-label>
+          <textarea
+            matInput
+            formControlName="content"
+            rows="15"
+            placeholder="Write your blog post content here..."
+          ></textarea>
+          <mat-error
+            *ngIf="
+              blogForm.get('content')?.invalid &&
+              blogForm.get('content')?.touched
+            "
+          >
+            Content is required
+          </mat-error> </mat-form-field
+        ><!-- SEO Fields -->
+        <mat-expansion-panel class="seo-section">
+          <mat-expansion-panel-header>
+            <mat-panel-title> SEO Settings </mat-panel-title>
+            <mat-panel-description>
+              Optimize for search engines
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Meta Description</mat-label>
+            <textarea
+              matInput
+              formControlName="metaDescription"
+              rows="2"
+              maxlength="160"
+              placeholder="Brief description for search engines"
+            >
+            </textarea>
+            <mat-hint align="end">
+              {{ blogForm.get('metaDescription')?.value?.length || 0 }}/160
+            </mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Meta Keywords</mat-label>
+            <input
+              matInput
+              formControlName="metaKeywords"
+              placeholder="keyword1, keyword2, keyword3"
+            />
+            <mat-hint>Comma-separated keywords</mat-hint>
+          </mat-form-field>
+        </mat-expansion-panel>
+
+        <!-- Publishing Options -->
+        <mat-expansion-panel class="publishing-section">
+          <mat-expansion-panel-header>
+            <mat-panel-title> Publishing Options </mat-panel-title>
+            <mat-panel-description>
+              Control when and how this post is published
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <!-- Status -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status">
+              <mat-option value="draft">Draft</mat-option>
+              <mat-option value="published">Published</mat-option>
+              <mat-option value="scheduled">Scheduled</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Featured Post -->
+          <mat-checkbox formControlName="isFeatured" class="featured-checkbox">
+            Featured Post
+          </mat-checkbox>
+
+          <!-- Scheduled Date -->
+          <mat-form-field
+            appearance="outline"
+            class="full-width"
+            *ngIf="blogForm.get('status')?.value === 'scheduled'"
+          >
+            <mat-label>Scheduled Date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="scheduledAt"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </mat-expansion-panel>
+
+        <!-- Action Buttons -->
+        <div class="form-actions">
+          <button
+            type="button"
+            mat-stroked-button
+            color="warn"
+            (click)="onCancel()"
+            class="action-button"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="button"
+            mat-stroked-button
+            (click)="saveDraft()"
+            [disabled]="blogForm.invalid || isSubmitting"
+            class="action-button"
+          >
+            Save as Draft
+          </button>
+
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="blogForm.invalid || isSubmitting"
+            class="action-button"
+          >
+            <mat-spinner diameter="20" *ngIf="isSubmitting"></mat-spinner>
+            {{ isEditing ? 'Update Post' : 'Publish Post' }}
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

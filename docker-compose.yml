@@ -1,8 +1,6 @@
-version: '3.8'
-
 services:
   app:
-    build: ./
+    build: .
     image: mean
     ports:
       - 4040:4040
@@ -11,7 +9,7 @@ services:
       SERVER_PORT: 4040
       JWT_SECRET: 0a6b944d-d2fb-46fc-a85e-0295c986cd9f
       MONGO_HOST: mongodb://mongo/mean
-    restart: always
+    restart: unless-stopped
     depends_on:
       - mongo
 

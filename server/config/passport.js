@@ -18,7 +18,11 @@ const localLogin = new LocalStrategy(
         error: 'Your login details could not be verified. Please try again.',
       });
     }
-    user = user.toObject();
+    // Ensure roles array exists
+    if (!user.roles) {
+      user.roles = [];
+    }
+    user = user.toObject({ virtuals: true });
     delete user.hashedPassword;
     done(null, user);
   }
@@ -34,7 +38,11 @@ const jwtLogin = new JwtStrategy(
     if (!user) {
       return done(null, false);
     }
-    user = user.toObject();
+    // Ensure roles array exists
+    if (!user.roles) {
+      user.roles = [];
+    }
+    user = user.toObject({ virtuals: true });
     delete user.hashedPassword;
     done(null, user);
   }

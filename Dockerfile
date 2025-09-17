@@ -1,12 +1,14 @@
-FROM node:14.18-alpine
+FROM node:20-slim
+WORKDIR /app
 
-WORKDIR /usr/src/app
-COPY . /usr/src/app
-
-ENV HUSKY_SKIP_INSTALL=true
-RUN yarn --pure-lockfile --non-interactive --no-progress
+ENV HUSKY_SKIP_INSTALL = 1
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile --non-interactive \
+    && yarn cache clean
+COPY . .
 RUN yarn build:prod
 
-EXPOSE 4040
+USER node
 
+EXPOSE 4040
 CMD ["yarn", "serve"]

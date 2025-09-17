@@ -1,0 +1,30 @@
+<div class="search-container">
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Search blog posts...</mat-label>
+    <input
+      matInput
+      [formControl]="searchControl"
+      (keyup.enter)="onSearchSubmit()"
+      placeholder="Enter keywords, tags, or author name"
+    />
+
+    <button
+      mat-icon-button
+      matSuffix
+      *ngIf="searchControl.value"
+      (click)="clearSearch()"
+      aria-label="Clear search"
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="onSearchSubmit()"
+      aria-label="Search"
+    >
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+</div>

@@ -1,5 +1,6 @@
 header {
   width: 100%;
+
   .logo {
     background-image: url('../../assets/logo.png');
     width: 50px;
@@ -7,9 +8,42 @@ header {
     background-size: contain;
     background-repeat: no-repeat;
   }
+
   .example-spacer {
     flex: 1 1 auto;
   }
+
+  .nav-links {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      &.active {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      mat-icon {
+        font-size: 18px;
+        height: 18px;
+        width: 18px;
+      }
+    }
+  }
+
   .links {
     color: white;
     font-family: 'Helvetica Neue', sans-serif;
@@ -19,18 +53,45 @@ header {
     line-height: 1;
     text-align: center;
     padding: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
     &.side {
       padding: 0 14px;
     }
   }
+
   .mat-toolbar {
     background: black;
   }
+
   .mat-icon {
     vertical-align: middle;
     margin: 0 5px;
   }
+
   a {
     cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  header {
+    .nav-links {
+      display: none; // Hide in mobile, use menu instead
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    .links {
+      padding: 8px;
+      font-size: 14px;
+    }
   }
 }

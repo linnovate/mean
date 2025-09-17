@@ -1,0 +1,88 @@
+<mat-card class="blog-card" (click)="onCardClick()">
+  <!-- Featured Image -->
+  <div class="card-image" *ngIf="blog.featuredImage">
+    <img [src]="blog.featuredImage" [alt]="blog.title" mat-card-image />
+    <div class="featured-badge" *ngIf="blog.isFeatured">
+      <mat-icon>star</mat-icon>
+      Featured
+    </div>
+  </div>
+
+  <!-- Card Header -->
+  <mat-card-header>
+    <mat-card-title>{{ blog.title }}</mat-card-title>
+    <mat-card-subtitle>
+      <div class="meta-info">
+        <span class="author">By {{ blog.author.fullname }}</span>
+        <span class="separator">•</span>
+        <span class="date">{{
+          formatDate(blog.publishedAt || blog.createdAt)
+        }}</span>
+        <span class="separator">•</span>
+        <span class="reading-time"
+          >{{ getReadingTime(blog.content) }} min read</span
+        >
+      </div>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <!-- Card Content -->
+  <mat-card-content>
+    <p class="excerpt">{{ blog.excerpt }}</p>
+
+    <!-- Categories -->
+    <div
+      class="categories"
+      *ngIf="blog.categories && blog.categories.length > 0"
+    >
+      <mat-chip-listbox>
+        <mat-chip
+          *ngFor="let category of blog.categories"
+          [style.background-color]="category.color"
+          [style.color]="'white'"
+          (click)="onCategoryClick($event, category.slug)"
+        >
+          {{ category.name }}
+        </mat-chip>
+      </mat-chip-listbox>
+    </div>
+
+    <!-- Tags -->
+    <div class="tags" *ngIf="blog.tags && blog.tags.length > 0">
+      <mat-chip-listbox>
+        <mat-chip
+          *ngFor="let tag of blog.tags"
+          variant="outlined"
+          (click)="onTagClick($event, tag)"
+        >
+          #{{ tag }}
+        </mat-chip>
+      </mat-chip-listbox>
+    </div>
+  </mat-card-content>
+
+  <!-- Card Actions -->
+  <mat-card-actions class="card-actions">
+    <div class="stats">
+      <span class="stat">
+        <mat-icon>visibility</mat-icon>
+        {{ blog.views }}
+      </span>
+      <span class="stat">
+        <mat-icon>favorite</mat-icon>
+        {{ blog.likes?.length || 0 }}
+      </span>
+      <span class="stat" *ngIf="blog.commentCount">
+        <mat-icon>comment</mat-icon>
+        {{ blog.commentCount }}
+      </span>
+    </div>
+
+    <div class="actions">
+      <button mat-button color="primary">
+        Read More
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>

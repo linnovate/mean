@@ -7,21 +7,24 @@ import {
 } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-
-import { AuthService } from '@app/shared/services';
+import { TokenStorage } from '@app/shared/services/auth/token.storage';
 
 @Injectable()
 export class AuthHeaderInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(private tokenStorage: TokenStorage) {}
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    req = req.clone({
-      setHeaders: this.authService.getAuthorizationHeaders(),
-    });
-
+    const token = this.tokenStorage.getToken();
+    if (token) {
+      req = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    }
     return next.handle(req);
   }
 }

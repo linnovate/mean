@@ -1,0 +1,88 @@
+<div class="blog-detail-container" *ngIf="blog">
+  <mat-card class="blog-detail-card">
+    <mat-card-header>
+      <mat-card-title>{{ blog.title }}</mat-card-title>
+      <mat-card-subtitle>
+        <div class="blog-meta">
+          <span class="author"
+            >By {{ blog.author?.fullname || 'Unknown' }}</span
+          >
+          <span class="date">{{ blog.publishedAt | date : 'medium' }}</span>
+          <span class="views">{{ blog.views }} views</span>
+        </div>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="blog-categories" *ngIf="blog.categories?.length">
+        <mat-chip-set>
+          <mat-chip
+            *ngFor="let category of blog.categories"
+            [style.background-color]="category.color || '#e0e0e0'"
+          >
+            {{ category.name }}
+          </mat-chip>
+        </mat-chip-set>
+      </div>
+
+      <div class="blog-content" [innerHTML]="blog.content"></div>
+
+      <div class="blog-tags" *ngIf="blog.tags?.length">
+        <h4>Tags:</h4>
+        <mat-chip-set>
+          <mat-chip *ngFor="let tag of blog.tags">
+            {{ tag }}
+          </mat-chip>
+        </mat-chip-set>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button (click)="likeBlog()" [disabled]="isLiking">
+        <mat-icon>thumb_up</mat-icon>
+        {{ blog.likes }} Likes
+      </button>
+
+      <button mat-button (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Back to Blog List
+      </button>
+
+      <div class="admin-actions" *ngIf="canEdit">
+        <button mat-button color="primary" (click)="editBlog()">
+          <mat-icon>edit</mat-icon>
+          Edit
+        </button>
+
+        <button mat-button color="warn" (click)="deleteBlog()">
+          <mat-icon>delete</mat-icon>
+          Delete
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+
+  <!-- Comments Section -->
+  <div class="comments-section">
+    <h3>Comments ({{ blog.commentCount || 0 }})</h3>
+    <!-- TODO: Add comment list and form components -->
+    <p>Comments functionality will be implemented in the next phase.</p>
+  </div>
+</div>
+
+<div class="loading-container" *ngIf="!blog && isLoading">
+  <mat-spinner></mat-spinner>
+  <p>Loading blog post...</p>
+</div>
+
+<div class="error-container" *ngIf="!blog && !isLoading">
+  <mat-card>
+    <mat-card-content>
+      <h2>Blog post not found</h2>
+      <p>The blog post you're looking for doesn't exist or has been removed.</p>
+      <button mat-raised-button color="primary" (click)="goBack()">
+        Back to Blog List
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>

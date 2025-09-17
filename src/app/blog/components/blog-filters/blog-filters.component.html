@@ -1,0 +1,69 @@
+<mat-expansion-panel class="filters-panel">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <mat-icon>filter_list</mat-icon>
+      Filters
+    </mat-panel-title>
+    <mat-panel-description> Refine your search </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <form [formGroup]="filterForm" class="filters-form">
+    <div class="filter-row">
+      <!-- Sort -->
+      <mat-form-field appearance="outline">
+        <mat-label>Sort by</mat-label>
+        <mat-select formControlName="sort">
+          <mat-option *ngFor="let option of sortOptions" [value]="option.value">
+            {{ option.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Category -->
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category">
+          <mat-option value="">All Categories</mat-option>
+          <mat-option
+            *ngFor="let category of categories"
+            [value]="category._id"
+          >
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Status -->
+      <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option
+            *ngFor="let option of statusOptions"
+            [value]="option.value"
+          >
+            {{ option.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="filter-row">
+      <!-- Featured -->
+      <mat-checkbox formControlName="featured" class="featured-checkbox">
+        Featured posts only
+      </mat-checkbox>
+
+      <!-- Clear Filters -->
+      <button
+        type="button"
+        mat-stroked-button
+        color="warn"
+        (click)="clearFilters()"
+        class="clear-button"
+      >
+        <mat-icon>clear</mat-icon>
+        Clear Filters
+      </button>
+    </div>
+  </form>
+</mat-expansion-panel>

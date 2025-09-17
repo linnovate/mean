@@ -1,0 +1,136 @@
+.blog-form-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.blog-form-card {
+  margin-bottom: 2rem;
+}
+
+.blog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.content-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.editor-label {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 14px;
+  margin-bottom: 0.5rem;
+}
+
+.editor-container {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  min-height: 400px;
+  margin-bottom: 0.5rem;
+
+  // Override TinyMCE default styles to match Material Design
+  ::ng-deep .tox {
+    .tox-editor-header {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .tox-edit-area {
+      border: none;
+    }
+
+    .tox-statusbar {
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+    }
+  }
+}
+
+.content-editor {
+  width: 100%;
+
+  ::ng-deep editor {
+    display: block;
+    width: 100%;
+  }
+}
+
+.content-textarea:focus {
+  border-color: #1976d2;
+}
+
+.seo-section,
+.publishing-section {
+  margin: 1rem 0;
+}
+
+.featured-checkbox {
+  margin: 1rem 0;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.action-button {
+  min-width: 120px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .blog-form-container {
+    margin: 1rem auto;
+    padding: 0 0.5rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .action-button {
+    width: 100%;
+  }
+}
+
+/* Material design enhancements */
+mat-form-field {
+  margin-bottom: 0.5rem;
+}
+
+mat-chip-set,
+mat-chip-grid {
+  min-height: 48px;
+}
+
+mat-expansion-panel {
+  margin: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+mat-expansion-panel-header {
+  font-weight: 500;
+}
+
+/* Loading spinner alignment */
+.action-button mat-spinner {
+  margin-right: 8px;
+  display: inline-block;
+}
+
+/* Error state styling */
+mat-error {
+  font-size: 12px;
+  margin-top: 4px;
+}
